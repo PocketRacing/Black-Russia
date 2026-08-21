@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>BLACK RUSSIA RP</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -10,114 +10,41 @@
 <style>
 *{box-sizing:border-box}
 :root{
---bg:#070707;
---panel:#111;
---panel2:#181818;
---border:#292929;
+--bg:#060606;
+--p:#111;
+--p2:#171717;
+--p3:#202020;
+--b:#2b2b2b;
 --text:#fff;
---muted:#858585;
---green:#36df8b;
---red:#ff5757;
---gold:#e7bd50;
+--muted:#888;
+--green:#38df8b;
+--gold:#e9bd4d;
+--red:#ff5555;
+--blue:#5ca8ff;
+--purple:#b06cff;
 }
 html,body{
 margin:0;
-min-height:100%;
 background:
-radial-gradient(circle at 50% -10%,#292929 0,#0b0b0b 45%,#030303 100%);
+radial-gradient(circle at 50% -20%,#303030 0,#0c0c0c 42%,#030303 100%);
 color:var(--text);
-font-family:Arial,Helvetica,sans-serif
+font-family:Arial,Helvetica,sans-serif;
+min-height:100%;
 }
-button,input{font:inherit}
+button,input,select{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
-
-#authScreen{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px
-}
-.auth{
-width:100%;
-max-width:430px;
-background:rgba(13,13,13,.97);
-border:1px solid #303030;
-border-radius:22px;
-padding:30px;
-box-shadow:0 30px 100px #000
-}
-.logo{
-text-align:center;
-font-size:31px;
-font-weight:900;
-letter-spacing:4px
-}
-.logo-sub{
-text-align:center;
-font-size:12px;
-color:#777;
-letter-spacing:2px;
-margin:8px 0 28px
-}
-.auth h2{margin:0 0 16px}
-.input{
-width:100%;
-padding:14px;
-margin:5px 0;
-border:1px solid #333;
-border-radius:11px;
-background:#090909;
-color:#fff;
-outline:0
-}
-.input:focus{border-color:#777}
-.btn{
-border:1px solid #333;
-background:#1b1b1b;
-color:#fff;
-border-radius:10px;
-padding:11px 15px
-}
-.btn:hover{background:#292929}
-.btn-main{
-width:100%;
-border:0;
-border-radius:11px;
-padding:14px;
-margin-top:8px;
-background:#fff;
-color:#000;
-font-weight:900
-}
-.btn-second{
-width:100%;
-border:0;
-border-radius:11px;
-padding:14px;
-margin-top:8px;
-background:#222;
-color:#fff
-}
-.auth-msg{
-min-height:22px;
-margin-top:14px;
-text-align:center;
-color:#aaa;
-font-size:13px
-}
 
 .top{
 position:sticky;
 top:0;
 z-index:100;
-background:rgba(7,7,7,.94);
-backdrop-filter:blur(15px);
-border-bottom:1px solid #252525
+background:rgba(5,5,5,.94);
+backdrop-filter:blur(18px);
+border-bottom:1px solid #292929
 }
 .top-inner{
-max-width:1450px;
+max-width:1500px;
 margin:auto;
 padding:13px 18px;
 display:flex;
@@ -126,105 +53,154 @@ align-items:center;
 gap:15px
 }
 .brand{font-weight:900;letter-spacing:2px}
-.status{
-font-size:12px;
-color:#777;
-margin-top:4px
-}
+.status{font-size:12px;color:#777;margin-top:4px}
 .dot{
 display:inline-block;
-width:8px;
-height:8px;
-background:var(--green);
+width:8px;height:8px;
 border-radius:50%;
-margin-right:5px;
-box-shadow:0 0 10px var(--green)
+background:var(--green);
+box-shadow:0 0 12px var(--green);
+margin-right:5px
 }
 .moneybar{
 display:flex;
-gap:13px;
+gap:15px;
 flex-wrap:wrap
 }
-.moneybar span{font-size:13px;color:#bbb}
-.moneybar strong{color:#fff}
+.moneybar span{color:#aaa;font-size:13px}
+.moneybar strong{color:white}
 .moneybar .gold strong{color:var(--gold)}
 
 .layout{
-max-width:1450px;
+max-width:1500px;
 margin:auto;
 display:grid;
-grid-template-columns:235px 1fr;
-min-height:calc(100vh - 62px)
+grid-template-columns:245px 1fr;
+min-height:calc(100vh - 65px)
 }
 .sidebar{
-background:rgba(8,8,8,.85);
-border-right:1px solid #222;
-padding:16px 11px
+background:rgba(7,7,7,.85);
+border-right:1px solid #242424;
+padding:12px
 }
 .section{
 font-size:10px;
 color:#666;
-text-transform:uppercase;
 letter-spacing:1.5px;
-padding:10px
+text-transform:uppercase;
+padding:12px 10px 7px
 }
 .nav{
 width:100%;
 text-align:left;
+padding:11px 12px;
 border:1px solid transparent;
 background:transparent;
 color:#999;
-padding:11px 12px;
 border-radius:10px;
-margin-bottom:4px
+margin-bottom:3px
 }
 .nav:hover,.nav.active{
 background:#191919;
-border-color:#2a2a2a;
+border-color:#303030;
 color:#fff
 }
-.logout{color:#ff6b6b}
+.nav.logout{color:#ff6969}
 .content{padding:22px;min-width:0}
 .page{display:none}
 .page.active{display:block}
+
 .title{font-size:29px;margin:0}
 .subtitle{color:#777;margin:6px 0 20px}
 
 .hero{
 border:1px solid #303030;
 border-radius:20px;
-padding:24px;
+padding:25px;
 margin-bottom:15px;
 background:
-radial-gradient(circle at 80% 20%,#303030,transparent 40%),
-linear-gradient(135deg,#191919,#080808)
+radial-gradient(circle at 80% 10%,#303030,transparent 38%),
+linear-gradient(135deg,#1b1b1b,#080808)
 }
-.hero h2{margin:0 0 7px;font-size:28px}
-.hero p{color:#888;margin:0}
+.hero h1,.hero h2{margin:0 0 8px}
+.hero p{color:#888}
 .actions{
 display:flex;
-gap:8px;
 flex-wrap:wrap;
-margin-top:17px
+gap:8px;
+margin-top:15px
+}
+.btn{
+background:#1b1b1b;
+border:1px solid #333;
+color:white;
+padding:11px 15px;
+border-radius:10px
+}
+.btn:hover{background:#292929}
+.btn-main{
+background:#fff;
+color:#000;
+border:0;
+padding:13px 16px;
+border-radius:10px;
+font-weight:900
+}
+.btn-green{
+background:#174f37;
+border-color:#267c58
+}
+.btn-red{
+background:#501c1c;
+border-color:#7b3030
+}
+.btn-gold{
+background:#4b3b13;
+border-color:#806622
 }
 .grid{
 display:grid;
 gap:13px
 }
-.g4{grid-template-columns:repeat(4,1fr)}
-.g3{grid-template-columns:repeat(3,1fr)}
 .g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+
 .card{
 background:linear-gradient(145deg,#151515,#0d0d0d);
 border:1px solid #292929;
 border-radius:16px;
 padding:17px
 }
-.card-label{font-size:12px;color:#777}
-.big{font-size:24px;font-weight:900;margin-top:7px}
+.card-label{
+font-size:12px;
+color:#777
+}
+.big{
+font-size:25px;
+font-weight:900;
+margin-top:7px
+}
 .gold{color:var(--gold)}
 .green{color:var(--green)}
 .red{color:var(--red)}
+.blue{color:var(--blue)}
+.purple{color:var(--purple)}
+.muted{color:#777}
+
+.progress{
+height:9px;
+background:#252525;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px
+}
+.progress i{
+display:block;
+height:100%;
+background:var(--green);
+width:0
+}
 
 .profile{
 display:flex;
@@ -235,15 +211,13 @@ align-items:center
 width:90px;
 height:90px;
 border-radius:20px;
-background:linear-gradient(145deg,#3b3b3b,#151515);
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:34px;
+background:linear-gradient(145deg,#444,#111);
+font-size:35px;
 font-weight:900
 }
-.profile-name{font-size:25px;font-weight:900}
-.muted{color:#777}
 
 .itemgrid{
 display:grid;
@@ -251,55 +225,180 @@ grid-template-columns:repeat(5,1fr);
 gap:10px
 }
 .item{
-min-height:120px;
-background:#111;
+min-height:130px;
+padding:13px;
 border:1px solid #292929;
-border-radius:13px;
-padding:12px
+background:#101010;
+border-radius:13px
 }
-.item-icon{font-size:32px}
-.item-name{font-size:13px;margin-top:8px}
-.item-count{font-size:11px;color:#777;margin-top:4px}
+.item-icon{font-size:34px}
+.item-name{font-weight:800;margin-top:7px}
+.item-count{font-size:11px;color:#777;margin-top:5px}
 
-.vehicle{
-min-height:190px
-}
-.vehicle-icon{font-size:54px}
-.vehicle-name{font-size:19px;font-weight:900;margin-top:8px}
-
-.job-icon{font-size:38px}
-.job-name{font-size:19px;font-weight:900;margin-top:8px}
-.job-desc{color:#777;min-height:40px;margin:7px 0}
-.salary{color:var(--green);font-weight:900}
-
-.map{
-height:520px;
+.car{
 position:relative;
-overflow:hidden;
-border:1px solid #303030;
-border-radius:20px;
+overflow:hidden
+}
+.car-image{
+height:150px;
+border-radius:12px;
 background:
-linear-gradient(30deg,transparent 46%,#242424 47%,#242424 49%,transparent 50%),
-linear-gradient(150deg,transparent 45%,#202020 46%,#202020 48%,transparent 49%),
-radial-gradient(circle,#252525,#090909 70%)
-}
-.map-label{
-position:absolute;
-color:#999;
-font-size:13px;
-font-weight:800
-}
-.marker{
-position:absolute;
-width:40px;
-height:40px;
-border-radius:50%;
-background:#fff;
-color:#000;
+radial-gradient(circle,#292929,#0c0c0c);
 display:flex;
 align-items:center;
 justify-content:center;
-font-weight:900
+overflow:hidden
+}
+.car-image img{
+width:100%;
+height:100%;
+object-fit:contain
+}
+.car-placeholder{
+font-size:68px;
+opacity:.8
+}
+.car-name{
+font-size:19px;
+font-weight:900;
+margin-top:12px
+}
+.car-price{
+color:var(--gold);
+font-weight:900;
+margin-top:5px
+}
+.tags{
+display:flex;
+flex-wrap:wrap;
+gap:5px;
+margin-top:9px
+}
+.tag{
+padding:4px 7px;
+border-radius:6px;
+background:#222;
+color:#999;
+font-size:10px
+}
+
+.feature{
+min-height:160px
+}
+.feature-icon{
+font-size:40px
+}
+.feature h3{margin:8px 0}
+.feature p{color:#777}
+
+.map{
+height:550px;
+position:relative;
+overflow:hidden;
+border:1px solid #333;
+border-radius:20px;
+background:
+linear-gradient(30deg,transparent 46%,#272727 47%,#272727 49%,transparent 50%),
+linear-gradient(150deg,transparent 45%,#222 46%,#222 48%,transparent 49%),
+radial-gradient(circle,#292929,#080808 70%)
+}
+.map-road{
+position:absolute;
+background:#303030
+}
+.marker{
+position:absolute;
+width:44px;
+height:44px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#fff;
+color:#000;
+font-weight:900;
+box-shadow:0 4px 20px #000
+}
+.map-label{
+position:absolute;
+font-weight:900;
+font-size:13px;
+color:#aaa
+}
+
+.case{
+text-align:center;
+min-height:280px
+}
+.case-box{
+height:130px;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+background:
+radial-gradient(circle,#444,#151515);
+border:1px solid #444;
+box-shadow:inset 0 0 40px #000
+}
+.case.common .case-box{border-color:#555}
+.case.rare .case-box{border-color:#6b55a8}
+.case.epic .case-box{border-color:#b68a20}
+.case.legendary .case-box{border-color:#e2b94d}
+
+.wheel{
+width:280px;
+height:280px;
+border-radius:50%;
+margin:20px auto;
+border:10px solid #252525;
+background:
+conic-gradient(
+#222 0deg 45deg,
+#444 45deg 90deg,
+#222 90deg 135deg,
+#555 135deg 180deg,
+#222 180deg 225deg,
+#444 225deg 270deg,
+#222 270deg 315deg,
+#555 315deg 360deg
+);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:42px;
+transition:transform 4s cubic-bezier(.15,.8,.2,1)
+}
+.wheel-center{
+width:85px;
+height:85px;
+border-radius:50%;
+background:#111;
+display:flex;
+align-items:center;
+justify-content:center;
+border:2px solid #555
+}
+
+.daily{
+display:flex;
+gap:8px;
+overflow:auto;
+padding-bottom:5px
+}
+.day{
+min-width:120px;
+padding:15px;
+border:1px solid #292929;
+border-radius:13px;
+background:#111;
+text-align:center
+}
+.day.claimed{opacity:.45}
+.day.today{
+border-color:var(--gold);
+box-shadow:0 0 20px #80662244
 }
 
 .chat{
@@ -308,19 +407,19 @@ grid-template-columns:1fr 280px;
 gap:13px
 }
 .chatbox{
-height:500px;
+height:520px;
 display:flex;
 flex-direction:column
 }
 .messages{
 flex:1;
-overflow-y:auto;
+overflow:auto;
+padding:13px;
 background:#080808;
 border:1px solid #292929;
-border-radius:12px;
-padding:13px
+border-radius:12px
 }
-.msg{margin-bottom:13px}
+.msg{margin-bottom:14px}
 .msg-name{font-size:11px;color:#777}
 .msg-text{margin-top:3px}
 .chat-row{
@@ -330,172 +429,154 @@ margin-top:9px
 }
 .chat-input{
 flex:1;
-background:#111;
-border:1px solid #333;
-border-radius:10px;
 padding:12px;
+border-radius:10px;
+background:#111;
 color:#fff;
+border:1px solid #333;
 outline:0
 }
-.online{
-max-height:500px;
-overflow:auto
-}
+
 .online-user{
-padding:11px 5px;
-border-bottom:1px solid #222
+padding:11px 3px;
+border-bottom:1px solid #252525
 }
 
-.family-banner{
-padding:20px;
-border-radius:18px;
-border:1px solid #303030;
-background:linear-gradient(135deg,#1d1d1d,#0c0c0c)
-}
-.family-name{font-size:27px;font-weight:900}
-.family-rank{color:#888;margin-top:5px}
-
-.phone{
-max-width:390px;
-margin:auto;
-background:#050505;
-border:7px solid #222;
-border-radius:35px;
-padding:14px;
-min-height:600px;
-box-shadow:0 25px 80px #000
-}
-.phone-head{
-display:flex;
-justify-content:space-between;
-color:#aaa;
-font-size:12px
-}
-.phone-screen{
-margin-top:15px;
-background:
-radial-gradient(circle at top,#303030,#101010 60%);
-border-radius:24px;
-padding:17px;
-min-height:530px
-}
-.phone-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:20px
-}
-.phone-app{
-background:#1c1c1c;
-border:1px solid #333;
-border-radius:15px;
-padding:14px 5px;
-text-align:center
-}
-.phone-app div{font-size:27px}
-.phone-app small{display:block;margin-top:6px;color:#aaa}
-
-.friend{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:12px 0;
-border-bottom:1px solid #242424
-}
-
-.achievement{
-display:flex;
-gap:13px;
-align-items:center
-}
-.achievement-icon{
-width:55px;
-height:55px;
-border-radius:14px;
+.rank{
+padding:4px 8px;
+border-radius:6px;
 background:#222;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:25px
+font-size:10px;
+color:#aaa
 }
 
-.notification{
+.license{
+display:flex;
+justify-content:space-between;
+align-items:center;
 padding:13px 0;
 border-bottom:1px solid #252525
 }
-.notification strong{display:block}
-.notification small{color:#777}
+
+.organization{
+min-height:190px
+}
 
 .modal{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.75);
-z-index:500;
+z-index:1000;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#000b;
+padding:20px
+}
+.modal-box{
+width:100%;
+max-width:480px;
+background:#111;
+border:1px solid #333;
+border-radius:18px;
+padding:20px;
+box-shadow:0 30px 100px #000
+}
+.input{
+width:100%;
+padding:13px;
+border-radius:10px;
+border:1px solid #333;
+background:#090909;
+color:#fff;
+outline:0;
+margin:5px 0
+}
+.input:focus{border-color:#777}
+
+.toast{
+position:fixed;
+right:18px;
+bottom:18px;
+z-index:2000;
+background:#f5f5f5;
+color:#111;
+padding:13px 17px;
+border-radius:11px;
+font-weight:800;
+transform:translateY(120px);
+transition:.25s;
+max-width:360px
+}
+.toast.show{transform:translateY(0)}
+
+.auth-screen{
+min-height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;
 padding:20px
 }
-.modal-box{
+.auth{
 width:100%;
 max-width:430px;
-background:#111;
-border:1px solid #333;
-border-radius:18px;
-padding:20px
+background:#101010ee;
+border:1px solid #303030;
+border-radius:22px;
+padding:30px;
+box-shadow:0 30px 100px #000
+}
+.logo{
+text-align:center;
+font-size:30px;
+font-weight:900;
+letter-spacing:4px
+}
+.logo-sub{
+text-align:center;
+font-size:11px;
+color:#777;
+letter-spacing:2px;
+margin:7px 0 28px
+}
+.auth-msg{
+min-height:20px;
+text-align:center;
+color:#aaa;
+font-size:13px;
+margin-top:13px
 }
 
-#toast{
-position:fixed;
-right:18px;
-bottom:18px;
-z-index:1000;
-background:#f5f5f5;
-color:#111;
-padding:13px 16px;
-border-radius:11px;
-font-weight:800;
-transform:translateY(120px);
-transition:.25s;
-max-width:350px
-}
-#toast.show{transform:translateY(0)}
-
-@media(max-width:1000px){
-.layout{grid-template-columns:190px 1fr}
+@media(max-width:1050px){
+.layout{grid-template-columns:195px 1fr}
 .g4{grid-template-columns:repeat(2,1fr)}
 .itemgrid{grid-template-columns:repeat(3,1fr)}
-.chat{grid-template-columns:1fr}
 }
 @media(max-width:700px){
-.top-inner{align-items:flex-start;flex-direction:column}
+.top-inner{flex-direction:column;align-items:flex-start}
 .layout{display:block}
 .sidebar{
 display:flex;
 overflow-x:auto;
 border-right:0;
 border-bottom:1px solid #222;
-padding:9px
+padding:8px
 }
 .section{display:none}
-.nav{
-min-width:max-content;
-width:auto;
-margin:0
-}
+.nav{min-width:max-content;width:auto}
 .content{padding:14px}
-.g4,.g3,.g2{grid-template-columns:1fr}
+.g2,.g3,.g4{grid-template-columns:1fr}
 .itemgrid{grid-template-columns:repeat(2,1fr)}
-.title{font-size:25px}
+.chat{grid-template-columns:1fr}
+.map{height:430px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- AUTH -->
+<!-- ================= AUTH ================= -->
 
-<section id="authScreen">
+<section id="authScreen" class="auth-screen">
 
 <div class="auth">
 
@@ -504,31 +585,29 @@ margin:0
 
 <h2>Вход в игру</h2>
 
-<input
-id="username"
+<input id="username"
 class="input"
-placeholder="Никнейм"
-/>
+placeholder="Никнейм">
 
-<input
-id="email"
+<input id="email"
 class="input"
 type="email"
-placeholder="Email"
-/>
+placeholder="Email">
 
-<input
-id="password"
+<input id="password"
 class="input"
 type="password"
-placeholder="Пароль"
-/>
+placeholder="Пароль">
 
-<button class="btn-main" onclick="login()">
+<button class="btn-main"
+style="width:100%;margin-top:8px"
+onclick="login()">
 Войти
 </button>
 
-<button class="btn-second" onclick="register()">
+<button class="btn"
+style="width:100%;margin-top:8px"
+onclick="register()">
 Создать аккаунт
 </button>
 
@@ -538,7 +617,7 @@ placeholder="Пароль"
 </section>
 
 
-<!-- GAME -->
+<!-- ================= GAME ================= -->
 
 <section id="gameScreen" class="hidden">
 
@@ -572,82 +651,52 @@ placeholder="Пароль"
 
 <div class="section">Основное</div>
 
-<button class="nav active" onclick="showPage('home',this)">
-🏠 Главная
-</button>
+<button class="nav active" onclick="showPage('home',this)">🏠 Главная</button>
+<button class="nav" onclick="showPage('profile',this)">👤 Персонаж</button>
+<button class="nav" onclick="showPage('phone',this)">📱 Телефон</button>
+<button class="nav" onclick="showPage('map',this)">🗺️ Карта</button>
 
-<button class="nav" onclick="showPage('profile',this)">
-👤 Персонаж
-</button>
+<div class="section">Автомобили</div>
 
-<button class="nav" onclick="showPage('phone',this)">
-📱 Телефон
-</button>
-
-<button class="nav" onclick="showPage('map',this)">
-🗺️ Карта
-</button>
-
+<button class="nav" onclick="showPage('garage',this)">🚗 Гараж</button>
+<button class="nav" onclick="showPage('cars',this)">🏎️ Автосалон</button>
+<button class="nav" onclick="showPage('tuning',this)">🔧 Тюнинг</button>
+<button class="nav" onclick="showPage('auction',this)">🔨 Аукцион</button>
 
 <div class="section">Мир</div>
 
-<button class="nav" onclick="showPage('garage',this)">
-🚗 Гараж
-</button>
+<button class="nav" onclick="showPage('jobs',this)">💼 Работы</button>
+<button class="nav" onclick="showPage('organizations',this)">🏢 Организации</button>
+<button class="nav" onclick="showPage('licenses',this)">🪪 Лицензии</button>
+<button class="nav" onclick="showPage('drivingschool',this)">🏫 Автошкола</button>
+<button class="nav" onclick="showPage('government',this)">🏛️ Правительство</button>
+<button class="nav" onclick="showPage('army',this)">🪖 Армия</button>
+<button class="nav" onclick="showPage('police',this)">🚔 Полиция</button>
+<button class="nav" onclick="showPage('hospital',this)">🏥 Больница</button>
 
-<button class="nav" onclick="showPage('jobs',this)">
-💼 Работы
-</button>
+<div class="section">Активности</div>
 
-<button class="nav" onclick="showPage('inventory',this)">
-🎒 Инвентарь
-</button>
+<button class="nav" onclick="showPage('hunting',this)">🌲 Охота</button>
+<button class="nav" onclick="showPage('casino',this)">🎰 Казино</button>
+<button class="nav" onclick="showPage('cases',this)">📦 Кейсы</button>
+<button class="nav" onclick="showPage('roulette',this)">🎡 Рулетка</button>
+<button class="nav" onclick="showPage('daily',this)">🎁 Каждый день</button>
 
-<button class="nav" onclick="showPage('shop',this)">
-🏪 Магазин
-</button>
+<div class="section">Персонаж</div>
 
-<button class="nav" onclick="showPage('property',this)">
-🏠 Недвижимость
-</button>
-
-
-<div class="section">Социальное</div>
-
-<button class="nav" onclick="showPage('family',this)">
-👨‍👩‍👧 Семья
-</button>
-
-<button class="nav" onclick="showPage('friends',this)">
-👥 Друзья
-</button>
-
-<button class="nav" onclick="showPage('chat',this)">
-💬 Чат
-</button>
-
+<button class="nav" onclick="showPage('inventory',this)">🎒 Инвентарь</button>
+<button class="nav" onclick="showPage('property',this)">🏠 Недвижимость</button>
+<button class="nav" onclick="showPage('family',this)">👨‍👩‍👧 Семья</button>
+<button class="nav" onclick="showPage('friends',this)">👥 Друзья</button>
+<button class="nav" onclick="showPage('chat',this)">💬 Онлайн-чат</button>
 
 <div class="section">Аккаунт</div>
 
-<button class="nav" onclick="showPage('achievements',this)">
-🏆 Достижения
-</button>
-
-<button class="nav" onclick="showPage('notifications',this)">
-🔔 Уведомления
-</button>
-
-<button class="nav" onclick="showPage('bank',this)">
-🏦 Банк
-</button>
-
-<button class="nav" onclick="showPage('settings',this)">
-⚙️ Настройки
-</button>
-
-<button class="nav logout" onclick="logout()">
-🚪 Выйти
-</button>
+<button class="nav" onclick="showPage('achievements',this)">🏆 Достижения</button>
+<button class="nav" onclick="showPage('notifications',this)">🔔 Уведомления</button>
+<button class="nav" onclick="showPage('bank',this)">🏦 Банк</button>
+<button class="nav" onclick="showPage('settings',this)">⚙️ Настройки</button>
+<button class="nav logout" onclick="logout()">🚪 Выйти</button>
 
 </aside>
 
@@ -661,36 +710,23 @@ placeholder="Пароль"
 
 <div class="hero">
 
-<h2 id="welcome">
-Добро пожаловать
-</h2>
+<h1 id="welcome">Добро пожаловать</h1>
 
 <p>
-Твоя история в BLACK RUSSIA RP начинается здесь.
+Большой онлайн-RP мир. Машины, работы, организации, семьи и собственная история.
 </p>
 
 <div class="actions">
 
-<button class="btn" onclick="openPage('map')">
-🗺️ Карта
-</button>
-
-<button class="btn" onclick="openPage('jobs')">
-💼 Работы
-</button>
-
-<button class="btn" onclick="openPage('garage')">
-🚗 Гараж
-</button>
-
-<button class="btn" onclick="openPage('phone')">
-📱 Телефон
-</button>
+<button class="btn" onclick="openPage('map')">🗺️ Карта</button>
+<button class="btn" onclick="openPage('cars')">🚗 Автосалон</button>
+<button class="btn" onclick="openPage('daily')">🎁 Награда</button>
+<button class="btn" onclick="openPage('cases')">📦 Кейсы</button>
+<button class="btn" onclick="openPage('roulette')">🎡 Рулетка</button>
 
 </div>
 
 </div>
-
 
 <div class="grid g4">
 
@@ -721,8 +757,11 @@ placeholder="Пароль"
 <div class="grid g3">
 
 <div class="card">
-<div class="card-label">Репутация</div>
-<div class="big" id="reputation">0</div>
+<div class="card-label">Опыт</div>
+<div class="big" id="experience">0</div>
+<div class="progress">
+<i id="xpProgress"></i>
+</div>
 </div>
 
 <div class="card">
@@ -741,24 +780,24 @@ placeholder="Пароль"
 
 <div class="card">
 
-<h3>Быстрые действия</h3>
+<h3>🔥 Быстрый доступ</h3>
 
-<div class="actions">
+<div class="grid g4">
 
-<button class="btn" onclick="testMoney()">
-💵 +1 000 ₽
+<button class="btn feature" onclick="openPage('cars')">
+🚗<br><br>Машины
 </button>
 
-<button class="btn" onclick="openPage('family')">
-👨‍👩‍👧 Моя семья
+<button class="btn feature" onclick="openPage('jobs')">
+💼<br><br>Работы
 </button>
 
-<button class="btn" onclick="openPage('friends')">
-👥 Друзья
+<button class="btn feature" onclick="openPage('organizations')">
+🏢<br><br>Организации
 </button>
 
-<button class="btn" onclick="openPage('achievements')">
-🏆 Достижения
+<button class="btn feature" onclick="openPage('daily')">
+🎁<br><br>Награда дня
 </button>
 
 </div>
@@ -773,7 +812,7 @@ placeholder="Пароль"
 <section id="page-profile" class="page">
 
 <h1 class="title">Персонаж</h1>
-<p class="subtitle">Профиль твоего персонажа</p>
+<p class="subtitle">Твой игровой профиль</p>
 
 <div class="card">
 
@@ -783,13 +822,11 @@ placeholder="Пароль"
 
 <div>
 
-<div class="profile-name" id="profileName">
+<div style="font-size:25px;font-weight:900" id="profileName">
 Игрок
 </div>
 
-<div class="muted" id="profileEmail">
-—
-</div>
+<div class="muted" id="profileEmail">—</div>
 
 <div class="muted">
 ID: <span id="playerIdShort">—</span>
@@ -820,7 +857,7 @@ ID: <span id="playerIdShort">—</span>
 
 <div class="card">
 <div class="card-label">Опыт</div>
-<div class="big" id="experience">0</div>
+<div class="big" id="profileXP">0</div>
 </div>
 
 <div class="card">
@@ -829,7 +866,7 @@ ID: <span id="playerIdShort">—</span>
 </div>
 
 <div class="card">
-<div class="card-label">Время в игре</div>
+<div class="card-label">Время</div>
 <div class="big" id="playtime">0 ч</div>
 </div>
 
@@ -839,7 +876,7 @@ ID: <span id="playerIdShort">—</span>
 
 <div class="card">
 
-<h3>Паспорт персонажа</h3>
+<h3>🪪 Паспорт</h3>
 
 <div class="grid g3">
 
@@ -869,67 +906,32 @@ ID: <span id="playerIdShort">—</span>
 
 <section id="page-phone" class="page">
 
-<h1 class="title">Телефон</h1>
-<p class="subtitle">Личный смартфон персонажа</p>
+<h1 class="title">📱 Телефон</h1>
+<p class="subtitle">Смартфон персонажа</p>
 
-<div class="phone">
+<div style="max-width:390px;margin:auto;background:#050505;border:7px solid #222;border-radius:35px;padding:15px;min-height:600px">
 
-<div class="phone-head">
+<div style="display:flex;justify-content:space-between;color:#aaa">
 <span>BLACK PHONE</span>
 <span id="phoneTime">00:00</span>
 </div>
 
-<div class="phone-screen">
+<div style="margin-top:15px;background:radial-gradient(circle at top,#333,#101010);border-radius:24px;padding:18px;min-height:530px">
 
 <h2 id="phoneName">Игрок</h2>
-<p class="muted">Добро пожаловать.</p>
+<p class="muted">Ваш город всегда с вами.</p>
 
-<div class="phone-grid">
+<div class="grid g3" style="margin-top:25px">
 
-<button class="phone-app" onclick="openPage('friends')">
-<div>👥</div>
-<small>Контакты</small>
-</button>
-
-<button class="phone-app" onclick="openPage('chat')">
-<div>💬</div>
-<small>Сообщения</small>
-</button>
-
-<button class="phone-app" onclick="openPage('map')">
-<div>🗺️</div>
-<small>Карта</small>
-</button>
-
-<button class="phone-app" onclick="openPage('bank')">
-<div>🏦</div>
-<small>Банк</small>
-</button>
-
-<button class="phone-app">
-<div>📞</div>
-<small>Звонки</small>
-</button>
-
-<button class="phone-app" onclick="openPage('notifications')">
-<div>🔔</div>
-<small>Уведомления</small>
-</button>
-
-<button class="phone-app" onclick="showToast('Приложение объявлений скоро появится.')">
-<div>📢</div>
-<small>Объявления</small>
-</button>
-
-<button class="phone-app" onclick="openPage('family')">
-<div>👨‍👩‍👧</div>
-<small>Семья</small>
-</button>
-
-<button class="phone-app" onclick="openPage('profile')">
-<div>👤</div>
-<small>Профиль</small>
-</button>
+<button class="btn" onclick="openPage('friends')">👥<br><small>Контакты</small></button>
+<button class="btn" onclick="openPage('chat')">💬<br><small>Чат</small></button>
+<button class="btn" onclick="openPage('map')">🗺️<br><small>Карта</small></button>
+<button class="btn" onclick="openPage('bank')">🏦<br><small>Банк</small></button>
+<button class="btn" onclick="openPage('daily')">🎁<br><small>Бонус</small></button>
+<button class="btn" onclick="openPage('notifications')">🔔<br><small>Новости</small></button>
+<button class="btn" onclick="showToast('Телефонный звонок скоро появится.')">📞<br><small>Звонки</small></button>
+<button class="btn" onclick="showToast('Объявления скоро появятся.')">📢<br><small>Объявления</small></button>
+<button class="btn" onclick="openPage('family')">👨‍👩‍👧<br><small>Семья</small></button>
 
 </div>
 
@@ -943,31 +945,50 @@ ID: <span id="playerIdShort">—</span>
 
 <section id="page-map" class="page">
 
-<h1 class="title">Карта</h1>
-<p class="subtitle">Игровой город</p>
+<h1 class="title">🗺️ Карта города</h1>
+<p class="subtitle">Все основные места взаимодействия</p>
 
 <div class="map">
 
-<div class="map-label" style="left:9%;top:13%">
-Северный район
+<div class="map-label" style="left:8%;top:10%">Северный район</div>
+<div class="map-label" style="left:43%;top:20%">Центр</div>
+<div class="map-label" style="right:8%;top:10%">Аэропорт</div>
+<div class="map-label" style="left:10%;bottom:12%">Промзона</div>
+<div class="map-label" style="right:10%;bottom:15%">Южный район</div>
+
+<div class="marker" style="left:47%;top:40%">🏛️</div>
+<div class="marker" style="left:20%;top:25%">🚔</div>
+<div class="marker" style="right:20%;top:25%">🏥</div>
+<div class="marker" style="left:22%;bottom:23%">🚗</div>
+<div class="marker" style="right:23%;bottom:25%">🎰</div>
+<div class="marker" style="left:48%;bottom:15%">🏫</div>
+<div class="marker" style="right:8%;bottom:8%">🪖</div>
+
 </div>
 
-<div class="map-label" style="right:14%;top:28%">
-Центр
+<br>
+
+<div class="grid g4">
+
+<div class="card">
+<strong>🚔 Полиция</strong>
+<p class="muted">Порядок, штрафы, лицензии.</p>
 </div>
 
-<div class="map-label" style="left:15%;bottom:18%">
-Промзона
+<div class="card">
+<strong>🏥 Больница</strong>
+<p class="muted">Лечение персонажей.</p>
 </div>
 
-<div class="map-label" style="right:13%;bottom:14%">
-Южный район
+<div class="card">
+<strong>🏫 Автошкола</strong>
+<p class="muted">Получение водительских прав.</p>
 </div>
 
-<div class="marker" style="left:48%;top:44%">📍</div>
-<div class="marker" style="left:20%;top:25%">💼</div>
-<div class="marker" style="right:22%;top:35%">🏦</div>
-<div class="marker" style="left:70%;bottom:20%">🚗</div>
+<div class="card">
+<strong>🎰 Казино</strong>
+<p class="muted">Игровые развлечения.</p>
+</div>
 
 </div>
 
@@ -978,63 +999,139 @@ ID: <span id="playerIdShort">—</span>
 
 <section id="page-garage" class="page">
 
-<h1 class="title">Гараж</h1>
-<p class="subtitle">Твои автомобили</p>
+<h1 class="title">🚗 Гараж</h1>
+<p class="subtitle">Твой автопарк</p>
+
+<div id="garageGrid" class="grid g3"></div>
+
+</section>
+
+
+<!-- CARS -->
+
+<section id="page-cars" class="page">
+
+<h1 class="title">🏎️ Автосалон</h1>
+<p class="subtitle">Автомобили можно расширять простым добавлением PNG-файлов.</p>
+
+<div class="actions">
+
+<button class="btn" onclick="filterCars('all')">Все</button>
+<button class="btn" onclick="filterCars('BMW')">BMW</button>
+<button class="btn" onclick="filterCars('Mercedes')">Mercedes</button>
+<button class="btn" onclick="filterCars('Audi')">Audi</button>
+<button class="btn" onclick="filterCars('Porsche')">Porsche</button>
+<button class="btn" onclick="filterCars('Dodge')">Dodge</button>
+<button class="btn" onclick="filterCars('Lada')">Lada</button>
+
+</div>
+
+<br>
+
+<div id="carsGrid" class="grid g3"></div>
+
+</section>
+
+
+<!-- TUNING -->
+
+<section id="page-tuning" class="page">
+
+<h1 class="title">🔧 Тюнинг</h1>
+<p class="subtitle">Улучшай свои автомобили</p>
 
 <div class="grid g3">
 
-<div class="card vehicle">
-
-<div class="vehicle-icon">🚗</div>
-
-<div class="vehicle-name">
-Lada Priora
+<div class="card">
+<div class="feature-icon">⚡</div>
+<h3>Двигатель</h3>
+<p>Увеличивает мощность.</p>
+<strong>250 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="upgradeCar('engine',250000)">Установить</button>
 </div>
 
-<p class="muted">
-RP 001 • Состояние 100%
-</p>
+<div class="card">
+<div class="feature-icon">🏎️</div>
+<h3>Турбо</h3>
+<p>Повышает ускорение.</p>
+<strong>350 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="upgradeCar('turbo',350000)">Установить</button>
+</div>
 
-<button class="btn">
-Выбрать
-</button>
+<div class="card">
+<div class="feature-icon">🎨</div>
+<h3>Покраска</h3>
+<p>Измени внешний вид.</p>
+<strong>50 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="upgradeCar('paint',50000)">Установить</button>
+</div>
+
+<div class="card">
+<div class="feature-icon">💿</div>
+<h3>Диски</h3>
+<p>Новые колёсные диски.</p>
+<strong>75 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="upgradeCar('wheels',75000)">Установить</button>
+</div>
+
+<div class="card">
+<div class="feature-icon">🔊</div>
+<h3>Выхлоп</h3>
+<p>Спортивная система.</p>
+<strong>90 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="upgradeCar('exhaust',90000)">Установить</button>
+</div>
+
+<div class="card">
+<div class="feature-icon">🔢</div>
+<h3>Номер</h3>
+<p>Персональный номер автомобиля.</p>
+<strong>100 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="changePlate()">Изменить номер</button>
+</div>
 
 </div>
 
-<div class="card vehicle">
+</section>
 
-<div class="vehicle-icon">🚙</div>
 
-<div class="vehicle-name">
-ВАЗ 2114
+<!-- AUCTION -->
+
+<section id="page-auction" class="page">
+
+<h1 class="title">🔨 Автоаукцион</h1>
+<p class="subtitle">Игроки выставляют машины на продажу.</p>
+
+<div class="grid g3">
+
+<div class="card car">
+<div class="car-image"><div class="car-placeholder">🚘</div></div>
+<div class="car-name">BMW M5</div>
+<div class="car-price">2 800 000 ₽</div>
+<p class="muted">Продавец: Player_01</p>
+<button class="btn" onclick="buyAuctionCar('BMW M5',2800000)">Купить</button>
 </div>
 
-<p class="muted">
-RP 002 • Состояние 100%
-</p>
-
-<button class="btn">
-Выбрать
-</button>
-
+<div class="card car">
+<div class="car-image"><div class="car-placeholder">🚙</div></div>
+<div class="car-name">Mercedes G63</div>
+<div class="car-price">7 500 000 ₽</div>
+<p class="muted">Продавец: Driver_77</p>
+<button class="btn" onclick="buyAuctionCar('Mercedes G63',7500000)">Купить</button>
 </div>
 
-<div class="card vehicle">
-
-<div class="vehicle-icon">➕</div>
-
-<div class="vehicle-name">
-Свободный слот
-</div>
-
-<p class="muted">
-Приобрети автомобиль.
-</p>
-
-<button class="btn" onclick="openPage('shop')">
-Автосалон
-</button>
-
+<div class="card car">
+<div class="car-image"><div class="car-placeholder">🏎️</div></div>
+<div class="car-name">Porsche 911</div>
+<div class="car-price">5 900 000 ₽</div>
+<p class="muted">Продавец: Racer</p>
+<button class="btn" onclick="buyAuctionCar('Porsche 911',5900000)">Купить</button>
 </div>
 
 </div>
@@ -1046,76 +1143,612 @@ RP 002 • Состояние 100%
 
 <section id="page-jobs" class="page">
 
-<h1 class="title">Работы</h1>
-<p class="subtitle">Выбери свою карьеру</p>
+<h1 class="title">💼 Работы</h1>
+<p class="subtitle">Начни карьеру</p>
+
+<div class="grid g3">
+
+<div class="card feature">
+<div class="feature-icon">🚕</div>
+<h3>Таксист</h3>
+<p>Перевози пассажиров.</p>
+<strong class="green">1 500–4 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="selectJob('Таксист')">Устроиться</button>
+</div>
+
+<div class="card feature">
+<div class="feature-icon">🚚</div>
+<h3>Дальнобойщик</h3>
+<p>Доставляй грузы.</p>
+<strong class="green">3 000–8 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="selectJob('Дальнобойщик')">Устроиться</button>
+</div>
+
+<div class="card feature">
+<div class="feature-icon">🔧</div>
+<h3>Механик</h3>
+<p>Ремонтируй машины.</p>
+<strong class="green">1 800–5 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="selectJob('Механик')">Устроиться</button>
+</div>
+
+<div class="card feature">
+<div class="feature-icon">📦</div>
+<h3>Курьер</h3>
+<p>Доставляй посылки.</p>
+<strong class="green">1 000–3 500 ₽</strong>
+<br><br>
+<button class="btn" onclick="selectJob('Курьер')">Устроиться</button>
+</div>
+
+<div class="card feature">
+<div class="feature-icon">⛏️</div>
+<h3>Шахтёр</h3>
+<p>Добывай ресурсы.</p>
+<strong class="green">2 000–5 500 ₽</strong>
+<br><br>
+<button class="btn" onclick="selectJob('Шахтёр')">Устроиться</button>
+</div>
+
+<div class="card feature">
+<div class="feature-icon">🌲</div>
+<h3>Лесоруб</h3>
+<p>Работай в лесу.</p>
+<strong class="green">1 700–4 500 ₽</strong>
+<br><br>
+<button class="btn" onclick="selectJob('Лесоруб')">Устроиться</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ORGANIZATIONS -->
+
+<section id="page-organizations" class="page">
+
+<h1 class="title">🏢 Организации</h1>
+<p class="subtitle">Государственные и городские структуры</p>
+
+<div class="grid g3">
+
+<div class="card organization">
+<div class="feature-icon">🚔</div>
+<h3>Полиция</h3>
+<p>Порядок, патрулирование, расследования.</p>
+<button class="btn" onclick="applyOrg('Полиция')">Подать заявку</button>
+</div>
+
+<div class="card organization">
+<div class="feature-icon">🏥</div>
+<h3>Больница</h3>
+<p>Медицинская помощь игрокам.</p>
+<button class="btn" onclick="applyOrg('Больница')">Подать заявку</button>
+</div>
+
+<div class="card organization">
+<div class="feature-icon">🪖</div>
+<h3>Армия</h3>
+<p>Военная служба и охрана объектов.</p>
+<button class="btn" onclick="applyOrg('Армия')">Подать заявку</button>
+</div>
+
+<div class="card organization">
+<div class="feature-icon">🏛️</div>
+<h3>Правительство</h3>
+<p>Управление городом.</p>
+<button class="btn" onclick="applyOrg('Правительство')">Подать заявку</button>
+</div>
+
+<div class="card organization">
+<div class="feature-icon">🚕</div>
+<h3>Таксопарк</h3>
+<p>Работа водителем.</p>
+<button class="btn" onclick="applyOrg('Таксопарк')">Вступить</button>
+</div>
+
+<div class="card organization">
+<div class="feature-icon">🔧</div>
+<h3>Автосервис</h3>
+<p>Ремонт и обслуживание автомобилей.</p>
+<button class="btn" onclick="applyOrg('Автосервис')">Вступить</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LICENSES -->
+
+<section id="page-licenses" class="page">
+
+<h1 class="title">🪪 Лицензии</h1>
+<p class="subtitle">Документы персонажа</p>
+
+<div class="card">
+
+<div class="license">
+<div>
+<strong>🚗 Водительские права</strong>
+<br><small class="muted">Категория B</small>
+</div>
+<span id="licB" class="rank">НЕТ</span>
+</div>
+
+<div class="license">
+<div>
+<strong>🏍️ Категория A</strong>
+<br><small class="muted">Мотоциклы</small>
+</div>
+<span id="licA" class="rank">НЕТ</span>
+</div>
+
+<div class="license">
+<div>
+<strong>🚚 Категория C</strong>
+<br><small class="muted">Грузовой транспорт</small>
+</div>
+<span id="licC" class="rank">НЕТ</span>
+</div>
+
+<div class="license">
+<div>
+<strong>🔫 Оружейная лицензия</strong>
+<br><small class="muted">Особая лицензия</small>
+</div>
+<span class="rank">НЕТ</span>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DRIVING SCHOOL -->
+
+<section id="page-drivingschool" class="page">
+
+<h1 class="title">🏫 Автошкола</h1>
+<p class="subtitle">Получи водительские права</p>
 
 <div class="grid g3">
 
 <div class="card">
-<div class="job-icon">🚕</div>
-<div class="job-name">Таксист</div>
-<div class="job-desc">Перевози пассажиров.</div>
-<div class="salary">1 500–4 000 ₽</div>
-<br>
-<button class="btn" onclick="selectJob('Таксист')">
-Устроиться
-</button>
+<div class="feature-icon">📖</div>
+<h3>Теория ПДД</h3>
+<p>Изучи правила дорожного движения.</p>
+<strong>10 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="takeTheory()">Начать тест</button>
 </div>
 
 <div class="card">
-<div class="job-icon">🚚</div>
-<div class="job-name">Дальнобойщик</div>
-<div class="job-desc">Доставляй грузы.</div>
-<div class="salary">3 000–8 000 ₽</div>
-<br>
-<button class="btn" onclick="selectJob('Дальнобойщик')">
-Устроиться
-</button>
+<div class="feature-icon">🚗</div>
+<h3>Практика</h3>
+<p>Сдай практический экзамен.</p>
+<strong>15 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="takePractice()">Начать</button>
 </div>
 
 <div class="card">
-<div class="job-icon">🔧</div>
-<div class="job-name">Механик</div>
-<div class="job-desc">Ремонтируй автомобили.</div>
-<div class="salary">1 800–5 000 ₽</div>
-<br>
-<button class="btn" onclick="selectJob('Механик')">
-Устроиться
-</button>
+<div class="feature-icon">🪪</div>
+<h3>Получить права</h3>
+<p>После успешной сдачи экзаменов.</p>
+<strong>5 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="getLicense()">Получить</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GOVERNMENT -->
+
+<section id="page-government" class="page">
+
+<h1 class="title">🏛️ Правительство</h1>
+<p class="subtitle">Городское управление</p>
+
+<div class="hero">
+<h2>Правительство города</h2>
+<p>Здесь принимаются решения, влияющие на жизнь сервера.</p>
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>📜 Законы</h3>
+<p class="muted">Законы города и правила.</p>
+<button class="btn" onclick="showToast('Раздел законов открыт.')">Открыть</button>
 </div>
 
 <div class="card">
-<div class="job-icon">📦</div>
-<div class="job-name">Курьер</div>
-<div class="job-desc">Доставляй посылки.</div>
-<div class="salary">1 000–3 500 ₽</div>
-<br>
-<button class="btn" onclick="selectJob('Курьер')">
-Устроиться
-</button>
+<h3>💰 Налоги</h3>
+<p class="muted">Экономика города.</p>
+<button class="btn" onclick="showToast('Налоговая система загружается.')">Подробнее</button>
 </div>
 
 <div class="card">
-<div class="job-icon">👮</div>
-<div class="job-name">Полиция</div>
-<div class="job-desc">Следи за порядком.</div>
-<div class="salary">2 000–6 000 ₽</div>
-<br>
-<button class="btn" onclick="selectJob('Полиция')">
-Подать заявку
+<h3>📢 Новости</h3>
+<p class="muted">Государственные объявления.</p>
+<button class="btn" onclick="openPage('notifications')">Новости</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ARMY -->
+
+<section id="page-army" class="page">
+
+<h1 class="title">🪖 Армия</h1>
+<p class="subtitle">Военная служба</p>
+
+<div class="hero">
+<h2>Военкомат</h2>
+<p>Пройди регистрацию и поступи на службу.</p>
+
+<div class="actions">
+<button class="btn" onclick="militaryRegistration()">
+📋 Зарегистрироваться
 </button>
+
+<button class="btn" onclick="showToast('Медкомиссия будет доступна после регистрации.')">
+🏥 Медкомиссия
+</button>
+
+</div>
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🎖️ Рядовой</h3>
+<p class="muted">Начальный ранг.</p>
+<strong class="green">Зарплата: 2 000 ₽</strong>
 </div>
 
 <div class="card">
-<div class="job-icon">🚑</div>
-<div class="job-name">Медик</div>
-<div class="job-desc">Помогай игрокам.</div>
-<div class="salary">2 000–6 000 ₽</div>
-<br>
-<button class="btn" onclick="selectJob('Медик')">
-Подать заявку
-</button>
+<h3>🎖️ Ефрейтор</h3>
+<p class="muted">Повышенный ранг.</p>
+<strong class="green">Зарплата: 3 000 ₽</strong>
 </div>
+
+<div class="card">
+<h3>⭐ Офицер</h3>
+<p class="muted">Командный состав.</p>
+<strong class="green">Зарплата: 7 000 ₽</strong>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- POLICE -->
+
+<section id="page-police" class="page">
+
+<h1 class="title">🚔 Полиция</h1>
+<p class="subtitle">Порядок и безопасность</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🚨 Патруль</h3>
+<p class="muted">Контроль улиц.</p>
+<button class="btn" onclick="showToast('Патрульная система скоро будет игровой.')">Начать</button>
+</div>
+
+<div class="card">
+<h3>📋 Штрафы</h3>
+<p class="muted">Проверка нарушений.</p>
+<button class="btn" onclick="showToast('У вас нет активных штрафов.')">Проверить</button>
+</div>
+
+<div class="card">
+<h3>🔎 Розыск</h3>
+<p class="muted">Список разыскиваемых игроков.</p>
+<button class="btn" onclick="showToast('Розыск пока пуст.')">Открыть</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOSPITAL -->
+
+<section id="page-hospital" class="page">
+
+<h1 class="title">🏥 Больница</h1>
+<p class="subtitle">Медицинский центр</p>
+
+<div class="grid g3">
+
+<div class="card">
+<div class="feature-icon">❤️</div>
+<h3>Лечение</h3>
+<p>Восстановить здоровье.</p>
+<strong>5 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="heal()">Лечиться</button>
+</div>
+
+<div class="card">
+<div class="feature-icon">🩺</div>
+<h3>Медосмотр</h3>
+<p>Обследование персонажа.</p>
+<strong>2 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="showToast('Медосмотр пройден.')">Пройти</button>
+</div>
+
+<div class="card">
+<div class="feature-icon">💊</div>
+<h3>Аптека</h3>
+<p>Медицинские предметы.</p>
+<strong>1 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyItem('Аптечка',1000)">Купить</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HUNTING -->
+
+<section id="page-hunting" class="page">
+
+<h1 class="title">🌲 Охота</h1>
+<p class="subtitle">Отправляйся за город</p>
+
+<div class="hero">
+
+<h2>Охотничьи угодья</h2>
+
+<p>
+Найди добычу и получи деньги. Некоторые животные встречаются крайне редко.
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="hunt()">
+🏹 Начать охоту
+</button>
+
+</div>
+
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🐇 Заяц</h3>
+<p class="muted">Обычная добыча</p>
+<strong>1 000 ₽</strong>
+</div>
+
+<div class="card">
+<h3>🦌 Олень</h3>
+<p class="muted">Редкая добыча</p>
+<strong>8 000 ₽</strong>
+</div>
+
+<div class="card">
+<h3>🐻 Медведь</h3>
+<p class="muted">Очень редкая добыча</p>
+<strong>30 000 ₽</strong>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CASINO -->
+
+<section id="page-casino" class="page">
+
+<h1 class="title">🎰 Казино</h1>
+<p class="subtitle">Игровые развлечения за внутриигровые фишки</p>
+
+<div class="grid g3">
+
+<div class="card">
+<div class="feature-icon">🎡</div>
+<h3>Рулетка</h3>
+<p class="muted">Испытай удачу.</p>
+<button class="btn" onclick="openPage('roulette')">Играть</button>
+</div>
+
+<div class="card">
+<div class="feature-icon">🃏</div>
+<h3>Дурак</h3>
+<p class="muted">Карточная игра.</p>
+<button class="btn" onclick="playCardGame('Дурак')">Играть</button>
+</div>
+
+<div class="card">
+<div class="feature-icon">♠️</div>
+<h3>21</h3>
+<p class="muted">Набери максимально близко к 21.</p>
+<button class="btn" onclick="playCardGame('21')">Играть</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CASES -->
+
+<section id="page-cases" class="page">
+
+<h1 class="title">📦 Кейсы</h1>
+<p class="subtitle">Некоторые предметы выпадают с очень маленьким шансом.</p>
+
+<div class="grid g3">
+
+<div class="card case common">
+
+<div class="case-box">📦</div>
+
+<h3>Обычный кейс</h3>
+
+<p class="muted">
+Шанс легендарного предмета: 1%
+</p>
+
+<button class="btn" onclick="openCase('common')">
+Открыть
+</button>
+
+</div>
+
+<div class="card case rare">
+
+<div class="case-box">🎁</div>
+
+<h3>Редкий кейс</h3>
+
+<p class="muted">
+Шанс очень редкого предмета: 2%
+</p>
+
+<button class="btn" onclick="openCase('rare')">
+Открыть
+</button>
+
+</div>
+
+<div class="card case legendary">
+
+<div class="case-box">👑</div>
+
+<h3>Легендарный кейс</h3>
+
+<p class="muted">
+Редкие машины и уникальные предметы.
+</p>
+
+<button class="btn" onclick="openCase('legendary')">
+Открыть
+</button>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>🎯 Пример вероятностей</h3>
+
+<div class="grid g4">
+
+<div>
+<strong>Обычный</strong>
+<p class="muted">50%</p>
+</div>
+
+<div>
+<strong>Редкий</strong>
+<p class="muted">25%</p>
+</div>
+
+<div>
+<strong>Эпический</strong>
+<p class="muted">10%</p>
+</div>
+
+<div>
+<strong class="gold">Легендарный</strong>
+<p class="gold">1%</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ROULETTE -->
+
+<section id="page-roulette" class="page">
+
+<h1 class="title">🎡 Рулетка</h1>
+<p class="subtitle">Один бесплатный спин каждый день.</p>
+
+<div class="card" style="text-align:center">
+
+<div id="wheel" class="wheel">
+
+<div class="wheel-center">🎡</div>
+
+</div>
+
+<button id="spinButton"
+class="btn btn-gold"
+onclick="spinRoulette()">
+🎡 Крутить
+</button>
+
+<p id="rouletteResult" class="muted">
+Попробуй удачу.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- DAILY -->
+
+<section id="page-daily" class="page">
+
+<h1 class="title">🎁 Ежедневные награды</h1>
+<p class="subtitle">Заходи каждый день и увеличивай серию.</p>
+
+<div class="card">
+
+<div class="daily" id="dailyList"></div>
+
+<br>
+
+<button id="dailyButton"
+class="btn btn-gold"
+onclick="claimDaily()">
+🎁 Забрать награду
+</button>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>🔥 Серия входов</h3>
+
+<div class="big" id="dailyStreak">0 дней</div>
+
+<p class="muted">
+На 7-й день доступен большой бонус.
+</p>
 
 </div>
 
@@ -1126,116 +1759,10 @@ RP 002 • Состояние 100%
 
 <section id="page-inventory" class="page">
 
-<h1 class="title">Инвентарь</h1>
-<p class="subtitle">Твои предметы</p>
+<h1 class="title">🎒 Инвентарь</h1>
+<p class="subtitle">Предметы персонажа</p>
 
-<div class="itemgrid">
-
-<div class="item">
-<div class="item-icon">📱</div>
-<div class="item-name">Телефон</div>
-<div class="item-count">x1</div>
-</div>
-
-<div class="item">
-<div class="item-icon">🔑</div>
-<div class="item-name">Ключи</div>
-<div class="item-count">x1</div>
-</div>
-
-<div class="item">
-<div class="item-icon">🎒</div>
-<div class="item-name">Рюкзак</div>
-<div class="item-count">x1</div>
-</div>
-
-<div class="item">
-<div class="item-icon">🥤</div>
-<div class="item-name">Энергетик</div>
-<div class="item-count">x2</div>
-</div>
-
-<div class="item">
-<div class="item-icon">🍔</div>
-<div class="item-name">Бургер</div>
-<div class="item-count">x1</div>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SHOP -->
-
-<section id="page-shop" class="page">
-
-<h1 class="title">Магазин</h1>
-<p class="subtitle">Покупки</p>
-
-<div class="grid g3">
-
-<div class="card">
-<div style="font-size:50px">📱</div>
-<h3>Телефон</h3>
-<div class="gold">8 000 ₽</div>
-<br>
-<button class="btn" onclick="buyItem('Телефон',8000)">
-Купить
-</button>
-</div>
-
-<div class="card">
-<div style="font-size:50px">🎒</div>
-<h3>Рюкзак</h3>
-<div class="gold">5 000 ₽</div>
-<br>
-<button class="btn" onclick="buyItem('Рюкзак',5000)">
-Купить
-</button>
-</div>
-
-<div class="card">
-<div style="font-size:50px">🥤</div>
-<h3>Энергетик</h3>
-<div class="gold">500 ₽</div>
-<br>
-<button class="btn" onclick="buyItem('Энергетик',500)">
-Купить
-</button>
-</div>
-
-<div class="card">
-<div style="font-size:50px">🍔</div>
-<h3>Бургер</h3>
-<div class="gold">700 ₽</div>
-<br>
-<button class="btn" onclick="buyItem('Бургер',700)">
-Купить
-</button>
-</div>
-
-<div class="card">
-<div style="font-size:50px">🚗</div>
-<h3>Lada Priora</h3>
-<div class="gold">450 000 ₽</div>
-<br>
-<button class="btn" onclick="showToast('Автосалон будет подключён к таблице vehicles.')">
-Купить
-</button>
-</div>
-
-<div class="card">
-<div style="font-size:50px">🏎️</div>
-<h3>Премиум авто</h3>
-<div class="gold">1 500 000 ₽</div>
-<br>
-<button class="btn" onclick="showToast('Премиум-магазин скоро будет доступен.')">
-Подробнее
-</button>
-</div>
-
-</div>
+<div id="inventoryGrid" class="itemgrid"></div>
 
 </section>
 
@@ -1244,42 +1771,36 @@ RP 002 • Состояние 100%
 
 <section id="page-property" class="page">
 
-<h1 class="title">Недвижимость</h1>
+<h1 class="title">🏠 Недвижимость</h1>
 <p class="subtitle">Квартиры, дома и бизнес</p>
 
 <div class="grid g3">
 
 <div class="card">
-<div style="font-size:50px">🏠</div>
+<div class="feature-icon">🏢</div>
 <h3>Квартира</h3>
-<p class="muted">
-Небольшая квартира в спальном районе.
-</p>
+<p class="muted">Небольшая квартира.</p>
 <strong>1 200 000 ₽</strong>
 <br><br>
-<button class="btn">Подробнее</button>
+<button class="btn" onclick="buyProperty('Квартира',1200000)">Купить</button>
 </div>
 
 <div class="card">
-<div style="font-size:50px">🏡</div>
-<h3>Частный дом</h3>
-<p class="muted">
-Дом с гаражом и двором.
-</p>
+<div class="feature-icon">🏡</div>
+<h3>Дом</h3>
+<p class="muted">Частный дом с гаражом.</p>
 <strong>4 500 000 ₽</strong>
 <br><br>
-<button class="btn">Подробнее</button>
+<button class="btn" onclick="buyProperty('Дом',4500000)">Купить</button>
 </div>
 
 <div class="card">
-<div style="font-size:50px">🏢</div>
+<div class="feature-icon">🏢</div>
 <h3>Бизнес</h3>
-<p class="muted">
-Собственное предприятие.
-</p>
+<p class="muted">Собственное предприятие.</p>
 <strong>8 000 000 ₽</strong>
 <br><br>
-<button class="btn">Подробнее</button>
+<button class="btn" onclick="buyProperty('Бизнес',8000000)">Купить</button>
 </div>
 
 </div>
@@ -1291,58 +1812,22 @@ RP 002 • Состояние 100%
 
 <section id="page-family" class="page">
 
-<h1 class="title">Семья</h1>
-<p class="subtitle">Твоя семья и её участники</p>
+<h1 class="title">👨‍👩‍👧 Семья</h1>
+<p class="subtitle">Создавай собственную семью.</p>
 
 <div id="familyContent">
 
-<div class="family-banner">
+<div class="hero">
 
-<div class="family-name">
-Ты пока не состоишь в семье
-</div>
+<h2>Ты пока не состоишь в семье</h2>
 
-<div class="family-rank">
-Создай свою семью или вступи в существующую.
-</div>
-
-<div class="actions">
+<p>
+Создай семью и приглашай других игроков.
+</p>
 
 <button class="btn" onclick="createFamily()">
-👨‍👩‍👧 Создать семью
+Создать семью — 50 000 ₽
 </button>
-
-</div>
-
-</div>
-
-</div>
-
-<br>
-
-<div class="card">
-
-<h3>Что даёт семья?</h3>
-
-<div class="grid g3">
-
-<div>
-👥
-<strong>Участники</strong>
-<p class="muted">Общий список игроков.</p>
-</div>
-
-<div>
-💰
-<strong>Семейный банк</strong>
-<p class="muted">Общие финансы.</p>
-</div>
-
-<div>
-💬
-<strong>Семейный чат</strong>
-<p class="muted">Закрытое общение.</p>
-</div>
 
 </div>
 
@@ -1355,18 +1840,18 @@ RP 002 • Состояние 100%
 
 <section id="page-friends" class="page">
 
-<h1 class="title">Друзья</h1>
+<h1 class="title">👥 Друзья</h1>
 <p class="subtitle">Игроки и контакты</p>
 
 <div class="card">
 
 <div class="actions">
 
-<button class="btn" onclick="showToast('Поиск игроков будет подключён к profiles.')">
+<button class="btn" onclick="findPlayer()">
 🔎 Найти игрока
 </button>
 
-<button class="btn" onclick="showToast('Приглашения скоро будут доступны.')">
+<button class="btn" onclick="showToast('Система приглашений подключается.')">
 ➕ Добавить друга
 </button>
 
@@ -1375,13 +1860,7 @@ RP 002 • Состояние 100%
 <div id="friendsList" style="margin-top:15px">
 
 <div class="friend">
-<div>
-🟢 <strong>Список пуст</strong>
-<br>
-<small class="muted">
-Добавляй игроков в друзья.
-</small>
-</div>
+🟢 Пока нет друзей.
 </div>
 
 </div>
@@ -1395,8 +1874,8 @@ RP 002 • Состояние 100%
 
 <section id="page-chat" class="page">
 
-<h1 class="title">Онлайн-чат</h1>
-<p class="subtitle">Общение игроков</p>
+<h1 class="title">💬 Онлайн-чат</h1>
+<p class="subtitle">Общий чат сервера.</p>
 
 <div class="chat">
 
@@ -1407,7 +1886,7 @@ RP 002 • Состояние 100%
 <div class="msg">
 <div class="msg-name">SYSTEM</div>
 <div class="msg-text">
-Добро пожаловать в BLACK RUSSIA RP.
+Добро пожаловать на сервер.
 </div>
 </div>
 
@@ -1415,35 +1894,23 @@ RP 002 • Состояние 100%
 
 <div class="chat-row">
 
-<input
-id="chatInput"
+<input id="chatInput"
 class="chat-input"
 maxlength="250"
-placeholder="Написать сообщение..."
-onkeydown="if(event.key==='Enter')sendChat()"
-/>
+placeholder="Сообщение..."
+onkeydown="if(event.key==='Enter')sendChat()">
 
-<button class="btn" onclick="sendChat()">
-Отправить
-</button>
+<button class="btn" onclick="sendChat()">Отправить</button>
 
 </div>
 
 </div>
 
-<div class="card online">
+<div class="card">
 
-<h3>🟢 Игроки онлайн</h3>
+<h3>🟢 Онлайн</h3>
 
-<div id="onlineList">
-
-<div class="online-user">
-🟢 <strong id="onlineName">Ты</strong>
-<br>
-<small class="muted">Онлайн</small>
-</div>
-
-</div>
+<div id="onlineList"></div>
 
 </div>
 
@@ -1456,61 +1923,38 @@ onkeydown="if(event.key==='Enter')sendChat()"
 
 <section id="page-achievements" class="page">
 
-<h1 class="title">Достижения</h1>
-<p class="subtitle">Твои награды</p>
+<h1 class="title">🏆 Достижения</h1>
 
-<div id="achievementList" class="grid g2">
+<div class="grid g2">
 
-<div class="card achievement">
-
-<div class="achievement-icon">🏁</div>
-
-<div>
-<strong>Первый вход</strong>
-<p class="muted">
-Ты начал свой путь.
-</p>
+<div class="card">
+<h3>🏁 Первый вход</h3>
+<p class="muted">Начни свою историю.</p>
 </div>
 
+<div class="card">
+<h3>💼 Первый заработок</h3>
+<p class="muted">Получи первую зарплату.</p>
 </div>
 
-<div class="card achievement">
-
-<div class="achievement-icon">💼</div>
-
-<div>
-<strong>Первый заработок</strong>
-<p class="muted">
-Устройся на работу.
-</p>
+<div class="card">
+<h3>🚗 Автовладелец</h3>
+<p class="muted">Купи автомобиль.</p>
 </div>
 
+<div class="card">
+<h3>👨‍👩‍👧 Семьянин</h3>
+<p class="muted">Создай или вступи в семью.</p>
 </div>
 
-<div class="card achievement">
-
-<div class="achievement-icon">🚗</div>
-
-<div>
-<strong>Первая машина</strong>
-<p class="muted">
-Приобрети автомобиль.
-</p>
+<div class="card">
+<h3>🎁 Постоянный игрок</h3>
+<p class="muted">Забери 7 ежедневных наград.</p>
 </div>
 
-</div>
-
-<div class="card achievement">
-
-<div class="achievement-icon">👨‍👩‍👧</div>
-
-<div>
-<strong>Семьянин</strong>
-<p class="muted">
-Вступи в семью.
-</p>
-</div>
-
+<div class="card">
+<h3>👑 Удачливый</h3>
+<p class="muted">Получи легендарный приз.</p>
 </div>
 
 </div>
@@ -1522,29 +1966,23 @@ onkeydown="if(event.key==='Enter')sendChat()"
 
 <section id="page-notifications" class="page">
 
-<h1 class="title">Уведомления</h1>
-<p class="subtitle">Новости твоего аккаунта</p>
+<h1 class="title">🔔 Уведомления</h1>
 
-<div class="card" id="notifications">
+<div class="card">
 
 <div class="notification">
-
 <strong>Добро пожаловать!</strong>
-
-<small>
-Твой аккаунт успешно создан.
-</small>
-
+<p class="muted">Аккаунт успешно подключён.</p>
 </div>
 
 <div class="notification">
+<strong>🚗 Новый автосалон</strong>
+<p class="muted">В город добавлены новые автомобили.</p>
+</div>
 
-<strong>BLACK RUSSIA RP</strong>
-
-<small>
-Новые возможности будут появляться постепенно.
-</small>
-
+<div class="notification">
+<strong>🎁 Ежедневная награда</strong>
+<p class="muted">Не забудь забрать сегодняшний бонус.</p>
 </div>
 
 </div>
@@ -1556,13 +1994,12 @@ onkeydown="if(event.key==='Enter')sendChat()"
 
 <section id="page-bank" class="page">
 
-<h1 class="title">Банк</h1>
-<p class="subtitle">Финансы персонажа</p>
+<h1 class="title">🏦 Банк</h1>
 
 <div class="grid g2">
 
 <div class="card">
-<div class="card-label">Баланс банка</div>
+<div class="card-label">Баланс</div>
 <div class="big" id="bankBig">0 ₽</div>
 </div>
 
@@ -1581,16 +2018,16 @@ onkeydown="if(event.key==='Enter')sendChat()"
 
 <div class="actions">
 
-<button class="btn" onclick="showToast('Переводы между игроками будут подключены позже.')">
+<button class="btn" onclick="deposit()">
+💰 Положить деньги
+</button>
+
+<button class="btn" onclick="withdraw()">
+🏧 Снять деньги
+</button>
+
+<button class="btn" onclick="transferMoney()">
 💸 Перевести
-</button>
-
-<button class="btn" onclick="showToast('Пополнение банка будет подключено позже.')">
-💰 Пополнить
-</button>
-
-<button class="btn" onclick="showToast('Снятие будет подключено позже.')">
-🏧 Снять
 </button>
 
 </div>
@@ -1604,8 +2041,7 @@ onkeydown="if(event.key==='Enter')sendChat()"
 
 <section id="page-settings" class="page">
 
-<h1 class="title">Настройки</h1>
-<p class="subtitle">Настройки аккаунта</p>
+<h1 class="title">⚙️ Настройки</h1>
 
 <div class="card">
 
@@ -1619,17 +2055,9 @@ Email: <span id="settingsEmail">—</span>
 UID: <span id="settingsUid">—</span>
 </p>
 
-<div class="actions">
-
-<button class="btn" onclick="showToast('Смена пароля будет подключена через Supabase Auth.')">
+<button class="btn" onclick="changePassword()">
 🔐 Сменить пароль
 </button>
-
-<button class="btn" onclick="showToast('Система уведомлений активна.')">
-🔔 Уведомления
-</button>
-
-</div>
 
 </div>
 
@@ -1637,15 +2065,10 @@ UID: <span id="settingsUid">—</span>
 
 <div class="card">
 
-<h3>Игровые настройки</h3>
+<h3>Сервер</h3>
 
-<p class="muted">
-Сервер: BLACK RUSSIA RP
-</p>
-
-<p class="muted">
-Регион: Москва
-</p>
+<p class="muted">BLACK RUSSIA RP</p>
+<p class="muted">Регион: Москва</p>
 
 </div>
 
@@ -1669,13 +2092,9 @@ UID: <span id="settingsUid">—</span>
 
 <div class="actions">
 
-<button class="btn" onclick="closeModal()">
-Отмена
-</button>
+<button class="btn" onclick="closeModal()">Отмена</button>
 
-<button class="btn" onclick="confirmModal()">
-Подтвердить
-</button>
+<button class="btn btn-main" onclick="confirmModal()">Подтвердить</button>
 
 </div>
 
@@ -1683,32 +2102,31 @@ UID: <span id="settingsUid">—</span>
 
 </div>
 
-
-<div id="toast"></div>
+<div id="toast" class="toast"></div>
 
 
 <script>
 
-/* ==================================================
-   SUPABASE
-================================================== */
+/* =========================================================
+SUPABASE
+========================================================= */
 
-const SUPABASE_URL =
+const SUPABASE_URL=
 "https://qzswnoeglovfpgrzpnio.supabase.co";
 
-const SUPABASE_KEY =
+const SUPABASE_KEY=
 "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
-const supabaseClient =
+const supabaseClient=
 window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
 
 
-/* ==================================================
-   STATE
-================================================== */
+/* =========================================================
+STATE
+========================================================= */
 
 let user=null;
 let profile=null;
@@ -1717,18 +2135,130 @@ let character=null;
 let stats=null;
 let family=null;
 let modalAction=null;
+let selectedCar=null;
+
+let cars=[
+{
+id:"bmw_m5",
+brand:"BMW",
+name:"BMW M5",
+price:2800000,
+image:"images/cars/bmw_m5.png",
+icon:"🚗",
+class:"sport"
+},
+{
+id:"bmw_m3",
+brand:"BMW",
+name:"BMW M3",
+price:2400000,
+image:"images/cars/bmw_m3.png",
+icon:"🚗",
+class:"sport"
+},
+{
+id:"mercedes_g63",
+brand:"Mercedes",
+name:"Mercedes G63",
+price:7500000,
+image:"images/cars/mercedes_g63.png",
+icon:"🚙",
+class:"premium"
+},
+{
+id:"mercedes_g65",
+brand:"Mercedes",
+name:"Mercedes G65",
+price:9000000,
+image:"images/cars/mercedes_g65.png",
+icon:"🚙",
+class:"premium"
+},
+{
+id:"audi_rs7",
+brand:"Audi",
+name:"Audi RS7",
+price:5200000,
+image:"images/cars/audi_rs7.png",
+icon:"🏎️",
+class:"sport"
+},
+{
+id:"porsche_911",
+brand:"Porsche",
+name:"Porsche 911",
+price:5900000,
+image:"images/cars/porsche_911.png",
+icon:"🏎️",
+class:"sport"
+},
+{
+id:"dodge_charger",
+brand:"Dodge",
+name:"Dodge Charger",
+price:3200000,
+image:"images/cars/dodge_charger.png",
+icon:"🚘",
+class:"muscle"
+},
+{
+id:"lada_priora",
+brand:"Lada",
+name:"Lada Priora",
+price:450000,
+image:"images/cars/lada_priora.png",
+icon:"🚗",
+class:"common"
+},
+{
+id:"lada_2114",
+brand:"Lada",
+name:"ВАЗ 2114",
+price:350000,
+image:"images/cars/lada_2114.png",
+icon:"🚗",
+class:"common"
+}
+];
+
+let garageCars=[
+{
+id:"starter",
+name:"Lada Priora",
+plate:"RP 001",
+image:"images/cars/lada_priora.png",
+icon:"🚗",
+condition:100
+}
+];
+
+let inventory=[
+{name:"Телефон",icon:"📱",count:1},
+{name:"Ключи",icon:"🔑",count:1},
+{name:"Рюкзак",icon:"🎒",count:1},
+{name:"Энергетик",icon:"🥤",count:2},
+{name:"Бургер",icon:"🍔",count:1}
+];
 
 
-/* ==================================================
-   HELPERS
-================================================== */
+/* =========================================================
+HELPERS
+========================================================= */
 
-function money(value){
-return Number(value||0)
-.toLocaleString("ru-RU")+" ₽";
+function money(v){
+return Number(v||0).toLocaleString("ru-RU")+" ₽";
 }
 
-function toast(text){
+function esc(v){
+return String(v||"")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+}
+
+function showToast(text){
 
 const el=document.getElementById("toast");
 
@@ -1741,25 +2271,23 @@ el.classList.remove("show");
 
 }
 
-function esc(value){
+function username(){
 
-return String(value||"")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+return profile?.username||
+user?.user_metadata?.username||
+user?.email?.split("@")[0]||
+"Игрок";
 
 }
 
 
-/* ==================================================
-   AUTH
-================================================== */
+/* =========================================================
+AUTH
+========================================================= */
 
 async function register(){
 
-const username=
+const usernameValue=
 document.getElementById("username").value.trim();
 
 const email=
@@ -1771,7 +2299,7 @@ document.getElementById("password").value;
 const msg=
 document.getElementById("authMessage");
 
-if(!username||!email||!password){
+if(!usernameValue||!email||!password){
 
 msg.textContent="Заполни все поля.";
 return;
@@ -1795,7 +2323,7 @@ password,
 
 options:{
 data:{
-username
+username:usernameValue
 }
 }
 
@@ -1835,8 +2363,7 @@ return;
 msg.textContent="Выполняется вход...";
 
 const {data,error}=
-await supabaseClient.auth
-.signInWithPassword({
+await supabaseClient.auth.signInWithPassword({
 email,
 password
 });
@@ -1857,6 +2384,22 @@ await loadGame();
 
 async function logout(){
 
+if(user){
+
+try{
+
+await supabaseClient
+.from("player_presence")
+.upsert({
+user_id:user.id,
+is_online:false,
+last_seen:new Date().toISOString()
+});
+
+}catch(e){}
+
+}
+
 await supabaseClient.auth.signOut();
 
 location.reload();
@@ -1864,9 +2407,9 @@ location.reload();
 }
 
 
-/* ==================================================
-   LOAD GAME
-================================================== */
+/* =========================================================
+LOAD GAME
+========================================================= */
 
 async function loadGame(){
 
@@ -1920,6 +2463,8 @@ character=c.data;
 
 /* STATS */
 
+try{
+
 const s=
 await supabaseClient
 .from("player_stats")
@@ -1929,131 +2474,106 @@ await supabaseClient
 
 stats=s.data;
 
-
-/* FAMILY */
-
-const fm=
-await supabaseClient
-.from("family_members")
-.select("family_id,rank")
-.eq("user_id",user.id)
-.maybeSingle();
-
-if(fm.data){
-
-const f=
-await supabaseClient
-.from("families")
-.select("*")
-.eq("id",fm.data.family_id)
-.maybeSingle();
-
-family=f.data;
-
-}
-
-
-if(!stats){
-
-const inserted=
-await supabaseClient
-.from("player_stats")
-.insert({
-
-user_id:user.id,
-level:1,
-experience:0,
-reputation:0,
-playtime:0,
-nickname_changes:0
-
-})
-.select()
-.maybeSingle();
-
-stats=inserted.data;
-
-}
+}catch(e){}
 
 
 /* PRESENCE */
 
+try{
+
 await supabaseClient
 .from("player_presence")
 .upsert({
-
 user_id:user.id,
 is_online:true,
 last_seen:new Date().toISOString()
-
 });
 
+}catch(e){}
 
-updateUI();
 
-document
-.getElementById("authScreen")
-.classList.add("hidden");
+loadLocalData();
+renderAll();
 
-document
-.getElementById("gameScreen")
-.classList.remove("hidden");
+document.getElementById("authScreen").classList.add("hidden");
+document.getElementById("gameScreen").classList.remove("hidden");
 
 }
 
 
-/* ==================================================
-   UI
-================================================== */
+/* =========================================================
+LOCAL EXTRA DATA
+========================================================= */
 
-function username(){
+function localKey(name){
+return "br_"+user.id+"_"+name;
+}
 
-return profile?.username||
-user?.user_metadata?.username||
-user?.email?.split("@")[0]||
-"Игрок";
+function loadLocalData(){
+
+try{
+
+const savedGarage=
+localStorage.getItem(localKey("garage"));
+
+if(savedGarage)
+garageCars=JSON.parse(savedGarage);
+
+const savedInventory=
+localStorage.getItem(localKey("inventory"));
+
+if(savedInventory)
+inventory=JSON.parse(savedInventory);
+
+}catch(e){}
+
+}
+
+function saveLocalData(){
+
+if(!user)return;
+
+localStorage.setItem(
+localKey("garage"),
+JSON.stringify(garageCars)
+);
+
+localStorage.setItem(
+localKey("inventory"),
+JSON.stringify(inventory)
+);
 
 }
 
 
-function updateUI(){
+/* =========================================================
+UI
+========================================================= */
+
+function renderAll(){
 
 const name=username();
 
-const cash=wallet?.cash||0;
-const bank=wallet?.bank||0;
-const gold=wallet?.gold||0;
+const cash=Number(wallet?.cash||0);
+const bank=Number(wallet?.bank||0);
+const gold=Number(wallet?.gold||0);
 
-const level=stats?.level||1;
-const xp=stats?.experience||0;
-const rep=stats?.reputation||0;
-const playtime=stats?.playtime||0;
-
+const level=Number(stats?.level||1);
+const xp=Number(stats?.experience||0);
+const rep=Number(stats?.reputation||0);
 
 document.getElementById("welcome").textContent=
 "Добро пожаловать, "+name;
 
 document.getElementById("profileName").textContent=name;
-
 document.getElementById("phoneName").textContent=name;
-
-document.getElementById("onlineName").textContent=name;
-
-document.getElementById("profileEmail").textContent=
-user?.email||"";
-
-document.getElementById("settingsEmail").textContent=
-user?.email||"";
-
-document.getElementById("settingsUid").textContent=
-user?.id||"";
-
-document.getElementById("playerIdShort").textContent=
-user?.id?.slice(0,8)||"—";
+document.getElementById("profileEmail").textContent=user?.email||"";
+document.getElementById("settingsEmail").textContent=user?.email||"";
+document.getElementById("settingsUid").textContent=user?.id||"";
+document.getElementById("playerIdShort").textContent=user?.id?.slice(0,8)||"—";
 
 document.getElementById("avatar").textContent=
 name.charAt(0).toUpperCase();
-
 
 document.getElementById("cash").textContent=money(cash);
 document.getElementById("bank").textContent=money(bank);
@@ -2068,12 +2588,16 @@ document.getElementById("cashBig").textContent=money(cash);
 
 document.getElementById("level").textContent=level;
 document.getElementById("profileLevel").textContent=level;
+document.getElementById("profileXP").textContent=xp;
 document.getElementById("experience").textContent=xp;
-document.getElementById("reputation").textContent=rep;
 document.getElementById("profileRep").textContent=rep;
-document.getElementById("playtime").textContent=
-Math.floor(playtime/60)+" ч";
 
+const xpNeeded=level*1000;
+document.getElementById("xpProgress").style.width=
+Math.min(100,(xp/xpNeeded)*100)+"%";
+
+document.getElementById("playtime").textContent=
+Math.floor(Number(stats?.playtime||0)/60)+" ч";
 
 document.getElementById("firstName").textContent=
 character?.first_name||"Не указано";
@@ -2084,78 +2608,187 @@ character?.last_name||"Не указано";
 document.getElementById("age").textContent=
 character?.age||18;
 
+renderCars();
+renderGarage();
+renderInventory();
+renderDaily();
 
-if(family){
+}
 
-document.getElementById("familyContent").innerHTML=`
+function renderCars(filter="all"){
 
-<div class="family-banner">
+const grid=document.getElementById("carsGrid");
 
-<div class="family-name">
-👨‍👩‍👧 ${esc(family.name)}
+if(!grid)return;
+
+const list=
+filter==="all"
+?cars
+:cars.filter(c=>c.brand===filter);
+
+grid.innerHTML=list.map(car=>`
+
+<div class="card car">
+
+<div class="car-image">
+
+<img
+src="${car.image}"
+alt="${esc(car.name)}"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+>
+
+<div
+class="car-placeholder"
+style="display:none">
+${car.icon}
 </div>
 
-<div class="family-rank">
-Уровень семьи: ${family.level}
-•
-Баланс: ${money(family.balance)}
+<div class="car-placeholder">
+${car.icon}
+</div>
+
+</div>
+
+<div class="car-name">
+${esc(car.name)}
+</div>
+
+<div class="car-price">
+${money(car.price)}
+</div>
+
+<div class="tags">
+<span class="tag">${esc(car.brand)}</span>
+<span class="tag">${esc(car.class)}</span>
 </div>
 
 <div class="actions">
 
-<button class="btn"
-onclick="loadFamilyMembers()">
-👥 Участники
+<button
+class="btn"
+onclick="buyCar('${car.id}')">
+Купить
 </button>
 
 </div>
 
 </div>
 
-`;
+`).join("");
 
 }
 
+function renderGarage(){
+
+const grid=document.getElementById("garageGrid");
+
+if(!grid)return;
+
+grid.innerHTML=garageCars.map((car,i)=>`
+
+<div class="card car">
+
+<div class="car-image">
+
+<img
+src="${car.image}"
+onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+>
+
+<div
+class="car-placeholder"
+style="display:none">
+${car.icon||"🚗"}
+</div>
+
+</div>
+
+<div class="car-name">
+${esc(car.name)}
+</div>
+
+<p class="muted">
+Номер: ${esc(car.plate)}
+<br>
+Состояние: ${car.condition}%
+</p>
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="selectGarageCar(${i})">
+Выбрать
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+function renderInventory(){
+
+const grid=document.getElementById("inventoryGrid");
+
+if(!grid)return;
+
+grid.innerHTML=inventory.map(item=>`
+
+<div class="item">
+
+<div class="item-icon">${item.icon}</div>
+
+<div class="item-name">
+${esc(item.name)}
+</div>
+
+<div class="item-count">
+x${item.count}
+</div>
+
+</div>
+
+`).join("");
+
 }
 
 
-/* ==================================================
-   NAVIGATION
-================================================== */
+/* =========================================================
+NAVIGATION
+========================================================= */
 
 function showPage(name,button){
 
-document
-.querySelectorAll(".page")
+document.querySelectorAll(".page")
 .forEach(p=>p.classList.remove("active"));
 
 const page=document.getElementById("page-"+name);
 
 if(page)page.classList.add("active");
 
-document
-.querySelectorAll(".nav")
+document.querySelectorAll(".nav")
 .forEach(b=>b.classList.remove("active"));
 
 if(button)button.classList.add("active");
+
+if(name==="chat")loadOnline();
+if(name==="daily")renderDaily();
 
 }
 
 function openPage(name){
 
-const buttons=
-document.querySelectorAll(".nav");
-
 let target=null;
 
-buttons.forEach(b=>{
+document.querySelectorAll(".nav").forEach(b=>{
 
 if((b.getAttribute("onclick")||"")
-.includes("'"+name+"'")){
-
+.includes("'"+name+"'"))
 target=b;
-
-}
 
 });
 
@@ -2164,191 +2797,555 @@ showPage(name,target);
 }
 
 
-/* ==================================================
-   MONEY
-================================================== */
+/* =========================================================
+CARS
+========================================================= */
 
-async function testMoney(){
+function filterCars(filter){
 
-if(!wallet){
+renderCars(filter);
 
-toast("Кошелёк не найден.");
+}
+
+async function buyCar(id){
+
+const car=cars.find(x=>x.id===id);
+
+if(!car)return;
+
+const cash=Number(wallet?.cash||0);
+
+if(cash<car.price){
+
+showToast("Недостаточно денег.");
+
 return;
 
 }
 
-const newCash=
-Number(wallet.cash||0)+1000;
+const newCash=cash-car.price;
 
-const {error}=
+const result=
 await supabaseClient
 .from("wallets")
 .update({cash:newCash})
 .eq("player_id",user.id);
 
-if(error){
+if(result.error){
 
-toast(error.message);
+showToast(result.error.message);
 return;
 
 }
 
 wallet.cash=newCash;
 
-updateUI();
+garageCars.push({
 
-toast("1 000 ₽ добавлено.");
+id:Date.now().toString(),
+name:car.name,
+plate:"RP "+String(garageCars.length+1).padStart(3,"0"),
+image:car.image,
+icon:car.icon,
+condition:100
 
-}
+});
 
+saveLocalData();
+renderAll();
 
-/* ==================================================
-   JOB
-================================================== */
-
-function selectJob(job){
-
-document.getElementById("jobHome")
-.textContent=job;
-
-toast("Работа выбрана: "+job);
+showToast("🚗 "+car.name+" куплен!");
 
 }
 
+function selectGarageCar(index){
 
-/* ==================================================
-   NICKNAME
-================================================== */
+selectedCar=garageCars[index];
 
-function changeNickname(){
-
-document.getElementById("modalTitle")
-.textContent="Смена ника";
-
-document.getElementById("modalBody").innerHTML=`
-
-<input
-id="newNickname"
-class="input"
-maxlength="24"
-placeholder="Новый никнейм"
-/>
-
-<p class="muted">
-Сейчас: ${esc(username())}
-</p>
-
-<p class="muted">
-Стоимость: 10 000 ₽
-</p>
-
-`;
-
-modalAction="nickname";
-
-document.getElementById("modal")
-.classList.remove("hidden");
+showToast("Выбран: "+selectedCar.name);
 
 }
 
+function upgradeCar(type,price){
 
-async function saveNickname(){
+if(!selectedCar){
 
-const newName=
-document.getElementById("newNickname")
-.value.trim();
+showToast("Сначала выбери автомобиль в гараже.");
 
-if(!newName){
+openPage("garage");
 
-toast("Введите новый ник.");
-return;
-
-}
-
-if(newName.length<3){
-
-toast("Ник слишком короткий.");
 return;
 
 }
 
 const cash=Number(wallet?.cash||0);
 
-if(cash<10000){
+if(cash<price){
 
-toast("Недостаточно денег. Нужно 10 000 ₽.");
+showToast("Недостаточно денег.");
+
 return;
 
 }
 
+wallet.cash=cash-price;
 
-/*
-  Используем существующую таблицу profiles.
-*/
+saveLocalWallet();
 
-const {error}=
-await supabaseClient
-.from("profiles")
-.update({
-username:newName
-})
-.eq("id",user.id);
-
-if(error){
-
-toast(error.message);
-return;
+showToast("🔧 Улучшение установлено.");
 
 }
 
+async function saveLocalWallet(){
 
-const newCash=cash-10000;
+if(!wallet)return;
 
-const walletResult=
 await supabaseClient
 .from("wallets")
-.update({
-cash:newCash
-})
+.update({cash:Number(wallet.cash||0)})
 .eq("player_id",user.id);
 
-if(walletResult.error){
+renderAll();
 
-toast(walletResult.error.message);
+}
+
+function changePlate(){
+
+if(!selectedCar){
+
+showToast("Сначала выбери машину.");
+
 return;
 
 }
 
+openModal(
+"Новый номер",
+`
+<input id="plateInput"
+class="input"
+maxlength="9"
+placeholder="A123BC">
+<p class="muted">
+Стоимость смены номера: 100 000 ₽
+</p>
+`,
+"plate"
+);
 
-profile.username=newName;
-wallet.cash=newCash;
+}
 
-if(stats){
+
+/* =========================================================
+AUCTION
+========================================================= */
+
+async function buyAuctionCar(name,price){
+
+const cash=Number(wallet?.cash||0);
+
+if(cash<price){
+
+showToast("Недостаточно денег.");
+
+return;
+
+}
+
+wallet.cash=cash-price;
+
+await saveLocalWallet();
+
+garageCars.push({
+id:Date.now().toString(),
+name,
+plate:"AU "+String(garageCars.length+1).padStart(3,"0"),
+image:"",
+icon:"🚗",
+condition:100
+});
+
+saveLocalData();
+
+renderAll();
+
+showToast("Автомобиль приобретён на аукционе.");
+
+}
+
+
+/* =========================================================
+JOBS
+========================================================= */
+
+function selectJob(job){
+
+document.getElementById("jobHome").textContent=job;
+
+showToast("💼 Ты устроился: "+job);
+
+addXP(50);
+
+}
+
+function applyOrg(org){
+
+showToast("📋 Заявка в организацию «"+org+"» отправлена.");
+
+}
+
+function militaryRegistration(){
+
+showToast("📋 Ты зарегистрирован в военкомате.");
+
+}
+
+function addXP(amount){
+
+if(!stats)return;
+
+stats.experience=
+Number(stats.experience||0)+amount;
+
+const needed=
+Number(stats.level||1)*1000;
+
+if(stats.experience>=needed){
+
+stats.experience-=needed;
+stats.level=Number(stats.level||1)+1;
+
+showToast("🎉 Новый уровень: "+stats.level);
+
+}
+
+renderAll();
+
+}
+
+
+/* =========================================================
+DAILY
+========================================================= */
+
+function dailyState(){
+
+const key=localKey("daily");
+
+let state;
+
+try{
+state=JSON.parse(localStorage.getItem(key));
+}catch(e){
+state=null;
+}
+
+if(!state){
+
+state={
+last:"",
+streak:0
+};
+
+}
+
+return state;
+
+}
+
+function renderDaily(){
+
+const list=document.getElementById("dailyList");
+
+if(!list)return;
+
+const state=dailyState();
+
+const rewards=[
+"5 000 ₽",
+"10 000 ₽",
+"15 000 ₽",
+"25 000 ₽",
+"🎁 Кейс",
+"50 000 ₽",
+"👑 Большой приз"
+];
+
+list.innerHTML=rewards.map((reward,i)=>`
+
+<div class="day
+${i+1===state.streak+1?"today":""}
+${i+1<=state.streak?"claimed":""}">
+
+<strong>День ${i+1}</strong>
+
+<div style="font-size:25px;margin:10px">
+${i===4?"📦":i===6?"👑":"🎁"}
+</div>
+
+<div>${reward}</div>
+
+</div>
+
+`).join("");
+
+document.getElementById("dailyStreak").textContent=
+state.streak+" дней";
+
+const today=new Date().toISOString().slice(0,10);
+
+document.getElementById("dailyButton").disabled=
+state.last===today;
+
+}
+
+async function claimDaily(){
+
+const state=dailyState();
+
+const today=new Date().toISOString().slice(0,10);
+
+if(state.last===today){
+
+showToast("Сегодня награда уже получена.");
+
+return;
+
+}
+
+state.streak=
+state.streak>=7?1:state.streak+1;
+
+state.last=today;
+
+localStorage.setItem(
+localKey("daily"),
+JSON.stringify(state)
+);
+
+const rewards=[
+5000,
+10000,
+15000,
+25000,
+50000,
+75000,
+150000
+];
+
+const reward=rewards[state.streak-1];
+
+if(wallet){
+
+wallet.cash=
+Number(wallet.cash||0)+reward;
 
 await supabaseClient
-.from("player_stats")
-.update({
-nickname_changes:
-Number(stats.nickname_changes||0)+1,
-updated_at:new Date().toISOString()
-})
-.eq("user_id",user.id);
-
-stats.nickname_changes=
-Number(stats.nickname_changes||0)+1;
+.from("wallets")
+.update({cash:wallet.cash})
+.eq("player_id",user.id);
 
 }
 
-updateUI();
+addXP(100);
 
-closeModal();
+renderAll();
 
-toast("Ник изменён.");
+showToast(
+"🎁 Получено: "+money(reward)
+);
 
 }
 
+
+/* =========================================================
+CASES
+========================================================= */
+
+function openCase(type){
+
+const roll=Math.random()*100;
+
+let prize;
+
+if(type==="common"){
+
+if(roll<1) prize="👑 Легендарный автомобиль";
+else if(roll<6) prize="🚗 Редкий автомобиль";
+else if(roll<16) prize="🔧 Редкий тюнинг";
+else if(roll<36) prize="🎁 Редкий предмет";
+else prize=5000;
+
+}
+
+else if(type==="rare"){
+
+if(roll<2) prize="👑 УНИКАЛЬНЫЙ АВТОМОБИЛЬ";
+else if(roll<10) prize="🚗 Редкий автомобиль";
+else if(roll<25) prize="🔧 Эпический тюнинг";
+else prize=25000;
+
+}
+
+else{
+
+if(roll<0.5) prize="👑 УНИКАЛЬНАЯ МАШИНА";
+else if(roll<5) prize="💎 Легендарный предмет";
+else if(roll<20) prize="🚗 Премиум автомобиль";
+else prize=100000;
+
+}
+
+if(typeof prize==="number"){
+
+wallet.cash=
+Number(wallet?.cash||0)+prize;
+
+saveLocalWallet();
+
+showToast("📦 Выпало: "+money(prize));
+
+}else{
+
+showToast("📦 Выпало: "+prize);
+
+}
+
+}
+
+
+/* =========================================================
+ROULETTE
+========================================================= */
+
+let rouletteBusy=false;
+
+async function spinRoulette(){
+
+if(rouletteBusy)return;
+
+const key=localKey("roulette");
+const today=new Date().toISOString().slice(0,10);
+
+if(localStorage.getItem(key)===today){
+
+showToast("Рулетка сегодня уже использована.");
+
+return;
+
+}
+
+rouletteBusy=true;
+
+const wheel=document.getElementById("wheel");
+const button=document.getElementById("spinButton");
+
+button.disabled=true;
+
+const prizes=[
+{label:"5 000 ₽",value:5000},
+{label:"10 000 ₽",value:10000},
+{label:"25 000 ₽",value:25000},
+{label:"Кейс",value:0},
+{label:"50 000 ₽",value:50000},
+{label:"100 000 ₽",value:100000},
+{label:"Редкий авто",value:0},
+{label:"👑 0.5%",value:250000}
+];
+
+const index=
+Math.floor(Math.random()*prizes.length);
+
+const rotation=
+1440+(index*45)+Math.floor(Math.random()*30);
+
+wheel.style.transform=
+"rotate("+rotation+"deg)";
+
+setTimeout(async()=>{
+
+const prize=prizes[index];
+
+localStorage.setItem(key,today);
+
+if(prize.value){
+
+wallet.cash=
+Number(wallet?.cash||0)+prize.value;
+
+await supabaseClient
+.from("wallets")
+.update({cash:wallet.cash})
+.eq("player_id",user.id);
+
+renderAll();
+
+}
+
+document.getElementById("rouletteResult").textContent=
+"🎉 Выпало: "+prize.label;
+
+showToast("🎡 "+prize.label);
+
+rouletteBusy=false;
+button.disabled=false;
+
+},4200);
+
+}
+
+
+/* =========================================================
+BANK
+========================================================= */
+
+function openModal(title,body,action){
+
+document.getElementById("modalTitle").textContent=title;
+document.getElementById("modalBody").innerHTML=body;
+modalAction=action;
+document.getElementById("modal").classList.remove("hidden");
+
+}
+
+function closeModal(){
+
+document.getElementById("modal").classList.add("hidden");
+modalAction=null;
+
+}
 
 function confirmModal(){
+
+if(modalAction==="plate"){
+
+const plate=
+document.getElementById("plateInput").value.trim();
+
+if(!selectedCar){
+
+closeModal();
+return;
+
+}
+
+if(!plate){
+
+showToast("Введите номер.");
+return;
+
+}
+
+selectedCar.plate=plate;
+
+closeModal();
+saveLocalData();
+
+renderAll();
+
+showToast("🔢 Номер изменён.");
+
+}
 
 if(modalAction==="nickname"){
 
@@ -2356,261 +3353,601 @@ saveNickname();
 
 }
 
-}
+if(modalAction==="family"){
 
-
-function closeModal(){
-
-document
-.getElementById("modal")
-.classList.add("hidden");
-
-modalAction=null;
+saveFamily();
 
 }
 
+}
 
-/* ==================================================
-   FAMILY
-================================================== */
+async function deposit(){
+
+const amount=prompt("Сколько положить в банк?");
+
+const value=Number(amount);
+
+if(!value||value<=0)return;
+
+if(Number(wallet.cash||0)<value){
+
+showToast("Недостаточно наличных.");
+
+return;
+
+}
+
+wallet.cash-=value;
+wallet.bank=Number(wallet.bank||0)+value;
+
+await supabaseClient
+.from("wallets")
+.update({
+cash:wallet.cash,
+bank:wallet.bank
+})
+.eq("player_id",user.id);
+
+renderAll();
+
+}
+
+async function withdraw(){
+
+const amount=prompt("Сколько снять?");
+
+const value=Number(amount);
+
+if(!value||value<=0)return;
+
+if(Number(wallet.bank||0)<value){
+
+showToast("Недостаточно денег в банке.");
+
+return;
+
+}
+
+wallet.bank-=value;
+wallet.cash=Number(wallet.cash||0)+value;
+
+await supabaseClient
+.from("wallets")
+.update({
+cash:wallet.cash,
+bank:wallet.bank
+})
+.eq("player_id",user.id);
+
+renderAll();
+
+}
+
+function transferMoney(){
+
+showToast("Переводы между игроками добавим через защищённую RPC-функцию Supabase.");
+
+}
+
+
+/* =========================================================
+NICKNAME
+========================================================= */
+
+function changeNickname(){
+
+const changes=
+Number(stats?.nickname_changes||0);
+
+const price=
+changes===0?0:
+changes===1?50000:
+changes===2?150000:
+300000;
+
+openModal(
+"✏️ Смена ника",
+`
+<input id="newNickname"
+class="input"
+maxlength="24"
+placeholder="Новый никнейм">
+
+<p class="muted">
+Текущий ник: ${esc(username())}
+</p>
+
+<p>
+Стоимость:
+<strong class="${price===0?"green":"gold"}">
+${price===0?"БЕСПЛАТНО":money(price)}
+</strong>
+</p>
+
+<p class="muted">
+Первая смена ника бесплатна.
+</p>
+`,
+"nickname"
+);
+
+}
+
+async function saveNickname(){
+
+const newName=
+document.getElementById("newNickname").value.trim();
+
+if(!newName){
+
+showToast("Введите ник.");
+return;
+
+}
+
+if(newName.length<3){
+
+showToast("Минимум 3 символа.");
+
+return;
+
+}
+
+const changes=
+Number(stats?.nickname_changes||0);
+
+const price=
+changes===0?0:
+changes===1?50000:
+changes===2?150000:
+300000;
+
+if(Number(wallet?.cash||0)<price){
+
+showToast("Недостаточно денег.");
+
+return;
+
+}
+
+const result=
+await supabaseClient
+.from("profiles")
+.update({username:newName})
+.eq("id",user.id);
+
+if(result.error){
+
+showToast(result.error.message);
+return;
+
+}
+
+wallet.cash=
+Number(wallet.cash||0)-price;
+
+await supabaseClient
+.from("wallets")
+.update({cash:wallet.cash})
+.eq("player_id",user.id);
+
+if(stats){
+
+stats.nickname_changes=changes+1;
+
+try{
+
+await supabaseClient
+.from("player_stats")
+.update({
+nickname_changes:stats.nickname_changes
+})
+.eq("user_id",user.id);
+
+}catch(e){}
+
+}
+
+profile.username=newName;
+
+closeModal();
+renderAll();
+
+showToast("✏️ Ник изменён.");
+
+}
+
+
+/* =========================================================
+FAMILY
+========================================================= */
 
 function createFamily(){
 
-document.getElementById("modalTitle")
-.textContent="Создание семьи";
-
-document.getElementById("modalBody").innerHTML=`
-
-<input
-id="familyName"
+openModal(
+"👨‍👩‍👧 Создание семьи",
+`
+<input id="familyName"
 class="input"
 maxlength="30"
-placeholder="Название семьи"
-/>
+placeholder="Название семьи">
 
 <p class="muted">
-Создание семьи — 50 000 ₽.
+Стоимость создания: 50 000 ₽
 </p>
-
-`;
-
-modalAction="family";
-
-document
-.getElementById("modal")
-.classList.remove("hidden");
+`,
+"family"
+);
 
 }
-
 
 async function saveFamily(){
 
 const name=
-document.getElementById("familyName")
-.value.trim();
+document.getElementById("familyName").value.trim();
 
 if(!name){
 
-toast("Введите название семьи.");
+showToast("Введите название.");
+
 return;
 
 }
 
-const cash=Number(wallet?.cash||0);
+if(Number(wallet?.cash||0)<50000){
 
-if(cash<50000){
+showToast("Нужно 50 000 ₽.");
 
-toast("Нужно 50 000 ₽.");
 return;
 
 }
 
-
-/* FAMILY */
+try{
 
 const result=
 await supabaseClient
 .from("families")
 .insert({
-
 name,
 owner_id:user.id,
 level:1,
 experience:0,
 balance:0
-
 })
 .select()
 .single();
 
 if(result.error){
 
-toast(result.error.message);
+showToast(result.error.message);
 return;
 
 }
 
-const newFamily=result.data;
+const familyResult=result.data;
 
-
-/* MEMBER */
-
-const member=
 await supabaseClient
 .from("family_members")
 .insert({
-
-family_id:newFamily.id,
+family_id:familyResult.id,
 user_id:user.id,
 rank:"Глава"
-
 });
 
-if(member.error){
-
-toast(member.error.message);
-return;
-
-}
-
-
-/* MONEY */
-
-const newCash=cash-50000;
+wallet.cash-=50000;
 
 await supabaseClient
 .from("wallets")
-.update({cash:newCash})
+.update({cash:wallet.cash})
 .eq("player_id",user.id);
 
+family=familyResult;
 
-wallet.cash=newCash;
-family=newFamily;
-
-updateUI();
 closeModal();
+renderAll();
 
-toast("Семья создана.");
+showToast("👨‍👩‍👧 Семья создана!");
+
+}catch(e){
+
+showToast("Система семьи ещё не подключена к базе.");
+
+}
 
 }
 
 
-/* ==================================================
-   FAMILY MEMBERS
-================================================== */
+/* =========================================================
+SHOP / PROPERTY
+========================================================= */
 
-async function loadFamilyMembers(){
+async function buyItem(name,price){
 
-if(!family){
+if(Number(wallet?.cash||0)<price){
 
-toast("Ты не состоишь в семье.");
+showToast("Недостаточно денег.");
+
 return;
 
 }
+
+wallet.cash-=price;
+
+await supabaseClient
+.from("wallets")
+.update({cash:wallet.cash})
+.eq("player_id",user.id);
+
+const found=
+inventory.find(x=>x.name===name);
+
+if(found)found.count++;
+else inventory.push({
+name,
+icon:"📦",
+count:1
+});
+
+saveLocalData();
+renderAll();
+
+showToast("Куплено: "+name);
+
+}
+
+async function buyProperty(name,price){
+
+if(Number(wallet?.cash||0)<price){
+
+showToast("Недостаточно денег.");
+
+return;
+
+}
+
+wallet.cash-=price;
+
+await supabaseClient
+.from("wallets")
+.update({cash:wallet.cash})
+.eq("player_id",user.id);
+
+renderAll();
+
+showToast("🏠 Приобретено: "+name);
+
+}
+
+
+/* =========================================================
+MINI GAMES
+========================================================= */
+
+function playCardGame(game){
+
+showToast("🃏 "+game+": мини-игра будет расширена.");
+
+}
+
+function hunt(){
+
+const r=Math.random()*100;
+
+let reward;
+
+if(r<1){
+reward=30000;
+showToast("🐻 ОЧЕНЬ РЕДКАЯ добыча!");
+}
+else if(r<10){
+reward=8000;
+showToast("🦌 Редкая добыча!");
+}
+else{
+reward=1000;
+showToast("🐇 Ты добыл зайца.");
+}
+
+wallet.cash=
+Number(wallet.cash||0)+reward;
+
+saveLocalWallet();
+
+}
+
+function heal(){
+
+const price=5000;
+
+if(Number(wallet?.cash||0)<price){
+
+showToast("Недостаточно денег.");
+
+return;
+
+}
+
+wallet.cash-=price;
+
+saveLocalWallet();
+
+showToast("❤️ Персонаж полностью вылечен.");
+
+}
+
+
+/* =========================================================
+DRIVING SCHOOL
+========================================================= */
+
+function takeTheory(){
+
+const questions=[
+"Можно ли превышать скорость?",
+"Нужно ли останавливаться на красный?",
+"Кто имеет преимущество на пешеходном переходе?"
+];
+
+const question=
+questions[Math.floor(Math.random()*questions.length)];
+
+openModal(
+"📖 Экзамен ПДД",
+`
+<p>${question}</p>
+
+<select id="answer" class="input">
+
+<option value="">Выбери ответ</option>
+<option value="yes">Да</option>
+<option value="no">Нет</option>
+<option value="ped">Пешеход</option>
+
+</select>
+`,
+"theory"
+);
+
+}
+
+function takePractice(){
+
+showToast("🚗 Практический экзамен начался.");
+
+setTimeout(()=>{
+showToast("🎉 Практика успешно сдана!");
+},1500);
+
+}
+
+function getLicense(){
+
+document.getElementById("licB").textContent="ПОЛУЧЕН";
+document.getElementById("licB").style.color="var(--green)";
+
+showToast("🪪 Водительские права получены!");
+
+}
+
+
+/* =========================================================
+FRIENDS / PLAYERS
+========================================================= */
+
+async function findPlayer(){
+
+const name=prompt("Введите ник игрока:");
+
+if(!name)return;
 
 const result=
 await supabaseClient
-.from("family_members")
-.select("*")
-.eq("family_id",family.id);
+.from("profiles")
+.select("id,username")
+.ilike("username","%"+name+"%")
+.limit(10);
 
 if(result.error){
 
-toast(result.error.message);
+showToast(result.error.message);
 return;
 
 }
 
-document.getElementById("familyContent").innerHTML=`
+const list=document.getElementById("friendsList");
 
-<div class="family-banner">
+if(!result.data.length){
 
-<div class="family-name">
-👨‍👩‍👧 ${esc(family.name)}
-</div>
+list.innerHTML=
+"<div class='friend'>Игрок не найден.</div>";
 
-<div class="family-rank">
-Участников: ${result.data.length}
-</div>
+return;
 
-<div style="margin-top:15px">
+}
 
-${result.data.map((m,i)=>`
+list.innerHTML=result.data.map(p=>`
 
 <div class="friend">
 
 <div>
-🟢 Игрок
-<strong>
-${m.user_id===user.id?"Ты":"Участник "+(i+1)}
-</strong>
+🟢 <strong>${esc(p.username)}</strong>
 </div>
 
-<div class="muted">
-${esc(m.rank)}
-</div>
-
-</div>
-
-`).join("")}
+<button class="btn"
+onclick="showToast('Запрос отправлен игроку.')">
+Добавить
+</button>
 
 </div>
 
-</div>
-
-`;
-
+`).join("");
 
 }
 
 
-/* ==================================================
-   SHOP
-================================================== */
+/* =========================================================
+ONLINE
+========================================================= */
 
-async function buyItem(name,price){
+async function loadOnline(){
 
-const cash=Number(wallet?.cash||0);
+const list=document.getElementById("onlineList");
 
-if(cash<price){
+if(!list)return;
 
-toast("Недостаточно денег.");
-return;
-
-}
-
-const newCash=cash-price;
+try{
 
 const result=
 await supabaseClient
-.from("wallets")
-.update({cash:newCash})
-.eq("player_id",user.id);
+.from("player_presence")
+.select("*")
+.eq("is_online",true)
+.order("last_seen",{ascending:false})
+.limit(50);
 
 if(result.error){
 
-toast(result.error.message);
+list.innerHTML=
+"<p class='muted'>Список онлайн пока недоступен.</p>";
+
 return;
 
 }
 
-wallet.cash=newCash;
+if(!result.data.length){
 
-updateUI();
+list.innerHTML=
+"<p class='muted'>Сейчас никого нет.</p>";
 
-toast("Куплено: "+name);
+return;
+
+}
+
+list.innerHTML=
+result.data.map(p=>`
+
+<div class="online-user">
+🟢 Игрок
+<br>
+<small class="muted">
+ID: ${esc(String(p.user_id).slice(0,8))}
+</small>
+</div>
+
+`).join("");
+
+}catch(e){}
 
 }
 
 
-/* ==================================================
-   CHAT LOCAL
-================================================== */
+/* =========================================================
+CHAT
+========================================================= */
 
 function sendChat(){
 
 const input=document.getElementById("chatInput");
-
 const text=input.value.trim();
 
 if(!text)return;
@@ -2639,61 +3976,47 @@ box.scrollTop=box.scrollHeight;
 
 input.value="";
 
+showToast("Сообщение отправлено локально.");
+
 }
 
 
-/* ==================================================
-   PRESENCE
-================================================== */
+/* =========================================================
+PASSWORD
+========================================================= */
 
-async function updatePresence(){
+async function changePassword(){
 
-if(!user)return;
+const password=prompt("Новый пароль:");
 
-await supabaseClient
-.from("player_presence")
-.upsert({
+if(!password||password.length<6){
 
-user_id:user.id,
-is_online:true,
-last_seen:new Date().toISOString()
+showToast("Пароль минимум 6 символов.");
 
+return;
+
+}
+
+const result=
+await supabaseClient.auth.updateUser({
+password
 });
 
-}
+if(result.error){
 
-
-setInterval(updatePresence,30000);
-
-
-/* ==================================================
-   MODAL ROUTING
-================================================== */
-
-const originalConfirm=confirmModal;
-
-confirmModal=async function(){
-
-if(modalAction==="nickname"){
-
-await saveNickname();
+showToast(result.error.message);
 return;
 
 }
 
-if(modalAction==="family"){
-
-await saveFamily();
-return;
+showToast("🔐 Пароль изменён.");
 
 }
 
-};
 
-
-/* ==================================================
-   PHONE CLOCK
-================================================== */
+/* =========================================================
+PHONE CLOCK
+========================================================= */
 
 function phoneClock(){
 
@@ -2701,24 +4024,45 @@ const now=new Date();
 
 document.getElementById("phoneTime")
 .textContent=
-now.toLocaleTimeString(
-"ru-RU",
-{
+now.toLocaleTimeString("ru-RU",{
 hour:"2-digit",
 minute:"2-digit"
-}
-);
+});
 
 }
 
 setInterval(phoneClock,1000);
-
 phoneClock();
 
 
-/* ==================================================
-   SESSION
-================================================== */
+/* =========================================================
+PRESENCE
+========================================================= */
+
+async function updatePresence(){
+
+if(!user)return;
+
+try{
+
+await supabaseClient
+.from("player_presence")
+.upsert({
+user_id:user.id,
+is_online:true,
+last_seen:new Date().toISOString()
+});
+
+}catch(e){}
+
+}
+
+setInterval(updatePresence,30000);
+
+
+/* =========================================================
+SESSION
+========================================================= */
 
 async function start(){
 
