@@ -1,220 +1,8441 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BLACK RUSSIA RP — Mega Console</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BLACK RUSSIA RP</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-*{box-sizing:border-box}body{margin:0;background:#070707;color:#f5f5f5;font:14px Arial,sans-serif}
-button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
-:root{--p:#111;--p2:#181818;--b:#292929;--mut:#858585;--g:#38df8c;--gold:#e7bd50;--r:#ff5555}
-#auth{min-height:100vh;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at top,#252525,#050505 60%)}
-.authbox{width:min(430px,100%);background:#101010;border:1px solid #333;border-radius:22px;padding:28px;box-shadow:0 30px 100px #000}
-.logo{text-align:center;font-weight:900;font-size:30px;letter-spacing:4px}.sub{text-align:center;color:#777;margin:7px 0 25px}
-.in{width:100%;background:#080808;border:1px solid #333;color:#fff;padding:13px;border-radius:10px;margin:5px 0;outline:0}
-.btn{background:#1c1c1c;color:#fff;border:1px solid #333;padding:10px 13px;border-radius:10px}.btn:hover{background:#292929}
-.mainbtn{width:100%;background:#fff;color:#000;border:0;padding:13px;border-radius:10px;font-weight:900;margin-top:7px}
-.msg{text-align:center;color:#aaa;min-height:22px;margin-top:10px}
-.top{position:sticky;top:0;z-index:20;background:#090909ed;border-bottom:1px solid #252525;backdrop-filter:blur(12px)}
-.topin{max-width:1500px;margin:auto;padding:12px 17px;display:flex;justify-content:space-between;gap:15px;align-items:center}
-.brand{font-weight:900;letter-spacing:2px}.online{color:var(--g);font-size:12px}.money{display:flex;gap:14px;flex-wrap:wrap;color:#aaa}.money b{color:#fff}.money .gd b{color:var(--gold)}
-.layout{max-width:1500px;margin:auto;display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 62px)}
-.side{border-right:1px solid #222;padding:12px;background:#090909}.sect{color:#666;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;padding:12px 9px 7px}
-.nav{width:100%;background:transparent;color:#999;border:1px solid transparent;text-align:left;padding:10px;border-radius:9px;margin:2px 0}.nav:hover,.nav.on{background:#191919;color:#fff;border-color:#292929}.danger{color:#ff6666}
-.content{padding:22px;min-width:0}.page{display:none}.page.on{display:block}.title{margin:0;font-size:28px}.mut{color:var(--mut)}.hero,.card{background:linear-gradient(145deg,#171717,#0d0d0d);border:1px solid #2a2a2a;border-radius:17px;padding:17px}.hero{padding:23px;margin-bottom:14px;background:radial-gradient(circle at 80% 0,#303030,transparent 45%),linear-gradient(135deg,#191919,#080808)}
-.grid{display:grid;gap:12px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-.big{font-size:23px;font-weight:900;margin-top:6px}.gold{color:var(--gold)}.green{color:var(--g)}.red{color:var(--r)}
-.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.tag{display:inline-block;padding:5px 8px;border-radius:8px;background:#222;color:#aaa;font-size:11px}
-.vehicle,.casino,.job,.shopitem{min-height:190px}.carname{font-size:20px;font-weight:900;margin-top:8px}.carart{height:65px;display:grid;place-items:center;font-size:50px}
-.itemgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.item{padding:13px;background:#111;border:1px solid #292929;border-radius:13px}.itemicon{font-size:30px}
-.map{height:520px;border:1px solid #333;border-radius:18px;position:relative;overflow:hidden;background:linear-gradient(35deg,transparent 48%,#242424 49%,#242424 50%,transparent 51%),linear-gradient(145deg,transparent 46%,#222 47%,#222 49%,transparent 50%),radial-gradient(circle,#292929,#090909 70%)}
-.poi{position:absolute;background:#fff;color:#000;border:0;border-radius:50%;width:42px;height:42px;font-size:18px}.label{position:absolute;color:#aaa;font-weight:800}
-.chat{display:grid;grid-template-columns:1fr 270px;gap:12px}.messages{height:470px;overflow:auto;background:#080808;border:1px solid #292929;border-radius:12px;padding:12px}.m{margin-bottom:12px}.mn{color:#777;font-size:11px}.chatrow{display:flex;gap:7px;margin-top:8px}
-.table{width:100%;border-collapse:collapse}.table th,.table td{padding:10px;border-bottom:1px solid #252525;text-align:left}.table th{color:#777;font-size:11px}
-.modal{position:fixed;inset:0;background:#000b;display:grid;place-items:center;padding:20px;z-index:100}.modalbox{width:min(460px,100%);background:#111;border:1px solid #333;border-radius:17px;padding:20px}
-#toast{position:fixed;right:15px;bottom:15px;background:#fff;color:#111;padding:12px 15px;border-radius:10px;font-weight:800;transform:translateY(120px);transition:.25s;z-index:200}#toast.show{transform:none}
-@media(max-width:950px){.layout{grid-template-columns:190px 1fr}.g4{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:1fr 1fr}.itemgrid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){.layout{display:block}.side{display:flex;overflow:auto;border-right:0;border-bottom:1px solid #222;gap:3px}.sect{display:none}.nav{min-width:max-content;width:auto}.content{padding:13px}.g2,.g3,.g4{grid-template-columns:1fr}.itemgrid{grid-template-columns:1fr 1fr}.chat{grid-template-columns:1fr}.topin{align-items:flex-start;flex-direction:column}}
+*{box-sizing:border-box}
+:root{
+--bg:#070707;
+--panel:#111;
+--panel2:#181818;
+--border:#292929;
+--text:#fff;
+--muted:#858585;
+--green:#36df8b;
+--red:#ff5757;
+--gold:#e7bd50;
+--blue:#58a6ff;
+}
+html,body{
+margin:0;
+min-height:100%;
+background:
+radial-gradient(circle at 50% -10%,#292929 0,#0b0b0b 45%,#030303 100%);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+#authScreen{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px
+}
+.auth{
+width:100%;
+max-width:430px;
+background:rgba(13,13,13,.97);
+border:1px solid #303030;
+border-radius:22px;
+padding:30px;
+box-shadow:0 30px 100px #000
+}
+.logo{
+text-align:center;
+font-size:31px;
+font-weight:900;
+letter-spacing:4px
+}
+.logo-sub{
+text-align:center;
+font-size:12px;
+color:#777;
+letter-spacing:2px;
+margin:8px 0 28px
+}
+.auth h2{margin:0 0 16px}
+.input{
+width:100%;
+padding:14px;
+margin:5px 0;
+border:1px solid #333;
+border-radius:11px;
+background:#090909;
+color:#fff;
+outline:0
+}
+.input:focus{border-color:#777}
+.btn{
+border:1px solid #333;
+background:#1b1b1b;
+color:#fff;
+border-radius:10px;
+padding:11px 15px
+}
+.btn:hover{background:#292929}
+.btn-main{
+width:100%;
+border:0;
+border-radius:11px;
+padding:14px;
+margin-top:8px;
+background:#fff;
+color:#000;
+font-weight:900
+}
+.btn-second{
+width:100%;
+border:0;
+border-radius:11px;
+padding:14px;
+margin-top:8px;
+background:#222;
+color:#fff
+}
+.auth-msg{
+min-height:22px;
+margin-top:14px;
+text-align:center;
+color:#aaa;
+font-size:13px
+}
+
+.top{
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(7,7,7,.94);
+backdrop-filter:blur(15px);
+border-bottom:1px solid #252525
+}
+.top-inner{
+max-width:1500px;
+margin:auto;
+padding:13px 18px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px
+}
+.brand{font-weight:900;letter-spacing:2px}
+.status{
+font-size:12px;
+color:#777;
+margin-top:4px
+}
+.dot{
+display:inline-block;
+width:8px;
+height:8px;
+background:var(--green);
+border-radius:50%;
+margin-right:5px;
+box-shadow:0 0 10px var(--green)
+}
+.moneybar{
+display:flex;
+gap:13px;
+flex-wrap:wrap
+}
+.moneybar span{font-size:13px;color:#bbb}
+.moneybar strong{color:#fff}
+.moneybar .gold strong{color:var(--gold)}
+
+.layout{
+max-width:1500px;
+margin:auto;
+display:grid;
+grid-template-columns:245px 1fr;
+min-height:calc(100vh - 62px)
+}
+.sidebar{
+background:rgba(8,8,8,.85);
+border-right:1px solid #222;
+padding:16px 11px
+}
+.section{
+font-size:10px;
+color:#666;
+text-transform:uppercase;
+letter-spacing:1.5px;
+padding:10px
+}
+.nav{
+width:100%;
+text-align:left;
+border:1px solid transparent;
+background:transparent;
+color:#999;
+padding:11px 12px;
+border-radius:10px;
+margin-bottom:4px
+}
+.nav:hover,.nav.active{
+background:#191919;
+border-color:#2a2a2a;
+color:#fff
+}
+.logout{color:#ff6b6b}
+.content{padding:22px;min-width:0}
+.page{display:none}
+.page.active{display:block}
+.title{font-size:29px;margin:0}
+.subtitle{color:#777;margin:6px 0 20px}
+
+.hero{
+border:1px solid #303030;
+border-radius:20px;
+padding:24px;
+margin-bottom:15px;
+background:
+radial-gradient(circle at 80% 20%,#303030,transparent 40%),
+linear-gradient(135deg,#191919,#080808)
+}
+.hero h2{margin:0 0 7px;font-size:28px}
+.hero p{color:#888;margin:0}
+.actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-top:17px
+}
+.grid{
+display:grid;
+gap:13px
+}
+.g5{grid-template-columns:repeat(5,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{
+background:linear-gradient(145deg,#151515,#0d0d0d);
+border:1px solid #292929;
+border-radius:16px;
+padding:17px
+}
+.card-label{font-size:12px;color:#777}
+.big{font-size:24px;font-weight:900;margin-top:7px}
+.gold{color:var(--gold)}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.blue{color:var(--blue)}
+.muted{color:#777}
+
+.profile{
+display:flex;
+gap:17px;
+align-items:center
+}
+.avatar{
+width:90px;
+height:90px;
+border-radius:20px;
+background:linear-gradient(145deg,#3b3b3b,#151515);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+font-weight:900
+}
+.profile-name{font-size:25px;font-weight:900}
+
+.itemgrid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px
+}
+.item{
+min-height:120px;
+background:#111;
+border:1px solid #292929;
+border-radius:13px;
+padding:12px
+}
+.item-icon{font-size:32px}
+.item-name{font-size:13px;margin-top:8px}
+.item-count{font-size:11px;color:#777;margin-top:4px}
+
+.vehicle{
+min-height:210px;
+position:relative
+}
+.vehicle-icon{font-size:54px}
+.vehicle-name{font-size:19px;font-weight:900;margin-top:8px}
+.vehicle-price{color:var(--gold);font-weight:900;margin:7px 0}
+
+.job-icon{font-size:38px}
+.job-name{font-size:19px;font-weight:900;margin-top:8px}
+.job-desc{color:#777;min-height:40px;margin:7px 0}
+.salary{color:var(--green);font-weight:900}
+
+.map{
+height:520px;
+position:relative;
+overflow:hidden;
+border:1px solid #303030;
+border-radius:20px;
+background:
+linear-gradient(30deg,transparent 46%,#242424 47%,#242424 49%,transparent 50%),
+linear-gradient(150deg,transparent 45%,#202020 46%,#202020 48%,transparent 49%),
+radial-gradient(circle,#252525,#090909 70%)
+}
+.map-label{
+position:absolute;
+color:#999;
+font-size:13px;
+font-weight:800
+}
+.marker{
+position:absolute;
+width:40px;
+height:40px;
+border-radius:50%;
+background:#fff;
+color:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900
+}
+
+.chat{
+display:grid;
+grid-template-columns:1fr 280px;
+gap:13px
+}
+.chatbox{
+height:500px;
+display:flex;
+flex-direction:column
+}
+.messages{
+flex:1;
+overflow-y:auto;
+background:#080808;
+border:1px solid #292929;
+border-radius:12px;
+padding:13px
+}
+.msg{margin-bottom:13px}
+.msg-name{font-size:11px;color:#777}
+.msg-text{margin-top:3px}
+.chat-row{
+display:flex;
+gap:7px;
+margin-top:9px
+}
+.chat-input{
+flex:1;
+background:#111;
+border:1px solid #333;
+border-radius:10px;
+padding:12px;
+color:#fff;
+outline:0
+}
+.online{
+max-height:500px;
+overflow:auto
+}
+.online-user{
+padding:11px 5px;
+border-bottom:1px solid #222
+}
+
+.casino{
+background:
+radial-gradient(circle at 50% 0,#382d12,#111 55%,#080808);
+border-color:#5c4a1d
+}
+.casino-title{
+font-size:34px;
+font-weight:900;
+letter-spacing:2px
+}
+.casino-balance{
+font-size:18px;
+color:var(--gold);
+margin:8px 0 18px
+}
+.game-card{
+min-height:190px;
+text-align:center
+}
+.game-icon{font-size:55px}
+.game-title{
+font-size:20px;
+font-weight:900;
+margin:9px 0
+}
+
+.roulette{
+width:230px;
+height:230px;
+border-radius:50%;
+margin:15px auto;
+border:8px solid #333;
+background:
+conic-gradient(
+#b21d1d 0deg 30deg,
+#111 30deg 60deg,
+#b21d1d 60deg 90deg,
+#111 90deg 120deg,
+#b21d1d 120deg 150deg,
+#111 150deg 180deg,
+#b21d1d 180deg 210deg,
+#111 210deg 240deg,
+#b21d1d 240deg 270deg,
+#111 270deg 300deg,
+#b21d1d 300deg 330deg,
+#111 330deg 360deg);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
+font-weight:900
+}
+
+.slot{
+display:flex;
+justify-content:center;
+gap:8px;
+margin:20px 0
+}
+.slot-box{
+width:75px;
+height:75px;
+background:#090909;
+border:2px solid #555;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px
+}
+
+.cards{
+display:flex;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+margin:20px 0
+}
+.playing-card{
+width:55px;
+height:78px;
+background:#eee;
+color:#111;
+border-radius:7px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+font-size:20px
+}
+
+.case{
+text-align:center;
+min-height:210px
+}
+.case-icon{font-size:65px}
+.case-rare{
+border-color:#7d5aff;
+box-shadow:0 0 25px rgba(125,90,255,.1)
+}
+
+.family-banner{
+padding:20px;
+border-radius:18px;
+border:1px solid #303030;
+background:linear-gradient(135deg,#1d1d1d,#0c0c0c)
+}
+.family-name{font-size:27px;font-weight:900}
+.family-rank{color:#888;margin-top:5px}
+
+.phone{
+max-width:390px;
+margin:auto;
+background:#050505;
+border:7px solid #222;
+border-radius:35px;
+padding:14px;
+min-height:600px;
+box-shadow:0 25px 80px #000
+}
+.phone-head{
+display:flex;
+justify-content:space-between;
+color:#aaa;
+font-size:12px
+}
+.phone-screen{
+margin-top:15px;
+background:
+radial-gradient(circle at top,#303030,#101010 60%);
+border-radius:24px;
+padding:17px;
+min-height:530px
+}
+.phone-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:20px
+}
+.phone-app{
+background:#1c1c1c;
+border:1px solid #333;
+border-radius:15px;
+padding:14px 5px;
+text-align:center;
+color:#fff
+}
+.phone-app div{font-size:27px}
+.phone-app small{display:block;margin-top:6px;color:#aaa}
+
+.friend{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 0;
+border-bottom:1px solid #242424
+}
+
+.notification{
+padding:13px 0;
+border-bottom:1px solid #252525
+}
+.notification strong{display:block}
+.notification small{color:#777}
+
+.table{
+width:100%;
+border-collapse:collapse
+}
+.table th,.table td{
+padding:12px;
+border-bottom:1px solid #292929;
+text-align:left
+}
+.table th{
+color:#777;
+font-size:12px
+}
+
+.progress{
+height:8px;
+background:#252525;
+border-radius:20px;
+overflow:hidden
+}
+.progress-bar{
+height:100%;
+background:var(--green);
+width:0%
+}
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.78);
+z-index:500;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px
+}
+.modal-box{
+width:100%;
+max-width:500px;
+max-height:90vh;
+overflow:auto;
+background:#111;
+border:1px solid #333;
+border-radius:18px;
+padding:20px
+}
+
+#toast{
+position:fixed;
+right:18px;
+bottom:18px;
+z-index:1000;
+background:#f5f5f5;
+color:#111;
+padding:13px 16px;
+border-radius:11px;
+font-weight:800;
+transform:translateY(120px);
+transition:.25s;
+max-width:350px
+}
+#toast.show{transform:translateY(0)}
+
+@media(max-width:1100px){
+.layout{grid-template-columns:200px 1fr}
+.g5{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(2,1fr)}
+.itemgrid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:700px){
+.top-inner{align-items:flex-start;flex-direction:column}
+.layout{display:block}
+.sidebar{
+display:flex;
+overflow-x:auto;
+border-right:0;
+border-bottom:1px solid #222;
+padding:9px
+}
+.section{display:none}
+.nav{
+min-width:max-content;
+width:auto;
+margin:0
+}
+.content{padding:14px}
+.g5,.g4,.g3,.g2{grid-template-columns:1fr}
+.itemgrid{grid-template-columns:repeat(2,1fr)}
+.title{font-size:25px}
+}
 </style>
 </head>
+
 <body>
 
-<section id="auth">
-<div class="authbox">
-<div class="logo">BLACK RUSSIA</div><div class="sub">ROLEPLAY PROJECT • MEGA CONSOLE</div>
-<input id="aNick" class="in" placeholder="Никнейм">
-<input id="aEmail" class="in" type="email" placeholder="Email">
-<input id="aPass" class="in" type="password" placeholder="Пароль">
-<button class="mainbtn" onclick="login()">Войти</button>
-<button class="btn" style="width:100%;margin-top:7px" onclick="register()">Создать аккаунт</button>
-<div id="authMsg" class="msg"></div>
-</div></section>
+<section id="authScreen">
+<div class="auth">
 
-<section id="game" class="hidden">
-<header class="top"><div class="topin">
-<div><div class="brand">BLACK RUSSIA RP</div><div class="online">● SERVER ONLINE</div></div>
-<div class="money"><span>💵 <b id="cashTop">0 ₽</b></span><span>🏦 <b id="bankTop">0 ₽</b></span><span class="gd">🪙 <b id="goldTop">0</b></span><span>⭐ <b id="lvlTop">1</b></span></div>
-</div></header>
+<div class="logo">BLACK RUSSIA</div>
+<div class="logo-sub">ROLEPLAY PROJECT</div>
+
+<h2>Вход в игру</h2>
+
+<input id="username"
+class="input"
+placeholder="Никнейм">
+
+<input id="email"
+class="input"
+type="email"
+placeholder="Email">
+
+<input id="password"
+class="input"
+type="password"
+placeholder="Пароль">
+
+<button class="btn-main" onclick="login()">
+Войти
+</button>
+
+<button class="btn-second" onclick="register()">
+Создать аккаунт
+</button>
+
+<div id="authMessage" class="auth-msg"></div>
+
+</div>
+</section>
+
+<section id="gameScreen" class="hidden">
+
+<header class="top">
+<div class="top-inner">
+
+<div>
+<div class="brand">BLACK RUSSIA RP</div>
+<div class="status">
+<span class="dot"></span>
+Сервер онлайн
+</div>
+</div>
+
+<div class="moneybar">
+<span>💵 <strong id="topCash">0 ₽</strong></span>
+<span>🏦 <strong id="topBank">0 ₽</strong></span>
+<span class="gold">🪙 <strong id="topGold">0</strong></span>
+</div>
+
+</div>
+</header>
+
 <div class="layout">
-<aside class="side">
-<div class="sect">Основное</div>
-<button class="nav on" onclick="page('home',this)">🏠 Главная</button><button class="nav" onclick="page('character',this)">👤 Персонаж</button><button class="nav" onclick="page('phone',this)">📱 Телефон</button><button class="nav" onclick="page('map',this)">🗺️ Карта</button>
-<div class="sect">Авто и мир</div>
-<button class="nav" onclick="page('garage',this)">🚗 Гараж</button><button class="nav" onclick="page('cars',this)">🏎️ Автосалон</button><button class="nav" onclick="page('auction',this)">🔨 Аукцион</button><button class="nav" onclick="page('tuning',this)">🔧 Тюнинг</button><button class="nav" onclick="page('jobs',this)">💼 Работы</button><button class="nav" onclick="page('inventory',this)">🎒 Инвентарь</button><button class="nav" onclick="page('property',this)">🏠 Недвижимость</button>
-<div class="sect">Госструктуры</div>
-<button class="nav" onclick="page('gov',this)">🏛️ Правительство</button><button class="nav" onclick="page('orgs',this)">🏢 Организации</button><button class="nav" onclick="page('army',this)">🪖 Армия</button><button class="nav" onclick="page('police',this)">👮 Полиция</button><button class="nav" onclick="page('med',this)">🚑 Больница</button><button class="nav" onclick="page('school',this)">🚦 Автошкола</button><button class="nav" onclick="page('licenses',this)">🪪 Лицензии</button>
-<div class="sect">Развлечения</div>
-<button class="nav" onclick="page('casino',this)">🎰 Казино</button><button class="nav" onclick="page('cases',this)">📦 Кейсы</button><button class="nav" onclick="daily()">🎁 Ежедневная награда</button>
-<div class="sect">Социальное</div>
-<button class="nav" onclick="page('family',this)">👨‍👩‍👧 Семья</button><button class="nav" onclick="page('friends',this)">👥 Друзья</button><button class="nav" onclick="page('chat',this)">💬 Онлайн-чат</button>
-<div class="sect">Аккаунт</div>
-<button class="nav" onclick="page('achievements',this)">🏆 Достижения</button><button class="nav" onclick="page('bank',this)">🏦 Банк</button><button class="nav" onclick="page('settings',this)">⚙️ Настройки</button><button class="nav danger" onclick="logout()">🚪 Выйти</button>
+
+<aside class="sidebar">
+
+<div class="section">Основное</div>
+
+<button class="nav active" onclick="showPage('home',this)">🏠 Главная</button>
+<button class="nav" onclick="showPage('profile',this)">👤 Персонаж</button>
+<button class="nav" onclick="showPage('phone',this)">📱 Телефон</button>
+<button class="nav" onclick="showPage('map',this)">🗺️ Карта</button>
+
+<div class="section">Автомобили</div>
+
+<button class="nav" onclick="showPage('garage',this)">🚗 Гараж</button>
+<button class="nav" onclick="showPage('tuning',this)">🔧 Тюнинг</button>
+<button class="nav" onclick="showPage('auction',this)">🔨 Аукцион</button>
+<button class="nav" onclick="showPage('dealership',this)">🏎️ Автосалон</button>
+<button class="nav" onclick="showPage('trunk',this)">🧳 Багажник</button>
+
+<div class="section">Мир</div>
+
+<button class="nav" onclick="showPage('jobs',this)">💼 Работы</button>
+<button class="nav" onclick="showPage('organizations',this)">🏢 Организации</button>
+<button class="nav" onclick="showPage('military',this)">🎖️ Армия</button>
+<button class="nav" onclick="showPage('voenkomat',this)">📋 Военкомат</button>
+<button class="nav" onclick="showPage('police',this)">👮 Полиция</button>
+<button class="nav" onclick="showPage('hospital',this)">🏥 Больница</button>
+<button class="nav" onclick="showPage('drivingschool',this)">🚦 Автошкола</button>
+<button class="nav" onclick="showPage('licenses',this)">📜 Лицензии</button>
+<button class="nav" onclick="showPage('hunting',this)">🦌 Охота</button>
+
+<div class="section">Экономика</div>
+
+<button class="nav" onclick="showPage('inventory',this)">🎒 Инвентарь</button>
+<button class="nav" onclick="showPage('shop',this)">🏪 Магазин</button>
+<button class="nav" onclick="showPage('property',this)">🏠 Недвижимость</button>
+<button class="nav" onclick="showPage('bank',this)">🏦 Банк</button>
+
+<div class="section">Казино</div>
+
+<button class="nav" onclick="showPage('casino',this)">🎰 Казино</button>
+<button class="nav" onclick="showPage('roulette',this)">🎡 Рулетка</button>
+<button class="nav" onclick="showPage('blackjack',this)">🃏 21</button>
+<button class="nav" onclick="showPage('durak',this)">🂡 Дурак</button>
+<button class="nav" onclick="showPage('slots',this)">🎰 Слоты</button>
+
+<div class="section">Награды</div>
+
+<button class="nav" onclick="showPage('cases',this)">📦 Кейсы</button>
+<button class="nav" onclick="showPage('daily',this)">🎁 Каждый день</button>
+
+<div class="section">Социальное</div>
+
+<button class="nav" onclick="showPage('family',this)">👨‍👩‍👧 Семья</button>
+<button class="nav" onclick="showPage('friends',this)">👥 Друзья</button>
+<button class="nav" onclick="showPage('chat',this)">💬 Чат</button>
+
+<div class="section">Аккаунт</div>
+
+<button class="nav" onclick="showPage('achievements',this)">🏆 Достижения</button>
+<button class="nav" onclick="showPage('notifications',this)">🔔 Уведомления</button>
+<button class="nav" onclick="showPage('settings',this)">⚙️ Настройки</button>
+
+<button class="nav logout" onclick="logout()">🚪 Выйти</button>
+
 </aside>
 
 <main class="content">
 
-<section id="p-home" class="page on">
-<div class="hero"><h1 id="welcome">Добро пожаловать</h1><p class="mut">Все основные механики проекта собраны в одной тестовой консоли.</p><div class="actions"><button class="btn" onclick="pageByName('casino')">🎰 Казино</button><button class="btn" onclick="pageByName('cars')">🚗 Автосалон</button><button class="btn" onclick="pageByName('map')">🗺️ Карта</button><button class="btn" onclick="daily()">🎁 Забрать награду</button></div></div>
-<div class="grid g4"><div class="card"><span class="mut">Наличные</span><div class="big" id="cash">0 ₽</div></div><div class="card"><span class="mut">Банк</span><div class="big" id="bank">0 ₽</div></div><div class="card"><span class="mut">Золото</span><div class="big gold" id="gold">0</div></div><div class="card"><span class="mut">Уровень</span><div class="big" id="level">1</div></div></div><br>
-<div class="grid g3"><div class="card"><span class="mut">Работа</span><div class="big" id="job">Безработный</div></div><div class="card"><span class="mut">Репутация</span><div class="big" id="rep">0</div></div><div class="card"><span class="mut">Статус</span><div class="big green">ONLINE</div></div></div><br>
-<div class="card"><h3>Тестовая экономика</h3><div class="actions"><button class="btn" onclick="addCash(1000)">💵 +1 000 ₽</button><button class="btn" onclick="addGold(10)">🪙 +10 золота</button><button class="btn" onclick="addXP(100)">⭐ +100 XP</button></div></div>
+<section id="page-home" class="page active">
+
+<div class="hero">
+
+<h2 id="welcome">Добро пожаловать</h2>
+
+<p>
+Твоя история в BLACK RUSSIA RP начинается здесь.
+</p>
+
+<div class="actions">
+<button class="btn" onclick="openPage('map')">🗺️ Карта</button>
+<button class="btn" onclick="openPage('jobs')">💼 Работы</button>
+<button class="btn" onclick="openPage('garage')">🚗 Гараж</button>
+<button class="btn" onclick="openPage('casino')">🎰 Казино</button>
+<button class="btn" onclick="openPage('cases')">📦 Кейсы</button>
+</div>
+
+</div>
+
+<div class="grid g5">
+
+<div class="card">
+<div class="card-label">Наличные</div>
+<div class="big" id="cash">0 ₽</div>
+</div>
+
+<div class="card">
+<div class="card-label">Банк</div>
+<div class="big" id="bank">0 ₽</div>
+</div>
+
+<div class="card">
+<div class="card-label">Золото</div>
+<div class="big gold" id="gold">0</div>
+</div>
+
+<div class="card">
+<div class="card-label">Уровень</div>
+<div class="big" id="level">1</div>
+</div>
+
+<div class="card">
+<div class="card-label">Репутация</div>
+<div class="big" id="reputation">0</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="grid g3">
+
+<div class="card">
+<div class="card-label">Работа</div>
+<div class="big" id="jobHome">Безработный</div>
+</div>
+
+<div class="card">
+<div class="card-label">Автомобиль</div>
+<div class="big" id="currentCar">Нет</div>
+</div>
+
+<div class="card">
+<div class="card-label">Статус</div>
+<div class="big green">ONLINE</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Быстрые действия</h3>
+
+<div class="actions">
+
+<button class="btn" onclick="testMoney()">💵 +1 000 ₽</button>
+<button class="btn" onclick="testGold()">🪙 +10 золота</button>
+<button class="btn" onclick="openPage('casino')">🎰 Казино</button>
+<button class="btn" onclick="openPage('daily')">🎁 Награда</button>
+<button class="btn" onclick="openPage('family')">👨‍👩‍👧 Семья</button>
+
+</div>
+
+</div>
+
 </section>
 
-<section id="p-character" class="page"><h1 class="title">Персонаж</h1><p class="mut">Профиль и прогресс</p>
-<div class="card"><h2 id="charName">Игрок</h2><p class="mut" id="email">—</p><p>ID: <span id="uid">—</span></p><div class="actions"><button class="btn" onclick="nickname()">✏️ Сменить ник</button></div></div><br>
-<div class="grid g4"><div class="card">Уровень<div class="big" id="clvl">1</div></div><div class="card">Опыт<div class="big" id="xp">0</div></div><div class="card">Репутация<div class="big" id="crep">0</div></div><div class="card">Часы игры<div class="big" id="hours">0</div></div></div><br>
-<div class="card"><h3>Паспорт</h3><div class="grid g3"><div>Имя<br><b id="fname">Не указано</b></div><div>Фамилия<br><b id="lname">Не указано</b></div><div>Возраст<br><b id="age">18</b></div></div></div></section>
+<section id="page-profile" class="page">
 
-<section id="p-phone" class="page"><h1 class="title">📱 Телефон</h1><p class="mut">Приложения персонажа</p><div class="card" style="max-width:410px;margin:auto;border-width:7px;border-radius:30px;min-height:570px"><h2 id="phoneName">Игрок</h2><div class="grid g3" style="margin-top:20px"><button class="btn" onclick="pageByName('chat')">💬<br>Чат</button><button class="btn" onclick="pageByName('friends')">👥<br>Контакты</button><button class="btn" onclick="pageByName('map')">🗺️<br>Карта</button><button class="btn" onclick="pageByName('bank')">🏦<br>Банк</button><button class="btn" onclick="pageByName('casino')">🎰<br>Казино</button><button class="btn" onclick="toast('Звонки будут подключены позже.')">📞<br>Звонки</button><button class="btn" onclick="pageByName('family')">👨‍👩‍👧<br>Семья</button><button class="btn" onclick="pageByName('cars')">🚗<br>Авто</button><button class="btn" onclick="pageByName('cases')">📦<br>Кейсы</button></div></div></section>
+<h1 class="title">Персонаж</h1>
+<p class="subtitle">Профиль твоего персонажа</p>
 
-<section id="p-map" class="page"><h1 class="title">🗺️ Карта города</h1><p class="mut">Нажимай на объекты — это точки взаимодействия.</p><div class="map"><span class="label" style="left:8%;top:10%">Северный район</span><span class="label" style="right:12%;top:15%">Центр</span><span class="label" style="left:12%;bottom:13%">Промзона</span><span class="label" style="right:10%;bottom:13%">Южный район</span>
-<button class="poi" style="left:48%;top:43%" onclick="toast('🏛️ Правительство')">🏛️</button><button class="poi" style="left:19%;top:23%" onclick="pageByName('police')">👮</button><button class="poi" style="right:20%;top:27%" onclick="pageByName('casino')">🎰</button><button class="poi" style="right:25%;bottom:19%" onclick="pageByName('garage')">🚗</button><button class="poi" style="left:24%;bottom:23%" onclick="pageByName('med')">🏥</button><button class="poi" style="left:70%;top:57%" onclick="pageByName('school')">🚦</button><button class="poi" style="left:52%;bottom:14%" onclick="pageByName('jobs')">💼</button></div></section>
+<div class="card">
 
-<section id="p-garage" class="page"><h1 class="title">🚗 Гараж</h1><p class="mut">Твои автомобили</p><div id="garage" class="grid g3"></div></section>
+<div class="profile">
 
-<section id="p-cars" class="page"><h1 class="title">🏎️ Автосалон</h1><p class="mut">Покупай автомобили. Картинки добавим позже.</p><div id="cars" class="grid g3"></div></section>
+<div class="avatar" id="avatar">T</div>
 
-<section id="p-auction" class="page"><h1 class="title">🔨 Аукцион</h1><p class="mut">Тестовый рынок игроков.</p><div id="auction" class="grid g3"></div></section>
+<div>
 
-<section id="p-tuning" class="page"><h1 class="title">🔧 Тюнинг</h1><p class="mut">Выбери машину и улучшение.</p><div class="card"><select id="tuneCar" class="in"></select><div class="actions"><button class="btn" onclick="tune('engine')">⚙️ Двигатель 50 000 ₽</button><button class="btn" onclick="tune('brakes')">🛑 Тормоза 25 000 ₽</button><button class="btn" onclick="tune('visual')">🎨 Внешний вид 30 000 ₽</button></div><p id="tuneInfo" class="mut"></p></div></section>
+<div class="profile-name" id="profileName">Игрок</div>
 
-<section id="p-jobs" class="page"><h1 class="title">💼 Работы</h1><div id="jobs" class="grid g3"></div></section>
+<div class="muted" id="profileEmail">—</div>
 
-<section id="p-inventory" class="page"><h1 class="title">🎒 Инвентарь</h1><div id="inventory" class="itemgrid"></div><br><div class="card"><h3>🚗 Багажник</h3><select id="trunkCar" class="in"></select><div id="trunk"></div></div></section>
+<div class="muted">
+ID: <span id="playerIdShort">—</span>
+</div>
 
-<section id="p-property" class="page"><h1 class="title">🏠 Недвижимость</h1><div id="property" class="grid g3"></div></section>
+</div>
 
-<section id="p-gov" class="page"><h1 class="title">🏛️ Правительство</h1><div class="grid g3"><div class="card"><h3>Госуслуги</h3><p class="mut">Документы, лицензии, налоги.</p><button class="btn" onclick="pageByName('licenses')">Открыть</button></div><div class="card"><h3>Государственные вакансии</h3><p class="mut">Подача заявок в организации.</p><button class="btn" onclick="pageByName('orgs')">Вакансии</button></div><div class="card"><h3>Налоги</h3><p class="mut">Система налогов подготовлена.</p><button class="btn" onclick="toast('Налоговый расчёт обновлён.')">Проверить</button></div></div></section>
+</div>
 
-<section id="p-orgs" class="page"><h1 class="title">🏢 Организации</h1><div id="orgs" class="grid g3"></div></section>
-<section id="p-army" class="page"><h1 class="title">🪖 Армия / Военкомат</h1><div class="grid g2"><div class="card"><h3>Военкомат</h3><p class="mut">Проверка документов и постановка на учёт.</p><button class="btn" onclick="toast('Ты поставлен на учёт.')">Пройти регистрацию</button></div><div class="card"><h3>Военная служба</h3><p class="mut">Заявка в армию и карьерный путь.</p><button class="btn" onclick="joinOrg('Армия')">Подать заявку</button></div></div></section>
-<section id="p-police" class="page"><h1 class="title">👮 Полиция</h1><div class="card"><h3>Полиция</h3><p class="mut">Порядок, штрафы, розыск и заявки.</p><div class="actions"><button class="btn" onclick="joinOrg('Полиция')">Подать заявку</button><button class="btn" onclick="toast('Штрафы будут храниться в профиле игрока.')">ПДД / Штрафы</button></div></div></section>
-<section id="p-med" class="page"><h1 class="title">🚑 Больница</h1><div class="grid g3"><div class="card"><h3>Лечение</h3><p class="mut">Восстановление персонажа.</p><button class="btn" onclick="heal()">Лечиться — 2 000 ₽</button></div><div class="card"><h3>Медик</h3><button class="btn" onclick="joinOrg('Медики')">Подать заявку</button></div><div class="card"><h3>Страховка</h3><button class="btn" onclick="toast('Страховка оформлена.')">Оформить</button></div></div></section>
-<section id="p-school" class="page"><h1 class="title">🚦 Автошкола и ПДД</h1><div class="grid g2"><div class="card"><h3>Теория ПДД</h3><p class="mut">5 вопросов, нужен результат 4/5.</p><button class="btn" onclick="exam()">Сдать экзамен — 5 000 ₽</button></div><div class="card"><h3>Практика</h3><p class="mut">Получение водительских прав.</p><button class="btn" onclick="license('Водительские права')">Сдать практику</button></div></div></section>
-<section id="p-licenses" class="page"><h1 class="title">🪪 Лицензии</h1><div id="licenses" class="grid g3"></div></section>
+<div class="actions">
 
-<section id="p-casino" class="page"><h1 class="title">🎰 Казино</h1><p class="mut">Только внутриигровая валюта. Ставка списывается сразу.</p><div class="card"><label>Ставка</label><input id="bet" class="in" type="number" min="100" value="1000"><div class="actions"><button class="btn" onclick="roulette()">🎡 Рулетка</button><button class="btn" onclick="slots()">🎰 Слоты</button><button class="btn" onclick="blackjack()">🃏 21</button><button class="btn" onclick="fool()">🃏 Дурак</button></div><div id="casinoResult" style="font-size:18px;font-weight:900;margin-top:15px"></div></div><br><div class="card"><h3>📜 Последние результаты</h3><div id="casinoLog" class="mut">Пока пусто.</div></div></section>
+<button class="btn" onclick="changeNickname()">
+✏️ Сменить ник
+</button>
 
-<section id="p-cases" class="page"><h1 class="title">📦 Кейсы</h1><p class="mut">Редкие призы имеют маленький шанс выпадения.</p><div id="cases" class="grid g3"></div></section>
+</div>
 
-<section id="p-family" class="page"><h1 class="title">👨‍👩‍👧 Семья</h1><div id="familyBox"></div></section>
-<section id="p-friends" class="page"><h1 class="title">👥 Друзья</h1><div class="card"><input id="friendNick" class="in" placeholder="Ник игрока"><button class="btn" onclick="addFriend()">Добавить друга</button><div id="friends" style="margin-top:15px"></div></div></section>
+</div>
 
-<section id="p-chat" class="page"><h1 class="title">💬 Онлайн-чат</h1><div class="chat"><div class="card"><div id="messages" class="messages"></div><div class="chatrow"><input id="chatInput" class="in" maxlength="250" placeholder="Сообщение" onkeydown="if(event.key==='Enter')sendChat()"><button class="btn" onclick="sendChat()">Отправить</button></div></div><div class="card"><h3>🟢 Онлайн</h3><div id="onlinePlayers" class="mut">Загрузка...</div></div></div></section>
+<br>
 
-<section id="p-achievements" class="page"><h1 class="title">🏆 Достижения</h1><div id="achievements" class="grid g2"></div></section>
-<section id="p-bank" class="page"><h1 class="title">🏦 Банк</h1><div class="grid g2"><div class="card">Баланс банка<div class="big" id="bankBig">0 ₽</div></div><div class="card">Наличные<div class="big" id="cashBig">0 ₽</div></div></div><br><div class="card"><h3>Операции</h3><div class="actions"><input id="transferNick" class="in" style="max-width:220px" placeholder="Ник получателя"><input id="transferAmount" class="in" style="max-width:160px" type="number" placeholder="Сумма"><button class="btn" onclick="transfer()">💸 Перевести</button><button class="btn" onclick="deposit()">⬆️ Пополнить</button><button class="btn" onclick="withdraw()">⬇️ Снять</button></div></div></section>
+<div class="grid g4">
 
-<section id="p-settings" class="page"><h1 class="title">⚙️ Настройки</h1><div class="card"><p>Email: <b id="setEmail">—</b></p><p>UID: <small id="setUid">—</small></p><p class="mut">Сервер: BLACK RUSSIA RP • Регион: Москва</p></div></section>
+<div class="card">
+<div class="card-label">Уровень</div>
+<div class="big" id="profileLevel">1</div>
+</div>
 
-</main></div></section>
-<div id="modal" class="modal hidden"><div class="modalbox"><h3 id="mtitle">Действие</h3><div id="mbody"></div><div class="actions"><button class="btn" onclick="closeModal()">Отмена</button><button class="btn" onclick="modalOK()">Подтвердить</button></div></div></div>
+<div class="card">
+<div class="card-label">Опыт</div>
+<div class="big" id="experience">0</div>
+</div>
+
+<div class="card">
+<div class="card-label">Репутация</div>
+<div class="big" id="profileRep">0</div>
+</div>
+
+<div class="card">
+<div class="card-label">Время в игре</div>
+<div class="big" id="playtime">0 ч</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Паспорт</h3>
+
+<div class="grid g3">
+
+<div>
+<div class="card-label">Имя</div>
+<strong id="firstName">Не указано</strong>
+</div>
+
+<div>
+<div class="card-label">Фамилия</div>
+<strong id="lastName">Не указано</strong>
+</div>
+
+<div>
+<div class="card-label">Возраст</div>
+<strong id="age">18</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-phone" class="page">
+
+<h1 class="title">Телефон</h1>
+<p class="subtitle">Личный смартфон персонажа</p>
+
+<div class="phone">
+
+<div class="phone-head">
+<span>BLACK PHONE</span>
+<span id="phoneTime">00:00</span>
+</div>
+
+<div class="phone-screen">
+
+<h2 id="phoneName">Игрок</h2>
+<p class="muted">Добро пожаловать.</p>
+
+<div class="phone-grid">
+
+<button class="phone-app" onclick="openPage('friends')">
+<div>👥</div><small>Контакты</small>
+</button>
+
+<button class="phone-app" onclick="openPage('chat')">
+<div>💬</div><small>Сообщения</small>
+</button>
+
+<button class="phone-app" onclick="openPage('map')">
+<div>🗺️</div><small>Карта</small>
+</button>
+
+<button class="phone-app" onclick="openPage('bank')">
+<div>🏦</div><small>Банк</small>
+</button>
+
+<button class="phone-app" onclick="showToast('Система звонков будет подключена к онлайн-игрокам.')">
+<div>📞</div><small>Звонки</small>
+</button>
+
+<button class="phone-app" onclick="openPage('notifications')">
+<div>🔔</div><small>Уведомления</small>
+</button>
+
+<button class="phone-app" onclick="showToast('Объявления скоро будут доступны.')">
+<div>📢</div><small>Объявления</small>
+</button>
+
+<button class="phone-app" onclick="openPage('family')">
+<div>👨‍👩‍👧</div><small>Семья</small>
+</button>
+
+<button class="phone-app" onclick="openPage('profile')">
+<div>👤</div><small>Профиль</small>
+</button>
+
+</div>
+
+</div>
+</div>
+
+</section>
+
+<section id="page-map" class="page">
+
+<h1 class="title">Карта</h1>
+<p class="subtitle">Игровой город и интерактивные места</p>
+
+<div class="map">
+
+<div class="map-label" style="left:9%;top:13%">Северный район</div>
+<div class="map-label" style="right:14%;top:28%">Центр</div>
+<div class="map-label" style="left:15%;bottom:18%">Промзона</div>
+<div class="map-label" style="right:13%;bottom:14%">Южный район</div>
+
+<div class="marker" style="left:48%;top:44%">📍</div>
+<div class="marker" style="left:20%;top:25%">💼</div>
+<div class="marker" style="right:22%;top:35%">🏦</div>
+<div class="marker" style="left:70%;bottom:20%">🚗</div>
+<div class="marker" style="right:8%;bottom:30%">🎰</div>
+<div class="marker" style="left:35%;bottom:10%">🏥</div>
+
+</div>
+
+<br>
+
+<div class="grid g4">
+
+<div class="card">
+<strong>🏦 Банк</strong>
+<p class="muted">Финансовые операции.</p>
+</div>
+
+<div class="card">
+<strong>🎰 Казино</strong>
+<p class="muted">Игры на виртуальную валюту.</p>
+</div>
+
+<div class="card">
+<strong>🚗 Автосалон</strong>
+<p class="muted">Покупка автомобилей.</p>
+</div>
+
+<div class="card">
+<strong>🏥 Больница</strong>
+<p class="muted">Медицинские услуги.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-garage" class="page">
+
+<h1 class="title">Гараж</h1>
+<p class="subtitle">Твои автомобили</p>
+
+<div id="garageList" class="grid g3"></div>
+
+</section>
+
+<section id="page-tuning" class="page">
+
+<h1 class="title">Тюнинг</h1>
+<p class="subtitle">Измени характеристики автомобиля</p>
+
+<div class="grid g3">
+
+<div class="card">
+<div style="font-size:50px">⚙️</div>
+<h3>Двигатель</h3>
+<p class="muted">Увеличивает мощность.</p>
+<strong>50 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('engine',50000)">Установить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🏎️</div>
+<h3>Турбо</h3>
+<p class="muted">Улучшает ускорение.</p>
+<strong>80 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('turbo',80000)">Установить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🎨</div>
+<h3>Покраска</h3>
+<p class="muted">Новый внешний вид.</p>
+<strong>20 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('paint',20000)">Покрасить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🛞</div>
+<h3>Колёса</h3>
+<p class="muted">Спортивные диски.</p>
+<strong>35 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('wheels',35000)">Установить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">💨</div>
+<h3>Выхлоп</h3>
+<p class="muted">Новая система выхлопа.</p>
+<strong>25 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('exhaust',25000)">Установить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🔒</div>
+<h3>Сигнализация</h3>
+<p class="muted">Защита автомобиля.</p>
+<strong>15 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('alarm',15000)">Установить</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-auction" class="page">
+
+<h1 class="title">Аукцион</h1>
+<p class="subtitle">Игроки продают автомобили</p>
+
+<div class="grid g3">
+
+<div class="card vehicle">
+<div class="vehicle-icon">🚘</div>
+<div class="vehicle-name">BMW M5</div>
+<div class="vehicle-price">3 200 000 ₽</div>
+<p class="muted">Продавец: Alex_RP</p>
+<button class="btn" onclick="auctionBuy('BMW M5',3200000)">Купить</button>
+</div>
+
+<div class="card vehicle">
+<div class="vehicle-icon">🚙</div>
+<div class="vehicle-name">Mercedes G63</div>
+<div class="vehicle-price">7 500 000 ₽</div>
+<p class="muted">Продавец: MaxDrive</p>
+<button class="btn" onclick="auctionBuy('Mercedes G63',7500000)">Купить</button>
+</div>
+
+<div class="card vehicle">
+<div class="vehicle-icon">🏎️</div>
+<div class="vehicle-name">Toyota Supra</div>
+<div class="vehicle-price">4 100 000 ₽</div>
+<p class="muted">Продавец: SpeedRP</p>
+<button class="btn" onclick="auctionBuy('Toyota Supra',4100000)">Купить</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-dealership" class="page">
+
+<h1 class="title">Автосалон</h1>
+<p class="subtitle">Выбери автомобиль</p>
+
+<div class="grid g3">
+
+<div class="card vehicle">
+<div class="vehicle-icon">🚗</div>
+<div class="vehicle-name">BMW M5</div>
+<div class="vehicle-price">3 200 000 ₽</div>
+<button class="btn" onclick="buyVehicle('BMW M5',3200000)">Купить</button>
+</div>
+
+<div class="card vehicle">
+<div class="vehicle-icon">🚙</div>
+<div class="vehicle-name">Mercedes G63</div>
+<div class="vehicle-price">7 500 000 ₽</div>
+<button class="btn" onclick="buyVehicle('Mercedes G63',7500000)">Купить</button>
+</div>
+
+<div class="card vehicle">
+<div class="vehicle-icon">🚘</div>
+<div class="vehicle-name">Mercedes G65</div>
+<div class="vehicle-price">9 000 000 ₽</div>
+<button class="btn" onclick="buyVehicle('Mercedes G65',9000000)">Купить</button>
+</div>
+
+<div class="card vehicle">
+<div class="vehicle-icon">🏎️</div>
+<div class="vehicle-name">Toyota Supra</div>
+<div class="vehicle-price">4 100 000 ₽</div>
+<button class="btn" onclick="buyVehicle('Toyota Supra',4100000)">Купить</button>
+</div>
+
+<div class="card vehicle">
+<div class="vehicle-icon">🚘</div>
+<div class="vehicle-name">Lada Priora</div>
+<div class="vehicle-price">450 000 ₽</div>
+<button class="btn" onclick="buyVehicle('Lada Priora',450000)">Купить</button>
+</div>
+
+<div class="card vehicle">
+<div class="vehicle-icon">🚗</div>
+<div class="vehicle-name">ВАЗ 2114</div>
+<div class="vehicle-price">350 000 ₽</div>
+<button class="btn" onclick="buyVehicle('ВАЗ 2114',350000)">Купить</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-trunk" class="page">
+
+<h1 class="title">Багажник</h1>
+<p class="subtitle">Склад предметов автомобиля</p>
+
+<div class="card">
+
+<h3>🚗 Текущий автомобиль</h3>
+
+<p class="muted" id="trunkCar">
+Автомобиль не выбран.
+</p>
+
+<div class="itemgrid">
+
+<div class="item">
+<div class="item-icon">🧰</div>
+<div class="item-name">Аптечка</div>
+<div class="item-count">x2</div>
+</div>
+
+<div class="item">
+<div class="item-icon">🔧</div>
+<div class="item-name">Инструменты</div>
+<div class="item-count">x1</div>
+</div>
+
+<div class="item">
+<div class="item-icon">⛽</div>
+<div class="item-name">Канистра</div>
+<div class="item-count">x1</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-jobs" class="page">
+
+<h1 class="title">Работы</h1>
+<p class="subtitle">Выбери свою карьеру</p>
+
+<div class="grid g3">
+
+<div class="card">
+<div class="job-icon">🚕</div>
+<div class="job-name">Таксист</div>
+<div class="job-desc">Перевози пассажиров.</div>
+<div class="salary">1 500–4 000 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Таксист')">Устроиться</button>
+</div>
+
+<div class="card">
+<div class="job-icon">🚚</div>
+<div class="job-name">Дальнобойщик</div>
+<div class="job-desc">Доставляй грузы.</div>
+<div class="salary">3 000–8 000 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Дальнобойщик')">Устроиться</button>
+</div>
+
+<div class="card">
+<div class="job-icon">🔧</div>
+<div class="job-name">Механик</div>
+<div class="job-desc">Ремонтируй автомобили.</div>
+<div class="salary">1 800–5 000 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Механик')">Устроиться</button>
+</div>
+
+<div class="card">
+<div class="job-icon">📦</div>
+<div class="job-name">Курьер</div>
+<div class="job-desc">Доставляй посылки.</div>
+<div class="salary">1 000–3 500 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Курьер')">Устроиться</button>
+</div>
+
+<div class="card">
+<div class="job-icon">👮</div>
+<div class="job-name">Полиция</div>
+<div class="job-desc">Следи за порядком.</div>
+<div class="salary">2 000–6 000 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Полиция')">Подать заявку</button>
+</div>
+
+<div class="card">
+<div class="job-icon">🚑</div>
+<div class="job-name">Медик</div>
+<div class="job-desc">Помогай игрокам.</div>
+<div class="salary">2 000–6 000 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Медик')">Подать заявку</button>
+</div>
+
+<div class="card">
+<div class="job-icon">🚛</div>
+<div class="job-name">Водитель автобуса</div>
+<div class="job-desc">Перевози пассажиров по маршруту.</div>
+<div class="salary">2 500–6 000 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Водитель автобуса')">Устроиться</button>
+</div>
+
+<div class="card">
+<div class="job-icon">⛏️</div>
+<div class="job-name">Шахтёр</div>
+<div class="job-desc">Добывай ресурсы.</div>
+<div class="salary">2 000–7 000 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Шахтёр')">Устроиться</button>
+</div>
+
+<div class="card">
+<div class="job-icon">🚜</div>
+<div class="job-name">Фермер</div>
+<div class="job-desc">Работай на ферме.</div>
+<div class="salary">2 000–5 000 ₽</div>
+<br>
+<button class="btn" onclick="selectJob('Фермер')">Устроиться</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-organizations" class="page">
+
+<h1 class="title">Организации</h1>
+<p class="subtitle">Государственные и частные структуры</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h2>👮 Полиция</h2>
+<p class="muted">Порядок, патруль, задержания.</p>
+<button class="btn" onclick="joinOrganization('Полиция')">Подать заявление</button>
+</div>
+
+<div class="card">
+<h2>🚑 Больница</h2>
+<p class="muted">Медицина и помощь игрокам.</p>
+<button class="btn" onclick="joinOrganization('Больница')">Подать заявление</button>
+</div>
+
+<div class="card">
+<h2>🎖️ Армия</h2>
+<p class="muted">Военная служба и охрана.</p>
+<button class="btn" onclick="joinOrganization('Армия')">Подать заявление</button>
+</div>
+
+<div class="card">
+<h2>🏛️ Правительство</h2>
+<p class="muted">Государственная система.</p>
+<button class="btn" onclick="joinOrganization('Правительство')">Подать заявление</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-military" class="page">
+
+<h1 class="title">Армия</h1>
+<p class="subtitle">Военная служба</p>
+
+<div class="hero">
+
+<h2>Военная часть</h2>
+<p>Проходи службу, выполняй задания и повышай звание.</p>
+
+<div class="actions">
+
+<button class="btn" onclick="armyMission()">🎖️ Выполнить задание</button>
+<button class="btn" onclick="showToast('Твоё звание: Рядовой')">📋 Моё звание</button>
+
+</div>
+
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<strong>🎖️ Рядовой</strong>
+<p class="muted">Начальное звание.</p>
+</div>
+
+<div class="card">
+<strong>🪖 Сержант</strong>
+<p class="muted">Повышение после службы.</p>
+</div>
+
+<div class="card">
+<strong>⭐ Офицер</strong>
+<p class="muted">Высокое военное звание.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-voenkomat" class="page">
+
+<h1 class="title">Военкомат</h1>
+<p class="subtitle">Воинский учёт</p>
+
+<div class="card">
+
+<h2>📋 Военный билет</h2>
+
+<p class="muted">
+Здесь можно пройти регистрацию, получить категорию и направление на службу.
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="militaryRegistration()">Зарегистрироваться</button>
+<button class="btn" onclick="showToast('Медкомиссия назначается автоматически.')">🏥 Медкомиссия</button>
+<button class="btn" onclick="showToast('Категория годности пока тестовая.')">📄 Категория</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-police" class="page">
+
+<h1 class="title">Полиция</h1>
+<p class="subtitle">Правопорядок города</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🚨 Патруль</h3>
+<p class="muted">Начать патрулирование.</p>
+<button class="btn" onclick="policeAction('Патруль')">Начать</button>
+</div>
+
+<div class="card">
+<h3>📋 Розыск</h3>
+<p class="muted">Проверка игроков.</p>
+<button class="btn" onclick="policeAction('Проверка')">Проверить</button>
+</div>
+
+<div class="card">
+<h3>🚔 Эвакуатор</h3>
+<p class="muted">Эвакуировать автомобиль.</p>
+<button class="btn" onclick="policeAction('Эвакуация')">Вызвать</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-hospital" class="page">
+
+<h1 class="title">Больница</h1>
+<p class="subtitle">Медицинский центр</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h2>❤️ Лечение</h2>
+<p class="muted">Восстановление здоровья.</p>
+<strong>5 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="heal()">Лечиться</button>
+</div>
+
+<div class="card">
+<h2>💊 Аптека</h2>
+<p class="muted">Медицинские предметы.</p>
+<button class="btn" onclick="buyItem('Аптечка',2500)">Купить</button>
+</div>
+
+<div class="card">
+<h2>🚑 Скорая</h2>
+<p class="muted">Вызвать медицинскую помощь.</p>
+<button class="btn" onclick="showToast('Скорая помощь вызвана.')">Вызвать</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-drivingschool" class="page">
+
+<h1 class="title">Автошкола</h1>
+<p class="subtitle">Получение водительских прав</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h2>🚗 Категория B</h2>
+<p class="muted">Легковые автомобили.</p>
+<strong>25 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="licenseExam('B',25000)">Сдать экзамен</button>
+</div>
+
+<div class="card">
+<h2>🚚 Категория C</h2>
+<p class="muted">Грузовые автомобили.</p>
+<strong>40 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="licenseExam('C',40000)">Сдать экзамен</button>
+</div>
+
+<div class="card">
+<h2>🏍️ Категория A</h2>
+<p class="muted">Мотоциклы.</p>
+<strong>20 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="licenseExam('A',20000)">Сдать экзамен</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-licenses" class="page">
+
+<h1 class="title">Лицензии</h1>
+<p class="subtitle">Документы персонажа</p>
+
+<div id="licensesList" class="grid g3">
+
+<div class="card">
+<h3>🚗 Водительские права</h3>
+<p class="muted">Категория B</p>
+<strong class="red">Не получены</strong>
+</div>
+
+<div class="card">
+<h3>🔫 Лицензия на оружие</h3>
+<p class="muted">Разрешение на оружие.</p>
+<strong class="red">Не получена</strong>
+</div>
+
+<div class="card">
+<h3>🦌 Охотничий билет</h3>
+<p class="muted">Разрешение на охоту.</p>
+<strong class="red">Не получен</strong>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-hunting" class="page">
+
+<h1 class="title">Охота</h1>
+<p class="subtitle">Лесная зона</p>
+
+<div class="hero">
+
+<h2>🦌 Охотничьи угодья</h2>
+
+<p>
+Нужен охотничий билет. Добыча животных приносит деньги и ресурсы.
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="hunt()">🏹 Отправиться на охоту</button>
+<button class="btn" onclick="getHuntingLicense()">📜 Получить билет</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-inventory" class="page">
+
+<h1 class="title">Инвентарь</h1>
+<p class="subtitle">Твои предметы</p>
+
+<div class="itemgrid">
+
+<div class="item">
+<div class="item-icon">📱</div>
+<div class="item-name">Телефон</div>
+<div class="item-count">x1</div>
+</div>
+
+<div class="item">
+<div class="item-icon">🔑</div>
+<div class="item-name">Ключи</div>
+<div class="item-count">x1</div>
+</div>
+
+<div class="item">
+<div class="item-icon">🎒</div>
+<div class="item-name">Рюкзак</div>
+<div class="item-count">x1</div>
+</div>
+
+<div class="item">
+<div class="item-icon">🥤</div>
+<div class="item-name">Энергетик</div>
+<div class="item-count">x2</div>
+</div>
+
+<div class="item">
+<div class="item-icon">🍔</div>
+<div class="item-name">Бургер</div>
+<div class="item-count">x1</div>
+</div>
+
+<div class="item">
+<div class="item-icon">💊</div>
+<div class="item-name">Аптечка</div>
+<div class="item-count">x2</div>
+</div>
+
+<div class="item">
+<div class="item-icon">🔧</div>
+<div class="item-name">Инструменты</div>
+<div class="item-count">x1</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-shop" class="page">
+
+<h1 class="title">Магазин</h1>
+<p class="subtitle">Покупки</p>
+
+<div class="grid g3">
+
+<div class="card">
+<div style="font-size:50px">📱</div>
+<h3>Телефон</h3>
+<div class="gold">8 000 ₽</div>
+<br>
+<button class="btn" onclick="buyItem('Телефон',8000)">Купить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🎒</div>
+<h3>Рюкзак</h3>
+<div class="gold">5 000 ₽</div>
+<br>
+<button class="btn" onclick="buyItem('Рюкзак',5000)">Купить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🥤</div>
+<h3>Энергетик</h3>
+<div class="gold">500 ₽</div>
+<br>
+<button class="btn" onclick="buyItem('Энергетик',500)">Купить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🍔</div>
+<h3>Бургер</h3>
+<div class="gold">700 ₽</div>
+<br>
+<button class="btn" onclick="buyItem('Бургер',700)">Купить</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-property" class="page">
+
+<h1 class="title">Недвижимость</h1>
+<p class="subtitle">Квартиры, дома и бизнес</p>
+
+<div class="grid g3">
+
+<div class="card">
+<div style="font-size:50px">🏠</div>
+<h3>Квартира</h3>
+<p class="muted">Небольшая квартира.</p>
+<strong>1 200 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyProperty('Квартира',1200000)">Купить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🏡</div>
+<h3>Частный дом</h3>
+<p class="muted">Дом с гаражом.</p>
+<strong>4 500 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyProperty('Дом',4500000)">Купить</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🏢</div>
+<h3>Бизнес</h3>
+<p class="muted">Собственное предприятие.</p>
+<strong>8 000 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyProperty('Бизнес',8000000)">Купить</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-bank" class="page">
+
+<h1 class="title">Банк</h1>
+<p class="subtitle">Финансы персонажа</p>
+
+<div class="grid g2">
+
+<div class="card">
+<div class="card-label">Баланс банка</div>
+<div class="big" id="bankBig">0 ₽</div>
+</div>
+
+<div class="card">
+<div class="card-label">Наличные</div>
+<div class="big" id="cashBig">0 ₽</div>
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Операции</h3>
+
+<div class="actions">
+
+<button class="btn" onclick="bankDeposit()">💰 Пополнить</button>
+<button class="btn" onclick="bankWithdraw()">🏧 Снять</button>
+<button class="btn" onclick="bankTransfer()">💸 Перевести</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-family" class="page">
+
+<h1 class="title">Семья</h1>
+<p class="subtitle">Твоя семья и её участники</p>
+
+<div id="familyContent">
+
+<div class="family-banner">
+
+<div class="family-name">
+Ты пока не состоишь в семье
+</div>
+
+<div class="family-rank">
+Создай свою семью или вступи в существующую.
+</div>
+
+<div class="actions">
+
+<button class="btn" onclick="createFamily()">
+👨‍👩‍👧 Создать семью
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Что даёт семья?</h3>
+
+<div class="grid g3">
+
+<div>
+👥
+<strong>Участники</strong>
+<p class="muted">Общий список игроков.</p>
+</div>
+
+<div>
+💰
+<strong>Семейный банк</strong>
+<p class="muted">Общие финансы.</p>
+</div>
+
+<div>
+💬
+<strong>Семейный чат</strong>
+<p class="muted">Закрытое общение.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-friends" class="page">
+
+<h1 class="title">Друзья</h1>
+<p class="subtitle">Игроки и контакты</p>
+
+<div class="card">
+
+<div class="actions">
+
+<button class="btn" onclick="showToast('Поиск игроков будет подключён к profiles.')">
+🔎 Найти игрока
+</button>
+
+<button class="btn" onclick="showToast('Приглашения скоро будут доступны.')">
+➕ Добавить друга
+</button>
+
+</div>
+
+<div id="friendsList" style="margin-top:15px">
+
+<div class="friend">
+<div>
+🟢 <strong>Список пуст</strong>
+<br>
+<small class="muted">Добавляй игроков в друзья.</small>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-chat" class="page">
+
+<h1 class="title">Онлайн-чат</h1>
+<p class="subtitle">Общение игроков</p>
+
+<div class="chat">
+
+<div class="card chatbox">
+
+<div class="messages" id="messages">
+
+<div class="msg">
+<div class="msg-name">SYSTEM</div>
+<div class="msg-text">
+Добро пожаловать в BLACK RUSSIA RP.
+</div>
+</div>
+
+</div>
+
+<div class="chat-row">
+
+<input id="chatInput"
+class="chat-input"
+maxlength="250"
+placeholder="Написать сообщение..."
+onkeydown="if(event.key==='Enter')sendChat()">
+
+<button class="btn" onclick="sendChat()">Отправить</button>
+
+</div>
+
+</div>
+
+<div class="card online">
+
+<h3>🟢 Игроки онлайн</h3>
+
+<div id="onlineList">
+
+<div class="online-user">
+🟢 <strong id="onlineName">Ты</strong>
+<br>
+<small class="muted">Онлайн</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-casino" class="page">
+
+<h1 class="title">Казино</h1>
+<p class="subtitle">Развлекательные игры за игровую валюту</p>
+
+<div class="hero casino">
+
+<div class="casino-title">🎰 BLACK CASINO</div>
+
+<div class="casino-balance">
+Баланс: <span id="casinoBalance">0 ₽</span>
+</div>
+
+<p>
+Испытай удачу. Некоторые выигрыши имеют очень маленький шанс.
+</p>
+
+</div>
+
+<div class="grid g3">
+
+<div class="card game-card">
+<div class="game-icon">🎡</div>
+<div class="game-title">Рулетка</div>
+<p class="muted">Красное, чёрное или число.</p>
+<button class="btn" onclick="openPage('roulette')">Играть</button>
+</div>
+
+<div class="card game-card">
+<div class="game-icon">🃏</div>
+<div class="game-title">21</div>
+<p class="muted">Набери ближе к 21.</p>
+<button class="btn" onclick="openPage('blackjack')">Играть</button>
+</div>
+
+<div class="card game-card">
+<div class="game-icon">🂡</div>
+<div class="game-title">Дурак</div>
+<p class="muted">Карточная мини-игра.</p>
+<button class="btn" onclick="openPage('durak')">Играть</button>
+</div>
+
+<div class="card game-card">
+<div class="game-icon">🎰</div>
+<div class="game-title">Слоты</div>
+<p class="muted">Три символа.</p>
+<button class="btn" onclick="openPage('slots')">Играть</button>
+</div>
+
+<div class="card game-card">
+<div class="game-icon">📦</div>
+<div class="game-title">Кейсы</div>
+<p class="muted">Редкие награды.</p>
+<button class="btn" onclick="openPage('cases')">Открыть</button>
+</div>
+
+<div class="card game-card">
+<div class="game-icon">🎁</div>
+<div class="game-title">Ежедневный бонус</div>
+<p class="muted">Получай награду раз в день.</p>
+<button class="btn" onclick="openPage('daily')">Получить</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-roulette" class="page">
+
+<h1 class="title">Рулетка</h1>
+<p class="subtitle">Классическая казино-рулетка</p>
+
+<div class="card casino" style="text-align:center">
+
+<div class="roulette" id="rouletteWheel">0</div>
+
+<div id="rouletteResult" class="big">
+Сделай ставку
+</div>
+
+<div class="actions" style="justify-content:center">
+
+<button class="btn" onclick="roulette('red')">
+🔴 Красное ×2
+</button>
+
+<button class="btn" onclick="roulette('black')">
+⚫ Чёрное ×2
+</button>
+
+<button class="btn" onclick="roulette('green')">
+🟢 Зеро ×14
+</button>
+
+</div>
+
+<p class="muted">
+Ставка: 1 000 ₽
+</p>
+
+</div>
+
+</section>
+
+<section id="page-blackjack" class="page">
+
+<h1 class="title">21</h1>
+<p class="subtitle">Победи дилера</p>
+
+<div class="card casino">
+
+<h3>Твои карты</h3>
+<div id="playerCards" class="cards"></div>
+<div>Очки: <strong id="playerScore">0</strong></div>
+
+<h3>Дилер</h3>
+<div id="dealerCards" class="cards"></div>
+<div>Очки: <strong id="dealerScore">?</strong></div>
+
+<div class="actions">
+
+<button class="btn" onclick="blackjackStart()">Новая игра — 2 000 ₽</button>
+<button class="btn" onclick="blackjackHit()">Взять карту</button>
+<button class="btn" onclick="blackjackStand()">Остановиться</button>
+
+</div>
+
+<div id="blackjackResult" class="big"></div>
+
+</div>
+
+</section>
+
+<section id="page-durak" class="page">
+
+<h1 class="title">Дурак</h1>
+<p class="subtitle">Тестовая карточная мини-игра</p>
+
+<div class="card casino">
+
+<h2>🂡 Дурак</h2>
+
+<p class="muted">
+Сыграй быстрый раунд против компьютера.
+</p>
+
+<div id="durakCards" class="cards"></div>
+
+<div id="durakResult" class="big">
+Готов к игре
+</div>
+
+<div class="actions">
+
+<button class="btn" onclick="durakStart()">
+Начать — 1 500 ₽
+</button>
+
+<button class="btn" onclick="durakMove()">
+Сделать ход
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="page-slots" class="page">
+
+<h1 class="title">Слоты</h1>
+<p class="subtitle">Испытай удачу</p>
+
+<div class="card casino" style="text-align:center">
+
+<div class="slot">
+
+<div class="slot-box" id="slot1">❔</div>
+<div class="slot-box" id="slot2">❔</div>
+<div class="slot-box" id="slot3">❔</div>
+
+</div>
+
+<div id="slotResult" class="big">
+Ставка: 500 ₽
+</div>
+
+<button class="btn" onclick="spinSlots()">
+🎰 Крутить — 500 ₽
+</button>
+
+<p class="muted">
+Три одинаковых символа дают крупный выигрыш.
+</p>
+
+</div>
+
+</section>
+
+<section id="page-cases" class="page">
+
+<h1 class="title">Кейсы</h1>
+<p class="subtitle">Открывай кейсы и получай призы</p>
+
+<div class="grid g3">
+
+<div class="card case">
+<div class="case-icon">📦</div>
+<h2>Обычный кейс</h2>
+<p class="muted">Шанс на редкий приз.</p>
+<strong>1 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="openCase('common',1000)">Открыть</button>
+</div>
+
+<div class="card case">
+<div class="case-icon">💎</div>
+<h2>Премиум кейс</h2>
+<p class="muted">Более дорогие награды.</p>
+<strong>5 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="openCase('premium',5000)">Открыть</button>
+</div>
+
+<div class="card case case-rare">
+<div class="case-icon">👑</div>
+<h2>Легендарный</h2>
+<p class="muted">Очень маленький шанс на джекпот.</p>
+<strong>20 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="openCase('legendary',20000)">Открыть</button>
+</div>
+
+</div>
+
+<div id="caseResult" class="card" style="margin-top:15px">
+Результат появится здесь.
+</div>
+
+</section>
+
+<section id="page-daily" class="page">
+
+<h1 class="title">Ежедневная награда</h1>
+<p class="subtitle">Заходи каждый день</p>
+
+<div class="hero">
+
+<h2>🎁 Ежедневный подарок</h2>
+
+<p>
+Каждые 24 часа можно забрать случайную награду.
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="dailyReward()">
+Получить награду
+</button>
+
+</div>
+
+<div id="dailyResult" class="big">
+Награда ещё не получена.
+</div>
+
+</div>
+
+</section>
+
+<section id="page-achievements" class="page">
+
+<h1 class="title">Достижения</h1>
+<p class="subtitle">Твои награды</p>
+
+<div class="grid g2">
+
+<div class="card">
+<h3>🏁 Первый вход</h3>
+<p class="muted">Ты начал свой путь.</p>
+</div>
+
+<div class="card">
+<h3>💼 Первый заработок</h3>
+<p class="muted">Получи первые деньги.</p>
+</div>
+
+<div class="card">
+<h3>🚗 Первая машина</h3>
+<p class="muted">Купи автомобиль.</p>
+</div>
+
+<div class="card">
+<h3>🎰 Азартный игрок</h3>
+<p class="muted">Сыграй в казино.</p>
+</div>
+
+<div class="card">
+<h3>📦 Охотник за кейсами</h3>
+<p class="muted">Открой кейс.</p>
+</div>
+
+<div class="card">
+<h3>👨‍👩‍👧 Семьянин</h3>
+<p class="muted">Создай семью.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-notifications" class="page">
+
+<h1 class="title">Уведомления</h1>
+<p class="subtitle">Новости твоего аккаунта</p>
+
+<div class="card" id="notifications">
+
+<div class="notification">
+<strong>Добро пожаловать!</strong>
+<small>Твой аккаунт успешно создан.</small>
+</div>
+
+<div class="notification">
+<strong>BLACK RUSSIA RP</strong>
+<small>Новые возможности будут появляться постепенно.</small>
+</div>
+
+</div>
+
+</section>
+
+<section id="page-settings" class="page">
+
+<h1 class="title">Настройки</h1>
+<p class="subtitle">Настройки аккаунта</p>
+
+<div class="card">
+
+<h3>Аккаунт</h3>
+
+<p class="muted">
+Email: <span id="settingsEmail">—</span>
+</p>
+
+<p class="muted">
+UID: <span id="settingsUid">—</span>
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="changePassword()">
+🔐 Сменить пароль
+</button>
+
+<button class="btn" onclick="showToast('Уведомления активны.')">
+🔔 Уведомления
+</button>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Игровые настройки</h3>
+
+<p class="muted">Сервер: BLACK RUSSIA RP</p>
+<p class="muted">Регион: Москва</p>
+
+</div>
+
+</section>
+
+</main>
+</div>
+</section>
+
+<div id="modal" class="modal hidden">
+
+<div class="modal-box">
+
+<h3 id="modalTitle">Действие</h3>
+
+<div id="modalBody"></div>
+
+<div class="actions">
+
+<button class="btn" onclick="closeModal()">
+Отмена
+</button>
+
+<button class="btn" onclick="confirmModal()">
+Подтвердить
+</button>
+
+</div>
+
+</div>
+
+</div>
+
 <div id="toast"></div>
 
+  <!-- =========================================================
+     BLACK RUSSIA RP — PART 2
+     ДОБАВЛЕНИЕ МЕХАНИК
+========================================================= -->
+
+<style>
+
+/* =========================
+   ADDITIONAL GAME UI
+========================= */
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:13px;
+}
+
+.feature-card{
+    background:linear-gradient(145deg,#171717,#0b0b0b);
+    border:1px solid #292929;
+    border-radius:17px;
+    padding:18px;
+    min-height:170px;
+}
+
+.feature-icon{
+    font-size:42px;
+    margin-bottom:8px;
+}
+
+.feature-title{
+    font-size:19px;
+    font-weight:900;
+}
+
+.feature-description{
+    color:#777;
+    font-size:13px;
+    line-height:1.5;
+    min-height:40px;
+}
+
+.casino{
+    background:
+        radial-gradient(circle at center,#3b2410,#090909 65%);
+    border:1px solid #47361e;
+    border-radius:22px;
+    padding:25px;
+}
+
+.casino-header{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.casino-header h2{
+    font-size:32px;
+    margin:0;
+}
+
+.casino-header p{
+    color:#888;
+}
+
+.casino-games{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+}
+
+.casino-game{
+    background:#111;
+    border:1px solid #383838;
+    border-radius:17px;
+    padding:22px;
+    text-align:center;
+}
+
+.casino-game-icon{
+    font-size:55px;
+}
+
+.casino-game h3{
+    margin:8px 0;
+}
+
+.roulette{
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    margin:20px auto;
+    border:8px solid #252525;
+    background:
+        conic-gradient(
+            #111 0deg 18deg,
+            #b52828 18deg 36deg,
+            #111 36deg 54deg,
+            #b52828 54deg 72deg,
+            #111 72deg 90deg,
+            #b52828 90deg 108deg,
+            #111 108deg 126deg,
+            #b52828 126deg 144deg,
+            #111 144deg 162deg,
+            #b52828 162deg 180deg,
+            #111 180deg 198deg,
+            #b52828 198deg 216deg,
+            #111 216deg 234deg,
+            #b52828 234deg 252deg,
+            #111 252deg 270deg,
+            #b52828 270deg 288deg,
+            #111 288deg 306deg,
+            #b52828 306deg 324deg,
+            #111 324deg 342deg,
+            #b52828 342deg 360deg
+        );
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 0 40px #000;
+    transition:transform 2s cubic-bezier(.17,.67,.16,1);
+}
+
+.roulette-center{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    background:#0c0c0c;
+    border:3px solid #d2aa43;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:900;
+}
+
+.bet-panel{
+    max-width:500px;
+    margin:auto;
+}
+
+.bet-input{
+    width:100%;
+    padding:13px;
+    border-radius:10px;
+    border:1px solid #333;
+    background:#090909;
+    color:#fff;
+    outline:none;
+    margin:5px 0;
+}
+
+.bet-buttons{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-top:8px;
+}
+
+.case{
+    border:1px solid #393939;
+    border-radius:18px;
+    background:linear-gradient(145deg,#1a1a1a,#090909);
+    padding:20px;
+    text-align:center;
+}
+
+.case-icon{
+    font-size:65px;
+}
+
+.case-price{
+    color:#e7bd50;
+    font-weight:900;
+    margin:8px;
+}
+
+.prize-box{
+    margin-top:15px;
+    border:1px dashed #555;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    min-height:50px;
+}
+
+.daily{
+    border:1px solid #3d3321;
+    background:linear-gradient(145deg,#19150d,#0b0b0b);
+    border-radius:18px;
+    padding:20px;
+}
+
+.daily-reward{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:8px;
+    margin-top:15px;
+}
+
+.daily-day{
+    border:1px solid #292929;
+    border-radius:12px;
+    padding:12px 5px;
+    text-align:center;
+    background:#111;
+}
+
+.daily-day.claimed{
+    opacity:.4;
+}
+
+.daily-day.today{
+    border-color:#e7bd50;
+}
+
+.auction-row{
+    display:grid;
+    grid-template-columns:1fr 150px 150px 130px;
+    gap:10px;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid #242424;
+}
+
+.auction-car{
+    font-weight:900;
+}
+
+.auction-muted{
+    color:#777;
+    font-size:12px;
+}
+
+.license{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px;
+    border:1px solid #292929;
+    border-radius:13px;
+    margin-bottom:8px;
+    background:#111;
+}
+
+.license-ok{
+    color:var(--green);
+}
+
+.license-no{
+    color:var(--red);
+}
+
+.organization{
+    border:1px solid #292929;
+    border-radius:16px;
+    background:#111;
+    padding:18px;
+}
+
+.organization-icon{
+    font-size:45px;
+}
+
+.rank-list{
+    margin-top:15px;
+}
+
+.rank{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #242424;
+}
+
+.police-ticket{
+    border-left:3px solid var(--red);
+    padding:12px;
+    background:#151010;
+    margin-bottom:8px;
+}
+
+.hunt-card{
+    background:
+        radial-gradient(circle at 80% 10%,#34412d,transparent 35%),
+        #101410;
+    border:1px solid #2f392c;
+    border-radius:18px;
+    padding:22px;
+}
+
+.hunt-area{
+    min-height:220px;
+    border-radius:15px;
+    margin-top:15px;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(180deg,#283426,#101710);
+    border:1px solid #34412f;
+}
+
+.animal{
+    position:absolute;
+    font-size:40px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.animal:hover{
+    transform:scale(1.2);
+}
+
+.school{
+    border:1px solid #303030;
+    border-radius:18px;
+    background:#111;
+    padding:20px;
+}
+
+.question{
+    font-size:20px;
+    font-weight:900;
+    margin:15px 0;
+}
+
+.answer{
+    width:100%;
+    text-align:left;
+    margin:5px 0;
+}
+
+.location-card{
+    cursor:pointer;
+    transition:.15s;
+}
+
+.location-card:hover{
+    transform:translateY(-2px);
+    border-color:#555;
+}
+
+@media(max-width:900px){
+    .feature-grid,
+    .casino-games{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .auction-row{
+        grid-template-columns:1fr;
+    }
+
+    .daily-reward{
+        grid-template-columns:repeat(4,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .feature-grid,
+    .casino-games{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+
+
+<!-- =========================================================
+     EXTRA PAGES
+========================================================= -->
+
 <script>
-const URL="https://qzswnoeglovfpgrzpnio.supabase.co";
-const KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
-const sb=window.supabase.createClient(URL,KEY);
-let user=null,db={profile:null,wallet:null,stats:null,character:null,cars:[],items:[],licenses:[],friends:[],family:null}, modalFn=null, chatChannel=null;
-const cars=[
-["BMW M5","bmw_m5",1850000],["BMW M3","bmw_m3",1450000],["Mercedes G63","mercedes_g63",3200000],["Mercedes G65","mercedes_g65",4100000],["Toyota Camry","toyota_camry",1250000],["Lada Priora","lada_priora",450000],["Lada 2114","lada_2114",280000],["Audi RS6","audi_rs6",2600000],["Toyota Supra","toyota_supra",2300000],["Nissan GT-R","nissan_gtr",3500000],["Porsche 911","porsche_911",4800000],["Lamborghini Huracan","lamborghini_huracan",9000000]];
-const jobs=[["🚕","Таксист",1500],["🚚","Дальнобойщик",4500],["📦","Курьер",1800],["🔧","Механик",2500],["🎣","Рыбак",2200],["🦌","Охотник",3000],["🤿","Водолаз",4200],["⛏️","Шахтёр",3500],["👮","Полиция",3500],["🚑","Медик",3300],["🪖","Армия",3200]];
-const orgs=["Полиция","Армия","Медики","Правительство","МЧС","Автошкола","Суд"];
-const invDefault=[["📱","Телефон",1],["🔑","Ключи",1],["🎒","Рюкзак",1],["🥤","Энергетик",2],["🍔","Бургер",1],["🧰","Аптечка",1]];
-const achievements=[["🏁","Первый вход","Создай аккаунт"],["💵","Первый заработок","Получи деньги"],["🚗","Автолюбитель","Купи машину"],["🎰","Игрок","Сыграй в казино"],["🎁","Щедрый день","Забери ежедневную награду"],["👨‍👩‍👧","Семьянин","Создай семью"],["🪪","Водитель","Получи права"],["🏆","Уровень 10","Достигни 10 уровня"]];
-function money(n){return Number(n||0).toLocaleString("ru-RU")+" ₽"} function esc(s){return String(s??"").replace(/[&<>"']/g,x=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[x]))}
-function toast(t){let x=document.getElementById("toast");x.textContent=t;x.classList.add("show");setTimeout(()=>x.classList.remove("show"),2600)}
-function name(){return db.profile?.username||user?.user_metadata?.username||user?.email?.split("@")[0]||"Игрок"}
-function page(n,b){document.querySelectorAll(".page").forEach(x=>x.classList.remove("on"));document.getElementById("p-"+n)?.classList.add("on");document.querySelectorAll(".nav").forEach(x=>x.classList.remove("on"));b?.classList.add("on");render(n)}
-function pageByName(n){let b=[...document.querySelectorAll(".nav")].find(x=>(x.getAttribute("onclick")||"").includes("'"+n+"'"));page(n,b)}
-function openModal(title,body,fn){document.getElementById("mtitle").textContent=title;document.getElementById("mbody").innerHTML=body;modalFn=fn;document.getElementById("modal").classList.remove("hidden")}
-function closeModal(){document.getElementById("modal").classList.add("hidden");modalFn=null}
-function modalOK(){if(modalFn)modalFn()}
-async function register(){let n=aNick.value.trim(),e=aEmail.value.trim(),p=aPass.value;if(!n||!e||p.length<6)return authMsg.textContent="Заполни ник, email и пароль (6+ символов).";authMsg.textContent="Создание...";let {data,error}=await sb.auth.signUp({email:e,password:p,options:{data:{username:n}}});if(error)return authMsg.textContent=error.message;authMsg.textContent=data.session?"Аккаунт создан.":"Аккаунт создан. Проверь почту и затем войди."}
-async function login(){let e=aEmail.value.trim(),p=aPass.value;if(!e||!p)return authMsg.textContent="Введите email и пароль.";authMsg.textContent="Вход...";let {data,error}=await sb.auth.signInWithPassword({email:e,password:p});if(error)return authMsg.textContent=error.message;user=data.user;await load()}
-async function logout(){if(user)await sb.from("player_presence").update({is_online:false,last_seen:new Date().toISOString()}).eq("user_id",user.id).catch(()=>{});await sb.auth.signOut();location.reload()}
-async function one(table,field){let r=await sb.from(table).select("*").eq(field,user.id).maybeSingle();return r.data}
-async function load(){if(!user){let s=await sb.auth.getSession();user=s.data.session?.user}if(!user)return;
-db.profile=await one("profiles","id");db.wallet=await one("wallets","player_id");db.stats=await one("player_stats","user_id");db.character=await one("characters","player_id");
-if(!db.profile){let r=await sb.from("profiles").insert({id:user.id,username:user.user_metadata?.username||user.email.split("@")[0]}).select().single();db.profile=r.data}
-if(!db.wallet){let r=await sb.from("wallets").insert({player_id:user.id,cash:50000,bank:0,gold:100}).select().single();db.wallet=r.data}
-if(!db.stats){let r=await sb.from("player_stats").insert({user_id:user.id,level:1,experience:0,reputation:0,playtime:0,nickname_changes:0}).select().single();db.stats=r.data}
-if(!db.character){let r=await sb.from("characters").insert({player_id:user.id,first_name:"Томас",last_name:"Игроков",age:18}).select().single();db.character=r.data}
-let cr=await sb.from("vehicles").select("*").eq("owner_id",user.id);db.cars=cr.data||[];let ir=await sb.from("inventory").select("*").eq("player_id",user.id);db.items=ir.data||[];let lr=await sb.from("licenses").select("*").eq("player_id",user.id);db.licenses=lr.data||[];let fr=await sb.from("friends").select("*").eq("user_id",user.id);db.friends=fr.data||[];
-await sb.from("player_presence").upsert({user_id:user.id,is_online:true,last_seen:new Date().toISOString()});
-document.getElementById("auth").classList.add("hidden");document.getElementById("game").classList.remove("hidden");renderAll();startChat();setInterval(presence,30000)}
-function renderAll(){welcome.textContent="Добро пожаловать, "+name();charName.textContent=name();phoneName.textContent=name();email.textContent=user.email;uid.textContent=user.id;setEmail.textContent=user.email;setUid.textContent=user.id;let w=db.wallet||{},s=db.stats||{};cash.textContent=money(w.cash);bank.textContent=money(w.bank);gold.textContent=w.gold||0;cashTop.textContent=money(w.cash);bankTop.textContent=money(w.bank);goldTop.textContent=w.gold||0;level.textContent=s.level||1;lvlTop.textContent=s.level||1;job.textContent=s.job||"Безработный";rep.textContent=s.reputation||0;clvl.textContent=s.level||1;xp.textContent=s.experience||0;crep.textContent=s.reputation||0;hours.textContent=Math.floor((s.playtime||0)/60);fname.textContent=db.character?.first_name||"Не указано";lname.textContent=db.character?.last_name||"Не указано";age.textContent=db.character?.age||18;bankBig.textContent=money(w.bank);cashBig.textContent=money(w.cash);renderGarage();renderCars();renderAuction();renderJobs();renderInventory();renderProperty();renderOrgs();renderLicenses();renderCases();renderFamily();renderFriends();renderAchievements();renderTuning()}
-async function patchWallet(p){let r=await sb.from("wallets").update(p).eq("player_id",user.id);if(r.error)toast(r.error.message);else{Object.assign(db.wallet,p);renderAll()}}
-async function addCash(n){await patchWallet({cash:Number(db.wallet.cash||0)+n});toast("Получено "+money(n))}
-async function addGold(n){await patchWallet({gold:Number(db.wallet.gold||0)+n});toast("Получено "+n+" золота")}
-async function addXP(n){let s=db.stats||{};let xp=Number(s.experience||0)+n,l=Number(s.level||1);while(xp>=l*1000){xp-=l*1000;l++}let r=await sb.from("player_stats").update({experience:xp,level:l}).eq("user_id",user.id);if(!r.error){s.experience=xp;s.level=l;renderAll();toast("Опыт +"+n)}}
-async function daily(){let key="daily_"+user.id,old=localStorage.getItem(key),today=new Date().toDateString();if(old===today)return toast("Ежедневная награда уже получена.");localStorage.setItem(key,today);await addCash(5000);await addGold(5);toast("🎁 Ежедневная награда: 5 000 ₽ + 5 золота")}
-function renderGarage(){garage.innerHTML=db.cars.length?db.cars.map((c,i)=>`<div class="card vehicle"><div class="carart">🚘</div><div class="carname">${esc(c.model||c.name)}</div><p class="mut">Номер: ${esc(c.plate||"RP-"+String(i+1).padStart(3,"0"))}<br>Состояние: ${c.condition??100}%<br>Тюнинг: ${c.tuning||"Сток"}</p><button class="btn" onclick="sellCar('${c.id}')">Продать</button></div>`).join(""):`<div class="card"><h3>Гараж пуст</h3><p class="mut">Купи первую машину в автосалоне.</p></div>`}
-function renderCars(){carsEl=document.getElementById("cars");carsEl.innerHTML=cars.map(c=>`<div class="card vehicle"><div class="carart">🚗</div><div class="carname">${c[0]}</div><p class="mut">Код изображения: ${c[1]}.png<br>Цена: ${money(c[2])}</p><button class="btn" onclick="buyCar('${c[0]}','${c[2]}','${c[1]}')">Купить</button></div>`).join("")}
-async function buyCar(model,price,code){price=Number(price);if(db.wallet.cash<price)return toast("Недостаточно наличных.");let plate="RP-"+Math.floor(100+Math.random()*900);let r=await sb.from("vehicles").insert({owner_id:user.id,model,plate,condition:100,tuning:"Сток",image:code}).select().single();if(r.error)return toast(r.error.message);db.cars.push(r.data);await patchWallet({cash:db.wallet.cash-price});toast("🚗 Куплено: "+model)}
-async function sellCar(id){let c=db.cars.find(x=>x.id===id);if(!c)return;let price=(cars.find(x=>x[0]===c.model)?.[2]||100000)*.7;if(!confirm("Продать "+c.model+" за "+money(price)+"?"))return;await sb.from("vehicles").delete().eq("id",id);db.cars=db.cars.filter(x=>x.id!==id);await patchWallet({cash:db.wallet.cash+price});toast("Автомобиль продан")}
-function renderAuction(){auction.innerHTML=cars.slice(1,7).map((c,i)=>`<div class="card"><h3>🔨 ${c[0]}</h3><p class="mut">Игрок выставил автомобиль</p><div class="big">${money(Math.round(c[2]*.8))}</div><button class="btn" onclick="buyAuction(${Math.round(c[2]*.8)},'${c[0]}','${c[1]}')">Сделать ставку</button></div>`).join("")}
-async function buyAuction(price,model,code){if(db.wallet.cash<price)return toast("Недостаточно денег.");await buyCar(model,price,code);toast("Аукцион завершён")}
-function renderTuning(){tuneCar.innerHTML=db.cars.map(c=>`<option value="${c.id}">${esc(c.model)}</option>`).join("")||`<option>Нет автомобилей</option>`}
-async function tune(type){let id=tuneCar.value,c=db.cars.find(x=>x.id===id);if(!c)return toast("Сначала купи машину.");let data={engine:[50000,"Двигатель"],brakes:[25000,"Тормоза"],visual:[30000,"Внешний вид"]}[type];if(db.wallet.cash<data[0])return toast("Недостаточно денег.");await sb.from("vehicles").update({tuning:data[1]}).eq("id",id);c.tuning=data[1];await patchWallet({cash:db.wallet.cash-data[0]});toast("🔧 Установлено: "+data[1])}
-function renderJobs(){document.getElementById("jobs").innerHTML=jobs.map(j=>`<div class="card job"><div style="font-size:38px">${j[0]}</div><h3>${j[1]}</h3><p class="mut">До ${money(j[2])} за смену.</p><button class="btn" onclick="chooseJob('${j[1]}')">Устроиться</button></div>`).join("")}
-async function chooseJob(j){let r=await sb.from("player_stats").update({job:j}).eq("user_id",user.id);if(!r.error){db.stats.job=j;renderAll();toast("Работа: "+j)}}
-function renderInventory(){let data=db.items.length?db.items.map(x=>[x.icon||"📦",x.name,x.amount||1]):invDefault;inventory.innerHTML=data.map(x=>`<div class="item"><div class="itemicon">${x[0]}</div><b>${esc(x[1])}</b><div class="mut">x${x[2]}</div></div>`).join("");trunkCar.innerHTML=db.cars.map(c=>`<option value="${c.id}">${esc(c.model)}</option>`).join("")||"<option>Нет авто</option>";trunk.innerHTML="<p class='mut'>Багажник готов. Предметы можно будет переносить между инвентарём и машиной.</p>"}
-function renderProperty(){property.innerHTML=[["🏢","Квартира",1200000],["🏡","Дом",4500000],["🏭","Бизнес",8000000],["🌲","Дача",900000],["🏨","Отель",15000000],["⛽","АЗС",25000000]].map(x=>`<div class="card shopitem"><div style="font-size:45px">${x[0]}</div><h3>${x[1]}</h3><p class="mut">${money(x[2])}</p><button class="btn" onclick="buyProperty(${x[2]},'${x[1]}')">Купить</button></div>`).join("")}
-async function buyProperty(price,n){if(db.wallet.cash<price)return toast("Недостаточно денег.");await patchWallet({cash:db.wallet.cash-price});toast("🏠 Куплено: "+n)}
-function renderOrgs(){document.getElementById("orgs").innerHTML=orgs.map(o=>`<div class="card"><h3>${o}</h3><p class="mut">Заявки, ранги, зарплаты и организация.</p><button class="btn" onclick="joinOrg('${o}')">Подать заявку</button></div>`).join("")}
-async function joinOrg(o){let r=await sb.from("player_stats").update({job:o}).eq("user_id",user.id);if(!r.error){db.stats.job=o;renderAll();toast("Заявка принята: "+o)}}
-function renderLicenses(){let have=new Set(db.licenses.map(x=>x.type));licenses.innerHTML=["Водительские права","Охотничий билет","Лицензия на оружие","Лицензия на рыбалку","Лицензия водолаза"].map(x=>`<div class="card"><h3>🪪 ${x}</h3><p class="${have.has(x)?"green":"mut"}">${have.has(x)?"Получена":"Не получена"}</p><button class="btn" onclick="license('${x}')">${have.has(x)?"Продлить":"Получить — 5 000 ₽"}</button></div>`).join("")}
-async function license(type){if(db.licenses.some(x=>x.type===type))return toast("Лицензия уже есть.");if(db.wallet.cash<5000)return toast("Нужно 5 000 ₽.");let r=await sb.from("licenses").insert({player_id:user.id,type}).select().single();if(r.error)return toast(r.error.message);db.licenses.push(r.data);await patchWallet({cash:db.wallet.cash-5000});toast("🪪 Получена: "+type)}
-async function exam(){if(db.wallet.cash<5000)return toast("Нужно 5 000 ₽.");let score=Math.floor(Math.random()*5)+1;if(score<4)return toast("Экзамен: "+score+"/5. Не сдан.");await license("Водительские права")}
-async function heal(){if(db.wallet.cash<2000)return toast("Нужно 2 000 ₽.");await patchWallet({cash:db.wallet.cash-2000});toast("🚑 Персонаж полностью здоров.")}
-function renderCases(){let cs=[["📦","Обычный кейс",5000,["500 ₽","2 000 ₽","10 000 ₽","50 золота","Редкий автомобиль"]],["💎","Премиум кейс",25000,["5 000 ₽","25 000 ₽","250 золота","BMW M3","Mercedes G63"]],["👑","Легендарный кейс",100000,["25 000 ₽","100 000 ₽","1 000 золота","Porsche 911","Lamborghini Huracan"]]];cases.innerHTML=cs.map((c,i)=>`<div class="card casino"><div style="font-size:45px">${c[0]}</div><h3>${c[1]}</h3><p class="mut">Цена ${money(c[2])}<br>Редкие предметы имеют низкий шанс.</p><button class="btn" onclick="openCase(${i})">Открыть</button></div>`).join("")}
-async function openCase(i){let defs=[[5000,[500,2000,10000,0,0]],[25000,[5000,25000,0,0,0]],[100000,[25000,100000,0,0,0]]],d=defs[i];if(db.wallet.cash<d[0])return toast("Недостаточно денег.");await patchWallet({cash:db.wallet.cash-d[0]});let r=Math.random(), prize="";if(i===0){if(r<.01)prize="🏎️ Редкий автомобиль";else if(r<.06){await addGold(50);prize="50 золота"}else{let v=r<.35?10000:r<.7?2000:500;await addCash(v);prize=money(v)}}else if(i===1){if(r<.01){await addCash(50000);prize="50 000 ₽ — редкий приз"}else if(r<.05){await addGold(250);prize="250 золота"}else{let v=r<.4?25000:5000;await addCash(v);prize=money(v)}}else{if(r<.005){await addCash(500000);prize="👑 500 000 ₽ — легендарный джекпот"}else if(r<.03){await addGold(1000);prize="1 000 золота"}else{let v=r<.3?100000:25000;await addCash(v);prize=money(v)}}toast("📦 Выпало: "+prize)}
-function betValue(){let n=Number(document.getElementById("bet").value);return Number.isFinite(n)&&n>=100?Math.floor(n):0}
-async function takeBet(b){if(db.wallet.cash<b){toast("Недостаточно денег.");return false}await patchWallet({cash:db.wallet.cash-b});return true}
-async function payout(n){await patchWallet({cash:db.wallet.cash+n})}
-function casinoLog(t){let x=document.getElementById("casinoLog");x.innerHTML=(t+"<br>"+x.innerHTML).slice(0,2500)}
-async function roulette(){let b=betValue();if(!b||!(await takeBet(b)))return;let n=Math.floor(Math.random()*37),win=n===0?0:(Math.random()<.48?b*2:0);if(win)await payout(win);let t="🎡 Рулетка: "+n+(win?" — выигрыш "+money(win):" — проигрыш");casinoResult.textContent=t;casinoLog(t)}
-async function slots(){let b=betValue();if(!b||!(await takeBet(b)))return;let a=["🍒","🍋","🔔","⭐","💎","7️⃣"],x=[a[Math.floor(Math.random()*a.length)],a[Math.floor(Math.random()*a.length)],a[Math.floor(Math.random()*a.length)]];let mult=x[0]===x[1]&&x[1]===x[2]?(x[0]==="7️⃣"?20:x[0]==="💎"?10:5):x[0]===x[1]||x[1]===x[2]?2:0;if(mult)await payout(b*mult);let t="🎰 "+x.join(" | ")+" "+(mult?"— x"+mult:"— проигрыш");casinoResult.textContent=t;casinoLog(t)}
-async function blackjack(){let b=betValue();if(!b||!(await takeBet(b)))return;let player=15+Math.floor(Math.random()*7),dealer=15+Math.floor(Math.random()*7),mult=player===21?2.5:player>dealer?2:0;if(mult)await payout(Math.floor(b*mult));let t=`🃏 21: ты ${player}, дилер ${dealer} — ${mult?"выигрыш "+money(Math.floor(b*mult)):"проигрыш"}`;casinoResult.textContent=t;casinoLog(t)}
-async function fool(){let b=betValue();if(!b||!(await takeBet(b)))return;let win=Math.random()<.48;if(win)await payout(b*2);let t="🃏 Дурак: "+(win?"ты победил — "+money(b*2):"ты проиграл");casinoResult.textContent=t;casinoLog(t)}
-function renderFamily(){familyBox.innerHTML=db.family?`<div class="card"><h2>👨‍👩‍👧 ${esc(db.family.name)}</h2><p class="mut">Глава семьи • Уровень ${db.family.level||1}</p></div>`:`<div class="card"><h2>Ты пока без семьи</h2><p class="mut">Создай собственную семью.</p><button class="btn" onclick="createFamily()">Создать — 50 000 ₽</button></div>`}
-function createFamily(){if(db.wallet.cash<50000)return toast("Нужно 50 000 ₽.");openModal("Создание семьи",`<input id="famName" class="in" maxlength="30" placeholder="Название семьи">`,async()=>{let n=famName.value.trim();if(!n)return toast("Введите название.");let r=await sb.from("families").insert({name:n,owner_id:user.id,level:1,balance:0}).select().single();if(r.error)return toast(r.error.message);let m=await sb.from("family_members").insert({family_id:r.data.id,user_id:user.id,rank:"Глава"});if(m.error)return toast(m.error.message);db.family=r.data;await patchWallet({cash:db.wallet.cash-50000});closeModal();renderAll();toast("Семья создана.")})}
-function renderFriends(){friends.innerHTML=db.friends.length?db.friends.map(x=>`<div class="card" style="margin:7px 0">👥 ${esc(x.friend_nickname||"Игрок")}</div>`).join(""):"<p class='mut'>Список пуст.</p>"}
-async function addFriend(){let n=friendNick.value.trim();if(!n)return;let r=await sb.from("friends").insert({user_id:user.id,friend_nickname:n});if(r.error)return toast(r.error.message);db.friends.push(r.data);renderFriends();friendNick.value="";toast("Друг добавлен")}
-async function startChat(){if(chatChannel)return;chatChannel=sb.channel("global-chat").on("postgres_changes",{event:"INSERT",schema:"public",table:"chat_messages"},p=>showMessage(p.new)).subscribe();let r=await sb.from("chat_messages").select("*").order("created_at",{ascending:true}).limit(100);(r.data||[]).forEach(showMessage)}
-function showMessage(m){let box=document.getElementById("messages");if(!box)return;let d=document.createElement("div");d.className="m";d.innerHTML=`<div class="mn">${esc(m.nickname||"Игрок")} • ${new Date(m.created_at).toLocaleTimeString("ru-RU",{hour:"2-digit",minute:"2-digit"})}</div><div>${esc(m.message)}</div>`;box.appendChild(d);box.scrollTop=box.scrollHeight}
-async function sendChat(){let i=chatInput,v=i.value.trim();if(!v)return;let r=await sb.from("chat_messages").insert({user_id:user.id,nickname:name(),message:v});if(r.error)toast("Чат: "+r.error.message);i.value=""}
-async function presence(){if(!user)return;await sb.from("player_presence").upsert({user_id:user.id,is_online:true,last_seen:new Date().toISOString()});let r=await sb.from("player_presence").select("user_id,last_seen").eq("is_online",true);onlinePlayers.innerHTML=(r.data||[]).map(x=>`<div style="padding:8px 0;border-bottom:1px solid #222">🟢 Игрок <small class="mut">${x.user_id===user.id?"(ты)":""}</small></div>`).join("")}
-function renderAchievements(){achievements.innerHTML=achievementsData=achievements.map((a,i)=>`<div class="card"><span style="font-size:30px">${a[0]}</span><h3>${a[1]}</h3><p class="mut">${a[2]}</p><span class="tag">Система</span></div>`).join("")}
-function render(n){if(n==="chat")presence();if(n==="garage")renderGarage();if(n==="tuning")renderTuning()}
-async function nickname(){let count=Number(db.stats?.nickname_changes||0),cost=count===0?0:10000;openModal("Смена ника",`<p>Текущий: <b>${esc(name())}</b></p><p class="mut">${cost?"Стоимость "+money(cost):"Первая смена бесплатно"}</p><input id="newNick" class="in" maxlength="24" placeholder="Новый ник">`,async()=>{let n=newNick.value.trim();if(n.length<3)return toast("Минимум 3 символа.");if(db.wallet.cash<cost)return toast("Недостаточно денег.");let r=await sb.from("profiles").update({username:n}).eq("id",user.id);if(r.error)return toast(r.error.message);if(cost)await patchWallet({cash:db.wallet.cash-cost});let nr=Number(db.stats.nickname_changes||0)+1;await sb.from("player_stats").update({nickname_changes:nr}).eq("user_id",user.id);db.profile.username=n;db.stats.nickname_changes=nr;closeModal();renderAll();toast("Ник изменён")})}
-async function deposit(){let n=Number(prompt("Сколько наличных положить в банк?"));if(!n||n<1||db.wallet.cash<n)return toast("Недостаточно наличных.");await patchWallet({cash:db.wallet.cash-n,bank:db.wallet.bank+n})}
-async function withdraw(){let n=Number(prompt("Сколько снять?"));if(!n||n<1||db.wallet.bank<n)return toast("Недостаточно на счёте.");await patchWallet({cash:db.wallet.cash+n,bank:db.wallet.bank-n})}
-async function transfer(){let nick=transferNick.value.trim(),n=Number(transferAmount.value);if(!nick||!n||n<1)return;let r=await sb.from("profiles").select("id,username").eq("username",nick).maybeSingle();if(!r.data)return toast("Игрок не найден.");if(r.data.id===user.id)return toast("Нельзя перевести себе.");if(db.wallet.bank<n)return toast("Недостаточно денег в банке.");let wr=await sb.from("wallets").select("bank").eq("player_id",r.data.id).maybeSingle();if(!wr.data)return toast("У игрока нет кошелька.");await sb.from("wallets").update({bank:wr.data.bank+n}).eq("player_id",r.data.id);await patchWallet({bank:db.wallet.bank-n});toast("Переведено "+money(n)+" игроку "+nick)}
-sb.auth.onAuthStateChange((e,s)=>{if(e==="SIGNED_IN"&&s&&!user){user=s.user;load()}});
-(async()=>{let s=await sb.auth.getSession();if(s.data.session){user=s.data.session.user;load()}})();
+
+function addGamePage(id,html){
+
+    const main=document.querySelector(".content");
+
+    if(!main)return;
+
+    const section=document.createElement("section");
+
+    section.id="page-"+id;
+    section.className="page";
+
+    section.innerHTML=html;
+
+    main.appendChild(section);
+}
+
+
+/* =========================================================
+   CASINO
+========================================================= */
+
+addGamePage("casino",`
+
+<h1 class="title">🎰 Казино</h1>
+<p class="subtitle">
+Развлекательное казино BLACK RUSSIA RP
+</p>
+
+<div class="casino">
+
+<div class="casino-header">
+
+<h2>BLACK JACK CASINO</h2>
+
+<p>
+Играй за игровые деньги персонажа.
+</p>
+
+</div>
+
+<div class="casino-games">
+
+<div class="casino-game">
+
+<div class="casino-game-icon">🎡</div>
+
+<h3>Рулетка</h3>
+
+<p class="muted">
+Красное, чёрное или число.
+</p>
+
+<button class="btn"
+onclick="openCasinoGame('roulette')">
+Играть
+</button>
+
+</div>
+
+<div class="casino-game">
+
+<div class="casino-game-icon">🃏</div>
+
+<h3>21</h3>
+
+<p class="muted">
+Набери ближе к 21.
+</p>
+
+<button class="btn"
+onclick="openCasinoGame('blackjack')">
+Играть
+</button>
+
+</div>
+
+<div class="casino-game">
+
+<div class="casino-game-icon">🂡</div>
+
+<h3>Дурак</h3>
+
+<p class="muted">
+Карточная мини-игра.
+</p>
+
+<button class="btn"
+onclick="openCasinoGame('fool')">
+Играть
+</button>
+
+</div>
+
+</div>
+
+<div id="casinoArea"></div>
+
+</div>
+`);
+
+
+/* =========================================================
+   CASES
+========================================================= */
+
+addGamePage("cases",`
+
+<h1 class="title">🎁 Кейсы</h1>
+
+<p class="subtitle">
+Открывай кейсы и получай случайные призы.
+Редкие предметы имеют небольшой шанс выпадения.
+</p>
+
+<div class="grid g3">
+
+<div class="case">
+
+<div class="case-icon">📦</div>
+
+<h3>Обычный кейс</h3>
+
+<div class="case-price">
+5 000 ₽
+</div>
+
+<p class="muted">
+Деньги, предметы и небольшие бонусы.
+</p>
+
+<button class="btn"
+onclick="openCase('normal')">
+Открыть
+</button>
+
+<div class="prize-box"
+id="case-normal">
+—
+</div>
+
+</div>
+
+
+<div class="case">
+
+<div class="case-icon">🎁</div>
+
+<h3>Премиум кейс</h3>
+
+<div class="case-price">
+25 000 ₽
+</div>
+
+<p class="muted">
+Более ценные предметы.
+</p>
+
+<button class="btn"
+onclick="openCase('premium')">
+Открыть
+</button>
+
+<div class="prize-box"
+id="case-premium">
+—
+</div>
+
+</div>
+
+
+<div class="case">
+
+<div class="case-icon">💎</div>
+
+<h3>Редкий кейс</h3>
+
+<div class="case-price">
+100 000 ₽
+</div>
+
+<p class="muted">
+Очень маленький шанс на джекпот.
+</p>
+
+<button class="btn"
+onclick="openCase('rare')">
+Открыть
+</button>
+
+<div class="prize-box"
+id="case-rare">
+—
+</div>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   DAILY
+========================================================= */
+
+addGamePage("daily",`
+
+<h1 class="title">🎁 Ежедневная награда</h1>
+
+<p class="subtitle">
+Заходи каждый день и забирай подарок.
+</p>
+
+<div class="daily">
+
+<h2 id="dailyTitle">
+Ежедневный бонус
+</h2>
+
+<p class="muted">
+Чем больше дней подряд — тем лучше награды.
+</p>
+
+<div class="daily-reward">
+
+<div class="daily-day">
+День 1
+<br><strong>1 000 ₽</strong>
+</div>
+
+<div class="daily-day">
+День 2
+<br><strong>2 000 ₽</strong>
+</div>
+
+<div class="daily-day">
+День 3
+<br><strong>3 000 ₽</strong>
+</div>
+
+<div class="daily-day">
+День 4
+<br><strong>5 000 ₽</strong>
+</div>
+
+<div class="daily-day">
+День 5
+<br><strong>7 500 ₽</strong>
+</div>
+
+<div class="daily-day">
+День 6
+<br><strong>10 000 ₽</strong>
+</div>
+
+<div class="daily-day today">
+День 7
+<br><strong>50 000 ₽</strong>
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="btn"
+onclick="claimDailyReward()">
+🎁 Забрать награду
+</button>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   AUCTION
+========================================================= */
+
+addGamePage("auction",`
+
+<h1 class="title">🔨 Автомобильный аукцион</h1>
+
+<p class="subtitle">
+Игроки выставляют автомобили, а другие делают ставки.
+</p>
+
+<div class="card">
+
+<div class="actions">
+
+<button class="btn"
+onclick="createAuction()">
+🚗 Выставить автомобиль
+</button>
+
+<button class="btn"
+onclick="showToast('Обновление аукциона...')">
+🔄 Обновить
+</button>
+
+</div>
+
+<br>
+
+<div class="auction-row">
+<strong>Автомобиль</strong>
+<strong>Продавец</strong>
+<strong>Цена</strong>
+<strong>Действие</strong>
+</div>
+
+<div id="auctionList">
+
+<div class="auction-row">
+
+<div>
+<div class="auction-car">
+BMW M5
+</div>
+<div class="auction-muted">
+2021 • 100% состояние
+</div>
+</div>
+
+<div>
+Игрок_001
+</div>
+
+<div>
+<strong>
+2 500 000 ₽
+</strong>
+</div>
+
+<button class="btn"
+onclick="placeBid(2500000)">
+Сделать ставку
+</button>
+
+</div>
+
+
+<div class="auction-row">
+
+<div>
+<div class="auction-car">
+Mercedes G63
+</div>
+<div class="auction-muted">
+2022 • 98% состояние
+</div>
+</div>
+
+<div>
+Игрок_777
+</div>
+
+<div>
+<strong>
+7 800 000 ₽
+</strong>
+</div>
+
+<button class="btn"
+onclick="placeBid(7800000)">
+Сделать ставку
+</button>
+
+</div>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   AUTO SCHOOL
+========================================================= */
+
+addGamePage("drivingschool",`
+
+<h1 class="title">🚦 Автошкола</h1>
+
+<p class="subtitle">
+Получи водительское удостоверение.
+</p>
+
+<div class="school">
+
+<h2>Экзамен ПДД</h2>
+
+<p class="muted">
+Для получения прав необходимо пройти тест.
+</p>
+
+<div id="drivingQuestion">
+
+<button class="btn"
+onclick="startDrivingExam()">
+Начать экзамен
+</button>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   LICENSES
+========================================================= */
+
+addGamePage("licenses",`
+
+<h1 class="title">📄 Лицензии</h1>
+
+<p class="subtitle">
+Документы и разрешения персонажа.
+</p>
+
+<div class="card">
+
+<div class="license">
+
+<div>
+<strong>🚗 Водительские права</strong>
+<br>
+<small class="muted">
+Категория B
+</small>
+</div>
+
+<span id="licenseB"
+class="license-no">
+НЕТ
+</span>
+
+</div>
+
+
+<div class="license">
+
+<div>
+<strong>🔫 Лицензия на оружие</strong>
+<br>
+<small class="muted">
+Разрешение на хранение.
+</small>
+</div>
+
+<span class="license-no">
+НЕТ
+</span>
+
+</div>
+
+
+<div class="license">
+
+<div>
+<strong>🎣 Рыболовная лицензия</strong>
+</div>
+
+<span class="license-ok">
+ЕСТЬ
+</span>
+
+</div>
+
+
+<div class="license">
+
+<div>
+<strong>🦌 Охотничья лицензия</strong>
+</div>
+
+<span id="huntLicense"
+class="license-no">
+НЕТ
+</span>
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="btn"
+onclick="buyLicense('fishing')">
+🎣 Рыболовная — 5 000 ₽
+</button>
+
+<button class="btn"
+onclick="buyLicense('hunting')">
+🦌 Охотничья — 15 000 ₽
+</button>
+
+<button class="btn"
+onclick="buyLicense('weapon')">
+🔒 Оружейная — 50 000 ₽
+</button>
+
+</div>
+`);
+
+
+/* =========================================================
+   HOSPITAL
+========================================================= */
+
+addGamePage("hospital",`
+
+<h1 class="title">🏥 Больница</h1>
+
+<p class="subtitle">
+Медицинские услуги персонажа.
+</p>
+
+<div class="grid g3">
+
+<div class="feature-card">
+
+<div class="feature-icon">❤️</div>
+
+<div class="feature-title">
+Лечение
+</div>
+
+<div class="feature-description">
+Восстановить здоровье персонажа.
+</div>
+
+<button class="btn"
+onclick="healPlayer()">
+Лечиться — 2 000 ₽
+</button>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">🩺</div>
+
+<div class="feature-title">
+Медосмотр
+</div>
+
+<div class="feature-description">
+Получить медицинскую справку.
+</div>
+
+<button class="btn"
+onclick="medicalCheck()">
+Пройти
+</button>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">🚑</div>
+
+<div class="feature-title">
+Скорая помощь
+</div>
+
+<div class="feature-description">
+Вызвать скорую помощь.
+</div>
+
+<button class="btn"
+onclick="showToast('Скорая помощь направлена к твоей позиции.')">
+Вызвать
+</button>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   MILITARY OFFICE
+========================================================= */
+
+addGamePage("militaryoffice",`
+
+<h1 class="title">🎖️ Военкомат</h1>
+
+<p class="subtitle">
+Воинский учёт и направление на службу.
+</p>
+
+<div class="grid g2">
+
+<div class="feature-card">
+
+<div class="feature-icon">📋</div>
+
+<div class="feature-title">
+Воинский учёт
+</div>
+
+<div class="feature-description">
+Постановка персонажа на воинский учёт.
+</div>
+
+<button class="btn"
+onclick="militaryRegister()">
+Встать на учёт
+</button>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">🎖️</div>
+
+<div class="feature-title">
+Контракт
+</div>
+
+<div class="feature-description">
+Попробовать поступить на службу.
+</div>
+
+<button class="btn"
+onclick="joinArmy()">
+Подать заявление
+</button>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   ARMY
+========================================================= */
+
+addGamePage("army",`
+
+<h1 class="title">🎖️ Армия</h1>
+
+<p class="subtitle">
+Военная организация сервера.
+</p>
+
+<div class="organization">
+
+<div class="organization-icon">
+🎖️
+</div>
+
+<h2>Вооружённые силы</h2>
+
+<p class="muted">
+Служба, звания, тренировки и задания.
+</p>
+
+<div class="rank-list">
+
+<div class="rank">
+<span>Рядовой</span>
+<span>1 ранг</span>
+</div>
+
+<div class="rank">
+<span>Ефрейтор</span>
+<span>2 ранг</span>
+</div>
+
+<div class="rank">
+<span>Сержант</span>
+<span>3 ранг</span>
+</div>
+
+<div class="rank">
+<span>Старший сержант</span>
+<span>4 ранг</span>
+</div>
+
+<div class="rank">
+<span>Прапорщик</span>
+<span>5 ранг</span>
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="btn"
+onclick="armyMission()">
+🎯 Получить задание
+</button>
+
+<button class="btn"
+onclick="showToast('Тренировка началась.')">
+🏋️ Тренировка
+</button>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   HUNT
+========================================================= */
+
+addGamePage("hunting",`
+
+<h1 class="title">🦌 Охота</h1>
+
+<p class="subtitle">
+Охотничьи угодья за пределами города.
+</p>
+
+<div class="hunt-card">
+
+<h2>
+Охотничий лес
+</h2>
+
+<p class="muted">
+Ищи животных и получай добычу.
+Редкие животные появляются редко.
+</p>
+
+<div class="hunt-area" id="huntArea">
+
+<div class="animal"
+style="left:20%;top:30%"
+onclick="huntAnimal(this,'Олень',7000)">
+🦌
+</div>
+
+<div class="animal"
+style="left:60%;top:50%"
+onclick="huntAnimal(this,'Кабан',5000)">
+🐗
+</div>
+
+<div class="animal"
+style="left:75%;top:20%"
+onclick="huntAnimal(this,'Редкий олень',50000)">
+🦌
+</div>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   GOVERNMENT
+========================================================= */
+
+addGamePage("government",`
+
+<h1 class="title">🏛️ Правительство</h1>
+
+<p class="subtitle">
+Государственные учреждения города.
+</p>
+
+<div class="feature-grid">
+
+<div class="organization location-card"
+onclick="governmentAction('Мэрия')">
+
+<div class="organization-icon">
+🏛️
+</div>
+
+<h3>Мэрия</h3>
+
+<p class="muted">
+Документы, налоги и городские услуги.
+</p>
+
+</div>
+
+
+<div class="organization location-card"
+onclick="governmentAction('Паспортный стол')">
+
+<div class="organization-icon">
+🪪
+</div>
+
+<h3>Паспортный стол</h3>
+
+<p class="muted">
+Получение и изменение документов.
+</p>
+
+</div>
+
+
+<div class="organization location-card"
+onclick="governmentAction('Налоговая')">
+
+<div class="organization-icon">
+💰
+</div>
+
+<h3>Налоговая</h3>
+
+<p class="muted">
+Оплата налогов и регистрация бизнеса.
+</p>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   POLICE
+========================================================= */
+
+addGamePage("police",`
+
+<h1 class="title">👮 Полиция</h1>
+
+<p class="subtitle">
+Правопорядок и взаимодействие с полицией.
+</p>
+
+<div class="grid g3">
+
+<div class="feature-card">
+
+<div class="feature-icon">🚔</div>
+
+<div class="feature-title">
+Полиция
+</div>
+
+<div class="feature-description">
+Вызов полиции и взаимодействие с сотрудниками.
+</div>
+
+<button class="btn"
+onclick="callPolice()">
+Вызвать
+</button>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">📄</div>
+
+<div class="feature-title">
+Штрафы
+</div>
+
+<div class="feature-description">
+Текущие административные нарушения.
+</div>
+
+<button class="btn"
+onclick="showTickets()">
+Посмотреть
+</button>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">🔎</div>
+
+<div class="feature-title">
+Розыск
+</div>
+
+<div class="feature-description">
+Статус розыска персонажа.
+</div>
+
+<button class="btn"
+onclick="checkWanted()">
+Проверить
+</button>
+
+</div>
+
+</div>
+
+<div class="card" style="margin-top:15px">
+
+<h3>Штрафы</h3>
+
+<div id="tickets">
+
+<div class="police-ticket">
+Нарушений нет.
+</div>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   ORGANIZATIONS
+========================================================= */
+
+addGamePage("organizations",`
+
+<h1 class="title">🏢 Организации</h1>
+
+<p class="subtitle">
+Государственные и коммерческие организации.
+</p>
+
+<div class="feature-grid">
+
+<div class="organization">
+
+<div class="organization-icon">👮</div>
+<h3>Полиция</h3>
+<p class="muted">Правопорядок.</p>
+
+<button class="btn"
+onclick="openPage('police')">
+Подробнее
+</button>
+
+</div>
+
+
+<div class="organization">
+
+<div class="organization-icon">🚑</div>
+<h3>Медики</h3>
+<p class="muted">Здоровье игроков.</p>
+
+<button class="btn"
+onclick="openPage('hospital')">
+Подробнее
+</button>
+
+</div>
+
+
+<div class="organization">
+
+<div class="organization-icon">🎖️</div>
+<h3>Армия</h3>
+<p class="muted">Военная служба.</p>
+
+<button class="btn"
+onclick="openPage('army')">
+Подробнее
+</button>
+
+</div>
+
+
+<div class="organization">
+
+<div class="organization-icon">🏛️</div>
+<h3>Правительство</h3>
+<p class="muted">Городское управление.</p>
+
+<button class="btn"
+onclick="openPage('government')">
+Подробнее
+</button>
+
+</div>
+
+
+<div class="organization">
+
+<div class="organization-icon">🚕</div>
+<h3>Таксопарк</h3>
+<p class="muted">Работа водителем.</p>
+
+<button class="btn"
+onclick="showToast('Таксопарк открыт.')">
+Войти
+</button>
+
+</div>
+
+
+<div class="organization">
+
+<div class="organization-icon">🔧</div>
+<h3>Автосервис</h3>
+<p class="muted">Ремонт и тюнинг.</p>
+
+<button class="btn"
+onclick="openPage('garage')">
+Открыть
+</button>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   AUTO SERVICES
+========================================================= */
+
+addGamePage("autoservice",`
+
+<h1 class="title">🔧 Автосервис</h1>
+
+<p class="subtitle">
+Ремонт, обслуживание и тюнинг автомобилей.
+</p>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">🔧</div>
+
+<div class="feature-title">
+Ремонт
+</div>
+
+<div class="feature-description">
+Восстановить состояние автомобиля.
+</div>
+
+<button class="btn"
+onclick="carRepair()">
+Ремонт — 5 000 ₽
+</button>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">🎨</div>
+
+<div class="feature-title">
+Покраска
+</div>
+
+<div class="feature-description">
+Изменить цвет автомобиля.
+</div>
+
+<button class="btn"
+onclick="carPaint()">
+Покрасить
+</button>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">⚙️</div>
+
+<div class="feature-title">
+Тюнинг
+</div>
+
+<div class="feature-description">
+Двигатель, тормоза, подвеска и внешний вид.
+</div>
+
+<button class="btn"
+onclick="carTuning()">
+Тюнинг
+</button>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   VEHICLE PLATE
+========================================================= */
+
+addGamePage("plates",`
+
+<h1 class="title">🔢 Номерные знаки</h1>
+
+<p class="subtitle">
+Управление государственными номерами автомобилей.
+</p>
+
+<div class="card">
+
+<h3>
+Текущий номер
+</h3>
+
+<div style="
+font-size:38px;
+font-weight:900;
+letter-spacing:5px;
+margin:20px 0;
+">
+A777AA 34
+</div>
+
+<button class="btn"
+onclick="changePlate()">
+Изменить НЗ
+</button>
+
+</div>
+`);
+
+
+/* =========================================================
+   ROAD RULES
+========================================================= */
+
+addGamePage("traffic",`
+
+<h1 class="title">🚦 ПДД</h1>
+
+<p class="subtitle">
+Правила дорожного движения сервера.
+</p>
+
+<div class="grid g3">
+
+<div class="feature-card">
+
+<div class="feature-icon">🚦</div>
+
+<h3>Светофор</h3>
+
+<p class="muted">
+Красный — остановиться.
+Жёлтый — приготовиться.
+Зелёный — движение.
+</p>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">🚗</div>
+
+<h3>Скорость</h3>
+
+<p class="muted">
+Соблюдай установленное ограничение.
+</p>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">👮</div>
+
+<h3>Штрафы</h3>
+
+<p class="muted">
+Нарушения могут привести к штрафам.
+</p>
+
+</div>
+
+</div>
+`);
+
+
+/* =========================================================
+   MAIN MENU BUTTONS
+========================================================= */
+
+function addNavigationButton(text,page,section){
+
+    const sidebar=document.querySelector(".sidebar");
+
+    if(!sidebar)return;
+
+    const btn=document.createElement("button");
+
+    btn.className="nav";
+
+    btn.textContent=text;
+
+    btn.onclick=function(){
+        openPage(page);
+    };
+
+    sidebar.appendChild(btn);
+}
+
+
+/*
+   Добавляем новые разделы в существующую боковую панель.
+*/
+
+addNavigationButton("🎰 Казино","casino");
+addNavigationButton("🎁 Кейсы","cases");
+addNavigationButton("📅 Награда","daily");
+addNavigationButton("🔨 Аукцион","auction");
+addNavigationButton("🚦 Автошкола","drivingschool");
+addNavigationButton("📄 Лицензии","licenses");
+addNavigationButton("🏥 Больница","hospital");
+addNavigationButton("🎖️ Военкомат","militaryoffice");
+addNavigationButton("🪖 Армия","army");
+addNavigationButton("🦌 Охота","hunting");
+addNavigationButton("🏛️ Правительство","government");
+addNavigationButton("👮 Полиция","police");
+addNavigationButton("🏢 Организации","organizations");
+addNavigationButton("🔧 Автосервис","autoservice");
+addNavigationButton("🔢 Номера","plates");
+addNavigationButton("🚦 ПДД","traffic");
+
+
+/* =========================================================
+   CASINO ENGINE
+========================================================= */
+
+let casinoBalanceLocked=false;
+
+function casinoBet(){
+
+    const input=document.getElementById("casinoBet");
+
+    if(!input)return 0;
+
+    const amount=Number(input.value);
+
+    if(!Number.isFinite(amount)||amount<=0){
+
+        toast("Введите корректную ставку.");
+
+        return 0;
+    }
+
+    if(amount>Number(wallet?.cash||0)){
+
+        toast("Недостаточно наличных.");
+
+        return 0;
+    }
+
+    return Math.floor(amount);
+}
+
+
+function casinoTakeMoney(amount){
+
+    const cash=Number(wallet?.cash||0);
+
+    if(cash<amount)return false;
+
+    wallet.cash=cash-amount;
+
+    updateUI();
+
+    return true;
+}
+
+
+async function casinoGiveMoney(amount){
+
+    const newCash=
+        Number(wallet?.cash||0)+amount;
+
+    const result=
+        await supabaseClient
+        .from("wallets")
+        .update({
+            cash:newCash
+        })
+        .eq("player_id",user.id);
+
+    if(result.error){
+
+        toast(result.error.message);
+
+        return false;
+    }
+
+    wallet.cash=newCash;
+
+    updateUI();
+
+    return true;
+}
+
+
+function openCasinoGame(type){
+
+    const area=
+        document.getElementById("casinoArea");
+
+    if(!area)return;
+
+
+    if(type==="roulette"){
+
+        area.innerHTML=`
+
+        <div class="card" style="margin-top:20px;text-align:center">
+
+        <h2>🎡 Рулетка</h2>
+
+        <div
+        class="roulette"
+        id="rouletteWheel">
+
+        <div class="roulette-center">
+        R
+        </div>
+
+        </div>
+
+        <div class="bet-panel">
+
+        <input
+        id="casinoBet"
+        class="bet-input"
+        type="number"
+        min="100"
+        placeholder="Ставка"
+        >
+
+        <div class="bet-buttons">
+
+        <button class="btn"
+        onclick="spinRoulette('red')">
+        🔴 Красное ×2
+        </button>
+
+        <button class="btn"
+        onclick="spinRoulette('black')">
+        ⚫ Чёрное ×2
+        </button>
+
+        <button class="btn"
+        onclick="spinRoulette('green')">
+        🟢 Зеро ×14
+        </button>
+
+        </div>
+
+        <div
+        id="rouletteResult"
+        class="prize-box">
+        Сделай ставку.
+        </div>
+
+        </div>
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    if(type==="blackjack"){
+
+        area.innerHTML=`
+
+        <div class="card" style="margin-top:20px">
+
+        <h2>🃏 21</h2>
+
+        <p class="muted">
+        Добери карты как можно ближе к 21.
+        </p>
+
+        <div
+        id="blackjackTable"
+        class="prize-box">
+        Начни игру.
+        </div>
+
+        <div class="actions">
+
+        <button class="btn"
+        onclick="startBlackjack()">
+        Начать
+        </button>
+
+        <button class="btn"
+        onclick="blackjackHit()">
+        Ещё карту
+        </button>
+
+        <button class="btn"
+        onclick="blackjackStand()">
+        Остановиться
+        </button>
+
+        </div>
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    if(type==="fool"){
+
+        area.innerHTML=`
+
+        <div class="card" style="margin-top:20px">
+
+        <h2>🂡 Дурак</h2>
+
+        <p class="muted">
+        Упрощённая карточная мини-игра.
+        </p>
+
+        <div
+        id="foolTable"
+        class="prize-box">
+        Нажми начать.
+        </div>
+
+        <button class="btn"
+        onclick="startFool()">
+        Начать партию
+        </button>
+
+        </div>
+
+        `;
+    }
+
+}
+
+
+/* =========================================================
+   ROULETTE
+========================================================= */
+
+async function spinRoulette(color){
+
+    const amount=casinoBet();
+
+    if(!amount)return;
+
+    if(!casinoTakeMoney(amount))return;
+
+
+    const wheel=
+        document.getElementById("rouletteWheel");
+
+    const result=
+        document.getElementById("rouletteResult");
+
+
+    const number=
+        Math.floor(Math.random()*37);
+
+    let resultColor;
+
+
+    if(number===0){
+
+        resultColor="green";
+
+    }else{
+
+        const reds=[
+            1,3,5,7,9,12,14,16,18,
+            19,21,23,25,27,30,32,34,36
+        ];
+
+        resultColor=
+            reds.includes(number)
+            ?"red"
+            :"black";
+
+    }
+
+
+    const rotations=
+        720+
+        Math.floor(Math.random()*720);
+
+    wheel.style.transform=
+        "rotate("+rotations+"deg)";
+
+
+    setTimeout(async()=>{
+
+        let win=0;
+
+        if(color===resultColor){
+
+            if(color==="green"){
+
+                win=amount*14;
+
+            }else{
+
+                win=amount*2;
+
+            }
+
+        }
+
+
+        if(win>0){
+
+            await casinoGiveMoney(win);
+
+            result.innerHTML=
+                "🎉 Выпало <strong>"+
+                number+
+                "</strong>. Ты выиграл "+
+                money(win)+"!";
+
+        }else{
+
+            result.innerHTML=
+                "Выпало <strong>"+
+                number+
+                "</strong>. Ставка проиграна.";
+
+        }
+
+    },2100);
+
+}
+
+
+/* =========================================================
+   BLACKJACK
+========================================================= */
+
+let blackjack={
+    active:false,
+    player:[],
+    dealer:[]
+};
+
+
+function cardValue(card){
+
+    if(card>10)return 10;
+
+    return card;
+}
+
+
+function blackjackSum(cards){
+
+    return cards.reduce(
+        (sum,c)=>sum+cardValue(c),
+        0
+    );
+
+}
+
+
+function randomCard(){
+
+    return Math.floor(Math.random()*13)+1;
+
+}
+
+
+function startBlackjack(){
+
+    const amount=
+        Number(prompt("Ставка на 21:"));
+
+    if(!amount||amount<=0)return;
+
+    if(amount>Number(wallet?.cash||0)){
+
+        toast("Недостаточно денег.");
+
+        return;
+    }
+
+    if(!casinoTakeMoney(amount))return;
+
+    blackjack.active=true;
+
+    blackjack.bet=amount;
+
+    blackjack.player=[
+        randomCard(),
+        randomCard()
+    ];
+
+    blackjack.dealer=[
+        randomCard(),
+        randomCard()
+    ];
+
+    renderBlackjack();
+
+}
+
+
+function renderBlackjack(){
+
+    const el=
+        document.getElementById("blackjackTable");
+
+    if(!el)return;
+
+    const p=
+        blackjackSum(blackjack.player);
+
+    const d=
+        blackjackSum(blackjack.dealer);
+
+    el.innerHTML=`
+
+    <strong>
+    Твои карты:
+    </strong>
+
+    ${blackjack.player.join(" • ")}
+
+    <br><br>
+
+    <strong>
+    Сумма:
+    </strong>
+
+    ${p}
+
+    <br><br>
+
+    <strong>
+    Карты дилера:
+    </strong>
+
+    ${blackjack.dealer[0]} • ?
+
+    `;
+
+
+    if(p>21){
+
+        blackjackEnd(false);
+
+    }
+
+}
+
+
+function blackjackHit(){
+
+    if(!blackjack.active){
+
+        toast("Сначала начни игру.");
+
+        return;
+    }
+
+    blackjack.player.push(
+        randomCard()
+    );
+
+    renderBlackjack();
+
+}
+
+
+async function blackjackStand(){
+
+    if(!blackjack.active)return;
+
+    while(
+        blackjackSum(blackjack.dealer)<17
+    ){
+
+        blackjack.dealer.push(
+            randomCard()
+        );
+
+    }
+
+    const p=
+        blackjackSum(blackjack.player);
+
+    const d=
+        blackjackSum(blackjack.dealer);
+
+
+    let win=0;
+
+    if(
+        p<=21 &&
+        (
+            d>21 ||
+            p>d
+        )
+    ){
+
+        win=blackjack.bet*2;
+
+    }else if(
+        p===d &&
+        p<=21
+    ){
+
+        win=blackjack.bet;
+
+    }
+
+
+    if(win>0){
+
+        await casinoGiveMoney(win);
+
+    }
+
+
+    document.getElementById(
+        "blackjackTable"
+    ).innerHTML=`
+
+    Твои карты:
+    ${blackjack.player.join(" • ")}
+    = ${p}
+
+    <br><br>
+
+    Дилер:
+    ${blackjack.dealer.join(" • ")}
+    = ${d}
+
+    <br><br>
+
+    <strong>
+    ${
+        win
+        ?"🎉 Выигрыш: "+money(win)
+        :"❌ Проигрыш"
+    }
+    </strong>
+
+    `;
+
+    blackjack.active=false;
+
+}
+
+
+function blackjackEnd(win){
+
+    blackjack.active=false;
+
+    toast(
+        win
+        ?"Победа!"
+        :"Перебор. Ты проиграл."
+    );
+
+}
+
+
+/* =========================================================
+   FOOL
+========================================================= */
+
+function startFool(){
+
+    const el=
+        document.getElementById("foolTable");
+
+    if(!el)return;
+
+    const playerCard=
+        randomCard();
+
+    const botCard=
+        randomCard();
+
+    if(playerCard>=botCard){
+
+        el.innerHTML=`
+        🃏 Твоя карта:
+        <strong>${playerCard}</strong>
+
+        <br><br>
+
+        Карта соперника:
+        <strong>${botCard}</strong>
+
+        <br><br>
+
+        🎉 Ты выиграл раунд!
+        `;
+
+        casinoGiveMoney(1000);
+
+    }else{
+
+        el.innerHTML=`
+        🃏 Твоя карта:
+        <strong>${playerCard}</strong>
+
+        <br><br>
+
+        Карта соперника:
+        <strong>${botCard}</strong>
+
+        <br><br>
+
+        ❌ Соперник оказался сильнее.
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   CASES
+========================================================= */
+
+const caseData={
+
+    normal:{
+        price:5000,
+        rewards:[
+            ["1 000 ₽",1000,35],
+            ["5 000 ₽",5000,30],
+            ["10 000 ₽",10000,20],
+            ["25 000 ₽",25000,10],
+            ["100 000 ₽",100000,4],
+            ["500 000 ₽",500000,1]
+        ]
+    },
+
+    premium:{
+        price:25000,
+        rewards:[
+            ["5 000 ₽",5000,30],
+            ["25 000 ₽",25000,30],
+            ["50 000 ₽",50000,20],
+            ["100 000 ₽",100000,12],
+            ["500 000 ₽",500000,7],
+            ["2 000 000 ₽",2000000,1]
+        ]
+    },
+
+    rare:{
+        price:100000,
+        rewards:[
+            ["25 000 ₽",25000,30],
+            ["100 000 ₽",100000,30],
+            ["250 000 ₽",250000,20],
+            ["1 000 000 ₽",1000000,14],
+            ["5 000 000 ₽",5000000,5],
+            ["10 000 000 ₽",10000000,1]
+        ]
+    }
+
+};
+
+
+async function openCase(type){
+
+    const data=caseData[type];
+
+    if(!data)return;
+
+
+    const cash=
+        Number(wallet?.cash||0);
+
+    if(cash<data.price){
+
+        toast(
+            "Недостаточно денег. Нужно "+
+            money(data.price)
+        );
+
+        return;
+    }
+
+
+    if(!casinoTakeMoney(data.price))return;
+
+
+    const total=
+        data.rewards.reduce(
+            (sum,r)=>sum+r[2],
+            0
+        );
+
+
+    let random=
+        Math.random()*total;
+
+    let selected=null;
+
+
+    for(const reward of data.rewards){
+
+        random-=reward[2];
+
+        if(random<=0){
+
+            selected=reward;
+
+            break;
+        }
+
+    }
+
+
+    if(!selected){
+
+        selected=data.rewards[0];
+
+    }
+
+
+    const target=
+        document.getElementById(
+            "case-"+type
+        );
+
+
+    if(target){
+
+        target.innerHTML=
+            "🎉 Выпало: <strong>"+
+            selected[0]+
+            "</strong>";
+
+    }
+
+
+    await casinoGiveMoney(
+        selected[1]
+    );
+
+}
+
+
+/* =========================================================
+   DAILY REWARD
+========================================================= */
+
+async function claimDailyReward(){
+
+    const key=
+        "br_daily_"+user.id;
+
+    const last=
+        localStorage.getItem(key);
+
+    const today=
+        new Date().toISOString().slice(0,10);
+
+
+    if(last===today){
+
+        toast(
+            "Сегодня награду уже забирали."
+        );
+
+        return;
+    }
+
+
+    const rewards=[
+        1000,
+        2000,
+        3000,
+        5000,
+        7500,
+        10000,
+        50000
+    ];
+
+
+    let streak=
+        Number(
+            localStorage.getItem(
+                key+"_streak"
+            )||0
+        );
+
+
+    streak++;
+
+    if(streak>7)streak=1;
+
+
+    const reward=
+        rewards[streak-1];
+
+
+    localStorage.setItem(
+        key,
+        today
+    );
+
+    localStorage.setItem(
+        key+"_streak",
+        streak
+    );
+
+
+    await casinoGiveMoney(reward);
+
+
+    toast(
+        "🎁 День "+
+        streak+
+        ": получено "+
+        money(reward)
+    );
+
+}
+
+
+/* =========================================================
+   AUCTION
+========================================================= */
+
+function createAuction(){
+
+    toast(
+        "Выбери автомобиль в гараже — выставление будет подключено к таблице vehicles."
+    );
+
+}
+
+
+async function placeBid(price){
+
+    const amount=Math.floor(price*0.05);
+
+    if(Number(wallet?.cash||0)<amount){
+
+        toast(
+            "Для ставки нужно минимум "+
+            money(amount)
+        );
+
+        return;
+    }
+
+    toast(
+        "Ставка "+money(amount)+" принята."
+    );
+
+}
+
+
+/* =========================================================
+   DRIVING SCHOOL
+========================================================= */
+
+const drivingQuestions=[
+
+    {
+        q:"Что означает красный сигнал светофора?",
+        a:[
+            "Можно ехать",
+            "Нужно остановиться",
+            "Можно развернуться"
+        ],
+        correct:1
+    },
+
+    {
+        q:"Что необходимо иметь водителю при управлении автомобилем?",
+        a:[
+            "Водительское удостоверение",
+            "Только телефон",
+            "Игровой паспорт"
+        ],
+        correct:0
+    },
+
+    {
+        q:"Что означает знак STOP?",
+        a:[
+            "Остановка запрещена",
+            "Полная остановка",
+            "Только парковка"
+        ],
+        correct:1
+    },
+
+    {
+        q:"Можно ли превышать установленную скорость?",
+        a:[
+            "Да",
+            "Нет",
+            "Только ночью"
+        ],
+        correct:1
+    }
+
+];
+
+
+let drivingIndex=0;
+let drivingScore=0;
+
+
+function startDrivingExam(){
+
+    drivingIndex=0;
+    drivingScore=0;
+
+    renderDrivingQuestion();
+
+}
+
+
+function renderDrivingQuestion(){
+
+    const box=
+        document.getElementById(
+            "drivingQuestion"
+        );
+
+    if(!box)return;
+
+
+    if(drivingIndex>=drivingQuestions.length){
+
+        finishDrivingExam();
+
+        return;
+    }
+
+
+    const q=
+        drivingQuestions[drivingIndex];
+
+
+    box.innerHTML=`
+
+    <div class="question">
+    ${drivingIndex+1}/
+    ${drivingQuestions.length}
+    <br>
+    ${q.q}
+    </div>
+
+    ${q.a.map((answer,index)=>`
+
+        <button
+        class="btn answer"
+        onclick="answerDriving(${index})">
+
+        ${answer}
+
+        </button>
+
+    `).join("")}
+
+    `;
+
+}
+
+
+function answerDriving(index){
+
+    if(
+        index===
+        drivingQuestions[drivingIndex].correct
+    ){
+
+        drivingScore++;
+
+    }
+
+    drivingIndex++;
+
+    renderDrivingQuestion();
+
+}
+
+
+async function finishDrivingExam(){
+
+    const box=
+        document.getElementById(
+            "drivingQuestion"
+        );
+
+    if(drivingScore>=3){
+
+        if(wallet){
+
+            const price=10000;
+
+            if(
+                Number(wallet.cash||0)>=price
+            ){
+
+                wallet.cash-=price;
+
+                await supabaseClient
+                .from("wallets")
+                .update({
+                    cash:wallet.cash
+                })
+                .eq(
+                    "player_id",
+                    user.id
+                );
+
+            }
+
+        }
+
+
+        const license=
+            document.getElementById(
+                "licenseB"
+            );
+
+        if(license){
+
+            license.textContent="ЕСТЬ";
+            license.className=
+                "license-ok";
+
+        }
+
+
+        box.innerHTML=`
+
+        <h2 class="green">
+        ✅ Экзамен сдан!
+        </h2>
+
+        <p>
+        Результат:
+        ${drivingScore}/
+        ${drivingQuestions.length}
+        </p>
+
+        `;
+
+    }else{
+
+        box.innerHTML=`
+
+        <h2 class="red">
+        ❌ Экзамен не сдан
+        </h2>
+
+        <p>
+        Результат:
+        ${drivingScore}/
+        ${drivingQuestions.length}
+        </p>
+
+        <button class="btn"
+        onclick="startDrivingExam()">
+        Повторить
+        </button>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   LICENSES
+========================================================= */
+
+async function buyLicense(type){
+
+    const prices={
+        fishing:5000,
+        hunting:15000,
+        weapon:50000
+    };
+
+
+    const price=prices[type];
+
+    if(!price)return;
+
+
+    if(
+        Number(wallet?.cash||0)<price
+    ){
+
+        toast("Недостаточно денег.");
+
+        return;
+    }
+
+
+    wallet.cash-=price;
+
+
+    await supabaseClient
+    .from("wallets")
+    .update({
+        cash:wallet.cash
+    })
+    .eq(
+        "player_id",
+        user.id
+    );
+
+
+    if(type==="hunting"){
+
+        document.getElementById(
+            "huntLicense"
+        ).textContent="ЕСТЬ";
+
+        document.getElementById(
+            "huntLicense"
+        ).className=
+            "license-ok";
+
+    }
+
+
+    toast(
+        "Лицензия получена."
+    );
+
+    updateUI();
+
+}
+
+
+/* =========================================================
+   HOSPITAL
+========================================================= */
+
+async function healPlayer(){
+
+    const price=2000;
+
+    if(
+        Number(wallet?.cash||0)<price
+    ){
+
+        toast("Недостаточно денег.");
+
+        return;
+    }
+
+
+    wallet.cash-=price;
+
+
+    await supabaseClient
+    .from("wallets")
+    .update({
+        cash:wallet.cash
+    })
+    .eq(
+        "player_id",
+        user.id
+    );
+
+
+    toast(
+        "❤️ Здоровье восстановлено."
+    );
+
+    updateUI();
+
+}
+
+
+function medicalCheck(){
+
+    toast(
+        "🩺 Медицинская справка получена."
+    );
+
+}
+
+
+/* =========================================================
+   MILITARY
+========================================================= */
+
+function militaryRegister(){
+
+    toast(
+        "📋 Ты поставлен на воинский учёт."
+    );
+
+}
+
+
+function joinArmy(){
+
+    toast(
+        "🎖️ Заявление в армию отправлено."
+    );
+
+}
+
+
+function armyMission(){
+
+    const rewards=[
+        2500,
+        3500,
+        5000,
+        7500
+    ];
+
+    const reward=
+        rewards[
+            Math.floor(
+                Math.random()*rewards.length
+            )
+        ];
+
+
+    casinoGiveMoney(reward);
+
+    toast(
+        "🎯 Задание выполнено. +"+
+        money(reward)
+    );
+
+}
+
+
+/* =========================================================
+   HUNT
+========================================================= */
+
+function huntAnimal(element,name,reward){
+
+    if(
+        !element ||
+        element.dataset.dead==="1"
+    )return;
+
+
+    element.dataset.dead="1";
+
+    element.style.opacity=".2";
+    element.style.pointerEvents="none";
+
+
+    casinoGiveMoney(reward);
+
+
+    toast(
+        "🦌 Добыча: "+
+        name+
+        ". +"+
+        money(reward)
+    );
+
+
+    setTimeout(()=>{
+
+        element.style.opacity="1";
+        element.style.pointerEvents="auto";
+        element.dataset.dead="0";
+
+    },10000);
+
+}
+
+
+/* =========================================================
+   GOVERNMENT
+========================================================= */
+
+function governmentAction(name){
+
+    toast(
+        "🏛️ Открыто учреждение: "+
+        name
+    );
+
+}
+
+
+/* =========================================================
+   POLICE
+========================================================= */
+
+function callPolice(){
+
+    toast(
+        "🚔 Полиция получила вызов."
+    );
+
+}
+
+
+function showTickets(){
+
+    const box=
+        document.getElementById(
+            "tickets"
+        );
+
+    box.innerHTML=`
+
+    <div class="police-ticket">
+
+    <strong>
+    Штрафов нет
+    </strong>
+
+    <br>
+
+    <small class="muted">
+    Нарушений за персонажем не обнаружено.
+    </small>
+
+    </div>
+
+    `;
+
+}
+
+
+function checkWanted(){
+
+    toast(
+        "🔎 Ты не находишься в розыске."
+    );
+
+}
+
+
+/* =========================================================
+   AUTO SERVICE
+========================================================= */
+
+async function carRepair(){
+
+    const price=5000;
+
+    if(
+        Number(wallet?.cash||0)<price
+    ){
+
+        toast("Недостаточно денег.");
+
+        return;
+    }
+
+
+    wallet.cash-=price;
+
+
+    await supabaseClient
+    .from("wallets")
+    .update({
+        cash:wallet.cash
+    })
+    .eq(
+        "player_id",
+        user.id
+    );
+
+
+    toast(
+        "🔧 Автомобиль полностью отремонтирован."
+    );
+
+    updateUI();
+
+}
+
+
+function carPaint(){
+
+    toast(
+        "🎨 Выбери цвет автомобиля — система покраски готова к подключению."
+    );
+
+}
+
+
+function carTuning(){
+
+    toast(
+        "⚙️ Открыто меню тюнинга: двигатель, тормоза, подвеска, колёса, внешний вид."
+    );
+
+}
+
+
+/* =========================================================
+   NUMBER PLATE
+========================================================= */
+
+function changePlate(){
+
+    const plate=
+        prompt(
+            "Введите новый номер:",
+            "A777AA 34"
+        );
+
+
+    if(!plate)return;
+
+
+    if(
+        plate.length<3 ||
+        plate.length>12
+    ){
+
+        toast(
+            "Некорректный номер."
+        );
+
+        return;
+    }
+
+
+    toast(
+        "🔢 Номер изменён на "+
+        plate
+    );
+
+}
+
+
+/* =========================================================
+   WORLD INTERACTIONS
+========================================================= */
+
+const cityLocations=[
+
+    {
+        name:"Автошкола",
+        page:"drivingschool"
+    },
+
+    {
+        name:"Больница",
+        page:"hospital"
+    },
+
+    {
+        name:"Военкомат",
+        page:"militaryoffice"
+    },
+
+    {
+        name:"Армия",
+        page:"army"
+    },
+
+    {
+        name:"Полиция",
+        page:"police"
+    },
+
+    {
+        name:"Правительство",
+        page:"government"
+    },
+
+    {
+        name:"Казино",
+        page:"casino"
+    },
+
+    {
+        name:"Автосервис",
+        page:"autoservice"
+    },
+
+    {
+        name:"Охотничьи угодья",
+        page:"hunting"
+    },
+
+    {
+        name:"Аукцион",
+        page:"auction"
+    }
+
+];
+
+
+function worldInteraction(location){
+
+    const found=
+        cityLocations.find(
+            x=>x.name===location
+        );
+
+
+    if(!found){
+
+        toast(
+            "Локация пока закрыта."
+        );
+
+        return;
+    }
+
+
+    openPage(found.page);
+
+}
+
+
+/* =========================================================
+   EXTEND MAP
+========================================================= */
+
+const mapElement=
+    document.querySelector(".map");
+
+
+if(mapElement){
+
+    const locations=[
+
+        ["🏥","Больница",15,65],
+        ["🚦","Автошкола",35,20],
+        ["🎰","Казино",75,18],
+        ["👮","Полиция",55,68],
+        ["🎖️","Военкомат",80,60],
+        ["🏛️","Правительство",42,45],
+        ["🦌","Охота",12,80],
+        ["🔨","Аукцион",72,78],
+        ["🔧","Автосервис",62,30]
+
+    ];
+
+
+    locations.forEach(
+        ([icon,name,left,top])=>{
+
+            const marker=
+                document.createElement("button");
+
+            marker.className="marker";
+
+            marker.textContent=icon;
+
+            marker.title=name;
+
+            marker.style.left=
+                left+"%";
+
+            marker.style.top=
+                top+"%";
+
+            marker.onclick=()=>{
+
+                worldInteraction(name);
+
+            };
+
+
+            mapElement.appendChild(marker);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CHAT DATABASE READY HOOK
+========================================================= */
+
+/*
+   Следующим этапом этот чат можно перевести
+   с локального DOM на Supabase Realtime.
+
+   Тогда:
+
+   Томас написал сообщение
+          ↓
+   Supabase
+          ↓
+   Realtime
+          ↓
+   все игроки получают его
+
+*/
+
+
+async function enableRealtimeChat(){
+
+    if(!user)return;
+
+
+    try{
+
+        supabaseClient
+        .channel("global-chat")
+        .on(
+            "postgres_changes",
+            {
+                event:"INSERT",
+                schema:"public",
+                table:"chat_messages"
+            },
+            payload=>{
+
+                const message=
+                    payload.new;
+
+                if(!message)return;
+
+
+                const box=
+                    document.getElementById(
+                        "messages"
+                    );
+
+                if(!box)return;
+
+
+                const div=
+                    document.createElement(
+                        "div"
+                    );
+
+                div.className="msg";
+
+                div.innerHTML=`
+
+                <div class="msg-name">
+                ${esc(
+                    message.username||
+                    "Игрок"
+                )}
+                </div>
+
+                <div class="msg-text">
+                ${esc(
+                    message.message||
+                    ""
+                )}
+                </div>
+
+                `;
+
+
+                box.appendChild(div);
+
+                box.scrollTop=
+                    box.scrollHeight;
+
+            }
+        )
+        .subscribe();
+
+    }catch(e){
+
+        console.log(
+            "Realtime chat:",
+            e
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   GLOBAL INITIALIZATION
+========================================================= */
+
+const oldLoadGame=
+    loadGame;
+
+
+loadGame=async function(){
+
+    await oldLoadGame();
+
+    await enableRealtimeChat();
+
+};
+
+
+/* =========================================================
+   EXTRA QUICK ACTIONS
+========================================================= */
+
+window.openCasino=
+function(){
+
+    openPage("casino");
+
+};
+
+
+window.openCases=
+function(){
+
+    openPage("cases");
+
+};
+
+
+window.openDaily=
+function(){
+
+    openPage("daily");
+
+};
+
+
+window.openAuction=
+function(){
+
+    openPage("auction");
+
+};
+
+
+window.openAutoSchool=
+function(){
+
+    openPage("drivingschool");
+
+};
+
+
+/* =========================================================
+   GAME ECONOMY
+========================================================= */
+
+/*
+   Важный принцип экономики:
+
+   CASH
+   ├── зарплаты
+   ├── задания
+   ├── охота
+   ├── казино
+   ├── кейсы
+   └── продажи
+
+   MONEY SINKS
+   ├── автомобили
+   ├── ремонт
+   ├── тюнинг
+   ├── номера
+   ├── лицензии
+   ├── недвижимость
+   ├── семья
+   ├── казино
+   ├── лечение
+   └── штрафы
+
+   Поэтому деньги не должны бесконечно
+   появляться без расходов.
+*/
+
+
+/* =========================================================
+   RARE DROP SYSTEM
+========================================================= */
+
+function rareDrop(){
+
+    const roll=
+        Math.random()*100;
+
+
+    if(roll<0.05){
+
+        return{
+            name:"Легендарный автомобиль",
+            value:10000000
+        };
+
+    }
+
+
+    if(roll<0.5){
+
+        return{
+            name:"Редкий предмет",
+            value:1000000
+        };
+
+    }
+
+
+    if(roll<5){
+
+        return{
+            name:"Особый предмет",
+            value:100000
+        };
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   RANDOM WORLD EVENTS
+========================================================= */
+
+function randomWorldEvent(){
+
+    const events=[
+
+        "🚗 На трассе замечен редкий автомобиль.",
+        "💰 В городе появился денежный тайник.",
+        "👮 Полиция усилила патрулирование.",
+        "🎁 В магазине появились редкие товары.",
+        "🦌 В лесу замечено редкое животное.",
+        "🔨 На аукцион выставлен редкий автомобиль.",
+        "🎰 В казино повышенный бонус.",
+        "🏁 Началась городская гонка."
+
+    ];
+
+
+    const event=
+        events[
+            Math.floor(
+                Math.random()*events.length
+            )
+        ];
+
+
+    toast(event);
+
+}
+
+
+setInterval(
+    randomWorldEvent,
+    180000
+);
+
+
+/* =========================================================
+   END PART 2
+========================================================= */
+
+console.log(
+    "BLACK RUSSIA RP PART 2 loaded"
+);
+
 </script>
-</body>
-</html>
+
+  <button class="nav" onclick="showPage('casino',this)">
+🎰 Казино
+</button>
+
+<button class="nav" onclick="showPage('cases',this)">
+🎁 Кейсы
+</button>
+
+<button class="nav" onclick="showPage('daily',this)">
+🎉 Ежедневная награда
+</button>
+
+  <!-- =====================================================
+     CASINO
+===================================================== -->
+
+<section id="page-casino" class="page">
+
+<h1 class="title">🎰 Казино</h1>
+<p class="subtitle">
+Развлекательный центр города
+</p>
+
+<div class="hero">
+
+<h2>BLACK JACKPOT</h2>
+
+<p>
+Испытай удачу. Чем выше риск — тем выше возможный выигрыш.
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="casinoGame('roulette')">
+🎡 Рулетка
+</button>
+
+<button class="btn" onclick="casinoGame('blackjack')">
+🃏 21
+</button>
+
+<button class="btn" onclick="casinoGame('fool')">
+🃏 Дурак
+</button>
+
+</div>
+
+</div>
+
+
+<div class="grid g4">
+
+<div class="card">
+
+<div class="card-label">
+Твои деньги
+</div>
+
+<div class="big" id="casinoCash">
+0 ₽
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Золото
+</div>
+
+<div class="big gold" id="casinoGold">
+0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Ставок сегодня
+</div>
+
+<div class="big" id="casinoBets">
+0
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Крупнейший выигрыш
+</div>
+
+<div class="big green" id="casinoBest">
+0 ₽
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+
+<div class="card">
+
+<h3>🎡 Рулетка</h3>
+
+<p class="muted">
+Выбери цвет и сделай ставку.
+</p>
+
+<div class="grid g3">
+
+<div>
+
+<label class="card-label">
+Ставка
+</label>
+
+<input
+id="rouletteBet"
+class="input"
+type="number"
+min="100"
+placeholder="1000"
+/>
+
+</div>
+
+
+<div>
+
+<label class="card-label">
+Выбор
+</label>
+
+<select id="rouletteColor" class="input">
+
+<option value="red">
+🔴 Красное
+</option>
+
+<option value="black">
+⚫ Чёрное
+</option>
+
+<option value="green">
+🟢 Зеро
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label class="card-label">
+Шанс
+</label>
+
+<div class="big">
+<span id="rouletteChance">
+48%
+</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn-main"
+style="max-width:250px"
+onclick="playRoulette()">
+
+🎡 Крутить рулетку
+
+</button>
+
+</div>
+
+
+<div
+id="rouletteResult"
+class="card"
+style="margin-top:15px">
+
+Ожидание ставки...
+
+</div>
+
+</div>
+
+<br>
+
+
+<div class="card">
+
+<h3>🃏 Блэкджек — 21</h3>
+
+<p class="muted">
+Набери ближе к 21, чем дилер.
+</p>
+
+<div class="grid g3">
+
+<div>
+
+<div class="card-label">
+Ставка
+</div>
+
+<input
+id="blackjackBet"
+class="input"
+type="number"
+min="100"
+placeholder="1000"
+/>
+
+</div>
+
+<div>
+
+<div class="card-label">
+Твои карты
+</div>
+
+<div
+id="playerCards"
+class="big">
+—
+</div>
+
+</div>
+
+<div>
+
+<div class="card-label">
+Очки
+</div>
+
+<div
+id="playerScore"
+class="big">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="startBlackjack()">
+
+▶ Начать
+
+</button>
+
+<button
+class="btn"
+onclick="blackjackHit()">
+
+➕ Ещё
+
+</button>
+
+<button
+class="btn"
+onclick="blackjackStand()">
+
+✋ Хватит
+
+</button>
+
+</div>
+
+
+<div
+id="blackjackResult"
+class="card"
+style="margin-top:15px">
+
+Игра не начата.
+
+</div>
+
+</div>
+
+<br>
+
+
+<div class="card">
+
+<h3>🃏 Дурак</h3>
+
+<p class="muted">
+Мини-игра против виртуального соперника.
+</p>
+
+<div class="grid g3">
+
+<div>
+
+<div class="card-label">
+Ставка
+</div>
+
+<input
+id="foolBet"
+class="input"
+type="number"
+min="100"
+placeholder="1000"
+/>
+
+</div>
+
+<div>
+
+<div class="card-label">
+Твоя карта
+</div>
+
+<div
+id="foolPlayerCard"
+class="big">
+—
+</div>
+
+</div>
+
+<div>
+
+<div class="card-label">
+Карта соперника
+</div>
+
+<div
+id="foolEnemyCard"
+class="big">
+?
+</div>
+
+</div>
+
+</div>
+
+
+<div class="actions">
+
+<button
+class="btn"
+onclick="playFool()">
+
+🃏 Играть
+
+</button>
+
+</div>
+
+
+<div
+id="foolResult"
+class="card"
+style="margin-top:15px">
+
+Готов к игре.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     CASES
+===================================================== -->
+
+<section id="page-cases" class="page">
+
+<h1 class="title">🎁 Кейсы</h1>
+
+<p class="subtitle">
+Открывай кейсы и получай случайные награды.
+</p>
+
+
+<div class="grid g3">
+
+
+<div class="card">
+
+<div style="font-size:60px">
+📦
+</div>
+
+<h2>Обычный кейс</h2>
+
+<p class="muted">
+Базовые игровые награды.
+</p>
+
+<div class="gold">
+5 000 ₽
+</div>
+
+<br>
+
+<button
+class="btn"
+onclick="openCase('normal')">
+
+Открыть
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div style="font-size:60px">
+💎
+</div>
+
+<h2>Премиум кейс</h2>
+
+<p class="muted">
+Редкие предметы и автомобили.
+</p>
+
+<div class="gold">
+25 🪙
+</div>
+
+<br>
+
+<button
+class="btn"
+onclick="openCase('premium')">
+
+Открыть
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div style="font-size:60px">
+👑
+</div>
+
+<h2>Легендарный</h2>
+
+<p class="muted">
+Очень маленький шанс на джекпот.
+</p>
+
+<div class="gold">
+100 🪙
+</div>
+
+<br>
+
+<button
+class="btn"
+onclick="openCase('legendary')">
+
+Открыть
+
+</button>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<div class="card">
+
+<h3>🎁 Возможные награды</h3>
+
+<div
+id="caseResult"
+style="
+font-size:24px;
+font-weight:900;
+padding:20px;
+text-align:center;
+">
+
+Выбери кейс.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     DAILY
+===================================================== -->
+
+<section id="page-daily" class="page">
+
+<h1 class="title">🎉 Ежедневная награда</h1>
+
+<p class="subtitle">
+Заходи каждый день и получай подарок.
+</p>
+
+
+<div class="hero">
+
+<h2 id="dailyTitle">
+🎁 Награда доступна!
+</h2>
+
+<p id="dailyDescription">
+Сегодня тебя ждёт случайный приз.
+</p>
+
+
+<div class="actions">
+
+<button
+class="btn-main"
+style="max-width:280px"
+onclick="claimDailyReward()">
+
+🎁 Забрать награду
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="grid g4">
+
+<div class="card">
+
+<div class="card-label">
+День серии
+</div>
+
+<div
+class="big"
+id="dailyStreak">
+
+1
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Сегодня
+</div>
+
+<div
+class="big"
+id="dailyToday">
+
+Доступно
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Максимальная серия
+</div>
+
+<div
+class="big"
+id="dailyBest">
+
+1
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="card-label">
+Особый шанс
+</div>
+
+<div
+class="big gold">
+
+1%
+
+</div>
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<div class="card">
+
+<h3>📅 Награды за серию</h3>
+
+<div class="grid g4">
+
+<div class="card">
+<strong>День 1</strong>
+<p>💵 5 000 ₽</p>
+</div>
+
+<div class="card">
+<strong>День 2</strong>
+<p>💵 10 000 ₽</p>
+</div>
+
+<div class="card">
+<strong>День 3</strong>
+<p>🪙 5 золота</p>
+</div>
+
+<div class="card">
+<strong>День 7</strong>
+<p>🎁 Редкий приз</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+  он/* ==================================================
+   CASINO SYSTEM
+================================================== */
+
+let casinoStats = {
+
+bets: 0,
+
+bestWin: 0
+
+};
+
+
+function updateCasinoUI(){
+
+if(!wallet)return;
+
+const cash =
+Number(wallet.cash || 0);
+
+document.getElementById("casinoCash")
+.textContent = money(cash);
+
+document.getElementById("casinoGold")
+.textContent =
+Number(wallet.gold || 0);
+
+document.getElementById("casinoBets")
+.textContent =
+casinoStats.bets;
+
+document.getElementById("casinoBest")
+.textContent =
+money(casinoStats.bestWin);
+
+}
+
+
+/* ==================================================
+   ROULETTE
+================================================== */
+
+function playRoulette(){
+
+const input =
+document.getElementById("rouletteBet");
+
+const color =
+document.getElementById("rouletteColor").value;
+
+const bet =
+Number(input.value);
+
+
+if(!Number.isFinite(bet) || bet < 100){
+
+toast("Минимальная ставка — 100 ₽.");
+
+return;
+
+}
+
+
+if(Number(wallet?.cash || 0) < bet){
+
+toast("Недостаточно денег.");
+
+return;
+
+}
+
+
+/*
+    0 = зелёное
+    1-18 = красное
+    19-36 = чёрное
+*/
+
+const number =
+Math.floor(Math.random()*37);
+
+let resultColor;
+
+if(number === 0){
+
+resultColor="green";
+
+}else if(number <= 18){
+
+resultColor="red";
+
+}else{
+
+resultColor="black";
+
+}
+
+
+let multiplier=0;
+
+if(color === resultColor){
+
+if(color==="green"){
+
+multiplier=14;
+
+}else{
+
+multiplier=2;
+
+}
+
+}
+
+
+const result =
+document.getElementById("rouletteResult");
+
+
+wallet.cash -= bet;
+
+casinoStats.bets++;
+
+
+if(multiplier > 0){
+
+const win =
+bet * multiplier;
+
+wallet.cash += win;
+
+if(win > casinoStats.bestWin){
+
+casinoStats.bestWin=win;
+
+}
+
+result.innerHTML = `
+
+🎉 <strong>ПОБЕДА!</strong>
+
+<br><br>
+
+Выпало число:
+<strong>${number}</strong>
+
+<br>
+
+Цвет:
+<strong>${getRouletteName(resultColor)}</strong>
+
+<br><br>
+
+Выигрыш:
+<span class="green">
+<strong>${money(win)}</strong>
+</span>
+
+`;
+
+}else{
+
+result.innerHTML = `
+
+😔 <strong>Проигрыш</strong>
+
+<br><br>
+
+Выпало число:
+<strong>${number}</strong>
+
+<br>
+
+Цвет:
+<strong>${getRouletteName(resultColor)}</strong>
+
+<br><br>
+
+Потеряно:
+<span class="red">
+${money(bet)}
+</span>
+
+`;
+
+}
+
+
+saveWallet();
+
+updateUI();
+
+updateCasinoUI();
+
+}
+
+
+function getRouletteName(color){
+
+if(color==="red")return "🔴 Красное";
+
+if(color==="black")return "⚫ Чёрное";
+
+return "🟢 Зеро";
+
+}
+
+
+/* ==================================================
+   BLACKJACK
+================================================== */
+
+let blackjack = {
+
+active:false,
+
+bet:0,
+
+player:[],
+
+dealer:[]
+
+};
+
+
+const blackjackDeck = [
+
+"2","3","4","5","6","7","8","9","10",
+
+"J","Q","K","A"
+
+];
+
+
+function randomCard(){
+
+return blackjackDeck[
+Math.floor(
+Math.random()*blackjackDeck.length
+)
+];
+
+}
+
+
+function cardValue(card){
+
+if(["J","Q","K"].includes(card)){
+
+return 10;
+
+}
+
+if(card==="A"){
+
+return 11;
+
+}
+
+return Number(card);
+
+}
+
+
+function handValue(hand){
+
+let total=0;
+
+let aces=0;
+
+
+hand.forEach(card=>{
+
+total += cardValue(card);
+
+if(card==="A")aces++;
+
+});
+
+
+while(total>21 && aces>0){
+
+total -= 10;
+
+aces--;
+
+}
+
+
+return total;
+
+}
+
+
+function startBlackjack(){
+
+const bet =
+Number(
+document.getElementById("blackjackBet").value
+);
+
+
+if(!Number.isFinite(bet)||bet<100){
+
+toast("Минимальная ставка — 100 ₽.");
+
+return;
+
+}
+
+
+if(Number(wallet?.cash||0)<bet){
+
+toast("Недостаточно денег.");
+
+return;
+
+}
+
+
+wallet.cash -= bet;
+
+casinoStats.bets++;
+
+
+blackjack={
+
+active:true,
+
+bet:bet,
+
+player:[
+randomCard(),
+randomCard()
+],
+
+dealer:[
+randomCard(),
+randomCard()
+]
+
+};
+
+
+renderBlackjack();
+
+document.getElementById("blackjackResult")
+.innerHTML=
+"Выбери: ещё карту или хватит.";
+
+}
+
+
+function renderBlackjack(){
+
+document.getElementById("playerCards")
+.textContent=
+blackjack.player.join("  ");
+
+document.getElementById("playerScore")
+.textContent=
+handValue(blackjack.player);
+
+}
+
+
+function blackjackHit(){
+
+if(!blackjack.active){
+
+toast("Сначала начни игру.");
+
+return;
+
+}
+
+
+blackjack.player.push(
+randomCard()
+);
+
+
+renderBlackjack();
+
+
+if(handValue(blackjack.player)>21){
+
+finishBlackjack("lose");
+
+}
+
+}
+
+
+function blackjackStand(){
+
+if(!blackjack.active){
+
+toast("Сначала начни игру.");
+
+return;
+
+}
+
+
+while(handValue(blackjack.dealer)<17){
+
+blackjack.dealer.push(
+randomCard()
+);
+
+}
+
+
+const playerScore=
+handValue(blackjack.player);
+
+const dealerScore=
+handValue(blackjack.dealer);
+
+
+if(dealerScore>21){
+
+finishBlackjack("win");
+
+return;
+
+}
+
+
+if(playerScore>dealerScore){
+
+finishBlackjack("win");
+
+}else if(playerScore===dealerScore){
+
+finishBlackjack("draw");
+
+}else{
+
+finishBlackjack("lose");
+
+}
+
+}
+
+
+function finishBlackjack(result){
+
+const resultBox=
+document.getElementById("blackjackResult");
+
+
+let payout=0;
+
+
+if(result==="win"){
+
+payout=
+blackjack.bet*2;
+
+wallet.cash+=payout;
+
+if(payout>casinoStats.bestWin){
+
+casinoStats.bestWin=payout;
+
+}
+
+resultBox.innerHTML=`
+
+🎉 <strong>ПОБЕДА!</strong>
+
+<br><br>
+
+Твои карты:
+${blackjack.player.join(" ")}
+
+<br>
+
+Карты дилера:
+${blackjack.dealer.join(" ")}
+
+<br><br>
+
+Выигрыш:
+<span class="green">
+${money(payout)}
+</span>
+
+`;
+
+}
+
+
+else if(result==="draw"){
+
+payout=
+blackjack.bet;
+
+wallet.cash+=payout;
+
+
+resultBox.innerHTML=`
+
+🤝 Ничья.
+
+<br><br>
+
+Твои:
+${blackjack.player.join(" ")}
+
+<br>
+
+Дилер:
+${blackjack.dealer.join(" ")}
+
+<br><br>
+
+Ставка возвращена.
+
+`;
+
+}
+
+
+else{
+
+resultBox.innerHTML=`
+
+😔 Проигрыш.
+
+<br><br>
+
+Твои:
+${blackjack.player.join(" ")}
+
+<br>
+
+Дилер:
+${blackjack.dealer.join(" ")}
+
+`;
+
+}
+
+
+blackjack.active=false;
+
+saveWallet();
+
+updateUI();
+
+updateCasinoUI();
+
+}
+
+
+/* ==================================================
+   FOOL
+================================================== */
+
+const foolCards = [
+
+"🂡","🂢","🂣","🂤",
+"🂥","🂦","🂧","🂨",
+"🂩","🂪","🂫","🂭","🂮"
+
+];
+
+
+function playFool(){
+
+const bet =
+Number(
+document.getElementById("foolBet").value
+);
+
+
+if(!Number.isFinite(bet)||bet<100){
+
+toast("Минимальная ставка — 100 ₽.");
+
+return;
+
+}
+
+
+if(Number(wallet?.cash||0)<bet){
+
+toast("Недостаточно денег.");
+
+return;
+
+}
+
+
+wallet.cash -= bet;
+
+casinoStats.bets++;
+
+
+const player =
+Math.floor(Math.random()*13);
+
+const enemy =
+Math.floor(Math.random()*13);
+
+
+document.getElementById("foolPlayerCard")
+.textContent=
+foolCards[player];
+
+document.getElementById("foolEnemyCard")
+.textContent=
+foolCards[enemy];
+
+
+const result=
+document.getElementById("foolResult");
+
+
+if(player>enemy){
+
+const win=bet*2;
+
+wallet.cash+=win;
+
+if(win>casinoStats.bestWin){
+
+casinoStats.bestWin=win;
+
+}
+
+result.innerHTML=`
+
+🎉 Ты победил!
+
+<br><br>
+
+Выигрыш:
+<span class="green">
+${money(win)}
+</span>
+
+`;
+
+}else if(player===enemy){
+
+wallet.cash+=bet;
+
+result.innerHTML=
+"🤝 Ничья. Ставка возвращена.";
+
+}else{
+
+result.innerHTML=
+"😔 Соперник оказался сильнее.";
+
+}
+
+
+saveWallet();
+
+updateUI();
+
+updateCasinoUI();
+
+}
+
+
+/* ==================================================
+   CASES
+================================================== */
+
+const caseRewards = {
+
+normal:[
+
+{
+name:"2 000 ₽",
+type:"cash",
+value:2000,
+chance:45
+},
+
+{
+name:"5 000 ₽",
+type:"cash",
+value:5000,
+chance:30
+},
+
+{
+name:"10 000 ₽",
+type:"cash",
+value:10000,
+chance:15
+},
+
+{
+name:"25 000 ₽",
+type:"cash",
+value:25000,
+chance:8
+},
+
+{
+name:"50 🪙",
+type:"gold",
+value:50,
+chance:2
+}
+
+],
+
+
+premium:[
+
+{
+name:"10 000 ₽",
+type:"cash",
+value:10000,
+chance:40
+},
+
+{
+name:"30 000 ₽",
+type:"cash",
+value:30000,
+chance:30
+},
+
+{
+name:"100 🪙",
+type:"gold",
+value:100,
+chance:20
+},
+
+{
+name:"Редкий автомобиль",
+type:"vehicle",
+value:"BMW M5",
+chance:9
+},
+
+{
+name:"👑 Легендарный автомобиль",
+type:"vehicle",
+value:"Mercedes-AMG G63",
+chance:1
+}
+
+],
+
+
+legendary:[
+
+{
+name:"50 000 ₽",
+type:"cash",
+value:50000,
+chance:50
+},
+
+{
+name:"250 000 ₽",
+type:"cash",
+value:250000,
+chance:25
+},
+
+{
+name:"500 🪙",
+type:"gold",
+value:500,
+chance:20
+},
+
+{
+name:"BMW M5",
+type:"vehicle",
+value:"BMW M5",
+chance:4
+},
+
+{
+name:"🏆 JACKPOT — Mercedes-AMG G63",
+type:"vehicle",
+value:"Mercedes-AMG G63",
+chance:1
+}
+
+]
+
+};
+
+
+function randomReward(rewards){
+
+const roll=Math.random()*100;
+
+let sum=0;
+
+for(const reward of rewards){
+
+sum += reward.chance;
+
+if(roll<=sum){
+
+return reward;
+
+}
+
+}
+
+return rewards[0];
+
+}
+
+
+async function openCase(type){
+
+const prices={
+
+normal:5000,
+
+premium:25,
+
+legendary:100
+
+};
+
+
+const price=prices[type];
+
+
+let canPay=false;
+
+
+if(type==="normal"){
+
+canPay=
+Number(wallet?.cash||0)>=price;
+
+}else{
+
+canPay=
+Number(wallet?.gold||0)>=price;
+
+}
+
+
+if(!canPay){
+
+toast(
+type==="normal"
+?
+"Недостаточно денег."
+:
+"Недостаточно золота."
+);
+
+return;
+
+}
+
+
+/* PAYMENT */
+
+if(type==="normal"){
+
+wallet.cash-=price;
+
+}else{
+
+wallet.gold-=price;
+
+}
+
+
+/* RANDOM */
+
+const reward=
+randomReward(caseRewards[type]);
+
+
+if(reward.type==="cash"){
+
+wallet.cash += reward.value;
+
+}
+
+
+if(reward.type==="gold"){
+
+wallet.gold += reward.value;
+
+}
+
+
+/*
+  Машина пока отображается как выигранная.
+  В следующей части она будет автоматически
+  записываться в vehicles.
+*/
+
+
+const box=
+document.getElementById("caseResult");
+
+
+box.innerHTML=`
+
+<div style="font-size:55px">
+🎉
+</div>
+
+<div>
+Ты открыл кейс:
+<strong>${type}</strong>
+</div>
+
+<br>
+
+<div class="green">
+<strong>
+${esc(reward.name)}
+</strong>
+</div>
+
+`;
+
+
+saveWallet();
+
+updateUI();
+
+updateCasinoUI();
+
+
+showToast(
+"Кейс открыт: "+reward.name
+);
+
+}
+
+
+/* ==================================================
+   DAILY REWARD
+================================================== */
+
+function dailyKey(){
+
+return "br_daily_"+user.id;
+
+}
+
+
+function getDailyData(){
+
+const saved=
+localStorage.getItem(
+dailyKey()
+);
+
+
+if(!saved){
+
+return {
+
+last:null,
+
+streak:0,
+
+best:0
+
+};
+
+}
+
+
+try{
+
+return JSON.parse(saved);
+
+}catch{
+
+return {
+
+last:null,
+
+streak:0,
+
+best:0
+
+};
+
+}
+
+}
+
+
+function updateDailyUI(){
+
+const data=
+getDailyData();
+
+
+document.getElementById("dailyStreak")
+.textContent=data.streak;
+
+
+document.getElementById("dailyBest")
+.textContent=data.best;
+
+
+const today=
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+if(data.last===today){
+
+document.getElementById("dailyToday")
+.textContent="Получено";
+
+document.getElementById("dailyTitle")
+.textContent=
+"✅ Награда уже получена";
+
+
+document.getElementById("dailyDescription")
+.textContent=
+"Возвращайся завтра.";
+
+}else{
+
+document.getElementById("dailyToday")
+.textContent="Доступно";
+
+document.getElementById("dailyTitle")
+.textContent=
+"🎁 Награда доступна!";
+
+document.getElementById("dailyDescription")
+.textContent=
+"Забери сегодняшний подарок.";
+
+}
+
+}
+
+
+function claimDailyReward(){
+
+const data=
+getDailyData();
+
+
+const today=
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+if(data.last===today){
+
+toast("Ты уже получил награду сегодня.");
+
+return;
+
+}
+
+
+/*
+  Проверяем вчерашний день.
+*/
+
+const yesterday=
+new Date(
+Date.now()-86400000
+)
+.toISOString()
+.slice(0,10);
+
+
+if(data.last===yesterday){
+
+data.streak++;
+
+}else{
+
+data.streak=1;
+
+}
+
+
+if(data.streak>data.best){
+
+data.best=data.streak;
+
+}
+
+
+/*
+  Особые награды
+*/
+
+let reward;
+
+
+if(data.streak===7){
+
+reward={
+
+type:"gold",
+
+value:100,
+
+name:"100 🪙"
+
+};
+
+}else{
+
+
+const roll=Math.random();
+
+
+if(roll<0.01){
+
+reward={
+
+type:"cash",
+
+value:500000,
+
+name:"💎 РЕДКИЙ ДЖЕКПОТ 500 000 ₽"
+
+};
+
+}else if(roll<0.06){
+
+reward={
+
+type:"gold",
+
+value:50,
+
+name:"50 🪙"
+
+};
+
+}else{
+
+reward={
+
+type:"cash",
+
+value:
+5000*data.streak,
+
+name:
+money(5000*data.streak)
+
+};
+
+}
+
+}
+
+
+if(reward.type==="cash"){
+
+wallet.cash += reward.value;
+
+}else{
+
+wallet.gold += reward.value;
+
+}
+
+
+data.last=today;
+
+
+localStorage.setItem(
+
+dailyKey(),
+
+JSON.stringify(data)
+
+);
+
+
+saveWallet();
+
+updateUI();
+
+updateCasinoUI();
+
+updateDailyUI();
+
+
+toast(
+"🎁 Получено: "+reward.name
+);
+
+
+document.getElementById("dailyDescription")
+.innerHTML=
+`Ты получил <strong>${esc(reward.name)}</strong>`;
+
+}
+
+
+/* ==================================================
+   WALLET SAVE
+================================================== */
+
+async function saveWallet(){
+
+if(!user||!wallet)return;
+
+
+const result=
+await supabaseClient
+.from("wallets")
+.update({
+
+cash:Number(wallet.cash||0),
+
+bank:Number(wallet.bank||0),
+
+gold:Number(wallet.gold||0)
+
+})
+.eq("player_id",user.id);
+
+
+if(result.error){
+
+console.error(
+"Wallet save:",
+result.error
+);
+
+}
+
+}
+
+
+/* ==================================================
+   CASINO INIT
+================================================== */
+
+function initCasino(){
+
+updateCasinoUI();
+
+updateDailyUI();
+
+}
+
+
+setTimeout(initCasino,1000);
+
+  <!-- =====================================================
+     PART 4 — WORLD SYSTEMS
+===================================================== -->
+
+<!-- AUTO MARKET -->
+
+<section id="page-cars" class="page">
+
+<h1 class="title">🚘 Автосалон</h1>
+<p class="subtitle">Покупка автомобилей</p>
+
+<div class="grid g3" id="carMarket">
+
+<div class="card">
+<div style="font-size:60px">🚗</div>
+<h2>BMW M5</h2>
+<p class="muted">Спортивный седан</p>
+<strong>6 500 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyCar('BMW M5',6500000)">
+Купить
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:60px">🚙</div>
+<h2>Mercedes-AMG G63</h2>
+<p class="muted">Премиальный внедорожник</p>
+<strong>12 000 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyCar('Mercedes-AMG G63',12000000)">
+Купить
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:60px">🚘</div>
+<h2>Mercedes-Benz E63</h2>
+<p class="muted">Бизнес-седан</p>
+<strong>7 500 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyCar('Mercedes-Benz E63',7500000)">
+Купить
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:60px">🏎️</div>
+<h2>Porsche 911</h2>
+<p class="muted">Спортивный автомобиль</p>
+<strong>10 000 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyCar('Porsche 911',10000000)">
+Купить
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:60px">🚕</div>
+<h2>Lada Priora</h2>
+<p class="muted">Популярный автомобиль</p>
+<strong>450 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyCar('Lada Priora',450000)">
+Купить
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:60px">🚙</div>
+<h2>ВАЗ 2114</h2>
+<p class="muted">Городской автомобиль</p>
+<strong>300 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyCar('ВАЗ 2114',300000)">
+Купить
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TUNING -->
+
+<section id="page-tuning" class="page">
+
+<h1 class="title">🔧 Тюнинг</h1>
+<p class="subtitle">Настрой внешний вид и характеристики автомобиля</p>
+
+<div class="card">
+
+<h2 id="tuningCarName">Выбери автомобиль</h2>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>⚙️ Двигатель</h3>
+<p class="muted">Увеличивает мощность.</p>
+<strong>250 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('engine',250000)">
+Установить
+</button>
+</div>
+
+<div class="card">
+<h3>🏎️ Турбо</h3>
+<p class="muted">Дополнительная мощность.</p>
+<strong>400 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('turbo',400000)">
+Установить
+</button>
+</div>
+
+<div class="card">
+<h3>🛞 Спорт-подвеска</h3>
+<p class="muted">Улучшает управление.</p>
+<strong>180 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('suspension',180000)">
+Установить
+</button>
+</div>
+
+<div class="card">
+<h3>🎨 Покраска</h3>
+<p class="muted">Измени цвет машины.</p>
+<strong>50 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('paint',50000)">
+Покрасить
+</button>
+</div>
+
+<div class="card">
+<h3>💡 Неон</h3>
+<p class="muted">Подсветка автомобиля.</p>
+<strong>100 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('neon',100000)">
+Установить
+</button>
+</div>
+
+<div class="card">
+<h3>🔊 Выхлоп</h3>
+<p class="muted">Спортивная выхлопная система.</p>
+<strong>120 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="tuneCar('exhaust',120000)">
+Установить
+</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PLATES -->
+
+<section id="page-plates" class="page">
+
+<h1 class="title">🔢 Номерные знаки</h1>
+<p class="subtitle">Управление регистрацией автомобилей</p>
+
+<div class="card">
+
+<h3>Текущий номер</h3>
+
+<div class="big" id="currentPlate">
+А000АА 777
+</div>
+
+<br>
+
+<input
+id="newPlate"
+class="input"
+maxlength="12"
+placeholder="Введите новый номер"
+/>
+
+<button class="btn" onclick="changePlate()">
+Изменить номер — 50 000 ₽
+</button>
+
+</div>
+
+</section>
+
+
+<!-- AUCTION -->
+
+<section id="page-auction" class="page">
+
+<h1 class="title">🔨 Аукцион</h1>
+<p class="subtitle">Игроки выставляют автомобили на продажу</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h2>BMW M5</h2>
+<p class="muted">Продавец: Player_01</p>
+<strong>5 900 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyAuctionCar('BMW M5',5900000)">
+Сделать ставку
+</button>
+</div>
+
+<div class="card">
+<h2>Mercedes G63</h2>
+<p class="muted">Продавец: Player_27</p>
+<strong>10 800 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyAuctionCar('Mercedes-AMG G63',10800000)">
+Сделать ставку
+</button>
+</div>
+
+<div class="card">
+<h2>Lada Priora</h2>
+<p class="muted">Продавец: Player_51</p>
+<strong>420 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="buyAuctionCar('Lada Priora',420000)">
+Сделать ставку
+</button>
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Продать автомобиль</h3>
+
+<input
+id="auctionPrice"
+class="input"
+type="number"
+placeholder="Цена"
+/>
+
+<button class="btn" onclick="createAuction()">
+Выставить на аукцион
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ORGANIZATIONS -->
+
+<section id="page-organizations" class="page">
+
+<h1 class="title">🏛️ Организации</h1>
+<p class="subtitle">Государственные и городские структуры</p>
+
+<div class="grid g3">
+
+<div class="card">
+<div style="font-size:50px">👮</div>
+<h2>Полиция</h2>
+<p class="muted">
+Порядок, патрулирование, штрафы и задержания.
+</p>
+<button class="btn" onclick="joinOrganization('Полиция')">
+Подать заявку
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🚑</div>
+<h2>Больница</h2>
+<p class="muted">
+Медицинская помощь игрокам.
+</p>
+<button class="btn" onclick="joinOrganization('Больница')">
+Подать заявку
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🪖</div>
+<h2>Армия</h2>
+<p class="muted">
+Военная служба и оборона города.
+</p>
+<button class="btn" onclick="joinOrganization('Армия')">
+Подать заявку
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🏛️</div>
+<h2>Правительство</h2>
+<p class="muted">
+Государственное управление.
+</p>
+<button class="btn" onclick="joinOrganization('Правительство')">
+Подать заявку
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">🚦</div>
+<h2>ДПС</h2>
+<p class="muted">
+Контроль дорожного движения.
+</p>
+<button class="btn" onclick="joinOrganization('ДПС')">
+Подать заявку
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:50px">⚖️</div>
+<h2>Суд</h2>
+<p class="muted">
+Рассмотрение игровых дел.
+</p>
+<button class="btn" onclick="joinOrganization('Суд')">
+Подробнее
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MILITARY -->
+
+<section id="page-army" class="page">
+
+<h1 class="title">🪖 Армия</h1>
+<p class="subtitle">Военная служба</p>
+
+<div class="hero">
+
+<h2>Военкомат</h2>
+
+<p>
+Пройди медицинскую комиссию и получи направление.
+</p>
+
+<div class="actions">
+
+<button class="btn" onclick="militaryAction('medical')">
+🩺 Медкомиссия
+</button>
+
+<button class="btn" onclick="militaryAction('draft')">
+📄 Постановка на учёт
+</button>
+
+<button class="btn" onclick="militaryAction('service')">
+🪖 Начать службу
+</button>
+
+</div>
+
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>Звание</h3>
+<div class="big" id="armyRank">
+Гражданин
+</div>
+</div>
+
+<div class="card">
+<h3>Служба</h3>
+<div class="big" id="armyStatus">
+Не проходил
+</div>
+</div>
+
+<div class="card">
+<h3>Военный билет</h3>
+<div class="big" id="militaryTicket">
+❌
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DRIVING SCHOOL -->
+
+<section id="page-driving" class="page">
+
+<h1 class="title">🚦 Автошкола</h1>
+<p class="subtitle">Получи водительские права</p>
+
+<div class="card">
+
+<h2>Категория B</h2>
+
+<p class="muted">
+Легковые автомобили.
+</p>
+
+<div class="grid g3">
+
+<div>
+<strong>Теория</strong>
+<p class="muted">20 вопросов</p>
+</div>
+
+<div>
+<strong>Практика</strong>
+<p class="muted">Городской маршрут</p>
+</div>
+
+<div>
+<strong>Стоимость</strong>
+<p>25 000 ₽</p>
+</div>
+
+</div>
+
+<br>
+
+<button class="btn" onclick="startDrivingExam()">
+Начать экзамен
+</button>
+
+<div id="drivingResult" class="card" style="margin-top:15px">
+Экзамен не начат.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- LICENSES -->
+
+<section id="page-licenses" class="page">
+
+<h1 class="title">📜 Лицензии</h1>
+<p class="subtitle">Документы персонажа</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🚗 Водительские права</h3>
+<div class="big" id="licenseCar">❌</div>
+</div>
+
+<div class="card">
+<h3>🔫 Лицензия</h3>
+<div class="big" id="licenseWeapon">❌</div>
+</div>
+
+<div class="card">
+<h3>🎣 Рыбалка</h3>
+<div class="big" id="licenseFishing">❌</div>
+</div>
+
+<div class="card">
+<h3>🏹 Охота</h3>
+<div class="big" id="licenseHunting">❌</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOSPITAL -->
+
+<section id="page-hospital" class="page">
+
+<h1 class="title">🏥 Больница</h1>
+<p class="subtitle">Медицинские услуги</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h2>🩺 Осмотр</h2>
+<p class="muted">Полный медицинский осмотр.</p>
+<strong>5 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="hospitalService('checkup',5000)">
+Пройти
+</button>
+</div>
+
+<div class="card">
+<h2>❤️ Лечение</h2>
+<p class="muted">Восстановление здоровья.</p>
+<strong>10 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="hospitalService('heal',10000)">
+Лечиться
+</button>
+</div>
+
+<div class="card">
+<h2>💉 Медкарта</h2>
+<p class="muted">Получить справку.</p>
+<strong>2 000 ₽</strong>
+<br><br>
+<button class="btn" onclick="hospitalService('certificate',2000)">
+Получить
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- GOVERNMENT -->
+
+<section id="page-government" class="page">
+
+<h1 class="title">🏛️ Правительство</h1>
+<p class="subtitle">Государственные сервисы</p>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>📄 Документы</h3>
+<p class="muted">Получение игровых документов.</p>
+<button class="btn" onclick="governmentService('documents')">
+Открыть
+</button>
+</div>
+
+<div class="card">
+<h3>💰 Налоги</h3>
+<p class="muted">Оплата государственных сборов.</p>
+<button class="btn" onclick="governmentService('tax')">
+Оплатить
+</button>
+</div>
+
+<div class="card">
+<h3>🏠 Регистрация</h3>
+<p class="muted">Регистрация недвижимости.</p>
+<button class="btn" onclick="governmentService('registration')">
+Открыть
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HUNTING -->
+
+<section id="page-hunting" class="page">
+
+<h1 class="title">🏹 Охота</h1>
+<p class="subtitle">Выезжай в охотничьи угодья</p>
+
+<div class="hero">
+
+<h2>Охотничьи угодья</h2>
+
+<p>
+Для охоты нужна соответствующая лицензия.
+</p>
+
+<button class="btn" onclick="hunt()">
+🏹 Отправиться на охоту
+</button>
+
+</div>
+
+<div class="grid g3">
+
+<div class="card">
+<h3>🦌 Олень</h3>
+<p>Шанс добычи: высокий</p>
+<strong>15 000 ₽</strong>
+</div>
+
+<div class="card">
+<h3>🐗 Кабан</h3>
+<p>Шанс добычи: средний</p>
+<strong>25 000 ₽</strong>
+</div>
+
+<div class="card">
+<h3>🐻 Редкий трофей</h3>
+<p>Очень маленький шанс</p>
+<strong>100 000 ₽</strong>
+</div>
+
+</div>
+
+<div id="huntResult" class="card" style="margin-top:15px">
+Охота ещё не начата.
+</div>
+
+</section>
+
+
+<!-- PDD -->
+
+<section id="page-pdd" class="page">
+
+<h1 class="title">🚦 ПДД</h1>
+<p class="subtitle">Правила дорожного движения</p>
+
+<div class="grid g2">
+
+<div class="card">
+<h2>🚦 Светофор</h2>
+<p class="muted">
+Красный — остановка. Жёлтый — внимание. Зелёный — движение.
+</p>
+</div>
+
+<div class="card">
+<h2>🚗 Скорость</h2>
+<p class="muted">
+Соблюдай установленное ограничение.
+</p>
+</div>
+
+<div class="card">
+<h2>🅿️ Парковка</h2>
+<p class="muted">
+Не блокируй проезды и специальные зоны.
+</p>
+</div>
+
+<div class="card">
+<h2>👮 Штрафы</h2>
+<p class="muted">
+Нарушения могут привести к штрафам и лишению прав.
+</p>
+</div>
+
+</div>
+
+<br>
+
+<div class="card">
+
+<h3>Тренировка</h3>
+
+<button class="btn" onclick="pddTest()">
+Начать тест ПДД
+</button>
+
+<div id="pddResult" class="card" style="margin-top:15px">
+Тест не начат.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CITY SERVICES -->
+
+<section id="page-services" class="page">
+
+<h1 class="title">🏙️ Город</h1>
+<p class="subtitle">Интерактивные места</p>
+
+<div class="grid g4">
+
+<div class="card">
+<div style="font-size:40px">🏦</div>
+<h3>Банк</h3>
+<button class="btn" onclick="openPage('bank')">
+Открыть
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:40px">🏥</div>
+<h3>Больница</h3>
+<button class="btn" onclick="openPage('hospital')">
+Открыть
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:40px">🎰</div>
+<h3>Казино</h3>
+<button class="btn" onclick="openPage('casino')">
+Открыть
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:40px">🚗</div>
+<h3>Автосалон</h3>
+<button class="btn" onclick="openPage('cars')">
+Открыть
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:40px">🚦</div>
+<h3>Автошкола</h3>
+<button class="btn" onclick="openPage('driving')">
+Открыть
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:40px">🪖</div>
+<h3>Военкомат</h3>
+<button class="btn" onclick="openPage('army')">
+Открыть
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:40px">🏛️</div>
+<h3>Правительство</h3>
+<button class="btn" onclick="openPage('government')">
+Открыть
+</button>
+</div>
+
+<div class="card">
+<div style="font-size:40px">🏹</div>
+<h3>Охота</h3>
+<button class="btn" onclick="openPage('hunting')">
+Открыть
+</button>
+</div>
+
+</div>
+
+</section>
