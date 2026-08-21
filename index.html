@@ -13,606 +13,1724 @@
             box-sizing: border-box;
         }
 
+        html,
         body {
             margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
             min-height: 100vh;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #fff;
             background:
-                radial-gradient(circle at top, #202020, #080808 65%);
-            color: white;
+                radial-gradient(circle at 50% -10%, #303030 0%, #111 42%, #050505 100%);
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .app {
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* =========================
+           AUTH
+        ========================= */
+
+        #authScreen {
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
         }
 
-        .container {
+        .auth-container {
             width: 100%;
             max-width: 430px;
         }
 
-        .logo {
+        .brand {
             text-align: center;
-            font-size: 34px;
+            margin-bottom: 22px;
+        }
+
+        .brand-title {
+            font-size: 36px;
             font-weight: 900;
+            letter-spacing: 4px;
+        }
+
+        .brand-subtitle {
+            margin-top: 7px;
+            color: #8b8b8b;
+            font-size: 13px;
             letter-spacing: 3px;
-            margin-bottom: 8px;
         }
 
-        .subtitle {
-            text-align: center;
-            color: #888;
-            margin-bottom: 25px;
+        .card {
+            background: rgba(18, 18, 18, 0.96);
+            border: 1px solid #303030;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow:
+                0 25px 80px rgba(0, 0, 0, .55),
+                inset 0 1px 0 rgba(255,255,255,.03);
         }
 
-        .panel {
-            background: rgba(20, 20, 20, .96);
-            border: 1px solid #333;
-            border-radius: 18px;
-            padding: 25px;
-            box-shadow: 0 20px 60px rgba(0,0,0,.6);
+        .auth-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+            padding: 5px;
+            margin-bottom: 22px;
+            background: #0b0b0b;
+            border-radius: 12px;
         }
 
-        h2 {
-            margin-top: 0;
+        .auth-tab {
+            border: 0;
+            border-radius: 9px;
+            padding: 12px;
+            background: transparent;
+            color: #777;
+            font-weight: 700;
         }
 
-        input {
+        .auth-tab.active {
+            background: #fff;
+            color: #050505;
+        }
+
+        .auth-title {
+            margin: 0 0 7px;
+            font-size: 25px;
+        }
+
+        .auth-description {
+            margin: 0 0 20px;
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .field {
+            margin-bottom: 12px;
+        }
+
+        .field label {
+            display: block;
+            margin: 0 0 6px 2px;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .field input {
             width: 100%;
-            padding: 14px;
-            margin: 7px 0;
-            border-radius: 10px;
-            border: 1px solid #444;
-            background: #111;
-            color: white;
+            padding: 14px 15px;
+            border: 1px solid #353535;
+            border-radius: 11px;
             outline: none;
+            background: #0c0c0c;
+            color: #fff;
         }
 
-        input:focus {
+        .field input:focus {
             border-color: #777;
         }
 
-        button {
+        .main-button {
             width: 100%;
             padding: 14px;
-            margin-top: 10px;
+            margin-top: 6px;
             border: 0;
-            border-radius: 10px;
-            background: white;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
+            border-radius: 11px;
+            background: #fff;
+            color: #050505;
+            font-weight: 800;
         }
 
-        button.secondary {
-            background: #252525;
-            color: white;
+        .main-button:disabled {
+            opacity: .5;
+            cursor: wait;
         }
 
         .message {
             min-height: 22px;
             margin-top: 15px;
             text-align: center;
-            color: #aaa;
+            color: #999;
+            font-size: 13px;
+            line-height: 1.4;
         }
 
-        .hidden {
+        .message.error {
+            color: #ff7373;
+        }
+
+        .message.success {
+            color: #7cffaa;
+        }
+
+        .security-note {
+            margin-top: 18px;
+            padding-top: 15px;
+            border-top: 1px solid #252525;
+            color: #5f5f5f;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           GAME
+        ========================= */
+
+        #gameScreen {
             display: none;
+            min-height: 100vh;
         }
 
-        .stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 20px 0;
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 15px 18px;
+            background: rgba(8, 8, 8, .94);
+            border-bottom: 1px solid #252525;
+            backdrop-filter: blur(12px);
         }
 
-        .stat {
-            background: #111;
+        .top-logo {
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .online {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #888;
+            font-size: 12px;
+        }
+
+        .online-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #6cff9b;
+            box-shadow: 0 0 10px rgba(108,255,155,.6);
+        }
+
+        .logout-button {
             border: 1px solid #333;
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 9px;
+            padding: 8px 12px;
+            background: #151515;
+            color: #aaa;
+            font-size: 12px;
         }
 
-        .stat small {
+        .game-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+            padding: 25px 18px 50px;
+        }
+
+        .welcome {
+            margin-bottom: 20px;
+        }
+
+        .welcome-small {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .welcome-name {
+            margin-top: 5px;
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .stat-card {
+            padding: 18px;
+            border: 1px solid #292929;
+            border-radius: 15px;
+            background: #111;
+        }
+
+        .stat-label {
+            color: #777;
+            font-size: 12px;
+        }
+
+        .stat-value {
+            margin-top: 8px;
+            font-size: 23px;
+            font-weight: 800;
+        }
+
+        .section {
+            margin-top: 25px;
+        }
+
+        .section-title {
+            margin-bottom: 10px;
+            color: #888;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .character-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px;
+            border: 1px solid #292929;
+            border-radius: 15px;
+            background: #111;
+        }
+
+        .avatar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 58px;
+            height: 58px;
+            flex-shrink: 0;
+            border-radius: 15px;
+            background: #222;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .character-name {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .character-info {
+            margin-top: 5px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .action {
+            min-height: 70px;
+            padding: 15px;
+            border: 1px solid #292929;
+            border-radius: 13px;
+            background: #111;
+            color: #fff;
+            text-align: left;
+        }
+
+        .action:hover {
+            border-color: #555;
+        }
+
+        .action-title {
+            font-weight: 800;
+        }
+
+        .action-description {
+            margin-top: 5px;
+            color: #666;
+            font-size: 11px;
+        }
+
+        .game-message {
+            min-height: 22px;
+            margin-top: 18px;
+            color: #777;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .loading {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #777;
         }
 
-        .stat strong {
-            display: block;
-            margin-top: 5px;
-            font-size: 20px;
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .brand-title {
+                font-size: 30px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .game-container {
+                padding: 20px 14px 40px;
+            }
+
+            .welcome-name {
+                font-size: 25px;
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+
         }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="app">
 
-    <div class="logo">BLACK RUSSIA</div>
-    <div class="subtitle">ROLEPLAY PROJECT</div>
+    <!-- =========================
+         LOADING
+    ========================== -->
 
-    <!-- АВТОРИЗАЦИЯ -->
-    <div class="panel" id="authPanel">
-
-        <h2 id="authTitle">Вход</h2>
-
-        <input
-            id="username"
-            type="text"
-            placeholder="Никнейм"
-        >
-
-        <input
-            id="email"
-            type="email"
-            placeholder="Email"
-        >
-
-        <input
-            id="password"
-            type="password"
-            placeholder="Пароль"
-        >
-
-        <button onclick="login()">
-            Войти
-        </button>
-
-        <button class="secondary" onclick="register()">
-            Создать аккаунт
-        </button>
-
-        <div class="message" id="authMessage"></div>
-
+    <div id="loadingScreen" class="loading">
+        Подключение к серверу...
     </div>
 
 
-    <!-- ИГРОВОЙ ПРОФИЛЬ -->
-    <div class="panel hidden" id="gamePanel">
+    <!-- =========================
+         AUTH SCREEN
+    ========================== -->
 
-        <h2 id="welcome"></h2>
+    <section id="authScreen" style="display:none;">
 
-        <div class="stats">
+        <div class="auth-container">
 
-            <div class="stat">
-                <small>Наличные</small>
-                <strong id="cash">0 ₽</strong>
+            <div class="brand">
+                <div class="brand-title">
+                    BLACK RUSSIA
+                </div>
+
+                <div class="brand-subtitle">
+                    ROLEPLAY PROJECT
+                </div>
             </div>
 
-            <div class="stat">
-                <small>Банк</small>
-                <strong id="bank">0 ₽</strong>
-            </div>
 
-            <div class="stat">
-                <small>Золото</small>
-                <strong id="gold">0</strong>
-            </div>
+            <div class="card">
 
-            <div class="stat">
-                <small>Уровень</small>
-                <strong id="level">1</strong>
+                <div class="auth-tabs">
+
+                    <button
+                        id="loginTab"
+                        class="auth-tab active"
+                        onclick="showLogin()">
+                        Вход
+                    </button>
+
+                    <button
+                        id="registerTab"
+                        class="auth-tab"
+                        onclick="showRegister()">
+                        Регистрация
+                    </button>
+
+                </div>
+
+
+                <div id="authForm">
+
+                    <h1
+                        id="authTitle"
+                        class="auth-title">
+                        Добро пожаловать
+                    </h1>
+
+                    <p
+                        id="authDescription"
+                        class="auth-description">
+                        Войди в свой аккаунт и продолжи игру.
+                    </p>
+
+
+                    <div
+                        id="usernameField"
+                        class="field"
+                        style="display:none;">
+
+                        <label for="username">
+                            Никнейм
+                        </label>
+
+                        <input
+                            id="username"
+                            type="text"
+                            maxlength="24"
+                            autocomplete="username"
+                            placeholder="Например: Thomas_RP">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="player@example.com">
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="password">
+                            Пароль
+                        </label>
+
+                        <input
+                            id="password"
+                            type="password"
+                            minlength="6"
+                            autocomplete="current-password"
+                            placeholder="Минимум 6 символов">
+
+                    </div>
+
+
+                    <button
+                        id="authButton"
+                        class="main-button"
+                        onclick="handleAuth()">
+                        Войти
+                    </button>
+
+
+                    <div
+                        id="authMessage"
+                        class="message">
+                    </div>
+
+
+                    <div class="security-note">
+                        Данные аккаунта и игровой прогресс сохраняются
+                        в облачной базе данных.
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
-        <button onclick="addMoney()">
-            Тест: получить 1000 ₽
-        </button>
+    </section>
 
-        <button class="secondary" onclick="logout()">
-            Выйти
-        </button>
 
-        <div class="message" id="gameMessage"></div>
+    <!-- =========================
+         GAME SCREEN
+    ========================== -->
 
-    </div>
+    <section id="gameScreen">
+
+        <header class="topbar">
+
+            <div class="top-logo">
+                BLACK RUSSIA
+            </div>
+
+            <div class="online">
+                <span class="online-dot"></span>
+                ONLINE
+            </div>
+
+            <button
+                class="logout-button"
+                onclick="logout()">
+                Выйти
+            </button>
+
+        </header>
+
+
+        <main class="game-container">
+
+            <div class="welcome">
+
+                <div class="welcome-small">
+                    Добро пожаловать в город
+                </div>
+
+                <div
+                    id="welcomeName"
+                    class="welcome-name">
+                    Игрок
+                </div>
+
+            </div>
+
+
+            <!-- СТАТИСТИКА -->
+
+            <div class="grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Наличные
+                    </div>
+
+                    <div
+                        id="cash"
+                        class="stat-value">
+                        0 ₽
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Банковский счёт
+                    </div>
+
+                    <div
+                        id="bank"
+                        class="stat-value">
+                        0 ₽
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Золото
+                    </div>
+
+                    <div
+                        id="gold"
+                        class="stat-value">
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Уровень
+                    </div>
+
+                    <div
+                        id="level"
+                        class="stat-value">
+                        1
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ПЕРСОНАЖ -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    Персонаж
+                </div>
+
+                <div class="character-card">
+
+                    <div
+                        id="avatar"
+                        class="avatar">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <div
+                            id="characterName"
+                            class="character-name">
+                            Загрузка...
+                        </div>
+
+                        <div
+                            id="characterInfo"
+                            class="character-info">
+                            Загрузка данных персонажа...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- МЕНЮ -->
+
+            <div class="section">
+
+                <div class="section-title">
+                    Город
+                </div>
+
+                <div class="actions">
+
+                    <button
+                        class="action"
+                        onclick="gameAction('Телефон')">
+
+                        <div class="action-title">
+                            📱 Телефон
+                        </div>
+
+                        <div class="action-description">
+                            Связь, контакты и приложения
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="action"
+                        onclick="gameAction('Автомобили')">
+
+                        <div class="action-title">
+                            🚗 Автомобили
+                        </div>
+
+                        <div class="action-description">
+                            Ваш транспорт и гараж
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="action"
+                        onclick="gameAction('Недвижимость')">
+
+                        <div class="action-title">
+                            🏠 Недвижимость
+                        </div>
+
+                        <div class="action-description">
+                            Квартиры, дома и гаражи
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="action"
+                        onclick="gameAction('Работа')">
+
+                        <div class="action-title">
+                            💼 Работа
+                        </div>
+
+                        <div class="action-description">
+                            Профессия, опыт и зарплата
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="action"
+                        onclick="gameAction('Инвентарь')">
+
+                        <div class="action-title">
+                            🎒 Инвентарь
+                        </div>
+
+                        <div class="action-description">
+                            Предметы персонажа
+                        </div>
+
+                    </button>
+
+
+                    <button
+                        class="action"
+                        onclick="gameAction('Банк')">
+
+                        <div class="action-title">
+                            🏦 Банк
+                        </div>
+
+                        <div class="action-description">
+                            Счёт и финансовые операции
+                        </div>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="gameMessage"
+                class="game-message">
+            </div>
+
+        </main>
+
+    </section>
 
 </div>
 
 
 <script>
 
-const SUPABASE_URL =
-    "https://qzswnoeglovfpgrzpnio.supabase.co";
+    /* ==================================================
+       SUPABASE
+    ================================================== */
 
-const SUPABASE_KEY =
-    "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+    const SUPABASE_URL =
+        "https://qzswnoeglovfpgrzpnio.supabase.co";
 
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+    const SUPABASE_KEY =
+        "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
 
-let currentUser = null;
-let currentWallet = null;
+    /* ==================================================
+       STATE
+    ================================================== */
+
+    let currentUser = null;
+
+    let currentProfile = null;
+
+    let currentWallet = null;
+
+    let currentCharacter = null;
 
 
-/* ==============================
-   РЕГИСТРАЦИЯ
-============================== */
+    let registerMode = false;
 
-async function register() {
 
-    const username =
-        document.getElementById("username").value.trim();
+    /* ==================================================
+       ELEMENTS
+    ================================================== */
 
-    const email =
-        document.getElementById("email").value.trim();
+    const loadingScreen =
+        document.getElementById("loadingScreen");
 
-    const password =
-        document.getElementById("password").value;
+    const authScreen =
+        document.getElementById("authScreen");
 
-    const message =
+    const gameScreen =
+        document.getElementById("gameScreen");
+
+    const authTitle =
+        document.getElementById("authTitle");
+
+    const authDescription =
+        document.getElementById("authDescription");
+
+    const usernameField =
+        document.getElementById("usernameField");
+
+    const authButton =
+        document.getElementById("authButton");
+
+    const authMessage =
         document.getElementById("authMessage");
 
 
-    if (!username || !email || !password) {
+    /* ==================================================
+       UI
+    ================================================== */
 
-        message.textContent =
-            "Заполни все поля.";
+    function showLogin() {
 
-        return;
+        registerMode = false;
+
+        document
+            .getElementById("loginTab")
+            .classList.add("active");
+
+        document
+            .getElementById("registerTab")
+            .classList.remove("active");
+
+
+        usernameField.style.display =
+            "none";
+
+
+        authTitle.textContent =
+            "Добро пожаловать";
+
+
+        authDescription.textContent =
+            "Войди в свой аккаунт и продолжи игру.";
+
+
+        authButton.textContent =
+            "Войти";
+
+
+        clearMessage();
+
     }
 
 
-    if (password.length < 6) {
+    function showRegister() {
 
-        message.textContent =
-            "Пароль должен быть минимум 6 символов.";
+        registerMode = true;
 
-        return;
+        document
+            .getElementById("registerTab")
+            .classList.add("active");
+
+        document
+            .getElementById("loginTab")
+            .classList.remove("active");
+
+
+        usernameField.style.display =
+            "block";
+
+
+        authTitle.textContent =
+            "Создание аккаунта";
+
+
+        authDescription.textContent =
+            "Создай аккаунт и начни свою историю в городе.";
+
+
+        authButton.textContent =
+            "Создать аккаунт";
+
+
+        clearMessage();
+
     }
 
 
-    message.textContent =
-        "Создаём аккаунт...";
+    function setMessage(
+        text,
+        type = ""
+    ) {
 
+        authMessage.textContent =
+            text;
 
-    const { data, error } =
-        await supabaseClient.auth.signUp({
+        authMessage.className =
+            "message " + type;
 
-            email: email,
-
-            password: password
-
-        });
-
-
-    if (error) {
-
-        message.textContent =
-            error.message;
-
-        return;
     }
 
 
-    if (!data.user) {
+    function clearMessage() {
 
-        message.textContent =
-            "Не удалось создать пользователя.";
+        authMessage.textContent =
+            "";
 
-        return;
+        authMessage.className =
+            "message";
+
     }
 
 
-    const userId =
-        data.user.id;
+    /* ==================================================
+       AUTH
+    ================================================== */
 
+    async function handleAuth() {
 
-    const { error: profileError } =
-        await supabaseClient
-            .from("profiles")
-            .insert({
+        if (registerMode) {
 
-                id: userId,
+            await register();
 
-                username: username
+        } else {
 
-            });
+            await login();
 
-
-    if (profileError) {
-
-        message.textContent =
-            profileError.message;
-
-        return;
-    }
-
-
-    await supabaseClient
-        .from("wallets")
-        .insert({
-
-            player_id: userId,
-
-            cash: 5000,
-
-            bank: 10000,
-
-            gold: 0
-
-        });
-
-
-    await supabaseClient
-        .from("characters")
-        .insert({
-
-            player_id: userId,
-
-            first_name: username,
-
-            last_name: "Player",
-
-            age: 18,
-
-            gender: "male"
-
-        });
-
-
-    message.textContent =
-        "Аккаунт создан!";
-
-
-    await loadPlayer();
-
-}
-
-
-/* ==============================
-   ВХОД
-============================== */
-
-async function login() {
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    const password =
-        document.getElementById("password").value;
-
-
-    const message =
-        document.getElementById("authMessage");
-
-
-    if (!email || !password) {
-
-        message.textContent =
-            "Введите email и пароль.";
-
-        return;
-    }
-
-
-    message.textContent =
-        "Выполняется вход...";
-
-
-    const { data, error } =
-        await supabaseClient.auth.signInWithPassword({
-
-            email: email,
-
-            password: password
-
-        });
-
-
-    if (error) {
-
-        message.textContent =
-            error.message;
-
-        return;
-    }
-
-
-    currentUser =
-        data.user;
-
-
-    await loadPlayer();
-
-}
-
-
-/* ==============================
-   ЗАГРУЗКА ИГРОКА
-============================== */
-
-async function loadPlayer() {
-
-    const {
-        data: {
-            user
         }
-    } =
-        await supabaseClient.auth.getUser();
 
-
-    if (!user) {
-
-        return;
     }
 
 
-    currentUser =
-        user;
+    async function register() {
+
+        const username =
+            document
+                .getElementById("username")
+                .value
+                .trim();
 
 
-    const { data: profile } =
-        await supabaseClient
-            .from("profiles")
-            .select("*")
-            .eq("id", user.id)
-            .single();
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
 
 
-    const { data: wallet } =
-        await supabaseClient
-            .from("wallets")
-            .select("*")
-            .eq("player_id", user.id)
-            .single();
+        const password =
+            document
+                .getElementById("password")
+                .value;
 
 
-    currentWallet =
-        wallet;
+        if (!username) {
+
+            setMessage(
+                "Введите никнейм.",
+                "error"
+            );
+
+            return;
+
+        }
 
 
-    document.getElementById("authPanel")
-        .classList.add("hidden");
+        if (username.length < 3) {
+
+            setMessage(
+                "Никнейм должен содержать минимум 3 символа.",
+                "error"
+            );
+
+            return;
+
+        }
 
 
-    document.getElementById("gamePanel")
-        .classList.remove("hidden");
+        if (!email) {
+
+            setMessage(
+                "Введите email.",
+                "error"
+            );
+
+            return;
+
+        }
 
 
-    document.getElementById("welcome")
-        .textContent =
-        "Добро пожаловать, " +
-        profile.username;
+        if (password.length < 6) {
+
+            setMessage(
+                "Пароль должен содержать минимум 6 символов.",
+                "error"
+            );
+
+            return;
+
+        }
 
 
-    updateWallet();
-
-}
-
-
-/* ==============================
-   ОБНОВЛЕНИЕ ДЕНЕГ
-============================== */
-
-function updateWallet() {
-
-    if (!currentWallet) return;
+        authButton.disabled =
+            true;
 
 
-    document.getElementById("cash")
-        .textContent =
-        Number(currentWallet.cash)
-        .toLocaleString("ru-RU") +
-        " ₽";
+        setMessage(
+            "Создаём аккаунт..."
+        );
 
 
-    document.getElementById("bank")
-        .textContent =
-        Number(currentWallet.bank)
-        .toLocaleString("ru-RU") +
-        " ₽";
+        try {
+
+            /*
+                ВАЖНО:
+
+                username передаём в metadata.
+
+                Наш PostgreSQL trigger
+                handle_new_user()
+                сам создаст:
+
+                profiles
+                wallets
+                characters
+            */
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient.auth.signUp({
+
+                    email: email,
+
+                    password: password,
+
+                    options: {
+
+                        data: {
+
+                            username: username
+
+                        }
+
+                    }
+
+                });
 
 
-    document.getElementById("gold")
-        .textContent =
-        currentWallet.gold;
+            if (error) {
+
+                throw error;
+
+            }
 
 
-    document.getElementById("level")
-        .textContent =
-        "1";
+            if (!data.user) {
 
-}
+                throw new Error(
+                    "Supabase не вернул пользователя."
+                );
 
-
-/* ==============================
-   ТЕСТОВОЕ СОХРАНЕНИЕ
-============================== */
-
-async function addMoney() {
-
-    if (!currentUser || !currentWallet) {
-        return;
-    }
+            }
 
 
-    const newCash =
-        Number(currentWallet.cash) + 1000;
+            /*
+                Если подтверждение email включено,
+                сессия может отсутствовать.
+            */
+
+            if (!data.session) {
+
+                setMessage(
+                    "Аккаунт создан. Проверь почту для подтверждения, затем войди.",
+                    "success"
+                );
+
+                authButton.disabled =
+                    false;
+
+                return;
+
+            }
 
 
-    const { error } =
-        await supabaseClient
-            .from("wallets")
-            .update({
-
-                cash: newCash
-
-            })
-            .eq(
-                "player_id",
-                currentUser.id
+            setMessage(
+                "Аккаунт создан. Загружаем персонажа...",
+                "success"
             );
 
 
-    if (error) {
-
-        document.getElementById("gameMessage")
-            .textContent =
-            error.message;
-
-        return;
-    }
+            await loadPlayer();
 
 
-    currentWallet.cash =
-        newCash;
+        } catch (error) {
 
+            console.error(error);
 
-    updateWallet();
+            setMessage(
+                error.message ||
+                "Ошибка регистрации.",
+                "error"
+            );
 
-
-    document.getElementById("gameMessage")
-        .textContent =
-        "1000 ₽ сохранены в базе.";
-
-}
-
-
-/* ==============================
-   ВЫХОД
-============================== */
-
-async function logout() {
-
-    await supabaseClient.auth.signOut();
-
-    location.reload();
-
-}
-
-
-/* ==============================
-   ПРОВЕРКА СЕССИИ
-============================== */
-
-async function checkSession() {
-
-    const {
-        data: {
-            session
         }
-    } =
-        await supabaseClient.auth.getSession();
 
 
-    if (session) {
-
-        await loadPlayer();
+        authButton.disabled =
+            false;
 
     }
 
-}
+
+    async function login() {
+
+        const email =
+            document
+                .getElementById("email")
+                .value
+                .trim();
 
 
-checkSession();
+        const password =
+            document
+                .getElementById("password")
+                .value;
+
+
+        if (!email || !password) {
+
+            setMessage(
+                "Введите email и пароль.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        authButton.disabled =
+            true;
+
+
+        setMessage(
+            "Выполняется вход..."
+        );
+
+
+        try {
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient.auth
+                    .signInWithPassword({
+
+                        email: email,
+
+                        password: password
+
+                    });
+
+
+            if (error) {
+
+                throw error;
+
+            }
+
+
+            currentUser =
+                data.user;
+
+
+            await loadPlayer();
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            setMessage(
+                error.message ||
+                "Ошибка входа.",
+                "error"
+            );
+
+        }
+
+
+        authButton.disabled =
+            false;
+
+    }
+
+
+    /* ==================================================
+       LOAD PLAYER
+    ================================================== */
+
+    async function loadPlayer() {
+
+        const {
+            data: {
+                user
+            }
+        } =
+            await supabaseClient.auth.getUser();
+
+
+        if (!user) {
+
+            showAuth();
+
+            return;
+
+        }
+
+
+        currentUser =
+            user;
+
+
+        /*
+            PROFILE
+        */
+
+        const {
+            data: profile,
+            error: profileError
+        } =
+            await supabaseClient
+                .from("profiles")
+                .select("*")
+                .eq("id", user.id)
+                .single();
+
+
+        if (profileError) {
+
+            console.error(
+                "PROFILE ERROR:",
+                profileError
+            );
+
+        }
+
+
+        currentProfile =
+            profile;
+
+
+        /*
+            WALLET
+        */
+
+        const {
+            data: wallet,
+            error: walletError
+        } =
+            await supabaseClient
+                .from("wallets")
+                .select("*")
+                .eq("player_id", user.id)
+                .single();
+
+
+        if (walletError) {
+
+            console.error(
+                "WALLET ERROR:",
+                walletError
+            );
+
+        }
+
+
+        currentWallet =
+            wallet;
+
+
+        /*
+            CHARACTER
+        */
+
+        const {
+            data: character,
+            error: characterError
+        } =
+            await supabaseClient
+                .from("characters")
+                .select("*")
+                .eq("player_id", user.id)
+                .order(
+                    "created_at",
+                    {
+                        ascending: true
+                    }
+                )
+                .limit(1)
+                .maybeSingle();
+
+
+        if (characterError) {
+
+            console.error(
+                "CHARACTER ERROR:",
+                characterError
+            );
+
+        }
+
+
+        currentCharacter =
+            character;
+
+
+        showGame();
+
+        updateGameUI();
+
+    }
+
+
+    /* ==================================================
+       GAME UI
+    ================================================== */
+
+    function showGame() {
+
+        loadingScreen.style.display =
+            "none";
+
+        authScreen.style.display =
+            "none";
+
+        gameScreen.style.display =
+            "block";
+
+    }
+
+
+    function showAuth() {
+
+        loadingScreen.style.display =
+            "none";
+
+        gameScreen.style.display =
+            "none";
+
+        authScreen.style.display =
+            "flex";
+
+    }
+
+
+    function updateGameUI() {
+
+        /*
+            PROFILE
+        */
+
+        const username =
+            currentProfile?.username ||
+            currentUser?.email?.split("@")[0] ||
+            "Игрок";
+
+
+        document
+            .getElementById("welcomeName")
+            .textContent =
+            username;
+
+
+        /*
+            WALLET
+        */
+
+        const cash =
+            Number(
+                currentWallet?.cash || 0
+            );
+
+
+        const bank =
+            Number(
+                currentWallet?.bank || 0
+            );
+
+
+        const gold =
+            Number(
+                currentWallet?.gold || 0
+            );
+
+
+        document
+            .getElementById("cash")
+            .textContent =
+            cash.toLocaleString("ru-RU") +
+            " ₽";
+
+
+        document
+            .getElementById("bank")
+            .textContent =
+            bank.toLocaleString("ru-RU") +
+            " ₽";
+
+
+        document
+            .getElementById("gold")
+            .textContent =
+            gold.toLocaleString("ru-RU");
+
+
+        /*
+            CHARACTER
+        */
+
+        if (currentCharacter) {
+
+            const firstName =
+                currentCharacter.first_name ||
+                "Player";
+
+
+            const lastName =
+                currentCharacter.last_name ||
+                "";
+
+
+            document
+                .getElementById("characterName")
+                .textContent =
+                firstName +
+                " " +
+                lastName;
+
+
+            document
+                .getElementById("characterInfo")
+                .textContent =
+                "Уровень " +
+                (currentCharacter.level || 1) +
+                " • " +
+                (currentCharacter.age || 18) +
+                " лет • Здоровье " +
+                (currentCharacter.health || 100) +
+                "%";
+
+
+            document
+                .getElementById("level")
+                .textContent =
+                currentCharacter.level || 1;
+
+
+            document
+                .getElementById("avatar")
+                .textContent =
+                firstName
+                    .charAt(0)
+                    .toUpperCase();
+
+        } else {
+
+            document
+                .getElementById("characterName")
+                .textContent =
+                "Персонаж не найден";
+
+
+            document
+                .getElementById("characterInfo")
+                .textContent =
+                "Создание персонажа будет доступно позже.";
+
+        }
+
+    }
+
+
+    /* ==================================================
+       TEST MONEY SAVE
+    ================================================== */
+
+    async function testMoney() {
+
+        if (!currentUser || !currentWallet) {
+
+            return;
+
+        }
+
+
+        const newCash =
+            Number(currentWallet.cash) +
+            1000;
+
+
+        const {
+            error
+        } =
+            await supabaseClient
+                .from("wallets")
+                .update({
+
+                    cash: newCash,
+
+                    updated_at:
+                        new Date().toISOString()
+
+                })
+                .eq(
+                    "player_id",
+                    currentUser.id
+                );
+
+
+        if (error) {
+
+            console.error(error);
+
+            showGameMessage(
+                error.message
+            );
+
+            return;
+
+        }
+
+
+        currentWallet.cash =
+            newCash;
+
+
+        updateGameUI();
+
+
+        showGameMessage(
+            "1000 ₽ сохранены в базе данных."
+        );
+
+    }
+
+
+    /* ==================================================
+       GAME ACTIONS
+    ================================================== */
+
+    function gameAction(name) {
+
+        showGameMessage(
+            name +
+            ": раздел будет добавлен в следующей версии."
+        );
+
+    }
+
+
+    function showGameMessage(text) {
+
+        document
+            .getElementById("gameMessage")
+            .textContent =
+            text;
+
+    }
+
+
+    /* ==================================================
+       LOGOUT
+    ================================================== */
+
+    async function logout() {
+
+        await supabaseClient.auth.signOut();
+
+        currentUser =
+            null;
+
+        currentProfile =
+            null;
+
+        currentWallet =
+            null;
+
+        currentCharacter =
+            null;
+
+
+        location.reload();
+
+    }
+
+
+    /* ==================================================
+       SESSION
+    ================================================== */
+
+    async function checkSession() {
+
+        try {
+
+            const {
+                data: {
+                    session
+                }
+            } =
+                await supabaseClient.auth.getSession();
+
+
+            if (session) {
+
+                await loadPlayer();
+
+            } else {
+
+                showAuth();
+
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+            showAuth();
+
+        }
+
+    }
+
+
+    /* ==================================================
+       AUTH STATE LISTENER
+    ================================================== */
+
+    supabaseClient.auth.onAuthStateChange(
+        async (event, session) => {
+
+            if (
+                event === "SIGNED_IN" &&
+                session
+            ) {
+
+                await loadPlayer();
+
+            }
+
+        }
+    );
+
+
+    /* ==================================================
+       START
+    ================================================== */
+
+    checkSession();
 
 </script>
 
