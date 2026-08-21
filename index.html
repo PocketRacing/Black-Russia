@@ -1,1 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>BLACK RUSSIA RP</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #202020, #080808 65%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .panel {
+            background: rgba(20, 20, 20, .96);
+            border: 1px solid #333;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.6);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 7px 0;
+            border-radius: 10px;
+            border: 1px solid #444;
+            background: #111;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #777;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            border: 0;
+            border-radius: 10px;
+            background: white;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button.secondary {
+            background: #252525;
+            color: white;
+        }
+
+        .message {
+            min-height: 22px;
+            margin-top: 15px;
+            text-align: center;
+            color: #aaa;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .stat {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .stat small {
+            color: #777;
+        }
+
+        .stat strong {
+            display: block;
+            margin-top: 5px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">BLACK RUSSIA</div>
+    <div class="subtitle">ROLEPLAY PROJECT</div>
+
+    <!-- АВТОРИЗАЦИЯ -->
+    <div class="panel" id="authPanel">
+
+        <h2 id="authTitle">Вход</h2>
+
+        <input
+            id="username"
+            type="text"
+            placeholder="Никнейм"
+        >
+
+        <input
+            id="email"
+            type="email"
+            placeholder="Email"
+        >
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Пароль"
+        >
+
+        <button onclick="login()">
+            Войти
+        </button>
+
+        <button class="secondary" onclick="register()">
+            Создать аккаунт
+        </button>
+
+        <div class="message" id="authMessage"></div>
+
+    </div>
+
+
+    <!-- ИГРОВОЙ ПРОФИЛЬ -->
+    <div class="panel hidden" id="gamePanel">
+
+        <h2 id="welcome"></h2>
+
+        <div class="stats">
+
+            <div class="stat">
+                <small>Наличные</small>
+                <strong id="cash">0 ₽</strong>
+            </div>
+
+            <div class="stat">
+                <small>Банк</small>
+                <strong id="bank">0 ₽</strong>
+            </div>
+
+            <div class="stat">
+                <small>Золото</small>
+                <strong id="gold">0</strong>
+            </div>
+
+            <div class="stat">
+                <small>Уровень</small>
+                <strong id="level">1</strong>
+            </div>
+
+        </div>
+
+        <button onclick="addMoney()">
+            Тест: получить 1000 ₽
+        </button>
+
+        <button class="secondary" onclick="logout()">
+            Выйти
+        </button>
+
+        <div class="message" id="gameMessage"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+    "https://qzswnoeglovfpgrzpnio.supabase.co";
+
+const SUPABASE_KEY =
+    "ВСТАВЬ_СЮДА_PUBLISHABLE_KEY";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+let currentUser = null;
+let currentWallet = null;
+
+
+/* ==============================
+   РЕГИСТРАЦИЯ
+============================== */
+
+async function register() {
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+    const message =
+        document.getElementById("authMessage");
+
+
+    if (!username || !email || !password) {
+
+        message.textContent =
+            "Заполни все поля.";
+
+        return;
+    }
+
+
+    if (password.length < 6) {
+
+        message.textContent =
+            "Пароль должен быть минимум 6 символов.";
+
+        return;
+    }
+
+
+    message.textContent =
+        "Создаём аккаунт...";
+
+
+    const { data, error } =
+        await supabaseClient.auth.signUp({
+
+            email: email,
+
+            password: password
+
+        });
+
+
+    if (error) {
+
+        message.textContent =
+            error.message;
+
+        return;
+    }
+
+
+    if (!data.user) {
+
+        message.textContent =
+            "Не удалось создать пользователя.";
+
+        return;
+    }
+
+
+    const userId =
+        data.user.id;
+
+
+    const { error: profileError } =
+        await supabaseClient
+            .from("profiles")
+            .insert({
+
+                id: userId,
+
+                username: username
+
+            });
+
+
+    if (profileError) {
+
+        message.textContent =
+            profileError.message;
+
+        return;
+    }
+
+
+    await supabaseClient
+        .from("wallets")
+        .insert({
+
+            player_id: userId,
+
+            cash: 5000,
+
+            bank: 10000,
+
+            gold: 0
+
+        });
+
+
+    await supabaseClient
+        .from("characters")
+        .insert({
+
+            player_id: userId,
+
+            first_name: username,
+
+            last_name: "Player",
+
+            age: 18,
+
+            gender: "male"
+
+        });
+
+
+    message.textContent =
+        "Аккаунт создан!";
+
+
+    await loadPlayer();
+
+}
+
+
+/* ==============================
+   ВХОД
+============================== */
+
+async function login() {
+
+    const email =
+        document.getElementById("email").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+
+    const message =
+        document.getElementById("authMessage");
+
+
+    if (!email || !password) {
+
+        message.textContent =
+            "Введите email и пароль.";
+
+        return;
+    }
+
+
+    message.textContent =
+        "Выполняется вход...";
+
+
+    const { data, error } =
+        await supabaseClient.auth.signInWithPassword({
+
+            email: email,
+
+            password: password
+
+        });
+
+
+    if (error) {
+
+        message.textContent =
+            error.message;
+
+        return;
+    }
+
+
+    currentUser =
+        data.user;
+
+
+    await loadPlayer();
+
+}
+
+
+/* ==============================
+   ЗАГРУЗКА ИГРОКА
+============================== */
+
+async function loadPlayer() {
+
+    const {
+        data: {
+            user
+        }
+    } =
+        await supabaseClient.auth.getUser();
+
+
+    if (!user) {
+
+        return;
+    }
+
+
+    currentUser =
+        user;
+
+
+    const { data: profile } =
+        await supabaseClient
+            .from("profiles")
+            .select("*")
+            .eq("id", user.id)
+            .single();
+
+
+    const { data: wallet } =
+        await supabaseClient
+            .from("wallets")
+            .select("*")
+            .eq("player_id", user.id)
+            .single();
+
+
+    currentWallet =
+        wallet;
+
+
+    document.getElementById("authPanel")
+        .classList.add("hidden");
+
+
+    document.getElementById("gamePanel")
+        .classList.remove("hidden");
+
+
+    document.getElementById("welcome")
+        .textContent =
+        "Добро пожаловать, " +
+        profile.username;
+
+
+    updateWallet();
+
+}
+
+
+/* ==============================
+   ОБНОВЛЕНИЕ ДЕНЕГ
+============================== */
+
+function updateWallet() {
+
+    if (!currentWallet) return;
+
+
+    document.getElementById("cash")
+        .textContent =
+        Number(currentWallet.cash)
+        .toLocaleString("ru-RU") +
+        " ₽";
+
+
+    document.getElementById("bank")
+        .textContent =
+        Number(currentWallet.bank)
+        .toLocaleString("ru-RU") +
+        " ₽";
+
+
+    document.getElementById("gold")
+        .textContent =
+        currentWallet.gold;
+
+
+    document.getElementById("level")
+        .textContent =
+        "1";
+
+}
+
+
+/* ==============================
+   ТЕСТОВОЕ СОХРАНЕНИЕ
+============================== */
+
+async function addMoney() {
+
+    if (!currentUser || !currentWallet) {
+        return;
+    }
+
+
+    const newCash =
+        Number(currentWallet.cash) + 1000;
+
+
+    const { error } =
+        await supabaseClient
+            .from("wallets")
+            .update({
+
+                cash: newCash
+
+            })
+            .eq(
+                "player_id",
+                currentUser.id
+            );
+
+
+    if (error) {
+
+        document.getElementById("gameMessage")
+            .textContent =
+            error.message;
+
+        return;
+    }
+
+
+    currentWallet.cash =
+        newCash;
+
+
+    updateWallet();
+
+
+    document.getElementById("gameMessage")
+        .textContent =
+        "1000 ₽ сохранены в базе.";
+
+}
+
+
+/* ==============================
+   ВЫХОД
+============================== */
+
+async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    location.reload();
+
+}
+
+
+/* ==============================
+   ПРОВЕРКА СЕССИИ
+============================== */
+
+async function checkSession() {
+
+    const {
+        data: {
+            session
+        }
+    } =
+        await supabaseClient.auth.getSession();
+
+
+    if (session) {
+
+        await loadPlayer();
+
+    }
+
+}
+
+
+checkSession();
+
+</script>
+
+</body>
+</html>
