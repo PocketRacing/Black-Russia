@@ -2,11 +2,8 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>BLACK RUSSIA RP</title>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{
@@ -18,30 +15,31 @@
 
 :root{
     --red:#d71920;
-    --red2:#ef3038;
-    --darkred:#a90f15;
-    --bg:#f3f4f6;
-    --white:#ffffff;
-    --text:#17191d;
-    --muted:#777d86;
-    --line:#e3e5e8;
-    --green:#20a65a;
-    --gold:#d99b00;
-    --shadow:0 5px 20px rgba(0,0,0,.08);
+    --red2:#ff3038;
+    --dark:#070707;
+    --dark2:#101010;
+    --dark3:#171717;
+    --dark4:#202020;
+    --border:#303030;
+    --white:#f5f5f5;
+    --gray:#929292;
+    --green:#35d477;
+    --yellow:#ffc83d;
 }
 
 html,body{
     min-height:100%;
+    background:#050505;
+    color:var(--white);
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg);
-    color:var(--text);
     overflow-x:hidden;
 }
 
-button,input{
+button,
+input{
     font-family:inherit;
 }
 
@@ -54,123 +52,91 @@ button{
     display:none!important;
 }
 
-/* =========================================================
+/* =====================================================
    AUTH
-========================================================= */
+===================================================== */
 
 #authScreen{
     min-height:100vh;
     display:flex;
-    justify-content:center;
     align-items:center;
-    padding:20px;
+    justify-content:center;
+    padding:18px;
     background:
-        linear-gradient(
-            135deg,
-            #ffffff 0%,
-            #f7f7f7 55%,
-            #eeeeee 100%
-        );
+        radial-gradient(circle at 50% 10%,rgba(215,25,32,.18),transparent 35%),
+        linear-gradient(180deg,#101010,#050505);
 }
 
 .auth-box{
     width:100%;
-    max-width:430px;
-    background:#fff;
-    border-radius:18px;
-    box-shadow:0 15px 50px rgba(0,0,0,.14);
-    overflow:hidden;
-    border:1px solid #e5e5e5;
+    max-width:420px;
+    background:#111;
+    border:1px solid #292929;
+    border-radius:5px;
+    padding:26px;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.65),
+        0 0 40px rgba(215,25,32,.06);
 }
 
-.auth-header{
-    background:linear-gradient(
-        135deg,
-        var(--red),
-        var(--darkred)
-    );
-    color:white;
-    padding:30px 24px 25px;
+.auth-logo{
     text-align:center;
-}
-
-.logo{
-    font-size:31px;
     font-weight:1000;
+    font-size:31px;
     letter-spacing:-1.5px;
 }
 
-.logo span{
+.auth-logo .white{
     color:#fff;
 }
 
-.logo-sub{
-    margin-top:7px;
-    font-size:11px;
-    opacity:.82;
-    letter-spacing:2px;
-    text-transform:uppercase;
+.auth-logo .red{
+    color:var(--red);
 }
 
-.auth-body{
-    padding:24px;
+.auth-sub{
+    text-align:center;
+    color:#777;
+    font-size:10px;
+    letter-spacing:2px;
+    margin-top:5px;
+    margin-bottom:25px;
+    text-transform:uppercase;
 }
 
 .auth-tabs{
     display:flex;
-    background:#f1f2f4;
-    padding:4px;
-    border-radius:10px;
-    margin-bottom:23px;
+    background:#080808;
+    border:1px solid #252525;
+    padding:3px;
+    margin-bottom:22px;
 }
 
 .auth-tab{
     flex:1;
-    padding:11px;
-    background:transparent;
+    padding:12px;
     color:#777;
-    border-radius:7px;
-    font-weight:800;
+    background:transparent;
+    font-size:12px;
+    font-weight:900;
 }
 
 .auth-tab.active{
-    background:#fff;
-    color:var(--red);
-    box-shadow:0 2px 7px rgba(0,0,0,.08);
+    background:var(--red);
+    color:white;
 }
 
 .auth-title{
-    font-size:23px;
+    font-size:22px;
     font-weight:900;
-    margin-bottom:5px;
+    margin-bottom:6px;
 }
 
-.auth-desc{
-    color:var(--muted);
+.auth-description{
+    color:#858585;
     font-size:12px;
     line-height:1.5;
-    margin-bottom:19px;
-}
-
-.auth-methods{
-    display:flex;
-    gap:7px;
-    margin-bottom:17px;
-}
-
-.method{
-    flex:1;
-    padding:10px 5px;
-    border-radius:8px;
-    background:#f0f1f3;
-    color:#777;
-    font-size:11px;
-    font-weight:800;
-}
-
-.method.active{
-    background:#ffe5e6;
-    color:var(--red);
+    margin-bottom:18px;
 }
 
 .field{
@@ -179,151 +145,148 @@ button{
 
 .field label{
     display:block;
-    color:#555b63;
-    font-size:11px;
-    font-weight:800;
+    color:#aaa;
+    font-size:10px;
+    font-weight:900;
     margin-bottom:6px;
 }
 
 .field input{
     width:100%;
-    height:46px;
-    padding:0 13px;
-    border:1px solid #dfe1e5;
-    border-radius:9px;
-    background:#fafafa;
-    color:#17191d;
+    background:#080808;
+    border:1px solid #303030;
+    color:white;
     outline:none;
+    padding:14px;
+    border-radius:3px;
     font-size:14px;
 }
 
 .field input:focus{
     border-color:var(--red);
-    background:#fff;
-    box-shadow:0 0 0 3px rgba(215,25,32,.08);
 }
 
-.primary-btn{
+.red-btn{
     width:100%;
-    min-height:46px;
-    border-radius:9px;
-    background:linear-gradient(
-        135deg,
-        var(--red2),
-        var(--red)
-    );
-    color:#fff;
+    background:var(--red);
+    color:white;
+    padding:14px;
+    border-radius:3px;
     font-weight:900;
     font-size:13px;
-    box-shadow:0 5px 12px rgba(215,25,32,.2);
+    transition:.15s;
 }
 
-.secondary-btn{
+.red-btn:hover{
+    background:var(--red2);
+}
+
+.dark-btn{
     width:100%;
-    min-height:44px;
-    margin-top:9px;
-    border-radius:9px;
-    background:#f0f1f3;
-    color:#363a40;
+    background:#222;
+    color:#fff;
+    padding:13px;
+    border-radius:3px;
     font-weight:800;
     font-size:12px;
+    margin-top:8px;
 }
 
 .auth-message{
     min-height:20px;
-    margin-top:13px;
     text-align:center;
+    margin-top:12px;
     font-size:12px;
-    line-height:1.4;
+    color:#ff4d55;
 }
 
-.auth-message.error{
-    color:var(--red);
-}
-
-.auth-message.success{
+.auth-message.ok{
     color:var(--green);
 }
 
-/* =========================================================
+/* =====================================================
    APP
-========================================================= */
+===================================================== */
 
 #app{
     min-height:100vh;
-    padding-bottom:80px;
+    padding-bottom:78px;
 }
 
 .topbar{
+    height:60px;
     position:sticky;
     top:0;
-    z-index:50;
-    height:60px;
-    background:#fff;
-    border-bottom:1px solid var(--line);
+    z-index:100;
     display:flex;
     align-items:center;
     justify-content:space-between;
+    gap:10px;
     padding:0 13px;
-    box-shadow:0 2px 8px rgba(0,0,0,.05);
+    background:rgba(8,8,8,.97);
+    border-bottom:1px solid #292929;
+    backdrop-filter:blur(12px);
 }
 
-.top-logo{
-    color:#1a1c20;
+.logo-mini{
     font-size:17px;
     font-weight:1000;
+    white-space:nowrap;
 }
 
-.top-logo span{
+.logo-mini b{
     color:var(--red);
 }
 
 .server{
     display:flex;
     align-items:center;
-    gap:6px;
-    color:#6d737b;
+    gap:5px;
+    color:#aaa;
     font-size:10px;
-    font-weight:700;
+    white-space:nowrap;
 }
 
-.online-dot{
-    width:8px;
-    height:8px;
-    background:#28bd67;
+.server-dot{
+    width:7px;
+    height:7px;
+    background:var(--green);
     border-radius:50%;
+    box-shadow:0 0 8px rgba(53,212,119,.7);
 }
 
-.money-box{
+.top-money{
     display:flex;
     gap:5px;
 }
 
 .money{
-    padding:6px 8px;
-    border-radius:7px;
+    padding:6px 7px;
+    background:#151515;
+    border:1px solid #292929;
     font-size:10px;
-    font-weight:900;
-    background:#f4f5f6;
+    border-radius:3px;
+    white-space:nowrap;
 }
 
 .money.cash{
-    color:var(--green);
+    color:#52df8a;
 }
 
 .money.gold{
-    color:var(--gold);
+    color:var(--yellow);
 }
 
-/* =========================================================
+/* =====================================================
    PAGES
-========================================================= */
+===================================================== */
 
 .page{
     display:none;
+    width:100%;
     max-width:1050px;
     margin:auto;
-    padding:15px;
+    padding:16px;
 }
 
 .page.active{
@@ -333,106 +296,103 @@ button{
 .page-title{
     font-size:25px;
     font-weight:1000;
-    margin-bottom:3px;
+    margin-bottom:4px;
 }
 
 .page-subtitle{
-    color:var(--muted);
-    font-size:12px;
-    margin-bottom:17px;
+    color:#777;
+    font-size:11px;
+    margin-bottom:18px;
 }
 
 .section-title{
-    margin:20px 0 10px;
-    font-size:17px;
+    font-size:16px;
     font-weight:900;
+    margin:20px 0 10px;
 }
 
-/* =========================================================
+/* =====================================================
    HOME
-========================================================= */
+===================================================== */
 
-.hero{
+.player-banner{
+    background:
+        linear-gradient(120deg,rgba(215,25,32,.22),transparent 60%),
+        #121212;
+    border:1px solid #303030;
+    border-left:4px solid var(--red);
+    padding:19px;
+    border-radius:3px;
+    margin-bottom:12px;
     position:relative;
     overflow:hidden;
-    background:
-        linear-gradient(
-            110deg,
-            var(--red),
-            #b91118
-        );
-    color:#fff;
-    border-radius:15px;
-    padding:21px;
-    box-shadow:var(--shadow);
 }
 
-.hero:after{
+.player-banner:after{
     content:"RP";
     position:absolute;
-    right:-8px;
-    bottom:-31px;
-    font-size:110px;
+    right:-10px;
+    bottom:-35px;
+    font-size:115px;
     font-weight:1000;
-    color:rgba(255,255,255,.08);
+    color:rgba(255,255,255,.025);
 }
 
-.hero-small{
-    font-size:10px;
+.banner-small{
+    color:#777;
     text-transform:uppercase;
-    letter-spacing:1.4px;
-    opacity:.78;
+    font-size:9px;
+    letter-spacing:1.5px;
 }
 
-.hero-name{
+.player-name{
     font-size:27px;
     font-weight:1000;
-    margin:6px 0 8px;
+    margin:6px 0;
 }
 
-.stats-grid{
+.player-name span{
+    color:var(--red);
+}
+
+.stats{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:9px;
-    margin-top:12px;
+    gap:8px;
 }
 
-.stat-card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:12px;
+.stat{
+    background:#111;
+    border:1px solid #292929;
     padding:14px;
-    box-shadow:var(--shadow);
+    border-radius:3px;
 }
 
 .stat-label{
-    color:#858b93;
-    font-size:10px;
-    font-weight:800;
+    color:#707070;
+    font-size:9px;
+    font-weight:900;
 }
 
 .stat-value{
-    margin-top:5px;
     font-size:17px;
     font-weight:1000;
+    margin-top:5px;
 }
 
 .progress{
     height:6px;
-    border-radius:20px;
+    background:#292929;
     overflow:hidden;
-    background:#e8e9eb;
     margin-top:8px;
+    border-radius:2px;
 }
 
-.progress div{
+.progress > div{
     height:100%;
     width:0;
-    background:linear-gradient(
-        90deg,
-        var(--red),
-        #ff6066
-    );
+    background:var(--red);
+    transition:.3s;
 }
 
 .quick-grid{
@@ -442,44 +402,42 @@ button{
 }
 
 .quick{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:11px;
-    padding:14px 6px;
-    box-shadow:var(--shadow);
+    background:#111;
+    border:1px solid #292929;
+    color:#fff;
+    padding:14px 5px;
+    border-radius:3px;
 }
 
-.quick:active{
-    transform:scale(.98);
+.quick:hover{
+    border-color:var(--red);
 }
 
 .quick-icon{
     font-size:22px;
+    margin-bottom:5px;
 }
 
 .quick-name{
-    margin-top:5px;
-    color:#33373d;
     font-size:10px;
     font-weight:900;
 }
 
-/* =========================================================
+/* =====================================================
    CARDS
-========================================================= */
+===================================================== */
 
 .cards{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:10px;
+    gap:9px;
 }
 
 .card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:12px;
+    background:#111;
+    border:1px solid #292929;
     padding:15px;
-    box-shadow:var(--shadow);
+    border-radius:3px;
 }
 
 .card-icon{
@@ -488,57 +446,41 @@ button{
 }
 
 .card-title{
-    font-size:15px;
+    font-size:14px;
     font-weight:900;
 }
 
-.card-desc{
-    color:var(--muted);
-    font-size:11px;
-    line-height:1.45;
-    margin:5px 0 12px;
+.card-text{
+    color:#777;
+    font-size:10px;
+    line-height:1.5;
+    margin-top:5px;
 }
 
-.card-btn{
-    width:100%;
-    background:#f0f1f3;
-    padding:10px;
-    border-radius:8px;
-    color:#333;
-    font-size:11px;
-    font-weight:900;
-}
-
-.card-btn.red{
-    background:var(--red);
-    color:white;
-}
-
-/* =========================================================
+/* =====================================================
    JOBS
-========================================================= */
+===================================================== */
 
 .job{
     display:flex;
     align-items:center;
-    gap:11px;
+    gap:12px;
     padding:13px;
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:12px;
     margin-bottom:8px;
-    box-shadow:var(--shadow);
+    background:#111;
+    border:1px solid #292929;
+    border-radius:3px;
 }
 
 .job-icon{
-    width:46px;
-    height:46px;
-    border-radius:10px;
-    background:#fff0f1;
+    width:48px;
+    height:48px;
+    background:#1b1b1b;
+    border:1px solid #303030;
     display:flex;
-    justify-content:center;
     align-items:center;
-    font-size:22px;
+    justify-content:center;
+    font-size:23px;
     flex-shrink:0;
 }
 
@@ -552,54 +494,53 @@ button{
 }
 
 .job-info{
-    margin-top:4px;
-    color:#81868e;
+    color:#777;
     font-size:10px;
     line-height:1.5;
+    margin-top:4px;
 }
 
 .job-xp{
-    color:var(--gold);
-    font-weight:900;
+    color:var(--yellow);
 }
 
-.job-action{
+.job-btn{
     background:var(--red);
     color:#fff;
-    padding:9px 10px;
-    border-radius:7px;
-    font-size:10px;
+    padding:9px 11px;
+    font-size:9px;
     font-weight:900;
+    border-radius:3px;
 }
 
-/* =========================================================
+.job-btn.locked{
+    background:#292929;
+    color:#666;
+}
+
+/* =====================================================
    GARAGE
-========================================================= */
+===================================================== */
 
 .car{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:13px;
+    background:#111;
+    border:1px solid #292929;
+    border-radius:3px;
     overflow:hidden;
     margin-bottom:10px;
-    box-shadow:var(--shadow);
 }
 
-.car-image{
-    height:130px;
+.car-top{
+    height:135px;
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
     background:
-        linear-gradient(
-            135deg,
-            #e9eaec,
-            #fafafa
-        );
-    font-size:68px;
+        radial-gradient(circle,#383838,#161616 55%,#0b0b0b);
+    font-size:70px;
 }
 
-.car-body{
+.car-info{
     padding:14px;
 }
 
@@ -609,48 +550,51 @@ button{
 }
 
 .car-meta{
-    color:#80858d;
+    color:#777;
     font-size:10px;
     margin-top:5px;
 }
 
-.car-buttons{
+.car-actions{
     display:flex;
     gap:6px;
-    margin-top:12px;
+    margin-top:11px;
 }
 
-.car-buttons button{
+.car-actions button{
     flex:1;
-    background:#f0f1f3;
+    background:#222;
+    color:#fff;
     padding:10px 4px;
-    border-radius:7px;
-    font-size:10px;
+    font-size:9px;
     font-weight:900;
-    color:#3c4046;
+    border-radius:3px;
 }
 
-/* =========================================================
-   SHOP
-========================================================= */
+.car-actions button:first-child{
+    background:var(--red);
+}
 
-.shop-grid{
+/* =====================================================
+   SHOP
+===================================================== */
+
+.shop{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:9px;
 }
 
 .item{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:14px;
+    background:#111;
+    border:1px solid #292929;
+    padding:15px;
     text-align:center;
-    box-shadow:var(--shadow);
+    border-radius:3px;
 }
 
 .item-icon{
-    font-size:34px;
+    font-size:35px;
 }
 
 .item-name{
@@ -660,256 +604,235 @@ button{
 }
 
 .item-price{
-    color:var(--green);
+    color:#52df8a;
     font-size:11px;
-    font-weight:900;
-    margin:6px 0 9px;
+    margin:6px;
 }
 
 .buy{
     width:100%;
     background:var(--red);
     color:#fff;
-    border-radius:7px;
     padding:9px;
-    font-size:10px;
+    font-size:9px;
     font-weight:900;
+    border-radius:3px;
 }
 
-/* =========================================================
+/* =====================================================
    MAP
-========================================================= */
+===================================================== */
 
 .map{
-    height:440px;
-    border-radius:15px;
-    overflow:hidden;
+    height:430px;
     position:relative;
-    border:1px solid #dfe1e5;
+    overflow:hidden;
+    border:1px solid #303030;
     background:
-        linear-gradient(
-            35deg,
-            transparent 47%,
-            #d9dce0 48%,
-            #d9dce0 52%,
-            transparent 53%
-        ),
-        linear-gradient(
-            -35deg,
-            transparent 47%,
-            #d9dce0 48%,
-            #d9dce0 52%,
-            transparent 53%
-        ),
-        #eef0f2;
-    background-size:90px 90px;
+        linear-gradient(35deg,transparent 47%,#242424 48%,#242424 52%,transparent 53%),
+        linear-gradient(-35deg,transparent 47%,#242424 48%,#242424 52%,transparent 53%),
+        #111;
+    background-size:85px 85px;
 }
 
-.map-road{
+.road{
     position:absolute;
-    background:#fff;
-    border:3px solid #d2d5d9;
+    background:#343434;
+    border:2px solid #484848;
 }
 
-.road1{
+.road.one{
     width:130%;
-    height:40px;
-    left:-10%;
-    top:43%;
-    transform:rotate(-12deg);
+    height:32px;
+    top:45%;
+    left:-15%;
+    transform:rotate(-10deg);
 }
 
-.road2{
-    width:40px;
+.road.two{
+    width:32px;
     height:130%;
-    left:47%;
-    top:-10%;
-    transform:rotate(7deg);
+    left:49%;
+    top:-15%;
+    transform:rotate(8deg);
 }
 
 .map-point{
     position:absolute;
-    width:44px;
-    height:44px;
+    width:43px;
+    height:43px;
     border-radius:50%;
-    border:3px solid white;
+    border:2px solid #090909;
     background:var(--red);
     color:white;
-    box-shadow:0 3px 10px rgba(0,0,0,.22);
-    font-size:18px;
+    box-shadow:0 4px 15px #000;
 }
 
-.point1{left:18%;top:23%}
-.point2{left:65%;top:25%}
-.point3{left:29%;top:67%}
-.point4{left:73%;top:69%}
-.point5{left:46%;top:45%}
+.p1{left:15%;top:20%}
+.p2{right:17%;top:22%}
+.p3{left:22%;bottom:18%}
+.p4{right:16%;bottom:17%}
+.p5{left:45%;top:43%}
 
-/* =========================================================
+/* =====================================================
    CASINO
-========================================================= */
+===================================================== */
 
-.casino-banner{
+.casino-head{
     background:
-        linear-gradient(
-            135deg,
-            #b61118,
-            #e02229
-        );
-    color:#fff;
-    padding:25px 15px;
-    border-radius:14px;
+        radial-gradient(circle,rgba(215,25,32,.18),transparent 60%),
+        #111;
+    border:1px solid #3a2022;
+    padding:27px 15px;
     text-align:center;
 }
 
 .casino-title{
     font-size:29px;
     font-weight:1000;
+    color:white;
 }
 
-.casino-sub{
-    margin-top:5px;
-    opacity:.8;
-    font-size:11px;
+.casino-title span{
+    color:var(--red);
 }
 
-.casino-games{
+.casino-desc{
+    color:#777;
+    font-size:10px;
+    margin-top:6px;
+}
+
+.casino-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:9px;
     margin-top:10px;
 }
 
-.casino-game{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:12px;
+.casino-card{
+    background:#111;
+    border:1px solid #342224;
     padding:20px 10px;
     text-align:center;
-    box-shadow:var(--shadow);
 }
 
-.casino-game-icon{
-    font-size:38px;
+.casino-icon{
+    font-size:40px;
 }
 
-.casino-game-name{
-    margin:7px 0;
-    font-weight:1000;
+.casino-name{
+    font-weight:900;
+    margin:7px;
 }
 
-.bet-controls{
+.bet{
     display:flex;
     gap:6px;
 }
 
-.bet-controls button{
+.bet button{
     flex:1;
-    background:#fff0f1;
-    color:var(--red);
-    padding:10px;
-    border-radius:7px;
-    font-weight:900;
+    background:#242020;
+    color:#fff;
+    padding:9px 3px;
     font-size:10px;
+    font-weight:900;
 }
 
-/* =========================================================
+/* =====================================================
    CHAT
-========================================================= */
+===================================================== */
 
-.chat-box{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:13px;
-    overflow:hidden;
-    box-shadow:var(--shadow);
+.chat{
+    background:#0d0d0d;
+    border:1px solid #292929;
 }
 
-.chat-messages{
+.chat-list{
     height:420px;
     overflow-y:auto;
     padding:12px;
 }
 
-.message{
+.chat-message{
     margin-bottom:10px;
 }
 
-.message-name{
-    color:var(--red);
+.chat-name{
+    color:var(--red2);
     font-size:10px;
-    font-weight:1000;
+    font-weight:900;
 }
 
-.message-text{
+.chat-text{
     display:inline-block;
-    background:#f0f1f3;
+    background:#191919;
+    border:1px solid #242424;
     padding:8px 10px;
-    border-radius:9px;
     margin-top:3px;
-    font-size:12px;
+    border-radius:3px;
+    font-size:11px;
+    max-width:90%;
+    word-break:break-word;
 }
 
-.chat-input{
+.chat-form{
     display:flex;
-    gap:7px;
-    padding:9px;
-    border-top:1px solid var(--line);
+    gap:6px;
+    padding:8px;
+    border-top:1px solid #292929;
 }
 
-.chat-input input{
+.chat-form input{
     flex:1;
     min-width:0;
-    height:42px;
-    border:1px solid #dddfe3;
-    border-radius:8px;
-    padding:0 10px;
+    background:#171717;
+    border:1px solid #292929;
+    color:white;
+    padding:11px;
     outline:none;
 }
 
-.chat-input button{
+.chat-form button{
     width:48px;
-    border-radius:8px;
     background:var(--red);
     color:white;
-    font-size:16px;
+    font-weight:1000;
 }
 
-/* =========================================================
+/* =====================================================
    ONLINE
-========================================================= */
+===================================================== */
 
 .online-card{
     display:flex;
     align-items:center;
     gap:10px;
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:11px;
+    background:#111;
+    border:1px solid #292929;
     padding:12px;
-    margin-bottom:8px;
-    box-shadow:var(--shadow);
+    margin-bottom:7px;
 }
 
 .avatar{
     width:42px;
     height:42px;
-    border-radius:50%;
-    background:#fff0f1;
-    color:var(--red);
+    background:#202020;
+    border:1px solid #3a3a3a;
     display:flex;
-    justify-content:center;
     align-items:center;
-    font-size:16px;
+    justify-content:center;
     font-weight:1000;
+    color:var(--red2);
 }
 
-.online-info{
+.online-main{
     flex:1;
 }
 
 .online-name{
-    font-size:13px;
+    font-size:12px;
     font-weight:900;
 }
 
@@ -917,65 +840,59 @@ button{
     color:var(--green);
     font-size:9px;
     margin-top:3px;
-    font-weight:700;
 }
 
 .level{
-    background:#f0f1f3;
+    color:var(--yellow);
+    background:#202020;
     padding:5px 7px;
-    border-radius:6px;
-    color:#555b63;
     font-size:9px;
     font-weight:900;
 }
 
-/* =========================================================
+/* =====================================================
    PROFILE
-========================================================= */
+===================================================== */
 
-.profile-head{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:14px;
+.profile{
+    background:#111;
+    border:1px solid #292929;
     padding:20px;
-    box-shadow:var(--shadow);
-    text-align:center;
 }
 
-.big-avatar{
-    width:80px;
-    height:80px;
+.profile-avatar{
+    width:82px;
+    height:82px;
     margin:auto;
-    border-radius:50%;
+    background:#202020;
+    border:2px solid var(--red);
     display:flex;
-    justify-content:center;
     align-items:center;
-    background:#fff0f1;
-    color:var(--red);
-    border:3px solid var(--red);
-    font-size:30px;
+    justify-content:center;
+    font-size:31px;
     font-weight:1000;
 }
 
 .profile-name{
-    margin-top:9px;
+    text-align:center;
     font-size:21px;
     font-weight:1000;
+    margin-top:9px;
 }
 
 .profile-id{
-    color:#888e96;
-    font-size:10px;
+    text-align:center;
+    color:#666;
+    font-size:9px;
     margin-top:3px;
 }
 
 .profile-row{
     display:flex;
     justify-content:space-between;
-    border-bottom:1px solid #eceef0;
+    border-bottom:1px solid #282828;
     padding:12px 0;
-    font-size:12px;
-    text-align:left;
+    font-size:11px;
 }
 
 .profile-row:last-child{
@@ -983,141 +900,127 @@ button{
 }
 
 .profile-row span:last-child{
-    font-weight:800;
+    color:#ccc;
 }
 
-/* =========================================================
+/* =====================================================
    BOTTOM NAV
-========================================================= */
+===================================================== */
 
-.bottom-nav{
+.bottom{
     position:fixed;
+    bottom:0;
     left:0;
     right:0;
-    bottom:0;
-    height:68px;
+    height:67px;
     z-index:100;
     display:flex;
-    justify-content:space-around;
-    background:#fff;
-    border-top:1px solid var(--line);
-    box-shadow:0 -4px 15px rgba(0,0,0,.06);
+    background:rgba(9,9,9,.98);
+    border-top:1px solid #292929;
 }
 
-.nav-btn{
+.nav{
     flex:1;
-    max-width:100px;
     background:transparent;
-    color:#888e96;
-    font-size:9px;
+    color:#626262;
+    font-size:8px;
     font-weight:900;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:4px;
+    gap:3px;
 }
 
 .nav-icon{
     font-size:20px;
 }
 
-.nav-btn.active{
+.nav.active{
+    color:#fff;
+}
+
+.nav.active .nav-icon{
     color:var(--red);
 }
 
-/* =========================================================
+/* =====================================================
    MODAL
-========================================================= */
+===================================================== */
 
 .modal{
     position:fixed;
     inset:0;
-    z-index:300;
-    background:rgba(0,0,0,.45);
+    z-index:500;
     display:flex;
-    justify-content:center;
     align-items:flex-end;
+    justify-content:center;
     padding:10px;
+    background:rgba(0,0,0,.8);
 }
 
 .modal-box{
     width:100%;
     max-width:500px;
-    background:#fff;
-    border-radius:17px 17px 10px 10px;
+    background:#131313;
+    border:1px solid #333;
+    border-top:3px solid var(--red);
     padding:20px;
-    max-height:85vh;
-    overflow:auto;
+}
+
+.modal-close{
+    float:right;
+    width:29px;
+    height:29px;
+    background:#252525;
+    color:white;
 }
 
 .modal-title{
     font-size:20px;
     font-weight:1000;
-    margin-bottom:7px;
+    margin-bottom:8px;
 }
 
 .modal-text{
+    color:#888;
+    font-size:11px;
+    line-height:1.6;
     white-space:pre-line;
-    color:#747a82;
-    font-size:12px;
-    line-height:1.55;
-    margin-bottom:15px;
 }
 
-.close{
-    float:right;
-    width:30px;
-    height:30px;
-    border-radius:50%;
-    background:#f0f1f3;
-    color:#333;
-    font-size:18px;
-}
-
-/* =========================================================
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
 .toast{
     position:fixed;
-    z-index:500;
     left:50%;
     bottom:82px;
-    transform:translateX(-50%) translateY(20px);
+    transform:translate(-50%,20px);
     opacity:0;
     pointer-events:none;
-    transition:.25s;
-    background:#17191d;
-    color:#fff;
-    padding:11px 15px;
-    border-radius:9px;
+    z-index:1000;
+    background:#191919;
+    border:1px solid #3a3a3a;
+    border-left:3px solid var(--red);
+    padding:11px 14px;
     font-size:11px;
-    white-space:nowrap;
+    transition:.2s;
 }
 
 .toast.show{
     opacity:1;
-    transform:translateX(-50%) translateY(0);
+    transform:translate(-50%,0);
 }
 
-/* =========================================================
+/* =====================================================
    DESKTOP
-========================================================= */
+===================================================== */
 
 @media(min-width:700px){
 
-    .bottom-nav{
-        left:50%;
-        right:auto;
-        transform:translateX(-50%);
-        width:650px;
-        border:1px solid var(--line);
-        border-bottom:0;
-        border-radius:14px 14px 0 0;
-    }
-
-    .stats-grid{
+    .stats{
         grid-template-columns:repeat(4,1fr);
     }
 
@@ -1125,12 +1028,20 @@ button{
         grid-template-columns:repeat(6,1fr);
     }
 
-    .shop-grid{
+    .shop{
         grid-template-columns:repeat(4,1fr);
     }
 
     .cards{
         grid-template-columns:repeat(3,1fr);
+    }
+
+    .bottom{
+        width:650px;
+        left:50%;
+        right:auto;
+        transform:translateX(-50%);
+        border:1px solid #292929;
     }
 }
 </style>
@@ -1146,228 +1057,119 @@ button{
 
 <div class="auth-box">
 
-    <div class="auth-header">
+    <div class="auth-logo">
+        <span class="white">BLACK</span>
+        <span class="red"> RUSSIA</span>
+    </div>
 
-        <div class="logo">
-            BLACK <span>RUSSIA</span>
+    <div class="auth-sub">
+        ROLE PLAY • ONLINE
+    </div>
+
+    <div class="auth-tabs">
+
+        <button
+            id="loginTab"
+            class="auth-tab active"
+            onclick="switchAuth('login')">
+            ВХОД
+        </button>
+
+        <button
+            id="registerTab"
+            class="auth-tab"
+            onclick="switchAuth('register')">
+            РЕГИСТРАЦИЯ
+        </button>
+
+    </div>
+
+    <!-- LOGIN -->
+
+    <div id="loginForm">
+
+        <div class="auth-title">
+            Вход в игру
         </div>
 
-        <div class="logo-sub">
-            ROLE PLAY • ONLINE WORLD
+        <div class="auth-description">
+            Войди по игровому логину или используй электронную почту.
+        </div>
+
+        <div class="field">
+            <label>ЛОГИН ИЛИ EMAIL</label>
+            <input
+                id="loginIdentity"
+                autocomplete="username"
+                placeholder="Введите логин или email">
+        </div>
+
+        <div class="field">
+            <label>ПАРОЛЬ</label>
+            <input
+                id="loginPassword"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Введите пароль">
+        </div>
+
+        <button
+            class="red-btn"
+            onclick="loginAccount()">
+            ВОЙТИ В ИГРУ
+        </button>
+
+        <div
+            id="loginMessage"
+            class="auth-message">
         </div>
 
     </div>
 
-    <div class="auth-body">
+    <!-- REGISTER -->
 
-        <div class="auth-tabs">
+    <div id="registerForm" class="hidden">
 
-            <button
-                id="loginTab"
-                class="auth-tab active"
-                onclick="switchAuth('login')"
-            >
-                Вход
-            </button>
-
-            <button
-                id="registerTab"
-                class="auth-tab"
-                onclick="switchAuth('register')"
-            >
-                Регистрация
-            </button>
-
+        <div class="auth-title">
+            Создание аккаунта
         </div>
 
-
-        <!-- LOGIN -->
-
-        <div id="loginForm">
-
-            <div class="auth-title">
-                С возвращением
-            </div>
-
-            <div class="auth-desc">
-                Войди в игровой аккаунт и продолжи свой путь.
-            </div>
-
-            <div class="auth-methods">
-
-                <button
-                    id="loginUsernameMethod"
-                    class="method active"
-                    onclick="setLoginMethod('username')"
-                >
-                    👤 Логин
-                </button>
-
-                <button
-                    id="loginEmailMethod"
-                    class="method"
-                    onclick="setLoginMethod('email')"
-                >
-                    ✉️ Почта
-                </button>
-
-            </div>
-
-            <div class="field">
-
-                <label id="loginIdentityLabel">
-                    ИГРОВОЙ ЛОГИН
-                </label>
-
-                <input
-                    id="loginIdentity"
-                    autocomplete="username"
-                    placeholder="Введите игровой логин"
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    ПАРОЛЬ
-                </label>
-
-                <input
-                    id="loginPassword"
-                    type="password"
-                    autocomplete="current-password"
-                    placeholder="Введите пароль"
-                >
-
-            </div>
-
-            <button
-                class="primary-btn"
-                id="loginButton"
-                onclick="loginAccount()"
-            >
-                ВОЙТИ В ИГРУ
-            </button>
-
-            <div
-                id="loginMessage"
-                class="auth-message"
-            ></div>
-
+        <div class="auth-description">
+            Создай игровой аккаунт без обязательной почты или зарегистрируйся через настоящий email.
         </div>
 
+        <div class="field">
+            <label>ИГРОВОЙ ЛОГИН</label>
+            <input
+                id="regUsername"
+                autocomplete="username"
+                placeholder="Введите игровой логин">
+        </div>
 
-        <!-- REGISTER -->
+        <div class="field">
+            <label>ПАРОЛЬ</label>
+            <input
+                id="regPassword"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Минимум 6 символов">
+        </div>
+
+        <button
+            class="red-btn"
+            onclick="registerAccount(false)">
+            СОЗДАТЬ БЕЗ ПОЧТЫ
+        </button>
+
+        <button
+            class="dark-btn"
+            onclick="registerAccount(true)">
+            РЕГИСТРАЦИЯ ЧЕРЕЗ EMAIL
+        </button>
 
         <div
-            id="registerForm"
-            class="hidden"
-        >
-
-            <div class="auth-title">
-                Создание аккаунта
-            </div>
-
-            <div class="auth-desc">
-                Выбери удобный способ регистрации. Почта не обязательна.
-            </div>
-
-            <div class="auth-methods">
-
-                <button
-                    id="registerUsernameMethod"
-                    class="method active"
-                    onclick="setRegisterMethod('username')"
-                >
-                    👤 Без почты
-                </button>
-
-                <button
-                    id="registerEmailMethod"
-                    class="method"
-                    onclick="setRegisterMethod('email')"
-                >
-                    ✉️ С почтой
-                </button>
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    ИГРОВОЙ ЛОГИН
-                </label>
-
-                <input
-                    id="regUsername"
-                    autocomplete="username"
-                    placeholder="Введите игровой логин"
-                >
-
-            </div>
-
-            <div
-                class="field hidden"
-                id="regEmailField"
-            >
-
-                <label>
-                    EMAIL
-                </label>
-
-                <input
-                    id="regEmail"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="Введите электронную почту"
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    ПАРОЛЬ
-                </label>
-
-                <input
-                    id="regPassword"
-                    type="password"
-                    autocomplete="new-password"
-                    placeholder="Минимум 6 символов"
-                >
-
-            </div>
-
-            <div class="field">
-
-                <label>
-                    ПОВТОРИТЕ ПАРОЛЬ
-                </label>
-
-                <input
-                    id="regPassword2"
-                    type="password"
-                    autocomplete="new-password"
-                    placeholder="Повторите пароль"
-                >
-
-            </div>
-
-            <button
-                class="primary-btn"
-                id="registerButton"
-                onclick="registerAccount()"
-            >
-                СОЗДАТЬ АККАУНТ
-            </button>
-
-            <div
-                id="registerMessage"
-                class="auth-message"
-            ></div>
-
+            id="registerMessage"
+            class="auth-message">
         </div>
 
     </div>
@@ -1381,40 +1183,30 @@ button{
      APP
 ===================================================== -->
 
-<section
-    id="app"
-    class="hidden"
->
+<section id="app" class="hidden">
 
 <header class="topbar">
 
-    <div class="top-logo">
-        BLACK <span>RUSSIA</span>
+    <div class="logo-mini">
+        BLACK <b>RUSSIA</b>
     </div>
 
     <div class="server">
-
-        <div class="online-dot"></div>
-
-        <span id="onlineCount">
-            0 онлайн
-        </span>
-
+        <span class="server-dot"></span>
+        <span id="onlineCount">0 онлайн</span>
     </div>
 
-    <div class="money-box">
+    <div class="top-money">
 
         <div
-            class="money cash"
             id="topCash"
-        >
+            class="money cash">
             ₽ 0
         </div>
 
         <div
-            class="money gold"
             id="topGold"
-        >
+            class="money gold">
             ◆ 0
         </div>
 
@@ -1429,41 +1221,37 @@ button{
 
 <main
     id="homePage"
-    class="page active"
->
+    class="page active">
 
-    <div class="hero">
+    <div class="player-banner">
 
-        <div class="hero-small">
-            Добро пожаловать
+        <div class="banner-small">
+            BLACK RUSSIA ROLE PLAY
         </div>
 
         <div
-            class="hero-name"
             id="homeName"
-        >
-            Player
+            class="player-name">
+            Игрок
         </div>
 
-        <div class="hero-small">
-            Твоя жизнь. Твой выбор.
+        <div class="banner-small">
+            Добро пожаловать в город
         </div>
 
     </div>
 
+    <div class="stats">
 
-    <div class="stats-grid">
-
-        <div class="stat-card">
+        <div class="stat">
 
             <div class="stat-label">
                 УРОВЕНЬ
             </div>
 
             <div
-                class="stat-value"
                 id="homeLevel"
-            >
+                class="stat-value">
                 1
             </div>
 
@@ -1473,56 +1261,49 @@ button{
 
         </div>
 
-
-        <div class="stat-card">
+        <div class="stat">
 
             <div class="stat-label">
                 ОПЫТ
             </div>
 
             <div
-                class="stat-value"
                 id="homeXP"
-            >
+                class="stat-value">
                 0 XP
             </div>
 
         </div>
 
-
-        <div class="stat-card">
+        <div class="stat">
 
             <div class="stat-label">
                 НАЛИЧНЫЕ
             </div>
 
             <div
-                class="stat-value"
                 id="homeCash"
-            >
+                class="stat-value">
                 ₽ 0
             </div>
 
         </div>
 
-
-        <div class="stat-card">
+        <div class="stat">
 
             <div class="stat-label">
                 БАНК
             </div>
 
             <div
-                class="stat-value"
                 id="homeBank"
-            >
+                class="stat-value">
                 ₽ 0
             </div>
 
         </div>
 
     </div>
-
 
     <div class="section-title">
         Быстрый доступ
@@ -1530,56 +1311,37 @@ button{
 
     <div class="quick-grid">
 
-        <button
-            class="quick"
-            onclick="openPage('jobs')"
-        >
+        <button class="quick" onclick="openPage('jobs')">
             <div class="quick-icon">💼</div>
             <div class="quick-name">Работы</div>
         </button>
 
-        <button
-            class="quick"
-            onclick="openPage('garage')"
-        >
+        <button class="quick" onclick="openPage('garage')">
             <div class="quick-icon">🚗</div>
             <div class="quick-name">Гараж</div>
         </button>
 
-        <button
-            class="quick"
-            onclick="openPage('shop')"
-        >
-            <div class="quick-icon">🏪</div>
+        <button class="quick" onclick="openPage('shop')">
+            <div class="quick-icon">🛒</div>
             <div class="quick-name">Магазин</div>
         </button>
 
-        <button
-            class="quick"
-            onclick="openPage('map')"
-        >
+        <button class="quick" onclick="openPage('map')">
             <div class="quick-icon">🗺️</div>
             <div class="quick-name">Карта</div>
         </button>
 
-        <button
-            class="quick"
-            onclick="openPage('casino')"
-        >
+        <button class="quick" onclick="openPage('casino')">
             <div class="quick-icon">🎰</div>
             <div class="quick-name">Казино</div>
         </button>
 
-        <button
-            class="quick"
-            onclick="openPage('chat')"
-        >
-            <div class="quick-icon">💬</div>
-            <div class="quick-name">Чат</div>
+        <button class="quick" onclick="openPage('online')">
+            <div class="quick-icon">👥</div>
+            <div class="quick-name">Онлайн</div>
         </button>
 
     </div>
-
 
     <div class="section-title">
         Прогресс
@@ -1591,7 +1353,7 @@ button{
             Следующий уровень
         </div>
 
-        <div class="card-desc">
+        <div class="card-text">
             Работай, зарабатывай деньги и получай опыт.
         </div>
 
@@ -1601,12 +1363,7 @@ button{
 
         <div
             id="xpText"
-            style="
-                margin-top:8px;
-                color:#888;
-                font-size:10px;
-            "
-        >
+            style="color:#777;font-size:10px;margin-top:7px">
             0 / 100 XP
         </div>
 
@@ -1619,17 +1376,14 @@ button{
      JOBS
 ===================================================== -->
 
-<main
-    id="jobsPage"
-    class="page"
->
+<main id="jobsPage" class="page">
 
     <div class="page-title">
         Работы
     </div>
 
     <div class="page-subtitle">
-        Зарабатывай деньги и прокачивай персонажа.
+        Выполняй рабочие задания, получай деньги и XP.
     </div>
 
     <div id="jobsContainer"></div>
@@ -1641,17 +1395,14 @@ button{
      GARAGE
 ===================================================== -->
 
-<main
-    id="garagePage"
-    class="page"
->
+<main id="garagePage" class="page">
 
     <div class="page-title">
         Гараж
     </div>
 
     <div class="page-subtitle">
-        Личный транспорт персонажа.
+        Твой личный транспорт.
     </div>
 
     <div id="garageContainer"></div>
@@ -1663,23 +1414,20 @@ button{
      SHOP
 ===================================================== -->
 
-<main
-    id="shopPage"
-    class="page"
->
+<main id="shopPage" class="page">
 
     <div class="page-title">
         Магазин
     </div>
 
     <div class="page-subtitle">
-        Покупай предметы для персонажа.
+        Покупай предметы за игровые деньги.
     </div>
 
     <div
-        class="shop-grid"
         id="shopContainer"
-    ></div>
+        class="shop">
+    </div>
 
 </main>
 
@@ -1688,10 +1436,7 @@ button{
      MAP
 ===================================================== -->
 
-<main
-    id="mapPage"
-    class="page"
->
+<main id="mapPage" class="page">
 
     <div class="page-title">
         Карта
@@ -1703,41 +1448,36 @@ button{
 
     <div class="map">
 
-        <div class="map-road road1"></div>
-        <div class="map-road road2"></div>
+        <div class="road one"></div>
+        <div class="road two"></div>
 
         <button
-            class="map-point point1"
-            onclick="toast('🏦 Банк')"
-        >
+            class="map-point p1"
+            onclick="toast('🏦 Банк')">
             🏦
         </button>
 
         <button
-            class="map-point point2"
-            onclick="toast('🚗 Автосалон')"
-        >
+            class="map-point p2"
+            onclick="toast('🚗 Автосалон')">
             🚗
         </button>
 
         <button
-            class="map-point point3"
-            onclick="toast('💼 Центр занятости')"
-        >
+            class="map-point p3"
+            onclick="toast('💼 Центр занятости')">
             💼
         </button>
 
         <button
-            class="map-point point4"
-            onclick="toast('🎰 Казино')"
-        >
+            class="map-point p4"
+            onclick="toast('🎰 Казино')">
             🎰
         </button>
 
         <button
-            class="map-point point5"
-            onclick="toast('🏙️ Центральная площадь')"
-        >
+            class="map-point p5"
+            onclick="toast('🏙️ Центр города')">
             🏙️
         </button>
 
@@ -1750,44 +1490,41 @@ button{
      CASINO
 ===================================================== -->
 
-<main
-    id="casinoPage"
-    class="page"
->
+<main id="casinoPage" class="page">
 
     <div class="page-title">
         Казино
     </div>
 
     <div class="page-subtitle">
-        Игровой раздел с виртуальной валютой.
+        Развлекательный раздел за игровую валюту.
     </div>
 
-    <div class="casino-banner">
+    <div class="casino-head">
 
         <div class="casino-title">
-            ROYAL CASINO
+            ROYAL <span>CASINO</span>
         </div>
 
-        <div class="casino-sub">
-            Используется игровая валюта
+        <div class="casino-desc">
+            Используются только игровые деньги.
         </div>
 
     </div>
 
-    <div class="casino-games">
+    <div class="casino-grid">
 
-        <div class="casino-game">
+        <div class="casino-card">
 
-            <div class="casino-game-icon">
+            <div class="casino-icon">
                 🎰
             </div>
 
-            <div class="casino-game-name">
+            <div class="casino-name">
                 Слоты
             </div>
 
-            <div class="bet-controls">
+            <div class="bet">
 
                 <button onclick="playSlots(100)">
                     ₽100
@@ -1801,18 +1538,17 @@ button{
 
         </div>
 
+        <div class="casino-card">
 
-        <div class="casino-game">
-
-            <div class="casino-game-icon">
+            <div class="casino-icon">
                 🎲
             </div>
 
-            <div class="casino-game-name">
+            <div class="casino-name">
                 Кости
             </div>
 
-            <div class="bet-controls">
+            <div class="bet">
 
                 <button onclick="playDice(100)">
                     ₽100
@@ -1835,38 +1571,30 @@ button{
      CHAT
 ===================================================== -->
 
-<main
-    id="chatPage"
-    class="page"
->
+<main id="chatPage" class="page">
 
     <div class="page-title">
         Общий чат
     </div>
 
     <div class="page-subtitle">
-        Общайся с игроками сервера.
+        Сообщения игроков сервера.
     </div>
 
-    <div class="chat-box">
+    <div class="chat">
 
         <div
             id="chatMessages"
-            class="chat-messages"
-        ></div>
+            class="chat-list">
+        </div>
 
-        <div class="chat-input">
+        <div class="chat-form">
 
             <input
                 id="chatInput"
                 maxlength="150"
                 placeholder="Написать сообщение..."
-                onkeydown="
-                    if(event.key==='Enter'){
-                        sendChat();
-                    }
-                "
-            >
+                onkeydown="if(event.key==='Enter')sendChat()">
 
             <button onclick="sendChat()">
                 ➤
@@ -1883,17 +1611,14 @@ button{
      ONLINE
 ===================================================== -->
 
-<main
-    id="onlinePage"
-    class="page"
->
+<main id="onlinePage" class="page">
 
     <div class="page-title">
         Игроки онлайн
     </div>
 
     <div class="page-subtitle">
-        Игроки, находящиеся сейчас в игре.
+        Сейчас находятся в игре.
     </div>
 
     <div id="onlineContainer"></div>
@@ -1905,46 +1630,43 @@ button{
      PROFILE
 ===================================================== -->
 
-<main
-    id="profilePage"
-    class="page"
->
+<main id="profilePage" class="page">
 
     <div class="page-title">
         Профиль
     </div>
 
     <div class="page-subtitle">
-        Информация о персонаже.
+        Твой игровой персонаж.
     </div>
 
-    <div class="profile-head">
+    <div class="profile">
 
         <div
-            class="big-avatar"
             id="profileAvatar"
-        >
+            class="profile-avatar">
             P
         </div>
 
         <div
-            class="profile-name"
             id="profileName"
-        >
-            Player
+            class="profile-name">
+            Игрок
         </div>
 
         <div
-            class="profile-id"
             id="profileId"
-        >
-            ID: 1000
+            class="profile-id">
+            ID: —
         </div>
 
+        <div
+            class="profile-row"
+            style="margin-top:15px">
 
-        <div class="profile-row">
             <span>Уровень</span>
             <span id="profileLevel">1</span>
+
         </div>
 
         <div class="profile-row">
@@ -1968,17 +1690,16 @@ button{
         </div>
 
         <div class="profile-row">
-            <span>Регистрация</span>
+            <span>Дата регистрации</span>
             <span id="profileDate">—</span>
         </div>
 
     </div>
 
     <button
-        class="secondary-btn"
-        style="margin-top:12px"
+        class="dark-btn"
         onclick="logout()"
-    >
+        style="margin-top:10px">
         ВЫЙТИ ИЗ АККАУНТА
     </button>
 
@@ -1989,51 +1710,56 @@ button{
      NAV
 ===================================================== -->
 
-<nav class="bottom-nav">
+<nav class="bottom">
 
     <button
-        class="nav-btn active"
+        class="nav active"
         data-page="home"
-        onclick="openPage('home')"
-    >
+        onclick="openPage('home')">
+
         <div class="nav-icon">🏠</div>
-        Главная
+        ГЛАВНАЯ
+
     </button>
 
     <button
-        class="nav-btn"
+        class="nav"
         data-page="jobs"
-        onclick="openPage('jobs')"
-    >
+        onclick="openPage('jobs')">
+
         <div class="nav-icon">💼</div>
-        Работа
+        РАБОТА
+
     </button>
 
     <button
-        class="nav-btn"
+        class="nav"
         data-page="garage"
-        onclick="openPage('garage')"
-    >
+        onclick="openPage('garage')">
+
         <div class="nav-icon">🚗</div>
-        Гараж
+        ГАРАЖ
+
     </button>
 
     <button
-        class="nav-btn"
+        class="nav"
         data-page="chat"
-        onclick="openPage('chat')"
-    >
+        onclick="openPage('chat')">
+
         <div class="nav-icon">💬</div>
-        Чат
+        ЧАТ
+
     </button>
 
     <button
-        class="nav-btn"
+        class="nav"
         data-page="profile"
-        onclick="openPage('profile')"
-    >
+        onclick="openPage('profile')">
+
         <div class="nav-icon">👤</div>
-        Профиль
+        ПРОФИЛЬ
+
     </button>
 
 </nav>
@@ -2048,38 +1774,31 @@ button{
 <div
     id="modal"
     class="modal hidden"
-    onclick="
-        if(event.target===this){
-            closeModal();
-        }
-    "
->
+    onclick="if(event.target===this)closeModal()">
 
     <div class="modal-box">
 
         <button
-            class="close"
-            onclick="closeModal()"
-        >
+            class="modal-close"
+            onclick="closeModal()">
             ×
         </button>
 
         <div
-            class="modal-title"
             id="modalTitle"
-        >
+            class="modal-title">
             Информация
         </div>
 
         <div
-            class="modal-text"
             id="modalText"
-        ></div>
+            class="modal-text">
+        </div>
 
         <button
-            class="primary-btn"
+            class="red-btn"
             onclick="closeModal()"
-        >
+            style="margin-top:15px">
             ПОНЯТНО
         </button>
 
@@ -2090,90 +1809,161 @@ button{
 
 <div
     id="toast"
-    class="toast"
->
+    class="toast">
     Готово
 </div>
 
 
 <script>
-/* =========================================================
+/* =====================================================
    SUPABASE
-========================================================= */
+===================================================== */
 
 const SUPABASE_URL =
-    "https://qyjvkiusyiylckaujjiv.supabase.co";
+"https://qzswnoeglovfpgrzpnio.supabase.co";
 
 const SUPABASE_KEY =
-    "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
-
-const supabaseClient =
-    window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY,
-        {
-            auth:{
-                persistSession:true,
-                autoRefreshToken:true,
-                detectSessionInUrl:true
-            }
-        }
-    );
+"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
 
-/* =========================================================
-   GAME STATE
-========================================================= */
+/* =====================================================
+   STATE
+===================================================== */
 
 let currentUser = null;
-let currentAuthUser = null;
-
-let loginMethod = "username";
-let registerMethod = "username";
-
-let onlineHeartbeat = null;
-let chatSubscription = null;
+let accessToken = null;
+let refreshTimer = null;
 
 
-/* =========================================================
-   DEFAULT PLAYER
-========================================================= */
+/* =====================================================
+   SUPABASE REQUEST
+===================================================== */
 
-function defaultPlayer(){
+async function supabaseFetch(
+    path,
+    options={}
+){
 
-    return {
-        username:"",
-        level:1,
-        xp:0,
-        cash:50000,
-        bank:0,
-        gold:100,
-        job:"Безработный",
-        cars:[
-            {
-                name:"Lada Priora",
-                icon:"🚘",
-                fuel:100,
-                condition:100
-            }
-        ],
-        inventory:[],
-        registeredAt:new Date().toLocaleDateString("ru-RU")
+    const headers = {
+        "apikey":SUPABASE_KEY,
+        "Content-Type":"application/json",
+        ...(options.headers || {})
     };
 
+    if(accessToken){
+
+        headers["Authorization"] =
+            "Bearer "+accessToken;
+
+    }else{
+
+        headers["Authorization"] =
+            "Bearer "+SUPABASE_KEY;
+
+    }
+
+    const response =
+        await fetch(
+            SUPABASE_URL + path,
+            {
+                ...options,
+                headers
+            }
+        );
+
+    const text =
+        await response.text();
+
+    let data = null;
+
+    try{
+        data = text ? JSON.parse(text) : null;
+    }catch{
+        data = text;
+    }
+
+    if(!response.ok){
+
+        const message =
+            data?.msg ||
+            data?.message ||
+            data?.error_description ||
+            data?.error ||
+            text ||
+            ("HTTP "+response.status);
+
+        throw new Error(message);
+    }
+
+    return data;
 }
 
 
-/* =========================================================
-   AUTH MODE
-========================================================= */
+/* =====================================================
+   AUTH API
+===================================================== */
+
+async function authRequest(
+    endpoint,
+    body
+){
+
+    const response =
+        await fetch(
+            SUPABASE_URL+
+            "/auth/v1/"+
+            endpoint,
+            {
+                method:"POST",
+                headers:{
+                    "apikey":SUPABASE_KEY,
+                    "Content-Type":
+                        "application/json"
+                },
+                body:JSON.stringify(body)
+            }
+        );
+
+    const text =
+        await response.text();
+
+    let data = null;
+
+    try{
+        data =
+            text
+                ? JSON.parse(text)
+                : null;
+    }catch{
+        data = {};
+    }
+
+    if(!response.ok){
+
+        throw new Error(
+            data?.msg ||
+            data?.message ||
+            data?.error_description ||
+            data?.error ||
+            text ||
+            ("HTTP "+response.status)
+        );
+    }
+
+    return data;
+}
+
+
+/* =====================================================
+   AUTH TABS
+===================================================== */
 
 function switchAuth(type){
 
-    const loginForm =
+    const login =
         document.getElementById("loginForm");
 
-    const registerForm =
+    const register =
         document.getElementById("registerForm");
 
     const loginTab =
@@ -2184,156 +1974,28 @@ function switchAuth(type){
 
     if(type==="login"){
 
-        loginForm.classList.remove("hidden");
-        registerForm.classList.add("hidden");
+        login.classList.remove("hidden");
+        register.classList.add("hidden");
 
         loginTab.classList.add("active");
         registerTab.classList.remove("active");
 
     }else{
 
-        loginForm.classList.add("hidden");
-        registerForm.classList.remove("hidden");
+        login.classList.add("hidden");
+        register.classList.remove("hidden");
 
         loginTab.classList.remove("active");
         registerTab.classList.add("active");
 
     }
 
-    clearMessages();
-
 }
 
 
-function setLoginMethod(method){
-
-    loginMethod = method;
-
-    document
-        .getElementById("loginUsernameMethod")
-        .classList.toggle(
-            "active",
-            method==="username"
-        );
-
-    document
-        .getElementById("loginEmailMethod")
-        .classList.toggle(
-            "active",
-            method==="email"
-        );
-
-    const input =
-        document.getElementById("loginIdentity");
-
-    const label =
-        document.getElementById("loginIdentityLabel");
-
-    if(method==="email"){
-
-        label.textContent="EMAIL";
-        input.placeholder="Введите email";
-        input.type="email";
-
-    }else{
-
-        label.textContent="ИГРОВОЙ ЛОГИН";
-        input.placeholder="Введите игровой логин";
-        input.type="text";
-
-    }
-
-}
-
-
-function setRegisterMethod(method){
-
-    registerMethod = method;
-
-    document
-        .getElementById("registerUsernameMethod")
-        .classList.toggle(
-            "active",
-            method==="username"
-        );
-
-    document
-        .getElementById("registerEmailMethod")
-        .classList.toggle(
-            "active",
-            method==="email"
-        );
-
-    document
-        .getElementById("regEmailField")
-        .classList.toggle(
-            "hidden",
-            method!=="email"
-        );
-
-}
-
-
-/* =========================================================
-   MESSAGES
-========================================================= */
-
-function setMessage(id,text,type){
-
-    const el =
-        document.getElementById(id);
-
-    el.textContent = text;
-
-    el.className =
-        "auth-message " + type;
-
-}
-
-
-function clearMessages(){
-
-    setMessage(
-        "loginMessage",
-        "",
-        ""
-    );
-
-    setMessage(
-        "registerMessage",
-        "",
-        ""
-    );
-
-}
-
-
-/* =========================================================
-   TECHNICAL USERNAME EMAIL
-========================================================= */
-
-/*
-   Supabase Auth uses email/password for password login.
-   For a no-email game account we create an internal address.
-
-   The player never sees this address.
-*/
-
-function usernameToInternalEmail(username){
-
-    return (
-        username
-        .trim()
-        .toLowerCase()
-        .replace(/[^a-z0-9_]/g,"")
-    ) + "@brp.local";
-
-}
-
-
-/* =========================================================
-   VALIDATION
-========================================================= */
+/* =====================================================
+   VALIDATE USERNAME
+===================================================== */
 
 function validUsername(username){
 
@@ -2343,765 +2005,448 @@ function validUsername(username){
 }
 
 
-function validPassword(password){
+/* =====================================================
+   INTERNAL EMAIL
+===================================================== */
 
-    return password.length >= 6;
+function internalEmail(username){
 
-}
-
-
-/* =========================================================
-   PROFILE LOOKUP
-========================================================= */
-
-async function findProfileByUsername(username){
-
-    /*
-       We try the most common profile column:
-       username.
-
-       If your existing profiles table uses this column,
-       Tomas_RP will be found here.
-    */
-
-    const {data,error} =
-        await supabaseClient
-            .from("profiles")
-            .select("*")
-            .eq("username",username)
-            .maybeSingle();
-
-    if(error){
-
-        console.warn(
-            "Profile lookup:",
-            error
-        );
-
-        return null;
-    }
-
-    return data;
+    return (
+        username
+        .toLowerCase()
+        .replace(/[^a-z0-9_]/g,"_")
+        +"@brp.local"
+    );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    REGISTER
-========================================================= */
+===================================================== */
 
-async function registerAccount(){
+async function registerAccount(
+    realEmail
+){
 
     const username =
         document
-            .getElementById("regUsername")
-            .value
-            .trim();
+        .getElementById("regUsername")
+        .value
+        .trim();
 
     const password =
         document
-            .getElementById("regPassword")
-            .value;
+        .getElementById("regPassword")
+        .value;
 
-    const password2 =
-        document
-            .getElementById("regPassword2")
-            .value;
+    const message =
+        document.getElementById(
+            "registerMessage"
+        );
 
-    const email =
-        document
-            .getElementById("regEmail")
-            .value
-            .trim();
-
-    const button =
-        document.getElementById("registerButton");
+    message.classList.remove("ok");
+    message.textContent="";
 
     if(!validUsername(username)){
 
-        setMessage(
-            "registerMessage",
-            "Логин: от 3 до 24 символов, только буквы, цифры и _.",
-            "error"
-        );
+        message.textContent =
+            "Логин: 3–24 символа, только буквы, цифры и _.";
 
         return;
     }
 
-    if(!validPassword(password)){
+    if(password.length < 6){
 
-        setMessage(
-            "registerMessage",
-            "Пароль должен содержать минимум 6 символов.",
-            "error"
-        );
+        message.textContent =
+            "Пароль должен содержать минимум 6 символов.";
 
         return;
     }
 
-    if(password !== password2){
+    let email = "";
 
-        setMessage(
-            "registerMessage",
-            "Пароли не совпадают.",
-            "error"
-        );
+    if(realEmail){
 
-        return;
+        email =
+            prompt(
+                "Введите email для регистрации:"
+            );
+
+        if(!email){
+
+            message.textContent =
+                "Email не введён.";
+
+            return;
+        }
+
+        email = email.trim().toLowerCase();
+
+        if(!email.includes("@")){
+
+            message.textContent =
+                "Введите корректный email.";
+
+            return;
+        }
+
+    }else{
+
+        email = internalEmail(username);
+
     }
 
-    if(
-        registerMethod==="email" &&
-        !email
-    ){
-
-        setMessage(
-            "registerMessage",
-            "Введите email.",
-            "error"
-        );
-
-        return;
-    }
-
-    button.disabled=true;
-    button.textContent="СОЗДАНИЕ...";
+    message.textContent =
+        "Создание аккаунта...";
 
     try{
 
         /*
-           Проверяем игровой логин.
-        */
+         * Сначала проверяем, нет ли уже такого
+         * игрового логина в profiles.
+         */
 
         const existing =
-            await findProfileByUsername(
-                username
+            await supabaseFetch(
+                "/rest/v1/profiles?select=id&username=eq."+
+                encodeURIComponent(username)+
+                "&limit=1",
+                {
+                    method:"GET"
+                }
             );
 
-        if(existing){
+        if(existing && existing.length){
 
             throw new Error(
-                "Такой игровой логин уже занят."
+                "Этот игровой логин уже занят."
             );
 
         }
 
-
-        const authEmail =
-            registerMethod==="email"
-                ? email
-                : usernameToInternalEmail(username);
-
-
-        const {data,error} =
-            await supabaseClient.auth.signUp({
-
-                email:authEmail,
-
-                password:password,
-
-                options:{
+        const result =
+            await authRequest(
+                "signup",
+                {
+                    email:email,
+                    password:password,
                     data:{
-                        username:username,
-                        login:username,
-                        has_real_email:
-                            registerMethod==="email"
+                        username:username
                     }
                 }
-
-            });
-
-
-        if(error){
-
-            throw error;
-
-        }
-
+            );
 
         /*
-           Если email confirmations выключены,
-           session будет создан сразу.
+         * Если подтверждение email включено,
+         * Supabase может не выдать session.
+         */
 
-           Если включены для обычной почты,
-           пользователь увидит сообщение.
-        */
+        if(!result.access_token){
 
-        if(data.session){
+            message.textContent =
+                "Аккаунт создан. Если Supabase требует подтверждение email, отключи Confirm email в Authentication.";
 
-            await createOrLoadProfile(
-                data.user,
-                username
-            );
-
-            setMessage(
-                "registerMessage",
-                "Аккаунт создан. Входим...",
-                "success"
-            );
-
-            setTimeout(
-                ()=>{
-                    startGame();
-                },
-                500
-            );
-
-        }else{
-
-            if(registerMethod==="email"){
-
-                setMessage(
-                    "registerMessage",
-                    "Аккаунт создан. Проверьте почту и подтвердите регистрацию.",
-                    "success"
-                );
-
-            }else{
-
-                /*
-                   Для внутренних адресов письмо пользователю
-                   не нужно, но если в проекте включено обязательное
-                   подтверждение email, Supabase не создаст обычную
-                   сессию. Это требует отключения Email Confirmations
-                   в настройках Auth.
-                */
-
-                setMessage(
-                    "registerMessage",
-                    "Аккаунт создан, но в Supabase включено подтверждение email. Для регистрации без почты отключите Email Confirmations в Authentication → Providers → Email.",
-                    "error"
-                );
-
-            }
-
+            return;
         }
+
+        accessToken =
+            result.access_token;
+
+        saveAuthSession(result);
+
+        await loadProfile();
+
+        message.classList.add("ok");
+        message.textContent =
+            "Аккаунт создан. Входим...";
+
+        setTimeout(
+            startGame,
+            400
+        );
 
     }catch(error){
 
         console.error(error);
 
-        setMessage(
-            "registerMessage",
-            readableAuthError(error),
-            "error"
-        );
-
-    }finally{
-
-        button.disabled=false;
-        button.textContent="СОЗДАТЬ АККАУНТ";
+        message.textContent =
+            translateAuthError(
+                error.message
+            );
 
     }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    LOGIN
-========================================================= */
+===================================================== */
 
 async function loginAccount(){
 
     const identity =
         document
-            .getElementById("loginIdentity")
-            .value
-            .trim();
+        .getElementById("loginIdentity")
+        .value
+        .trim();
 
     const password =
         document
-            .getElementById("loginPassword")
-            .value;
+        .getElementById("loginPassword")
+        .value;
 
-    const button =
-        document.getElementById("loginButton");
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+    message.classList.remove("ok");
+    message.textContent="";
 
     if(!identity || !password){
 
-        setMessage(
-            "loginMessage",
-            "Введите логин/email и пароль.",
-            "error"
-        );
+        message.textContent =
+            "Введите логин/email и пароль.";
 
         return;
     }
 
-    button.disabled=true;
-    button.textContent="ВХОД...";
+    message.textContent =
+        "Выполняется вход...";
 
     try{
 
         let email = identity;
 
         /*
-           Вход по игровому логину:
-           сначала находим профиль,
-           затем используем email, связанный
-           с Auth-пользователем.
+         * Если введён не email,
+         * ищем настоящий email профиля.
+         */
 
-           Для новых аккаунтов без email это
-           username@brp.local.
-        */
+        if(!identity.includes("@")){
 
-        if(loginMethod==="username"){
-
-            const profile =
-                await findProfileByUsername(
-                    identity
+            const profiles =
+                await fetch(
+                    SUPABASE_URL+
+                    "/rest/v1/profiles?select=email,username&username=eq."+
+                    encodeURIComponent(identity)+
+                    "&limit=1",
+                    {
+                        headers:{
+                            "apikey":SUPABASE_KEY,
+                            "Authorization":
+                                "Bearer "+SUPABASE_KEY
+                        }
+                    }
                 );
 
-            if(profile){
+            const data =
+                await profiles.json();
 
-                if(profile.email){
+            if(!data.length){
 
-                    email =
-                        profile.email;
-
-                }else if(
-                    profile.auth_email
-                ){
-
-                    email =
-                        profile.auth_email;
-
-                }else{
-
-                    email =
-                        usernameToInternalEmail(
-                            identity
-                        );
-
-                }
-
-            }else{
-
-                /*
-                   Если профиль не читается из-за RLS,
-                   пробуем технический email.
-                   Это позволяет новым аккаунтам
-                   без почты входить по логину.
-                */
-
-                email =
-                    usernameToInternalEmail(
-                        identity
-                    );
+                throw new Error(
+                    "Игровой аккаунт с таким логином не найден."
+                );
 
             }
 
+            /*
+             * Для аккаунтов, созданных без почты,
+             * в profiles.email будет технический email.
+             */
+
+            email = data[0].email;
+
         }
 
-
-        const {data,error} =
-            await supabaseClient.auth
-                .signInWithPassword({
-
+        const result =
+            await authRequest(
+                "token?grant_type=password",
+                {
                     email:email,
-
                     password:password
+                }
+            );
 
-                });
+        if(!result.access_token){
 
-
-        if(error){
-
-            throw error;
+            throw new Error(
+                "Не удалось получить сессию."
+            );
 
         }
 
+        accessToken =
+            result.access_token;
 
-        currentAuthUser =
-            data.user;
+        saveAuthSession(result);
 
+        await loadProfile();
 
-        await createOrLoadProfile(
-            data.user,
-            identity
-        );
-
-
-        setMessage(
-            "loginMessage",
-            "Вход выполнен.",
-            "success"
-        );
-
+        message.classList.add("ok");
+        message.textContent =
+            "Вход выполнен.";
 
         setTimeout(
-            ()=>{
-                startGame();
-            },
-            300
+            startGame,
+            250
         );
-
 
     }catch(error){
 
         console.error(error);
 
-        setMessage(
-            "loginMessage",
-            readableAuthError(error),
-            "error"
-        );
-
-    }finally{
-
-        button.disabled=false;
-        button.textContent="ВОЙТИ В ИГРУ";
+        message.textContent =
+            translateAuthError(
+                error.message
+            );
 
     }
 
 }
 
 
-/* =========================================================
-   CREATE / LOAD PROFILE
-========================================================= */
+/* =====================================================
+   AUTH SESSION
+===================================================== */
 
-async function createOrLoadProfile(
-    authUser,
-    enteredUsername=""
-){
+function saveAuthSession(data){
 
-    currentAuthUser =
-        authUser;
+    localStorage.setItem(
+        "brp_auth",
+        JSON.stringify({
+            access_token:data.access_token,
+            refresh_token:data.refresh_token,
+            expires_at:
+                Date.now()+
+                ((data.expires_in || 3600)*1000)
+        })
+    );
 
-
-    let username =
-        enteredUsername ||
-        authUser.user_metadata?.username ||
-        authUser.user_metadata?.login ||
-        "";
-
-
-    let profile = null;
+}
 
 
-    /*
-       First attempt: profile by auth user id.
-    */
+function loadSavedAuth(){
 
     try{
 
-        const result =
-            await supabaseClient
-                .from("profiles")
-                .select("*")
-                .eq("id",authUser.id)
-                .maybeSingle();
-
-        if(!result.error){
-
-            profile=result.data;
-
-        }
-
-    }catch(e){
-
-        console.warn(e);
-
-    }
-
-
-    /*
-       Second attempt: profile by username.
-    */
-
-    if(!profile && username){
-
-        profile =
-            await findProfileByUsername(
-                username
+        const saved =
+            JSON.parse(
+                localStorage.getItem(
+                    "brp_auth"
+                ) || "null"
             );
 
-    }
+        if(!saved) return null;
 
+        accessToken =
+            saved.access_token;
 
-    /*
-       If profile exists, convert it into
-       the game object.
-    */
+        return saved;
 
-    if(profile){
+    }catch{
 
-        currentUser =
-            normalizeProfile(
-                profile,
-                authUser
-            );
-
-        return currentUser;
+        return null;
 
     }
 
-
-    /*
-       No profile found.
-
-       We attempt to create one.
-
-       This requires the profiles table to allow
-       authenticated INSERT through RLS.
-    */
-
-    if(!username){
-
-        username =
-            authUser.user_metadata?.username ||
-            "Player";
-
-    }
+}
 
 
-    const player =
-        defaultPlayer();
+/* =====================================================
+   PROFILE
+===================================================== */
 
-    player.username =
-        username;
+async function loadProfile(){
 
-    player.id =
-        100000 +
-        Math.floor(
-            Math.random()*899999
+    const result =
+        await supabaseFetch(
+            "/rest/v1/profiles?select=*&limit=1",
+            {
+                method:"GET"
+            }
         );
 
-    player.registeredAt =
-        new Date()
-            .toLocaleDateString("ru-RU");
+    /*
+     * После auth.uid() запрос RLS вернёт
+     * профиль текущего пользователя.
+     */
 
+    if(!result || !result.length){
 
-    try{
-
-        const insert =
-            await supabaseClient
-                .from("profiles")
-                .insert({
-
-                    id:authUser.id,
-
-                    username:username,
-
-                    level:player.level,
-
-                    xp:player.xp,
-
-                    cash:player.cash,
-
-                    bank:player.bank,
-
-                    gold:player.gold,
-
-                    job:player.job
-
-                })
-                .select()
-                .single();
-
-
-        if(!insert.error && insert.data){
-
-            currentUser =
-                normalizeProfile(
-                    insert.data,
-                    authUser
-                );
-
-            return currentUser;
-
-        }
-
-        console.warn(
-            "Profile creation:",
-            insert.error
+        throw new Error(
+            "Профиль игрока не найден."
         );
 
-    }catch(error){
-
-        console.warn(error);
-
     }
-
-
-    /*
-       Fallback only for UI.
-       It does NOT replace the Supabase Auth session.
-    */
 
     currentUser =
-        player;
+        result[0];
 
-    return player;
-
-}
-
-
-/* =========================================================
-   PROFILE NORMALIZER
-========================================================= */
-
-function normalizeProfile(
-    profile,
-    authUser
-){
-
-    const player =
-        defaultPlayer();
-
-    player.username =
-        profile.username ||
-        profile.login ||
-        authUser?.user_metadata?.username ||
-        "Player";
-
-    player.id =
-        profile.id ||
-        profile.player_id ||
-        profile.numeric_id ||
-        authUser?.id ||
-        1000;
-
-    player.level =
-        Number(
-            profile.level ??
-            1
-        );
-
-    player.xp =
-        Number(
-            profile.xp ??
-            profile.experience ??
-            0
-        );
-
-    player.cash =
-        Number(
-            profile.cash ??
-            profile.money ??
-            50000
-        );
-
-    player.bank =
-        Number(
-            profile.bank ??
-            0
-        );
-
-    player.gold =
-        Number(
-            profile.gold ??
-            100
-        );
-
-    player.job =
-        profile.job ||
-        "Безработный";
-
-    player.registeredAt =
-        profile.created_at
-            ? new Date(
-                profile.created_at
-              ).toLocaleDateString("ru-RU")
-            : "Сегодня";
-
-
-    /*
-       Cars and inventory can be stored in JSON columns
-       if those columns exist.
-    */
-
-    if(Array.isArray(profile.cars)){
-
-        player.cars =
-            profile.cars;
-
-    }
-
-    if(Array.isArray(profile.inventory)){
-
-        player.inventory =
-            profile.inventory;
-
-    }
-
-    return player;
+    return currentUser;
 
 }
 
 
-/* =========================================================
-   SAVE PROFILE
-========================================================= */
+/* =====================================================
+   UPDATE PROFILE
+===================================================== */
 
-async function savePlayer(){
+async function updateProfile(values){
 
-    if(
-        !currentUser ||
-        !currentAuthUser
-    ){
+    if(!currentUser) return;
 
-        return;
+    const result =
+        await supabaseFetch(
+            "/rest/v1/profiles?id=eq."+
+            encodeURIComponent(
+                currentUser.id
+            ),
+            {
+                method:"PATCH",
+                headers:{
+                    "Prefer":
+                        "return=representation"
+                },
+                body:
+                    JSON.stringify(values)
+            }
+        );
+
+    if(result && result[0]){
+
+        currentUser =
+            result[0];
 
     }
 
-
-    /*
-       Try the common profile structure.
-    */
-
-    const updateData = {
-
-        username:currentUser.username,
-
-        level:currentUser.level,
-
-        xp:currentUser.xp,
-
-        cash:currentUser.cash,
-
-        bank:currentUser.bank,
-
-        gold:currentUser.gold,
-
-        job:currentUser.job
-
-    };
+}
 
 
-    try{
+/* =====================================================
+   START GAME
+===================================================== */
 
-        const result =
-            await supabaseClient
-                .from("profiles")
-                .update(updateData)
-                .eq("id",currentAuthUser.id);
+async function startGame(){
 
+    if(!currentUser){
 
-        if(result.error){
+        try{
 
-            console.warn(
-                "Save profile:",
-                result.error
-            );
+            await loadProfile();
+
+        }catch(error){
+
+            console.error(error);
+
+            return;
 
         }
 
-    }catch(error){
-
-        console.warn(error);
-
     }
-
-}
-
-
-/* =========================================================
-   START GAME
-========================================================= */
-
-async function startGame(){
 
     document
         .getElementById("authScreen")
@@ -3114,104 +2459,115 @@ async function startGame(){
     renderAll();
 
     await loadChat();
-
+    await updateOnline();
     await loadOnline();
 
-    startHeartbeat();
+    startRealtime();
 
 }
 
 
-/* =========================================================
-   SESSION
-========================================================= */
+/* =====================================================
+   AUTO LOGIN
+===================================================== */
 
 async function checkSession(){
 
+    const saved =
+        loadSavedAuth();
+
+    if(!saved){
+
+        return;
+
+    }
+
     try{
 
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .auth
-                .getSession();
+        /*
+         * Проверяем access token.
+         */
 
-        if(error){
+        const user =
+            await supabaseFetch(
+                "/auth/v1/user",
+                {
+                    method:"GET"
+                }
+            );
 
-            console.error(error);
+        if(!user?.id){
 
-            return;
-
-        }
-
-        const session =
-            data.session;
-
-        if(!session){
-
-            return;
+            throw new Error(
+                "Сессия недействительна."
+            );
 
         }
 
-        currentAuthUser =
-            session.user;
-
-
-        await createOrLoadProfile(
-            session.user,
-            session.user.user_metadata?.username ||
-            ""
-        );
-
+        await loadProfile();
 
         await startGame();
 
     }catch(error){
 
-        console.error(
-            "Session error:",
-            error
+        console.log(
+            "Автовход:",
+            error.message
         );
+
+        localStorage.removeItem(
+            "brp_auth"
+        );
+
+        accessToken=null;
 
     }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    LOGOUT
-========================================================= */
+===================================================== */
 
 async function logout(){
 
-    stopHeartbeat();
+    try{
 
-    if(chatSubscription){
+        await fetch(
+            SUPABASE_URL+
+            "/auth/v1/logout",
+            {
+                method:"POST",
+                headers:{
+                    "apikey":SUPABASE_KEY,
+                    "Authorization":
+                        "Bearer "+accessToken
+                }
+            }
+        );
+
+    }catch{}
+
+    if(currentUser){
 
         try{
 
-            await chatSubscription.unsubscribe();
+            await updateProfile({
+                online:false,
+                last_seen:new Date().toISOString()
+            });
 
-        }catch(e){}
-
-        chatSubscription=null;
-
-    }
-
-    try{
-
-        await supabaseClient.auth.signOut();
-
-    }catch(error){
-
-        console.error(error);
+        }catch{}
 
     }
 
     currentUser=null;
-    currentAuthUser=null;
+    accessToken=null;
+
+    localStorage.removeItem(
+        "brp_auth"
+    );
 
     document
         .getElementById("app")
@@ -3221,167 +2577,132 @@ async function logout(){
         .getElementById("authScreen")
         .classList.remove("hidden");
 
-    document
-        .getElementById("loginIdentity")
-        .value="";
-
-    document
-        .getElementById("loginPassword")
-        .value="";
-
     switchAuth("login");
 
 }
 
 
-/* =========================================================
+/* =====================================================
    RENDER
-========================================================= */
+===================================================== */
 
 function renderAll(){
 
-    if(!currentUser){
-
-        return;
-
-    }
+    if(!currentUser) return;
 
     const p =
         currentUser;
 
-
-    document
-        .getElementById("homeName")
-        .textContent =
+    document.getElementById(
+        "homeName"
+    ).textContent =
         p.username;
 
-
-    document
-        .getElementById("homeLevel")
-        .textContent =
+    document.getElementById(
+        "homeLevel"
+    ).textContent =
         p.level;
 
+    document.getElementById(
+        "homeXP"
+    ).textContent =
+        p.xp+" XP";
 
-    document
-        .getElementById("homeXP")
-        .textContent =
-        p.xp + " XP";
+    document.getElementById(
+        "homeCash"
+    ).textContent =
+        money(p.cash);
 
+    document.getElementById(
+        "homeBank"
+    ).textContent =
+        money(p.bank);
 
-    document
-        .getElementById("homeCash")
-        .textContent =
-        formatMoney(p.cash);
+    document.getElementById(
+        "topCash"
+    ).textContent =
+        "₽ "+number(p.cash);
 
+    document.getElementById(
+        "topGold"
+    ).textContent =
+        "◆ "+number(p.gold);
 
-    document
-        .getElementById("homeBank")
-        .textContent =
-        formatMoney(p.bank);
-
-
-    document
-        .getElementById("topCash")
-        .textContent =
-        "₽ " +
-        formatNumber(p.cash);
-
-
-    document
-        .getElementById("topGold")
-        .textContent =
-        "◆ " +
-        formatNumber(p.gold);
-
-
-    document
-        .getElementById("profileName")
-        .textContent =
+    document.getElementById(
+        "profileName"
+    ).textContent =
         p.username;
 
-
-    document
-        .getElementById("profileAvatar")
-        .textContent =
+    document.getElementById(
+        "profileAvatar"
+    ).textContent =
         p.username
             .charAt(0)
             .toUpperCase();
 
+    document.getElementById(
+        "profileId"
+    ).textContent =
+        "ID: "+
+        String(p.id).slice(0,8);
 
-    document
-        .getElementById("profileId")
-        .textContent =
-        "ID: " +
-        p.id;
-
-
-    document
-        .getElementById("profileLevel")
-        .textContent =
+    document.getElementById(
+        "profileLevel"
+    ).textContent =
         p.level;
 
+    document.getElementById(
+        "profileXP"
+    ).textContent =
+        p.xp+" XP";
 
-    document
-        .getElementById("profileXP")
-        .textContent =
-        p.xp +
-        " XP";
+    document.getElementById(
+        "profileCash"
+    ).textContent =
+        money(p.cash);
 
+    document.getElementById(
+        "profileBank"
+    ).textContent =
+        money(p.bank);
 
-    document
-        .getElementById("profileCash")
-        .textContent =
-        formatMoney(p.cash);
-
-
-    document
-        .getElementById("profileBank")
-        .textContent =
-        formatMoney(p.bank);
-
-
-    document
-        .getElementById("profileJob")
-        .textContent =
+    document.getElementById(
+        "profileJob"
+    ).textContent =
         p.job;
 
-
-    document
-        .getElementById("profileDate")
-        .textContent =
-        p.registeredAt;
-
+    document.getElementById(
+        "profileDate"
+    ).textContent =
+        new Date(
+            p.registered_at
+        ).toLocaleDateString(
+            "ru-RU"
+        );
 
     const need =
-        xpForLevel(p.level);
+        xpNeed(p.level);
 
     const percent =
         Math.min(
             100,
-            (p.xp / need) * 100
+            (p.xp/need)*100
         );
 
+    document.getElementById(
+        "homeXpBar"
+    ).style.width =
+        percent+"%";
 
-    document
-        .getElementById("homeXpBar")
-        .style.width =
-        percent + "%";
+    document.getElementById(
+        "bigXpBar"
+    ).style.width =
+        percent+"%";
 
-
-    document
-        .getElementById("bigXpBar")
-        .style.width =
-        percent + "%";
-
-
-    document
-        .getElementById("xpText")
-        .textContent =
-        p.xp +
-        " / " +
-        need +
-        " XP";
-
+    document.getElementById(
+        "xpText"
+    ).textContent =
+        p.xp+" / "+need+" XP";
 
     renderJobs();
     renderGarage();
@@ -3390,82 +2711,74 @@ function renderAll(){
 }
 
 
-/* =========================================================
-   MONEY
-========================================================= */
+/* =====================================================
+   NUMBER
+===================================================== */
 
-function formatNumber(number){
+function number(value){
 
     return Math.floor(
-        Number(number) || 0
+        Number(value)||0
     ).toLocaleString(
         "ru-RU"
     );
 
 }
 
+function money(value){
 
-function formatMoney(number){
-
-    return "₽ " +
-        formatNumber(number);
+    return "₽ "+number(value);
 
 }
 
 
-/* =========================================================
+/* =====================================================
    XP
-========================================================= */
+===================================================== */
 
-function xpForLevel(level){
+function xpNeed(level){
 
-    return 100 +
-        ((level-1) * 75);
+    return 100+
+        ((Number(level)-1)*75);
 
 }
 
 
 async function addXP(amount){
 
-    if(!currentUser){
+    if(!currentUser) return;
 
-        return;
+    let level =
+        Number(currentUser.level);
 
-    }
-
-    currentUser.xp +=
-        Number(amount);
+    let xp =
+        Number(currentUser.xp)+amount;
 
     let levelUp=false;
 
-
     while(
-        currentUser.xp >=
-        xpForLevel(currentUser.level)
+        xp >= xpNeed(level)
     ){
 
-        currentUser.xp -=
-            xpForLevel(
-                currentUser.level
-            );
+        xp -= xpNeed(level);
 
-        currentUser.level++;
+        level++;
 
         levelUp=true;
 
     }
 
-
-    await savePlayer();
+    await updateProfile({
+        level:level,
+        xp:xp
+    });
 
     renderAll();
-
 
     if(levelUp){
 
         toast(
-            "🎉 Новый уровень: " +
-            currentUser.level
+            "🎉 Новый уровень: "+level
         );
 
     }
@@ -3473,9 +2786,9 @@ async function addXP(amount){
 }
 
 
-/* =========================================================
+/* =====================================================
    JOBS
-========================================================= */
+===================================================== */
 
 const jobs=[
 
@@ -3483,80 +2796,80 @@ const jobs=[
         id:"truck",
         icon:"🚛",
         name:"Дальнобойщик",
-        desc:"Доставляй грузы между городами.",
+        description:"Доставляй грузы между городами.",
         salary:9500,
         xp:35,
-        required:2
+        level:2
     },
 
     {
         id:"taxi",
         icon:"🚕",
         name:"Таксист",
-        desc:"Перевози пассажиров по городу.",
+        description:"Перевози пассажиров по городу.",
         salary:3200,
         xp:15,
-        required:1
+        level:1
     },
 
     {
         id:"bus",
         icon:"🚌",
         name:"Водитель автобуса",
-        desc:"Работай на городском маршруте.",
+        description:"Работай на городском маршруте.",
         salary:4800,
         xp:20,
-        required:2
+        level:2
     },
 
     {
         id:"courier",
         icon:"📦",
         name:"Курьер",
-        desc:"Доставляй заказы.",
+        description:"Доставляй посылки.",
         salary:2700,
         xp:12,
-        required:1
+        level:1
     },
 
     {
         id:"mechanic",
         icon:"🔧",
         name:"Механик",
-        desc:"Ремонтируй транспорт.",
+        description:"Ремонтируй транспорт.",
         salary:6200,
         xp:24,
-        required:3
-    },
-
-    {
-        id:"loader",
-        icon:"📦",
-        name:"Грузчик",
-        desc:"Работай на складе.",
-        salary:2100,
-        xp:10,
-        required:1
+        level:3
     },
 
     {
         id:"builder",
         icon:"👷",
         name:"Строитель",
-        desc:"Строй город.",
+        description:"Строй город.",
         salary:5500,
         xp:22,
-        required:2
+        level:2
     },
 
     {
         id:"farmer",
         icon:"🚜",
         name:"Фермер",
-        desc:"Работай на ферме.",
+        description:"Работай на ферме.",
         salary:4300,
         xp:18,
-        required:1
+        level:1
+    },
+
+    {
+        id:"loader",
+        icon:"📦",
+        name:"Грузчик",
+        description:"Работа на складе.",
+        salary:2100,
+        xp:10,
+        level:1
     }
 
 ];
@@ -3564,34 +2877,28 @@ const jobs=[
 
 function renderJobs(){
 
-    const container =
+    const box =
         document.getElementById(
             "jobsContainer"
         );
 
-    if(!container || !currentUser){
-
+    if(!box || !currentUser)
         return;
 
-    }
-
-    container.innerHTML="";
-
+    box.innerHTML="";
 
     jobs.forEach(job=>{
 
         const locked =
             currentUser.level <
-            job.required;
+            job.level;
 
-
-        const div =
+        const el =
             document.createElement("div");
 
-        div.className="job";
+        el.className="job";
 
-
-        div.innerHTML=`
+        el.innerHTML=`
 
             <div class="job-icon">
                 ${job.icon}
@@ -3605,13 +2912,13 @@ function renderJobs(){
 
                 <div class="job-info">
 
-                    ${job.desc}
+                    ${job.description}
 
                     <br>
 
                     Зарплата:
-                    <b style="color:#20a65a">
-                        ₽${formatNumber(job.salary)}
+                    <b style="color:#4fe184">
+                        ₽${number(job.salary)}
                     </b>
 
                     ·
@@ -3622,30 +2929,24 @@ function renderJobs(){
 
                     <br>
 
-                    Требуется уровень:
-                    ${job.required}
+                    Требуется:
+                    ${job.level} уровень
 
                 </div>
 
             </div>
 
             <button
-                class="job-action"
-                onclick="startJob('${job.id}')"
-                ${locked ? "disabled" : ""}
-                style="${
-                    locked
-                    ? "background:#d9dadd;color:#888"
-                    : ""
-                }"
-            >
-                ${locked ? "🔒" : "НАЧАТЬ"}
+                class="job-btn ${locked?"locked":""}"
+                onclick="startJob('${job.id}')">
+
+                ${locked?"🔒":"НАЧАТЬ"}
+
             </button>
 
         `;
 
-
-        container.appendChild(div);
+        box.appendChild(el);
 
     });
 
@@ -3659,171 +2960,135 @@ async function startJob(id){
             x=>x.id===id
         );
 
-    if(!job){
+    if(!job) return;
 
-        return;
-
-    }
-
-
-    if(
-        currentUser.level <
-        job.required
-    ){
+    if(currentUser.level<job.level){
 
         toast(
-            "🔒 Требуется уровень " +
-            job.required
+            "🔒 Требуется уровень "+job.level
         );
 
         return;
 
     }
 
-
-    currentUser.job =
-        job.name;
-
-    await savePlayer();
-
-    renderAll();
-
-
-    const proceed =
+    const ok =
         confirm(
-            "Начать смену «" +
-            job.name +
-            "»?\n\n" +
-            "После завершения:\n" +
-            "₽ " +
-            formatNumber(job.salary) +
-            "\n" +
-            "+" +
-            job.xp +
-            " XP"
+            "Начать смену: "+
+            job.name+
+            "?\n\n"+
+            "После завершения:\n"+
+            "₽ "+number(job.salary)+
+            "\n+"+job.xp+" XP"
         );
 
+    if(!ok) return;
 
-    if(!proceed){
-
-        return;
-
-    }
-
-
-    currentUser.cash +=
-        job.salary;
-
-    await addXP(job.xp);
-
-    currentUser.job =
-        job.name;
-
-    await savePlayer();
+    await updateProfile({
+        job:job.name
+    });
 
     renderAll();
 
+    setTimeout(
+        async ()=>{
 
-    toast(
-        "💰 Получено ₽" +
-        formatNumber(job.salary)
+            const finish =
+                confirm(
+                    "Смена завершена!\n\n"+
+                    job.name+
+                    "\n\nПолучить ₽"+
+                    number(job.salary)+
+                    " и +"+
+                    job.xp+
+                    " XP?"
+                );
+
+            if(!finish) return;
+
+            await updateProfile({
+                cash:
+                    Number(currentUser.cash)+
+                    job.salary
+            });
+
+            await addXP(job.xp);
+
+            toast(
+                "💰 Получено ₽"+
+                number(job.salary)
+            );
+
+        },
+        1200
     );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    GARAGE
-========================================================= */
+===================================================== */
+
+let cars=[
+    {
+        name:"Lada Priora",
+        icon:"🚘",
+        fuel:87,
+        condition:96
+    }
+];
+
 
 function renderGarage(){
 
-    const container =
+    const box =
         document.getElementById(
             "garageContainer"
         );
 
-    if(!container || !currentUser){
+    if(!box) return;
 
-        return;
+    box.innerHTML="";
 
-    }
-
-    container.innerHTML="";
-
-
-    if(!currentUser.cars.length){
-
-        container.innerHTML=`
-
-            <div class="card">
-
-                <div class="card-title">
-                    Гараж пуст
-                </div>
-
-                <div class="card-desc">
-                    Купи первый автомобиль.
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    currentUser.cars.forEach(
+    cars.forEach(
         (car,index)=>{
 
-            const div =
+            const el =
                 document.createElement("div");
 
-            div.className="car";
+            el.className="car";
 
+            el.innerHTML=`
 
-            div.innerHTML=`
-
-                <div class="car-image">
-                    ${car.icon || "🚗"}
+                <div class="car-top">
+                    ${car.icon}
                 </div>
 
-                <div class="car-body">
+                <div class="car-info">
 
                     <div class="car-name">
-                        ${escapeHTML(
-                            car.name
-                        )}
+                        ${car.name}
                     </div>
 
                     <div class="car-meta">
-                        Топливо:
-                        ${car.fuel ?? 100}%
+                        Топливо: ${car.fuel}%
                         ·
-                        Состояние:
-                        ${car.condition ?? 100}%
+                        Состояние: ${car.condition}%
                     </div>
 
-                    <div class="car-buttons">
+                    <div class="car-actions">
 
-                        <button
-                            onclick="refuelCar(${index})"
-                        >
-                            ⛽ Заправить
+                        <button onclick="refuel(${index})">
+                            ⛽ ЗАПРАВИТЬ
                         </button>
 
-                        <button
-                            onclick="repairCar(${index})"
-                        >
-                            🔧 Ремонт
+                        <button onclick="repair(${index})">
+                            🔧 РЕМОНТ
                         </button>
 
-                        <button
-                            onclick="driveCar(${index})"
-                        >
-                            🚗 Ехать
+                        <button onclick="drive(${index})">
+                            🚗 ЕХАТЬ
                         </button>
 
                     </div>
@@ -3832,8 +3097,7 @@ function renderGarage(){
 
             `;
 
-
-            container.appendChild(div);
+            box.appendChild(el);
 
         }
     );
@@ -3841,23 +3105,18 @@ function renderGarage(){
 }
 
 
-async function refuelCar(index){
+async function refuel(index){
 
     const car =
-        currentUser.cars[index];
-
-    const missing =
-        Math.max(
-            0,
-            100 -
-            Number(car.fuel || 0)
-        );
+        cars[index];
 
     const cost =
-        missing * 35;
+        Math.max(
+            0,
+            100-car.fuel
+        )*35;
 
-
-    if(currentUser.cash < cost){
+    if(currentUser.cash<cost){
 
         toast(
             "Недостаточно денег."
@@ -3867,40 +3126,35 @@ async function refuelCar(index){
 
     }
 
-
-    currentUser.cash -=
-        cost;
+    await updateProfile({
+        cash:
+            Number(currentUser.cash)-cost
+    });
 
     car.fuel=100;
 
-    await savePlayer();
-
+    renderGarage();
     renderAll();
 
     toast(
-        "⛽ Автомобиль заправлен"
+        "⛽ Машина заправлена"
     );
 
 }
 
 
-async function repairCar(index){
+async function repair(index){
 
     const car =
-        currentUser.cars[index];
-
-    const missing =
-        Math.max(
-            0,
-            100 -
-            Number(car.condition || 0)
-        );
+        cars[index];
 
     const cost =
-        missing * 80;
+        Math.max(
+            0,
+            100-car.condition
+        )*80;
 
-
-    if(currentUser.cash < cost){
+    if(currentUser.cash<cost){
 
         toast(
             "Недостаточно денег."
@@ -3910,162 +3164,109 @@ async function repairCar(index){
 
     }
 
-
-    currentUser.cash -=
-        cost;
+    await updateProfile({
+        cash:
+            Number(currentUser.cash)-cost
+    });
 
     car.condition=100;
 
-    await savePlayer();
-
+    renderGarage();
     renderAll();
 
     toast(
-        "🔧 Автомобиль отремонтирован"
+        "🔧 Машина отремонтирована"
     );
 
 }
 
 
-async function driveCar(index){
+function drive(index){
 
     const car =
-        currentUser.cars[index];
+        cars[index];
 
-
-    if(
-        Number(car.fuel || 0) <= 5
-    ){
+    if(car.fuel<5){
 
         toast(
-            "⛽ Сначала заправь автомобиль."
+            "⛽ Сначала заправь машину."
         );
 
         return;
 
     }
 
+    car.fuel-=5;
 
-    car.fuel -= 5;
-
-    await savePlayer();
-
-    renderAll();
+    renderGarage();
 
     toast(
-        "🚗 Ты выехал в город"
+        "🚗 Ты выехал в город."
     );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    SHOP
-========================================================= */
+===================================================== */
 
 const shopItems=[
 
-    {
-        icon:"🍔",
-        name:"Бургер",
-        price:350
-    },
-
-    {
-        icon:"🥤",
-        name:"Газировка",
-        price:180
-    },
-
-    {
-        icon:"☕",
-        name:"Кофе",
-        price:250
-    },
-
-    {
-        icon:"📱",
-        name:"Телефон",
-        price:12500
-    },
-
-    {
-        icon:"🎧",
-        name:"Наушники",
-        price:6500
-    },
-
-    {
-        icon:"🧰",
-        name:"Ремкомплект",
-        price:3200
-    },
-
-    {
-        icon:"🎒",
-        name:"Рюкзак",
-        price:4500
-    },
-
-    {
-        icon:"🧥",
-        name:"Куртка",
-        price:7200
-    }
+    ["🍔","Бургер",350],
+    ["🥤","Газировка",180],
+    ["☕","Кофе",250],
+    ["📱","Телефон",12500],
+    ["🎧","Наушники",6500],
+    ["🧰","Ремкомплект",3200],
+    ["🎒","Рюкзак",4500],
+    ["🧥","Куртка",7200]
 
 ];
 
 
 function renderShop(){
 
-    const container =
+    const box =
         document.getElementById(
             "shopContainer"
         );
 
-    if(!container){
+    if(!box) return;
 
-        return;
-
-    }
-
-    container.innerHTML="";
-
+    box.innerHTML="";
 
     shopItems.forEach(
         (item,index)=>{
 
-            const div =
+            const el =
                 document.createElement("div");
 
-            div.className="item";
+            el.className="item";
 
-
-            div.innerHTML=`
+            el.innerHTML=`
 
                 <div class="item-icon">
-                    ${item.icon}
+                    ${item[0]}
                 </div>
 
                 <div class="item-name">
-                    ${item.name}
+                    ${item[1]}
                 </div>
 
                 <div class="item-price">
-                    ₽${formatNumber(item.price)}
+                    ₽${number(item[2])}
                 </div>
 
                 <button
                     class="buy"
-                    onclick="buyItem(${index})"
-                >
+                    onclick="buyItem(${index})">
                     КУПИТЬ
                 </button>
 
             `;
 
-
-            container.appendChild(div);
+            box.appendChild(el);
 
         }
     );
@@ -4078,8 +3279,7 @@ async function buyItem(index){
     const item =
         shopItems[index];
 
-
-    if(currentUser.cash < item.price){
+    if(currentUser.cash<item[2]){
 
         toast(
             "Недостаточно денег."
@@ -4089,45 +3289,28 @@ async function buyItem(index){
 
     }
 
-
-    currentUser.cash -=
-        item.price;
-
-
-    currentUser.inventory =
-        currentUser.inventory || [];
-
-
-    currentUser.inventory.push({
-
-        name:item.name,
-
-        icon:item.icon
-
+    await updateProfile({
+        cash:
+            Number(currentUser.cash)-
+            item[2]
     });
-
-
-    await savePlayer();
 
     renderAll();
 
     toast(
-        item.icon +
-        " " +
-        item.name +
-        " куплен"
+        item[0]+" "+item[1]+" куплен."
     );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CASINO
-========================================================= */
+===================================================== */
 
 async function playSlots(bet){
 
-    if(currentUser.cash < bet){
+    if(currentUser.cash<bet){
 
         toast(
             "Недостаточно денег."
@@ -4137,56 +3320,50 @@ async function playSlots(bet){
 
     }
 
-
-    currentUser.cash -=
-        bet;
-
+    let result =
+        Number(currentUser.cash)-bet;
 
     const roll =
         Math.random();
 
-
     let win=0;
 
-
-    if(roll < .05){
+    if(roll<0.04){
 
         win=bet*10;
 
-    }else if(roll < .15){
+    }else if(roll<0.12){
 
         win=bet*4;
 
-    }else if(roll < .40){
+    }else if(roll<0.38){
 
         win=bet*2;
 
     }
 
+    result+=win;
 
-    currentUser.cash +=
-        win;
-
-
-    await savePlayer();
+    await updateProfile({
+        cash:result
+    });
 
     renderAll();
-
 
     if(win){
 
         openModal(
-            "🎰 Выигрыш!",
-            "Ставка: " +
-            formatMoney(bet) +
-            "\n\nВыигрыш: " +
-            formatMoney(win)
+            "🎰 ВЫИГРЫШ",
+            "Ставка: ₽"+
+            number(bet)+
+            "\nВыигрыш: ₽"+
+            number(win)
         );
 
     }else{
 
         toast(
-            "🎰 Ставка проиграна"
+            "🎰 Ставка проиграна."
         );
 
     }
@@ -4196,7 +3373,7 @@ async function playSlots(bet){
 
 async function playDice(bet){
 
-    if(currentUser.cash < bet){
+    if(currentUser.cash<bet){
 
         toast(
             "Недостаточно денег."
@@ -4206,128 +3383,63 @@ async function playDice(bet){
 
     }
 
-
-    currentUser.cash -=
-        bet;
-
-
     const player =
         Math.floor(
             Math.random()*6
         )+1;
-
 
     const casino =
         Math.floor(
             Math.random()*6
         )+1;
 
+    let cash =
+        Number(currentUser.cash)-bet;
 
-    if(player > casino){
+    if(player>casino){
 
-        currentUser.cash +=
-            bet*2;
+        cash+=bet*2;
 
         toast(
-            "🎲 Победа! +" +
-            formatMoney(bet)
+            "🎲 Победа! +₽"+
+            number(bet)
         );
 
     }else{
 
         toast(
-            "🎲 " +
-            player +
-            " против " +
+            "🎲 "+
+            player+
+            " против "+
             casino
         );
 
     }
 
-
-    await savePlayer();
+    await updateProfile({
+        cash:cash
+    });
 
     renderAll();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CHAT
-========================================================= */
+===================================================== */
 
 async function loadChat(){
 
-    const box =
-        document.getElementById(
-            "chatMessages"
+    const messages =
+        await supabaseFetch(
+            "/rest/v1/chat_messages?select=*&order=created_at.asc&limit=100",
+            {
+                method:"GET"
+            }
         );
 
-    if(!box){
-
-        return;
-
-    }
-
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .from("chat_messages")
-                .select("*")
-                .order(
-                    "created_at",
-                    {
-                        ascending:true
-                    }
-                )
-                .limit(100);
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        renderChat(
-            data || []
-        );
-
-
-    }catch(error){
-
-        console.warn(
-            "Chat:",
-            error
-        );
-
-
-        box.innerHTML=`
-
-            <div class="message">
-
-                <div class="message-name">
-                    Server
-                </div>
-
-                <div class="message-text">
-                    Чат пока не подключён к таблице chat_messages.
-                </div>
-
-            </div>
-
-        `;
-
-    }
-
-
-    subscribeChat();
+    renderChat(messages || []);
 
 }
 
@@ -4339,27 +3451,21 @@ function renderChat(messages){
             "chatMessages"
         );
 
-    if(!box){
-
-        return;
-
-    }
-
+    if(!box) return;
 
     box.innerHTML="";
-
 
     if(!messages.length){
 
         box.innerHTML=`
 
-            <div class="message">
+            <div class="chat-message">
 
-                <div class="message-name">
-                    Server
+                <div class="chat-name">
+                    SERVER
                 </div>
 
-                <div class="message-text">
+                <div class="chat-text">
                     Добро пожаловать в общий чат!
                 </div>
 
@@ -4371,87 +3477,34 @@ function renderChat(messages){
 
     }
 
+    messages.forEach(msg=>{
 
-    messages.forEach(
-        msg=>{
+        const el =
+            document.createElement(
+                "div"
+            );
 
-            const div =
-                document.createElement("div");
+        el.className=
+            "chat-message";
 
-            div.className="message";
+        el.innerHTML=`
 
+            <div class="chat-name">
+                ${escapeHTML(msg.username)}
+            </div>
 
-            div.innerHTML=`
+            <div class="chat-text">
+                ${escapeHTML(msg.message)}
+            </div>
 
-                <div class="message-name">
-                    ${escapeHTML(
-                        msg.username ||
-                        msg.name ||
-                        "Player"
-                    )}
-                </div>
+        `;
 
-                <div class="message-text">
-                    ${escapeHTML(
-                        msg.message ||
-                        msg.text ||
-                        ""
-                    )}
-                </div>
+        box.appendChild(el);
 
-            `;
-
-
-            box.appendChild(div);
-
-        }
-    );
-
+    });
 
     box.scrollTop =
         box.scrollHeight;
-
-}
-
-
-function subscribeChat(){
-
-    if(chatSubscription){
-
-        return;
-
-    }
-
-
-    try{
-
-        chatSubscription =
-            supabaseClient
-                .channel(
-                    "brp-chat"
-                )
-                .on(
-                    "postgres_changes",
-                    {
-                        event:"INSERT",
-                        schema:"public",
-                        table:"chat_messages"
-                    },
-                    payload=>{
-
-                        loadChat();
-
-                    }
-                )
-                .subscribe();
-
-    }catch(error){
-
-        console.warn(
-            error
-        );
-
-    }
 
 }
 
@@ -4463,56 +3516,41 @@ async function sendChat(){
             "chatInput"
         );
 
-
     const text =
         input.value.trim();
 
+    if(!text) return;
 
-    if(!text){
-
-        return;
-
-    }
-
-
-    if(!currentAuthUser){
+    if(text.length>150){
 
         toast(
-            "Сначала войдите в аккаунт."
+            "Максимум 150 символов."
         );
 
         return;
 
     }
 
-
     try{
 
-        const {
-            error
-        } =
-            await supabaseClient
-                .from("chat_messages")
-                .insert({
-
-                    user_id:
-                        currentAuthUser.id,
-
-                    username:
-                        currentUser.username,
-
-                    message:
-                        text
-
-                });
-
-
-        if(error){
-
-            throw error;
-
-        }
-
+        await supabaseFetch(
+            "/rest/v1/chat_messages",
+            {
+                method:"POST",
+                headers:{
+                    "Prefer":
+                        "return=minimal"
+                },
+                body:
+                    JSON.stringify({
+                        user_id:
+                            currentUser.id,
+                        username:
+                            currentUser.username,
+                        message:text
+                    })
+            }
+        );
 
         input.value="";
 
@@ -4531,232 +3569,123 @@ async function sendChat(){
 }
 
 
-/* =========================================================
+/* =====================================================
    ONLINE
-========================================================= */
+===================================================== */
+
+async function updateOnline(){
+
+    if(!currentUser) return;
+
+    try{
+
+        await updateProfile({
+            online:true,
+            last_seen:
+                new Date().toISOString()
+        });
+
+    }catch(error){
+
+        console.error(
+            "online update",
+            error
+        );
+
+    }
+
+}
+
 
 async function loadOnline(){
 
-    const container =
-        document.getElementById(
-            "onlineContainer"
-        );
-
-    if(!container){
-
-        return;
-
-    }
-
-
-    /*
-       We use an online_players table if it exists.
-    */
-
     try{
-
-        const {
-            data,
-            error
-        } =
-            await supabaseClient
-                .from("online_players")
-                .select("*")
-                .order(
-                    "last_seen",
-                    {
-                        ascending:false
-                    }
-                );
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        renderOnline(
-            data || []
-        );
-
-
-    }catch(error){
-
-        console.warn(
-            "Online:",
-            error
-        );
-
 
         /*
-           Fallback: show current player.
-        */
+         * Считаем игроками онлайн тех,
+         * кто отмечен online и был активен
+         * последние 2 минуты.
+         */
 
-        renderOnline(
-            currentUser
-            ? [
+        const since =
+            new Date(
+                Date.now()-120000
+            ).toISOString();
+
+        const users =
+            await supabaseFetch(
+                "/rest/v1/profiles?select=username,level,online,last_seen&online=eq.true&last_seen=gte."+
+                encodeURIComponent(since)+
+                "&order=level.desc",
                 {
-                    username:
-                        currentUser.username,
-                    level:
-                        currentUser.level
-                }
-            ]
-            : []
-        );
-
-    }
-
-}
-
-
-function renderOnline(players){
-
-    const container =
-        document.getElementById(
-            "onlineContainer"
-        );
-
-    if(!container){
-
-        return;
-
-    }
-
-
-    document
-        .getElementById("onlineCount")
-        .textContent =
-        players.length +
-        " онлайн";
-
-
-    container.innerHTML="";
-
-
-    players.forEach(
-        player=>{
-
-            const name =
-                player.username ||
-                player.name ||
-                "Player";
-
-
-            const level =
-                player.level ||
-                1;
-
-
-            const div =
-                document.createElement("div");
-
-            div.className="online-card";
-
-
-            div.innerHTML=`
-
-                <div class="avatar">
-                    ${escapeHTML(
-                        name
-                            .charAt(0)
-                            .toUpperCase()
-                    )}
-                </div>
-
-                <div class="online-info">
-
-                    <div class="online-name">
-                        ${escapeHTML(name)}
-                    </div>
-
-                    <div class="online-status">
-                        ● В игре
-                    </div>
-
-                </div>
-
-                <div class="level">
-                    LVL ${level}
-                </div>
-
-            `;
-
-
-            container.appendChild(div);
-
-        }
-    );
-
-}
-
-
-async function startHeartbeat(){
-
-    await updateHeartbeat();
-
-    if(onlineHeartbeat){
-
-        clearInterval(
-            onlineHeartbeat
-        );
-
-    }
-
-
-    onlineHeartbeat =
-        setInterval(
-            updateHeartbeat,
-            15000
-        );
-
-}
-
-
-async function updateHeartbeat(){
-
-    if(
-        !currentAuthUser ||
-        !currentUser
-    ){
-
-        return;
-
-    }
-
-
-    try{
-
-        await supabaseClient
-            .from("online_players")
-            .upsert(
-                {
-                    user_id:
-                        currentAuthUser.id,
-
-                    username:
-                        currentUser.username,
-
-                    level:
-                        currentUser.level,
-
-                    last_seen:
-                        new Date().toISOString()
-                },
-                {
-                    onConflict:"user_id"
+                    method:"GET"
                 }
             );
 
+        document.getElementById(
+            "onlineCount"
+        ).textContent =
+            users.length+" онлайн";
 
-        await loadOnline();
+        const box =
+            document.getElementById(
+                "onlineContainer"
+            );
+
+        if(!box) return;
+
+        box.innerHTML="";
+
+        users.forEach(
+            player=>{
+
+                const el =
+                    document.createElement(
+                        "div"
+                    );
+
+                el.className=
+                    "online-card";
+
+                el.innerHTML=`
+
+                    <div class="avatar">
+                        ${escapeHTML(
+                            player.username
+                                .charAt(0)
+                                .toUpperCase()
+                        )}
+                    </div>
+
+                    <div class="online-main">
+
+                        <div class="online-name">
+                            ${escapeHTML(
+                                player.username
+                            )}
+                        </div>
+
+                        <div class="online-status">
+                            ● В игре
+                        </div>
+
+                    </div>
+
+                    <div class="level">
+                        LVL ${player.level}
+                    </div>
+
+                `;
+
+                box.appendChild(el);
+
+            }
+        );
 
     }catch(error){
 
-        console.warn(
-            "Heartbeat:",
+        console.error(
+            "load online",
             error
         );
 
@@ -4765,29 +3694,67 @@ async function updateHeartbeat(){
 }
 
 
-function stopHeartbeat(){
+/* =====================================================
+   REALTIME
+===================================================== */
 
-    if(onlineHeartbeat){
+function startRealtime(){
 
-        clearInterval(
-            onlineHeartbeat
+    /*
+     * Лёгкий polling.
+     * Он не требует дополнительных
+     * websocket-настроек и работает
+     * на GitHub Pages.
+     */
+
+    clearInterval(
+        refreshTimer
+    );
+
+    refreshTimer =
+        setInterval(
+            async ()=>{
+
+                if(!currentUser)
+                    return;
+
+                await updateOnline();
+                await loadOnline();
+
+                /*
+                 * Если пользователь сейчас
+                 * находится на странице чата,
+                 * обновляем сообщения.
+                 */
+
+                const chat =
+                    document.getElementById(
+                        "chatPage"
+                    );
+
+                if(
+                    chat &&
+                    chat.classList.contains("active")
+                ){
+
+                    await loadChat();
+
+                }
+
+            },
+            10000
         );
-
-        onlineHeartbeat=null;
-
-    }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    NAVIGATION
-========================================================= */
+===================================================== */
 
 function openPage(page){
 
     const pages=[
-
         "home",
         "jobs",
         "garage",
@@ -4797,9 +3764,7 @@ function openPage(page){
         "chat",
         "online",
         "profile"
-
     ];
-
 
     pages.forEach(
         name=>{
@@ -4808,7 +3773,6 @@ function openPage(page){
                 document.getElementById(
                     name+"Page"
                 );
-
 
             if(el){
 
@@ -4822,9 +3786,8 @@ function openPage(page){
         }
     );
 
-
     document
-        .querySelectorAll(".nav-btn")
+        .querySelectorAll(".nav")
         .forEach(
             btn=>{
 
@@ -4836,64 +3799,68 @@ function openPage(page){
             }
         );
 
+    if(page==="chat"){
 
-    window.scrollTo(
-        {
-            top:0,
-            behavior:"smooth"
-        }
-    );
+        loadChat();
+
+    }
+
+    if(page==="online"){
+
+        loadOnline();
+
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
-/* =========================================================
+/* =====================================================
    MODAL
-========================================================= */
+===================================================== */
 
 function openModal(
     title,
     text
 ){
 
-    document
-        .getElementById("modalTitle")
-        .textContent =
-        title;
+    document.getElementById(
+        "modalTitle"
+    ).textContent=title;
 
+    document.getElementById(
+        "modalText"
+    ).textContent=text;
 
-    document
-        .getElementById("modalText")
-        .textContent =
-        text;
-
-
-    document
-        .getElementById("modal")
-        .classList.remove(
-            "hidden"
-        );
+    document.getElementById(
+        "modal"
+    ).classList.remove(
+        "hidden"
+    );
 
 }
 
 
 function closeModal(){
 
-    document
-        .getElementById("modal")
-        .classList.add(
-            "hidden"
-        );
+    document.getElementById(
+        "modal"
+    ).classList.add(
+        "hidden"
+    );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
 
-let toastTimer;
-
+let toastTimer=null;
 
 function toast(text){
 
@@ -4902,20 +3869,15 @@ function toast(text){
             "toast"
         );
 
-
-    el.textContent =
-        text;
-
+    el.textContent=text;
 
     el.classList.add(
         "show"
     );
 
-
     clearTimeout(
         toastTimer
     );
-
 
     toastTimer =
         setTimeout(
@@ -4930,166 +3892,136 @@ function toast(text){
 }
 
 
-/* =========================================================
+/* =====================================================
    ERROR TRANSLATION
-========================================================= */
+===================================================== */
 
-function readableAuthError(error){
+function translateAuthError(
+    error
+){
 
-    const message =
-        String(
-            error?.message ||
-            error ||
-            ""
-        );
-
-
-    const lower =
-        message.toLowerCase();
-
+    const e =
+        String(error || "")
+        .toLowerCase();
 
     if(
-        lower.includes(
-            "invalid login credentials"
-        )
+        e.includes("invalid api key") ||
+        e.includes("apikey")
     ){
 
-        return "Неверный логин/email или пароль.";
+        return "Supabase отклонил API key. Проверь Publishable Key в Project Settings → API.";
 
     }
 
-
     if(
-        lower.includes(
-            "email not confirmed"
-        )
+        e.includes("email not confirmed")
     ){
 
-        return "Email ещё не подтверждён.";
+        return "Email не подтверждён. Для регистрации без почты отключи Confirm email в настройках Email.";
 
     }
 
-
     if(
-        lower.includes(
-            "user already registered"
-        )
+        e.includes("user already registered")
     ){
 
         return "Такой аккаунт уже существует.";
 
     }
 
+    if(
+        e.includes("invalid login credentials")
+    ){
+
+        return "Неверный логин или пароль.";
+
+    }
 
     if(
-        lower.includes(
-            "password should be at least"
-        )
+        e.includes("password should be at least")
     ){
 
         return "Пароль слишком короткий.";
 
     }
 
-
     if(
-        lower.includes(
-            "rate limit"
-        )
+        e.includes("rate limit")
     ){
 
-        return "Слишком много попыток. Попробуйте позже.";
+        return "Слишком много попыток. Подожди немного.";
 
     }
 
-
-    if(
-        lower.includes(
-            "failed to fetch"
-        )
-    ){
-
-        return "Нет соединения с сервером.";
-
-    }
-
-
-    return message ||
-        "Не удалось выполнить операцию.";
+    return error || "Произошла ошибка.";
 
 }
 
 
-/* =========================================================
-   SECURITY
-========================================================= */
+/* =====================================================
+   ESCAPE
+===================================================== */
 
 function escapeHTML(value){
 
-    return String(
-        value ?? ""
-    )
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
 }
 
 
-/* =========================================================
-   AUTH STATE
-========================================================= */
+/* =====================================================
+   PAGE VISIBILITY
+===================================================== */
 
-supabaseClient
-    .auth
-    .onAuthStateChange(
-        async (event,session)=>{
+document.addEventListener(
+    "visibilitychange",
+    async ()=>{
 
-            if(
-                event==="SIGNED_OUT"
-            ){
+        if(
+            !document.hidden &&
+            currentUser
+        ){
 
-                currentAuthUser=null;
-                currentUser=null;
-
-            }
+            await updateOnline();
+            await loadOnline();
 
         }
-    );
+
+    }
+);
 
 
-/* =========================================================
+/* =====================================================
+   BEFORE UNLOAD
+===================================================== */
+
+window.addEventListener(
+    "beforeunload",
+    ()=>{
+        /*
+         * Не делаем fetch здесь:
+         * браузер GitHub Pages может
+         * оборвать запрос.
+         *
+         * Сервер считает игрока офлайн,
+         * когда last_seen устареет.
+         */
+    }
+);
+
+
+/* =====================================================
    INIT
-========================================================= */
+===================================================== */
 
 document.addEventListener(
     "DOMContentLoaded",
     async ()=>{
-
-        setLoginMethod(
-            "username"
-        );
-
-        setRegisterMethod(
-            "username"
-        );
 
         await checkSession();
 
