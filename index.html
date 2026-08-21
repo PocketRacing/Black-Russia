@@ -1,1716 +1,3013 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>BLACK RUSSIA RP</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100%;
-        }
-
-        body {
-            min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #fff;
-            background:
-                radial-gradient(circle at 50% -10%, #303030 0%, #111 42%, #050505 100%);
-        }
-
-        button,
-        input {
-            font: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        .app {
-            width: 100%;
-            min-height: 100vh;
-        }
-
-        /* =========================
-           AUTH
-        ========================= */
-
-        #authScreen {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .auth-container {
-            width: 100%;
-            max-width: 430px;
-        }
-
-        .brand {
-            text-align: center;
-            margin-bottom: 22px;
-        }
-
-        .brand-title {
-            font-size: 36px;
-            font-weight: 900;
-            letter-spacing: 4px;
-        }
-
-        .brand-subtitle {
-            margin-top: 7px;
-            color: #8b8b8b;
-            font-size: 13px;
-            letter-spacing: 3px;
-        }
-
-        .card {
-            background: rgba(18, 18, 18, 0.96);
-            border: 1px solid #303030;
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow:
-                0 25px 80px rgba(0, 0, 0, .55),
-                inset 0 1px 0 rgba(255,255,255,.03);
-        }
-
-        .auth-tabs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            padding: 5px;
-            margin-bottom: 22px;
-            background: #0b0b0b;
-            border-radius: 12px;
-        }
-
-        .auth-tab {
-            border: 0;
-            border-radius: 9px;
-            padding: 12px;
-            background: transparent;
-            color: #777;
-            font-weight: 700;
-        }
-
-        .auth-tab.active {
-            background: #fff;
-            color: #050505;
-        }
-
-        .auth-title {
-            margin: 0 0 7px;
-            font-size: 25px;
-        }
-
-        .auth-description {
-            margin: 0 0 20px;
-            color: #777;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        .field {
-            margin-bottom: 12px;
-        }
-
-        .field label {
-            display: block;
-            margin: 0 0 6px 2px;
-            color: #999;
-            font-size: 12px;
-        }
-
-        .field input {
-            width: 100%;
-            padding: 14px 15px;
-            border: 1px solid #353535;
-            border-radius: 11px;
-            outline: none;
-            background: #0c0c0c;
-            color: #fff;
-        }
-
-        .field input:focus {
-            border-color: #777;
-        }
-
-        .main-button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 6px;
-            border: 0;
-            border-radius: 11px;
-            background: #fff;
-            color: #050505;
-            font-weight: 800;
-        }
-
-        .main-button:disabled {
-            opacity: .5;
-            cursor: wait;
-        }
-
-        .message {
-            min-height: 22px;
-            margin-top: 15px;
-            text-align: center;
-            color: #999;
-            font-size: 13px;
-            line-height: 1.4;
-        }
-
-        .message.error {
-            color: #ff7373;
-        }
-
-        .message.success {
-            color: #7cffaa;
-        }
-
-        .security-note {
-            margin-top: 18px;
-            padding-top: 15px;
-            border-top: 1px solid #252525;
-            color: #5f5f5f;
-            text-align: center;
-            font-size: 11px;
-            line-height: 1.5;
-        }
-
-        /* =========================
-           GAME
-        ========================= */
-
-        #gameScreen {
-            display: none;
-            min-height: 100vh;
-        }
-
-        .topbar {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            padding: 15px 18px;
-            background: rgba(8, 8, 8, .94);
-            border-bottom: 1px solid #252525;
-            backdrop-filter: blur(12px);
-        }
-
-        .top-logo {
-            font-weight: 900;
-            letter-spacing: 2px;
-        }
-
-        .online {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            color: #888;
-            font-size: 12px;
-        }
-
-        .online-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #6cff9b;
-            box-shadow: 0 0 10px rgba(108,255,155,.6);
-        }
-
-        .logout-button {
-            border: 1px solid #333;
-            border-radius: 9px;
-            padding: 8px 12px;
-            background: #151515;
-            color: #aaa;
-            font-size: 12px;
-        }
-
-        .game-container {
-            width: 100%;
-            max-width: 1000px;
-            margin: auto;
-            padding: 25px 18px 50px;
-        }
-
-        .welcome {
-            margin-bottom: 20px;
-        }
-
-        .welcome-small {
-            color: #777;
-            font-size: 13px;
-        }
-
-        .welcome-name {
-            margin-top: 5px;
-            font-size: 30px;
-            font-weight: 900;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .stat-card {
-            padding: 18px;
-            border: 1px solid #292929;
-            border-radius: 15px;
-            background: #111;
-        }
-
-        .stat-label {
-            color: #777;
-            font-size: 12px;
-        }
-
-        .stat-value {
-            margin-top: 8px;
-            font-size: 23px;
-            font-weight: 800;
-        }
-
-        .section {
-            margin-top: 25px;
-        }
-
-        .section-title {
-            margin-bottom: 10px;
-            color: #888;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .character-card {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 18px;
-            border: 1px solid #292929;
-            border-radius: 15px;
-            background: #111;
-        }
-
-        .avatar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 58px;
-            height: 58px;
-            flex-shrink: 0;
-            border-radius: 15px;
-            background: #222;
-            font-size: 22px;
-            font-weight: 900;
-        }
-
-        .character-name {
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        .character-info {
-            margin-top: 5px;
-            color: #777;
-            font-size: 12px;
-        }
-
-        .actions {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
-
-        .action {
-            min-height: 70px;
-            padding: 15px;
-            border: 1px solid #292929;
-            border-radius: 13px;
-            background: #111;
-            color: #fff;
-            text-align: left;
-        }
-
-        .action:hover {
-            border-color: #555;
-        }
-
-        .action-title {
-            font-weight: 800;
-        }
-
-        .action-description {
-            margin-top: 5px;
-            color: #666;
-            font-size: 11px;
-        }
-
-        .game-message {
-            min-height: 22px;
-            margin-top: 18px;
-            color: #777;
-            text-align: center;
-            font-size: 13px;
-        }
-
-        .loading {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 600px) {
-
-            .brand-title {
-                font-size: 30px;
-            }
-
-            .card {
-                padding: 20px;
-            }
-
-            .game-container {
-                padding: 20px 14px 40px;
-            }
-
-            .welcome-name {
-                font-size: 25px;
-            }
-
-            .actions {
-                grid-template-columns: 1fr;
-            }
-
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BLACK RUSSIA RP</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #070707;
+    --panel: #111;
+    --panel2: #171717;
+    --border: #2b2b2b;
+    --text: #fff;
+    --muted: #8b8b8b;
+    --accent: #ffffff;
+    --green: #39d98a;
+    --red: #ff5555;
+    --gold: #e7b94f;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background:
+        radial-gradient(circle at top, #202020 0%, #080808 55%, #030303 100%);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* =========================
+   AUTH
+========================= */
+
+#authScreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 440px;
+    background: rgba(15, 15, 15, .97);
+    border: 1px solid #303030;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 30px 100px rgba(0,0,0,.65);
+}
+
+.logo {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.logo-sub {
+    text-align: center;
+    color: #777;
+    margin-top: 8px;
+    margin-bottom: 28px;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.auth-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.input {
+    width: 100%;
+    padding: 14px;
+    margin: 6px 0;
+    border: 1px solid #363636;
+    background: #0b0b0b;
+    color: white;
+    border-radius: 11px;
+    outline: none;
+}
+
+.input:focus {
+    border-color: #777;
+}
+
+.primary-btn,
+.secondary-btn {
+    width: 100%;
+    border: 0;
+    border-radius: 11px;
+    padding: 14px;
+    margin-top: 9px;
+    font-weight: 800;
+}
+
+.primary-btn {
+    background: white;
+    color: black;
+}
+
+.secondary-btn {
+    background: #242424;
+    color: white;
+}
+
+.auth-message {
+    min-height: 24px;
+    margin-top: 15px;
+    text-align: center;
+    color: #aaa;
+    font-size: 14px;
+}
+
+/* =========================
+   GAME
+========================= */
+
+#gameScreen {
+    min-height: 100vh;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(7,7,7,.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid #252525;
+}
+
+.topbar-inner {
+    max-width: 1400px;
+    margin: auto;
+    padding: 13px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.brand {
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.server-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #aaa;
+    font-size: 13px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: var(--green);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(57,217,138,.7);
+}
+
+.top-money {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.money-mini {
+    color: #ddd;
+    font-size: 13px;
+}
+
+.money-mini strong {
+    color: white;
+}
+
+.gold-mini strong {
+    color: var(--gold);
+}
+
+.layout {
+    max-width: 1400px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: calc(100vh - 62px);
+}
+
+.sidebar {
+    border-right: 1px solid #222;
+    padding: 18px 12px;
+    background: rgba(8,8,8,.85);
+}
+
+.nav-title {
+    color: #666;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 8px 12px;
+}
+
+.nav-btn {
+    width: 100%;
+    text-align: left;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #aaa;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: #191919;
+    color: white;
+    border-color: #2c2c2c;
+}
+
+.logout-btn {
+    margin-top: 20px;
+    color: #ff6b6b;
+}
+
+.content {
+    padding: 22px;
+    overflow: hidden;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 30px;
+}
+
+.page-subtitle {
+    color: #777;
+    margin-top: 6px;
+    margin-bottom: 22px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid {
+    display: grid;
+    gap: 14px;
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.card {
+    background: linear-gradient(145deg, #151515, #0e0e0e);
+    border: 1px solid #292929;
+    border-radius: 16px;
+    padding: 18px;
+}
+
+.card-title {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.card-value {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.green {
+    color: var(--green);
+}
+
+.red {
+    color: var(--red);
+}
+
+.gold {
+    color: var(--gold);
+}
+
+.hero {
+    background:
+        radial-gradient(circle at 80% 20%, #303030, transparent 40%),
+        linear-gradient(135deg, #191919, #080808);
+    border: 1px solid #303030;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 16px;
+}
+
+.hero h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+}
+
+.hero p {
+    color: #888;
+    margin: 0;
+}
+
+.action-row {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.action-btn {
+    border: 1px solid #333;
+    background: #1b1b1b;
+    color: white;
+    border-radius: 10px;
+    padding: 11px 14px;
+}
+
+.action-btn:hover {
+    background: #292929;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    background: linear-gradient(145deg,#3a3a3a,#151515);
+    border: 1px solid #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    font-weight: 900;
+}
+
+.profile-flex {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.profile-name {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.profile-meta {
+    color: #777;
+    margin-top: 5px;
+}
+
+/* =========================
+   GARAGE
+========================= */
+
+.vehicle {
+    min-height: 190px;
+    position: relative;
+    overflow: hidden;
+}
+
+.vehicle-icon {
+    font-size: 55px;
+    margin: 10px 0;
+}
+
+.vehicle-name {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.vehicle-info {
+    color: #777;
+    font-size: 13px;
+    margin-top: 5px;
+}
+
+/* =========================
+   JOBS
+========================= */
+
+.job {
+    min-height: 170px;
+}
+
+.job-icon {
+    font-size: 35px;
+}
+
+.job-name {
+    font-size: 20px;
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+.job-description {
+    color: #777;
+    min-height: 38px;
+    margin: 8px 0;
+}
+
+.job-salary {
+    color: var(--green);
+    font-weight: 900;
+}
+
+/* =========================
+   INVENTORY
+========================= */
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+}
+
+.item {
+    min-height: 120px;
+    background: #111;
+    border: 1px solid #292929;
+    border-radius: 13px;
+    padding: 12px;
+}
+
+.item-icon {
+    font-size: 32px;
+}
+
+.item-name {
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.item-count {
+    color: #777;
+    font-size: 12px;
+}
+
+/* =========================
+   MAP
+========================= */
+
+.map {
+    min-height: 510px;
+    border-radius: 20px;
+    border: 1px solid #303030;
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(25deg, transparent 46%, #272727 47%, #272727 49%, transparent 50%),
+        linear-gradient(155deg, transparent 45%, #202020 46%, #202020 48%, transparent 49%),
+        radial-gradient(circle at 30% 30%, #252525, #0a0a0a 70%);
+}
+
+.map-label {
+    position: absolute;
+    color: #aaa;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.marker {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: white;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    box-shadow: 0 0 25px rgba(255,255,255,.25);
+}
+
+/* =========================
+   CHAT
+========================= */
+
+.chat {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 14px;
+}
+
+.chat-window {
+    height: 520px;
+    display: flex;
+    flex-direction: column;
+}
+
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    background: #090909;
+    border: 1px solid #292929;
+    border-radius: 13px;
+    padding: 14px;
+}
+
+.message {
+    margin-bottom: 13px;
+}
+
+.message-name {
+    font-size: 12px;
+    color: #777;
+}
+
+.message-text {
+    margin-top: 3px;
+}
+
+.chat-input-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.chat-input {
+    flex: 1;
+    border: 1px solid #333;
+    background: #111;
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.online-list {
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+.online-user {
+    padding: 11px;
+    border-bottom: 1px solid #222;
+}
+
+.online-user small {
+    color: #777;
+}
+
+/* =========================
+   STORE
+========================= */
+
+.product-price {
+    color: var(--gold);
+    font-weight: 900;
+    margin-top: 10px;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+#toast {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 999;
+    max-width: 350px;
+    background: #f4f4f4;
+    color: #111;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-weight: 700;
+    transform: translateY(120px);
+    transition: .25s;
+}
+
+#toast.show {
+    transform: translateY(0);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width: 1000px) {
+    .layout {
+        grid-template-columns: 190px 1fr;
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .inventory-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .chat {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 700px) {
+    .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .top-money {
+        justify-content: flex-start;
+    }
+
+    .layout {
+        display: block;
+    }
+
+    .sidebar {
+        border-right: 0;
+        border-bottom: 1px solid #222;
+        display: flex;
+        overflow-x: auto;
+        gap: 5px;
+        padding: 10px;
+    }
+
+    .nav-title {
+        display: none;
+    }
+
+    .nav-btn {
+        min-width: max-content;
+        margin: 0;
+    }
+
+    .logout-btn {
+        margin-top: 0;
+    }
+
+    .content {
+        padding: 14px;
+    }
+
+    .grid-4,
+    .grid-3,
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .inventory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-title {
+        font-size: 25px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<div class="app">
+<!-- =========================
+     AUTH SCREEN
+========================= -->
 
-    <!-- =========================
-         LOADING
-    ========================== -->
+<section id="authScreen">
 
-    <div id="loadingScreen" class="loading">
-        Подключение к серверу...
+    <div class="auth-box">
+
+        <div class="logo">BLACK RUSSIA</div>
+
+        <div class="logo-sub">
+            ROLEPLAY PROJECT
+        </div>
+
+        <h2 class="auth-title" id="authTitle">
+            Вход
+        </h2>
+
+        <input
+            class="input"
+            id="username"
+            type="text"
+            placeholder="Никнейм"
+        >
+
+        <input
+            class="input"
+            id="email"
+            type="email"
+            placeholder="Email"
+        >
+
+        <input
+            class="input"
+            id="password"
+            type="password"
+            placeholder="Пароль"
+        >
+
+        <button
+            class="primary-btn"
+            onclick="login()"
+        >
+            Войти
+        </button>
+
+        <button
+            class="secondary-btn"
+            onclick="register()"
+        >
+            Создать аккаунт
+        </button>
+
+        <div
+            class="auth-message"
+            id="authMessage"
+        ></div>
+
     </div>
 
+</section>
 
-    <!-- =========================
-         AUTH SCREEN
-    ========================== -->
 
-    <section id="authScreen" style="display:none;">
+<!-- =========================
+     GAME SCREEN
+========================= -->
 
-        <div class="auth-container">
+<section
+    id="gameScreen"
+    class="hidden"
+>
 
-            <div class="brand">
-                <div class="brand-title">
-                    BLACK RUSSIA
+    <header class="topbar">
+
+        <div class="topbar-inner">
+
+            <div>
+
+                <div class="brand">
+                    BLACK RUSSIA RP
                 </div>
 
-                <div class="brand-subtitle">
-                    ROLEPLAY PROJECT
+                <div class="server-status">
+
+                    <span class="status-dot"></span>
+
+                    Сервер онлайн
+
                 </div>
+
             </div>
 
+            <div class="top-money">
 
-            <div class="card">
-
-                <div class="auth-tabs">
-
-                    <button
-                        id="loginTab"
-                        class="auth-tab active"
-                        onclick="showLogin()">
-                        Вход
-                    </button>
-
-                    <button
-                        id="registerTab"
-                        class="auth-tab"
-                        onclick="showRegister()">
-                        Регистрация
-                    </button>
-
+                <div class="money-mini">
+                    💵
+                    <strong id="topCash">
+                        0 ₽
+                    </strong>
                 </div>
 
+                <div class="money-mini">
+                    🏦
+                    <strong id="topBank">
+                        0 ₽
+                    </strong>
+                </div>
 
-                <div id="authForm">
-
-                    <h1
-                        id="authTitle"
-                        class="auth-title">
-                        Добро пожаловать
-                    </h1>
-
-                    <p
-                        id="authDescription"
-                        class="auth-description">
-                        Войди в свой аккаунт и продолжи игру.
-                    </p>
-
-
-                    <div
-                        id="usernameField"
-                        class="field"
-                        style="display:none;">
-
-                        <label for="username">
-                            Никнейм
-                        </label>
-
-                        <input
-                            id="username"
-                            type="text"
-                            maxlength="24"
-                            autocomplete="username"
-                            placeholder="Например: Thomas_RP">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label for="email">
-                            Email
-                        </label>
-
-                        <input
-                            id="email"
-                            type="email"
-                            autocomplete="email"
-                            placeholder="player@example.com">
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label for="password">
-                            Пароль
-                        </label>
-
-                        <input
-                            id="password"
-                            type="password"
-                            minlength="6"
-                            autocomplete="current-password"
-                            placeholder="Минимум 6 символов">
-
-                    </div>
-
-
-                    <button
-                        id="authButton"
-                        class="main-button"
-                        onclick="handleAuth()">
-                        Войти
-                    </button>
-
-
-                    <div
-                        id="authMessage"
-                        class="message">
-                    </div>
-
-
-                    <div class="security-note">
-                        Данные аккаунта и игровой прогресс сохраняются
-                        в облачной базе данных.
-                    </div>
-
+                <div class="money-mini gold-mini">
+                    🪙
+                    <strong id="topGold">
+                        0
+                    </strong>
                 </div>
 
             </div>
 
         </div>
 
-    </section>
+    </header>
 
 
-    <!-- =========================
-         GAME SCREEN
-    ========================== -->
+    <div class="layout">
 
-    <section id="gameScreen">
+        <!-- SIDEBAR -->
 
-        <header class="topbar">
+        <aside class="sidebar">
 
-            <div class="top-logo">
-                BLACK RUSSIA
-            </div>
-
-            <div class="online">
-                <span class="online-dot"></span>
-                ONLINE
+            <div class="nav-title">
+                Игрок
             </div>
 
             <button
-                class="logout-button"
-                onclick="logout()">
-                Выйти
+                class="nav-btn active"
+                onclick="showPage('home', this)"
+            >
+                🏠 Главная
             </button>
 
-        </header>
+            <button
+                class="nav-btn"
+                onclick="showPage('profile', this)"
+            >
+                👤 Персонаж
+            </button>
 
+            <button
+                class="nav-btn"
+                onclick="showPage('map', this)"
+            >
+                🗺️ Карта
+            </button>
 
-        <main class="game-container">
-
-            <div class="welcome">
-
-                <div class="welcome-small">
-                    Добро пожаловать в город
-                </div>
-
-                <div
-                    id="welcomeName"
-                    class="welcome-name">
-                    Игрок
-                </div>
-
+            <div class="nav-title">
+                Мир
             </div>
 
+            <button
+                class="nav-btn"
+                onclick="showPage('garage', this)"
+            >
+                🚗 Гараж
+            </button>
 
-            <!-- СТАТИСТИКА -->
+            <button
+                class="nav-btn"
+                onclick="showPage('jobs', this)"
+            >
+                💼 Работы
+            </button>
 
-            <div class="grid">
+            <button
+                class="nav-btn"
+                onclick="showPage('inventory', this)"
+            >
+                🎒 Инвентарь
+            </button>
 
-                <div class="stat-card">
+            <button
+                class="nav-btn"
+                onclick="showPage('shop', this)"
+            >
+                🏪 Магазин
+            </button>
 
-                    <div class="stat-label">
-                        Наличные
-                    </div>
+            <button
+                class="nav-btn"
+                onclick="showPage('property', this)"
+            >
+                🏠 Недвижимость
+            </button>
 
-                    <div
-                        id="cash"
-                        class="stat-value">
-                        0 ₽
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-label">
-                        Банковский счёт
-                    </div>
-
-                    <div
-                        id="bank"
-                        class="stat-value">
-                        0 ₽
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-label">
-                        Золото
-                    </div>
-
-                    <div
-                        id="gold"
-                        class="stat-value">
-                        0
-                    </div>
-
-                </div>
-
-
-                <div class="stat-card">
-
-                    <div class="stat-label">
-                        Уровень
-                    </div>
-
-                    <div
-                        id="level"
-                        class="stat-value">
-                        1
-                    </div>
-
-                </div>
-
+            <div class="nav-title">
+                Общение
             </div>
 
+            <button
+                class="nav-btn"
+                onclick="showPage('chat', this)"
+            >
+                💬 Чат
+            </button>
 
-            <!-- ПЕРСОНАЖ -->
+            <button
+                class="nav-btn"
+                onclick="showPage('bank', this)"
+            >
+                🏦 Банк
+            </button>
 
-            <div class="section">
+            <button
+                class="nav-btn"
+                onclick="showPage('settings', this)"
+            >
+                ⚙️ Настройки
+            </button>
 
-                <div class="section-title">
-                    Персонаж
-                </div>
+            <button
+                class="nav-btn logout-btn"
+                onclick="logout()"
+            >
+                🚪 Выйти
+            </button>
 
-                <div class="character-card">
+        </aside>
 
-                    <div
-                        id="avatar"
-                        class="avatar">
-                        👤
+
+        <!-- CONTENT -->
+
+        <main class="content">
+
+
+            <!-- HOME -->
+
+            <section
+                class="page active"
+                id="page-home"
+            >
+
+                <div class="hero">
+
+                    <h2 id="welcome">
+                        Добро пожаловать
+                    </h2>
+
+                    <p>
+                        Добро пожаловать в BLACK RUSSIA RP.
+                        Твой путь начинается здесь.
+                    </p>
+
+                    <div class="action-row">
+
+                        <button
+                            class="action-btn"
+                            onclick="showPageById('map')"
+                        >
+                            🗺️ Открыть карту
+                        </button>
+
+                        <button
+                            class="action-btn"
+                            onclick="showPageById('jobs')"
+                        >
+                            💼 Найти работу
+                        </button>
+
+                        <button
+                            class="action-btn"
+                            onclick="showPageById('garage')"
+                        >
+                            🚗 Мой гараж
+                        </button>
+
                     </div>
 
-                    <div>
+                </div>
+
+
+                <div class="grid grid-4">
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Наличные
+                        </div>
 
                         <div
-                            id="characterName"
-                            class="character-name">
-                            Загрузка...
+                            class="card-value"
+                            id="cash"
+                        >
+                            0 ₽
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Банк
                         </div>
 
                         <div
-                            id="characterInfo"
-                            class="character-info">
-                            Загрузка данных персонажа...
+                            class="card-value"
+                            id="bank"
+                        >
+                            0 ₽
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Золото
+                        </div>
+
+                        <div
+                            class="card-value gold"
+                            id="gold"
+                        >
+                            0
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Уровень
+                        </div>
+
+                        <div
+                            class="card-value"
+                            id="level"
+                        >
+                            1
                         </div>
 
                     </div>
 
                 </div>
 
-            </div>
+
+                <div style="height:14px"></div>
 
 
-            <!-- МЕНЮ -->
+                <div class="grid grid-3">
 
-            <div class="section">
+                    <div class="card">
 
-                <div class="section-title">
-                    Город
+                        <div class="card-title">
+                            Текущая работа
+                        </div>
+
+                        <div
+                            class="card-value"
+                            id="currentJob"
+                        >
+                            Безработный
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Город
+                        </div>
+
+                        <div class="card-value">
+                            Москва
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Игроки онлайн
+                        </div>
+
+                        <div
+                            class="card-value green"
+                            id="onlineCount"
+                        >
+                            1
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="actions">
 
-                    <button
-                        class="action"
-                        onclick="gameAction('Телефон')">
-
-                        <div class="action-title">
-                            📱 Телефон
-                        </div>
-
-                        <div class="action-description">
-                            Связь, контакты и приложения
-                        </div>
-
-                    </button>
+                <div style="height:14px"></div>
 
 
-                    <button
-                        class="action"
-                        onclick="gameAction('Автомобили')">
+                <div class="card">
 
-                        <div class="action-title">
-                            🚗 Автомобили
-                        </div>
+                    <div class="card-title">
+                        Быстрые действия
+                    </div>
 
-                        <div class="action-description">
-                            Ваш транспорт и гараж
-                        </div>
+                    <div class="action-row">
 
-                    </button>
+                        <button
+                            class="action-btn"
+                            onclick="testAddMoney()"
+                        >
+                            💵 Получить 1 000 ₽
+                        </button>
 
-
-                    <button
-                        class="action"
-                        onclick="gameAction('Недвижимость')">
-
-                        <div class="action-title">
-                            🏠 Недвижимость
-                        </div>
-
-                        <div class="action-description">
-                            Квартиры, дома и гаражи
-                        </div>
-
-                    </button>
-
-
-                    <button
-                        class="action"
-                        onclick="gameAction('Работа')">
-
-                        <div class="action-title">
-                            💼 Работа
-                        </div>
-
-                        <div class="action-description">
-                            Профессия, опыт и зарплата
-                        </div>
-
-                    </button>
-
-
-                    <button
-                        class="action"
-                        onclick="gameAction('Инвентарь')">
-
-                        <div class="action-title">
+                        <button
+                            class="action-btn"
+                            onclick="showPageById('inventory')"
+                        >
                             🎒 Инвентарь
-                        </div>
+                        </button>
 
-                        <div class="action-description">
-                            Предметы персонажа
-                        </div>
+                        <button
+                            class="action-btn"
+                            onclick="showPageById('shop')"
+                        >
+                            🛒 Магазин
+                        </button>
 
-                    </button>
-
-
-                    <button
-                        class="action"
-                        onclick="gameAction('Банк')">
-
-                        <div class="action-title">
-                            🏦 Банк
-                        </div>
-
-                        <div class="action-description">
-                            Счёт и финансовые операции
-                        </div>
-
-                    </button>
+                    </div>
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <div
-                id="gameMessage"
-                class="game-message">
-            </div>
+            <!-- PROFILE -->
+
+            <section
+                class="page"
+                id="page-profile"
+            >
+
+                <h1 class="page-title">
+                    Персонаж
+                </h1>
+
+                <p class="page-subtitle">
+                    Твоя игровая личность
+                </p>
+
+                <div class="card">
+
+                    <div class="profile-flex">
+
+                        <div
+                            class="avatar"
+                            id="avatar"
+                        >
+                            T
+                        </div>
+
+                        <div>
+
+                            <div
+                                class="profile-name"
+                                id="profileName"
+                            >
+                                Игрок
+                            </div>
+
+                            <div
+                                class="profile-meta"
+                                id="profileMeta"
+                            >
+                                Уровень 1 • Москва
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div style="height:14px"></div>
+
+                <div class="grid grid-3">
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Имя
+                        </div>
+
+                        <div
+                            class="card-value"
+                            id="charFirstName"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Фамилия
+                        </div>
+
+                        <div
+                            class="card-value"
+                            id="charLastName"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Возраст
+                        </div>
+
+                        <div
+                            class="card-value"
+                            id="charAge"
+                        >
+                            —
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- MAP -->
+
+            <section
+                class="page"
+                id="page-map"
+            >
+
+                <h1 class="page-title">
+                    Карта
+                </h1>
+
+                <p class="page-subtitle">
+                    Игровой город
+                </p>
+
+                <div class="map">
+
+                    <div
+                        class="map-label"
+                        style="left:10%;top:15%"
+                    >
+                        Северный район
+                    </div>
+
+                    <div
+                        class="map-label"
+                        style="right:12%;top:30%"
+                    >
+                        Центр
+                    </div>
+
+                    <div
+                        class="map-label"
+                        style="left:18%;bottom:18%"
+                    >
+                        Промзона
+                    </div>
+
+                    <div
+                        class="map-label"
+                        style="right:15%;bottom:15%"
+                    >
+                        Южный район
+                    </div>
+
+                    <div
+                        class="marker"
+                        style="left:48%;top:44%"
+                    >
+                        📍
+                    </div>
+
+                    <div
+                        class="marker"
+                        style="left:20%;top:25%"
+                    >
+                        💼
+                    </div>
+
+                    <div
+                        class="marker"
+                        style="right:22%;top:35%"
+                    >
+                        🏦
+                    </div>
+
+                    <div
+                        class="marker"
+                        style="left:70%;bottom:20%"
+                    >
+                        🚗
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- GARAGE -->
+
+            <section
+                class="page"
+                id="page-garage"
+            >
+
+                <h1 class="page-title">
+                    Гараж
+                </h1>
+
+                <p class="page-subtitle">
+                    Твои транспортные средства
+                </p>
+
+                <div class="grid grid-3">
+
+                    <div class="card vehicle">
+
+                        <div class="vehicle-icon">
+                            🚗
+                        </div>
+
+                        <div class="vehicle-name">
+                            Lada Priora
+                        </div>
+
+                        <div class="vehicle-info">
+                            Госномер: RP 001
+                        </div>
+
+                        <div class="vehicle-info">
+                            Состояние: 100%
+                        </div>
+
+                        <div class="action-row">
+
+                            <button class="action-btn">
+                                Выбрать
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card vehicle">
+
+                        <div class="vehicle-icon">
+                            🚙
+                        </div>
+
+                        <div class="vehicle-name">
+                            ВАЗ 2114
+                        </div>
+
+                        <div class="vehicle-info">
+                            Госномер: RP 002
+                        </div>
+
+                        <div class="vehicle-info">
+                            Состояние: 100%
+                        </div>
+
+                        <div class="action-row">
+
+                            <button class="action-btn">
+                                Выбрать
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="card vehicle">
+
+                        <div class="vehicle-icon">
+                            🏎️
+                        </div>
+
+                        <div class="vehicle-name">
+                            Пустой слот
+                        </div>
+
+                        <div class="vehicle-info">
+                            Купи автомобиль в магазине.
+                        </div>
+
+                        <div class="action-row">
+
+                            <button
+                                class="action-btn"
+                                onclick="showPageById('shop')"
+                            >
+                                В магазин
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- JOBS -->
+
+            <section
+                class="page"
+                id="page-jobs"
+            >
+
+                <h1 class="page-title">
+                    Работы
+                </h1>
+
+                <p class="page-subtitle">
+                    Зарабатывай деньги и повышай уровень.
+                </p>
+
+                <div class="grid grid-3">
+
+                    <div class="card job">
+
+                        <div class="job-icon">
+                            🚕
+                        </div>
+
+                        <div class="job-name">
+                            Таксист
+                        </div>
+
+                        <div class="job-description">
+                            Перевози пассажиров по городу.
+                        </div>
+
+                        <div class="job-salary">
+                            1 500–4 000 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="selectJob('Таксист')"
+                        >
+                            Устроиться
+                        </button>
+
+                    </div>
+
+                    <div class="card job">
+
+                        <div class="job-icon">
+                            🚚
+                        </div>
+
+                        <div class="job-name">
+                            Дальнобойщик
+                        </div>
+
+                        <div class="job-description">
+                            Доставляй грузы между городами.
+                        </div>
+
+                        <div class="job-salary">
+                            3 000–8 000 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="selectJob('Дальнобойщик')"
+                        >
+                            Устроиться
+                        </button>
+
+                    </div>
+
+                    <div class="card job">
+
+                        <div class="job-icon">
+                            👮
+                        </div>
+
+                        <div class="job-name">
+                            Полиция
+                        </div>
+
+                        <div class="job-description">
+                            Следи за порядком в городе.
+                        </div>
+
+                        <div class="job-salary">
+                            2 000–6 000 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="selectJob('Полиция')"
+                        >
+                            Подать заявку
+                        </button>
+
+                    </div>
+
+                    <div class="card job">
+
+                        <div class="job-icon">
+                            🔧
+                        </div>
+
+                        <div class="job-name">
+                            Механик
+                        </div>
+
+                        <div class="job-description">
+                            Ремонтируй автомобили игроков.
+                        </div>
+
+                        <div class="job-salary">
+                            1 800–5 000 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="selectJob('Механик')"
+                        >
+                            Устроиться
+                        </button>
+
+                    </div>
+
+                    <div class="card job">
+
+                        <div class="job-icon">
+                            📦
+                        </div>
+
+                        <div class="job-name">
+                            Курьер
+                        </div>
+
+                        <div class="job-description">
+                            Доставляй посылки по городу.
+                        </div>
+
+                        <div class="job-salary">
+                            1 000–3 500 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="selectJob('Курьер')"
+                        >
+                            Устроиться
+                        </button>
+
+                    </div>
+
+                    <div class="card job">
+
+                        <div class="job-icon">
+                            🚓
+                        </div>
+
+                        <div class="job-name">
+                            Инструктор
+                        </div>
+
+                        <div class="job-description">
+                            Обучай новых игроков.
+                        </div>
+
+                        <div class="job-salary">
+                            2 500–5 500 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="selectJob('Инструктор')"
+                        >
+                            Подать заявку
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- INVENTORY -->
+
+            <section
+                class="page"
+                id="page-inventory"
+            >
+
+                <h1 class="page-title">
+                    Инвентарь
+                </h1>
+
+                <p class="page-subtitle">
+                    Предметы персонажа
+                </p>
+
+                <div class="inventory-grid">
+
+                    <div class="item">
+
+                        <div class="item-icon">
+                            📱
+                        </div>
+
+                        <div class="item-name">
+                            Телефон
+                        </div>
+
+                        <div class="item-count">
+                            x1
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="item-icon">
+                            🔑
+                        </div>
+
+                        <div class="item-name">
+                            Ключи
+                        </div>
+
+                        <div class="item-count">
+                            x1
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="item-icon">
+                            🥤
+                        </div>
+
+                        <div class="item-name">
+                            Энергетик
+                        </div>
+
+                        <div class="item-count">
+                            x2
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="item-icon">
+                            🍔
+                        </div>
+
+                        <div class="item-name">
+                            Бургер
+                        </div>
+
+                        <div class="item-count">
+                            x1
+                        </div>
+
+                    </div>
+
+                    <div class="item">
+
+                        <div class="item-icon">
+                            🎒
+                        </div>
+
+                        <div class="item-name">
+                            Рюкзак
+                        </div>
+
+                        <div class="item-count">
+                            x1
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SHOP -->
+
+            <section
+                class="page"
+                id="page-shop"
+            >
+
+                <h1 class="page-title">
+                    Магазин
+                </h1>
+
+                <p class="page-subtitle">
+                    Покупки за игровую валюту.
+                </p>
+
+                <div class="grid grid-3">
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            📱
+                        </div>
+
+                        <h3>
+                            Телефон
+                        </h3>
+
+                        <div class="product-price">
+                            8 000 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="buyItem('Телефон',8000)"
+                        >
+                            Купить
+                        </button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            🎒
+                        </div>
+
+                        <h3>
+                            Рюкзак
+                        </h3>
+
+                        <div class="product-price">
+                            5 000 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="buyItem('Рюкзак',5000)"
+                        >
+                            Купить
+                        </button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            🥤
+                        </div>
+
+                        <h3>
+                            Энергетик
+                        </h3>
+
+                        <div class="product-price">
+                            500 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="buyItem('Энергетик',500)"
+                        >
+                            Купить
+                        </button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            🍔
+                        </div>
+
+                        <h3>
+                            Бургер
+                        </h3>
+
+                        <div class="product-price">
+                            700 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="buyItem('Бургер',700)"
+                        >
+                            Купить
+                        </button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            🚗
+                        </div>
+
+                        <h3>
+                            Lada Priora
+                        </h3>
+
+                        <div class="product-price">
+                            450 000 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="showToast('Автосалон будет доступен в следующей версии.')"
+                        >
+                            Посмотреть
+                        </button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            🏎️
+                        </div>
+
+                        <h3>
+                            Премиум автомобиль
+                        </h3>
+
+                        <div class="product-price">
+                            1 500 000 ₽
+                        </div>
+
+                        <button
+                            class="action-btn"
+                            onclick="showToast('Премиум-автомобили скоро появятся.')"
+                        >
+                            Посмотреть
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PROPERTY -->
+
+            <section
+                class="page"
+                id="page-property"
+            >
+
+                <h1 class="page-title">
+                    Недвижимость
+                </h1>
+
+                <p class="page-subtitle">
+                    Дома, квартиры и бизнес.
+                </p>
+
+                <div class="grid grid-3">
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            🏠
+                        </div>
+
+                        <h3>
+                            Квартира
+                        </h3>
+
+                        <p style="color:#777">
+                            Небольшая квартира в спальном районе.
+                        </p>
+
+                        <strong>
+                            1 200 000 ₽
+                        </strong>
+
+                        <br>
+
+                        <button class="action-btn">
+                            Подробнее
+                        </button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            🏡
+                        </div>
+
+                        <h3>
+                            Частный дом
+                        </h3>
+
+                        <p style="color:#777">
+                            Дом с гаражом и собственным двором.
+                        </p>
+
+                        <strong>
+                            4 500 000 ₽
+                        </strong>
+
+                        <br>
+
+                        <button class="action-btn">
+                            Подробнее
+                        </button>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div style="font-size:50px">
+                            🏢
+                        </div>
+
+                        <h3>
+                            Бизнес
+                        </h3>
+
+                        <p style="color:#777">
+                            Собственный магазин или предприятие.
+                        </p>
+
+                        <strong>
+                            8 000 000 ₽
+                        </strong>
+
+                        <br>
+
+                        <button class="action-btn">
+                            Подробнее
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- BANK -->
+
+            <section
+                class="page"
+                id="page-bank"
+            >
+
+                <h1 class="page-title">
+                    Банк
+                </h1>
+
+                <p class="page-subtitle">
+                    Управление игровыми финансами.
+                </p>
+
+                <div class="grid grid-2">
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Баланс банка
+                        </div>
+
+                        <div
+                            class="card-value"
+                            id="bankLarge"
+                        >
+                            0 ₽
+                        </div>
+
+                    </div>
+
+                    <div class="card">
+
+                        <div class="card-title">
+                            Наличные
+                        </div>
+
+                        <div
+                            class="card-value"
+                            id="cashLarge"
+                        >
+                            0 ₽
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div style="height:14px"></div>
+
+                <div class="card">
+
+                    <h3>
+                        Операции
+                    </h3>
+
+                    <div class="action-row">
+
+                        <button
+                            class="action-btn"
+                            onclick="showToast('Функция перевода будет подключена к банковской системе.')"
+                        >
+                            💸 Перевести
+                        </button>
+
+                        <button
+                            class="action-btn"
+                            onclick="showToast('Пополнение банка скоро будет доступно.')"
+                        >
+                            💰 Пополнить
+                        </button>
+
+                        <button
+                            class="action-btn"
+                            onclick="showToast('Снятие наличных скоро будет доступно.')"
+                        >
+                            🏧 Снять
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- CHAT -->
+
+            <section
+                class="page"
+                id="page-chat"
+            >
+
+                <h1 class="page-title">
+                    Онлайн-чат
+                </h1>
+
+                <p class="page-subtitle">
+                    Общение игроков сервера.
+                </p>
+
+                <div class="chat">
+
+                    <div class="card chat-window">
+
+                        <div
+                            class="messages"
+                            id="messages"
+                        >
+
+                            <div class="message">
+
+                                <div class="message-name">
+                                    SYSTEM
+                                </div>
+
+                                <div class="message-text">
+                                    Добро пожаловать в игровой чат.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="chat-input-row">
+
+                            <input
+                                class="chat-input"
+                                id="chatInput"
+                                placeholder="Написать сообщение..."
+                                maxlength="250"
+                                onkeydown="if(event.key==='Enter') sendChatMessage()"
+                            >
+
+                            <button
+                                class="action-btn"
+                                onclick="sendChatMessage()"
+                            >
+                                Отправить
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card">
+
+                        <h3>
+                            🟢 Игроки онлайн
+                        </h3>
+
+                        <div
+                            class="online-list"
+                            id="onlineList"
+                        >
+
+                            <div class="online-user">
+
+                                🟢
+                                <strong id="onlinePlayerName">
+                                    Ты
+                                </strong>
+
+                                <br>
+
+                                <small>
+                                    Онлайн
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SETTINGS -->
+
+            <section
+                class="page"
+                id="page-settings"
+            >
+
+                <h1 class="page-title">
+                    Настройки
+                </h1>
+
+                <p class="page-subtitle">
+                    Настройки игрового аккаунта.
+                </p>
+
+                <div class="card">
+
+                    <h3>
+                        Аккаунт
+                    </h3>
+
+                    <p
+                        style="color:#777"
+                        id="accountEmail"
+                    >
+                        —
+                    </p>
+
+                    <div class="action-row">
+
+                        <button
+                            class="action-btn"
+                            onclick="showToast('Смена пароля будет добавлена позже.')"
+                        >
+                            🔐 Сменить пароль
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div style="height:14px"></div>
+
+                <div class="card">
+
+                    <h3>
+                        Игровые настройки
+                    </h3>
+
+                    <div class="action-row">
+
+                        <button
+                            class="action-btn"
+                            onclick="showToast('Уведомления включены.')"
+                        >
+                            🔔 Уведомления
+                        </button>
+
+                        <button
+                            class="action-btn"
+                            onclick="showToast('Настройки интерфейса сохранены.')"
+                        >
+                            🎨 Интерфейс
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
 
         </main>
 
-    </section>
+    </div>
 
-</div>
+</section>
+
+
+<div id="toast"></div>
 
 
 <script>
 
-    /* ==================================================
-       SUPABASE
-    ================================================== */
+/* ==========================================
+   SUPABASE
+========================================== */
 
-    const SUPABASE_URL =
-        "https://qzswnoeglovfpgrzpnio.supabase.co";
+const SUPABASE_URL =
+    "https://qzswnoeglovfpgrzpnio.supabase.co";
 
-    const SUPABASE_KEY =
-        "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+const SUPABASE_KEY =
+    "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
-    const supabaseClient =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-
-
-    /* ==================================================
-       STATE
-    ================================================== */
-
-    let currentUser = null;
-
-    let currentProfile = null;
-
-    let currentWallet = null;
-
-    let currentCharacter = null;
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
 
 
-    let registerMode = false;
+/* ==========================================
+   STATE
+========================================== */
+
+let currentUser = null;
+let currentProfile = null;
+let currentWallet = null;
+let currentCharacter = null;
 
 
-    /* ==================================================
-       ELEMENTS
-    ================================================== */
+/* ==========================================
+   HELPERS
+========================================== */
 
-    const loadingScreen =
-        document.getElementById("loadingScreen");
+function showToast(text) {
 
-    const authScreen =
-        document.getElementById("authScreen");
+    const toast =
+        document.getElementById("toast");
 
-    const gameScreen =
-        document.getElementById("gameScreen");
+    toast.textContent = text;
 
-    const authTitle =
-        document.getElementById("authTitle");
+    toast.classList.add("show");
 
-    const authDescription =
-        document.getElementById("authDescription");
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 3000);
+}
 
-    const usernameField =
-        document.getElementById("usernameField");
 
-    const authButton =
-        document.getElementById("authButton");
+function formatMoney(value) {
 
-    const authMessage =
+    return Number(value || 0)
+        .toLocaleString("ru-RU") + " ₽";
+}
+
+
+/* ==========================================
+   AUTH
+========================================== */
+
+async function register() {
+
+    const username =
+        document.getElementById("username")
+            .value.trim();
+
+    const email =
+        document.getElementById("email")
+            .value.trim();
+
+    const password =
+        document.getElementById("password")
+            .value;
+
+    const message =
         document.getElementById("authMessage");
 
 
-    /* ==================================================
-       UI
-    ================================================== */
+    if (!username || !email || !password) {
 
-    function showLogin() {
+        message.textContent =
+            "Заполни все поля.";
 
-        registerMode = false;
-
-        document
-            .getElementById("loginTab")
-            .classList.add("active");
-
-        document
-            .getElementById("registerTab")
-            .classList.remove("active");
-
-
-        usernameField.style.display =
-            "none";
-
-
-        authTitle.textContent =
-            "Добро пожаловать";
-
-
-        authDescription.textContent =
-            "Войди в свой аккаунт и продолжи игру.";
-
-
-        authButton.textContent =
-            "Войти";
-
-
-        clearMessage();
-
+        return;
     }
 
 
-    function showRegister() {
+    if (password.length < 6) {
 
-        registerMode = true;
+        message.textContent =
+            "Пароль должен содержать минимум 6 символов.";
 
-        document
-            .getElementById("registerTab")
-            .classList.add("active");
-
-        document
-            .getElementById("loginTab")
-            .classList.remove("active");
-
-
-        usernameField.style.display =
-            "block";
-
-
-        authTitle.textContent =
-            "Создание аккаунта";
-
-
-        authDescription.textContent =
-            "Создай аккаунт и начни свою историю в городе.";
-
-
-        authButton.textContent =
-            "Создать аккаунт";
-
-
-        clearMessage();
-
+        return;
     }
 
 
-    function setMessage(
-        text,
-        type = ""
-    ) {
+    message.textContent =
+        "Создаём аккаунт...";
 
-        authMessage.textContent =
-            text;
 
-        authMessage.className =
-            "message " + type;
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth.signUp({
 
-    }
+            email: email,
 
+            password: password,
 
-    function clearMessage() {
+            options: {
 
-        authMessage.textContent =
-            "";
-
-        authMessage.className =
-            "message";
-
-    }
-
-
-    /* ==================================================
-       AUTH
-    ================================================== */
-
-    async function handleAuth() {
-
-        if (registerMode) {
-
-            await register();
-
-        } else {
-
-            await login();
-
-        }
-
-    }
-
-
-    async function register() {
-
-        const username =
-            document
-                .getElementById("username")
-                .value
-                .trim();
-
-
-        const email =
-            document
-                .getElementById("email")
-                .value
-                .trim();
-
-
-        const password =
-            document
-                .getElementById("password")
-                .value;
-
-
-        if (!username) {
-
-            setMessage(
-                "Введите никнейм.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if (username.length < 3) {
-
-            setMessage(
-                "Никнейм должен содержать минимум 3 символа.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if (!email) {
-
-            setMessage(
-                "Введите email.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        if (password.length < 6) {
-
-            setMessage(
-                "Пароль должен содержать минимум 6 символов.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        authButton.disabled =
-            true;
-
-
-        setMessage(
-            "Создаём аккаунт..."
-        );
-
-
-        try {
-
-            /*
-                ВАЖНО:
-
-                username передаём в metadata.
-
-                Наш PostgreSQL trigger
-                handle_new_user()
-                сам создаст:
-
-                profiles
-                wallets
-                characters
-            */
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient.auth.signUp({
-
-                    email: email,
-
-                    password: password,
-
-                    options: {
-
-                        data: {
-
-                            username: username
-
-                        }
-
-                    }
-
-                });
-
-
-            if (error) {
-
-                throw error;
-
-            }
-
-
-            if (!data.user) {
-
-                throw new Error(
-                    "Supabase не вернул пользователя."
-                );
-
-            }
-
-
-            /*
-                Если подтверждение email включено,
-                сессия может отсутствовать.
-            */
-
-            if (!data.session) {
-
-                setMessage(
-                    "Аккаунт создан. Проверь почту для подтверждения, затем войди.",
-                    "success"
-                );
-
-                authButton.disabled =
-                    false;
-
-                return;
-
-            }
-
-
-            setMessage(
-                "Аккаунт создан. Загружаем персонажа...",
-                "success"
-            );
-
-
-            await loadPlayer();
-
-
-        } catch (error) {
-
-            console.error(error);
-
-            setMessage(
-                error.message ||
-                "Ошибка регистрации.",
-                "error"
-            );
-
-        }
-
-
-        authButton.disabled =
-            false;
-
-    }
-
-
-    async function login() {
-
-        const email =
-            document
-                .getElementById("email")
-                .value
-                .trim();
-
-
-        const password =
-            document
-                .getElementById("password")
-                .value;
-
-
-        if (!email || !password) {
-
-            setMessage(
-                "Введите email и пароль.",
-                "error"
-            );
-
-            return;
-
-        }
-
-
-        authButton.disabled =
-            true;
-
-
-        setMessage(
-            "Выполняется вход..."
-        );
-
-
-        try {
-
-            const {
-                data,
-                error
-            } =
-                await supabaseClient.auth
-                    .signInWithPassword({
-
-                        email: email,
-
-                        password: password
-
-                    });
-
-
-            if (error) {
-
-                throw error;
-
-            }
-
-
-            currentUser =
-                data.user;
-
-
-            await loadPlayer();
-
-
-        } catch (error) {
-
-            console.error(error);
-
-            setMessage(
-                error.message ||
-                "Ошибка входа.",
-                "error"
-            );
-
-        }
-
-
-        authButton.disabled =
-            false;
-
-    }
-
-
-    /* ==================================================
-       LOAD PLAYER
-    ================================================== */
-
-    async function loadPlayer() {
-
-        const {
-            data: {
-                user
-            }
-        } =
-            await supabaseClient.auth.getUser();
-
-
-        if (!user) {
-
-            showAuth();
-
-            return;
-
-        }
-
-
-        currentUser =
-            user;
-
-
-        /*
-            PROFILE
-        */
-
-        const {
-            data: profile,
-            error: profileError
-        } =
-            await supabaseClient
-                .from("profiles")
-                .select("*")
-                .eq("id", user.id)
-                .single();
-
-
-        if (profileError) {
-
-            console.error(
-                "PROFILE ERROR:",
-                profileError
-            );
-
-        }
-
-
-        currentProfile =
-            profile;
-
-
-        /*
-            WALLET
-        */
-
-        const {
-            data: wallet,
-            error: walletError
-        } =
-            await supabaseClient
-                .from("wallets")
-                .select("*")
-                .eq("player_id", user.id)
-                .single();
-
-
-        if (walletError) {
-
-            console.error(
-                "WALLET ERROR:",
-                walletError
-            );
-
-        }
-
-
-        currentWallet =
-            wallet;
-
-
-        /*
-            CHARACTER
-        */
-
-        const {
-            data: character,
-            error: characterError
-        } =
-            await supabaseClient
-                .from("characters")
-                .select("*")
-                .eq("player_id", user.id)
-                .order(
-                    "created_at",
-                    {
-                        ascending: true
-                    }
-                )
-                .limit(1)
-                .maybeSingle();
-
-
-        if (characterError) {
-
-            console.error(
-                "CHARACTER ERROR:",
-                characterError
-            );
-
-        }
-
-
-        currentCharacter =
-            character;
-
-
-        showGame();
-
-        updateGameUI();
-
-    }
-
-
-    /* ==================================================
-       GAME UI
-    ================================================== */
-
-    function showGame() {
-
-        loadingScreen.style.display =
-            "none";
-
-        authScreen.style.display =
-            "none";
-
-        gameScreen.style.display =
-            "block";
-
-    }
-
-
-    function showAuth() {
-
-        loadingScreen.style.display =
-            "none";
-
-        gameScreen.style.display =
-            "none";
-
-        authScreen.style.display =
-            "flex";
-
-    }
-
-
-    function updateGameUI() {
-
-        /*
-            PROFILE
-        */
-
-        const username =
-            currentProfile?.username ||
-            currentUser?.email?.split("@")[0] ||
-            "Игрок";
-
-
-        document
-            .getElementById("welcomeName")
-            .textContent =
-            username;
-
-
-        /*
-            WALLET
-        */
-
-        const cash =
-            Number(
-                currentWallet?.cash || 0
-            );
-
-
-        const bank =
-            Number(
-                currentWallet?.bank || 0
-            );
-
-
-        const gold =
-            Number(
-                currentWallet?.gold || 0
-            );
-
-
-        document
-            .getElementById("cash")
-            .textContent =
-            cash.toLocaleString("ru-RU") +
-            " ₽";
-
-
-        document
-            .getElementById("bank")
-            .textContent =
-            bank.toLocaleString("ru-RU") +
-            " ₽";
-
-
-        document
-            .getElementById("gold")
-            .textContent =
-            gold.toLocaleString("ru-RU");
-
-
-        /*
-            CHARACTER
-        */
-
-        if (currentCharacter) {
-
-            const firstName =
-                currentCharacter.first_name ||
-                "Player";
-
-
-            const lastName =
-                currentCharacter.last_name ||
-                "";
-
-
-            document
-                .getElementById("characterName")
-                .textContent =
-                firstName +
-                " " +
-                lastName;
-
-
-            document
-                .getElementById("characterInfo")
-                .textContent =
-                "Уровень " +
-                (currentCharacter.level || 1) +
-                " • " +
-                (currentCharacter.age || 18) +
-                " лет • Здоровье " +
-                (currentCharacter.health || 100) +
-                "%";
-
-
-            document
-                .getElementById("level")
-                .textContent =
-                currentCharacter.level || 1;
-
-
-            document
-                .getElementById("avatar")
-                .textContent =
-                firstName
-                    .charAt(0)
-                    .toUpperCase();
-
-        } else {
-
-            document
-                .getElementById("characterName")
-                .textContent =
-                "Персонаж не найден";
-
-
-            document
-                .getElementById("characterInfo")
-                .textContent =
-                "Создание персонажа будет доступно позже.";
-
-        }
-
-    }
-
-
-    /* ==================================================
-       TEST MONEY SAVE
-    ================================================== */
-
-    async function testMoney() {
-
-        if (!currentUser || !currentWallet) {
-
-            return;
-
-        }
-
-
-        const newCash =
-            Number(currentWallet.cash) +
-            1000;
-
-
-        const {
-            error
-        } =
-            await supabaseClient
-                .from("wallets")
-                .update({
-
-                    cash: newCash,
-
-                    updated_at:
-                        new Date().toISOString()
-
-                })
-                .eq(
-                    "player_id",
-                    currentUser.id
-                );
-
-
-        if (error) {
-
-            console.error(error);
-
-            showGameMessage(
-                error.message
-            );
-
-            return;
-
-        }
-
-
-        currentWallet.cash =
-            newCash;
-
-
-        updateGameUI();
-
-
-        showGameMessage(
-            "1000 ₽ сохранены в базе данных."
-        );
-
-    }
-
-
-    /* ==================================================
-       GAME ACTIONS
-    ================================================== */
-
-    function gameAction(name) {
-
-        showGameMessage(
-            name +
-            ": раздел будет добавлен в следующей версии."
-        );
-
-    }
-
-
-    function showGameMessage(text) {
-
-        document
-            .getElementById("gameMessage")
-            .textContent =
-            text;
-
-    }
-
-
-    /* ==================================================
-       LOGOUT
-    ================================================== */
-
-    async function logout() {
-
-        await supabaseClient.auth.signOut();
-
-        currentUser =
-            null;
-
-        currentProfile =
-            null;
-
-        currentWallet =
-            null;
-
-        currentCharacter =
-            null;
-
-
-        location.reload();
-
-    }
-
-
-    /* ==================================================
-       SESSION
-    ================================================== */
-
-    async function checkSession() {
-
-        try {
-
-            const {
                 data: {
-                    session
+
+                    username: username
+
                 }
-            } =
-                await supabaseClient.auth.getSession();
-
-
-            if (session) {
-
-                await loadPlayer();
-
-            } else {
-
-                showAuth();
 
             }
 
-        } catch (error) {
+        });
 
-            console.error(error);
 
-            showAuth();
+    if (error) {
 
-        }
+        message.textContent =
+            error.message;
+
+        return;
+    }
+
+
+    if (!data.user) {
+
+        message.textContent =
+            "Не удалось создать пользователя.";
+
+        return;
+    }
+
+
+    message.textContent =
+        "Аккаунт создан. Проверь почту для подтверждения, затем войди.";
+
+
+    document.getElementById("password")
+        .value = "";
+
+}
+
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+async function login() {
+
+    const email =
+        document.getElementById("email")
+            .value.trim();
+
+    const password =
+        document.getElementById("password")
+            .value;
+
+    const message =
+        document.getElementById("authMessage");
+
+
+    if (!email || !password) {
+
+        message.textContent =
+            "Введите email и пароль.";
+
+        return;
+    }
+
+
+    message.textContent =
+        "Выполняется вход...";
+
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient.auth
+            .signInWithPassword({
+
+                email: email,
+
+                password: password
+
+            });
+
+
+    if (error) {
+
+        message.textContent =
+            error.message;
+
+        return;
+    }
+
+
+    currentUser =
+        data.user;
+
+
+    await loadPlayer();
+
+}
+
+
+/* ==========================================
+   LOAD PLAYER
+========================================== */
+
+async function loadPlayer() {
+
+    if (!currentUser) {
+
+        const {
+            data
+        } =
+            await supabaseClient.auth
+                .getUser();
+
+        currentUser =
+            data.user;
+    }
+
+
+    if (!currentUser) {
+
+        return;
+    }
+
+
+    /* PROFILE */
+
+    const {
+        data: profile
+    } =
+        await supabaseClient
+            .from("profiles")
+            .select("*")
+            .eq("id", currentUser.id)
+            .maybeSingle();
+
+
+    currentProfile =
+        profile;
+
+
+    /* WALLET */
+
+    const {
+        data: wallet
+    } =
+        await supabaseClient
+            .from("wallets")
+            .select("*")
+            .eq("player_id", currentUser.id)
+            .maybeSingle();
+
+
+    currentWallet =
+        wallet;
+
+
+    /* CHARACTER */
+
+    const {
+        data: character
+    } =
+        await supabaseClient
+            .from("characters")
+            .select("*")
+            .eq("player_id", currentUser.id)
+            .maybeSingle();
+
+
+    currentCharacter =
+        character;
+
+
+    updateInterface();
+
+
+    document.getElementById("authScreen")
+        .classList.add("hidden");
+
+
+    document.getElementById("gameScreen")
+        .classList.remove("hidden");
+
+}
+
+
+/* ==========================================
+   UPDATE UI
+========================================== */
+
+function updateInterface() {
+
+    const username =
+        currentProfile?.username ||
+        currentUser?.user_metadata?.username ||
+        currentUser?.email?.split("@")[0] ||
+        "Игрок";
+
+
+    const cash =
+        currentWallet?.cash || 0;
+
+    const bank =
+        currentWallet?.bank || 0;
+
+    const gold =
+        currentWallet?.gold || 0;
+
+
+    document.getElementById("welcome")
+        .textContent =
+        "Добро пожаловать, " + username;
+
+
+    document.getElementById("profileName")
+        .textContent =
+        username;
+
+
+    document.getElementById("onlinePlayerName")
+        .textContent =
+        username;
+
+
+    document.getElementById("accountEmail")
+        .textContent =
+        currentUser?.email || "—";
+
+
+    document.getElementById("avatar")
+        .textContent =
+        username.charAt(0)
+            .toUpperCase();
+
+
+    document.getElementById("cash")
+        .textContent =
+        formatMoney(cash);
+
+
+    document.getElementById("bank")
+        .textContent =
+        formatMoney(bank);
+
+
+    document.getElementById("gold")
+        .textContent =
+        gold;
+
+
+    document.getElementById("topCash")
+        .textContent =
+        formatMoney(cash);
+
+
+    document.getElementById("topBank")
+        .textContent =
+        formatMoney(bank);
+
+
+    document.getElementById("topGold")
+        .textContent =
+        gold;
+
+
+    document.getElementById("cashLarge")
+        .textContent =
+        formatMoney(cash);
+
+
+    document.getElementById("bankLarge")
+        .textContent =
+        formatMoney(bank);
+
+
+    if (currentCharacter) {
+
+        document.getElementById("charFirstName")
+            .textContent =
+            currentCharacter.first_name ||
+            "—";
+
+
+        document.getElementById("charLastName")
+            .textContent =
+            currentCharacter.last_name ||
+            "—";
+
+
+        document.getElementById("charAge")
+            .textContent =
+            currentCharacter.age ||
+            "—";
 
     }
 
 
-    /* ==================================================
-       AUTH STATE LISTENER
-    ================================================== */
+    document.getElementById("profileMeta")
+        .textContent =
+        "Уровень 1 • Москва";
 
-    supabaseClient.auth.onAuthStateChange(
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function showPage(pageName, button) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+
+            page.classList.remove("active");
+
+        });
+
+
+    const page =
+        document.getElementById(
+            "page-" + pageName
+        );
+
+
+    if (page) {
+
+        page.classList.add("active");
+
+    }
+
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    if (button) {
+
+        button.classList.add("active");
+
+    }
+
+}
+
+
+function showPageById(pageName) {
+
+    const buttons =
+        document.querySelectorAll(".nav-btn");
+
+    let found = null;
+
+
+    buttons.forEach(button => {
+
+        if (
+            button
+                .getAttribute("onclick")
+                ?.includes(
+                    "'" + pageName + "'"
+                )
+        ) {
+
+            found = button;
+
+        }
+
+    });
+
+
+    showPage(pageName, found);
+
+}
+
+
+/* ==========================================
+   TEST MONEY
+========================================== */
+
+async function testAddMoney() {
+
+    if (!currentUser) {
+
+        return;
+
+    }
+
+
+    if (!currentWallet) {
+
+        showToast(
+            "Кошелёк игрока ещё не найден."
+        );
+
+        return;
+    }
+
+
+    const newCash =
+        Number(currentWallet.cash || 0) +
+        1000;
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("wallets")
+            .update({
+
+                cash: newCash
+
+            })
+            .eq(
+                "player_id",
+                currentUser.id
+            );
+
+
+    if (error) {
+
+        showToast(error.message);
+
+        return;
+    }
+
+
+    currentWallet.cash =
+        newCash;
+
+
+    updateInterface();
+
+
+    showToast(
+        "1 000 ₽ сохранены в базе."
+    );
+
+}
+
+
+/* ==========================================
+   JOBS
+========================================== */
+
+function selectJob(job) {
+
+    document.getElementById("currentJob")
+        .textContent =
+        job;
+
+    showToast(
+        "Ты устроился на работу: " + job
+    );
+
+}
+
+
+/* ==========================================
+   SHOP
+========================================== */
+
+async function buyItem(name, price) {
+
+    if (!currentWallet) {
+
+        showToast(
+            "Кошелёк ещё не загружен."
+        );
+
+        return;
+    }
+
+
+    const cash =
+        Number(currentWallet.cash || 0);
+
+
+    if (cash < price) {
+
+        showToast(
+            "Недостаточно наличных."
+        );
+
+        return;
+    }
+
+
+    const newCash =
+        cash - price;
+
+
+    const {
+        error
+    } =
+        await supabaseClient
+            .from("wallets")
+            .update({
+
+                cash: newCash
+
+            })
+            .eq(
+                "player_id",
+                currentUser.id
+            );
+
+
+    if (error) {
+
+        showToast(error.message);
+
+        return;
+    }
+
+
+    currentWallet.cash =
+        newCash;
+
+
+    updateInterface();
+
+
+    showToast(
+        "Куплено: " + name
+    );
+
+}
+
+
+/* ==========================================
+   CHAT — LOCAL UI
+========================================== */
+
+function sendChatMessage() {
+
+    const input =
+        document.getElementById("chatInput");
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) {
+
+        return;
+
+    }
+
+
+    const username =
+        currentProfile?.username ||
+        currentUser?.email?.split("@")[0] ||
+        "Игрок";
+
+
+    const messages =
+        document.getElementById("messages");
+
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "message";
+
+
+    message.innerHTML = `
+
+        <div class="message-name">
+            ${escapeHtml(username)}
+        </div>
+
+        <div class="message-text">
+            ${escapeHtml(text)}
+        </div>
+
+    `;
+
+
+    messages.appendChild(message);
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+
+    input.value = "";
+
+
+    showToast(
+        "Сообщение добавлено в чат."
+    );
+
+}
+
+
+/* ==========================================
+   SECURITY
+========================================== */
+
+function escapeHtml(value) {
+
+    return value
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+async function logout() {
+
+    await supabaseClient.auth.signOut();
+
+    currentUser = null;
+    currentProfile = null;
+    currentWallet = null;
+    currentCharacter = null;
+
+    location.reload();
+
+}
+
+
+/* ==========================================
+   SESSION
+========================================== */
+
+async function checkSession() {
+
+    const {
+        data
+    } =
+        await supabaseClient.auth
+            .getSession();
+
+
+    if (data.session) {
+
+        currentUser =
+            data.session.user;
+
+        await loadPlayer();
+
+    }
+
+}
+
+
+supabaseClient.auth
+    .onAuthStateChange(
         async (event, session) => {
 
             if (
@@ -1718,7 +3015,8 @@
                 session
             ) {
 
-                await loadPlayer();
+                currentUser =
+                    session.user;
 
             }
 
@@ -1726,11 +3024,7 @@
     );
 
 
-    /* ==================================================
-       START
-    ================================================== */
-
-    checkSession();
+checkSession();
 
 </script>
 
