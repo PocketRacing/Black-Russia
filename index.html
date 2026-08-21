@@ -12,7 +12,6 @@
         input { width: 100%; padding: 12px; margin: 8px 0; background: #444; color: white; border: 1px solid #666; border-radius: 4px; box-sizing: border-box; }
         button { width: 100%; padding: 12px; background: white; color: black; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; margin-top: 10px; }
         button:hover { background: #f0f0f0; }
-        .hidden { display: none; }
         #log { margin-top: 15px; font-size: 13px; line-height: 1.4; min-height: 60px; text-align: left; border: 1px solid #555; padding: 10px; border-radius: 4px; background: #000; color: #0f0; }
         .err { color: #f00; font-weight: bold; }
         .ok { color: #0f0; font-weight: bold; }
@@ -32,10 +31,12 @@
     </div>
 
     <script>
-        // ================= ВСТАВЬ КЛЮЧ ЗДЕСЬ =================
+        // ================= НАСТРОЙКИ =================
         const SUPABASE_URL = 'https://qyjvkiusyiylckaujjiv.supabase.co';
+        // !!! ВСТАВЬ СЮДА НОВЫЙ КЛЮЧ (после Rotate keys в панели Supabase) !!!
+        // Старый ключ, который был у тебя, использовать нельзя!
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5anZraXVzeWl5bGNrYXVqaml2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5OTk5NzksImV4cCI6MjEwMjU3NTk3OX0.rNZX3L-LET6tHe3juirf2DI7cuKOhSEcReXSUHhoSjI'; 
-        // =====================================================
+        // =============================================
 
         let supabase;
 
@@ -46,12 +47,14 @@
         }
 
         async function init() {
-            if (SUPABASE_ANON_KEY === 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF5anZraXVzeWl5bGNrYXVqaml2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5OTk5NzksImV4cCI6MjEwMjU3NTk3OX0.rNZX3L-LET6tHe3juirf2DI7cuKOhSEcReXSUHhoSjI') {
-                log('❌ ОШИБКА: Ты не вставил ключ! Зайди в Settings -> API, возьми anon key и вставь в код.', 'err');
+            // ПРАВИЛЬНАЯ ПРОВЕРКА: если ключа нет или там текст-заглушка
+            if (!SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes('ВСТАВЬ')) {
+                log('❌ ОШИБКА: Ключ не вставлен! Зайди в Settings -> API, нажми Rotate keys, скопируй anon key и вставь в код.', 'err');
                 return;
             }
+
             supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            log('✅ Клиент Supabase инициализирован.', 'ok');
+            log('✅ Клиент Supabase успешно подключён!', 'ok');
         }
 
         async function register() {
@@ -74,7 +77,7 @@
                 }
 
                 if (data.user_requires_verification) {
-                    log('⚠️ Аккаунт создан, но требует подтверждения почты. Для теста лучше отключи эту опцию в настройках Auth.', 'err');
+                    log('⚠️ Аккаунт создан, но требует подтверждения почты. Отключи "Email confirmations" в настройках Auth для тестов.', 'err');
                     return;
                 }
 
@@ -98,23 +101,21 @@
                     return;
                 }
 
-                // Ждем 1.5 сек, чтобы триггер создал строки в таблицах profiles/wallets
                 setTimeout(async () => {
                     const { data: { user } } = supabase.auth.getUser();
                     if (user) {
                         log('✅ Пользователь авторизован. Читаем данные из таблиц...', 'ok');
                         
-                        // Читаем таблицы
                         const { data: profile } = await supabase.from('profiles').select('*').eq('id', user.id).single();
                         const { data: wallet } = await supabase.from('wallets').select('*').eq('player_id', user.id).single();
                         const { data: stats } = await supabase.from('stats').select('*').eq('user_id', user.id).single();
 
                         if (profile && wallet && stats) {
-                            log(`🎉 УСПЕХ! Игрок создан.`, 'ok');
+                            log(`🎉 УСПЕХ! Игрок создан в базе данных.`, 'ok');
                             log(`Ник: ${profile.username || 'Не задан'}`, '');
-                            log(`Cash: ${wallet.cash}, Bank: ${wallet.bank}, Level: ${stats.level}`, '');
+                            log(`Cash: ${wallet.cash || 0}, Bank: ${wallet.bank || 0}, Level: ${stats.level || 1}`, '');
                         } else {
-                            log('❌ Ошибка: Не удалось найти данные в таблицах. Возможно, триггер не сработал или политики RLS блокируют доступ.', 'err');
+                            log('❌ Ошибка: Не удалось найти данные в таблицах. Проверь, что триггер и политики RLS настроены верно.', 'err');
                         }
                     } else {
                         log('❌ Не удалось получить данные пользователя.', 'err');
