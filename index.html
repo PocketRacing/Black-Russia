@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
 <title>BLACK RUSSIA RP</title>
 
 <style>
@@ -26,7 +25,7 @@
     --white:#f5f5f5;
     --muted:#929292;
     --green:#31d47a;
-    --yellow:#ffc928;
+    --yellow:#ffc928
 }
 
 body{
@@ -71,15 +70,18 @@ button{
     width:100%;
     max-width:430px;
     padding:25px;
+
     background:#101010;
     border:1px solid #292929;
     border-radius:16px;
+
     box-shadow:0 20px 60px rgba(0,0,0,.65)
 }
 
 .logo-box{
     width:82px;
     height:82px;
+
     margin:0 auto 14px;
 
     display:flex;
@@ -87,6 +89,7 @@ button{
     justify-content:center;
 
     border-radius:12px;
+
     background:#080808;
     border:2px solid var(--red);
 
@@ -136,18 +139,23 @@ button{
     display:flex;
     gap:5px;
     padding:4px;
+
     background:#080808;
     border:1px solid #222;
     border-radius:10px;
+
     margin-bottom:21px
 }
 
 .auth-tab{
     flex:1;
     padding:11px;
+
     border-radius:7px;
+
     background:transparent;
     color:#777;
+
     font-weight:800
 }
 
@@ -185,10 +193,13 @@ button{
 .field input{
     width:100%;
     padding:14px;
+
     color:#fff;
+
     background:#080808;
     border:1px solid #2a2a2a;
     border-radius:9px;
+
     outline:none
 }
 
@@ -211,8 +222,10 @@ button{
 
 .secondary-btn{
     padding:13px;
+
     background:#202020;
     border:1px solid #303030;
+
     font-weight:bold;
     margin-top:9px
 }
@@ -233,6 +246,7 @@ button{
 
 .topbar{
     height:62px;
+
     position:sticky;
     top:0;
     z-index:50;
@@ -262,6 +276,7 @@ button{
     display:flex;
     align-items:center;
     gap:6px;
+
     color:#888;
     font-size:10px
 }
@@ -269,8 +284,11 @@ button{
 .online-dot{
     width:7px;
     height:7px;
+
     border-radius:50%;
+
     background:var(--green);
+
     box-shadow:0 0 8px var(--green)
 }
 
@@ -281,9 +299,11 @@ button{
 
 .money{
     padding:6px 8px;
+
     background:#151515;
     border:1px solid #292929;
     border-radius:7px;
+
     font-size:9px;
     font-weight:bold
 }
@@ -298,8 +318,10 @@ button{
 
 .page{
     display:none;
+
     max-width:1000px;
     margin:auto;
+
     padding:15px
 }
 
@@ -320,6 +342,7 @@ button{
 
 .section-title{
     margin:21px 0 11px;
+
     font-size:16px;
     font-weight:900
 }
@@ -329,6 +352,7 @@ button{
 .hero{
     position:relative;
     overflow:hidden;
+
     padding:20px;
 
     background:
@@ -345,18 +369,22 @@ button{
 
 .hero:after{
     content:"RP";
+
     position:absolute;
     right:-10px;
     bottom:-35px;
 
     color:rgba(255,255,255,.025);
+
     font-size:120px;
     font-weight:1000
 }
 
 .hero-small{
     color:#777;
+
     font-size:10px;
+
     text-transform:uppercase;
     letter-spacing:1.3px
 }
@@ -364,7 +392,9 @@ button{
 .hero-name{
     position:relative;
     z-index:1;
+
     margin:6px 0 10px;
+
     font-size:27px;
     font-weight:1000
 }
@@ -376,12 +406,15 @@ button{
 .stats-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
+
     gap:9px;
+
     margin-top:12px
 }
 
 .stat-card{
     padding:14px;
+
     background:#111;
     border:1px solid #272727;
     border-radius:11px
@@ -400,15 +433,20 @@ button{
 
 .progress{
     height:5px;
+
     overflow:hidden;
+
     background:#292929;
+
     border-radius:20px;
+
     margin-top:9px
 }
 
 .progress div{
     width:0;
     height:100%;
+
     background:linear-gradient(
         90deg,
         #b90912,
@@ -419,14 +457,18 @@ button{
 .quick-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
+
     gap:8px
 }
 
 .quick{
     padding:14px 6px;
+
     color:#fff;
+
     background:#111;
     border:1px solid #272727;
+
     border-radius:11px
 }
 
@@ -440,7 +482,7 @@ button{
     font-weight:bold
 }
 
-/* ================= CARDS / JOBS ================= */
+/* ================= CARDS ================= */
 
 .cards{
     display:grid;
@@ -450,8 +492,10 @@ button{
 
 .card{
     padding:15px;
+
     background:#111;
     border:1px solid #292929;
+
     border-radius:12px
 }
 
@@ -462,17 +506,24 @@ button{
 
 .card-desc{
     color:#777;
+
     font-size:11px;
     line-height:1.45;
+
     margin:7px 0 12px
 }
 
 .card-btn{
     width:100%;
+
     padding:10px;
+
     color:#fff;
+
     background:#222;
+
     border-radius:8px;
+
     font-size:11px;
     font-weight:bold
 }
@@ -481,279 +532,22 @@ button{
     background:var(--red)
 }
 
-.job{
-    display:flex;
-    align-items:center;
-    gap:11px;
-    padding:13px;
-    margin-bottom:8px;
-
-    background:#111;
-    border:1px solid #292929;
-    border-radius:12px
-}
-
-.job-icon{
-    width:46px;
-    height:46px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    flex-shrink:0;
-
-    background:#1c1c1c;
-    border-radius:10px;
-    font-size:23px
-}
-
-.job-main{
-    flex:1
-}
-
-.job-name{
-    font-size:13px;
-    font-weight:900
-}
-
-.job-info{
-    color:#777;
-    font-size:10px;
-    line-height:1.45;
-    margin-top:4px
-}
-
-.job-action{
-    padding:9px 10px;
-    background:var(--red);
-    color:#fff;
-    border-radius:7px;
-    font-size:9px;
-    font-weight:900
-}
-
-/* ================= DIVING ================= */
-
-.diver-head{
-    padding:18px;
-    margin-bottom:12px;
-
-    background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(0,130,255,.13),
-            transparent 50%
-        ),
-        linear-gradient(
-            135deg,
-            rgba(0,90,150,.15),
-            transparent 60%
-        ),
-        #111;
-
-    border:1px solid #263746;
-    border-radius:14px
-}
-
-.diver-title{
-    font-size:22px;
-    font-weight:1000
-}
-
-.diver-title span{
-    color:#4bbcff
-}
-
-.diver-sub{
-    color:#777;
-    font-size:11px;
-    line-height:1.5;
-    margin-top:5px
-}
-
-.diver-stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
-    margin-top:14px
-}
-
-.diver-stat{
-    padding:11px;
-    text-align:center;
-    background:#0c1115;
-    border:1px solid #25323c;
-    border-radius:9px
-}
-
-.diver-stat strong{
-    display:block;
-    font-size:15px
-}
-
-.diver-stat span{
-    color:#777;
-    font-size:8px
-}
-
-.diver-actions{
-    display:flex;
-    gap:7px;
-    margin-top:12px
-}
-
-.diver-actions button{
-    flex:1;
-    padding:12px;
-    color:#fff;
-    border-radius:8px;
-    font-size:10px;
-    font-weight:900
-}
-
-.diver-start{
-    background:linear-gradient(
-        135deg,
-        #075985,
-        #0ea5e9
-    )
-}
-
-.diver-sell{
-    background:#222;
-    border:1px solid #333
-}
-
-.diver-cooldown{
-    margin-top:10px;
-    padding:10px;
-
-    text-align:center;
-
-    background:#171717;
-    border:1px solid #292929;
-    border-radius:8px;
-
-    color:#aaa;
-    font-size:10px
-}
-
-.dive-log{
-    margin-top:12px;
-    padding:13px;
-
-    background:#0d0d0d;
-    border:1px solid #292929;
-    border-radius:11px
-}
-
-.dive-log-title{
-    font-size:12px;
-    font-weight:900;
-    margin-bottom:9px
-}
-
-.dive-row{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:9px 0;
-
-    border-bottom:1px solid #202020
-}
-
-.dive-row:last-child{
-    border-bottom:0
-}
-
-.dive-row-name{
-    font-size:11px
-}
-
-.dive-row-price{
-    color:#55dc89;
-    font-size:10px;
-    font-weight:bold
-}
-
-.item-found{
-    margin-top:12px;
-    padding:13px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(49,212,122,.07),
-            transparent
-        ),
-        #111;
-
-    border:1px solid #27352d;
-    border-radius:11px
-}
-
-.item-found-title{
-    font-size:12px;
-    font-weight:900;
-    margin-bottom:9px
-}
-
-.found-list{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:7px
-}
-
-.found-item{
-    padding:10px;
-    background:#171717;
-    border:1px solid #292929;
-    border-radius:8px
-}
-
-.found-item-top{
-    display:flex;
-    align-items:center;
-    gap:7px
-}
-
-.found-icon{
-    font-size:22px
-}
-
-.found-name{
-    font-size:10px;
-    font-weight:bold
-}
-
-.found-price{
-    color:#55dc89;
-    font-size:9px;
-    margin-top:3px
-}
-
-.empty-found{
-    grid-column:1/-1;
-    padding:15px;
-    text-align:center;
-    color:#666;
-    font-size:10px
-}
-
 /* ================= GARAGE ================= */
 
 .car{
     margin-bottom:10px;
+
     overflow:hidden;
+
     background:#111;
     border:1px solid #292929;
+
     border-radius:13px
 }
 
 .car-image{
     height:125px;
+
     display:flex;
     align-items:center;
     justify-content:center;
@@ -780,22 +574,30 @@ button{
 
 .car-meta{
     color:#777;
+
     font-size:10px;
+
     margin-top:5px
 }
 
 .car-buttons{
     display:flex;
     gap:6px;
+
     margin-top:11px
 }
 
 .car-buttons button{
     flex:1;
+
     padding:9px;
+
     color:#fff;
+
     background:#202020;
+
     border-radius:7px;
+
     font-size:10px;
     font-weight:bold
 }
@@ -806,15 +608,20 @@ button{
 .case-grid,
 .donate-grid{
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
+
     gap:9px
 }
 
 .item{
     text-align:center;
+
     padding:15px;
+
     background:#111;
     border:1px solid #292929;
+
     border-radius:12px
 }
 
@@ -824,97 +631,38 @@ button{
 
 .item-name{
     margin-top:7px;
+
     font-size:12px;
     font-weight:900
 }
 
 .item-price{
     color:#55dc89;
+
     font-size:11px;
+
     margin:7px 0
 }
 
 .buy{
     width:100%;
+
     padding:9px;
+
     background:var(--red);
     color:#fff;
+
     border-radius:7px;
+
     font-size:10px;
     font-weight:900
 }
 
-/* ================= DONATE / CASES ================= */
-
-.donate-banner{
-    padding:24px;
-    text-align:center;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(229,9,20,.18),
-            transparent 65%
-        ),
-        #111;
-
-    border:1px solid #432020;
-    border-radius:14px
-}
-
-.donate-title{
-    font-size:29px;
-    font-weight:1000
-}
-
-.donate-title span{
-    color:var(--red)
-}
-
-.donate-sub{
-    color:#777;
-    font-size:11px;
-    margin-top:5px
-}
-
-.donate-grid{
-    margin-top:12px
-}
-
-.donate-card{
-    padding:17px;
-    text-align:center;
-    background:#111;
-    border:1px solid #292929;
-    border-radius:12px
-}
-
-.donate-card strong{
-    display:block;
-    color:var(--red);
-    font-size:20px
-}
-
-.donate-card span{
-    display:block;
-    color:#777;
-    font-size:10px;
-    margin:5px 0 10px
-}
-
-.donate-card button,
-.case button{
-    width:100%;
-    padding:9px;
-    background:var(--red);
-    color:#fff;
-    border-radius:7px;
-    font-size:10px;
-    font-weight:900
-}
+/* ================= CASES ================= */
 
 .case{
     padding:17px;
+
     text-align:center;
 
     background:
@@ -926,6 +674,7 @@ button{
         #111;
 
     border:1px solid #3b2222;
+
     border-radius:13px
 }
 
@@ -936,24 +685,37 @@ button{
 .case-name{
     font-size:14px;
     font-weight:900;
+
     margin:7px 0
 }
 
 .case-price{
     color:var(--red);
+
     font-size:11px;
+
     margin-bottom:10px
 }
 
 .case button{
+    width:100%;
+
     padding:10px;
-    border-radius:8px
+
+    background:var(--red);
+    color:#fff;
+
+    border-radius:8px;
+
+    font-size:10px;
+    font-weight:900
 }
 
 /* ================= MAP ================= */
 
 .map{
     height:430px;
+
     position:relative;
     overflow:hidden;
 
@@ -982,28 +744,35 @@ button{
 
 .map-road{
     position:absolute;
+
     background:#363636;
+
     border:2px solid #484848
 }
 
 .road1{
     width:130%;
     height:34px;
+
     left:-10%;
     top:43%;
+
     transform:rotate(-12deg)
 }
 
 .road2{
     width:34px;
     height:130%;
+
     left:47%;
     top:-10%;
+
     transform:rotate(7deg)
 }
 
 .map-point{
     position:absolute;
+
     width:42px;
     height:42px;
 
@@ -1012,6 +781,7 @@ button{
     justify-content:center;
 
     border-radius:50%;
+
     background:var(--red);
     border:3px solid #080808;
 
@@ -1049,14 +819,19 @@ button{
 
 .chat-box{
     overflow:hidden;
+
     background:#0e0e0e;
+
     border:1px solid #292929;
+
     border-radius:13px
 }
 
 .chat-messages{
     height:430px;
+
     overflow-y:auto;
+
     padding:12px
 }
 
@@ -1066,41 +841,58 @@ button{
 
 .message-name{
     color:var(--red);
+
     font-size:10px;
     font-weight:900
 }
 
 .message-text{
     display:inline-block;
+
     margin-top:3px;
+
     padding:8px 10px;
+
     background:#1a1a1a;
+
     border-radius:8px;
+
     font-size:11px
 }
 
 .chat-input{
     display:flex;
+
     gap:7px;
+
     padding:9px;
+
     border-top:1px solid #292929
 }
 
 .chat-input input{
     flex:1;
     min-width:0;
+
     padding:11px;
+
     color:#fff;
+
     background:#181818;
+
     border:1px solid #292929;
+
     border-radius:8px;
+
     outline:none
 }
 
 .chat-input button{
     width:48px;
+
     background:var(--red);
     color:#fff;
+
     border-radius:8px
 }
 
@@ -1109,6 +901,7 @@ button{
 .online-card{
     display:flex;
     align-items:center;
+
     gap:11px;
 
     padding:12px;
@@ -1116,6 +909,7 @@ button{
 
     background:#111;
     border:1px solid #292929;
+
     border-radius:11px
 }
 
@@ -1128,7 +922,9 @@ button{
     justify-content:center;
 
     background:#202020;
+
     border-radius:50%;
+
     border:1px solid #3a3a3a;
 
     font-weight:900
@@ -1145,15 +941,20 @@ button{
 
 .online-status{
     color:var(--green);
+
     font-size:9px;
+
     margin-top:3px
 }
 
 .level{
     padding:5px 7px;
+
     background:#202020;
     color:#bbb;
+
     border-radius:6px;
+
     font-size:9px
 }
 
@@ -1161,10 +962,13 @@ button{
 
 .profile-head{
     padding:20px;
+
     text-align:center;
 
     background:#111;
+
     border:1px solid #292929;
+
     border-radius:14px
 }
 
@@ -1179,7 +983,9 @@ button{
     margin:auto;
 
     border-radius:50%;
+
     background:#202020;
+
     border:2px solid var(--red);
 
     font-size:30px;
@@ -1188,13 +994,16 @@ button{
 
 .profile-name{
     margin-top:10px;
+
     font-size:21px;
     font-weight:1000
 }
 
 .profile-id{
     color:#777;
+
     font-size:10px;
+
     margin-top:4px
 }
 
@@ -1221,9 +1030,11 @@ button{
 
 .bottom-nav{
     position:fixed;
+
     bottom:0;
     left:0;
     right:0;
+
     z-index:100;
 
     height:68px;
@@ -1232,6 +1043,7 @@ button{
     justify-content:space-around;
 
     background:rgba(8,8,8,.98);
+
     border-top:1px solid #292929;
 
     backdrop-filter:blur(15px)
@@ -1245,9 +1057,11 @@ button{
     flex-direction:column;
     align-items:center;
     justify-content:center;
+
     gap:4px;
 
     background:transparent;
+
     color:#666;
 
     font-size:9px;
@@ -1262,11 +1076,12 @@ button{
     color:var(--red)
 }
 
-/* ================= MODAL / TOAST ================= */
+/* ================= MODAL ================= */
 
 .modal{
     position:fixed;
     inset:0;
+
     z-index:300;
 
     display:flex;
@@ -1282,11 +1097,13 @@ button{
     width:100%;
     max-width:500px;
     max-height:85vh;
+
     overflow:auto;
 
     padding:20px;
 
     background:#121212;
+
     border:1px solid #363636;
 
     border-radius:17px 17px 9px 9px
@@ -1294,10 +1111,12 @@ button{
 
 .close{
     float:right;
+
     width:30px;
     height:30px;
 
     color:#fff;
+
     background:#292929;
 
     border-radius:50%
@@ -1306,35 +1125,49 @@ button{
 .modal-title{
     font-size:19px;
     font-weight:900;
+
     margin-bottom:8px
 }
 
 .modal-text{
     color:#888;
+
     font-size:11px;
     line-height:1.5;
+
     white-space:pre-line;
+
     margin-bottom:15px
 }
 
+/* ================= TOAST ================= */
+
 .toast{
     position:fixed;
+
     left:50%;
     bottom:80px;
+
     z-index:500;
 
-    transform:translateX(-50%) translateY(20px);
+    transform:
+        translateX(-50%)
+        translateY(20px);
 
     padding:11px 15px;
 
     color:#fff;
+
     background:#191919;
+
     border:1px solid #383838;
+
     border-radius:9px;
 
     font-size:11px;
 
     opacity:0;
+
     pointer-events:none;
 
     transition:.25s
@@ -1342,17 +1175,22 @@ button{
 
 .toast.show{
     opacity:1;
-    transform:translateX(-50%) translateY(0)
+
+    transform:
+        translateX(-50%)
+        translateY(0)
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= DESKTOP ================= */
 
 @media(min-width:700px){
 
     .bottom-nav{
         left:50%;
         right:auto;
+
         width:650px;
+
         transform:translateX(-50%);
 
         border:1px solid #292929;
@@ -1366,7 +1204,7 @@ button{
     }
 
     .quick-grid{
-        grid-template-columns:repeat(4,1fr)
+        grid-template-columns:repeat(6,1fr)
     }
 
     .shop-grid,
@@ -1379,950 +1217,997 @@ button{
 
 <body>
 
-<!-- ================= AUTH ================= -->
+<!-- ========================================================= -->
+<!-- AUTH -->
+<!-- ========================================================= -->
 
 <section id="authScreen">
 
 <div class="auth-box">
 
-<div class="logo-box">
-<div>
-<div class="b">BR</div>
-<div class="r">RP</div>
+    <div class="logo-box">
+        <div>
+            <div class="b">BR</div>
+            <div class="r">RP</div>
+        </div>
+    </div>
+
+    <div class="logo">
+        BLACK <span>RUSSIA</span>
+    </div>
+
+    <div class="logo-sub">
+        Role Play • Online World
+    </div>
+
+    <div class="auth-tabs">
+
+        <button
+            class="auth-tab active"
+            id="loginTab"
+            onclick="switchAuth('login')">
+            Вход
+        </button>
+
+        <button
+            class="auth-tab"
+            id="registerTab"
+            onclick="switchAuth('register')">
+            Регистрация
+        </button>
+
+    </div>
+
+    <div id="loginForm">
+
+        <div class="auth-title">
+            С возвращением
+        </div>
+
+        <div class="auth-desc">
+            Введи логин и пароль своего игрового аккаунта.
+        </div>
+
+        <div class="field">
+            <label>ЛОГИН</label>
+            <input
+                id="loginUsername"
+                autocomplete="username"
+                placeholder="Введите логин">
+        </div>
+
+        <div class="field">
+            <label>ПАРОЛЬ</label>
+            <input
+                id="loginPassword"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Введите пароль">
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="loginAccount()">
+            ВОЙТИ В ИГРУ
+        </button>
+
+        <div
+            class="auth-message"
+            id="loginMessage">
+        </div>
+
+    </div>
+
+    <div
+        id="registerForm"
+        class="hidden">
+
+        <div class="auth-title">
+            Новый аккаунт
+        </div>
+
+        <div class="auth-desc">
+            Укажи уникальный логин, настоящую почту и пароль.
+            Каждый игрок получает отдельный профиль.
+        </div>
+
+        <div class="field">
+            <label>ИГРОВОЙ ЛОГИН</label>
+            <input
+                id="regUsername"
+                autocomplete="username"
+                placeholder="Игровой ник">
+        </div>
+
+        <div class="field">
+            <label>ПОЧТА</label>
+            <input
+                id="regEmail"
+                type="email"
+                autocomplete="email"
+                placeholder="example@mail.com">
+        </div>
+
+        <div class="field">
+            <label>ПАРОЛЬ</label>
+            <input
+                id="regPassword"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Минимум 6 символов">
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="registerAccount()">
+            СОЗДАТЬ АККАУНТ
+        </button>
+
+        <div
+            class="auth-message"
+            id="registerMessage">
+        </div>
+
+    </div>
+
 </div>
-</div>
 
-<div class="logo">
-BLACK <span>RUSSIA</span>
-</div>
-
-<div class="logo-sub">
-Role Play • Online World
-</div>
-
-<div class="auth-tabs">
-
-<button
-class="auth-tab active"
-id="loginTab"
-onclick="switchAuth('login')">
-Вход
-</button>
-
-<button
-class="auth-tab"
-id="registerTab"
-onclick="switchAuth('register')">
-Регистрация
-</button>
-
-</div>
-
-<div id="loginForm">
-
-<div class="auth-title">
-С возвращением
-</div>
-
-<div class="auth-desc">
-Введи логин и пароль своего игрового аккаунта.
-</div>
-
-<div class="field">
-<label>ЛОГИН</label>
-<input
-id="loginUsername"
-autocomplete="username"
-placeholder="Введите логин">
-</div>
-
-<div class="field">
-<label>ПАРОЛЬ</label>
-<input
-id="loginPassword"
-type="password"
-autocomplete="current-password"
-placeholder="Введите пароль">
-</div>
-
-<button
-class="primary-btn"
-onclick="loginAccount()">
-ВОЙТИ В ИГРУ
-</button>
-
-<div
-class="auth-message"
-id="loginMessage">
-</div>
-
-</div>
-
-
-<div id="registerForm" class="hidden">
-
-<div class="auth-title">
-Новый аккаунт
-</div>
-
-<div class="auth-desc">
-Укажи уникальный логин, настоящую почту и пароль.
-Каждый игрок получает отдельный профиль.
-</div>
-
-<div class="field">
-<label>ИГРОВОЙ ЛОГИН</label>
-<input
-id="regUsername"
-autocomplete="username"
-placeholder="Игровой ник">
-</div>
-
-<div class="field">
-<label>ПОЧТА</label>
-<input
-id="regEmail"
-type="email"
-autocomplete="email"
-placeholder="example@mail.com">
-</div>
-
-<div class="field">
-<label>ПАРОЛЬ</label>
-<input
-id="regPassword"
-type="password"
-autocomplete="new-password"
-placeholder="Минимум 6 символов">
-</div>
-
-<button
-class="primary-btn"
-onclick="registerAccount()">
-СОЗДАТЬ АККАУНТ
-</button>
-
-<div
-class="auth-message"
-id="registerMessage">
-</div>
-
-</div>
-
-</div>
 </section>
 
 
-<!-- ================= APP ================= -->
+<!-- ========================================================= -->
+<!-- APP -->
+<!-- ========================================================= -->
 
-<section id="app" class="hidden">
+<section
+    id="app"
+    class="hidden">
 
 <header class="topbar">
 
-<div class="top-logo">
-BLACK <span>RUSSIA</span>
-</div>
+    <div class="top-logo">
+        BLACK <span>RUSSIA</span>
+    </div>
 
-<div class="server-status">
-<div class="online-dot"></div>
-<span id="onlineCount">0 онлайн</span>
-</div>
+    <div class="server-status">
+        <div class="online-dot"></div>
+        <span id="onlineCount">
+            0 онлайн
+        </span>
+    </div>
 
-<div class="money-box">
+    <div class="money-box">
 
-<div
-class="money cash"
-id="topCash">
-₽ 0
-</div>
+        <div
+            class="money cash"
+            id="topCash">
+            ₽ 0
+        </div>
 
-<div
-class="money donate"
-id="topDonate">
-♦ 0
-</div>
+        <div
+            class="money donate"
+            id="topDonate">
+            ♦ 0
+        </div>
 
-</div>
+    </div>
 
 </header>
 
 
-<!-- ================= HOME ================= -->
+<!-- ========================================================= -->
+<!-- HOME -->
+<!-- ========================================================= -->
 
-<main id="homePage" class="page active">
+<main
+    id="homePage"
+    class="page active">
 
-<div class="hero">
+    <div class="hero">
 
-<div class="hero-small">
-ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР
-</div>
+        <div class="hero-small">
+            ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР
+        </div>
 
-<div class="hero-name">
-<span id="homeName">Player</span>
-</div>
+        <div class="hero-name">
+            <span id="homeName">
+                Player
+            </span>
+        </div>
 
-<div class="hero-small">
-ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ
-</div>
+        <div class="hero-small">
+            ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ
+        </div>
 
-</div>
-
-
-<div class="stats-grid">
-
-<div class="stat-card">
-<div class="stat-label">УРОВЕНЬ</div>
-<div class="stat-value" id="homeLevel">1</div>
-
-<div class="progress">
-<div id="homeXpBar"></div>
-</div>
-
-</div>
+    </div>
 
 
-<div class="stat-card">
-<div class="stat-label">ОПЫТ</div>
-<div class="stat-value" id="homeXP">0 XP</div>
-</div>
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <div class="stat-label">
+                УРОВЕНЬ
+            </div>
+
+            <div
+                class="stat-value"
+                id="homeLevel">
+                1
+            </div>
+
+            <div class="progress">
+                <div id="homeXpBar"></div>
+            </div>
+
+        </div>
 
 
-<div class="stat-card">
-<div class="stat-label">НАЛИЧНЫЕ</div>
-<div class="stat-value" id="homeCash">₽ 0</div>
-</div>
+        <div class="stat-card">
+
+            <div class="stat-label">
+                ОПЫТ
+            </div>
+
+            <div
+                class="stat-value"
+                id="homeXP">
+                0 XP
+            </div>
+
+        </div>
 
 
-<div class="stat-card">
-<div class="stat-label">БАНК</div>
-<div class="stat-value" id="homeBank">₽ 0</div>
-</div>
+        <div class="stat-card">
 
-</div>
+            <div class="stat-label">
+                НАЛИЧНЫЕ
+            </div>
 
+            <div
+                class="stat-value"
+                id="homeCash">
+                ₽ 0
+            </div>
 
-<div class="section-title">
-Быстрый доступ
-</div>
-
-
-<div class="quick-grid">
-
-<button
-class="quick"
-onclick="openPage('jobs')">
-<div class="quick-icon">💼</div>
-<div class="quick-name">Работы</div>
-</button>
+        </div>
 
 
-<button
-class="quick"
-onclick="openPage('garage')">
-<div class="quick-icon">🚗</div>
-<div class="quick-name">Гараж</div>
-</button>
+        <div class="stat-card">
+
+            <div class="stat-label">
+                БАНК
+            </div>
+
+            <div
+                class="stat-value"
+                id="homeBank">
+                ₽ 0
+            </div>
+
+        </div>
+
+    </div>
 
 
-<button
-class="quick"
-onclick="openPage('shop')">
-<div class="quick-icon">🏪</div>
-<div class="quick-name">Магазин</div>
-</button>
+    <div class="section-title">
+        Быстрый доступ
+    </div>
 
 
-<button
-class="quick"
-onclick="openPage('map')">
-<div class="quick-icon">🗺️</div>
-<div class="quick-name">Карта</div>
-</button>
+    <div class="quick-grid">
+
+        <!-- РАБОТЫ ТЕПЕРЬ ОТДЕЛЬНЫМ HTML -->
+        <button
+            class="quick"
+            onclick="openJobs()">
+
+            <div class="quick-icon">
+                💼
+            </div>
+
+            <div class="quick-name">
+                Работы
+            </div>
+
+        </button>
 
 
-<button
-class="quick"
-onclick="openPage('cases')">
-<div class="quick-icon">🎁</div>
-<div class="quick-name">Кейсы</div>
-</button>
+        <button
+            class="quick"
+            onclick="openPage('garage')">
+
+            <div class="quick-icon">
+                🚗
+            </div>
+
+            <div class="quick-name">
+                Гараж
+            </div>
+
+        </button>
 
 
-<button
-class="quick"
-onclick="openPage('chat')">
-<div class="quick-icon">💬</div>
-<div class="quick-name">Чат</div>
-</button>
+        <button
+            class="quick"
+            onclick="openPage('shop')">
+
+            <div class="quick-icon">
+                🏪
+            </div>
+
+            <div class="quick-name">
+                Магазин
+            </div>
+
+        </button>
 
 
-<!-- КАЗИНО -->
+        <button
+            class="quick"
+            onclick="openPage('map')">
 
-<button
-class="quick"
-onclick="openCasino()">
+            <div class="quick-icon">
+                🗺️
+            </div>
 
-<div class="quick-icon">🎰</div>
-<div class="quick-name">Казино</div>
+            <div class="quick-name">
+                Карта
+            </div>
 
-</button>
-
-</div>
-
-
-<div class="section-title">
-Твой прогресс
-</div>
+        </button>
 
 
-<div class="card">
+        <button
+            class="quick"
+            onclick="openPage('cases')">
 
-<div class="card-title">
-Следующий уровень
-</div>
+            <div class="quick-icon">
+                🎁
+            </div>
 
-<div class="card-desc">
-Работай, выполняй задания и участвуй в жизни города.
-</div>
+            <div class="quick-name">
+                Кейсы
+            </div>
 
-<div class="progress">
-<div id="bigXpBar"></div>
-</div>
+        </button>
 
-<div
-id="xpText"
-style="margin-top:8px;color:#777;font-size:10px">
-0 / 100 XP
-</div>
 
-</div>
+        <button
+            class="quick"
+            onclick="openPage('chat')">
+
+            <div class="quick-icon">
+                💬
+            </div>
+
+            <div class="quick-name">
+                Чат
+            </div>
+
+        </button>
+
+    </div>
+
+
+    <div class="section-title">
+        Твой прогресс
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-title">
+            Следующий уровень
+        </div>
+
+        <div class="card-desc">
+            Работай, выполняй задания и участвуй
+            в жизни города.
+        </div>
+
+        <div class="progress">
+            <div id="bigXpBar"></div>
+        </div>
+
+        <div
+            id="xpText"
+            style="margin-top:8px;color:#777;font-size:10px">
+            0 / 100 XP
+        </div>
+
+    </div>
 
 </main>
 
 
-<!-- ================= JOBS ================= -->
+<!-- ========================================================= -->
+<!-- GARAGE -->
+<!-- ========================================================= -->
 
-<main id="jobsPage" class="page">
+<main
+    id="garagePage"
+    class="page">
 
-<div class="page-title">
-Работы
-</div>
+    <div class="page-title">
+        Гараж
+    </div>
 
-<div class="page-subtitle">
-Зарабатывай деньги. У каждой работы есть серверный КД.
-</div>
+    <div class="page-subtitle">
+        Транспорт твоего персонажа.
+    </div>
 
-<div id="jobsContainer"></div>
-
-</main>
-
-
-<!-- ================= DIVER ================= -->
-
-<main id="diverPage" class="page">
-
-<div class="page-title">
-Водолаз
-</div>
-
-<div class="page-subtitle">
-Две ходки под воду. Найди ценные вещи и продай их скупщику.
-</div>
-
-
-<div class="diver-head">
-
-<div class="diver-title">
-🤿 <span>ВОДОЛАЗ</span>
-</div>
-
-<div class="diver-sub">
-Опускайся на дно и ищи потерянные предметы.
-Один рабочий цикл состоит из двух погружений.
-Повторный выход на работу доступен через 1 час.
-</div>
-
-
-<div class="diver-stats">
-
-<div class="diver-stat">
-<strong>2</strong>
-<span>ПОГРУЖЕНИЯ</span>
-</div>
-
-<div class="diver-stat">
-<strong>60 мин</strong>
-<span>КД</span>
-</div>
-
-<div class="diver-stat">
-<strong>150K ₽</strong>
-<span>МАКС. ПРИБЫЛЬ</span>
-</div>
-
-</div>
-
-
-<div class="diver-actions">
-
-<button
-class="diver-start"
-id="diverStartBtn"
-onclick="startDiver()">
-🤿 НАЧАТЬ РАБОТУ
-</button>
-
-<button
-class="diver-sell"
-onclick="sellDiverItems()">
-🏪 СКУПЩИК
-</button>
-
-</div>
-
-
-<div
-class="diver-cooldown"
-id="diverCooldown">
-Водолаз готов к работе
-</div>
-
-</div>
-
-
-<div class="dive-log">
-
-<div class="dive-log-title">
-🌊 Последние погружения
-</div>
-
-<div id="diveLogContainer">
-
-<div class="empty-found">
-Погружений пока не было.
-</div>
-
-</div>
-
-</div>
-
-
-<div class="item-found">
-
-<div class="item-found-title">
-📦 Найденные предметы
-</div>
-
-<div
-class="found-list"
-id="diverInventory">
-<div class="empty-found">
-Инвентарь пуст.
-</div>
-</div>
-
-</div>
+    <div id="garageContainer"></div>
 
 </main>
 
 
-<!-- ================= GARAGE ================= -->
+<!-- ========================================================= -->
+<!-- SHOP -->
+<!-- ========================================================= -->
 
-<main id="garagePage" class="page">
+<main
+    id="shopPage"
+    class="page">
 
-<div class="page-title">
-Гараж
-</div>
+    <div class="page-title">
+        Магазин
+    </div>
 
-<div class="page-subtitle">
-Транспорт твоего персонажа.
-</div>
+    <div class="page-subtitle">
+        Предметы и полезные вещи.
+    </div>
 
-<div id="garageContainer"></div>
-
-</main>
-
-
-<!-- ================= SHOP ================= -->
-
-<main id="shopPage" class="page">
-
-<div class="page-title">
-Магазин
-</div>
-
-<div class="page-subtitle">
-Предметы и полезные вещи.
-</div>
-
-<div
-class="shop-grid"
-id="shopContainer">
-</div>
+    <div
+        class="shop-grid"
+        id="shopContainer">
+    </div>
 
 </main>
 
 
-<!-- ================= MAP ================= -->
+<!-- ========================================================= -->
+<!-- MAP -->
+<!-- ========================================================= -->
 
-<main id="mapPage" class="page">
+<main
+    id="mapPage"
+    class="page">
 
-<div class="page-title">
-Карта города
-</div>
+    <div class="page-title">
+        Карта города
+    </div>
 
-<div class="page-subtitle">
-Основные места игрового мира.
-</div>
+    <div class="page-subtitle">
+        Основные места игрового мира.
+    </div>
 
-<div class="map">
+    <div class="map">
 
-<div class="map-road road1"></div>
-<div class="map-road road2"></div>
+        <div class="map-road road1"></div>
+        <div class="map-road road2"></div>
 
-<button
-class="map-point point1"
-onclick="toast('🏦 Банк')">
-🏦
-</button>
+        <button
+            class="map-point point1"
+            onclick="toast('🏦 Банк')">
+            🏦
+        </button>
 
-<button
-class="map-point point2"
-onclick="toast('🚗 Автосалон')">
-🚗
-</button>
+        <button
+            class="map-point point2"
+            onclick="toast('🚗 Автосалон')">
+            🚗
+        </button>
 
-<button
-class="map-point point3"
-onclick="toast('💼 Центр занятости')">
-💼
-</button>
+        <button
+            class="map-point point3"
+            onclick="toast('💼 Центр занятости')">
+            💼
+        </button>
 
-<button
-class="map-point point4"
-onclick="toast('🎁 Игровой центр')">
-🎁
-</button>
+        <button
+            class="map-point point4"
+            onclick="toast('🎁 Игровой центр')">
+            🎁
+        </button>
 
-<button
-class="map-point point5"
-onclick="toast('🏙️ Центральная площадь')">
-🏙️
-</button>
+        <button
+            class="map-point point5"
+            onclick="toast('🏙️ Центральная площадь')">
+            🏙️
+        </button>
 
-</div>
-
-</main>
-
-
-<!-- ================= CASES ================= -->
-
-<main id="casesPage" class="page">
-
-<div class="page-title">
-Кейсы
-</div>
-
-<div class="page-subtitle">
-Открывай кейсы за донат.
-</div>
-
-<div class="case-grid">
-
-<div class="case">
-<div class="case-icon">🎁</div>
-<div class="case-name">Обычный кейс</div>
-<div class="case-price">♦ 10</div>
-
-<button
-onclick="openCase(10,'Обычный кейс')">
-ОТКРЫТЬ
-</button>
-
-</div>
-
-
-<div class="case">
-
-<div class="case-icon">🔥</div>
-<div class="case-name">Премиум кейс</div>
-<div class="case-price">♦ 25</div>
-
-<button
-onclick="openCase(25,'Премиум кейс')">
-ОТКРЫТЬ
-</button>
-
-</div>
-
-
-<div class="case">
-
-<div class="case-icon">👑</div>
-<div class="case-name">VIP кейс</div>
-<div class="case-price">♦ 50</div>
-
-<button
-onclick="openCase(50,'VIP кейс')">
-ОТКРЫТЬ
-</button>
-
-</div>
-
-
-<div class="case">
-
-<div class="case-icon">💎</div>
-<div class="case-name">Алмазный кейс</div>
-<div class="case-price">♦ 100</div>
-
-<button
-onclick="openCase(100,'Алмазный кейс')">
-ОТКРЫТЬ
-</button>
-
-</div>
-
-</div>
+    </div>
 
 </main>
 
 
-<!-- ================= DONATE ================= -->
+<!-- ========================================================= -->
+<!-- CASES -->
+<!-- ========================================================= -->
 
-<main id="donatePage" class="page">
+<main
+    id="casesPage"
+    class="page">
 
-<div class="page-title">
-Донат
-</div>
+    <div class="page-title">
+        Кейсы
+    </div>
 
-<div class="page-subtitle">
-Премиальная валюта сервера.
-</div>
+    <div class="page-subtitle">
+        Открывай кейсы за донат.
+    </div>
 
-<div class="donate-banner">
+    <div class="case-grid">
 
-<div class="donate-title">
-BLACK <span>DONATE</span>
-</div>
+        <div class="case">
 
-<div class="donate-sub">
-Текущий баланс:
-<b id="donateBalance">0</b> ♦
-</div>
+            <div class="case-icon">
+                🎁
+            </div>
 
-</div>
+            <div class="case-name">
+                Обычный кейс
+            </div>
 
+            <div class="case-price">
+                ♦ 10
+            </div>
 
-<div class="donate-grid">
+            <button
+                onclick="openCase(10,'Обычный кейс')">
+                ОТКРЫТЬ
+            </button>
 
-<div class="donate-card">
-<strong>♦ 100</strong>
-<span>Стартовый набор</span>
-<button onclick="buyDonate(100)">
-ПОЛУЧИТЬ
-</button>
-</div>
-
-<div class="donate-card">
-<strong>♦ 500</strong>
-<span>Большой набор</span>
-<button onclick="buyDonate(500)">
-ПОЛУЧИТЬ
-</button>
-</div>
-
-<div class="donate-card">
-<strong>♦ 1000</strong>
-<span>Премиум набор</span>
-<button onclick="buyDonate(1000)">
-ПОЛУЧИТЬ
-</button>
-</div>
-
-<div class="donate-card">
-<strong>♦ 5000</strong>
-<span>VIP набор</span>
-<button onclick="buyDonate(5000)">
-ПОЛУЧИТЬ
-</button>
-</div>
-
-</div>
-
-</main>
+        </div>
 
 
-<!-- ================= CHAT ================= -->
+        <div class="case">
 
-<main id="chatPage" class="page">
+            <div class="case-icon">
+                🔥
+            </div>
 
-<div class="page-title">
-Общий чат
-</div>
+            <div class="case-name">
+                Премиум кейс
+            </div>
 
-<div class="page-subtitle">
-Сообщения игроков сервера.
-</div>
+            <div class="case-price">
+                ♦ 25
+            </div>
 
-<div class="chat-box">
+            <button
+                onclick="openCase(25,'Премиум кейс')">
+                ОТКРЫТЬ
+            </button>
 
-<div
-class="chat-messages"
-id="chatMessages">
-</div>
-
-<div class="chat-input">
-
-<input
-id="chatInput"
-maxlength="150"
-placeholder="Написать сообщение..."
-onkeydown="if(event.key==='Enter')sendChat()">
-
-<button onclick="sendChat()">
-➤
-</button>
-
-</div>
-
-</div>
-
-</main>
+        </div>
 
 
-<!-- ================= ONLINE ================= -->
+        <div class="case">
 
-<main id="onlinePage" class="page">
+            <div class="case-icon">
+                👑
+            </div>
 
-<div class="page-title">
-Игроки онлайн
-</div>
+            <div class="case-name">
+                VIP кейс
+            </div>
 
-<div class="page-subtitle">
-Игроки, которые сейчас находятся на сервере.
-</div>
+            <div class="case-price">
+                ♦ 50
+            </div>
 
-<div id="onlineContainer"></div>
+            <button
+                onclick="openCase(50,'VIP кейс')">
+                ОТКРЫТЬ
+            </button>
+
+        </div>
+
+
+        <div class="case">
+
+            <div class="case-icon">
+                💎
+            </div>
+
+            <div class="case-name">
+                Алмазный кейс
+            </div>
+
+            <div class="case-price">
+                ♦ 100
+            </div>
+
+            <button
+                onclick="openCase(100,'Алмазный кейс')">
+                ОТКРЫТЬ
+            </button>
+
+        </div>
+
+    </div>
 
 </main>
 
 
-<!-- ================= PROFILE ================= -->
+<!-- ========================================================= -->
+<!-- DONATE -->
+<!-- ========================================================= -->
 
-<main id="profilePage" class="page">
+<main
+    id="donatePage"
+    class="page">
 
-<div class="page-title">
-Профиль
-</div>
+    <div class="page-title">
+        Донат
+    </div>
 
-<div class="page-subtitle">
-Информация о персонаже.
-</div>
+    <div class="page-subtitle">
+        Премиальная валюта сервера.
+    </div>
 
-<div class="profile-head">
+    <div class="donate-banner">
 
-<div
-class="big-avatar"
-id="profileAvatar">
-P
-</div>
+        <div class="donate-title">
+            BLACK <span>DONATE</span>
+        </div>
 
-<div
-class="profile-name"
-id="profileName">
-Player
-</div>
+        <div class="donate-sub">
+            Текущий баланс:
+            <b id="donateBalance">0</b>
+            ♦
+        </div>
 
-<div
-class="profile-id"
-id="profileId">
-ID
-</div>
+    </div>
 
 
-<div
-class="profile-row"
-style="margin-top:15px">
+    <div class="donate-grid">
 
-<span>Уровень</span>
-<span id="profileLevel">1</span>
+        <div class="item">
+            <div class="item-icon">♦</div>
+            <div class="item-name">100 доната</div>
+            <div class="item-price">Премиальная валюта</div>
+            <button
+                class="buy"
+                onclick="buyDonate(100)">
+                ПОЛУЧИТЬ
+            </button>
+        </div>
 
-</div>
+        <div class="item">
+            <div class="item-icon">♦</div>
+            <div class="item-name">500 доната</div>
+            <div class="item-price">Большой набор</div>
+            <button
+                class="buy"
+                onclick="buyDonate(500)">
+                ПОЛУЧИТЬ
+            </button>
+        </div>
 
+        <div class="item">
+            <div class="item-icon">♦</div>
+            <div class="item-name">1000 доната</div>
+            <div class="item-price">Премиум набор</div>
+            <button
+                class="buy"
+                onclick="buyDonate(1000)">
+                ПОЛУЧИТЬ
+            </button>
+        </div>
 
-<div class="profile-row">
+        <div class="item">
+            <div class="item-icon">♦</div>
+            <div class="item-name">5000 доната</div>
+            <div class="item-price">VIP набор</div>
+            <button
+                class="buy"
+                onclick="buyDonate(5000)">
+                ПОЛУЧИТЬ
+            </button>
+        </div>
 
-<span>Опыт</span>
-<span id="profileXP">0 XP</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Наличные</span>
-<span id="profileCash">₽ 0</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Банк</span>
-<span id="profileBank">₽ 0</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Донат</span>
-<span id="profileDonate">♦ 0</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Работа</span>
-<span id="profileJob">Безработный</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Регистрация</span>
-<span id="profileDate">—</span>
-
-</div>
-
-</div>
-
-
-<button
-class="secondary-btn"
-onclick="logout()"
-style="margin-top:12px">
-ВЫЙТИ ИЗ АККАУНТА
-</button>
+    </div>
 
 </main>
 
 
-<!-- ================= NAV ================= -->
+<!-- ========================================================= -->
+<!-- CHAT -->
+<!-- ========================================================= -->
+
+<main
+    id="chatPage"
+    class="page">
+
+    <div class="page-title">
+        Общий чат
+    </div>
+
+    <div class="page-subtitle">
+        Сообщения игроков сервера.
+    </div>
+
+    <div class="chat-box">
+
+        <div
+            class="chat-messages"
+            id="chatMessages">
+        </div>
+
+        <div class="chat-input">
+
+            <input
+                id="chatInput"
+                maxlength="150"
+                placeholder="Написать сообщение..."
+                onkeydown="if(event.key==='Enter')sendChat()">
+
+            <button onclick="sendChat()">
+                ➤
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ========================================================= -->
+<!-- ONLINE -->
+<!-- ========================================================= -->
+
+<main
+    id="onlinePage"
+    class="page">
+
+    <div class="page-title">
+        Игроки онлайн
+    </div>
+
+    <div class="page-subtitle">
+        Игроки, которые сейчас находятся на сервере.
+    </div>
+
+    <div id="onlineContainer"></div>
+
+</main>
+
+
+<!-- ========================================================= -->
+<!-- PROFILE -->
+<!-- ========================================================= -->
+
+<main
+    id="profilePage"
+    class="page">
+
+    <div class="page-title">
+        Профиль
+    </div>
+
+    <div class="page-subtitle">
+        Информация о персонаже.
+    </div>
+
+    <div class="profile-head">
+
+        <div
+            class="big-avatar"
+            id="profileAvatar">
+            P
+        </div>
+
+        <div
+            class="profile-name"
+            id="profileName">
+            Player
+        </div>
+
+        <div
+            class="profile-id"
+            id="profileId">
+            ID
+        </div>
+
+
+        <div
+            class="profile-row"
+            style="margin-top:15px">
+
+            <span>Уровень</span>
+            <span id="profileLevel">1</span>
+
+        </div>
+
+
+        <div class="profile-row">
+            <span>Опыт</span>
+            <span id="profileXP">0 XP</span>
+        </div>
+
+
+        <div class="profile-row">
+            <span>Наличные</span>
+            <span id="profileCash">₽ 0</span>
+        </div>
+
+
+        <div class="profile-row">
+            <span>Банк</span>
+            <span id="profileBank">₽ 0</span>
+        </div>
+
+
+        <div class="profile-row">
+            <span>Донат</span>
+            <span id="profileDonate">♦ 0</span>
+        </div>
+
+
+        <div class="profile-row">
+            <span>Работа</span>
+            <span id="profileJob">Безработный</span>
+        </div>
+
+
+        <div class="profile-row">
+            <span>Регистрация</span>
+            <span id="profileDate">—</span>
+        </div>
+
+    </div>
+
+
+    <button
+        class="secondary-btn"
+        onclick="logout()"
+        style="margin-top:12px">
+
+        ВЫЙТИ ИЗ АККАУНТА
+
+    </button>
+
+</main>
+
+
+<!-- ========================================================= -->
+<!-- BOTTOM NAV -->
+<!-- ========================================================= -->
 
 <nav class="bottom-nav">
 
-<button
-class="nav-btn active"
-data-page="home"
-onclick="openPage('home')">
+    <button
+        class="nav-btn active"
+        data-page="home"
+        onclick="openPage('home')">
 
-<div class="nav-icon">🏠</div>
-Главная
+        <div class="nav-icon">
+            🏠
+        </div>
 
-</button>
+        Главная
 
-
-<button
-class="nav-btn"
-data-page="jobs"
-onclick="openPage('jobs')">
-
-<div class="nav-icon">💼</div>
-Работа
-
-</button>
+    </button>
 
 
-<button
-class="nav-btn"
-data-page="garage"
-onclick="openPage('garage')">
+    <!-- ОТДЕЛЬНЫЙ JOBS.HTML -->
 
-<div class="nav-icon">🚗</div>
-Гараж
+    <button
+        class="nav-btn"
+        onclick="openJobs()">
 
-</button>
+        <div class="nav-icon">
+            💼
+        </div>
 
+        Работа
 
-<button
-class="nav-btn"
-data-page="chat"
-onclick="openPage('chat')">
-
-<div class="nav-icon">💬</div>
-Чат
-
-</button>
+    </button>
 
 
-<button
-class="nav-btn"
-data-page="profile"
-onclick="openPage('profile')">
+    <button
+        class="nav-btn"
+        data-page="garage"
+        onclick="openPage('garage')">
 
-<div class="nav-icon">👤</div>
-Профиль
+        <div class="nav-icon">
+            🚗
+        </div>
 
-</button>
+        Гараж
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-page="chat"
+        onclick="openPage('chat')">
+
+        <div class="nav-icon">
+            💬
+        </div>
+
+        Чат
+
+    </button>
+
+
+    <button
+        class="nav-btn"
+        data-page="profile"
+        onclick="openPage('profile')">
+
+        <div class="nav-icon">
+            👤
+        </div>
+
+        Профиль
+
+    </button>
 
 </nav>
 
 </section>
 
 
-<!-- ================= MODAL ================= -->
+<!-- ========================================================= -->
+<!-- MODAL -->
+<!-- ========================================================= -->
 
 <div
-id="modal"
-class="modal hidden"
-onclick="if(event.target===this)closeModal()">
+    id="modal"
+    class="modal hidden"
+    onclick="if(event.target===this)closeModal()">
 
-<div class="modal-box">
+    <div class="modal-box">
 
-<button
-class="close"
-onclick="closeModal()">
-×
-</button>
+        <button
+            class="close"
+            onclick="closeModal()">
+            ×
+        </button>
+
+        <div
+            class="modal-title"
+            id="modalTitle">
+            Информация
+        </div>
+
+        <div
+            class="modal-text"
+            id="modalText">
+        </div>
+
+        <button
+            class="primary-btn"
+            onclick="closeModal()">
+
+            ПОНЯТНО
+
+        </button>
+
+    </div>
+
+</div>
+
 
 <div
-class="modal-title"
-id="modalTitle">
-Информация
-</div>
-
-<div
-class="modal-text"
-id="modalText">
-</div>
-
-<button
-class="primary-btn"
-onclick="closeModal()">
-ПОНЯТНО
-</button>
-
-</div>
-
+    class="toast"
+    id="toast">
+    Готово
 </div>
 
 
-<div
-class="toast"
-id="toast">
-Готово
-</div>
-
+<!-- ========================================================= -->
+<!-- SCRIPT -->
+<!-- ========================================================= -->
 
 <script>
-
-/* =========================================================
-   SUPABASE
-========================================================= */
 
 const SUPABASE_URL =
 "https://qzswnoeglovfpgrzpnio.supabase.co";
@@ -2337,9 +2222,9 @@ let chatChannel=null;
 let toastTimer=null;
 
 
-/* =========================================================
-   SUPABASE FETCH
-========================================================= */
+/* ========================================================= */
+/* SUPABASE */
+/* ========================================================= */
 
 async function supabaseFetch(path,options={}){
 
@@ -2352,7 +2237,6 @@ async function supabaseFetch(path,options={}){
                 apikey:SUPABASE_KEY,
                 Authorization:"Bearer "+SUPABASE_KEY,
                 "Content-Type":"application/json",
-
                 ...(options.headers||{})
             }
         }
@@ -2372,8 +2256,8 @@ async function supabaseFetch(path,options={}){
 
         throw new Error(
             typeof d==="string"
-                ?d
-                :JSON.stringify(d)
+            ?d
+            :JSON.stringify(d)
         );
 
     }
@@ -2382,84 +2266,95 @@ async function supabaseFetch(path,options={}){
 }
 
 
-/* =========================================================
-   AUTH
-========================================================= */
+/* ========================================================= */
+/* REGISTER */
+/* ========================================================= */
 
 async function registerAccount(){
 
     const username=
-        document.getElementById("regUsername").value.trim();
+        document
+        .getElementById("regUsername")
+        .value
+        .trim();
 
     const email=
-        document.getElementById("regEmail").value.trim();
+        document
+        .getElementById("regEmail")
+        .value
+        .trim();
 
     const password=
-        document.getElementById("regPassword").value;
+        document
+        .getElementById("regPassword")
+        .value;
 
     const message=
         document.getElementById("registerMessage");
 
 
     message.style.color="#ff4b55";
-    message.textContent="Создаём аккаунт...";
+
+    message.textContent=
+        "Создаём аккаунт...";
 
 
     if(username.length<3)
         return message.textContent=
-        "Логин должен содержать минимум 3 символа.";
+            "Логин должен содержать минимум 3 символа.";
 
 
     if(!/^[a-zA-Z0-9_]+$/.test(username))
         return message.textContent=
-        "Логин: только латинские буквы, цифры и _.";
+            "Логин: только латинские буквы, цифры и _.";
 
 
     if(!email.includes("@"))
         return message.textContent=
-        "Введите настоящую почту.";
+            "Введите настоящую почту.";
 
 
     if(password.length<6)
         return message.textContent=
-        "Пароль должен содержать минимум 6 символов.";
+            "Пароль должен содержать минимум 6 символов.";
 
 
     try{
 
-        const e=await supabaseFetch(
-            "/rest/v1/profiles?select=id&username=ilike."+
-            encodeURIComponent(username)+
-            "&limit=1"
-        );
+        const e=
+            await supabaseFetch(
+                "/rest/v1/profiles?select=id&username=ilike."+
+                encodeURIComponent(username)+
+                "&limit=1"
+            );
 
 
         if(e?.length)
             return message.textContent=
-            "Такой игровой логин уже занят.";
+                "Такой игровой логин уже занят.";
 
 
-        const r=await supabaseFetch(
-            "/auth/v1/signup",
-            {
-                method:"POST",
+        const r=
+            await supabaseFetch(
+                "/auth/v1/signup",
+                {
+                    method:"POST",
 
-                headers:{
-                    apikey:SUPABASE_KEY,
-                    Authorization:
-                    "Bearer "+SUPABASE_KEY
-                },
+                    headers:{
+                        apikey:SUPABASE_KEY,
+                        Authorization:
+                            "Bearer "+SUPABASE_KEY
+                    },
 
-                body:JSON.stringify({
-                    email,
-                    password,
-
-                    data:{
-                        username
-                    }
-                })
-            }
-        );
+                    body:JSON.stringify({
+                        email,
+                        password,
+                        data:{
+                            username
+                        }
+                    })
+                }
+            );
 
 
         if(r?.access_token){
@@ -2469,17 +2364,21 @@ async function registerAccount(){
                 r.refresh_token
             );
 
-            message.style.color="var(--green)";
-            message.textContent="Аккаунт создан!";
+            message.style.color=
+                "var(--green)";
+
+            message.textContent=
+                "Аккаунт создан!";
 
             return loadSession();
         }
 
 
-        message.style.color="#ffc928";
+        message.style.color=
+            "#ffc928";
 
         message.textContent=
-        "Аккаунт создан. Проверь почту для подтверждения.";
+            "Аккаунт создан. Проверь почту для подтверждения.";
 
 
     }catch(e){
@@ -2487,20 +2386,30 @@ async function registerAccount(){
         console.error(e);
 
         message.textContent=
-        "Ошибка регистрации: "+
-        cleanError(e.message);
+            "Ошибка регистрации: "+
+            cleanError(e.message);
 
     }
+
 }
 
+
+/* ========================================================= */
+/* LOGIN */
+/* ========================================================= */
 
 async function loginAccount(){
 
     const username=
-        document.getElementById("loginUsername").value.trim();
+        document
+        .getElementById("loginUsername")
+        .value
+        .trim();
 
     const password=
-        document.getElementById("loginPassword").value;
+        document
+        .getElementById("loginPassword")
+        .value;
 
     const message=
         document.getElementById("loginMessage");
@@ -2511,29 +2420,31 @@ async function loginAccount(){
 
     if(!username||!password)
         return message.textContent=
-        "Введите логин и пароль.";
+            "Введите логин и пароль.";
 
 
-    message.textContent="Выполняется вход...";
+    message.textContent=
+        "Выполняется вход...";
 
 
     try{
 
-        const r=await supabaseFetch(
-            "/rest/v1/rpc/get_login_email",
-            {
-                method:"POST",
+        const r=
+            await supabaseFetch(
+                "/rest/v1/rpc/get_login_email",
+                {
+                    method:"POST",
 
-                body:JSON.stringify({
-                    p_username:username
-                })
-            }
-        );
+                    body:JSON.stringify({
+                        p_username:username
+                    })
+                }
+            );
 
 
         if(!r)
             return message.textContent=
-            "Аккаунт с таким логином не найден.";
+                "Аккаунт с таким логином не найден.";
 
 
         const email=
@@ -2544,31 +2455,32 @@ async function loginAccount(){
 
         if(!email)
             return message.textContent=
-            "Не удалось найти почту аккаунта.";
+                "Не удалось найти почту аккаунта.";
 
 
-        const a=await supabaseFetch(
-            "/auth/v1/token?grant_type=password",
-            {
-                method:"POST",
+        const a=
+            await supabaseFetch(
+                "/auth/v1/token?grant_type=password",
+                {
+                    method:"POST",
 
-                headers:{
-                    apikey:SUPABASE_KEY,
-                    Authorization:
-                    "Bearer "+SUPABASE_KEY
-                },
+                    headers:{
+                        apikey:SUPABASE_KEY,
+                        Authorization:
+                            "Bearer "+SUPABASE_KEY
+                    },
 
-                body:JSON.stringify({
-                    email,
-                    password
-                })
-            }
-        );
+                    body:JSON.stringify({
+                        email,
+                        password
+                    })
+                }
+            );
 
 
         if(!a.access_token)
             return message.textContent=
-            "Не удалось выполнить вход.";
+                "Не удалось выполнить вход.";
 
 
         saveSession(
@@ -2577,8 +2489,11 @@ async function loginAccount(){
         );
 
 
-        message.style.color="var(--green)";
-        message.textContent="Вход выполнен.";
+        message.style.color=
+            "var(--green)";
+
+        message.textContent=
+            "Вход выполнен.";
 
 
         await loadSession();
@@ -2589,12 +2504,17 @@ async function loginAccount(){
         console.error(e);
 
         message.textContent=
-        "Ошибка входа: "+
-        cleanError(e.message);
+            "Ошибка входа: "+
+            cleanError(e.message);
 
     }
+
 }
 
+
+/* ========================================================= */
+/* SESSION */
+/* ========================================================= */
 
 function saveSession(a,r){
 
@@ -2607,6 +2527,7 @@ function saveSession(a,r){
         "brp_refresh_token",
         r||""
     );
+
 }
 
 
@@ -2619,6 +2540,7 @@ function clearSession(){
     localStorage.removeItem(
         "brp_refresh_token"
     );
+
 }
 
 
@@ -2643,7 +2565,7 @@ async function loadSession(){
                     headers:{
                         apikey:SUPABASE_KEY,
                         Authorization:
-                        "Bearer "+token
+                            "Bearer "+token
                     }
                 }
             );
@@ -2665,6 +2587,7 @@ async function loadSession(){
         showAuth();
 
     }
+
 }
 
 
@@ -2679,15 +2602,13 @@ async function loadProfile(){
     const rows=
         await supabaseFetch(
             "/rest/v1/profiles?id=eq."+
-            encodeURIComponent(
-                currentAuthUser.id
-            )+
+            encodeURIComponent(currentAuthUser.id)+
             "&select=*",
             {
                 headers:{
                     apikey:SUPABASE_KEY,
                     Authorization:
-                    "Bearer "+token
+                        "Bearer "+token
                 }
             }
         );
@@ -2702,6 +2623,7 @@ async function loadProfile(){
     currentUser=rows[0];
 
     renderAll();
+
 }
 
 
@@ -2719,8 +2641,13 @@ async function refreshProfile(){
         console.error(e);
 
     }
+
 }
 
+
+/* ========================================================= */
+/* AUTH UI */
+/* ========================================================= */
 
 function showAuth(){
 
@@ -2731,6 +2658,7 @@ function showAuth(){
     document
         .getElementById("app")
         .classList.add("hidden");
+
 }
 
 
@@ -2743,6 +2671,7 @@ function showApp(){
     document
         .getElementById("app")
         .classList.remove("hidden");
+
 }
 
 
@@ -2761,20 +2690,36 @@ function switchAuth(type){
         document.getElementById("registerTab");
 
 
-    const x=type==="login";
+    const x=
+        type==="login";
 
 
-    l.classList.toggle("hidden",!x);
-    r.classList.toggle("hidden",x);
+    l.classList.toggle(
+        "hidden",
+        !x
+    );
 
-    lt.classList.toggle("active",x);
-    rt.classList.toggle("active",!x);
+    r.classList.toggle(
+        "hidden",
+        x
+    );
+
+    lt.classList.toggle(
+        "active",
+        x
+    );
+
+    rt.classList.toggle(
+        "active",
+        !x
+    );
+
 }
 
 
-/* =========================================================
-   PLAYER
-========================================================= */
+/* ========================================================= */
+/* RENDER PROFILE */
+/* ========================================================= */
 
 function renderAll(){
 
@@ -2787,7 +2732,8 @@ function renderAll(){
 
     const set=(id,v)=>{
 
-        const e=document.getElementById(id);
+        const e=
+            document.getElementById(id);
 
         if(e)
             e.textContent=v;
@@ -2795,14 +2741,29 @@ function renderAll(){
     };
 
 
-    set("homeName",p.username);
-    set("homeLevel",p.level);
-    set("homeXP",p.xp+" XP");
+    set(
+        "homeName",
+        p.username
+    );
+
+
+    set(
+        "homeLevel",
+        p.level
+    );
+
+
+    set(
+        "homeXP",
+        p.xp+" XP"
+    );
+
 
     set(
         "homeCash",
         money(p.cash)
     );
+
 
     set(
         "homeBank",
@@ -2830,7 +2791,9 @@ function renderAll(){
 
     set(
         "profileAvatar",
-        p.username.charAt(0).toUpperCase()
+        p.username
+        .charAt(0)
+        .toUpperCase()
     );
 
 
@@ -2881,7 +2844,9 @@ function renderAll(){
         p.created_at
         ?new Date(
             p.created_at
-        ).toLocaleDateString("ru-RU")
+        ).toLocaleDateString(
+            "ru-RU"
+        )
         :"—"
     );
 
@@ -2923,1024 +2888,40 @@ function renderAll(){
     );
 
 
-    renderJobs();
     renderGarage();
+
     renderShop();
-    renderDiverInventory();
-    renderDiverLogs();
-    updateDiverCooldown();
+
 }
 
 
 const number=
-v=>Number(v||0)
-.toLocaleString("ru-RU");
+    v=>Number(v||0)
+        .toLocaleString("ru-RU");
 
 
 const money=
-v=>"₽ "+number(v);
+    v=>"₽ "+number(v);
 
 
 const xpForLevel=
-l=>100+(l-1)*75;
+    l=>100+(l-1)*75;
 
 
-/* =========================================================
-   JOBS
-========================================================= */
+/* ========================================================= */
+/* OPEN JOBS */
+/* ========================================================= */
 
-const jobs=[
+function openJobs(){
 
-    [
-        "courier",
-        "📦",
-        "Курьер",
-        "Доставляй посылки по городу.",
-        1
-    ],
-
-    [
-        "taxi",
-        "🚕",
-        "Таксист",
-        "Перевози пассажиров.",
-        1
-    ],
-
-    [
-        "loader",
-        "📦",
-        "Грузчик",
-        "Работа на складе.",
-        1
-    ],
-
-    [
-        "bus",
-        "🚌",
-        "Водитель автобуса",
-        "Работай на городском маршруте.",
-        2
-    ],
-
-    [
-        "farmer",
-        "🚜",
-        "Фермер",
-        "Работай на ферме.",
-        1
-    ],
-
-    [
-        "builder",
-        "👷",
-        "Строитель",
-        "Строй город.",
-        2
-    ],
-
-    [
-        "mechanic",
-        "🔧",
-        "Механик",
-        "Ремонтируй транспорт.",
-        3
-    ],
-
-    [
-        "truck",
-        "🚛",
-        "Дальнобойщик",
-        "Перевози грузы между городами.",
-        5
-    ],
-
-    [
-        "diver",
-        "🤿",
-        "Водолаз",
-        "Два погружения за один рабочий цикл. Ищи ценные предметы на дне.",
-        1
-    ]
-
-];
-
-
-function renderJobs(){
-
-    const c=
-        document.getElementById(
-            "jobsContainer"
-        );
-
-
-    if(!c)
-        return;
-
-
-    c.innerHTML="";
-
-
-    jobs.forEach(j=>{
-
-        const locked=
-            Number(currentUser.level)<j[4];
-
-
-        const d=
-            document.createElement("div");
-
-
-        d.className="job";
-
-
-        let action;
-
-
-        if(j[0]==="diver"){
-
-            action=`
-
-<button
-class="job-action"
-onclick="openPage('diver')">
-🤿 ИДТИ
-</button>
-
-`;
-
-        }else{
-
-            action=`
-
-<button
-class="job-action"
-onclick="completeJob('${j[0]}')"
-${locked?"disabled":""}
-style="${
-    locked
-    ?"background:#333;color:#777"
-    :""
-}">
-${locked?"🔒":"РАБОТАТЬ"}
-</button>
-
-`;
-
-        }
-
-
-        d.innerHTML=`
-
-<div class="job-icon">
-${j[1]}
-</div>
-
-<div class="job-main">
-
-<div class="job-name">
-${j[2]}
-</div>
-
-<div class="job-info">
-${j[3]}<br>
-Требуется уровень: ${j[4]}
-${j[0]==="diver"
-?"<br>КД: 1 час · 2 погружения"
-:"<br>Награда зависит от работы и серверного КД."}
-</div>
-
-</div>
-
-${action}
-
-`;
-
-
-        c.appendChild(d);
-
-    });
+    window.location.href="jobs.html";
 
 }
 
 
-/* =========================================================
-   NORMAL JOB
-========================================================= */
-
-async function completeJob(id){
-
-    if(!currentUser)
-        return;
-
-
-    const j=
-        jobs.find(
-            x=>x[0]===id
-        );
-
-
-    if(!j)
-        return;
-
-
-    if(
-        Number(currentUser.level)
-        <
-        j[4]
-    ){
-
-        return toast(
-            "🔒 Требуется уровень "+
-            j[4]
-        );
-
-    }
-
-
-    const token=
-        localStorage.getItem(
-            "brp_access_token"
-        );
-
-
-    try{
-
-        toast(
-            "💼 Выполняем работу..."
-        );
-
-
-        const r=
-            await supabaseFetch(
-                "/rest/v1/rpc/complete_job",
-                {
-                    method:"POST",
-
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:
-                        "Bearer "+token
-                    },
-
-                    body:JSON.stringify({
-                        p_job:id
-                    })
-                }
-            );
-
-
-        await refreshProfile();
-
-
-        toast(
-            "💰 +"+
-            number(r.cash)+
-            " ₽  ⭐ +"+
-            r.xp+
-            " XP"
-        );
-
-
-    }catch(e){
-
-        const t=
-            e.message||"";
-
-
-        const m=
-            t.match(
-                /JOB_COOLDOWN:(\d+)/
-            );
-
-
-        toast(
-            t.includes("JOB_COOLDOWN")
-            ?"⏳ Подожди "+
-            (m?m[1]:60)+
-            " сек."
-            :"❌ "+
-            cleanError(t)
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   DIVER DATA
-========================================================= */
-
-const diverItems=[
-
-    {
-        id:"coin",
-        name:"Монетка",
-        icon:"🪙",
-        min:500,
-        max:5000,
-        weight:40
-    },
-
-    {
-        id:"battery",
-        name:"Батарейка",
-        icon:"🔋",
-        min:1000,
-        max:7000,
-        weight:25
-    },
-
-    {
-        id:"vase",
-        name:"Старая ваза",
-        icon:"🏺",
-        min:15000,
-        max:35000,
-        weight:15
-    },
-
-    {
-        id:"washer",
-        name:"Стиральная машина",
-        icon:"🧺",
-        min:25000,
-        max:45000,
-        weight:7
-    },
-
-    {
-        id:"watch",
-        name:"Часы на цепи",
-        icon:"⌚",
-        min:20000,
-        max:50000,
-        weight:13
-    }
-
-];
-
-
-let diverState=
-    JSON.parse(
-        localStorage.getItem(
-            "brp_diver_state"
-        )||
-        '{"cooldown":0,"inventory":[],"logs":[]}'
-    );
-
-
-function saveDiverState(){
-
-    localStorage.setItem(
-        "brp_diver_state",
-        JSON.stringify(
-            diverState
-        )
-    );
-
-}
-
-
-/* =========================================================
-   DIVER RANDOM
-========================================================= */
-
-function randomInt(min,max){
-
-    return Math.floor(
-        Math.random()*
-        (max-min+1)
-    )+min;
-
-}
-
-
-function getRandomDiverItem(){
-
-    const total=
-        diverItems.reduce(
-            (a,x)=>a+x.weight,
-            0
-        );
-
-
-    let random=
-        Math.random()*total;
-
-
-    for(const item of diverItems){
-
-        random-=item.weight;
-
-
-        if(random<=0)
-            return item;
-
-    }
-
-
-    return diverItems[0];
-
-}
-
-
-function generateDiverFinds(){
-
-    const result=[];
-
-
-    /*
-       От 1 до 3 предметов за ходку.
-       Иногда выпадает один дорогой предмет.
-    */
-
-    const count=
-        randomInt(1,3);
-
-
-    for(let i=0;i<count;i++){
-
-        const item=
-            getRandomDiverItem();
-
-
-        const price=
-            randomInt(
-                item.min,
-                item.max
-            );
-
-
-        result.push({
-
-            id:item.id,
-            name:item.name,
-            icon:item.icon,
-            price
-
-        });
-
-    }
-
-
-    return result;
-
-}
-
-
-/* =========================================================
-   DIVER START
-========================================================= */
-
-function startDiver(){
-
-    if(!currentUser)
-        return;
-
-
-    const now=
-        Date.now();
-
-
-    if(
-        diverState.cooldown>
-        now
-    ){
-
-        const left=
-            diverState.cooldown-
-            now;
-
-
-        return toast(
-            "⏳ Водолаз будет доступен через "+
-            formatTime(left)
-        );
-
-    }
-
-
-    /*
-       Новый рабочий цикл.
-       Ровно 2 погружения.
-    */
-
-    toast(
-        "🤿 Подготавливаем снаряжение..."
-    );
-
-
-    setTimeout(()=>{
-
-        const dive1=
-            generateDiverFinds();
-
-
-        const dive2=
-            generateDiverFinds();
-
-
-        const all=[
-            ...dive1,
-            ...dive2
-        ];
-
-
-        diverState.inventory.push(
-            ...all
-        );
-
-
-        const total=
-            all.reduce(
-                (sum,x)=>
-                    sum+x.price,
-                0
-            );
-
-
-        diverState.logs.unshift({
-
-            time:new Date().toLocaleTimeString(
-                "ru-RU",
-                {
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-            ),
-
-            dive1,
-            dive2,
-            total
-
-        });
-
-
-        diverState.logs=
-            diverState.logs.slice(
-                0,
-                8
-            );
-
-
-        /*
-           КД ровно 1 час.
-        */
-
-        diverState.cooldown=
-            Date.now()+
-            60*60*1000;
-
-
-        saveDiverState();
-
-
-        renderDiverInventory();
-        renderDiverLogs();
-        updateDiverCooldown();
-
-
-        openModal(
-
-            "🤿 Водолаз — работа завершена",
-
-            "Ты выполнил 2 погружения.\n\n"+
-            "🌊 Погружение №1:\n"+
-            formatFinds(dive1)+
-            "\n\n"+
-            "🌊 Погружение №2:\n"+
-            formatFinds(dive2)+
-            "\n\n"+
-            "💰 Стоимость найденного:\n"+
-            number(total)+
-            " ₽\n\n"+
-            "Теперь отправляйся к скупщику и продавай найденные предметы."
-
-        );
-
-
-    },900);
-
-}
-
-
-/* =========================================================
-   DIVER FORMAT
-========================================================= */
-
-function formatFinds(items){
-
-    if(!items.length)
-        return"Ничего не найдено.";
-
-
-    return items.map(
-        x=>
-        x.icon+
-        " "+
-        x.name+
-        " — "+
-        number(x.price)+
-        " ₽"
-    ).join("\n");
-
-}
-
-
-/* =========================================================
-   DIVER INVENTORY
-========================================================= */
-
-function renderDiverInventory(){
-
-    const c=
-        document.getElementById(
-            "diverInventory"
-        );
-
-
-    if(!c)
-        return;
-
-
-    if(
-        !diverState.inventory.length
-    ){
-
-        c.innerHTML=`
-<div class="empty-found">
-Инвентарь пуст.
-</div>
-`;
-
-        return;
-
-    }
-
-
-    c.innerHTML="";
-
-
-    diverState.inventory.forEach(
-        (item,index)=>{
-
-            const d=
-                document.createElement(
-                    "div"
-                );
-
-
-            d.className=
-                "found-item";
-
-
-            d.innerHTML=`
-
-<div class="found-item-top">
-
-<div class="found-icon">
-${item.icon}
-</div>
-
-<div>
-
-<div class="found-name">
-${item.name}
-</div>
-
-<div class="found-price">
-${number(item.price)} ₽
-</div>
-
-</div>
-
-</div>
-
-`;
-
-
-            c.appendChild(d);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   DIVER LOGS
-========================================================= */
-
-function renderDiverLogs(){
-
-    const c=
-        document.getElementById(
-            "diveLogContainer"
-        );
-
-
-    if(!c)
-        return;
-
-
-    if(!diverState.logs.length){
-
-        c.innerHTML=`
-<div class="empty-found">
-Погружений пока не было.
-</div>
-`;
-
-        return;
-
-    }
-
-
-    c.innerHTML="";
-
-
-    diverState.logs.forEach(
-        log=>{
-
-            const d=
-                document.createElement(
-                    "div"
-                );
-
-
-            d.className=
-                "dive-row";
-
-
-            d.innerHTML=`
-
-<div>
-
-<div class="dive-row-name">
-🌊 ${log.time}
-</div>
-
-<div style="color:#666;font-size:9px;margin-top:3px">
-2 погружения · ${
-    log.dive1.length+
-    log.dive2.length
-} предметов
-</div>
-
-</div>
-
-<div class="dive-row-price">
-${number(log.total)} ₽
-</div>
-
-`;
-
-
-            c.appendChild(d);
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   DIVER SELLER
-========================================================= */
-
-function sellDiverItems(){
-
-    if(
-        !diverState.inventory.length
-    ){
-
-        return toast(
-            "📦 У тебя нет предметов для продажи."
-        );
-
-    }
-
-
-    const total=
-        diverState.inventory.reduce(
-            (sum,x)=>
-                sum+x.price,
-            0
-        );
-
-
-    const count=
-        diverState.inventory.length;
-
-
-    openModal(
-
-        "🏪 Скупщик",
-
-        "Скупщик готов принять найденные вещи.\n\n"+
-        "Предметов: "+
-        count+
-        "\n\n"+
-        "Стоимость:\n"+
-        number(total)+
-        " ₽\n\n"+
-        "Нажми «ПРОДАТЬ ВСЁ», чтобы получить деньги."
-
-    );
-
-
-    /*
-       Меняем кнопку модального окна
-       на продажу.
-    */
-
-    const modal=
-        document.getElementById(
-            "modal"
-        );
-
-
-    const box=
-        modal.querySelector(
-            ".modal-box"
-        );
-
-
-    const old=
-        box.querySelector(
-            ".primary-btn"
-        );
-
-
-    old.textContent=
-        "💰 ПРОДАТЬ ВСЁ";
-
-
-    old.onclick=
-        ()=>{
-            closeModal();
-            confirmDiverSale(total);
-        };
-
-}
-
-
-function confirmDiverSale(total){
-
-    const oldCash=
-        Number(
-            currentUser.cash||0
-        );
-
-
-    /*
-       Клиентская тестовая выдача.
-       Позже заменяется RPC.
-    */
-
-    currentUser.cash=
-        oldCash+
-        total;
-
-
-    diverState.inventory=[];
-
-    saveDiverState();
-
-
-    renderAll();
-
-
-    openModal(
-
-        "💰 Продажа завершена",
-
-        "Скупщик забрал все найденные предметы.\n\n"+
-        "Получено:\n"+
-        "+"+
-        number(total)+
-        " ₽\n\n"+
-        "Текущие наличные:\n"+
-        money(currentUser.cash)+
-        "\n\n"+
-        "Предметы удалены из инвентаря."
-
-    );
-
-}
-
-
-/* =========================================================
-   DIVER COOLDOWN
-========================================================= */
-
-function updateDiverCooldown(){
-
-    const label=
-        document.getElementById(
-            "diverCooldown"
-        );
-
-
-    const button=
-        document.getElementById(
-            "diverStartBtn"
-        );
-
-
-    if(!label||!button)
-        return;
-
-
-    const left=
-        diverState.cooldown-
-        Date.now();
-
-
-    if(left<=0){
-
-        label.textContent=
-            "🤿 Водолаз готов к работе";
-
-        label.style.color=
-            "var(--green)";
-
-        button.disabled=false;
-
-        button.style.opacity="1";
-
-        return;
-
-    }
-
-
-    label.textContent=
-        "⏳ Следующая работа через "+
-        formatTime(left);
-
-
-    label.style.color=
-        "#ffc928";
-
-
-    button.disabled=true;
-
-    button.style.opacity=".45";
-
-}
-
-
-function formatTime(ms){
-
-    const total=
-        Math.ceil(
-            ms/1000
-        );
-
-
-    const h=
-        Math.floor(
-            total/3600
-        );
-
-
-    const m=
-        Math.floor(
-            (total%3600)/60
-        );
-
-
-    const s=
-        total%60;
-
-
-    if(h>0){
-
-        return (
-            String(h).padStart(2,"0")+
-            ":"+
-            String(m).padStart(2,"0")+
-            ":"+
-            String(s).padStart(2,"0")
-        );
-
-    }
-
-
-    return (
-        String(m).padStart(2,"0")+
-        ":"+
-        String(s).padStart(2,"0")
-    );
-
-}
-
-
-/* =========================================================
-   GARAGE
-========================================================= */
+/* ========================================================= */
+/* GARAGE */
+/* ========================================================= */
 
 function renderGarage(){
 
@@ -3976,44 +2957,44 @@ function renderGarage(){
 
         d.innerHTML=`
 
-<div class="car-image">
-${x[1]}
-</div>
+            <div class="car-image">
+                ${x[1]}
+            </div>
 
-<div class="car-body">
+            <div class="car-body">
 
-<div class="car-name">
-${x[0]}
-</div>
+                <div class="car-name">
+                    ${x[0]}
+                </div>
 
-<div class="car-meta">
-Топливо: ${x[2]}%
-·
-Состояние: ${x[3]}%
-</div>
+                <div class="car-meta">
+                    Топливо: ${x[2]}%
+                    ·
+                    Состояние: ${x[3]}%
+                </div>
 
-<div class="car-buttons">
+                <div class="car-buttons">
 
-<button
-onclick="toast('⛽ Автомобиль заправлен')">
-⛽ Заправить
-</button>
+                    <button
+                        onclick="toast('⛽ Автомобиль заправлен')">
+                        ⛽ Заправить
+                    </button>
 
-<button
-onclick="toast('🔧 Автомобиль исправен')">
-🔧 Ремонт
-</button>
+                    <button
+                        onclick="toast('🔧 Автомобиль исправен')">
+                        🔧 Ремонт
+                    </button>
 
-<button
-onclick="toast('🚗 Вы выехали в город')">
-🚗 Ехать
-</button>
+                    <button
+                        onclick="toast('🚗 Вы выехали в город')">
+                        🚗 Ехать
+                    </button>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
-`;
+        `;
 
 
         c.appendChild(d);
@@ -4023,9 +3004,9 @@ onclick="toast('🚗 Вы выехали в город')">
 }
 
 
-/* =========================================================
-   SHOP
-========================================================= */
+/* ========================================================= */
+/* SHOP */
+/* ========================================================= */
 
 const shopItems=[
 
@@ -4070,25 +3051,27 @@ function renderShop(){
 
             d.innerHTML=`
 
-<div class="item-icon">
-${x[0]}
-</div>
+                <div class="item-icon">
+                    ${x[0]}
+                </div>
 
-<div class="item-name">
-${x[1]}
-</div>
+                <div class="item-name">
+                    ${x[1]}
+                </div>
 
-<div class="item-price">
-₽${number(x[2])}
-</div>
+                <div class="item-price">
+                    ₽${number(x[2])}
+                </div>
 
-<button
-class="buy"
-onclick="buyItem(${i})">
-КУПИТЬ
-</button>
+                <button
+                    class="buy"
+                    onclick="buyItem(${i})">
 
-`;
+                    КУПИТЬ
+
+                </button>
+
+            `;
 
 
             c.appendChild(d);
@@ -4101,9 +3084,7 @@ onclick="buyItem(${i})">
 
 function buyItem(i){
 
-    const x=
-        shopItems[i];
-
+    const x=shopItems[i];
 
     if(!x)
         return;
@@ -4120,35 +3101,33 @@ function buyItem(i){
 
 
     toast(
-        x[0]+" "+
-        x[1]+
+        x[0]+" "+x[1]+
         " добавлен."
     );
 
 }
 
 
-/* =========================================================
-   DONATE
-========================================================= */
+/* ========================================================= */
+/* DONATE */
+/* ========================================================= */
 
 function buyDonate(){
 
     openModal(
-
         "♦ Донат",
 
         "Платёжная система ещё не подключена.\n\n"+
-        "Сейчас это интерфейс донат-магазина. Реальную оплату подключим отдельно через платёжный сервис."
-
+        "Сейчас это интерфейс донат-магазина. "+
+        "Реальную оплату подключим отдельно через платёжный сервис."
     );
 
 }
 
 
-/* =========================================================
-   CASES
-========================================================= */
+/* ========================================================= */
+/* CASES */
+/* ========================================================= */
 
 function openCase(price,name){
 
@@ -4177,7 +3156,8 @@ function openCase(price,name){
     const r=
         rewards[
             Math.floor(
-                Math.random()*
+                Math.random()
+                *
                 rewards.length
             )
         ];
@@ -4191,16 +3171,17 @@ function openCase(price,name){
         "Выпало:\n"+
         r[0]+
         "\n\n"+
-        "Серверная выдача награды будет добавлена отдельной RPC."
+        "Серверная выдача награды "+
+        "будет добавлена отдельной RPC."
 
     );
 
 }
 
 
-/* =========================================================
-   CHAT
-========================================================= */
+/* ========================================================= */
+/* CHAT */
+/* ========================================================= */
 
 async function loadChat(){
 
@@ -4215,18 +3196,19 @@ async function loadChat(){
         renderChat(
 
             await supabaseFetch(
-                "/rest/v1/chat_messages?select=*&order=created_at.asc&limit=100",
+                "/rest/v1/chat_messages?select=*"+
+                "&order=created_at.asc"+
+                "&limit=100",
                 {
                     headers:{
                         apikey:SUPABASE_KEY,
                         Authorization:
-                        "Bearer "+token
+                            "Bearer "+token
                     }
                 }
             )||[]
 
         );
-
 
     }catch(e){
 
@@ -4261,19 +3243,19 @@ function renderChat(messages){
 
         b.innerHTML=`
 
-<div class="message">
+            <div class="message">
 
-<div class="message-name">
-SERVER
-</div>
+                <div class="message-name">
+                    SERVER
+                </div>
 
-<div class="message-text">
-Добро пожаловать в общий чат!
-</div>
+                <div class="message-text">
+                    Добро пожаловать в общий чат!
+                </div>
 
-</div>
+            </div>
 
-`;
+        `;
 
         return;
 
@@ -4293,21 +3275,19 @@ SERVER
 
         d.innerHTML=`
 
-<div class="message-name">
-${escapeHTML(
-    m.username||"Player"
-)}
-</div>
+            <div class="message-name">
+                ${escapeHTML(
+                    m.username||"Player"
+                )}
+            </div>
 
-<div class="message-text">
-${escapeHTML(
-    m.message||
-    m.text||
-    ""
-)}
-</div>
+            <div class="message-text">
+                ${escapeHTML(
+                    m.message||m.text||""
+                )}
+            </div>
 
-`;
+        `;
 
 
         b.appendChild(d);
@@ -4347,27 +3327,27 @@ async function sendChat(){
                 headers:{
                     apikey:SUPABASE_KEY,
                     Authorization:
-                    "Bearer "+
-                    localStorage.getItem(
-                        "brp_access_token"
-                    ),
-
-                    Prefer:
-                    "return=minimal"
+                        "Bearer "+
+                        localStorage.getItem(
+                            "brp_access_token"
+                        ),
+                    Prefer:"return=minimal"
                 },
 
                 body:JSON.stringify({
+
                     username:
                         currentUser.username,
 
                     message:text
+
                 })
+
             }
         );
 
 
         i.value="";
-
 
         await loadChat();
 
@@ -4385,9 +3365,9 @@ async function sendChat(){
 }
 
 
-/* =========================================================
-   REALTIME
-========================================================= */
+/* ========================================================= */
+/* REALTIME */
+/* ========================================================= */
 
 function startRealtime(){
 
@@ -4441,10 +3421,13 @@ function startRealtime(){
         };
 
 
-        chatChannel.onerror=()=>
+        chatChannel.onerror=()=>{
+
             console.log(
                 "Realtime error"
             );
+
+        };
 
 
     }catch(e){
@@ -4462,9 +3445,9 @@ function startRealtime(){
 }
 
 
-/* =========================================================
-   ONLINE
-========================================================= */
+/* ========================================================= */
+/* ONLINE */
+/* ========================================================= */
 
 async function updateOnline(){
 
@@ -4478,13 +3461,12 @@ async function updateOnline(){
                 headers:{
                     apikey:SUPABASE_KEY,
                     Authorization:
-                    "Bearer "+
-                    localStorage.getItem(
-                        "brp_access_token"
-                    ),
-
+                        "Bearer "+
+                        localStorage.getItem(
+                            "brp_access_token"
+                        ),
                     Prefer:
-                    "resolution=merge-duplicates"
+                        "resolution=merge-duplicates"
                 },
 
                 body:JSON.stringify({
@@ -4498,9 +3480,11 @@ async function updateOnline(){
                     online:true,
 
                     last_seen:
-                        new Date().toISOString()
+                        new Date()
+                        .toISOString()
 
                 })
+
             }
         );
 
@@ -4532,15 +3516,19 @@ async function loadOnline(){
 
         const list=
             await supabaseFetch(
-                "/rest/v1/online_players?select=*&online=eq.true&order=last_seen.desc&limit=50",
+                "/rest/v1/online_players?"+
+                "select=*"+
+                "&online=eq.true"+
+                "&order=last_seen.desc"+
+                "&limit=50",
                 {
                     headers:{
                         apikey:SUPABASE_KEY,
                         Authorization:
-                        "Bearer "+
-                        localStorage.getItem(
-                            "brp_access_token"
-                        )
+                            "Bearer "+
+                            localStorage.getItem(
+                                "brp_access_token"
+                            )
                     }
                 }
             )||[];
@@ -4572,33 +3560,33 @@ async function loadOnline(){
 
             d.innerHTML=`
 
-<div class="avatar">
-${escapeHTML(
-    (p.username||"P")
-    .charAt(0)
-    .toUpperCase()
-)}
-</div>
+                <div class="avatar">
+                    ${escapeHTML(
+                        (p.username||"P")
+                        .charAt(0)
+                        .toUpperCase()
+                    )}
+                </div>
 
-<div class="online-info">
+                <div class="online-info">
 
-<div class="online-name">
-${escapeHTML(
-    p.username||"Player"
-)}
-</div>
+                    <div class="online-name">
+                        ${escapeHTML(
+                            p.username||"Player"
+                        )}
+                    </div>
 
-<div class="online-status">
-● В игре
-</div>
+                    <div class="online-status">
+                        ● В игре
+                    </div>
 
-</div>
+                </div>
 
-<div class="level">
-ONLINE
-</div>
+                <div class="level">
+                    ONLINE
+                </div>
 
-`;
+            `;
 
 
             c.appendChild(d);
@@ -4618,54 +3606,51 @@ ONLINE
 
         c.innerHTML=`
 
-<div class="online-card">
+            <div class="online-card">
 
-<div class="avatar">
-${escapeHTML(
-    currentUser.username
-    .charAt(0)
-    .toUpperCase()
-)}
-</div>
+                <div class="avatar">
+                    ${escapeHTML(
+                        currentUser.username
+                        .charAt(0)
+                        .toUpperCase()
+                    )}
+                </div>
 
-<div class="online-info">
+                <div class="online-info">
 
-<div class="online-name">
-${escapeHTML(
-    currentUser.username
-)}
-</div>
+                    <div class="online-name">
+                        ${escapeHTML(
+                            currentUser.username
+                        )}
+                    </div>
 
-<div class="online-status">
-● В игре
-</div>
+                    <div class="online-status">
+                        ● В игре
+                    </div>
 
-</div>
+                </div>
 
-<div class="level">
-ONLINE
-</div>
+                <div class="level">
+                    ONLINE
+                </div>
 
-</div>
+            </div>
 
-`;
+        `;
 
     }
 
 }
 
 
-/* =========================================================
-   PAGE NAVIGATION
-========================================================= */
+/* ========================================================= */
+/* PAGE */
+/* ========================================================= */
 
 function openPage(page){
 
     [
-
         "home",
-        "jobs",
-        "diver",
         "garage",
         "shop",
         "map",
@@ -4674,7 +3659,6 @@ function openPage(page){
         "chat",
         "online",
         "profile"
-
     ].forEach(n=>{
 
         const e=
@@ -4719,64 +3703,44 @@ function openPage(page){
     if(page==="online")
         loadOnline();
 
-
-    if(page==="diver")
-        updateDiverCooldown();
-
 }
 
 
-/* =========================================================
-   CASINO
-========================================================= */
-
-function openCasino(){
-
-    /*
-       casino.html должен находиться
-       в той же папке, что и index.html.
-    */
-
-    window.location.href="casino.html";
-
-}
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
+/* ========================================================= */
+/* LOGOUT */
+/* ========================================================= */
 
 async function logout(){
 
     try{
 
-        if(currentAuthUser)
+        if(currentAuthUser){
 
             await supabaseFetch(
-
                 "/rest/v1/online_players?id=eq."+
                 encodeURIComponent(
                     currentAuthUser.id
                 ),
-
                 {
                     method:"PATCH",
 
                     headers:{
                         apikey:SUPABASE_KEY,
                         Authorization:
-                        "Bearer "+
-                        localStorage.getItem(
-                            "brp_access_token"
-                        )
+                            "Bearer "+
+                            localStorage.getItem(
+                                "brp_access_token"
+                            )
                     },
 
                     body:JSON.stringify({
                         online:false
                     })
-                }
 
+                }
             );
+
+        }
 
     }catch(e){}
 
@@ -4806,9 +3770,9 @@ async function logout(){
 }
 
 
-/* =========================================================
-   MODAL
-========================================================= */
+/* ========================================================= */
+/* MODAL */
+/* ========================================================= */
 
 function openModal(title,text){
 
@@ -4826,29 +3790,13 @@ function openModal(title,text){
         .textContent=text;
 
 
-    const modal=
-        document.getElementById(
+    document
+        .getElementById(
             "modal"
+        )
+        .classList.remove(
+            "hidden"
         );
-
-
-    const button=
-        modal.querySelector(
-            ".primary-btn"
-        );
-
-
-    button.textContent=
-        "ПОНЯТНО";
-
-
-    button.onclick=
-        closeModal;
-
-
-    modal.classList.remove(
-        "hidden"
-    );
 
 }
 
@@ -4866,9 +3814,9 @@ function closeModal(){
 }
 
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* ========================================================= */
+/* TOAST */
+/* ========================================================= */
 
 function toast(text){
 
@@ -4880,7 +3828,9 @@ function toast(text){
 
     e.textContent=text;
 
-    e.classList.add("show");
+    e.classList.add(
+        "show"
+    );
 
 
     clearTimeout(
@@ -4901,9 +3851,9 @@ function toast(text){
 }
 
 
-/* =========================================================
-   SECURITY / ERRORS
-========================================================= */
+/* ========================================================= */
+/* ESCAPE */
+/* ========================================================= */
 
 function escapeHTML(v){
 
@@ -4937,50 +3887,34 @@ function escapeHTML(v){
 }
 
 
+/* ========================================================= */
+/* ERRORS */
+/* ========================================================= */
+
 function cleanError(t){
 
     if(!t)
-        return"Неизвестная ошибка";
+        return "Неизвестная ошибка";
 
 
-    if(
-        t.includes(
-            "Invalid API key"
-        )
-    )
-        return"Неверный Supabase API key.";
+    if(t.includes("Invalid API key"))
+        return "Неверный Supabase API key.";
 
 
-    if(
-        t.includes(
-            "Invalid login credentials"
-        )
-    )
-        return"Неверный логин или пароль.";
+    if(t.includes("Invalid login credentials"))
+        return "Неверный логин или пароль.";
 
 
-    if(
-        t.includes(
-            "Email not confirmed"
-        )
-    )
-        return"Почта ещё не подтверждена.";
+    if(t.includes("Email not confirmed"))
+        return "Почта ещё не подтверждена.";
 
 
-    if(
-        t.includes(
-            "User already registered"
-        )
-    )
-        return"Такая почта уже зарегистрирована.";
+    if(t.includes("User already registered"))
+        return "Такая почта уже зарегистрирована.";
 
 
-    if(
-        t.includes(
-            "duplicate key"
-        )
-    )
-        return"Такой логин уже занят.";
+    if(t.includes("duplicate key"))
+        return "Такой логин уже занят.";
 
 
     return t
@@ -4996,9 +3930,9 @@ function cleanError(t){
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+/* ========================================================= */
+/* START */
+/* ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -5016,21 +3950,6 @@ document.addEventListener(
 
         }
 
-
-        /*
-           Обновляем КД водолаза
-           каждую секунду.
-        */
-
-        setInterval(
-            updateDiverCooldown,
-            1000
-        );
-
-
-        /*
-           Серверный heartbeat.
-        */
 
         setInterval(
             async()=>{
