@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<title>BLACK RUSSIA — DONATE</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+:root{
+    --bg:#050505;
+    --black:#080808;
+    --panel:#111;
+    --panel2:#171717;
+    --panel3:#1d1d1d;
+    --line:#292929;
+    --red:#e50914;
+    --red2:#ff2633;
+    --white:#f5f5f5;
+    --muted:#858585;
+    --green:#31d47a;
+    --yellow:#ffc928;
+}
+
+html{
+    background:#050505;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(229,9,20,.18),
+            transparent 35%
+        ),
+        #050505;
+    color:var(--white);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+button{
+    font-family:inherit;
+    border:0;
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* ================= HEADER ================= */
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    height:62px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 13px;
+
+    background:rgba(8,8,8,.96);
+    border-bottom:1px solid #252525;
+
+    backdrop-filter:blur(15px);
+}
+
+.top-logo{
+    font-size:16px;
+    font-weight:1000;
+}
+
+.top-logo span{
+    color:var(--red);
+}
+
+.back-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    padding:8px 11px;
+
+    color:#ccc;
+    background:#171717;
+
+    border:1px solid #292929;
+    border-radius:8px;
+
+    font-size:10px;
+    font-weight:900;
+}
+
+.back-btn:active{
+    transform:scale(.97);
+}
+
+.money-box{
+    display:flex;
+    gap:5px;
+}
+
+.money{
+    padding:6px 8px;
+
+    background:#151515;
+    border:1px solid #292929;
+
+    border-radius:7px;
+
+    font-size:9px;
+    font-weight:bold;
+}
+
+.money.cash{
+    color:#53dd8a;
+}
+
+.money.donate{
+    color:var(--red2);
+}
+
+/* ================= PAGE ================= */
+
+.page{
+    width:100%;
+    max-width:1000px;
+
+    margin:auto;
+
+    padding:15px;
+    padding-bottom:35px;
+}
+
+.page-title{
+    font-size:27px;
+    font-weight:1000;
+    letter-spacing:-.5px;
+}
+
+.page-subtitle{
+    margin-top:4px;
+    margin-bottom:17px;
+
+    color:#777;
+
+    font-size:11px;
+}
+
+/* ================= HERO ================= */
+
+.donate-banner{
+    position:relative;
+    overflow:hidden;
+
+    padding:27px 20px;
+
+    text-align:center;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(229,9,20,.22),
+            transparent 65%
+        ),
+        linear-gradient(
+            145deg,
+            #181010,
+            #101010
+        );
+
+    border:1px solid #432020;
+    border-radius:15px;
+
+    box-shadow:
+        inset 0 0 35px rgba(229,9,20,.04),
+        0 15px 40px rgba(0,0,0,.35);
+}
+
+.donate-banner:before{
+    content:"♦";
+
+    position:absolute;
+
+    left:-20px;
+    bottom:-55px;
+
+    color:rgba(229,9,20,.045);
+
+    font-size:170px;
+    font-weight:1000;
+}
+
+.donate-banner:after{
+    content:"♦";
+
+    position:absolute;
+
+    right:-20px;
+    top:-75px;
+
+    color:rgba(255,255,255,.025);
+
+    font-size:180px;
+    font-weight:1000;
+}
+
+.donate-content{
+    position:relative;
+    z-index:2;
+}
+
+.donate-label{
+    color:#777;
+
+    font-size:9px;
+    font-weight:bold;
+
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.donate-title{
+    margin-top:6px;
+
+    font-size:31px;
+    font-weight:1000;
+}
+
+.donate-title span{
+    color:var(--red);
+}
+
+.donate-description{
+    max-width:420px;
+
+    margin:7px auto 0;
+
+    color:#777;
+
+    font-size:11px;
+    line-height:1.5;
+}
+
+.balance{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+
+    margin-top:17px;
+    padding:10px 15px;
+
+    background:#0a0a0a;
+    border:1px solid #352020;
+
+    border-radius:9px;
+
+    color:#fff;
+
+    font-size:12px;
+    font-weight:900;
+}
+
+.balance span{
+    color:var(--red2);
+    font-size:15px;
+}
+
+/* ================= SECTION ================= */
+
+.section-title{
+    margin:22px 0 11px;
+
+    font-size:16px;
+    font-weight:900;
+}
+
+.section-subtitle{
+    color:#777;
+
+    font-size:10px;
+
+    margin-top:-5px;
+    margin-bottom:12px;
+}
+
+/* ================= DONATE GRID ================= */
+
+.donate-grid{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:9px;
+}
+
+.donate-card{
+    position:relative;
+
+    overflow:hidden;
+
+    padding:17px 13px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(229,9,20,.07),
+            transparent 55%
+        ),
+        #111;
+
+    border:1px solid #292929;
+    border-radius:13px;
+
+    transition:.2s;
+}
+
+.donate-card:active{
+    transform:scale(.98);
+}
+
+.donate-card.popular{
+    border-color:#5a2424;
+
+    box-shadow:
+        0 0 20px rgba(229,9,20,.06);
+}
+
+.popular-label{
+    position:absolute;
+
+    top:8px;
+    right:8px;
+
+    padding:4px 6px;
+
+    color:#fff;
+    background:var(--red);
+
+    border-radius:5px;
+
+    font-size:7px;
+    font-weight:1000;
+}
+
+.donate-icon{
+    font-size:34px;
+    margin-bottom:7px;
+}
+
+.donate-amount{
+    color:#fff;
+
+    font-size:21px;
+    font-weight:1000;
+}
+
+.donate-amount span{
+    color:var(--red);
+}
+
+.donate-name{
+    margin-top:4px;
+
+    color:#777;
+
+    font-size:9px;
+}
+
+.donate-price{
+    margin-top:10px;
+
+    color:#aaa;
+
+    font-size:12px;
+    font-weight:bold;
+}
+
+.donate-price strong{
+    color:#fff;
+    font-size:15px;
+}
+
+.buy-btn{
+    width:100%;
+
+    margin-top:11px;
+
+    padding:10px;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #c70711,
+        #f01925
+    );
+
+    border-radius:8px;
+
+    font-size:10px;
+    font-weight:1000;
+
+    box-shadow:
+        0 5px 15px rgba(229,9,20,.12);
+}
+
+.buy-btn:active{
+    transform:scale(.97);
+}
+
+/* ================= BONUSES ================= */
+
+.bonus-grid{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:9px;
+}
+
+.bonus{
+    padding:14px;
+
+    background:#111;
+
+    border:1px solid #292929;
+    border-radius:11px;
+}
+
+.bonus-icon{
+    font-size:24px;
+}
+
+.bonus-title{
+    margin-top:7px;
+
+    font-size:12px;
+    font-weight:900;
+}
+
+.bonus-text{
+    margin-top:5px;
+
+    color:#777;
+
+    font-size:9px;
+    line-height:1.45;
+}
+
+/* ================= INFO ================= */
+
+.info{
+    margin-top:12px;
+
+    padding:14px;
+
+    background:#0e0e0e;
+
+    border:1px solid #292929;
+    border-radius:11px;
+}
+
+.info-row{
+    display:flex;
+    align-items:flex-start;
+    gap:9px;
+
+    padding:9px 0;
+
+    border-bottom:1px solid #222;
+}
+
+.info-row:last-child{
+    border-bottom:0;
+}
+
+.info-icon{
+    width:30px;
+    height:30px;
+
+    flex-shrink:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#191919;
+
+    border-radius:7px;
+
+    font-size:14px;
+}
+
+.info-main{
+    flex:1;
+}
+
+.info-title{
+    font-size:10px;
+    font-weight:900;
+}
+
+.info-text{
+    margin-top:3px;
+
+    color:#777;
+
+    font-size:9px;
+    line-height:1.4;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:20px;
+
+    z-index:500;
+
+    transform:
+        translateX(-50%)
+        translateY(20px);
+
+    width:max-content;
+    max-width:90%;
+
+    padding:11px 15px;
+
+    color:#fff;
+
+    background:#191919;
+
+    border:1px solid #383838;
+    border-radius:9px;
+
+    font-size:11px;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.25s;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+
+    z-index:400;
+
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+
+    padding:10px;
+
+    background:rgba(0,0,0,.78);
+}
+
+.modal-box{
+    width:100%;
+    max-width:500px;
+
+    padding:20px;
+
+    background:#121212;
+
+    border:1px solid #363636;
+
+    border-radius:17px 17px 9px 9px;
+
+    box-shadow:
+        0 -10px 50px rgba(0,0,0,.6);
+}
+
+.close{
+    float:right;
+
+    width:30px;
+    height:30px;
+
+    color:#fff;
+
+    background:#292929;
+
+    border-radius:50%;
+
+    font-size:18px;
+}
+
+.modal-title{
+    margin-bottom:8px;
+
+    font-size:19px;
+    font-weight:900;
+}
+
+.modal-text{
+    margin-bottom:15px;
+
+    color:#888;
+
+    font-size:11px;
+    line-height:1.5;
+
+    white-space:pre-line;
+}
+
+.modal-btn{
+    width:100%;
+
+    padding:13px;
+
+    color:#fff;
+
+    background:var(--red);
+
+    border-radius:9px;
+
+    font-size:11px;
+    font-weight:900;
+}
+
+/* ================= LOADING ================= */
+
+.loading{
+    padding:40px 15px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:11px;
+}
+
+.spinner{
+    width:28px;
+    height:28px;
+
+    margin:0 auto 10px;
+
+    border:3px solid #292929;
+    border-top-color:var(--red);
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* ================= NOT AUTH ================= */
+
+.auth-error{
+    display:none;
+
+    margin-top:15px;
+    padding:15px;
+
+    text-align:center;
+
+    background:#111;
+
+    border:1px solid #292929;
+
+    border-radius:11px;
+}
+
+.auth-error-title{
+    font-size:14px;
+    font-weight:900;
+}
+
+.auth-error-text{
+    margin-top:6px;
+
+    color:#777;
+
+    font-size:10px;
+    line-height:1.5;
+}
+
+.auth-error button{
+    width:100%;
+
+    margin-top:12px;
+
+    padding:11px;
+
+    color:#fff;
+
+    background:#222;
+
+    border:1px solid #333;
+
+    border-radius:8px;
+
+    font-size:10px;
+    font-weight:900;
+}
+
+/* ================= DESKTOP ================= */
+
+@media(min-width:700px){
+
+    .page{
+        padding:25px 20px 45px;
+    }
+
+    .donate-grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .bonus-grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+    .donate-card{
+        padding:20px 15px;
+    }
+}
+
+@media(max-width:380px){
+
+    .top-logo{
+        font-size:14px;
+    }
+
+    .money{
+        padding:5px 6px;
+        font-size:8px;
+    }
+
+    .donate-title{
+        font-size:27px;
+    }
+
+    .donate-grid{
+        gap:7px;
+    }
+
+    .donate-card{
+        padding:14px 9px;
+    }
+
+    .donate-amount{
+        font-size:18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+
+    <div class="top-logo">
+        BLACK <span>RUSSIA</span>
+    </div>
+
+    <button class="back-btn" onclick="goBack()">
+        ← НАЗАД
+    </button>
+
+    <div class="money-box">
+        <div class="money cash" id="topCash">
+            ₽ 0
+        </div>
+
+        <div class="money donate" id="topDonate">
+            ♦ 0
+        </div>
+    </div>
+
+</header>
+
+
+<main class="page">
+
+    <div class="page-title">
+        Донат
+    </div>
+
+    <div class="page-subtitle">
+        Премиальная валюта сервера
+    </div>
+
+
+    <!-- HERO -->
+
+    <section class="donate-banner">
+
+        <div class="donate-content">
+
+            <div class="donate-label">
+                BLACK RUSSIA RP
+            </div>
+
+            <div class="donate-title">
+                BLACK <span>DONATE</span>
+            </div>
+
+            <div class="donate-description">
+                Приобретай премиальную валюту и используй её
+                для кейсов, предметов и других возможностей сервера.
+            </div>
+
+            <div class="balance">
+                Твой баланс:
+                <span id="donateBalance">
+                    ♦ 0
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PACKAGES -->
+
+    <div class="section-title">
+        Пополнение баланса
+    </div>
+
+    <div class="section-subtitle">
+        Выбери подходящий пакет донат-валюты.
+    </div>
+
+
+    <div class="donate-grid">
+
+        <!-- 100 -->
+
+        <div class="donate-card">
+
+            <div class="donate-icon">
+                💎
+            </div>
+
+            <div class="donate-amount">
+                <span>♦</span> 100
+            </div>
+
+            <div class="donate-name">
+                Стартовый набор
+            </div>
+
+            <div class="donate-price">
+                <strong>99 ₽</strong>
+            </div>
+
+            <button
+                class="buy-btn"
+                onclick="buyDonate(100,99,'Стартовый набор')">
+                ПОЛУЧИТЬ
+            </button>
+
+        </div>
+
+
+        <!-- 500 -->
+
+        <div class="donate-card popular">
+
+            <div class="popular-label">
+                ПОПУЛЯРНЫЙ
+            </div>
+
+            <div class="donate-icon">
+                💎
+            </div>
+
+            <div class="donate-amount">
+                <span>♦</span> 500
+            </div>
+
+            <div class="donate-name">
+                Большой набор
+            </div>
+
+            <div class="donate-price">
+                <strong>399 ₽</strong>
+            </div>
+
+            <button
+                class="buy-btn"
+                onclick="buyDonate(500,399,'Большой набор')">
+                ПОЛУЧИТЬ
+            </button>
+
+        </div>
+
+
+        <!-- 1000 -->
+
+        <div class="donate-card">
+
+            <div class="donate-icon">
+                🔥
+            </div>
+
+            <div class="donate-amount">
+                <span>♦</span> 1 000
+            </div>
+
+            <div class="donate-name">
+                Премиум набор
+            </div>
+
+            <div class="donate-price">
+                <strong>699 ₽</strong>
+            </div>
+
+            <button
+                class="buy-btn"
+                onclick="buyDonate(1000,699,'Премиум набор')">
+                ПОЛУЧИТЬ
+            </button>
+
+        </div>
+
+
+        <!-- 5000 -->
+
+        <div class="donate-card">
+
+            <div class="donate-icon">
+                👑
+            </div>
+
+            <div class="donate-amount">
+                <span>♦</span> 5 000
+            </div>
+
+            <div class="donate-name">
+                VIP набор
+            </div>
+
+            <div class="donate-price">
+                <strong>2 999 ₽</strong>
+            </div>
+
+            <button
+                class="buy-btn"
+                onclick="buyDonate(5000,2999,'VIP набор')">
+                ПОЛУЧИТЬ
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- BONUS -->
+
+    <div class="section-title">
+        Что можно купить за ♦
+    </div>
+
+    <div class="bonus-grid">
+
+        <div class="bonus">
+            <div class="bonus-icon">
+                🎁
+            </div>
+
+            <div class="bonus-title">
+                Кейсы
+            </div>
+
+            <div class="bonus-text">
+                Открывай кейсы и получай редкие награды.
+            </div>
+        </div>
+
+
+        <div class="bonus">
+            <div class="bonus-icon">
+                🚗
+            </div>
+
+            <div class="bonus-title">
+                Транспорт
+            </div>
+
+            <div class="bonus-text">
+                Особые автомобили и улучшения для гаража.
+            </div>
+        </div>
+
+
+        <div class="bonus">
+            <div class="bonus-icon">
+                👑
+            </div>
+
+            <div class="bonus-title">
+                VIP
+            </div>
+
+            <div class="bonus-text">
+                Премиальные возможности игрового аккаунта.
+            </div>
+        </div>
+
+
+        <div class="bonus">
+            <div class="bonus-icon">
+                💰
+            </div>
+
+            <div class="bonus-title">
+                Предметы
+            </div>
+
+            <div class="bonus-text">
+                Эксклюзивные предметы и наборы.
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="section-title">
+        Информация
+    </div>
+
+    <div class="info">
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                🔒
+            </div>
+
+            <div class="info-main">
+
+                <div class="info-title">
+                    Безопасность
+                </div>
+
+                <div class="info-text">
+                    Донат привязан к твоему игровому аккаунту.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                ⚡
+            </div>
+
+            <div class="info-main">
+
+                <div class="info-title">
+                    Быстрое начисление
+                </div>
+
+                <div class="info-text">
+                    После подключения оплаты валюта будет
+                    автоматически зачисляться на аккаунт.
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info-row">
+
+            <div class="info-icon">
+                🎮
+            </div>
+
+            <div class="info-main">
+
+                <div class="info-title">
+                    Только для игры
+                </div>
+
+                <div class="info-text">
+                    Донат-валюта используется внутри проекта
+                    BLACK RUSSIA RP.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- AUTH ERROR -->
+
+    <div class="auth-error" id="authError">
+
+        <div class="auth-error-title">
+            🔐 Авторизация не найдена
+        </div>
+
+        <div class="auth-error-text">
+            Чтобы открыть донат-магазин, сначала войди
+            в свой игровой аккаунт.
+        </div>
+
+        <button onclick="goBack()">
+            ВЕРНУТЬСЯ В ИГРУ
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- LOADING -->
+
+<div
+    id="loading"
+    class="loading">
+
+    <div class="spinner"></div>
+
+    Загрузка профиля...
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+    id="modal"
+    class="modal hidden"
+    onclick="if(event.target===this)closeModal()">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            onclick="closeModal()">
+            ×
+        </button>
+
+        <div
+            class="modal-title"
+            id="modalTitle">
+            Донат
+        </div>
+
+        <div
+            class="modal-text"
+            id="modalText">
+        </div>
+
+        <button
+            class="modal-btn"
+            onclick="closeModal()">
+            ПОНЯТНО
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast">
+    Готово
+</div>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE
+========================================================= */
+
+const SUPABASE_URL =
+    "https://qzswnoeglovfpgrzpnio.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+
+
+let currentUser = null;
+let currentAuthUser = null;
+let toastTimer = null;
+
+
+/* =========================================================
+   SUPABASE FETCH
+========================================================= */
+
+async function supabaseFetch(path,options={}){
+
+    const r = await fetch(
+        SUPABASE_URL + path,
+        {
+            ...options,
+
+            headers:{
+                apikey:SUPABASE_KEY,
+
+                Authorization:
+                    "Bearer " +
+                    (
+                        localStorage.getItem(
+                            "brp_access_token"
+                        ) ||
+                        SUPABASE_KEY
+                    ),
+
+                "Content-Type":
+                    "application/json",
+
+                ...(options.headers || {})
+            }
+        }
+    );
+
+    const t = await r.text();
+
+    let d = null;
+
+    try{
+        d = t ? JSON.parse(t) : null;
+    }catch(e){
+        d = t;
+    }
+
+    if(!r.ok){
+
+        throw new Error(
+            typeof d === "string"
+                ? d
+                : JSON.stringify(d)
+        );
+
+    }
+
+    return d;
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function number(v){
+
+    return Number(v || 0)
+        .toLocaleString("ru-RU");
+
+}
+
+
+function money(v){
+
+    return "₽ " + number(v);
+
+}
+
+
+function toast(text){
+
+    const e =
+        document.getElementById("toast");
+
+    e.textContent = text;
+
+    e.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(
+            ()=>{
+                e.classList.remove("show");
+            },
+            2300
+        );
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(title,text){
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent = title;
+
+    document.getElementById(
+        "modalText"
+    ).textContent = text;
+
+    document.getElementById(
+        "modal"
+    ).classList.remove("hidden");
+
+}
+
+
+function closeModal(){
+
+    document.getElementById(
+        "modal"
+    ).classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+async function loadSession(){
+
+    const token =
+        localStorage.getItem(
+            "brp_access_token"
+        );
+
+    if(!token){
+
+        showAuthError();
+
+        return;
+
+    }
+
+    try{
+
+        currentAuthUser =
+            await supabaseFetch(
+                "/auth/v1/user",
+                {
+                    headers:{
+                        apikey:SUPABASE_KEY,
+                        Authorization:
+                            "Bearer " + token
+                    }
+                }
+            );
+
+
+        await loadProfile();
+
+    }catch(e){
+
+        console.error(e);
+
+        showAuthError();
+
+    }
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+async function loadProfile(){
+
+    const token =
+        localStorage.getItem(
+            "brp_access_token"
+        );
+
+    const rows =
+        await supabaseFetch(
+            "/rest/v1/profiles?id=eq." +
+            encodeURIComponent(
+                currentAuthUser.id
+            ) +
+            "&select=*",
+            {
+                headers:{
+                    apikey:SUPABASE_KEY,
+                    Authorization:
+                        "Bearer " + token
+                }
+            }
+        );
+
+
+    if(!rows || !rows.length){
+
+        throw new Error(
+            "Профиль игрока не найден."
+        );
+
+    }
+
+
+    currentUser = rows[0];
+
+    renderProfile();
+
+}
+
+
+/* =========================================================
+   RENDER PROFILE
+========================================================= */
+
+function renderProfile(){
+
+    if(!currentUser)return;
+
+
+    const cash =
+        Number(currentUser.cash || 0);
+
+    const donate =
+        Number(currentUser.donate || 0);
+
+
+    document.getElementById(
+        "topCash"
+    ).textContent =
+        "₽ " + number(cash);
+
+
+    document.getElementById(
+        "topDonate"
+    ).textContent =
+        "♦ " + number(donate);
+
+
+    document.getElementById(
+        "donateBalance"
+    ).textContent =
+        "♦ " + number(donate);
+
+
+    document.getElementById(
+        "loading"
+    ).classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   AUTH ERROR
+========================================================= */
+
+function showAuthError(){
+
+    document.getElementById(
+        "loading"
+    ).classList.add("hidden");
+
+
+    document.getElementById(
+        "authError"
+    ).style.display = "block";
+
+}
+
+
+/* =========================================================
+   DONATE PURCHASE
+========================================================= */
+
+function buyDonate(amount,price,name){
+
+    if(!currentUser){
+
+        return toast(
+            "🔐 Войди в аккаунт."
+        );
+
+    }
+
+
+    openModal(
+        "♦ " + name,
+
+        "Пакет: ♦ " +
+        number(amount) +
+
+        "\n\nСтоимость: " +
+        number(price) +
+        " ₽" +
+
+        "\n\nТекущий баланс: ♦ " +
+        number(currentUser.donate) +
+
+        "\n\nПлатёжная система пока не подключена." +
+
+        "\n\nПосле подключения оплаты здесь будет открываться платёжная форма, а после успешной оплаты донат автоматически зачислится на твой игровой аккаунт."
+    );
+
+}
+
+
+/* =========================================================
+   BACK
+========================================================= */
+
+function goBack(){
+
+    /*
+       Если donate.html открыт внутри
+       обычного сайта через ссылку —
+       возвращаем игрока на index.html.
+    */
+
+    if(
+        document.referrer &&
+        document.referrer.includes(
+            location.hostname
+        )
+    ){
+
+        history.back();
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async ()=>{
+
+        await loadSession();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
