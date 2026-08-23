@@ -6,1591 +6,513 @@
 <title>BLACK RUSSIA RP</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent
-}
-
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-    --bg:#070707;
-    --black:#0b0b0b;
-    --panel:#111;
-    --panel2:#171717;
-    --panel3:#1d1d1d;
-    --line:#292929;
-    --red:#e50914;
-    --red2:#ff2633;
-    --white:#f5f5f5;
-    --muted:#929292;
-    --green:#31d47a;
-    --yellow:#ffc928;
-    --blue:#4d9cff;
+--bg:#070707;--black:#0b0b0b;--panel:#111;--panel2:#171717;
+--panel3:#1d1d1d;--line:#292929;--red:#e50914;--red2:#ff2633;
+--white:#f5f5f5;--muted:#929292;--green:#31d47a;--yellow:#ffc928
 }
+body{font-family:Arial,Helvetica,sans-serif;background:#050505;color:var(--white);min-height:100vh}
+button,input{font-family:inherit}
+button{border:0;cursor:pointer}
+.hidden{display:none!important}
 
-html,body{
-    background:#050505;
-    color:var(--white);
-    min-height:100%;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-button,input{
-    font-family:inherit;
-}
-
-button{
-    border:0;
-    cursor:pointer;
-}
-
-button:disabled{
-    cursor:not-allowed;
-}
-
-.hidden{
-    display:none!important;
-}
-
-/* =========================================================
-   AUTH
-========================================================= */
-
+/* AUTH */
 #authScreen{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-
-    background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(229,9,20,.18),
-            transparent 38%
-        ),
-        #050505;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+background:radial-gradient(circle at 50% 0%,rgba(229,9,20,.18),transparent 38%),#050505
 }
 
 .auth-box{
-    width:100%;
-    max-width:430px;
-    padding:25px;
-
-    background:#101010;
-
-    border:1px solid #292929;
-    border-radius:16px;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.65),
-        0 0 50px rgba(229,9,20,.03);
+width:100%;
+max-width:430px;
+padding:25px;
+background:#101010;
+border:1px solid #292929;
+border-radius:16px;
+box-shadow:0 20px 60px rgba(0,0,0,.65)
 }
 
 .logo-box{
-    width:82px;
-    height:82px;
-
-    margin:0 auto 14px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:12px;
-
-    background:#080808;
-    border:2px solid var(--red);
-
-    box-shadow:
-        inset 0 0 25px rgba(229,9,20,.12),
-        0 0 25px rgba(229,9,20,.08);
+width:82px;
+height:82px;
+margin:0 auto 14px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:12px;
+background:#080808;
+border:2px solid var(--red);
+box-shadow:inset 0 0 25px rgba(229,9,20,.12),0 0 25px rgba(229,9,20,.08)
 }
 
-.logo-box div{
-    text-align:center;
-    line-height:.85;
-}
-
-.logo-box .b{
-    font-size:27px;
-    font-weight:1000;
-    color:#fff;
-}
-
-.logo-box .r{
-    font-size:17px;
-    font-weight:1000;
-    color:var(--red);
-}
-
-.logo{
-    text-align:center;
-    font-size:28px;
-    font-weight:1000;
-    letter-spacing:-1px;
-}
-
-.logo span{
-    color:var(--red);
-}
-
-.logo-sub{
-    text-align:center;
-    color:#777;
-    font-size:10px;
-    margin:6px 0 23px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
+.logo-box div{text-align:center;line-height:.85}
+.logo-box .b{font-size:27px;font-weight:1000;color:#fff}
+.logo-box .r{font-size:17px;font-weight:1000;color:var(--red)}
+.logo{text-align:center;font-size:28px;font-weight:1000;letter-spacing:-1px}
+.logo span{color:var(--red)}
+.logo-sub{text-align:center;color:#777;font-size:10px;margin:6px 0 23px;letter-spacing:2px;text-transform:uppercase}
 
 .auth-tabs{
-    display:flex;
-    gap:5px;
-
-    padding:4px;
-
-    background:#080808;
-    border:1px solid #222;
-    border-radius:10px;
-
-    margin-bottom:21px;
+display:flex;
+gap:5px;
+padding:4px;
+background:#080808;
+border:1px solid #222;
+border-radius:10px;
+margin-bottom:21px
 }
 
 .auth-tab{
-    flex:1;
-    padding:11px;
-
-    border-radius:7px;
-
-    background:transparent;
-    color:#777;
-
-    font-weight:800;
+flex:1;
+padding:11px;
+border-radius:7px;
+background:transparent;
+color:#777;
+font-weight:800
 }
 
-.auth-tab.active{
-    background:var(--red);
-    color:#fff;
-}
-
-.auth-title{
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:6px;
-}
-
-.auth-desc{
-    color:#858585;
-    font-size:12px;
-    line-height:1.5;
-    margin-bottom:18px;
-}
-
-.field{
-    margin-bottom:13px;
-}
-
+.auth-tab.active{background:var(--red);color:#fff}
+.auth-title{font-size:22px;font-weight:900;margin-bottom:6px}
+.auth-desc{color:#858585;font-size:12px;line-height:1.5;margin-bottom:18px}
+.field{margin-bottom:13px}
 .field label{
-    display:block;
-    color:#aaa;
-    font-size:10px;
-    font-weight:bold;
-    margin-bottom:7px;
-    letter-spacing:.5px;
+display:block;
+color:#aaa;
+font-size:10px;
+font-weight:bold;
+margin-bottom:7px;
+letter-spacing:.5px
 }
 
 .field input{
-    width:100%;
-    padding:14px;
-
-    color:#fff;
-    background:#080808;
-
-    border:1px solid #2a2a2a;
-    border-radius:9px;
-
-    outline:none;
+width:100%;
+padding:14px;
+color:#fff;
+background:#080808;
+border:1px solid #2a2a2a;
+border-radius:9px;
+outline:none
 }
 
-.field input:focus{
-    border-color:var(--red);
-}
+.field input:focus{border-color:var(--red)}
 
-.primary-btn,
-.secondary-btn{
-    width:100%;
-    color:#fff;
-    border-radius:9px;
-    font-weight:900;
+.primary-btn,.secondary-btn{
+width:100%;
+color:#fff;
+border-radius:9px;
+font-weight:900
 }
 
 .primary-btn{
-    padding:14px;
-    background:linear-gradient(
-        135deg,
-        #c70711,
-        #f01925
-    );
+padding:14px;
+background:linear-gradient(135deg,#c70711,#f01925)
 }
 
 .secondary-btn{
-    padding:13px;
-    background:#202020;
-    border:1px solid #303030;
-    font-weight:bold;
-    margin-top:9px;
+padding:13px;
+background:#202020;
+border:1px solid #303030;
+font-weight:bold;
+margin-top:9px
 }
 
 .auth-message{
-    min-height:20px;
-    margin-top:12px;
-    text-align:center;
-    font-size:12px;
+min-height:20px;
+margin-top:12px;
+text-align:center;
+font-size:12px
 }
 
-/* =========================================================
-   APP
-========================================================= */
-
-#app{
-    min-height:100vh;
-    padding-bottom:76px;
-}
+/* APP */
+#app{min-height:100vh;padding-bottom:76px}
 
 .topbar{
-    height:62px;
-
-    position:sticky;
-    top:0;
-    z-index:50;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 13px;
-
-    background:rgba(8,8,8,.96);
-    border-bottom:1px solid #252525;
-
-    backdrop-filter:blur(12px);
+height:62px;
+position:sticky;
+top:0;
+z-index:50;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 13px;
+background:rgba(8,8,8,.96);
+border-bottom:1px solid #252525;
+backdrop-filter:blur(12px)
 }
 
-.top-logo{
-    font-size:16px;
-    font-weight:1000;
-}
-
-.top-logo span{
-    color:var(--red);
-}
+.top-logo{font-size:16px;font-weight:1000}
+.top-logo span{color:var(--red)}
 
 .server-status{
-    display:flex;
-    align-items:center;
-    gap:6px;
-
-    color:#888;
-    font-size:10px;
+display:flex;
+align-items:center;
+gap:6px;
+color:#888;
+font-size:10px
 }
 
 .online-dot{
-    width:7px;
-    height:7px;
-
-    border-radius:50%;
-
-    background:var(--green);
-
-    box-shadow:0 0 8px var(--green);
+width:7px;
+height:7px;
+border-radius:50%;
+background:var(--green);
+box-shadow:0 0 8px var(--green)
 }
 
-.money-box{
-    display:flex;
-    gap:5px;
-}
+.money-box{display:flex;gap:5px}
 
 .money{
-    padding:6px 8px;
-
-    background:#151515;
-    border:1px solid #292929;
-    border-radius:7px;
-
-    font-size:9px;
-    font-weight:bold;
+padding:6px 8px;
+background:#151515;
+border:1px solid #292929;
+border-radius:7px;
+font-size:9px;
+font-weight:bold
 }
 
-.money.cash{
-    color:#53dd8a;
-}
-
-.money.donate{
-    color:var(--red2);
-}
+.money.cash{color:#53dd8a}
+.money.donate{color:var(--red2)}
 
 .page{
-    display:none;
-
-    max-width:1000px;
-    margin:auto;
-
-    padding:15px;
+display:none;
+max-width:1000px;
+margin:auto;
+padding:15px
 }
 
-.page.active{
-    display:block;
-}
+.page.active{display:block}
+.page-title{font-size:25px;font-weight:1000}
+.page-subtitle{color:#777;font-size:11px;margin:4px 0 17px}
+.section-title{margin:21px 0 11px;font-size:16px;font-weight:900}
 
-.page-title{
-    font-size:25px;
-    font-weight:1000;
-}
-
-.page-subtitle{
-    color:#777;
-    font-size:11px;
-    margin:4px 0 17px;
-}
-
-.section-title{
-    margin:21px 0 11px;
-    font-size:16px;
-    font-weight:900;
-}
-
-/* =========================================================
-   HOME
-========================================================= */
-
+/* HOME */
 .hero{
-    position:relative;
-    overflow:hidden;
-
-    padding:20px;
-
-    background:
-        linear-gradient(
-            120deg,
-            rgba(229,9,20,.16),
-            transparent 55%
-        ),
-        #111;
-
-    border:1px solid #292929;
-    border-radius:14px;
+position:relative;
+overflow:hidden;
+padding:20px;
+background:linear-gradient(120deg,rgba(229,9,20,.16),transparent 55%),#111;
+border:1px solid #292929;
+border-radius:14px
 }
 
 .hero:after{
-    content:"RP";
-
-    position:absolute;
-    right:-10px;
-    bottom:-35px;
-
-    color:rgba(255,255,255,.025);
-
-    font-size:120px;
-    font-weight:1000;
+content:"RP";
+position:absolute;
+right:-10px;
+bottom:-35px;
+color:rgba(255,255,255,.025);
+font-size:120px;
+font-weight:1000
 }
 
 .hero-small{
-    color:#777;
-    font-size:10px;
-
-    text-transform:uppercase;
-    letter-spacing:1.3px;
+color:#777;
+font-size:10px;
+text-transform:uppercase;
+letter-spacing:1.3px
 }
 
 .hero-name{
-    position:relative;
-    z-index:1;
-
-    margin:6px 0 10px;
-
-    font-size:27px;
-    font-weight:1000;
+position:relative;
+z-index:1;
+margin:6px 0 10px;
+font-size:27px;
+font-weight:1000
 }
 
-.hero-name span{
-    color:var(--red);
-}
+.hero-name span{color:var(--red)}
 
 .stats-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-
-    gap:9px;
-    margin-top:12px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:9px;
+margin-top:12px
 }
 
 .stat-card{
-    padding:14px;
-
-    background:#111;
-    border:1px solid #272727;
-    border-radius:11px;
+padding:14px;
+background:#111;
+border:1px solid #272727;
+border-radius:11px
 }
 
-.stat-label{
-    color:#777;
-    font-size:9px;
-    margin-bottom:6px;
-}
-
-.stat-value{
-    font-size:17px;
-    font-weight:900;
-}
+.stat-label{color:#777;font-size:9px;margin-bottom:6px}
+.stat-value{font-size:17px;font-weight:900}
 
 .progress{
-    height:5px;
-
-    overflow:hidden;
-
-    background:#292929;
-
-    border-radius:20px;
-
-    margin-top:9px;
+height:5px;
+overflow:hidden;
+background:#292929;
+border-radius:20px;
+margin-top:9px
 }
 
 .progress div{
-    width:0;
-    height:100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #b90912,
-            #ff2835
-        );
+width:0;
+height:100%;
+background:linear-gradient(90deg,#b90912,#ff2835)
 }
 
 .quick-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:8px;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px
 }
 
 .quick{
-    padding:14px 6px;
-
-    color:#fff;
-
-    background:#111;
-    border:1px solid #272727;
-
-    border-radius:11px;
-
-    transition:.15s;
+padding:14px 6px;
+color:#fff;
+background:#111;
+border:1px solid #272727;
+border-radius:11px
 }
 
-.quick:active{
-    transform:scale(.97);
-}
+.quick-icon{font-size:22px;margin-bottom:6px}
+.quick-name{font-size:10px;font-weight:bold}
 
-.quick-icon{
-    font-size:22px;
-    margin-bottom:6px;
-}
-
-.quick-name{
-    font-size:10px;
-    font-weight:bold;
-}
-
-/* =========================================================
-   CARDS
-========================================================= */
-
+/* CARDS/JOBS */
 .cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px
 }
 
 .card{
-    padding:15px;
-
-    background:#111;
-    border:1px solid #292929;
-
-    border-radius:12px;
+padding:15px;
+background:#111;
+border:1px solid #292929;
+border-radius:12px
 }
 
-.card-title{
-    font-size:15px;
-    font-weight:900;
-}
-
-.card-desc{
-    color:#777;
-    font-size:11px;
-    line-height:1.45;
-
-    margin:7px 0 12px;
-}
+.card-title{font-size:15px;font-weight:900}
+.card-desc{color:#777;font-size:11px;line-height:1.45;margin:7px 0 12px}
 
 .card-btn{
-    width:100%;
-    padding:10px;
-
-    color:#fff;
-
-    background:#222;
-
-    border-radius:8px;
-
-    font-size:11px;
-    font-weight:bold;
+width:100%;
+padding:10px;
+color:#fff;
+background:#222;
+border-radius:8px;
+font-size:11px;
+font-weight:bold
 }
 
-.card-btn.red{
-    background:var(--red);
-}
-
-/* =========================================================
-   JOBS
-========================================================= */
+.card-btn.red{background:var(--red)}
 
 .job{
-    display:flex;
-    align-items:center;
-    gap:11px;
-
-    padding:13px;
-    margin-bottom:8px;
-
-    background:#111;
-    border:1px solid #292929;
-
-    border-radius:12px;
+display:flex;
+align-items:center;
+gap:11px;
+padding:13px;
+margin-bottom:8px;
+background:#111;
+border:1px solid #292929;
+border-radius:12px
 }
 
 .job-icon{
-    width:46px;
-    height:46px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    flex-shrink:0;
-
-    background:#1c1c1c;
-
-    border-radius:10px;
-
-    font-size:23px;
+width:46px;
+height:46px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-shrink:0;
+background:#1c1c1c;
+border-radius:10px;
+font-size:23px
 }
 
-.job-main{
-    flex:1;
-}
-
-.job-name{
-    font-size:13px;
-    font-weight:900;
-}
-
-.job-info{
-    color:#777;
-    font-size:10px;
-    line-height:1.45;
-
-    margin-top:4px;
-}
+.job-main{flex:1}
+.job-name{font-size:13px;font-weight:900}
+.job-info{color:#777;font-size:10px;line-height:1.45;margin-top:4px}
 
 .job-action{
-    padding:9px 10px;
-
-    background:var(--red);
-    color:#fff;
-
-    border-radius:7px;
-
-    font-size:9px;
-    font-weight:900;
+padding:9px 10px;
+background:var(--red);
+color:#fff;
+border-radius:7px;
+font-size:9px;
+font-weight:900
 }
 
-/* =========================================================
-   GARAGE
-========================================================= */
-
+/* GARAGE/SHOP */
 .car{
-    margin-bottom:10px;
-
-    overflow:hidden;
-
-    background:#111;
-
-    border:1px solid #292929;
-    border-radius:13px;
+margin-bottom:10px;
+overflow:hidden;
+background:#111;
+border:1px solid #292929;
+border-radius:13px
 }
 
 .car-image{
-    height:125px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:
-        radial-gradient(
-            circle,
-            #353535,
-            #161616 50%,
-            #0b0b0b
-        );
-
-    font-size:65px;
+height:125px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:radial-gradient(circle,#353535,#161616 50%,#0b0b0b);
+font-size:65px
 }
 
-.car-body{
-    padding:14px;
-}
-
-.car-name{
-    font-size:17px;
-    font-weight:900;
-}
-
-.car-meta{
-    color:#777;
-    font-size:10px;
-    margin-top:5px;
-}
+.car-body{padding:14px}
+.car-name{font-size:17px;font-weight:900}
+.car-meta{color:#777;font-size:10px;margin-top:5px}
 
 .car-buttons{
-    display:flex;
-    gap:6px;
-    margin-top:11px;
+display:flex;
+gap:6px;
+margin-top:11px
 }
 
 .car-buttons button{
-    flex:1;
-    padding:9px;
-
-    color:#fff;
-    background:#202020;
-
-    border-radius:7px;
-
-    font-size:10px;
-    font-weight:bold;
+flex:1;
+padding:9px;
+color:#fff;
+background:#202020;
+border-radius:7px;
+font-size:10px;
+font-weight:bold
 }
 
-/* =========================================================
-   SHOP
-========================================================= */
-
-.shop-grid,
-.case-grid,
-.donate-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:9px;
+.shop-grid,.case-grid,.donate-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:9px
 }
 
 .item{
-    text-align:center;
-
-    padding:15px;
-
-    background:#111;
-    border:1px solid #292929;
-
-    border-radius:12px;
+text-align:center;
+padding:15px;
+background:#111;
+border:1px solid #292929;
+border-radius:12px
 }
 
-.item-icon{
-    font-size:34px;
-}
-
-.item-name{
-    margin-top:7px;
-
-    font-size:12px;
-    font-weight:900;
-}
-
-.item-price{
-    color:#55dc89;
-
-    font-size:11px;
-
-    margin:7px 0;
-}
+.item-icon{font-size:34px}
+.item-name{margin-top:7px;font-size:12px;font-weight:900}
+.item-price{color:#55dc89;font-size:11px;margin:7px 0}
 
 .buy{
-    width:100%;
-
-    padding:9px;
-
-    background:var(--red);
-    color:#fff;
-
-    border-radius:7px;
-
-    font-size:10px;
-    font-weight:900;
+width:100%;
+padding:9px;
+background:var(--red);
+color:#fff;
+border-radius:7px;
+font-size:10px;
+font-weight:900
 }
 
-/* =========================================================
-   DONATE / CASES
-========================================================= */
-
+/* DONATE/CASES */
 .donate-banner{
-    padding:24px;
-
-    text-align:center;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(229,9,20,.18),
-            transparent 65%
-        ),
-        #111;
-
-    border:1px solid #432020;
-    border-radius:14px;
+padding:24px;
+text-align:center;
+background:radial-gradient(circle,rgba(229,9,20,.18),transparent 65%),#111;
+border:1px solid #432020;
+border-radius:14px
 }
 
-.donate-title{
-    font-size:29px;
-    font-weight:1000;
-}
+.donate-title{font-size:29px;font-weight:1000}
+.donate-title span{color:var(--red)}
+.donate-sub{color:#777;font-size:11px;margin-top:5px}
 
-.donate-title span{
-    color:var(--red);
-}
-
-.donate-sub{
-    color:#777;
-    font-size:11px;
-    margin-top:5px;
-}
-
-.donate-grid{
-    margin-top:12px;
-}
+.donate-grid{margin-top:12px}
 
 .donate-card{
-    padding:17px;
-
-    text-align:center;
-
-    background:#111;
-    border:1px solid #292929;
-
-    border-radius:12px;
+padding:17px;
+text-align:center;
+background:#111;
+border:1px solid #292929;
+border-radius:12px
 }
 
 .donate-card strong{
-    display:block;
-
-    color:var(--red);
-
-    font-size:20px;
+display:block;
+color:var(--red);
+font-size:20px
 }
 
 .donate-card span{
-    display:block;
-
-    color:#777;
-
-    font-size:10px;
-
-    margin:5px 0 10px;
+display:block;
+color:#777;
+font-size:10px;
+margin:5px 0 10px
 }
 
-.donate-card button,
-.case button{
-    width:100%;
-
-    padding:9px;
-
-    background:var(--red);
-    color:#fff;
-
-    border-radius:7px;
-
-    font-size:10px;
-    font-weight:900;
+.donate-card button,.case button{
+width:100%;
+padding:9px;
+background:var(--red);
+color:#fff;
+border-radius:7px;
+font-size:10px;
+font-weight:900
 }
 
 .case{
-    padding:17px;
-
-    text-align:center;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(229,9,20,.09),
-            transparent
-        ),
-        #111;
-
-    border:1px solid #3b2222;
-    border-radius:13px;
+padding:17px;
+text-align:center;
+background:linear-gradient(145deg,rgba(229,9,20,.09),transparent),#111;
+border:1px solid #3b2222;
+border-radius:13px
 }
 
-.case-icon{
-    font-size:42px;
-}
-
-.case-name{
-    font-size:14px;
-    font-weight:900;
-
-    margin:7px 0;
-}
-
-.case-price{
-    color:var(--red);
-
-    font-size:11px;
-
-    margin-bottom:10px;
-}
-
-.case button{
-    padding:10px;
-    border-radius:8px;
-}
-
-/* =========================================================
-   CASINO
-========================================================= */
-
-.casino-hero{
-    position:relative;
-    overflow:hidden;
-
-    padding:22px;
-
-    background:
-        radial-gradient(
-            circle at 80% 20%,
-            rgba(229,9,20,.22),
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #171717,
-            #0e0e0e
-        );
-
-    border:1px solid #3a2020;
-    border-radius:15px;
-
-    margin-bottom:14px;
-}
-
-.casino-hero:after{
-    content:"21";
-
-    position:absolute;
-
-    right:-10px;
-    top:-25px;
-
-    color:rgba(255,255,255,.035);
-
-    font-size:130px;
-    font-weight:1000;
-}
-
-.casino-kicker{
-    position:relative;
-    z-index:1;
-
-    color:#888;
-
-    font-size:10px;
-
-    text-transform:uppercase;
-    letter-spacing:2px;
-}
-
-.casino-title{
-    position:relative;
-    z-index:1;
-
-    margin-top:5px;
-
-    font-size:31px;
-    font-weight:1000;
-}
-
-.casino-title span{
-    color:var(--red);
-}
-
-.casino-balance{
-    position:relative;
-    z-index:1;
-
-    display:inline-block;
-
-    margin-top:12px;
-
-    padding:8px 12px;
-
-    background:#090909;
-    border:1px solid #303030;
-
-    border-radius:8px;
-
-    color:#58df8d;
-
-    font-size:11px;
-    font-weight:900;
-}
-
-.casino-games{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-
-    gap:10px;
-}
-
-.casino-game{
-    position:relative;
-
-    min-height:155px;
-
-    padding:17px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.025),
-            transparent
-        ),
-        #111;
-
-    border:1px solid #2b2b2b;
-    border-radius:13px;
-
-    transition:.15s;
-}
-
-.casino-game:active{
-    transform:scale(.98);
-}
-
-.casino-game.red{
-    border-color:#482020;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(229,9,20,.13),
-            transparent 65%
-        ),
-        #111;
-}
-
-.casino-icon{
-    font-size:39px;
-}
-
-.casino-game-title{
-    margin-top:7px;
-
-    font-size:15px;
-    font-weight:1000;
-}
-
-.casino-game-desc{
-    color:#777;
-
-    font-size:10px;
-    line-height:1.4;
-
-    margin-top:4px;
-}
-
-.casino-play{
-    width:100%;
-
-    margin-top:12px;
-    padding:10px;
-
-    color:#fff;
-
-    background:#222;
-
-    border-radius:8px;
-
-    font-size:10px;
-    font-weight:900;
-}
-
-.casino-game.red .casino-play{
-    background:var(--red);
-}
-
-.casino-history{
-    margin-top:15px;
-}
-
-.history-item{
-    display:flex;
-    align-items:center;
-
-    gap:10px;
-
-    padding:11px;
-
-    margin-bottom:7px;
-
-    background:#111;
-
-    border:1px solid #292929;
-
-    border-radius:10px;
-}
-
-.history-icon{
-    width:38px;
-    height:38px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#1b1b1b;
-
-    border-radius:8px;
-
-    font-size:19px;
-}
-
-.history-main{
-    flex:1;
-}
-
-.history-name{
-    font-size:11px;
-    font-weight:900;
-}
-
-.history-info{
-    color:#777;
-
-    font-size:9px;
-
-    margin-top:3px;
-}
-
-.history-result{
-    font-size:11px;
-    font-weight:900;
-}
-
-.win{
-    color:var(--green);
-}
-
-.loss{
-    color:#ff4753;
-}
-
-/* =========================================================
-   BLACKJACK
-========================================================= */
-
-.blackjack{
-    padding:14px;
-
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            rgba(40,100,50,.22),
-            transparent 55%
-        ),
-        #101712;
-
-    border:1px solid #283c2d;
-
-    border-radius:15px;
-}
-
-.table-label{
-    color:#777;
-
-    font-size:9px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1.5px;
-
-    margin-bottom:8px;
-}
-
-.hand{
-    min-height:108px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-wrap:wrap;
-
-    gap:7px;
-
-    padding:12px;
-
-    background:rgba(0,0,0,.16);
-
-    border:1px dashed #314735;
-
-    border-radius:11px;
-}
-
-.card-playing{
-    width:54px;
-    height:76px;
-
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-
-    padding:7px;
-
-    color:#111;
-
-    background:#f4f4f4;
-
-    border-radius:7px;
-
-    box-shadow:0 5px 12px rgba(0,0,0,.35);
-
-    font-weight:900;
-}
-
-.card-playing.red-card{
-    color:#d00;
-}
-
-.card-playing .suit{
-    align-self:flex-end;
-
-    font-size:20px;
-}
-
-.card-back{
-    width:54px;
-    height:76px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:
-        repeating-linear-gradient(
-            45deg,
-            #8d0b12,
-            #8d0b12 4px,
-            #b50d17 4px,
-            #b50d17 8px
-        );
-
-    border:3px solid #eee;
-
-    border-radius:7px;
-
-    font-size:19px;
-}
-
-.hand-info{
-    display:flex;
-    justify-content:space-between;
-
-    margin:8px 2px 13px;
-
-    color:#aaa;
-
-    font-size:11px;
-}
-
-.hand-info strong{
-    color:#fff;
-    font-size:14px;
-}
-
-.bet-area{
-    padding:12px;
-
-    background:#0c0c0c;
-
-    border:1px solid #292929;
-
-    border-radius:10px;
-
-    margin-top:13px;
-}
-
-.bet-label{
-    color:#777;
-
-    font-size:9px;
-
-    margin-bottom:7px;
-}
-
-.bet-input{
-    width:100%;
-
-    padding:12px;
-
-    color:#fff;
-
-    background:#181818;
-
-    border:1px solid #303030;
-
-    border-radius:8px;
-
-    outline:none;
-}
-
-.bet-presets{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-
-    gap:5px;
-
-    margin-top:7px;
-}
-
-.bet-presets button{
-    padding:8px;
-
-    color:#ccc;
-
-    background:#202020;
-
-    border-radius:6px;
-
-    font-size:9px;
-    font-weight:900;
-}
-
-.game-actions{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-
-    gap:7px;
-
-    margin-top:9px;
-}
-
-.game-actions button{
-    padding:12px;
-
-    color:#fff;
-
-    background:#222;
-
-    border-radius:8px;
-
-    font-size:10px;
-    font-weight:900;
-}
-
-.game-actions .hit{
-    background:#333;
-}
-
-.game-actions .stand{
-    background:#8d1118;
-}
-
-.game-actions .new{
-    background:var(--red);
-    grid-column:1/-1;
-}
-
-.game-message{
-    min-height:23px;
-
-    margin-top:11px;
-
-    text-align:center;
-
-    font-size:11px;
-    font-weight:900;
-}
-
-/* =========================================================
-   ROULETTE
-========================================================= */
-
-.roulette-box{
-    padding:20px;
-
-    text-align:center;
-
-    background:#111;
-
-    border:1px solid #292929;
-
-    border-radius:14px;
-}
-
-.roulette-wheel{
-    width:190px;
-    height:190px;
-
-    margin:7px auto 18px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:
-        conic-gradient(
-            #111 0deg 30deg,
-            #d20d17 30deg 60deg,
-            #111 60deg 90deg,
-            #d20d17 90deg 120deg,
-            #111 120deg 150deg,
-            #d20d17 150deg 180deg,
-            #111 180deg 210deg,
-            #d20d17 210deg 240deg,
-            #111 240deg 270deg,
-            #d20d17 270deg 300deg,
-            #111 300deg 330deg,
-            #d20d17 330deg 360deg
-        );
-
-    border:9px solid #272727;
-
-    box-shadow:
-        0 0 0 4px #111,
-        0 12px 35px rgba(0,0,0,.6);
-
-    transition:transform 1.2s cubic-bezier(.15,.75,.2,1);
-}
-
-.roulette-center{
-    width:74px;
-    height:74px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#080808;
-
-    border:2px solid #444;
-
-    border-radius:50%;
-
-    font-size:22px;
-    font-weight:1000;
-}
-
-.roulette-bets{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-
-    gap:7px;
-
-    margin-top:12px;
-}
-
-.roulette-bets button{
-    padding:12px 5px;
-
-    color:#fff;
-
-    background:#202020;
-
-    border:1px solid #303030;
-
-    border-radius:8px;
-
-    font-size:9px;
-    font-weight:900;
-}
-
-.roulette-bets button.selected{
-    background:var(--red);
-    border-color:var(--red);
-}
-
-.roulette-result{
-    min-height:22px;
-
-    margin-top:13px;
-
-    color:#ccc;
-
-    font-size:12px;
-    font-weight:900;
-}
-
-/* =========================================================
-   DICE
-========================================================= */
-
-.dice-box{
-    padding:22px;
-
-    text-align:center;
-
-    background:#111;
-
-    border:1px solid #292929;
-
-    border-radius:14px;
-}
-
-.dice{
-    width:90px;
-    height:90px;
-
-    margin:8px auto 15px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#f4f4f4;
-
-    color:#111;
-
-    border-radius:17px;
-
-    font-size:48px;
-    font-weight:1000;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.5);
-}
-
-.coin{
-    width:100px;
-    height:100px;
-
-    margin:8px auto 15px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:linear-gradient(145deg,#ffd94c,#a97600);
-
-    border:7px solid #806000;
-
-    border-radius:50%;
-
-    color:#4d3500;
-
-    font-size:28px;
-    font-weight:1000;
-
-    box-shadow:0 12px 30px rgba(0,0,0,.55);
-
-    transition:transform .8s;
-}
-
-/* =========================================================
-   MAP
-========================================================= */
-
+.case-icon{font-size:42px}
+.case-name{font-size:14px;font-weight:900;margin:7px 0}
+.case-price{color:var(--red);font-size:11px;margin-bottom:10px}
+.case button{padding:10px;border-radius:8px}
+
+/* MAP */
 .map{
-    height:430px;
-
-    position:relative;
-
-    overflow:hidden;
-
-    border:1px solid #292929;
-    border-radius:14px;
-
-    background:
-        linear-gradient(
-            30deg,
-            transparent 48%,
-            #292929 49%,
-            #292929 51%,
-            transparent 52%
-        ),
-        linear-gradient(
-            -30deg,
-            transparent 48%,
-            #292929 49%,
-            #292929 51%,
-            transparent 52%
-        ),
-        #111;
-
-    background-size:90px 90px;
+height:430px;
+position:relative;
+overflow:hidden;
+border:1px solid #292929;
+border-radius:14px;
+background:
+linear-gradient(30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),
+linear-gradient(-30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),
+#111;
+background-size:90px 90px
 }
 
 .map-road{
-    position:absolute;
-
-    background:#363636;
-
-    border:2px solid #484848;
+position:absolute;
+background:#363636;
+border:2px solid #484848
 }
 
 .road1{
-    width:130%;
-    height:34px;
-
-    left:-10%;
-    top:43%;
-
-    transform:rotate(-12deg);
+width:130%;
+height:34px;
+left:-10%;
+top:43%;
+transform:rotate(-12deg)
 }
 
 .road2{
-    width:34px;
-    height:130%;
-
-    left:47%;
-    top:-10%;
-
-    transform:rotate(7deg);
+width:34px;
+height:130%;
+left:47%;
+top:-10%;
+transform:rotate(7deg)
 }
 
 .map-point{
-    position:absolute;
-
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:var(--red);
-
-    border:3px solid #080808;
-
-    font-size:18px;
-
-    box-shadow:0 4px 15px #000;
+position:absolute;
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:var(--red);
+border:3px solid #080808;
+font-size:18px;
+box-shadow:0 4px 15px #000
 }
 
 .point1{left:18%;top:23%}
@@ -1599,427 +521,247 @@ button:disabled{
 .point4{left:73%;top:69%}
 .point5{left:46%;top:45%}
 
-/* =========================================================
-   CHAT
-========================================================= */
-
+/* CHAT/ONLINE/PROFILE */
 .chat-box{
-    overflow:hidden;
-
-    background:#0e0e0e;
-
-    border:1px solid #292929;
-
-    border-radius:13px;
+overflow:hidden;
+background:#0e0e0e;
+border:1px solid #292929;
+border-radius:13px
 }
 
 .chat-messages{
-    height:430px;
-
-    overflow-y:auto;
-
-    padding:12px;
+height:430px;
+overflow-y:auto;
+padding:12px
 }
 
-.message{
-    margin-bottom:10px;
-}
-
-.message-name{
-    color:var(--red);
-
-    font-size:10px;
-    font-weight:900;
-}
+.message{margin-bottom:10px}
+.message-name{color:var(--red);font-size:10px;font-weight:900}
 
 .message-text{
-    display:inline-block;
-
-    margin-top:3px;
-
-    padding:8px 10px;
-
-    background:#1a1a1a;
-
-    border-radius:8px;
-
-    font-size:11px;
+display:inline-block;
+margin-top:3px;
+padding:8px 10px;
+background:#1a1a1a;
+border-radius:8px;
+font-size:11px
 }
 
 .chat-input{
-    display:flex;
-
-    gap:7px;
-
-    padding:9px;
-
-    border-top:1px solid #292929;
+display:flex;
+gap:7px;
+padding:9px;
+border-top:1px solid #292929
 }
 
 .chat-input input{
-    flex:1;
-
-    min-width:0;
-
-    padding:11px;
-
-    color:#fff;
-
-    background:#181818;
-
-    border:1px solid #292929;
-
-    border-radius:8px;
-
-    outline:none;
+flex:1;
+min-width:0;
+padding:11px;
+color:#fff;
+background:#181818;
+border:1px solid #292929;
+border-radius:8px;
+outline:none
 }
 
 .chat-input button{
-    width:48px;
-
-    background:var(--red);
-    color:#fff;
-
-    border-radius:8px;
+width:48px;
+background:var(--red);
+color:#fff;
+border-radius:8px
 }
 
-/* =========================================================
-   ONLINE / PROFILE
-========================================================= */
-
 .online-card{
-    display:flex;
-    align-items:center;
-
-    gap:11px;
-
-    padding:12px;
-    margin-bottom:7px;
-
-    background:#111;
-
-    border:1px solid #292929;
-
-    border-radius:11px;
+display:flex;
+align-items:center;
+gap:11px;
+padding:12px;
+margin-bottom:7px;
+background:#111;
+border:1px solid #292929;
+border-radius:11px
 }
 
 .avatar{
-    width:42px;
-    height:42px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#202020;
-
-    border-radius:50%;
-
-    border:1px solid #3a3a3a;
-
-    font-weight:900;
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#202020;
+border-radius:50%;
+border:1px solid #3a3a3a;
+font-weight:900
 }
 
-.online-info{
-    flex:1;
-}
-
-.online-name{
-    font-size:12px;
-    font-weight:900;
-}
-
-.online-status{
-    color:var(--green);
-
-    font-size:9px;
-
-    margin-top:3px;
-}
+.online-info{flex:1}
+.online-name{font-size:12px;font-weight:900}
+.online-status{color:var(--green);font-size:9px;margin-top:3px}
 
 .level{
-    padding:5px 7px;
-
-    background:#202020;
-
-    color:#bbb;
-
-    border-radius:6px;
-
-    font-size:9px;
+padding:5px 7px;
+background:#202020;
+color:#bbb;
+border-radius:6px;
+font-size:9px
 }
 
 .profile-head{
-    padding:20px;
-
-    text-align:center;
-
-    background:#111;
-
-    border:1px solid #292929;
-
-    border-radius:14px;
+padding:20px;
+text-align:center;
+background:#111;
+border:1px solid #292929;
+border-radius:14px
 }
 
 .big-avatar{
-    width:82px;
-    height:82px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    background:#202020;
-
-    border:2px solid var(--red);
-
-    font-size:30px;
-    font-weight:1000;
+width:82px;
+height:82px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+border-radius:50%;
+background:#202020;
+border:2px solid var(--red);
+font-size:30px;
+font-weight:1000
 }
 
 .profile-name{
-    margin-top:10px;
-
-    font-size:21px;
-    font-weight:1000;
+margin-top:10px;
+font-size:21px;
+font-weight:1000
 }
 
-.profile-id{
-    color:#777;
-
-    font-size:10px;
-
-    margin-top:4px;
-}
+.profile-id{color:#777;font-size:10px;margin-top:4px}
 
 .profile-row{
-    display:flex;
-    justify-content:space-between;
-
-    padding:12px 0;
-
-    border-bottom:1px solid #292929;
-
-    font-size:12px;
+display:flex;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid #292929;
+font-size:12px
 }
 
-.profile-row:last-child{
-    border-bottom:0;
-}
+.profile-row:last-child{border-bottom:0}
+.profile-row span:last-child{color:#ccc}
 
-.profile-row span:last-child{
-    color:#ccc;
-}
-
-/* =========================================================
-   NAV
-========================================================= */
-
+/* NAV/MODAL/TOAST */
 .bottom-nav{
-    position:fixed;
-
-    bottom:0;
-    left:0;
-    right:0;
-
-    z-index:100;
-
-    height:68px;
-
-    display:flex;
-    justify-content:space-around;
-
-    background:rgba(8,8,8,.98);
-
-    border-top:1px solid #292929;
-
-    backdrop-filter:blur(15px);
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+z-index:100;
+height:68px;
+display:flex;
+justify-content:space-around;
+background:rgba(8,8,8,.98);
+border-top:1px solid #292929;
+backdrop-filter:blur(15px)
 }
 
 .nav-btn{
-    flex:1;
-
-    max-width:100px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    gap:4px;
-
-    background:transparent;
-
-    color:#666;
-
-    font-size:9px;
-    font-weight:bold;
+flex:1;
+max-width:100px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:4px;
+background:transparent;
+color:#666;
+font-size:9px;
+font-weight:bold
 }
 
-.nav-icon{
-    font-size:19px;
-}
-
-.nav-btn.active{
-    color:var(--red);
-}
-
-/* =========================================================
-   MODAL / TOAST
-========================================================= */
+.nav-icon{font-size:19px}
+.nav-btn.active{color:var(--red)}
 
 .modal{
-    position:fixed;
-
-    inset:0;
-
-    z-index:300;
-
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-
-    padding:10px;
-
-    background:rgba(0,0,0,.78);
+position:fixed;
+inset:0;
+z-index:300;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+padding:10px;
+background:rgba(0,0,0,.78)
 }
 
 .modal-box{
-    width:100%;
-    max-width:500px;
-    max-height:85vh;
-
-    overflow:auto;
-
-    padding:20px;
-
-    background:#121212;
-
-    border:1px solid #363636;
-
-    border-radius:17px 17px 9px 9px;
+width:100%;
+max-width:500px;
+max-height:85vh;
+overflow:auto;
+padding:20px;
+background:#121212;
+border:1px solid #363636;
+border-radius:17px 17px 9px 9px
 }
 
 .close{
-    float:right;
-
-    width:30px;
-    height:30px;
-
-    color:#fff;
-
-    background:#292929;
-
-    border-radius:50%;
+float:right;
+width:30px;
+height:30px;
+color:#fff;
+background:#292929;
+border-radius:50%
 }
 
-.modal-title{
-    font-size:19px;
-    font-weight:900;
-
-    margin-bottom:8px;
-}
+.modal-title{font-size:19px;font-weight:900;margin-bottom:8px}
 
 .modal-text{
-    color:#888;
-
-    font-size:11px;
-
-    line-height:1.5;
-
-    white-space:pre-line;
-
-    margin-bottom:15px;
+color:#888;
+font-size:11px;
+line-height:1.5;
+white-space:pre-line;
+margin-bottom:15px
 }
 
 .toast{
-    position:fixed;
-
-    left:50%;
-    bottom:80px;
-
-    z-index:500;
-
-    transform:
-        translateX(-50%)
-        translateY(20px);
-
-    padding:11px 15px;
-
-    color:#fff;
-
-    background:#191919;
-
-    border:1px solid #383838;
-
-    border-radius:9px;
-
-    font-size:11px;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:.25s;
+position:fixed;
+left:50%;
+bottom:80px;
+z-index:500;
+transform:translateX(-50%) translateY(20px);
+padding:11px 15px;
+color:#fff;
+background:#191919;
+border:1px solid #383838;
+border-radius:9px;
+font-size:11px;
+opacity:0;
+pointer-events:none;
+transition:.25s
 }
 
 .toast.show{
-    opacity:1;
-
-    transform:
-        translateX(-50%)
-        translateY(0);
+opacity:1;
+transform:translateX(-50%) translateY(0)
 }
 
-/* =========================================================
-   DESKTOP
-========================================================= */
-
 @media(min-width:700px){
+.bottom-nav{
+left:50%;
+right:auto;
+width:650px;
+transform:translateX(-50%);
+border:1px solid #292929;
+border-bottom:0;
+border-radius:13px 13px 0 0
+}
 
-    .bottom-nav{
-        left:50%;
-        right:auto;
-
-        width:850px;
-
-        transform:translateX(-50%);
-
-        border:1px solid #292929;
-        border-bottom:0;
-
-        border-radius:13px 13px 0 0;
-    }
-
-    .stats-grid{
-        grid-template-columns:repeat(4,1fr);
-    }
-
-    .quick-grid{
-        grid-template-columns:repeat(6,1fr);
-    }
-
-    .shop-grid,
-    .case-grid{
-        grid-template-columns:repeat(4,1fr);
-    }
-
-    .casino-games{
-        grid-template-columns:repeat(4,1fr);
-    }
+.stats-grid{grid-template-columns:repeat(4,1fr)}
+.quick-grid{grid-template-columns:repeat(6,1fr)}
+.shop-grid,.case-grid{grid-template-columns:repeat(4,1fr)}
 }
 </style>
 </head>
 
 <body>
-
-<!-- =========================================================
-     AUTH
-========================================================= -->
 
 <section id="authScreen">
 
@@ -2032,37 +774,17 @@ button:disabled{
 </div>
 </div>
 
-<div class="logo">
-BLACK <span>RUSSIA</span>
-</div>
-
-<div class="logo-sub">
-Role Play • Online World
-</div>
+<div class="logo">BLACK <span>RUSSIA</span></div>
+<div class="logo-sub">Role Play • Online World</div>
 
 <div class="auth-tabs">
-
-<button
-class="auth-tab active"
-id="loginTab"
-onclick="switchAuth('login')">
-Вход
-</button>
-
-<button
-class="auth-tab"
-id="registerTab"
-onclick="switchAuth('register')">
-Регистрация
-</button>
-
+<button class="auth-tab active" id="loginTab" onclick="switchAuth('login')">Вход</button>
+<button class="auth-tab" id="registerTab" onclick="switchAuth('register')">Регистрация</button>
 </div>
 
 <div id="loginForm">
 
-<div class="auth-title">
-С возвращением
-</div>
+<div class="auth-title">С возвращением</div>
 
 <div class="auth-desc">
 Введи логин и пароль своего игрового аккаунта.
@@ -2070,89 +792,53 @@ onclick="switchAuth('register')">
 
 <div class="field">
 <label>ЛОГИН</label>
-<input
-id="loginUsername"
-autocomplete="username"
-placeholder="Введите логин">
+<input id="loginUsername" autocomplete="username" placeholder="Введите логин">
 </div>
 
 <div class="field">
 <label>ПАРОЛЬ</label>
-<input
-id="loginPassword"
-type="password"
-autocomplete="current-password"
-placeholder="Введите пароль">
+<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Введите пароль">
 </div>
 
-<button
-class="primary-btn"
-onclick="loginAccount()">
-ВОЙТИ В ИГРУ
-</button>
+<button class="primary-btn" onclick="loginAccount()">ВОЙТИ В ИГРУ</button>
 
-<div
-class="auth-message"
-id="loginMessage">
-</div>
+<div class="auth-message" id="loginMessage"></div>
 
 </div>
 
 <div id="registerForm" class="hidden">
 
-<div class="auth-title">
-Новый аккаунт
-</div>
+<div class="auth-title">Новый аккаунт</div>
 
 <div class="auth-desc">
-Укажи уникальный логин, настоящую почту и пароль. Каждый игрок получает отдельный профиль.
+Укажи уникальный логин, настоящую почту и пароль.
+Каждый игрок получает отдельный профиль.
 </div>
 
 <div class="field">
 <label>ИГРОВОЙ ЛОГИН</label>
-<input
-id="regUsername"
-autocomplete="username"
-placeholder="Игровой ник">
+<input id="regUsername" autocomplete="username" placeholder="Игровой ник">
 </div>
 
 <div class="field">
 <label>ПОЧТА</label>
-<input
-id="regEmail"
-type="email"
-autocomplete="email"
-placeholder="example@mail.com">
+<input id="regEmail" type="email" autocomplete="email" placeholder="example@mail.com">
 </div>
 
 <div class="field">
 <label>ПАРОЛЬ</label>
-<input
-id="regPassword"
-type="password"
-autocomplete="new-password"
-placeholder="Минимум 6 символов">
+<input id="regPassword" type="password" autocomplete="new-password" placeholder="Минимум 6 символов">
 </div>
 
-<button
-class="primary-btn"
-onclick="registerAccount()">
-СОЗДАТЬ АККАУНТ
-</button>
+<button class="primary-btn" onclick="registerAccount()">СОЗДАТЬ АККАУНТ</button>
 
-<div
-class="auth-message"
-id="registerMessage">
-</div>
+<div class="auth-message" id="registerMessage"></div>
 
 </div>
 
 </div>
 </section>
 
-<!-- =========================================================
-     APP
-========================================================= -->
 
 <section id="app" class="hidden">
 
@@ -2168,26 +854,12 @@ BLACK <span>RUSSIA</span>
 </div>
 
 <div class="money-box">
-
-<div
-class="money cash"
-id="topCash">
-₽ 0
-</div>
-
-<div
-class="money donate"
-id="topDonate">
-♦ 0
-</div>
-
+<div class="money cash" id="topCash">₽ 0</div>
+<div class="money donate" id="topDonate">♦ 0</div>
 </div>
 
 </header>
 
-<!-- =========================================================
-     HOME
-========================================================= -->
 
 <main id="homePage" class="page active">
 
@@ -2207,12 +879,12 @@ id="topDonate">
 
 </div>
 
+
 <div class="stats-grid">
 
 <div class="stat-card">
 <div class="stat-label">УРОВЕНЬ</div>
 <div class="stat-value" id="homeLevel">1</div>
-
 <div class="progress">
 <div id="homeXpBar"></div>
 </div>
@@ -2234,6 +906,7 @@ id="topDonate">
 </div>
 
 </div>
+
 
 <div class="section-title">
 Быстрый доступ
@@ -2261,17 +934,24 @@ id="topDonate">
 <div class="quick-name">Карта</div>
 </button>
 
-<button class="quick" onclick="openPage('casino')">
-<div class="quick-icon">🎰</div>
-<div class="quick-name">Казино</div>
-</button>
-
 <button class="quick" onclick="openPage('cases')">
 <div class="quick-icon">🎁</div>
 <div class="quick-name">Кейсы</div>
 </button>
 
+<!-- КАЗИНО -->
+<button class="quick" onclick="window.location.href='casino.html'">
+<div class="quick-icon">🎰</div>
+<div class="quick-name">Казино</div>
+</button>
+
+<button class="quick" onclick="openPage('chat')">
+<div class="quick-icon">💬</div>
+<div class="quick-name">Чат</div>
+</button>
+
 </div>
+
 
 <div class="section-title">
 Твой прогресс
@@ -2291,9 +971,7 @@ id="topDonate">
 <div id="bigXpBar"></div>
 </div>
 
-<div
-id="xpText"
-style="margin-top:8px;color:#777;font-size:10px">
+<div id="xpText" style="margin-top:8px;color:#777;font-size:10px">
 0 / 100 XP
 </div>
 
@@ -2301,16 +979,10 @@ style="margin-top:8px;color:#777;font-size:10px">
 
 </main>
 
-<!-- =========================================================
-     JOBS
-========================================================= -->
 
 <main id="jobsPage" class="page">
 
-<div class="page-title">
-Работы
-</div>
-
+<div class="page-title">Работы</div>
 <div class="page-subtitle">
 Зарабатывай деньги. У каждой работы есть серверный КД.
 </div>
@@ -2319,16 +991,10 @@ style="margin-top:8px;color:#777;font-size:10px">
 
 </main>
 
-<!-- =========================================================
-     GARAGE
-========================================================= -->
 
 <main id="garagePage" class="page">
 
-<div class="page-title">
-Гараж
-</div>
-
+<div class="page-title">Гараж</div>
 <div class="page-subtitle">
 Транспорт твоего персонажа.
 </div>
@@ -2337,37 +1003,22 @@ style="margin-top:8px;color:#777;font-size:10px">
 
 </main>
 
-<!-- =========================================================
-     SHOP
-========================================================= -->
 
 <main id="shopPage" class="page">
 
-<div class="page-title">
-Магазин
-</div>
-
+<div class="page-title">Магазин</div>
 <div class="page-subtitle">
 Предметы и полезные вещи.
 </div>
 
-<div
-class="shop-grid"
-id="shopContainer">
-</div>
+<div class="shop-grid" id="shopContainer"></div>
 
 </main>
 
-<!-- =========================================================
-     MAP
-========================================================= -->
 
 <main id="mapPage" class="page">
 
-<div class="page-title">
-Карта города
-</div>
-
+<div class="page-title">Карта города</div>
 <div class="page-subtitle">
 Основные места игрового мира.
 </div>
@@ -2377,49 +1028,20 @@ id="shopContainer">
 <div class="map-road road1"></div>
 <div class="map-road road2"></div>
 
-<button
-class="map-point point1"
-onclick="toast('🏦 Банк')">
-🏦
-</button>
-
-<button
-class="map-point point2"
-onclick="toast('🚗 Автосалон')">
-🚗
-</button>
-
-<button
-class="map-point point3"
-onclick="toast('💼 Центр занятости')">
-💼
-</button>
-
-<button
-class="map-point point4"
-onclick="openPage('casino')">
-🎰
-</button>
-
-<button
-class="map-point point5"
-onclick="toast('🏙️ Центральная площадь')">
-🏙️
-</button>
+<button class="map-point point1" onclick="toast('🏦 Банк')">🏦</button>
+<button class="map-point point2" onclick="toast('🚗 Автосалон')">🚗</button>
+<button class="map-point point3" onclick="toast('💼 Центр занятости')">💼</button>
+<button class="map-point point4" onclick="toast('🎁 Игровой центр')">🎁</button>
+<button class="map-point point5" onclick="toast('🏙️ Центральная площадь')">🏙️</button>
 
 </div>
 
 </main>
 
-<!-- =========================================================
-     CASES
-========================================================= -->
 
 <main id="casesPage" class="page">
 
-<div class="page-title">
-Кейсы
-</div>
+<div class="page-title">Кейсы</div>
 
 <div class="page-subtitle">
 Открывай кейсы за донат.
@@ -2431,528 +1053,38 @@ onclick="toast('🏙️ Центральная площадь')">
 <div class="case-icon">🎁</div>
 <div class="case-name">Обычный кейс</div>
 <div class="case-price">♦ 10</div>
-<button onclick="openCase(10,'Обычный кейс')">
-ОТКРЫТЬ
-</button>
+<button onclick="openCase(10,'Обычный кейс')">ОТКРЫТЬ</button>
 </div>
 
 <div class="case">
 <div class="case-icon">🔥</div>
 <div class="case-name">Премиум кейс</div>
 <div class="case-price">♦ 25</div>
-<button onclick="openCase(25,'Премиум кейс')">
-ОТКРЫТЬ
-</button>
+<button onclick="openCase(25,'Премиум кейс')">ОТКРЫТЬ</button>
 </div>
 
 <div class="case">
 <div class="case-icon">👑</div>
 <div class="case-name">VIP кейс</div>
 <div class="case-price">♦ 50</div>
-<button onclick="openCase(50,'VIP кейс')">
-ОТКРЫТЬ
-</button>
+<button onclick="openCase(50,'VIP кейс')">ОТКРЫТЬ</button>
 </div>
 
 <div class="case">
 <div class="case-icon">💎</div>
 <div class="case-name">Алмазный кейс</div>
 <div class="case-price">♦ 100</div>
-<button onclick="openCase(100,'Алмазный кейс')">
-ОТКРЫТЬ
-</button>
+<button onclick="openCase(100,'Алмазный кейс')">ОТКРЫТЬ</button>
 </div>
 
 </div>
 
 </main>
 
-<!-- =========================================================
-     CASINO
-========================================================= -->
-
-<main id="casinoPage" class="page">
-
-<div class="page-title">
-Казино
-</div>
-
-<div class="page-subtitle">
-Игровой центр BLACK RUSSIA.
-</div>
-
-<div class="casino-hero">
-
-<div class="casino-kicker">
-BLACK RUSSIA • GAME CENTER
-</div>
-
-<div class="casino-title">
-BLACK <span>CASINO</span>
-</div>
-
-<div class="casino-balance">
-Баланс: <span id="casinoBalance">₽ 0</span>
-</div>
-
-</div>
-
-<div class="casino-games">
-
-<div class="casino-game red">
-
-<div>
-<div class="casino-icon">🃏</div>
-
-<div class="casino-game-title">
-21 / BLACKJACK
-</div>
-
-<div class="casino-game-desc">
-Собери 21 очко и обыграй дилера.
-</div>
-</div>
-
-<button
-class="casino-play"
-onclick="openCasinoGame('blackjack')">
-ИГРАТЬ
-</button>
-
-</div>
-
-<div class="casino-game">
-
-<div>
-<div class="casino-icon">🎡</div>
-
-<div class="casino-game-title">
-РУЛЕТКА
-</div>
-
-<div class="casino-game-desc">
-Красное, чёрное или зелёное.
-</div>
-</div>
-
-<button
-class="casino-play"
-onclick="openCasinoGame('roulette')">
-ИГРАТЬ
-</button>
-
-</div>
-
-<div class="casino-game">
-
-<div>
-<div class="casino-icon">🎲</div>
-
-<div class="casino-game-title">
-КОСТИ
-</div>
-
-<div class="casino-game-desc">
-Испытай удачу против казино.
-</div>
-</div>
-
-<button
-class="casino-play"
-onclick="openCasinoGame('dice')">
-ИГРАТЬ
-</button>
-
-</div>
-
-<div class="casino-game">
-
-<div>
-<div class="casino-icon">🪙</div>
-
-<div class="casino-game-title">
-МОНЕТКА
-</div>
-
-<div class="casino-game-desc">
-Орёл или решка.
-</div>
-</div>
-
-<button
-class="casino-play"
-onclick="openCasinoGame('coin')">
-ИГРАТЬ
-</button>
-
-</div>
-
-</div>
-
-<div class="section-title">
-История игр
-</div>
-
-<div
-id="casinoHistory"
-class="casino-history">
-</div>
-
-</main>
-
-<!-- =========================================================
-     BLACKJACK
-========================================================= -->
-
-<main id="blackjackPage" class="page">
-
-<div class="page-title">
-21 / Blackjack
-</div>
-
-<div class="page-subtitle">
-Твоя задача — набрать максимально близкое к 21 количество очков.
-</div>
-
-<div class="blackjack">
-
-<div class="table-label">
-ДИЛЕР
-</div>
-
-<div
-id="dealerHand"
-class="hand">
-</div>
-
-<div class="hand-info">
-<span>Очки дилера</span>
-<strong id="dealerScore">?</strong>
-</div>
-
-<div class="table-label">
-ТВОИ КАРТЫ
-</div>
-
-<div
-id="playerHand"
-class="hand">
-</div>
-
-<div class="hand-info">
-<span>Твои очки</span>
-<strong id="playerScore">0</strong>
-</div>
-
-<div class="bet-area">
-
-<div class="bet-label">
-СТАВКА
-</div>
-
-<input
-id="blackjackBet"
-class="bet-input"
-type="number"
-min="100"
-step="100"
-value="1000"
-placeholder="Сумма ставки">
-
-<div class="bet-presets">
-
-<button onclick="setBet('blackjackBet',500)">
-500
-</button>
-
-<button onclick="setBet('blackjackBet',1000)">
-1K
-</button>
-
-<button onclick="setBet('blackjackBet',5000)">
-5K
-</button>
-
-<button onclick="setBet('blackjackBet',10000)">
-10K
-</button>
-
-</div>
-
-</div>
-
-<div class="game-actions">
-
-<button
-class="new"
-onclick="blackjackStart()">
-🃏 НОВАЯ ИГРА
-</button>
-
-<button
-class="hit"
-id="hitButton"
-onclick="blackjackHit()"
-disabled>
-ЕЩЁ КАРТУ
-</button>
-
-<button
-class="stand"
-id="standButton"
-onclick="blackjackStand()"
-disabled>
-ОСТАНОВИТЬСЯ
-</button>
-
-</div>
-
-<div
-id="blackjackMessage"
-class="game-message">
-Сделай ставку и начни новую игру.
-</div>
-
-</div>
-
-</main>
-
-<!-- =========================================================
-     ROULETTE
-========================================================= -->
-
-<main id="roulettePage" class="page">
-
-<div class="page-title">
-Рулетка
-</div>
-
-<div class="page-subtitle">
-Выбери исход и сделай ставку.
-</div>
-
-<div class="roulette-box">
-
-<div
-id="rouletteWheel"
-class="roulette-wheel">
-
-<div class="roulette-center">
-🎰
-</div>
-
-</div>
-
-<div class="bet-area">
-
-<div class="bet-label">
-СТАВКА
-</div>
-
-<input
-id="rouletteBet"
-class="bet-input"
-type="number"
-min="100"
-step="100"
-value="1000">
-
-<div class="bet-presets">
-
-<button onclick="setBet('rouletteBet',500)">
-500
-</button>
-
-<button onclick="setBet('rouletteBet',1000)">
-1K
-</button>
-
-<button onclick="setBet('rouletteBet',5000)">
-5K
-</button>
-
-<button onclick="setBet('rouletteBet',10000)">
-10K
-</button>
-
-</div>
-
-</div>
-
-<div
-class="roulette-bets"
-id="rouletteBets">
-
-<button
-data-bet="red"
-onclick="selectRouletteBet('red')">
-🔴 КРАСНОЕ<br>×2
-</button>
-
-<button
-data-bet="black"
-onclick="selectRouletteBet('black')">
-⚫ ЧЁРНОЕ<br>×2
-</button>
-
-<button
-data-bet="green"
-onclick="selectRouletteBet('green')">
-🟢 ЗЕЛЁНОЕ<br>×14
-</button>
-
-</div>
-
-<div
-id="rouletteResult"
-class="roulette-result">
-Выбери ставку.
-</div>
-
-<button
-class="primary-btn"
-style="margin-top:12px"
-onclick="spinRoulette()">
-🎡 КРУТИТЬ РУЛЕТКУ
-</button>
-
-</div>
-
-</main>
-
-<!-- =========================================================
-     DICE
-========================================================= -->
-
-<main id="dicePage" class="page">
-
-<div class="page-title">
-Кости
-</div>
-
-<div class="page-subtitle">
-Брось кости и попробуй получить высокий результат.
-</div>
-
-<div class="dice-box">
-
-<div
-id="dice"
-class="dice">
-🎲
-</div>
-
-<div
-style="color:#777;font-size:11px">
-Если выпадет 11–12 — выплата ×3.
-<br>
-Если 8–10 — выплата ×1.5.
-</div>
-
-<div class="bet-area">
-
-<div class="bet-label">
-СТАВКА
-</div>
-
-<input
-id="diceBet"
-class="bet-input"
-type="number"
-min="100"
-step="100"
-value="1000">
-
-</div>
-
-<button
-class="primary-btn"
-style="margin-top:10px"
-onclick="rollDice()">
-🎲 БРОСИТЬ КОСТИ
-</button>
-
-<div
-id="diceResult"
-class="game-message">
-Готов к броску.
-</div>
-
-</div>
-
-</main>
-
-<!-- =========================================================
-     COIN
-========================================================= -->
-
-<main id="coinPage" class="page">
-
-<div class="page-title">
-Монетка
-</div>
-
-<div class="page-subtitle">
-Выбери сторону монеты.
-</div>
-
-<div class="dice-box">
-
-<div
-id="coin"
-class="coin">
-₽
-</div>
-
-<div class="bet-area">
-
-<div class="bet-label">
-СТАВКА
-</div>
-
-<input
-id="coinBet"
-class="bet-input"
-type="number"
-min="100"
-step="100"
-value="1000">
-
-</div>
-
-<div class="game-actions">
-
-<button
-onclick="flipCoin('heads')">
-ОРЁЛ
-</button>
-
-<button
-onclick="flipCoin('tails')">
-РЕШКА
-</button>
-
-</div>
-
-<div
-id="coinResult"
-class="game-message">
-Выбери сторону.
-</div>
-
-</div>
-
-</main>
-
-<!-- =========================================================
-     DONATE
-========================================================= -->
 
 <main id="donatePage" class="page">
 
-<div class="page-title">
-Донат
-</div>
+<div class="page-title">Донат</div>
 
 <div class="page-subtitle">
 Премиальная валюта сервера.
@@ -2971,53 +1103,41 @@ BLACK <span>DONATE</span>
 
 </div>
 
+
 <div class="donate-grid">
 
 <div class="donate-card">
 <strong>♦ 100</strong>
 <span>Стартовый набор</span>
-<button onclick="buyDonate(100)">
-ПОЛУЧИТЬ
-</button>
+<button onclick="buyDonate(100)">ПОЛУЧИТЬ</button>
 </div>
 
 <div class="donate-card">
 <strong>♦ 500</strong>
 <span>Большой набор</span>
-<button onclick="buyDonate(500)">
-ПОЛУЧИТЬ
-</button>
+<button onclick="buyDonate(500)">ПОЛУЧИТЬ</button>
 </div>
 
 <div class="donate-card">
 <strong>♦ 1000</strong>
 <span>Премиум набор</span>
-<button onclick="buyDonate(1000)">
-ПОЛУЧИТЬ
-</button>
+<button onclick="buyDonate(1000)">ПОЛУЧИТЬ</button>
 </div>
 
 <div class="donate-card">
 <strong>♦ 5000</strong>
 <span>VIP набор</span>
-<button onclick="buyDonate(5000)">
-ПОЛУЧИТЬ
-</button>
+<button onclick="buyDonate(5000)">ПОЛУЧИТЬ</button>
 </div>
 
 </div>
 
 </main>
 
-<!-- =========================================================
-     CHAT
-========================================================= -->
 
 <main id="chatPage" class="page">
 
-<div class="page-title">
-Общий чат
-</div>
+<div class="page-title">Общий чат</div>
 
 <div class="page-subtitle">
 Сообщения игроков сервера.
@@ -3025,10 +1145,7 @@ BLACK <span>DONATE</span>
 
 <div class="chat-box">
 
-<div
-class="chat-messages"
-id="chatMessages">
-</div>
+<div class="chat-messages" id="chatMessages"></div>
 
 <div class="chat-input">
 
@@ -3036,11 +1153,10 @@ id="chatMessages">
 id="chatInput"
 maxlength="150"
 placeholder="Написать сообщение..."
-onkeydown="if(event.key==='Enter')sendChat()">
+onkeydown="if(event.key==='Enter')sendChat()"
+>
 
-<button onclick="sendChat()">
-➤
-</button>
+<button onclick="sendChat()">➤</button>
 
 </div>
 
@@ -3048,15 +1164,10 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 </main>
 
-<!-- =========================================================
-     ONLINE
-========================================================= -->
 
 <main id="onlinePage" class="page">
 
-<div class="page-title">
-Игроки онлайн
-</div>
+<div class="page-title">Игроки онлайн</div>
 
 <div class="page-subtitle">
 Игроки, которые сейчас находятся на сервере.
@@ -3066,15 +1177,10 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 </main>
 
-<!-- =========================================================
-     PROFILE
-========================================================= -->
 
 <main id="profilePage" class="page">
 
-<div class="page-title">
-Профиль
-</div>
+<div class="page-title">Профиль</div>
 
 <div class="page-subtitle">
 Информация о персонаже.
@@ -3082,27 +1188,17 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 <div class="profile-head">
 
-<div
-class="big-avatar"
-id="profileAvatar">
-P
-</div>
+<div class="big-avatar" id="profileAvatar">P</div>
 
-<div
-class="profile-name"
-id="profileName">
+<div class="profile-name" id="profileName">
 Player
 </div>
 
-<div
-class="profile-id"
-id="profileId">
+<div class="profile-id" id="profileId">
 ID
 </div>
 
-<div
-class="profile-row"
-style="margin-top:15px">
+<div class="profile-row" style="margin-top:15px">
 <span>Уровень</span>
 <span id="profileLevel">1</span>
 </div>
@@ -3139,2853 +1235,1242 @@ style="margin-top:15px">
 
 </div>
 
-<button
-class="secondary-btn"
-onclick="logout()"
-style="margin-top:12px">
+<button class="secondary-btn" onclick="logout()" style="margin-top:12px">
 ВЫЙТИ ИЗ АККАУНТА
 </button>
 
 </main>
 
-<!-- =========================================================
-     NAV
-========================================================= -->
 
 <nav class="bottom-nav">
 
-<button
-class="nav-btn active"
-data-page="home"
-onclick="openPage('home')">
-
-<div class="nav-icon">
-🏠
-</div>
-
+<button class="nav-btn active" data-page="home" onclick="openPage('home')">
+<div class="nav-icon">🏠</div>
 Главная
-
 </button>
 
-<button
-class="nav-btn"
-data-page="jobs"
-onclick="openPage('jobs')">
-
-<div class="nav-icon">
-💼
-</div>
-
+<button class="nav-btn" data-page="jobs" onclick="openPage('jobs')">
+<div class="nav-icon">💼</div>
 Работа
-
 </button>
 
-<button
-class="nav-btn"
-data-page="garage"
-onclick="openPage('garage')">
-
-<div class="nav-icon">
-🚗
-</div>
-
+<button class="nav-btn" data-page="garage" onclick="openPage('garage')">
+<div class="nav-icon">🚗</div>
 Гараж
-
 </button>
 
-<button
-class="nav-btn"
-data-page="casino"
-onclick="openPage('casino')">
-
-<div class="nav-icon">
-🎰
-</div>
-
-Казино
-
+<button class="nav-btn" data-page="chat" onclick="openPage('chat')">
+<div class="nav-icon">💬</div>
+Чат
 </button>
 
-<button
-class="nav-btn"
-data-page="profile"
-onclick="openPage('profile')">
-
-<div class="nav-icon">
-👤
-</div>
-
+<button class="nav-btn" data-page="profile" onclick="openPage('profile')">
+<div class="nav-icon">👤</div>
 Профиль
-
 </button>
 
 </nav>
 
 </section>
 
-<!-- =========================================================
-     MODAL
-========================================================= -->
 
-<div
-id="modal"
-class="modal hidden"
-onclick="if(event.target===this)closeModal()">
+<div id="modal" class="modal hidden" onclick="if(event.target===this)closeModal()">
 
 <div class="modal-box">
 
-<button
-class="close"
-onclick="closeModal()">
-×
-</button>
+<button class="close" onclick="closeModal()">×</button>
 
-<div
-class="modal-title"
-id="modalTitle">
+<div class="modal-title" id="modalTitle">
 Информация
 </div>
 
-<div
-class="modal-text"
-id="modalText">
-</div>
+<div class="modal-text" id="modalText"></div>
 
-<button
-class="primary-btn"
-onclick="closeModal()">
+<button class="primary-btn" onclick="closeModal()">
 ПОНЯТНО
 </button>
 
 </div>
+
 </div>
 
-<div
-class="toast"
-id="toast">
+
+<div class="toast" id="toast">
 Готово
 </div>
 
+
 <script>
 
-/* =========================================================
-   SUPABASE
-========================================================= */
+const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co",
+SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
-const SUPABASE_URL =
-"https://qzswnoeglovfpgrzpnio.supabase.co";
+let currentUser=null,
+currentAuthUser=null,
+chatChannel=null,
+toastTimer;
 
-const SUPABASE_KEY =
-"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
-
-let currentUser = null;
-let currentAuthUser = null;
-let chatChannel = null;
-let toastTimer = null;
-
-/* =========================================================
-   CASINO STATE
-========================================================= */
-
-let blackjack = {
-    active:false,
-    player:[],
-    dealer:[],
-    bet:0,
-    dealerHidden:true
-};
-
-let selectedRouletteBet = null;
-
-let casinoHistory =
-    JSON.parse(
-        localStorage.getItem("brp_casino_history") || "[]"
-    );
-
-/* =========================================================
-   SUPABASE FETCH
-========================================================= */
 
 async function supabaseFetch(path,options={}){
+const r=await fetch(
+SUPABASE_URL+path,
+{
+...options,
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json",
+...(options.headers||{})
+}
+}
+);
 
-    const r =
-        await fetch(
-            SUPABASE_URL + path,
-            {
-                ...options,
-                headers:{
-                    apikey:SUPABASE_KEY,
-                    Authorization:"Bearer "+SUPABASE_KEY,
-                    "Content-Type":"application/json",
-                    ...(options.headers||{})
-                }
-            }
-        );
+const t=await r.text();
 
-    const t = await r.text();
+let d=null;
 
-    let d = null;
-
-    try{
-        d = t ? JSON.parse(t) : null;
-    }catch(e){
-        d = t;
-    }
-
-    if(!r.ok){
-        throw new Error(
-            typeof d === "string"
-            ? d
-            : JSON.stringify(d)
-        );
-    }
-
-    return d;
+try{
+d=t?JSON.parse(t):null
+}catch(e){
+d=t
 }
 
-/* =========================================================
-   AUTH
-========================================================= */
+if(!r.ok)
+throw new Error(typeof d==="string"?d:JSON.stringify(d));
+
+return d;
+}
+
 
 async function registerAccount(){
 
-    const username =
-        document.getElementById("regUsername").value.trim();
+const username=document.getElementById("regUsername").value.trim(),
+email=document.getElementById("regEmail").value.trim(),
+password=document.getElementById("regPassword").value,
+message=document.getElementById("registerMessage");
 
-    const email =
-        document.getElementById("regEmail").value.trim();
+message.style.color="#ff4b55";
+message.textContent="Создаём аккаунт...";
 
-    const password =
-        document.getElementById("regPassword").value;
+if(username.length<3)
+return message.textContent="Логин должен содержать минимум 3 символа.";
 
-    const message =
-        document.getElementById("registerMessage");
+if(!/^[a-zA-Z0-9_]+$/.test(username))
+return message.textContent="Логин: только латинские буквы, цифры и _.";
 
-    message.style.color="#ff4b55";
+if(!email.includes("@"))
+return message.textContent="Введите настоящую почту.";
 
-    message.textContent="Создаём аккаунт...";
+if(password.length<6)
+return message.textContent="Пароль должен содержать минимум 6 символов.";
 
-    if(username.length<3)
-        return message.textContent =
-            "Логин должен содержать минимум 3 символа.";
+try{
 
-    if(!/^[a-zA-Z0-9_]+$/.test(username))
-        return message.textContent =
-            "Логин: только латинские буквы, цифры и _.";
+const e=await supabaseFetch(
+"/rest/v1/profiles?select=id&username=ilike."+encodeURIComponent(username)+"&limit=1"
+);
 
-    if(!email.includes("@"))
-        return message.textContent =
-            "Введите настоящую почту.";
+if(e?.length)
+return message.textContent="Такой игровой логин уже занят.";
 
-    if(password.length<6)
-        return message.textContent =
-            "Пароль должен содержать минимум 6 символов.";
-
-    try{
-
-        const e =
-            await supabaseFetch(
-                "/rest/v1/profiles?select=id&username=ilike."
-                +encodeURIComponent(username)
-                +"&limit=1"
-            );
-
-        if(e?.length)
-            return message.textContent =
-                "Такой игровой логин уже занят.";
-
-        const r =
-            await supabaseFetch(
-                "/auth/v1/signup",
-                {
-                    method:"POST",
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:"Bearer "+SUPABASE_KEY
-                    },
-                    body:JSON.stringify({
-                        email,
-                        password,
-                        data:{
-                            username
-                        }
-                    })
-                }
-            );
-
-        if(r?.access_token){
-
-            saveSession(
-                r.access_token,
-                r.refresh_token
-            );
-
-            message.style.color="var(--green)";
-            message.textContent="Аккаунт создан!";
-
-            return loadSession();
-        }
-
-        message.style.color="#ffc928";
-
-        message.textContent =
-            "Аккаунт создан. Проверь почту для подтверждения.";
-
-    }catch(e){
-
-        console.error(e);
-
-        message.textContent =
-            "Ошибка регистрации: "
-            +cleanError(e.message);
-    }
+const r=await supabaseFetch(
+"/auth/v1/signup",
+{
+method:"POST",
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+SUPABASE_KEY
+},
+body:JSON.stringify({
+email,
+password,
+data:{username}
+})
 }
+);
+
+if(r?.access_token){
+
+saveSession(r.access_token,r.refresh_token);
+
+message.style.color="var(--green)";
+message.textContent="Аккаунт создан!";
+
+return loadSession();
+
+}
+
+message.style.color="#ffc928";
+message.textContent="Аккаунт создан. Проверь почту для подтверждения.";
+
+}catch(e){
+
+console.error(e);
+message.textContent="Ошибка регистрации: "+cleanError(e.message);
+
+}
+
+}
+
 
 async function loginAccount(){
 
-    const username =
-        document.getElementById("loginUsername")
-        .value.trim();
+const username=document.getElementById("loginUsername").value.trim(),
+password=document.getElementById("loginPassword").value,
+message=document.getElementById("loginMessage");
 
-    const password =
-        document.getElementById("loginPassword")
-        .value;
+message.style.color="#ff4b55";
 
-    const message =
-        document.getElementById("loginMessage");
+if(!username||!password)
+return message.textContent="Введите логин и пароль.";
 
-    message.style.color="#ff4b55";
+message.textContent="Выполняется вход...";
 
-    if(!username||!password)
-        return message.textContent =
-            "Введите логин и пароль.";
+try{
 
-    message.textContent =
-        "Выполняется вход...";
-
-    try{
-
-        const r =
-            await supabaseFetch(
-                "/rest/v1/rpc/get_login_email",
-                {
-                    method:"POST",
-                    body:JSON.stringify({
-                        p_username:username
-                    })
-                }
-            );
-
-        if(!r)
-            return message.textContent =
-                "Аккаунт с таким логином не найден.";
-
-        const email =
-            typeof r==="string"
-            ? r
-            : r.email;
-
-        if(!email)
-            return message.textContent =
-                "Не удалось найти почту аккаунта.";
-
-        const a =
-            await supabaseFetch(
-                "/auth/v1/token?grant_type=password",
-                {
-                    method:"POST",
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:"Bearer "+SUPABASE_KEY
-                    },
-                    body:JSON.stringify({
-                        email,
-                        password
-                    })
-                }
-            );
-
-        if(!a.access_token)
-            return message.textContent =
-                "Не удалось выполнить вход.";
-
-        saveSession(
-            a.access_token,
-            a.refresh_token
-        );
-
-        message.style.color="var(--green)";
-        message.textContent="Вход выполнен.";
-
-        await loadSession();
-
-    }catch(e){
-
-        console.error(e);
-
-        message.textContent =
-            "Ошибка входа: "
-            +cleanError(e.message);
-    }
+const r=await supabaseFetch(
+"/rest/v1/rpc/get_login_email",
+{
+method:"POST",
+body:JSON.stringify({
+p_username:username
+})
 }
+);
+
+if(!r)
+return message.textContent="Аккаунт с таким логином не найден.";
+
+const email=typeof r==="string"?r:r.email;
+
+if(!email)
+return message.textContent="Не удалось найти почту аккаунта.";
+
+const a=await supabaseFetch(
+"/auth/v1/token?grant_type=password",
+{
+method:"POST",
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+SUPABASE_KEY
+},
+body:JSON.stringify({
+email,
+password
+})
+}
+);
+
+if(!a.access_token)
+return message.textContent="Не удалось выполнить вход.";
+
+saveSession(a.access_token,a.refresh_token);
+
+message.style.color="var(--green)";
+message.textContent="Вход выполнен.";
+
+await loadSession();
+
+}catch(e){
+
+console.error(e);
+message.textContent="Ошибка входа: "+cleanError(e.message);
+
+}
+
+}
+
 
 function saveSession(a,r){
 
-    localStorage.setItem(
-        "brp_access_token",
-        a||""
-    );
+localStorage.setItem("brp_access_token",a||"");
+localStorage.setItem("brp_refresh_token",r||"");
 
-    localStorage.setItem(
-        "brp_refresh_token",
-        r||""
-    );
 }
+
 
 function clearSession(){
 
-    localStorage.removeItem(
-        "brp_access_token"
-    );
+localStorage.removeItem("brp_access_token");
+localStorage.removeItem("brp_refresh_token");
 
-    localStorage.removeItem(
-        "brp_refresh_token"
-    );
 }
+
 
 async function loadSession(){
 
-    const token =
-        localStorage.getItem(
-            "brp_access_token"
-        );
+const token=localStorage.getItem("brp_access_token");
 
-    if(!token)
-        return showAuth();
+if(!token)
+return showAuth();
 
-    try{
+try{
 
-        currentAuthUser =
-            await supabaseFetch(
-                "/auth/v1/user",
-                {
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:"Bearer "+token
-                    }
-                }
-            );
-
-        await loadProfile();
-
-        showApp();
-
-        startRealtime();
-
-    }catch(e){
-
-        console.error(e);
-
-        clearSession();
-
-        showAuth();
-    }
+currentAuthUser=await supabaseFetch(
+"/auth/v1/user",
+{
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+token
 }
+}
+);
+
+await loadProfile();
+
+showApp();
+
+startRealtime();
+
+}catch(e){
+
+console.error(e);
+
+clearSession();
+
+showAuth();
+
+}
+
+}
+
 
 async function loadProfile(){
 
-    const token =
-        localStorage.getItem(
-            "brp_access_token"
-        );
+const token=localStorage.getItem("brp_access_token");
 
-    const rows =
-        await supabaseFetch(
-            "/rest/v1/profiles?id=eq."
-            +encodeURIComponent(currentAuthUser.id)
-            +"&select=*",
-            {
-                headers:{
-                    apikey:SUPABASE_KEY,
-                    Authorization:"Bearer "+token
-                }
-            }
-        );
-
-    if(!rows?.length)
-        throw new Error(
-            "Профиль игрока не найден."
-        );
-
-    currentUser = rows[0];
-
-    renderAll();
+const rows=await supabaseFetch(
+"/rest/v1/profiles?id=eq."+encodeURIComponent(currentAuthUser.id)+"&select=*",
+{
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+token
 }
+}
+);
+
+if(!rows?.length)
+throw new Error("Профиль игрока не найден.");
+
+currentUser=rows[0];
+
+renderAll();
+
+}
+
 
 async function refreshProfile(){
 
-    if(!currentAuthUser)
-        return;
+if(!currentAuthUser)
+return;
 
-    try{
-        await loadProfile();
-    }catch(e){
-        console.error(e);
-    }
+try{
+
+await loadProfile();
+
+}catch(e){
+
+console.error(e);
+
 }
+
+}
+
 
 function showAuth(){
 
-    document
-        .getElementById("authScreen")
-        .classList.remove("hidden");
+document.getElementById("authScreen").classList.remove("hidden");
+document.getElementById("app").classList.add("hidden");
 
-    document
-        .getElementById("app")
-        .classList.add("hidden");
 }
+
 
 function showApp(){
 
-    document
-        .getElementById("authScreen")
-        .classList.add("hidden");
+document.getElementById("authScreen").classList.add("hidden");
+document.getElementById("app").classList.remove("hidden");
 
-    document
-        .getElementById("app")
-        .classList.remove("hidden");
 }
+
 
 function switchAuth(type){
 
-    const l =
-        document.getElementById("loginForm");
+const l=document.getElementById("loginForm"),
+r=document.getElementById("registerForm"),
+lt=document.getElementById("loginTab"),
+rt=document.getElementById("registerTab"),
+x=type==="login";
 
-    const r =
-        document.getElementById("registerForm");
+l.classList.toggle("hidden",!x);
+r.classList.toggle("hidden",x);
 
-    const lt =
-        document.getElementById("loginTab");
+lt.classList.toggle("active",x);
+rt.classList.toggle("active",!x);
 
-    const rt =
-        document.getElementById("registerTab");
-
-    const x =
-        type==="login";
-
-    l.classList.toggle("hidden",!x);
-    r.classList.toggle("hidden",x);
-
-    lt.classList.toggle("active",x);
-    rt.classList.toggle("active",!x);
 }
 
-/* =========================================================
-   RENDER
-========================================================= */
 
 function renderAll(){
 
-    if(!currentUser)
-        return;
+if(!currentUser)
+return;
 
-    const p = currentUser;
+const p=currentUser;
 
-    const set =
-        (id,v)=>{
-            const e =
-                document.getElementById(id);
+const set=(id,v)=>
+document.getElementById(id).textContent=v;
 
-            if(e)
-                e.textContent=v;
-        };
+set("homeName",p.username);
+set("homeLevel",p.level);
+set("homeXP",p.xp+" XP");
+set("homeCash",money(p.cash));
+set("homeBank",money(p.bank));
 
-    set("homeName",p.username);
-    set("homeLevel",p.level);
-    set("homeXP",p.xp+" XP");
-    set("homeCash",money(p.cash));
-    set("homeBank",money(p.bank));
+set("topCash","₽ "+number(p.cash));
+set("topDonate","♦ "+number(p.donate));
 
-    set(
-        "topCash",
-        "₽ "+number(p.cash)
-    );
+set("profileName",p.username);
+set("profileAvatar",p.username.charAt(0).toUpperCase());
 
-    set(
-        "topDonate",
-        "♦ "+number(p.donate)
-    );
+set("profileId","ID: "+p.id);
+set("profileLevel",p.level);
+set("profileXP",p.xp+" XP");
+set("profileCash",money(p.cash));
+set("profileBank",money(p.bank));
+set("profileDonate","♦ "+number(p.donate));
+set("profileJob",p.job||"Безработный");
 
-    set(
-        "profileName",
-        p.username
-    );
+set(
+"profileDate",
+p.created_at
+?new Date(p.created_at).toLocaleDateString("ru-RU")
+:"—"
+);
 
-    set(
-        "profileAvatar",
-        p.username.charAt(0).toUpperCase()
-    );
+set("donateBalance",number(p.donate));
 
-    set(
-        "profileId",
-        "ID: "+p.id
-    );
+const need=xpForLevel(Number(p.level)),
+percent=Math.min(100,Number(p.xp)/need*100);
 
-    set("profileLevel",p.level);
-    set("profileXP",p.xp+" XP");
-    set("profileCash",money(p.cash));
-    set("profileBank",money(p.bank));
-    set("profileDonate","♦ "+number(p.donate));
+document.getElementById("homeXpBar").style.width=percent+"%";
+document.getElementById("bigXpBar").style.width=percent+"%";
 
-    set(
-        "profileJob",
-        p.job||"Безработный"
-    );
+set("xpText",p.xp+" / "+need+" XP");
 
-    set(
-        "profileDate",
-        p.created_at
-        ? new Date(
-            p.created_at
-        ).toLocaleDateString("ru-RU")
-        : "—"
-    );
+renderJobs();
+renderGarage();
+renderShop();
 
-    set(
-        "donateBalance",
-        number(p.donate)
-    );
-
-    set(
-        "casinoBalance",
-        money(p.cash)
-    );
-
-    const need =
-        xpForLevel(
-            Number(p.level)
-        );
-
-    const percent =
-        Math.min(
-            100,
-            Number(p.xp)/need*100
-        );
-
-    const homeXpBar =
-        document.getElementById(
-            "homeXpBar"
-        );
-
-    const bigXpBar =
-        document.getElementById(
-            "bigXpBar"
-        );
-
-    if(homeXpBar)
-        homeXpBar.style.width =
-            percent+"%";
-
-    if(bigXpBar)
-        bigXpBar.style.width =
-            percent+"%";
-
-    set(
-        "xpText",
-        p.xp+" / "+need+" XP"
-    );
-
-    renderJobs();
-    renderGarage();
-    renderShop();
-    renderCasinoHistory();
 }
 
-const number =
-    v =>
-        Number(v||0)
-        .toLocaleString("ru-RU");
 
-const money =
-    v =>
-        "₽ "+number(v);
+const number=v=>
+Number(v||0).toLocaleString("ru-RU");
 
-const xpForLevel =
-    l =>
-        100+(l-1)*75;
+const money=v=>
+"₽ "+number(v);
 
-/* =========================================================
-   JOBS
-========================================================= */
+const xpForLevel=l=>
+100+(l-1)*75;
 
-const jobs = [
 
-    [
-        "courier",
-        "📦",
-        "Курьер",
-        "Доставляй посылки по городу.",
-        1
-    ],
+const jobs=[
 
-    [
-        "taxi",
-        "🚕",
-        "Таксист",
-        "Перевози пассажиров.",
-        1
-    ],
+["courier","📦","Курьер","Доставляй посылки по городу.",1],
 
-    [
-        "loader",
-        "📦",
-        "Грузчик",
-        "Работа на складе.",
-        1
-    ],
+["taxi","🚕","Таксист","Перевози пассажиров.",1],
 
-    [
-        "bus",
-        "🚌",
-        "Водитель автобуса",
-        "Работай на городском маршруте.",
-        2
-    ],
+["loader","📦","Грузчик","Работа на складе.",1],
 
-    [
-        "farmer",
-        "🚜",
-        "Фермер",
-        "Работай на ферме.",
-        1
-    ],
+["bus","🚌","Водитель автобуса","Работай на городском маршруте.",2],
 
-    [
-        "builder",
-        "👷",
-        "Строитель",
-        "Строй город.",
-        2
-    ],
+["farmer","🚜","Фермер","Работай на ферме.",1],
 
-    [
-        "mechanic",
-        "🔧",
-        "Механик",
-        "Ремонтируй транспорт.",
-        3
-    ],
+["builder","👷","Строитель","Строй город.",2],
 
-    [
-        "truck",
-        "🚛",
-        "Дальнобойщик",
-        "Перевози грузы между городами.",
-        5
-    ]
+["mechanic","🔧","Механик","Ремонтируй транспорт.",3],
+
+["truck","🚛","Дальнобойщик","Перевози грузы между городами.",5]
 
 ];
+
 
 function renderJobs(){
 
-    const c =
-        document.getElementById(
-            "jobsContainer"
-        );
+const c=document.getElementById("jobsContainer");
 
-    if(!c)
-        return;
+if(!c)
+return;
 
-    c.innerHTML="";
+c.innerHTML="";
 
-    jobs.forEach(j=>{
+jobs.forEach(j=>{
 
-        const locked =
-            Number(currentUser.level)<j[4];
+const locked=Number(currentUser.level)<j[4];
 
-        const d =
-            document.createElement("div");
+const d=document.createElement("div");
 
-        d.className="job";
+d.className="job";
 
-        d.innerHTML=`
+d.innerHTML=`
 
-            <div class="job-icon">
-                ${j[1]}
-            </div>
+<div class="job-icon">${j[1]}</div>
 
-            <div class="job-main">
+<div class="job-main">
 
-                <div class="job-name">
-                    ${j[2]}
-                </div>
+<div class="job-name">${j[2]}</div>
 
-                <div class="job-info">
-                    ${j[3]}<br>
-                    Требуется уровень: ${j[4]}<br>
-                    Награда зависит от работы и серверного КД.
-                </div>
+<div class="job-info">
+${j[3]}<br>
+Требуется уровень: ${j[4]}<br>
+Награда зависит от работы и серверного КД.
+</div>
 
-            </div>
+</div>
 
-            <button
-                class="job-action"
-                onclick="completeJob('${j[0]}')"
-                ${locked?"disabled":""}
-                style="${
-                    locked
-                    ?"background:#333;color:#777"
-                    :""
-                }">
+<button
+class="job-action"
+onclick="completeJob('${j[0]}')"
+${locked?"disabled":""}
+style="${locked?"background:#333;color:#777":""}"
+>
+${locked?"🔒":"РАБОТАТЬ"}
+</button>
 
-                ${locked?"🔒":"РАБОТАТЬ"}
+`;
 
-            </button>
-        `;
+c.appendChild(d);
 
-        c.appendChild(d);
-    });
+});
+
 }
+
 
 async function completeJob(id){
 
-    if(!currentUser)
-        return;
+if(!currentUser)
+return;
 
-    const j =
-        jobs.find(
-            x=>x[0]===id
-        );
+const j=jobs.find(x=>x[0]===id);
 
-    if(!j)
-        return;
+if(!j)
+return;
 
-    if(
-        Number(currentUser.level)
-        <
-        j[4]
-    )
-        return toast(
-            "🔒 Требуется уровень "+j[4]
-        );
+if(Number(currentUser.level)<j[4])
+return toast("🔒 Требуется уровень "+j[4]);
 
-    const token =
-        localStorage.getItem(
-            "brp_access_token"
-        );
+const token=localStorage.getItem("brp_access_token");
 
-    try{
+try{
 
-        toast("💼 Выполняем работу...");
+toast("💼 Выполняем работу...");
 
-        const r =
-            await supabaseFetch(
-                "/rest/v1/rpc/complete_job",
-                {
-                    method:"POST",
+const r=await supabaseFetch(
+"/rest/v1/rpc/complete_job",
+{
+method:"POST",
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+token
+},
+body:JSON.stringify({
+p_job:id
+})
+}
+);
 
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:"Bearer "+token
-                    },
+await refreshProfile();
 
-                    body:JSON.stringify({
-                        p_job:id
-                    })
-                }
-            );
+toast("💰 +"+number(r.cash)+" ₽  ⭐ +"+r.xp+" XP");
 
-        await refreshProfile();
+}catch(e){
 
-        toast(
-            "💰 +"+
-            number(r.cash)+
-            " ₽  ⭐ +"+
-            r.xp+
-            " XP"
-        );
+const t=e.message||"",
+m=t.match(/JOB_COOLDOWN:(\d+)/);
 
-    }catch(e){
+toast(
+t.includes("JOB_COOLDOWN")
+?"⏳ Подожди "+(m?m[1]:60)+" сек."
+:"❌ "+cleanError(t)
+);
 
-        const t=e.message||"";
-
-        const m =
-            t.match(
-                /JOB_COOLDOWN:(\d+)/
-            );
-
-        toast(
-            t.includes("JOB_COOLDOWN")
-            ?"⏳ Подожди "+(m?m[1]:60)+" сек."
-            :"❌ "+cleanError(t)
-        );
-    }
 }
 
-/* =========================================================
-   GARAGE
-========================================================= */
+}
+
 
 function renderGarage(){
 
-    const c =
-        document.getElementById(
-            "garageContainer"
-        );
+const c=document.getElementById("garageContainer");
 
-    if(!c)
-        return;
+if(!c)
+return;
 
-    const cars = [
+const cars=[
+["Lada Priora","🚘",87,96],
+["VAZ 2107","🚗",62,91]
+];
 
-        [
-            "Lada Priora",
-            "🚘",
-            87,
-            96
-        ],
+c.innerHTML="";
 
-        [
-            "VAZ 2107",
-            "🚗",
-            62,
-            91
-        ]
+cars.forEach(x=>{
 
-    ];
+const d=document.createElement("div");
 
-    c.innerHTML="";
+d.className="car";
 
-    cars.forEach(x=>{
+d.innerHTML=`
 
-        const d =
-            document.createElement("div");
+<div class="car-image">
+${x[1]}
+</div>
 
-        d.className="car";
+<div class="car-body">
 
-        d.innerHTML=`
+<div class="car-name">
+${x[0]}
+</div>
 
-            <div class="car-image">
-                ${x[1]}
-            </div>
+<div class="car-meta">
+Топливо: ${x[2]}% · Состояние: ${x[3]}%
+</div>
 
-            <div class="car-body">
+<div class="car-buttons">
 
-                <div class="car-name">
-                    ${x[0]}
-                </div>
+<button onclick="toast('⛽ Автомобиль заправлен')">
+⛽ Заправить
+</button>
 
-                <div class="car-meta">
-                    Топливо: ${x[2]}%
-                    ·
-                    Состояние: ${x[3]}%
-                </div>
+<button onclick="toast('🔧 Автомобиль исправен')">
+🔧 Ремонт
+</button>
 
-                <div class="car-buttons">
+<button onclick="toast('🚗 Вы выехали в город')">
+🚗 Ехать
+</button>
 
-                    <button
-                        onclick="toast('⛽ Автомобиль заправлен')">
-                        ⛽ Заправить
-                    </button>
+</div>
 
-                    <button
-                        onclick="toast('🔧 Автомобиль исправен')">
-                        🔧 Ремонт
-                    </button>
+</div>
 
-                    <button
-                        onclick="toast('🚗 Вы выехали в город')">
-                        🚗 Ехать
-                    </button>
+`;
 
-                </div>
+c.appendChild(d);
 
-            </div>
-        `;
+});
 
-        c.appendChild(d);
-    });
 }
 
-/* =========================================================
-   SHOP
-========================================================= */
 
-const shopItems = [
+const shopItems=[
 
-    ["🍔","Бургер",350],
-    ["🥤","Газировка",180],
-    ["☕","Кофе",250],
-    ["📱","Телефон",12500],
-    ["🎧","Наушники",6500],
-    ["🧰","Ремкомплект",3200],
-    ["🎒","Рюкзак",4500],
-    ["🧥","Куртка",7200]
+["🍔","Бургер",350],
+["🥤","Газировка",180],
+["☕","Кофе",250],
+["📱","Телефон",12500],
+["🎧","Наушники",6500],
+["🧰","Ремкомплект",3200],
+["🎒","Рюкзак",4500],
+["🧥","Куртка",7200]
 
 ];
+
 
 function renderShop(){
 
-    const c =
-        document.getElementById(
-            "shopContainer"
-        );
+const c=document.getElementById("shopContainer");
 
-    if(!c)
-        return;
+if(!c)
+return;
 
-    c.innerHTML="";
+c.innerHTML="";
 
-    shopItems.forEach((x,i)=>{
+shopItems.forEach((x,i)=>{
 
-        const d =
-            document.createElement("div");
+const d=document.createElement("div");
 
-        d.className="item";
+d.className="item";
 
-        d.innerHTML=`
+d.innerHTML=`
 
-            <div class="item-icon">
-                ${x[0]}
-            </div>
+<div class="item-icon">
+${x[0]}
+</div>
 
-            <div class="item-name">
-                ${x[1]}
-            </div>
+<div class="item-name">
+${x[1]}
+</div>
 
-            <div class="item-price">
-                ₽${number(x[2])}
-            </div>
+<div class="item-price">
+₽${number(x[2])}
+</div>
 
-            <button
-                class="buy"
-                onclick="buyItem(${i})">
-                КУПИТЬ
-            </button>
-        `;
+<button class="buy" onclick="buyItem(${i})">
+КУПИТЬ
+</button>
 
-        c.appendChild(d);
-    });
+`;
+
+c.appendChild(d);
+
+});
+
 }
+
 
 function buyItem(i){
 
-    const x=shopItems[i];
+const x=shopItems[i];
 
-    if(!x)
-        return;
+if(!x)
+return;
 
-    if(
-        Number(currentUser.cash)
-        <
-        x[2]
-    )
-        return toast(
-            "Недостаточно денег."
-        );
+if(Number(currentUser.cash)<x[2])
+return toast("Недостаточно денег.");
 
-    toast(
-        x[0]+" "+x[1]+" добавлен."
-    );
+toast(x[0]+" "+x[1]+" добавлен.");
+
 }
 
-/* =========================================================
-   DONATE
-========================================================= */
 
 function buyDonate(){
 
-    openModal(
-        "♦ Донат",
-        "Платёжная система ещё не подключена.\n\n"+
-        "Сейчас это интерфейс донат-магазина. "+
-        "Реальную оплату подключим отдельно через платёжный сервис."
-    );
+openModal(
+"♦ Донат",
+"Платёжная система ещё не подключена.\n\nСейчас это интерфейс донат-магазина. Реальную оплату подключим отдельно через платёжный сервис."
+);
+
 }
 
-/* =========================================================
-   CASES
-========================================================= */
 
 function openCase(price,name){
 
-    if(
-        Number(currentUser.donate)
-        <
-        price
-    )
-        return toast(
-            "Недостаточно доната."
-        );
-
-    const rewards = [
-
-        ["50 000 ₽",50000],
-        ["25 000 ₽",25000],
-        ["10 000 ₽",10000],
-        ["5 000 ₽",5000],
-        ["100 ♦",0],
-        ["Особый приз",100000]
-
-    ];
-
-    const r =
-        rewards[
-            Math.floor(
-                Math.random()*rewards.length
-            )
-        ];
-
-    openModal(
-        "🎁 "+name,
-        "Кейс открыт!\n\n"+
-        "Выпало:\n"+
-        r[0]+
-        "\n\n"+
-        "Серверная выдача награды будет добавлена отдельной RPC."
-    );
-}
-
-/* =========================================================
-   CASINO NAV
-========================================================= */
-
-function openCasinoGame(game){
-
-    if(game==="blackjack"){
-        openPage("blackjack");
-        blackjackReset();
-    }
-
-    if(game==="roulette"){
-        openPage("roulette");
-        selectedRouletteBet=null;
-
-        document
-            .querySelectorAll(
-                "#rouletteBets button"
-            )
-            .forEach(
-                b=>b.classList.remove("selected")
-            );
-
-        document.getElementById(
-            "rouletteResult"
-        ).textContent="Выбери ставку.";
-    }
-
-    if(game==="dice"){
-        openPage("dice");
-    }
-
-    if(game==="coin"){
-        openPage("coin");
-    }
-}
-
-/* =========================================================
-   CASINO BALANCE
-========================================================= */
-
-function casinoMoney(){
-
-    return Number(
-        currentUser?.cash || 0
-    );
-}
-
-function casinoCanBet(bet){
-
-    bet=Number(bet);
-
-    if(!Number.isFinite(bet))
-        return false;
-
-    if(bet<100)
-        return false;
-
-    if(bet>casinoMoney())
-        return false;
-
-    return true;
-}
-
-function setBet(id,value){
-
-    const e =
-        document.getElementById(id);
-
-    if(e)
-        e.value=value;
-}
-
-/* =========================================================
-   LOCAL CASINO HISTORY
-========================================================= */
-
-function addCasinoHistory(
-    icon,
-    name,
-    bet,
-    result,
-    win
-){
-
-    casinoHistory.unshift({
-
-        icon,
-        name,
-        bet,
-        result,
-        win,
-
-        time:new Date()
-            .toLocaleTimeString(
-                "ru-RU",
-                {
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-            )
-
-    });
-
-    casinoHistory =
-        casinoHistory.slice(
-            0,
-            20
-        );
-
-    localStorage.setItem(
-        "brp_casino_history",
-        JSON.stringify(
-            casinoHistory
-        )
-    );
-
-    renderCasinoHistory();
-}
-
-function renderCasinoHistory(){
-
-    const c =
-        document.getElementById(
-            "casinoHistory"
-        );
-
-    if(!c)
-        return;
-
-    if(!casinoHistory.length){
-
-        c.innerHTML=`
-
-            <div class="card">
-
-                <div class="card-title">
-                    История пуста
-                </div>
-
-                <div class="card-desc">
-                    Здесь будут отображаться твои последние игры.
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-    c.innerHTML="";
-
-    casinoHistory.forEach(x=>{
-
-        const d =
-            document.createElement("div");
-
-        d.className="history-item";
-
-        d.innerHTML=`
-
-            <div class="history-icon">
-                ${x.icon}
-            </div>
-
-            <div class="history-main">
-
-                <div class="history-name">
-                    ${x.name}
-                </div>
-
-                <div class="history-info">
-                    Ставка: ₽${number(x.bet)}
-                    ·
-                    ${x.time}
-                </div>
-
-            </div>
-
-            <div class="history-result ${
-                x.win
-                ?"win"
-                :"loss"
-            }">
-
-                ${
-                    x.win
-                    ?"+₽"+number(x.result)
-                    :"−₽"+number(x.bet)
-                }
-
-            </div>
-        `;
-
-        c.appendChild(d);
-    });
-}
-
-/* =========================================================
-   CLIENT CASINO BALANCE
-   IMPORTANT:
-   Сейчас игры меняют отображаемый баланс локально.
-   Для настоящего серверного казино нужен RPC.
-========================================================= */
-
-function changeLocalCasinoBalance(delta){
-
-    if(!currentUser)
-        return;
-
-    currentUser.cash =
-        Number(currentUser.cash||0)
-        +
-        Number(delta||0);
-
-    renderAll();
-}
-
-/* =========================================================
-   BLACKJACK
-========================================================= */
-
-const blackjackCards = [
-
-    ["A","♠",11],
-    ["A","♥",11],
-    ["A","♦",11],
-    ["A","♣",11],
-
-    ["2","♠",2],
-    ["2","♥",2],
-    ["2","♦",2],
-    ["2","♣",2],
-
-    ["3","♠",3],
-    ["3","♥",3],
-    ["3","♦",3],
-    ["3","♣",3],
-
-    ["4","♠",4],
-    ["4","♥",4],
-    ["4","♦",4],
-    ["4","♣",4],
-
-    ["5","♠",5],
-    ["5","♥",5],
-    ["5","♦",5],
-    ["5","♣",5],
-
-    ["6","♠",6],
-    ["6","♥",6],
-    ["6","♦",6],
-    ["6","♣",6],
-
-    ["7","♠",7],
-    ["7","♥",7],
-    ["7","♦",7],
-    ["7","♣",7],
-
-    ["8","♠",8],
-    ["8","♥",8],
-    ["8","♦",8],
-    ["8","♣",8],
-
-    ["9","♠",9],
-    ["9","♥",9],
-    ["9","♦",9],
-    ["9","♣",9],
-
-    ["10","♠",10],
-    ["10","♥",10],
-    ["10","♦",10],
-    ["10","♣",10],
-
-    ["J","♠",10],
-    ["J","♥",10],
-    ["J","♦",10],
-    ["J","♣",10],
-
-    ["Q","♠",10],
-    ["Q","♥",10],
-    ["Q","♦",10],
-    ["Q","♣",10],
-
-    ["K","♠",10],
-    ["K","♥",10],
-    ["K","♦",10],
-    ["K","♣",10]
+if(Number(currentUser.donate)<price)
+return toast("Недостаточно доната.");
+
+const rewards=[
+
+["50 000 ₽",50000],
+["25 000 ₽",25000],
+["10 000 ₽",10000],
+["5 000 ₽",5000],
+["100 ♦",0],
+["Особый приз",100000]
 
 ];
 
-function drawBlackjackCard(){
+const r=
+rewards[Math.floor(Math.random()*rewards.length)];
 
-    return {
-        ...blackjackCards[
-            Math.floor(
-                Math.random()
-                *
-                blackjackCards.length
-            )
-        ]
-    };
+openModal(
+"🎁 "+name,
+"Кейс открыт!\n\nВыпало:\n"+r[0]+"\n\nСерверная выдача награды будет добавлена отдельной RPC."
+);
+
 }
 
-function blackjackValue(hand){
-
-    let total=0;
-    let aces=0;
-
-    hand.forEach(c=>{
-
-        total+=c[2];
-
-        if(c[0]==="A")
-            aces++;
-    });
-
-    while(total>21 && aces>0){
-
-        total-=10;
-        aces--;
-    }
-
-    return total;
-}
-
-function blackjackReset(){
-
-    blackjack={
-        active:false,
-        player:[],
-        dealer:[],
-        bet:0,
-        dealerHidden:true
-    };
-
-    renderBlackjack();
-
-    document.getElementById(
-        "blackjackMessage"
-    ).textContent =
-        "Сделай ставку и начни новую игру.";
-}
-
-function blackjackStart(){
-
-    const bet =
-        Number(
-            document.getElementById(
-                "blackjackBet"
-            ).value
-        );
-
-    if(!casinoCanBet(bet)){
-
-        return toast(
-            bet<100
-            ?"Минимальная ставка — ₽100."
-            :"Недостаточно денег."
-        );
-    }
-
-    blackjack={
-
-        active:true,
-
-        player:[
-            drawBlackjackCard(),
-            drawBlackjackCard()
-        ],
-
-        dealer:[
-            drawBlackjackCard(),
-            drawBlackjackCard()
-        ],
-
-        bet,
-
-        dealerHidden:true
-    };
-
-    changeLocalCasinoBalance(
-        -bet
-    );
-
-    renderBlackjack();
-
-    document.getElementById(
-        "blackjackMessage"
-    ).textContent =
-        "Твой ход.";
-
-    document.getElementById(
-        "hitButton"
-    ).disabled=false;
-
-    document.getElementById(
-        "standButton"
-    ).disabled=false;
-
-    if(
-        blackjackValue(
-            blackjack.player
-        )===21
-    ){
-
-        blackjackFinish(
-            "blackjack"
-        );
-    }
-}
-
-function blackjackHit(){
-
-    if(!blackjack.active)
-        return;
-
-    blackjack.player.push(
-        drawBlackjackCard()
-    );
-
-    renderBlackjack();
-
-    const score =
-        blackjackValue(
-            blackjack.player
-        );
-
-    if(score>21){
-
-        blackjackFinish(
-            "lose"
-        );
-
-        return;
-    }
-
-    if(score===21){
-
-        blackjackFinish(
-            "stand"
-        );
-
-        return;
-    }
-
-    document.getElementById(
-        "blackjackMessage"
-    ).textContent =
-        "У тебя "+score+
-        ". Можешь взять ещё карту.";
-}
-
-function blackjackStand(){
-
-    if(!blackjack.active)
-        return;
-
-    blackjack.dealerHidden=false;
-
-    while(
-        blackjackValue(
-            blackjack.dealer
-        )<17
-    ){
-
-        blackjack.dealer.push(
-            drawBlackjackCard()
-        );
-    }
-
-    const p =
-        blackjackValue(
-            blackjack.player
-        );
-
-    const d =
-        blackjackValue(
-            blackjack.dealer
-        );
-
-    if(d>21)
-        blackjackFinish("win");
-
-    else if(p>d)
-        blackjackFinish("win");
-
-    else if(p===d)
-        blackjackFinish("draw");
-
-    else
-        blackjackFinish("lose");
-}
-
-function blackjackFinish(type){
-
-    if(!blackjack.active)
-        return;
-
-    blackjack.active=false;
-    blackjack.dealerHidden=false;
-
-    const bet=blackjack.bet;
-
-    let payout=0;
-
-    let message="";
-
-    let resultText="";
-
-    if(type==="blackjack"){
-
-        payout =
-            Math.floor(
-                bet*2.5
-            );
-
-        message =
-            "🃏 BLACKJACK! Выплата ×2.5";
-
-        resultText=payout;
-
-    }else if(type==="win"){
-
-        payout=bet*2;
-
-        message =
-            "🎉 Ты победил дилера!";
-
-        resultText=payout;
-
-    }else if(type==="draw"){
-
-        payout=bet;
-
-        message =
-            "🤝 Ничья. Ставка возвращена.";
-
-        resultText=payout;
-
-    }else{
-
-        payout=0;
-
-        message =
-            "💥 Дилер победил.";
-
-        resultText=0;
-    }
-
-    if(payout>0){
-
-        changeLocalCasinoBalance(
-            payout
-        );
-    }
-
-    const won =
-        type!=="lose";
-
-    addCasinoHistory(
-        "🃏",
-        "21 / Blackjack",
-        bet,
-        resultText,
-        won
-    );
-
-    renderBlackjack();
-
-    document.getElementById(
-        "blackjackMessage"
-    ).textContent =
-        message+
-        " Баланс: "+
-        money(casinoMoney());
-
-    document.getElementById(
-        "hitButton"
-    ).disabled=true;
-
-    document.getElementById(
-        "standButton"
-    ).disabled=true;
-}
-
-function renderBlackjack(){
-
-    const dealer =
-        document.getElementById(
-            "dealerHand"
-        );
-
-    const player =
-        document.getElementById(
-            "playerHand"
-        );
-
-    if(!dealer||!player)
-        return;
-
-    dealer.innerHTML="";
-    player.innerHTML="";
-
-    blackjack.dealer.forEach(
-        (c,i)=>{
-
-            if(
-                i===1 &&
-                blackjack.dealerHidden
-            ){
-
-                dealer.innerHTML+=`
-                    <div class="card-back">
-                        ?
-                    </div>
-                `;
-
-            }else{
-
-                dealer.appendChild(
-                    createPlayingCard(c)
-                );
-            }
-        }
-    );
-
-    blackjack.player.forEach(
-        c=>{
-            player.appendChild(
-                createPlayingCard(c)
-            );
-        }
-    );
-
-    const ps =
-        blackjack.player.length
-        ?blackjackValue(
-            blackjack.player
-        )
-        :0;
-
-    const ds =
-        blackjack.dealer.length
-        ?blackjackValue(
-            blackjack.dealer
-        )
-        :"";
-
-    document.getElementById(
-        "playerScore"
-    ).textContent=ps;
-
-    document.getElementById(
-        "dealerScore"
-    ).textContent =
-        blackjack.dealerHidden
-        ?"?"
-        :ds;
-}
-
-function createPlayingCard(c){
-
-    const d =
-        document.createElement("div");
-
-    const red =
-        c[1]==="♥"||
-        c[1]==="♦";
-
-    d.className =
-        "card-playing"+
-        (red?" red-card":"");
-
-    d.innerHTML=`
-
-        <div>
-            ${c[0]}
-        </div>
-
-        <div class="suit">
-            ${c[1]}
-        </div>
-
-    `;
-
-    return d;
-}
-
-/* =========================================================
-   ROULETTE
-========================================================= */
-
-function selectRouletteBet(type){
-
-    selectedRouletteBet=type;
-
-    document
-        .querySelectorAll(
-            "#rouletteBets button"
-        )
-        .forEach(
-            b=>b.classList.remove(
-                "selected"
-            )
-        );
-
-    const btn =
-        document.querySelector(
-            '#rouletteBets button[data-bet="'+
-            type+
-            '"]'
-        );
-
-    if(btn)
-        btn.classList.add("selected");
-
-    document.getElementById(
-        "rouletteResult"
-    ).textContent =
-        "Выбрано: "+
-        (
-            type==="red"
-            ?"🔴 красное"
-            :
-            type==="black"
-            ?"⚫ чёрное"
-            :"🟢 зелёное"
-        );
-}
-
-function spinRoulette(){
-
-    const bet =
-        Number(
-            document.getElementById(
-                "rouletteBet"
-            ).value
-        );
-
-    if(!selectedRouletteBet)
-        return toast(
-            "Сначала выбери цвет."
-        );
-
-    if(!casinoCanBet(bet))
-        return toast(
-            bet<100
-            ?"Минимальная ставка — ₽100."
-            :"Недостаточно денег."
-        );
-
-    changeLocalCasinoBalance(
-        -bet
-    );
-
-    const wheel =
-        document.getElementById(
-            "rouletteWheel"
-        );
-
-    const result =
-        Math.random();
-
-    let color;
-
-    if(result<0.05)
-        color="green";
-
-    else if(result<0.525)
-        color="red";
-
-    else
-        color="black";
-
-    const spins =
-        4+
-        Math.floor(
-            Math.random()*4
-        );
-
-    wheel.style.transform =
-        "rotate("+
-        (
-            spins*360+
-            Math.floor(
-                Math.random()*360
-            )
-        )+
-        "deg)";
-
-    setTimeout(()=>{
-
-        let payout=0;
-
-        if(
-            color===
-            selectedRouletteBet
-        ){
-
-            if(color==="green")
-                payout=bet*14;
-
-            else
-                payout=bet*2;
-        }
-
-        if(payout>0){
-
-            changeLocalCasinoBalance(
-                payout
-            );
-
-            addCasinoHistory(
-                "🎡",
-                "Рулетка",
-                bet,
-                payout,
-                true
-            );
-
-            document.getElementById(
-                "rouletteResult"
-            ).innerHTML =
-                "🎉 Выпало "+
-                rouletteColorName(color)+
-                ". Ты выиграл "+
-                money(payout)+"!";
-        }else{
-
-            addCasinoHistory(
-                "🎡",
-                "Рулетка",
-                bet,
-                0,
-                false
-            );
-
-            document.getElementById(
-                "rouletteResult"
-            ).innerHTML =
-                "💥 Выпало "+
-                rouletteColorName(color)+
-                ". Ставка проиграна.";
-        }
-
-    },1200);
-}
-
-function rouletteColorName(color){
-
-    if(color==="red")
-        return "🔴 КРАСНОЕ";
-
-    if(color==="black")
-        return "⚫ ЧЁРНОЕ";
-
-    return "🟢 ЗЕЛЁНОЕ";
-}
-
-/* =========================================================
-   DICE
-========================================================= */
-
-function rollDice(){
-
-    const bet =
-        Number(
-            document.getElementById(
-                "diceBet"
-            ).value
-        );
-
-    if(!casinoCanBet(bet))
-        return toast(
-            bet<100
-            ?"Минимальная ставка — ₽100."
-            :"Недостаточно денег."
-        );
-
-    changeLocalCasinoBalance(
-        -bet
-    );
-
-    const dice =
-        document.getElementById(
-            "dice"
-        );
-
-    dice.textContent="🎲";
-
-    dice.animate(
-        [
-            {
-                transform:"rotate(0deg) scale(1)"
-            },
-            {
-                transform:"rotate(360deg) scale(1.15)"
-            },
-            {
-                transform:"rotate(720deg) scale(1)"
-            }
-        ],
-        {
-            duration:700
-        }
-    );
-
-    const a =
-        Math.floor(
-            Math.random()*6
-        )+1;
-
-    const b =
-        Math.floor(
-            Math.random()*6
-        )+1;
-
-    const total=a+b;
-
-    setTimeout(()=>{
-
-        dice.textContent =
-            total;
-
-        let payout=0;
-
-        if(total>=11)
-            payout=bet*3;
-
-        else if(total>=8)
-            payout=
-                Math.floor(
-                    bet*1.5
-                );
-
-        if(payout>0){
-
-            changeLocalCasinoBalance(
-                payout
-            );
-
-            addCasinoHistory(
-                "🎲",
-                "Кости",
-                bet,
-                payout,
-                true
-            );
-
-            document.getElementById(
-                "diceResult"
-            ).textContent =
-                "🎉 Выпало "+
-                a+
-                " + "+
-                b+
-                " = "+
-                total+
-                ". Выигрыш: "+
-                money(payout);
-
-        }else{
-
-            addCasinoHistory(
-                "🎲",
-                "Кости",
-                bet,
-                0,
-                false
-            );
-
-            document.getElementById(
-                "diceResult"
-            ).textContent =
-                "💥 Выпало "+
-                a+
-                " + "+
-                b+
-                " = "+
-                total+
-                ". Ставка проиграна.";
-        }
-
-    },700);
-}
-
-/* =========================================================
-   COIN
-========================================================= */
-
-function flipCoin(side){
-
-    const bet =
-        Number(
-            document.getElementById(
-                "coinBet"
-            ).value
-        );
-
-    if(!casinoCanBet(bet))
-        return toast(
-            bet<100
-            ?"Минимальная ставка — ₽100."
-            :"Недостаточно денег."
-        );
-
-    changeLocalCasinoBalance(
-        -bet
-    );
-
-    const coin =
-        document.getElementById(
-            "coin"
-        );
-
-    coin.style.transform =
-        "rotateY(1080deg)";
-
-    const result =
-        Math.random()<.5
-        ?"heads"
-        :"tails";
-
-    setTimeout(()=>{
-
-        coin.style.transform =
-            "rotateY(0deg)";
-
-        const won =
-            side===result;
-
-        if(won){
-
-            const payout =
-                bet*2;
-
-            changeLocalCasinoBalance(
-                payout
-            );
-
-            addCasinoHistory(
-                "🪙",
-                "Монетка",
-                bet,
-                payout,
-                true
-            );
-
-            document.getElementById(
-                "coinResult"
-            ).textContent =
-                "🎉 Выпало "+
-                (
-                    result==="heads"
-                    ?"ОРЁЛ"
-                    :"РЕШКА"
-                )+
-                ". Ты выиграл "+
-                money(payout)+".";
-
-        }else{
-
-            addCasinoHistory(
-                "🪙",
-                "Монетка",
-                bet,
-                0,
-                false
-            );
-
-            document.getElementById(
-                "coinResult"
-            ).textContent =
-                "💥 Выпало "+
-                (
-                    result==="heads"
-                    ?"ОРЁЛ"
-                    :"РЕШКА"
-                )+
-                ". Ставка проиграна.";
-        }
-
-    },800);
-}
-
-/* =========================================================
-   CHAT
-========================================================= */
 
 async function loadChat(){
 
-    const token =
-        localStorage.getItem(
-            "brp_access_token"
-        );
+const token=localStorage.getItem("brp_access_token");
 
-    try{
+try{
 
-        renderChat(
-            await supabaseFetch(
-                "/rest/v1/chat_messages?select=*&order=created_at.asc&limit=100",
-                {
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:"Bearer "+token
-                    }
-                }
-            )||[]
-        );
-
-    }catch(e){
-
-        console.error(
-            "Chat load:",
-            e
-        );
-
-        renderChat([]);
-    }
+renderChat(
+await supabaseFetch(
+"/rest/v1/chat_messages?select=*&order=created_at.asc&limit=100",
+{
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+token
 }
+}
+)||[]
+);
+
+}catch(e){
+
+console.error("Chat load:",e);
+
+renderChat([]);
+
+}
+
+}
+
 
 function renderChat(messages){
 
-    const b =
-        document.getElementById(
-            "chatMessages"
-        );
+const b=document.getElementById("chatMessages");
 
-    if(!b)
-        return;
+if(!b)
+return;
 
-    b.innerHTML="";
+b.innerHTML="";
 
-    if(!messages.length){
+if(!messages.length){
 
-        b.innerHTML=`
+b.innerHTML=`
 
-            <div class="message">
+<div class="message">
 
-                <div class="message-name">
-                    SERVER
-                </div>
+<div class="message-name">
+SERVER
+</div>
 
-                <div class="message-text">
-                    Добро пожаловать в общий чат!
-                </div>
+<div class="message-text">
+Добро пожаловать в общий чат!
+</div>
 
-            </div>
+</div>
 
-        `;
+`;
 
-        return;
-    }
+return;
 
-    messages.forEach(m=>{
-
-        const d =
-            document.createElement("div");
-
-        d.className="message";
-
-        d.innerHTML=`
-
-            <div class="message-name">
-                ${escapeHTML(
-                    m.username||"Player"
-                )}
-            </div>
-
-            <div class="message-text">
-                ${escapeHTML(
-                    m.message||
-                    m.text||
-                    ""
-                )}
-            </div>
-
-        `;
-
-        b.appendChild(d);
-    });
-
-    b.scrollTop =
-        b.scrollHeight;
 }
+
+messages.forEach(m=>{
+
+const d=document.createElement("div");
+
+d.className="message";
+
+d.innerHTML=`
+
+<div class="message-name">
+${escapeHTML(m.username||"Player")}
+</div>
+
+<div class="message-text">
+${escapeHTML(m.message||m.text||"")}
+</div>
+
+`;
+
+b.appendChild(d);
+
+});
+
+b.scrollTop=b.scrollHeight;
+
+}
+
 
 async function sendChat(){
 
-    const i =
-        document.getElementById(
-            "chatInput"
-        );
+const i=document.getElementById("chatInput"),
+text=i.value.trim();
 
-    const text =
-        i.value.trim();
+if(!text||text.length>150)
+return;
 
-    if(!text||text.length>150)
-        return;
+try{
 
-    try{
+await supabaseFetch(
+"/rest/v1/chat_messages",
+{
+method:"POST",
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+localStorage.getItem("brp_access_token"),
+Prefer:"return=minimal"
+},
+body:JSON.stringify({
+username:currentUser.username,
+message:text
+})
+}
+);
 
-        await supabaseFetch(
-            "/rest/v1/chat_messages",
-            {
-                method:"POST",
+i.value="";
 
-                headers:{
-                    apikey:SUPABASE_KEY,
-                    Authorization:
-                        "Bearer "+
-                        localStorage.getItem(
-                            "brp_access_token"
-                        ),
-                    Prefer:"return=minimal"
-                },
+await loadChat();
 
-                body:JSON.stringify({
-                    username:
-                        currentUser.username,
-                    message:text
-                })
-            }
-        );
+}catch(e){
 
-        i.value="";
+console.error(e);
 
-        await loadChat();
+toast("❌ Не удалось отправить сообщение.");
 
-    }catch(e){
-
-        console.error(e);
-
-        toast(
-            "❌ Не удалось отправить сообщение."
-        );
-    }
 }
 
-/* =========================================================
-   REALTIME / ONLINE
-========================================================= */
+}
+
 
 function startRealtime(){
 
-    if(chatChannel)
-        return;
+if(chatChannel)
+return;
 
-    const ref =
-        SUPABASE_URL
-        .replace("https://","")
-        .replace(".supabase.co","");
+const ref=
+SUPABASE_URL
+.replace("https://","")
+.replace(".supabase.co","");
 
-    try{
+try{
 
-        chatChannel =
-            new WebSocket(
-                "wss://"+
-                ref+
-                ".supabase.co/realtime/v1/websocket?apikey="+
-                encodeURIComponent(SUPABASE_KEY)+
-                "&vsn=1.0.0"
-            );
+chatChannel=new WebSocket(
+"wss://"+ref+".supabase.co/realtime/v1/websocket?apikey="+
+encodeURIComponent(SUPABASE_KEY)+
+"&vsn=1.0.0"
+);
 
-        chatChannel.onopen=()=>{
+chatChannel.onopen=()=>{
+console.log("Realtime connected");
+updateOnline();
+};
 
-            console.log(
-                "Realtime connected"
-            );
+chatChannel.onmessage=e=>{
 
-            updateOnline();
-        };
+try{
 
-        chatChannel.onmessage=e=>{
+if(JSON.parse(e.data).event==="INSERT")
+loadChat();
 
-            try{
+}catch(x){}
 
-                if(
-                    JSON.parse(e.data)
-                    .event==="INSERT"
-                )
-                    loadChat();
+};
 
-            }catch(x){}
-        };
+chatChannel.onerror=()=>{
+console.log("Realtime error");
+};
 
-        chatChannel.onerror=()=>
-            console.log(
-                "Realtime error"
-            );
+}catch(e){
 
-    }catch(e){
+console.error(e);
 
-        console.error(e);
-    }
-
-    setInterval(
-        loadChat,
-        5000
-    );
 }
+
+setInterval(loadChat,5000);
+
+}
+
 
 async function updateOnline(){
 
-    try{
+try{
 
-        await supabaseFetch(
-            "/rest/v1/online_players",
-            {
-                method:"POST",
-
-                headers:{
-                    apikey:SUPABASE_KEY,
-                    Authorization:
-                        "Bearer "+
-                        localStorage.getItem(
-                            "brp_access_token"
-                        ),
-                    Prefer:
-                        "resolution=merge-duplicates"
-                },
-
-                body:JSON.stringify({
-                    id:currentAuthUser.id,
-                    username:currentUser.username,
-                    online:true,
-                    last_seen:
-                        new Date().toISOString()
-                })
-            }
-        );
-
-    }catch(e){
-
-        console.log(
-            "Online heartbeat unavailable"
-        );
-    }
+await supabaseFetch(
+"/rest/v1/online_players",
+{
+method:"POST",
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+localStorage.getItem("brp_access_token"),
+Prefer:"resolution=merge-duplicates"
+},
+body:JSON.stringify({
+id:currentAuthUser.id,
+username:currentUser.username,
+online:true,
+last_seen:new Date().toISOString()
+})
 }
+);
+
+}catch(e){
+
+console.log("Online heartbeat unavailable");
+
+}
+
+}
+
 
 async function loadOnline(){
 
-    const c =
-        document.getElementById(
-            "onlineContainer"
-        );
+const c=document.getElementById("onlineContainer");
 
-    if(!c)
-        return;
+if(!c)
+return;
 
-    try{
+try{
 
-        const list =
-            await supabaseFetch(
-                "/rest/v1/online_players?select=*&online=eq.true&order=last_seen.desc&limit=50",
-                {
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:
-                            "Bearer "+
-                            localStorage.getItem(
-                                "brp_access_token"
-                            )
-                    }
-                }
-            )||[];
+const list=await supabaseFetch(
+"/rest/v1/online_players?select=*&online=eq.true&order=last_seen.desc&limit=50",
+{
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+localStorage.getItem("brp_access_token")
+}
+}
+)||[];
 
-        document.getElementById(
-            "onlineCount"
-        ).textContent =
-            list.length+
-            " онлайн";
+document.getElementById("onlineCount").textContent=
+list.length+" онлайн";
 
-        c.innerHTML="";
+c.innerHTML="";
 
-        list.forEach(p=>{
+list.forEach(p=>{
 
-            const d =
-                document.createElement("div");
+const d=document.createElement("div");
 
-            d.className="online-card";
+d.className="online-card";
 
-            d.innerHTML=`
+d.innerHTML=`
 
-                <div class="avatar">
-                    ${escapeHTML(
-                        (p.username||"P")
-                        .charAt(0)
-                        .toUpperCase()
-                    )}
-                </div>
+<div class="avatar">
+${escapeHTML((p.username||"P").charAt(0).toUpperCase())}
+</div>
 
-                <div class="online-info">
+<div class="online-info">
 
-                    <div class="online-name">
-                        ${escapeHTML(
-                            p.username||"Player"
-                        )}
-                    </div>
+<div class="online-name">
+${escapeHTML(p.username||"Player")}
+</div>
 
-                    <div class="online-status">
-                        ● В игре
-                    </div>
+<div class="online-status">
+● В игре
+</div>
 
-                </div>
+</div>
 
-                <div class="level">
-                    ONLINE
-                </div>
-            `;
+<div class="level">
+ONLINE
+</div>
 
-            c.appendChild(d);
-        });
+`;
 
-    }catch(e){
+c.appendChild(d);
 
-        document.getElementById(
-            "onlineCount"
-        ).textContent =
-            "1 онлайн";
+});
 
-        c.innerHTML=`
+}catch(e){
 
-            <div class="online-card">
+document.getElementById("onlineCount").textContent="1 онлайн";
 
-                <div class="avatar">
-                    ${escapeHTML(
-                        currentUser.username
-                        .charAt(0)
-                        .toUpperCase()
-                    )}
-                </div>
+c.innerHTML=`
 
-                <div class="online-info">
+<div class="online-card">
 
-                    <div class="online-name">
-                        ${escapeHTML(
-                            currentUser.username
-                        )}
-                    </div>
+<div class="avatar">
+${escapeHTML(currentUser.username.charAt(0).toUpperCase())}
+</div>
 
-                    <div class="online-status">
-                        ● В игре
-                    </div>
+<div class="online-info">
 
-                </div>
+<div class="online-name">
+${escapeHTML(currentUser.username)}
+</div>
 
-                <div class="level">
-                    ONLINE
-                </div>
+<div class="online-status">
+● В игре
+</div>
 
-            </div>
-        `;
-    }
+</div>
+
+<div class="level">
+ONLINE
+</div>
+
+</div>
+
+`;
+
 }
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
+}
+
 
 function openPage(page){
 
-    const pages = [
+[
+"home",
+"jobs",
+"garage",
+"shop",
+"map",
+"cases",
+"donate",
+"chat",
+"online",
+"profile"
+].forEach(n=>{
 
-        "home",
-        "jobs",
-        "garage",
-        "shop",
-        "map",
-        "cases",
-        "casino",
-        "blackjack",
-        "roulette",
-        "dice",
-        "coin",
-        "donate",
-        "chat",
-        "online",
-        "profile"
+const e=document.getElementById(n+"Page");
 
-    ];
+if(e)
+e.classList.toggle("active",n===page);
 
-    pages.forEach(n=>{
+});
 
-        const e =
-            document.getElementById(
-                n+"Page"
-            );
+document
+.querySelectorAll(".nav-btn")
+.forEach(b=>
+b.classList.toggle(
+"active",
+b.dataset.page===page
+)
+);
 
-        if(e)
-            e.classList.toggle(
-                "active",
-                n===page
-            );
-    });
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
-    document
-        .querySelectorAll(".nav-btn")
-        .forEach(b=>{
+if(page==="chat")
+loadChat();
 
-            b.classList.toggle(
-                "active",
-                b.dataset.page===page
-            );
-        });
+if(page==="online")
+loadOnline();
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-    if(page==="chat")
-        loadChat();
-
-    if(page==="online")
-        loadOnline();
-
-    if(page==="casino")
-        renderCasinoHistory();
 }
 
-/* =========================================================
-   LOGOUT
-========================================================= */
 
 async function logout(){
 
-    try{
+try{
 
-        if(currentAuthUser){
+if(currentAuthUser)
 
-            await supabaseFetch(
-                "/rest/v1/online_players?id=eq."
-                +
-                encodeURIComponent(
-                    currentAuthUser.id
-                ),
-                {
-                    method:"PATCH",
+await supabaseFetch(
+"/rest/v1/online_players?id=eq."+encodeURIComponent(currentAuthUser.id),
+{
+method:"PATCH",
+headers:{
+apikey:SUPABASE_KEY,
+Authorization:"Bearer "+localStorage.getItem("brp_access_token")
+},
+body:JSON.stringify({
+online:false
+})
+}
+);
 
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:
-                            "Bearer "+
-                            localStorage.getItem(
-                                "brp_access_token"
-                            )
-                    },
+}catch(e){}
 
-                    body:JSON.stringify({
-                        online:false
-                    })
-                }
-            );
-        }
+clearSession();
 
-    }catch(e){}
+currentUser=null;
+currentAuthUser=null;
 
-    clearSession();
+if(chatChannel){
 
-    currentUser=null;
-    currentAuthUser=null;
+try{
+chatChannel.close()
+}catch(e){}
 
-    if(chatChannel){
+chatChannel=null;
 
-        try{
-            chatChannel.close();
-        }catch(e){}
-
-        chatChannel=null;
-    }
-
-    showAuth();
-
-    switchAuth("login");
 }
 
-/* =========================================================
-   MODAL / TOAST
-========================================================= */
+showAuth();
 
-function openModal(
-    title,
-    text
-){
+switchAuth("login");
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent=title;
-
-    document.getElementById(
-        "modalText"
-    ).textContent=text;
-
-    document
-        .getElementById("modal")
-        .classList.remove("hidden");
 }
+
+
+function openModal(title,text){
+
+document.getElementById("modalTitle").textContent=title;
+
+document.getElementById("modalText").textContent=text;
+
+document
+.getElementById("modal")
+.classList.remove("hidden");
+
+}
+
 
 function closeModal(){
 
-    document
-        .getElementById("modal")
-        .classList.add("hidden");
+document
+.getElementById("modal")
+.classList.add("hidden");
+
 }
+
 
 function toast(text){
 
-    const e =
-        document.getElementById(
-            "toast"
-        );
+const e=document.getElementById("toast");
 
-    e.textContent=text;
+e.textContent=text;
 
-    e.classList.add("show");
+e.classList.add("show");
 
-    clearTimeout(
-        toastTimer
-    );
+clearTimeout(toastTimer);
 
-    toastTimer =
-        setTimeout(
-            ()=>{
-                e.classList.remove("show");
-            },
-            2300
-        );
+toastTimer=setTimeout(
+()=>e.classList.remove("show"),
+2300
+);
+
 }
+
 
 function escapeHTML(v){
 
-    return String(v)
-        .replaceAll(
-            "&",
-            "&amp;"
-        )
-        .replaceAll(
-            "<",
-            "&lt;"
-        )
-        .replaceAll(
-            ">",
-            "&gt;"
-        )
-        .replaceAll(
-            '"',
-            "&quot;"
-        )
-        .replaceAll(
-            "'",
-            "&#039;"
-        );
+return String(v)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
 }
+
 
 function cleanError(t){
 
-    if(!t)
-        return "Неизвестная ошибка.";
+if(!t)
+return"Неизвестная ошибка";
 
-    if(
-        t.includes(
-            "Invalid API key"
-        )
-    )
-        return "Неверный Supabase API key.";
+if(t.includes("Invalid API key"))
+return"Неверный Supabase API key.";
 
-    if(
-        t.includes(
-            "Invalid login credentials"
-        )
-    )
-        return "Неверный логин или пароль.";
+if(t.includes("Invalid login credentials"))
+return"Неверный логин или пароль.";
 
-    if(
-        t.includes(
-            "Email not confirmed"
-        )
-    )
-        return "Почта ещё не подтверждена.";
+if(t.includes("Email not confirmed"))
+return"Почта ещё не подтверждена.";
 
-    if(
-        t.includes(
-            "User already registered"
-        )
-    )
-        return "Такая почта уже зарегистрирована.";
+if(t.includes("User already registered"))
+return"Такая почта уже зарегистрирована.";
 
-    if(
-        t.includes(
-            "duplicate key"
-        )
-    )
-        return "Такой логин уже занят.";
+if(t.includes("duplicate key"))
+return"Такой логин уже занят.";
 
-    return t
-        .replace(
-            /[{}\[\]"]/g,
-            ""
-        )
-        .substring(
-            0,
-            250
-        );
+return t
+.replace(/[{}\[\]"]/g,"")
+.substring(0,250);
+
 }
 
-/* =========================================================
-   START
-========================================================= */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    async()=>{
+"DOMContentLoaded",
+async()=>{
 
-        try{
+try{
 
-            await loadSession();
+await loadSession();
 
-        }catch(e){
+}catch(e){
 
-            console.error(e);
+console.error(e);
+showAuth();
 
-            showAuth();
-        }
+}
 
-        setInterval(
-            async()=>{
+setInterval(
+async()=>{
 
-                if(currentUser){
+if(currentUser){
 
-                    await updateOnline();
-                    await loadOnline();
-                }
+await updateOnline();
+await loadOnline();
 
-            },
-            15000
-        );
+}
 
-    }
+},
+15000
+);
+
+}
 );
 
 </script>
