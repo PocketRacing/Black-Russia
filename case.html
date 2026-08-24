@@ -33,6 +33,7 @@ html{
 
 body{
     min-height:100vh;
+
     background:
         radial-gradient(
             circle at 50% -10%,
@@ -40,8 +41,13 @@ body{
             transparent 35%
         ),
         #050505;
+
     color:var(--white);
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
 button{
@@ -54,7 +60,7 @@ button{
     display:none!important;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .topbar{
     position:sticky;
@@ -70,6 +76,7 @@ button{
     padding:0 13px;
 
     background:rgba(8,8,8,.96);
+
     border-bottom:1px solid #252525;
 
     backdrop-filter:blur(15px);
@@ -97,6 +104,10 @@ button{
     font-weight:900;
 }
 
+.back-btn:active{
+    transform:scale(.97);
+}
+
 .money-box{
     display:flex;
     gap:5px;
@@ -106,6 +117,7 @@ button{
     padding:6px 8px;
 
     background:#151515;
+
     border:1px solid #292929;
 
     border-radius:7px;
@@ -122,7 +134,7 @@ button{
     color:var(--red2);
 }
 
-/* PAGE */
+/* ================= PAGE ================= */
 
 .page{
     width:100%;
@@ -147,7 +159,7 @@ button{
     font-size:11px;
 }
 
-/* HERO */
+/* ================= HERO ================= */
 
 .case-banner{
     position:relative;
@@ -170,6 +182,7 @@ button{
         );
 
     border:1px solid #432020;
+
     border-radius:15px;
 
     box-shadow:
@@ -260,10 +273,11 @@ button{
 
 .balance span{
     color:var(--red2);
+
     font-size:15px;
 }
 
-/* SECTION */
+/* ================= SECTION ================= */
 
 .section-title{
     margin:22px 0 11px;
@@ -281,7 +295,7 @@ button{
     font-size:10px;
 }
 
-/* CASE GRID */
+/* ================= CASE GRID ================= */
 
 .case-grid{
     display:grid;
@@ -308,6 +322,7 @@ button{
         #111;
 
     border:1px solid #292929;
+
     border-radius:13px;
 
     transition:.2s;
@@ -362,11 +377,12 @@ button{
 
     color:#fff;
 
-    background:linear-gradient(
-        135deg,
-        #c70711,
-        #f01925
-    );
+    background:
+        linear-gradient(
+            135deg,
+            #c70711,
+            #f01925
+        );
 
     border-radius:8px;
 
@@ -381,7 +397,12 @@ button{
     transform:scale(.97);
 }
 
-/* REWARDS */
+.open-btn:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+/* ================= REWARDS ================= */
 
 .reward-grid{
     display:grid;
@@ -397,6 +418,7 @@ button{
     background:#111;
 
     border:1px solid #292929;
+
     border-radius:11px;
 }
 
@@ -420,7 +442,7 @@ button{
     line-height:1.45;
 }
 
-/* LOADING */
+/* ================= LOADING ================= */
 
 .loading{
     padding:40px 15px;
@@ -439,6 +461,7 @@ button{
     margin:0 auto 10px;
 
     border:3px solid #292929;
+
     border-top-color:var(--red);
 
     border-radius:50%;
@@ -452,7 +475,7 @@ button{
     }
 }
 
-/* AUTH */
+/* ================= AUTH ================= */
 
 .auth-error{
     display:none;
@@ -502,7 +525,7 @@ button{
     font-weight:900;
 }
 
-/* TOAST */
+/* ================= TOAST ================= */
 
 .toast{
     position:fixed;
@@ -526,11 +549,13 @@ button{
     background:#191919;
 
     border:1px solid #383838;
+
     border-radius:9px;
 
     font-size:11px;
 
     opacity:0;
+
     pointer-events:none;
 
     transition:.25s;
@@ -544,7 +569,7 @@ button{
         translateY(0);
 }
 
-/* MODAL */
+/* ================= MODAL ================= */
 
 .modal{
     position:fixed;
@@ -553,6 +578,7 @@ button{
     z-index:400;
 
     display:flex;
+
     align-items:flex-end;
     justify-content:center;
 
@@ -572,6 +598,9 @@ button{
     border:1px solid #363636;
 
     border-radius:17px 17px 9px 9px;
+
+    box-shadow:
+        0 -10px 50px rgba(0,0,0,.6);
 }
 
 .close{
@@ -622,7 +651,7 @@ button{
     font-weight:900;
 }
 
-/* DESKTOP */
+/* ================= DESKTOP ================= */
 
 @media(min-width:700px){
 
@@ -734,11 +763,13 @@ button{
             </div>
 
             <div class="balance">
+
                 Твой баланс:
 
                 <span id="donateBalance">
                     ♦ 0
                 </span>
+
             </div>
 
         </div>
@@ -759,6 +790,8 @@ button{
 
     <div class="case-grid">
 
+
+        <!-- STARTER -->
 
         <div class="case-card">
 
@@ -781,12 +814,14 @@ button{
 
             <button
                 class="open-btn"
-                onclick="openCase('Стартовый',50)">
+                onclick="openCase('Стартовый',50,this)">
                 ОТКРЫТЬ
             </button>
 
         </div>
 
+
+        <!-- PREMIUM -->
 
         <div class="case-card">
 
@@ -809,12 +844,14 @@ button{
 
             <button
                 class="open-btn"
-                onclick="openCase('Премиум',150)">
+                onclick="openCase('Премиум',150,this)">
                 ОТКРЫТЬ
             </button>
 
         </div>
 
+
+        <!-- ELITE -->
 
         <div class="case-card">
 
@@ -837,12 +874,14 @@ button{
 
             <button
                 class="open-btn"
-                onclick="openCase('Элитный',500)">
+                onclick="openCase('Элитный',500,this)">
                 ОТКРЫТЬ
             </button>
 
         </div>
 
+
+        <!-- VIP -->
 
         <div class="case-card">
 
@@ -865,7 +904,7 @@ button{
 
             <button
                 class="open-btn"
-                onclick="openCase('VIP',1000)">
+                onclick="openCase('VIP',1000,this)">
                 ОТКРЫТЬ
             </button>
 
@@ -883,6 +922,7 @@ button{
     <div class="reward-grid">
 
         <div class="reward">
+
             <div class="reward-icon">
                 💰
             </div>
@@ -894,10 +934,12 @@ button{
             <div class="reward-text">
                 Получай ₽ для покупок и развития персонажа.
             </div>
+
         </div>
 
 
         <div class="reward">
+
             <div class="reward-icon">
                 🪙
             </div>
@@ -909,10 +951,12 @@ button{
             <div class="reward-text">
                 Редкая игровая валюта для специальных покупок.
             </div>
+
         </div>
 
 
         <div class="reward">
+
             <div class="reward-icon">
                 🚗
             </div>
@@ -924,10 +968,12 @@ button{
             <div class="reward-text">
                 Некоторые кейсы могут содержать транспорт.
             </div>
+
         </div>
 
 
         <div class="reward">
+
             <div class="reward-icon">
                 👑
             </div>
@@ -939,6 +985,7 @@ button{
             <div class="reward-text">
                 Редкие премиальные возможности аккаунта.
             </div>
+
         </div>
 
     </div>
@@ -1029,6 +1076,10 @@ button{
 
 <script>
 
+/* =========================================================
+   SUPABASE
+========================================================= */
+
 const SUPABASE_URL =
     "https://qzswnoeglovfpgrzpnio.supabase.co";
 
@@ -1037,11 +1088,17 @@ const SUPABASE_KEY =
 
 
 let currentUser = null;
+
 let currentAuthUser = null;
+
 let toastTimer = null;
 
+let openingCase = false;
 
-/* SUPABASE */
+
+/* =========================================================
+   SUPABASE FETCH
+========================================================= */
 
 async function supabaseFetch(path,options={}){
 
@@ -1061,7 +1118,10 @@ async function supabaseFetch(path,options={}){
 
                     Authorization:
                         "Bearer " +
-                        (token || SUPABASE_KEY),
+                        (
+                            token ||
+                            SUPABASE_KEY
+                        ),
 
                     "Content-Type":
                         "application/json",
@@ -1071,19 +1131,27 @@ async function supabaseFetch(path,options={}){
             }
         );
 
+
     const text =
         await r.text();
 
+
     let data = null;
 
+
     try{
+
         data =
             text
                 ? JSON.parse(text)
                 : null;
+
     }catch(e){
+
         data = text;
+
     }
+
 
     if(!r.ok){
 
@@ -1095,16 +1163,22 @@ async function supabaseFetch(path,options={}){
 
     }
 
+
     return data;
 }
 
 
-/* HELPERS */
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function number(value){
 
-    return Number(value || 0)
-        .toLocaleString("ru-RU");
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "ru-RU"
+    );
 
 }
 
@@ -1112,18 +1186,31 @@ function number(value){
 function toast(text){
 
     const element =
-        document.getElementById("toast");
+        document.getElementById(
+            "toast"
+        );
 
-    element.textContent = text;
 
-    element.classList.add("show");
+    element.textContent =
+        text;
 
-    clearTimeout(toastTimer);
+
+    element.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
 
     toastTimer =
         setTimeout(
             ()=>{
-                element.classList.remove("show");
+                element.classList.remove(
+                    "show"
+                );
             },
             2300
         );
@@ -1131,21 +1218,29 @@ function toast(text){
 }
 
 
-/* MODAL */
+/* =========================================================
+   MODAL
+========================================================= */
 
 function openModal(title,text){
 
     document.getElementById(
         "modalTitle"
-    ).textContent = title;
+    ).textContent =
+        title;
+
 
     document.getElementById(
         "modalText"
-    ).textContent = text;
+    ).textContent =
+        text;
+
 
     document.getElementById(
         "modal"
-    ).classList.remove("hidden");
+    ).classList.remove(
+        "hidden"
+    );
 
 }
 
@@ -1154,12 +1249,16 @@ function closeModal(){
 
     document.getElementById(
         "modal"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
 }
 
 
-/* AUTH */
+/* =========================================================
+   AUTH
+========================================================= */
 
 async function loadSession(){
 
@@ -1167,6 +1266,7 @@ async function loadSession(){
         localStorage.getItem(
             "brp_access_token"
         );
+
 
     if(!token){
 
@@ -1176,6 +1276,7 @@ async function loadSession(){
 
     }
 
+
     try{
 
         currentAuthUser =
@@ -1183,19 +1284,27 @@ async function loadSession(){
                 "/auth/v1/user",
                 {
                     headers:{
-                        apikey:SUPABASE_KEY,
+                        apikey:
+                            SUPABASE_KEY,
 
                         Authorization:
-                            "Bearer " + token
+                            "Bearer " +
+                            token
                     }
                 }
             );
 
+
         await loadProfile();
+
 
     }catch(error){
 
-        console.error(error);
+        console.error(
+            "AUTH ERROR:",
+            error
+        );
+
 
         showAuthError();
 
@@ -1204,7 +1313,9 @@ async function loadSession(){
 }
 
 
-/* PROFILE */
+/* =========================================================
+   PROFILE
+========================================================= */
 
 async function loadProfile(){
 
@@ -1212,6 +1323,7 @@ async function loadProfile(){
         localStorage.getItem(
             "brp_access_token"
         );
+
 
     const rows =
         await supabaseFetch(
@@ -1222,16 +1334,21 @@ async function loadProfile(){
             "&select=*",
             {
                 headers:{
-                    apikey:SUPABASE_KEY,
+                    apikey:
+                        SUPABASE_KEY,
 
                     Authorization:
-                        "Bearer " + token
+                        "Bearer " +
+                        token
                 }
             }
         );
 
 
-    if(!rows || !rows.length){
+    if(
+        !rows ||
+        !rows.length
+    ){
 
         throw new Error(
             "Профиль игрока не найден."
@@ -1243,21 +1360,26 @@ async function loadProfile(){
     currentUser =
         rows[0];
 
+
     renderProfile();
 
 }
 
 
-/* RENDER */
+/* =========================================================
+   RENDER
+========================================================= */
 
 function renderProfile(){
 
     if(!currentUser)return;
 
+
     const cash =
         Number(
             currentUser.cash || 0
         );
+
 
     const donate =
         Number(
@@ -1268,46 +1390,90 @@ function renderProfile(){
     document.getElementById(
         "topCash"
     ).textContent =
-        "₽ " + number(cash);
+        "₽ " +
+        number(cash);
 
 
     document.getElementById(
         "topDonate"
     ).textContent =
-        "♦ " + number(donate);
+        "♦ " +
+        number(donate);
 
 
     document.getElementById(
         "donateBalance"
     ).textContent =
-        "♦ " + number(donate);
+        "♦ " +
+        number(donate);
 
 
     document.getElementById(
         "loading"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
 
 }
 
 
-/* AUTH ERROR */
+/* =========================================================
+   AUTH ERROR
+========================================================= */
 
 function showAuthError(){
 
     document.getElementById(
         "loading"
-    ).classList.add("hidden");
+    ).classList.add(
+        "hidden"
+    );
+
 
     document.getElementById(
         "authError"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 }
 
 
-/* CASE */
+/* =========================================================
+   DISABLE BUTTONS
+========================================================= */
 
-async function openCase(name,price){
+function setButtonsDisabled(disabled){
+
+    document
+        .querySelectorAll(
+            ".open-btn"
+        )
+        .forEach(
+            button=>{
+                button.disabled =
+                    disabled;
+            }
+        );
+
+}
+
+
+/* =========================================================
+   OPEN CASE
+========================================================= */
+
+async function openCase(
+    name,
+    price,
+    button
+){
+
+    if(openingCase){
+
+        return;
+
+    }
+
 
     if(!currentUser){
 
@@ -1316,6 +1482,7 @@ async function openCase(name,price){
         );
 
         return;
+
     }
 
 
@@ -1324,6 +1491,10 @@ async function openCase(name,price){
             currentUser.donate || 0
         );
 
+
+    /* =========================
+       CHECK BALANCE
+    ========================= */
 
     if(balance < price){
 
@@ -1340,66 +1511,200 @@ async function openCase(name,price){
             number(balance) +
 
             "\n\nНе хватает: ♦ " +
-            number(price - balance)
+            number(
+                price - balance
+            )
         );
 
         return;
+
     }
 
 
-    /*
-       Сейчас это демонстрационное открытие.
-       Реальное списание ♦ и выдачу награды
-       позже подключим через Supabase RPC.
-    */
+    openingCase = true;
 
-    const rewards = [
-
-        "💰 25 000 ₽",
-
-        "💰 50 000 ₽",
-
-        "🪙 100 золота",
-
-        "🪙 250 золота",
-
-        "🎁 Редкий предмет",
-
-        "🚗 Автомобиль",
-
-        "👑 VIP на 7 дней"
-
-    ];
+    setButtonsDisabled(true);
 
 
-    const reward =
-        rewards[
-            Math.floor(
-                Math.random() *
-                rewards.length
-            )
+    try{
+
+        const token =
+            localStorage.getItem(
+                "brp_access_token"
+            );
+
+
+        /* =========================
+           РЕАЛЬНОЕ СПИСАНИЕ ♦
+        ========================= */
+
+        const newBalance =
+            balance - price;
+
+
+        const updatedRows =
+            await supabaseFetch(
+                "/rest/v1/profiles?id=eq." +
+                encodeURIComponent(
+                    currentAuthUser.id
+                ),
+                {
+                    method:"PATCH",
+
+                    headers:{
+                        apikey:
+                            SUPABASE_KEY,
+
+                        Authorization:
+                            "Bearer " +
+                            token,
+
+                        Prefer:
+                            "return=representation"
+                    },
+
+                    body:JSON.stringify({
+
+                        donate:
+                            newBalance
+
+                    })
+                }
+            );
+
+
+        /* =========================
+           ПРОВЕРКА UPDATE
+        ========================= */
+
+        if(
+            !updatedRows ||
+            !updatedRows.length
+        ){
+
+            throw new Error(
+                "Баланс не был обновлён."
+            );
+
+        }
+
+
+        /* =========================
+           ОБНОВЛЯЕМ ЛОКАЛЬНО
+        ========================= */
+
+        currentUser.donate =
+            newBalance;
+
+
+        renderProfile();
+
+
+        /* =========================
+           НАГРАДА
+        ========================= */
+
+        const rewards = [
+
+            "💰 25 000 ₽",
+
+            "💰 50 000 ₽",
+
+            "💰 100 000 ₽",
+
+            "🪙 100 золота",
+
+            "🪙 250 золота",
+
+            "🎁 Редкий предмет",
+
+            "🎁 Эпический предмет",
+
+            "🚗 Автомобиль",
+
+            "👑 VIP на 7 дней"
+
         ];
 
 
-    openModal(
-        "🎉 Кейс открыт!",
+        const reward =
+            rewards[
+                Math.floor(
+                    Math.random() *
+                    rewards.length
+                )
+            ];
 
-        "Кейс: " +
-        name +
 
-        "\n\nСтоимость: ♦ " +
-        number(price) +
+        /* =========================
+           RESULT
+        ========================= */
 
-        "\n\nНаграда:\n" +
-        reward +
+        openModal(
+            "🎉 Кейс открыт!",
 
-        "\n\n⚠️ Пока работает демонстрационный режим. Реальное списание ♦ и сохранение награды в базе подключим следующим этапом."
-    );
+            "Кейс: " +
+            name +
+
+            "\n\nСтоимость: ♦ " +
+            number(price) +
+
+            "\n\nНаграда:\n" +
+            reward +
+
+            "\n\nСписано: ♦ " +
+            number(price) +
+
+            "\n\nОсталось: ♦ " +
+            number(newBalance)
+        );
+
+
+        toast(
+            "♦ " +
+            number(price) +
+            " списано"
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "CASE ERROR:",
+            error
+        );
+
+
+        openModal(
+            "❌ Ошибка",
+
+            "Не удалось открыть кейс."
+
+            +
+            "\n\nБаланс не изменён."
+
+            +
+            "\n\nПричина:\n" +
+            (
+                error.message ||
+                "Неизвестная ошибка"
+            )
+        );
+
+    }finally{
+
+        openingCase = false;
+
+        setButtonsDisabled(false);
+
+    }
 
 }
 
 
-/* BACK */
+/* =========================================================
+   BACK
+========================================================= */
 
 function goBack(){
 
@@ -1413,7 +1718,9 @@ function goBack(){
         history.back();
 
         return;
+
     }
+
 
     window.location.href =
         "index.html";
@@ -1421,11 +1728,17 @@ function goBack(){
 }
 
 
-/* START */
+/* =========================================================
+   START
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    loadSession
+    async ()=>{
+
+        await loadSession();
+
+    }
 );
 
 </script>
