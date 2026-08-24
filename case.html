@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 
-<title>BLACK RUSSIA — DONATE</title>
+<title>BLACK RUSSIA — CASES</title>
 
 <style>
 *{
@@ -16,15 +16,13 @@
 
 :root{
     --bg:#050505;
-    --black:#080808;
     --panel:#111;
     --panel2:#171717;
-    --panel3:#1d1d1d;
     --line:#292929;
     --red:#e50914;
     --red2:#ff2633;
     --white:#f5f5f5;
-    --muted:#858585;
+    --muted:#777;
     --green:#31d47a;
     --yellow:#ffc928;
 }
@@ -56,7 +54,7 @@ button{
     display:none!important;
 }
 
-/* ================= HEADER ================= */
+/* HEADER */
 
 .topbar{
     position:sticky;
@@ -87,10 +85,6 @@ button{
 }
 
 .back-btn{
-    display:flex;
-    align-items:center;
-    gap:6px;
-
     padding:8px 11px;
 
     color:#ccc;
@@ -101,10 +95,6 @@ button{
 
     font-size:10px;
     font-weight:900;
-}
-
-.back-btn:active{
-    transform:scale(.97);
 }
 
 .money-box{
@@ -132,7 +122,7 @@ button{
     color:var(--red2);
 }
 
-/* ================= PAGE ================= */
+/* PAGE */
 
 .page{
     width:100%;
@@ -140,39 +130,37 @@ button{
 
     margin:auto;
 
-    padding:15px;
-    padding-bottom:35px;
+    padding:15px 15px 40px;
 }
 
 .page-title{
     font-size:27px;
     font-weight:1000;
-    letter-spacing:-.5px;
 }
 
 .page-subtitle{
     margin-top:4px;
-    margin-bottom:17px;
+    margin-bottom:18px;
 
     color:#777;
 
     font-size:11px;
 }
 
-/* ================= HERO ================= */
+/* HERO */
 
-.donate-banner{
+.case-banner{
     position:relative;
     overflow:hidden;
 
-    padding:27px 20px;
+    padding:28px 20px;
 
     text-align:center;
 
     background:
         radial-gradient(
             circle at 50% 0%,
-            rgba(229,9,20,.22),
+            rgba(229,9,20,.25),
             transparent 65%
         ),
         linear-gradient(
@@ -189,64 +177,63 @@ button{
         0 15px 40px rgba(0,0,0,.35);
 }
 
-.donate-banner:before{
+.case-banner:before{
     content:"♦";
 
     position:absolute;
 
-    left:-20px;
-    bottom:-55px;
+    left:-25px;
+    bottom:-65px;
 
     color:rgba(229,9,20,.045);
-
-    font-size:170px;
-    font-weight:1000;
-}
-
-.donate-banner:after{
-    content:"♦";
-
-    position:absolute;
-
-    right:-20px;
-    top:-75px;
-
-    color:rgba(255,255,255,.025);
 
     font-size:180px;
     font-weight:1000;
 }
 
-.donate-content{
+.case-banner:after{
+    content:"?";
+
+    position:absolute;
+
+    right:-15px;
+    top:-75px;
+
+    color:rgba(255,255,255,.025);
+
+    font-size:190px;
+    font-weight:1000;
+}
+
+.case-content{
     position:relative;
     z-index:2;
 }
 
-.donate-label{
+.case-label{
     color:#777;
 
     font-size:9px;
     font-weight:bold;
 
     letter-spacing:2px;
-    text-transform:uppercase;
 }
 
-.donate-title{
+.case-title{
     margin-top:6px;
 
     font-size:31px;
     font-weight:1000;
 }
 
-.donate-title span{
+.case-title span{
     color:var(--red);
 }
 
-.donate-description{
-    max-width:420px;
+.case-description{
+    max-width:430px;
 
-    margin:7px auto 0;
+    margin:8px auto 0;
 
     color:#777;
 
@@ -263,11 +250,9 @@ button{
     padding:10px 15px;
 
     background:#0a0a0a;
+
     border:1px solid #352020;
-
     border-radius:9px;
-
-    color:#fff;
 
     font-size:12px;
     font-weight:900;
@@ -278,7 +263,7 @@ button{
     font-size:15px;
 }
 
-/* ================= SECTION ================= */
+/* SECTION */
 
 .section-title{
     margin:22px 0 11px;
@@ -288,17 +273,17 @@ button{
 }
 
 .section-subtitle{
+    margin-top:-5px;
+    margin-bottom:12px;
+
     color:#777;
 
     font-size:10px;
-
-    margin-top:-5px;
-    margin-bottom:12px;
 }
 
-/* ================= DONATE GRID ================= */
+/* CASE GRID */
 
-.donate-grid{
+.case-grid{
     display:grid;
 
     grid-template-columns:repeat(2,1fr);
@@ -306,19 +291,18 @@ button{
     gap:9px;
 }
 
-.donate-card{
+.case-card{
     position:relative;
-
     overflow:hidden;
 
-    padding:17px 13px;
+    padding:18px 13px;
 
     text-align:center;
 
     background:
         linear-gradient(
             145deg,
-            rgba(229,9,20,.07),
+            rgba(229,9,20,.08),
             transparent 55%
         ),
         #111;
@@ -329,73 +313,47 @@ button{
     transition:.2s;
 }
 
-.donate-card:active{
+.case-card:active{
     transform:scale(.98);
 }
 
-.donate-card.popular{
-    border-color:#5a2424;
+.case-icon{
+    font-size:48px;
 
-    box-shadow:
-        0 0 20px rgba(229,9,20,.06);
+    margin-bottom:8px;
 }
 
-.popular-label{
-    position:absolute;
-
-    top:8px;
-    right:8px;
-
-    padding:4px 6px;
-
-    color:#fff;
-    background:var(--red);
-
-    border-radius:5px;
-
-    font-size:7px;
+.case-name{
+    font-size:16px;
     font-weight:1000;
 }
 
-.donate-icon{
-    font-size:34px;
-    margin-bottom:7px;
-}
+.case-description-small{
+    min-height:28px;
 
-.donate-amount{
-    color:#fff;
-
-    font-size:21px;
-    font-weight:1000;
-}
-
-.donate-amount span{
-    color:var(--red);
-}
-
-.donate-name{
-    margin-top:4px;
+    margin-top:5px;
 
     color:#777;
 
     font-size:9px;
+    line-height:1.4;
 }
 
-.donate-price{
-    margin-top:10px;
+.case-price{
+    margin-top:11px;
 
     color:#aaa;
 
-    font-size:12px;
-    font-weight:bold;
+    font-size:10px;
 }
 
-.donate-price strong{
-    color:#fff;
+.case-price strong{
+    color:var(--red2);
+
     font-size:15px;
 }
 
-.buy-btn{
+.open-btn{
     width:100%;
 
     margin-top:11px;
@@ -419,13 +377,13 @@ button{
         0 5px 15px rgba(229,9,20,.12);
 }
 
-.buy-btn:active{
+.open-btn:active{
     transform:scale(.97);
 }
 
-/* ================= BONUSES ================= */
+/* REWARDS */
 
-.bonus-grid{
+.reward-grid{
     display:grid;
 
     grid-template-columns:repeat(2,1fr);
@@ -433,7 +391,7 @@ button{
     gap:9px;
 }
 
-.bonus{
+.reward{
     padding:14px;
 
     background:#111;
@@ -442,18 +400,18 @@ button{
     border-radius:11px;
 }
 
-.bonus-icon{
-    font-size:24px;
+.reward-icon{
+    font-size:25px;
 }
 
-.bonus-title{
+.reward-title{
     margin-top:7px;
 
     font-size:12px;
     font-weight:900;
 }
 
-.bonus-text{
+.reward-text{
     margin-top:5px;
 
     color:#777;
@@ -462,69 +420,89 @@ button{
     line-height:1.45;
 }
 
-/* ================= INFO ================= */
+/* LOADING */
 
-.info{
-    margin-top:12px;
+.loading{
+    padding:40px 15px;
 
-    padding:14px;
+    text-align:center;
 
-    background:#0e0e0e;
+    color:#777;
+
+    font-size:11px;
+}
+
+.spinner{
+    width:28px;
+    height:28px;
+
+    margin:0 auto 10px;
+
+    border:3px solid #292929;
+    border-top-color:var(--red);
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+/* AUTH */
+
+.auth-error{
+    display:none;
+
+    margin-top:15px;
+    padding:15px;
+
+    text-align:center;
+
+    background:#111;
 
     border:1px solid #292929;
+
     border-radius:11px;
 }
 
-.info-row{
-    display:flex;
-    align-items:flex-start;
-    gap:9px;
-
-    padding:9px 0;
-
-    border-bottom:1px solid #222;
-}
-
-.info-row:last-child{
-    border-bottom:0;
-}
-
-.info-icon{
-    width:30px;
-    height:30px;
-
-    flex-shrink:0;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#191919;
-
-    border-radius:7px;
-
+.auth-error-title{
     font-size:14px;
+    font-weight:900;
 }
 
-.info-main{
-    flex:1;
+.auth-error-text{
+    margin-top:6px;
+
+    color:#777;
+
+    font-size:10px;
+    line-height:1.5;
 }
 
-.info-title{
+.auth-error button{
+    width:100%;
+
+    margin-top:12px;
+
+    padding:11px;
+
+    color:#fff;
+
+    background:#222;
+
+    border:1px solid #333;
+
+    border-radius:8px;
+
     font-size:10px;
     font-weight:900;
 }
 
-.info-text{
-    margin-top:3px;
-
-    color:#777;
-
-    font-size:9px;
-    line-height:1.4;
-}
-
-/* ================= TOAST ================= */
+/* TOAST */
 
 .toast{
     position:fixed;
@@ -566,7 +544,7 @@ button{
         translateY(0);
 }
 
-/* ================= MODAL ================= */
+/* MODAL */
 
 .modal{
     position:fixed;
@@ -594,9 +572,6 @@ button{
     border:1px solid #363636;
 
     border-radius:17px 17px 9px 9px;
-
-    box-shadow:
-        0 -10px 50px rgba(0,0,0,.6);
 }
 
 .close{
@@ -647,89 +622,7 @@ button{
     font-weight:900;
 }
 
-/* ================= LOADING ================= */
-
-.loading{
-    padding:40px 15px;
-
-    text-align:center;
-
-    color:#777;
-
-    font-size:11px;
-}
-
-.spinner{
-    width:28px;
-    height:28px;
-
-    margin:0 auto 10px;
-
-    border:3px solid #292929;
-    border-top-color:var(--red);
-
-    border-radius:50%;
-
-    animation:spin .8s linear infinite;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-/* ================= NOT AUTH ================= */
-
-.auth-error{
-    display:none;
-
-    margin-top:15px;
-    padding:15px;
-
-    text-align:center;
-
-    background:#111;
-
-    border:1px solid #292929;
-
-    border-radius:11px;
-}
-
-.auth-error-title{
-    font-size:14px;
-    font-weight:900;
-}
-
-.auth-error-text{
-    margin-top:6px;
-
-    color:#777;
-
-    font-size:10px;
-    line-height:1.5;
-}
-
-.auth-error button{
-    width:100%;
-
-    margin-top:12px;
-
-    padding:11px;
-
-    color:#fff;
-
-    background:#222;
-
-    border:1px solid #333;
-
-    border-radius:8px;
-
-    font-size:10px;
-    font-weight:900;
-}
-
-/* ================= DESKTOP ================= */
+/* DESKTOP */
 
 @media(min-width:700px){
 
@@ -737,16 +630,12 @@ button{
         padding:25px 20px 45px;
     }
 
-    .donate-grid{
+    .case-grid{
         grid-template-columns:repeat(4,1fr);
     }
 
-    .bonus-grid{
+    .reward-grid{
         grid-template-columns:repeat(4,1fr);
-    }
-
-    .donate-card{
-        padding:20px 15px;
     }
 }
 
@@ -761,20 +650,20 @@ button{
         font-size:8px;
     }
 
-    .donate-title{
+    .case-title{
         font-size:27px;
     }
 
-    .donate-grid{
+    .case-grid{
         gap:7px;
     }
 
-    .donate-card{
-        padding:14px 9px;
+    .case-card{
+        padding:15px 9px;
     }
 
-    .donate-amount{
-        font-size:18px;
+    .case-icon{
+        font-size:40px;
     }
 }
 </style>
@@ -788,18 +677,26 @@ button{
         BLACK <span>RUSSIA</span>
     </div>
 
-    <button class="back-btn" onclick="goBack()">
+    <button
+        class="back-btn"
+        onclick="goBack()">
         ← НАЗАД
     </button>
 
     <div class="money-box">
-        <div class="money cash" id="topCash">
+
+        <div
+            class="money cash"
+            id="topCash">
             ₽ 0
         </div>
 
-        <div class="money donate" id="topDonate">
+        <div
+            class="money donate"
+            id="topDonate">
             ♦ 0
         </div>
+
     </div>
 
 </header>
@@ -808,35 +705,37 @@ button{
 <main class="page">
 
     <div class="page-title">
-        Донат
+        Кейсы
     </div>
 
     <div class="page-subtitle">
-        Премиальная валюта сервера
+        Открывай кейсы и получай случайные награды
     </div>
 
 
     <!-- HERO -->
 
-    <section class="donate-banner">
+    <section class="case-banner">
 
-        <div class="donate-content">
+        <div class="case-content">
 
-            <div class="donate-label">
+            <div class="case-label">
                 BLACK RUSSIA RP
             </div>
 
-            <div class="donate-title">
-                BLACK <span>DONATE</span>
+            <div class="case-title">
+                BLACK <span>CASES</span>
             </div>
 
-            <div class="donate-description">
-                Приобретай премиальную валюту и используй её
-                для кейсов, предметов и других возможностей сервера.
+            <div class="case-description">
+                Используй ♦ для открытия кейсов.
+                Внутри тебя ждут деньги, золото,
+                транспорт и редкие предметы.
             </div>
 
             <div class="balance">
                 Твой баланс:
+
                 <span id="donateBalance">
                     ♦ 0
                 </span>
@@ -847,281 +746,199 @@ button{
     </section>
 
 
-    <!-- PACKAGES -->
+    <!-- CASES -->
 
     <div class="section-title">
-        Пополнение баланса
+        Доступные кейсы
     </div>
 
     <div class="section-subtitle">
-        Выбери подходящий пакет донат-валюты.
+        Чем дороже кейс — тем ценнее возможная награда.
     </div>
 
 
-    <div class="donate-grid">
-
-        <!-- 100 -->
-
-        <div class="donate-card">
-
-            <div class="donate-icon">
-                💎
-            </div>
-
-            <div class="donate-amount">
-                <span>♦</span> 100
-            </div>
-
-            <div class="donate-name">
-                Стартовый набор
-            </div>
-
-            <div class="donate-price">
-                <strong>99 ₽</strong>
-            </div>
-
-            <button
-                class="buy-btn"
-                onclick="buyDonate(100,99,'Стартовый набор')">
-                ПОЛУЧИТЬ
-            </button>
-
-        </div>
+    <div class="case-grid">
 
 
-        <!-- 500 -->
+        <div class="case-card">
 
-        <div class="donate-card popular">
-
-            <div class="popular-label">
-                ПОПУЛЯРНЫЙ
-            </div>
-
-            <div class="donate-icon">
-                💎
-            </div>
-
-            <div class="donate-amount">
-                <span>♦</span> 500
-            </div>
-
-            <div class="donate-name">
-                Большой набор
-            </div>
-
-            <div class="donate-price">
-                <strong>399 ₽</strong>
-            </div>
-
-            <button
-                class="buy-btn"
-                onclick="buyDonate(500,399,'Большой набор')">
-                ПОЛУЧИТЬ
-            </button>
-
-        </div>
-
-
-        <!-- 1000 -->
-
-        <div class="donate-card">
-
-            <div class="donate-icon">
-                🔥
-            </div>
-
-            <div class="donate-amount">
-                <span>♦</span> 1 000
-            </div>
-
-            <div class="donate-name">
-                Премиум набор
-            </div>
-
-            <div class="donate-price">
-                <strong>699 ₽</strong>
-            </div>
-
-            <button
-                class="buy-btn"
-                onclick="buyDonate(1000,699,'Премиум набор')">
-                ПОЛУЧИТЬ
-            </button>
-
-        </div>
-
-
-        <!-- 5000 -->
-
-        <div class="donate-card">
-
-            <div class="donate-icon">
-                👑
-            </div>
-
-            <div class="donate-amount">
-                <span>♦</span> 5 000
-            </div>
-
-            <div class="donate-name">
-                VIP набор
-            </div>
-
-            <div class="donate-price">
-                <strong>2 999 ₽</strong>
-            </div>
-
-            <button
-                class="buy-btn"
-                onclick="buyDonate(5000,2999,'VIP набор')">
-                ПОЛУЧИТЬ
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- BONUS -->
-
-    <div class="section-title">
-        Что можно купить за ♦
-    </div>
-
-    <div class="bonus-grid">
-
-        <div class="bonus">
-            <div class="bonus-icon">
+            <div class="case-icon">
                 🎁
             </div>
 
-            <div class="bonus-title">
-                Кейсы
+            <div class="case-name">
+                Стартовый
             </div>
 
-            <div class="bonus-text">
-                Открывай кейсы и получай редкие награды.
+            <div class="case-description-small">
+                Базовые игровые награды
             </div>
+
+            <div class="case-price">
+                Стоимость:
+                <strong>♦ 50</strong>
+            </div>
+
+            <button
+                class="open-btn"
+                onclick="openCase('Стартовый',50)">
+                ОТКРЫТЬ
+            </button>
+
         </div>
 
 
-        <div class="bonus">
-            <div class="bonus-icon">
-                🚗
+        <div class="case-card">
+
+            <div class="case-icon">
+                💎
             </div>
 
-            <div class="bonus-title">
-                Транспорт
+            <div class="case-name">
+                Премиум
             </div>
 
-            <div class="bonus-text">
-                Особые автомобили и улучшения для гаража.
+            <div class="case-description-small">
+                Более ценные награды
             </div>
+
+            <div class="case-price">
+                Стоимость:
+                <strong>♦ 150</strong>
+            </div>
+
+            <button
+                class="open-btn"
+                onclick="openCase('Премиум',150)">
+                ОТКРЫТЬ
+            </button>
+
         </div>
 
 
-        <div class="bonus">
-            <div class="bonus-icon">
+        <div class="case-card">
+
+            <div class="case-icon">
+                🔥
+            </div>
+
+            <div class="case-name">
+                Элитный
+            </div>
+
+            <div class="case-description-small">
+                Редкие игровые награды
+            </div>
+
+            <div class="case-price">
+                Стоимость:
+                <strong>♦ 500</strong>
+            </div>
+
+            <button
+                class="open-btn"
+                onclick="openCase('Элитный',500)">
+                ОТКРЫТЬ
+            </button>
+
+        </div>
+
+
+        <div class="case-card">
+
+            <div class="case-icon">
                 👑
             </div>
 
-            <div class="bonus-title">
+            <div class="case-name">
                 VIP
             </div>
 
-            <div class="bonus-text">
-                Премиальные возможности игрового аккаунта.
+            <div class="case-description-small">
+                Максимально редкие награды
             </div>
+
+            <div class="case-price">
+                Стоимость:
+                <strong>♦ 1 000</strong>
+            </div>
+
+            <button
+                class="open-btn"
+                onclick="openCase('VIP',1000)">
+                ОТКРЫТЬ
+            </button>
+
         </div>
 
+    </div>
 
-        <div class="bonus">
-            <div class="bonus-icon">
+
+    <!-- REWARDS -->
+
+    <div class="section-title">
+        Возможные награды
+    </div>
+
+    <div class="reward-grid">
+
+        <div class="reward">
+            <div class="reward-icon">
                 💰
             </div>
 
-            <div class="bonus-title">
-                Предметы
+            <div class="reward-title">
+                Игровые деньги
             </div>
 
-            <div class="bonus-text">
-                Эксклюзивные предметы и наборы.
+            <div class="reward-text">
+                Получай ₽ для покупок и развития персонажа.
             </div>
         </div>
 
-    </div>
 
-
-    <!-- INFORMATION -->
-
-    <div class="section-title">
-        Информация
-    </div>
-
-    <div class="info">
-
-        <div class="info-row">
-
-            <div class="info-icon">
-                🔒
+        <div class="reward">
+            <div class="reward-icon">
+                🪙
             </div>
 
-            <div class="info-main">
-
-                <div class="info-title">
-                    Безопасность
-                </div>
-
-                <div class="info-text">
-                    Донат привязан к твоему игровому аккаунту.
-                </div>
-
+            <div class="reward-title">
+                Золото
             </div>
 
+            <div class="reward-text">
+                Редкая игровая валюта для специальных покупок.
+            </div>
         </div>
 
 
-        <div class="info-row">
-
-            <div class="info-icon">
-                ⚡
+        <div class="reward">
+            <div class="reward-icon">
+                🚗
             </div>
 
-            <div class="info-main">
-
-                <div class="info-title">
-                    Быстрое начисление
-                </div>
-
-                <div class="info-text">
-                    После подключения оплаты валюта будет
-                    автоматически зачисляться на аккаунт.
-                </div>
-
+            <div class="reward-title">
+                Автомобили
             </div>
 
+            <div class="reward-text">
+                Некоторые кейсы могут содержать транспорт.
+            </div>
         </div>
 
 
-        <div class="info-row">
-
-            <div class="info-icon">
-                🎮
+        <div class="reward">
+            <div class="reward-icon">
+                👑
             </div>
 
-            <div class="info-main">
-
-                <div class="info-title">
-                    Только для игры
-                </div>
-
-                <div class="info-text">
-                    Донат-валюта используется внутри проекта
-                    BLACK RUSSIA RP.
-                </div>
-
+            <div class="reward-title">
+                VIP
             </div>
 
+            <div class="reward-text">
+                Редкие премиальные возможности аккаунта.
+            </div>
         </div>
 
     </div>
@@ -1129,15 +946,17 @@ button{
 
     <!-- AUTH ERROR -->
 
-    <div class="auth-error" id="authError">
+    <div
+        class="auth-error"
+        id="authError">
 
         <div class="auth-error-title">
             🔐 Авторизация не найдена
         </div>
 
         <div class="auth-error-text">
-            Чтобы открыть донат-магазин, сначала войди
-            в свой игровой аккаунт.
+            Чтобы открывать кейсы, сначала
+            войди в свой игровой аккаунт.
         </div>
 
         <button onclick="goBack()">
@@ -1180,7 +999,7 @@ button{
         <div
             class="modal-title"
             id="modalTitle">
-            Донат
+            Кейс
         </div>
 
         <div
@@ -1210,10 +1029,6 @@ button{
 
 <script>
 
-/* =========================================================
-   SUPABASE
-========================================================= */
-
 const SUPABASE_URL =
     "https://qzswnoeglovfpgrzpnio.supabase.co";
 
@@ -1226,95 +1041,89 @@ let currentAuthUser = null;
 let toastTimer = null;
 
 
-/* =========================================================
-   SUPABASE FETCH
-========================================================= */
+/* SUPABASE */
 
 async function supabaseFetch(path,options={}){
 
-    const r = await fetch(
-        SUPABASE_URL + path,
-        {
-            ...options,
+    const token =
+        localStorage.getItem(
+            "brp_access_token"
+        );
 
-            headers:{
-                apikey:SUPABASE_KEY,
+    const r =
+        await fetch(
+            SUPABASE_URL + path,
+            {
+                ...options,
 
-                Authorization:
-                    "Bearer " +
-                    (
-                        localStorage.getItem(
-                            "brp_access_token"
-                        ) ||
-                        SUPABASE_KEY
-                    ),
+                headers:{
+                    apikey:SUPABASE_KEY,
 
-                "Content-Type":
-                    "application/json",
+                    Authorization:
+                        "Bearer " +
+                        (token || SUPABASE_KEY),
 
-                ...(options.headers || {})
+                    "Content-Type":
+                        "application/json",
+
+                    ...(options.headers || {})
+                }
             }
-        }
-    );
+        );
 
-    const t = await r.text();
+    const text =
+        await r.text();
 
-    let d = null;
+    let data = null;
 
     try{
-        d = t ? JSON.parse(t) : null;
+        data =
+            text
+                ? JSON.parse(text)
+                : null;
     }catch(e){
-        d = t;
+        data = text;
     }
 
     if(!r.ok){
 
         throw new Error(
-            typeof d === "string"
-                ? d
-                : JSON.stringify(d)
+            typeof data === "string"
+                ? data
+                : JSON.stringify(data)
         );
 
     }
 
-    return d;
+    return data;
 }
 
 
-/* =========================================================
-   HELPERS
-========================================================= */
+/* HELPERS */
 
-function number(v){
+function number(value){
 
-    return Number(v || 0)
+    return Number(value || 0)
         .toLocaleString("ru-RU");
-
-}
-
-
-function money(v){
-
-    return "₽ " + number(v);
 
 }
 
 
 function toast(text){
 
-    const e =
+    const element =
         document.getElementById("toast");
 
-    e.textContent = text;
+    element.textContent = text;
 
-    e.classList.add("show");
+    element.classList.add("show");
 
     clearTimeout(toastTimer);
 
     toastTimer =
         setTimeout(
             ()=>{
-                e.classList.remove("show");
+                element.classList.remove("show");
             },
             2300
         );
@@ -1322,9 +1131,7 @@ function toast(text){
 }
 
 
-/* =========================================================
-   MODAL
-========================================================= */
+/* MODAL */
 
 function openModal(title,text){
 
@@ -1352,9 +1159,7 @@ function closeModal(){
 }
 
 
-/* =========================================================
-   AUTH
-========================================================= */
+/* AUTH */
 
 async function loadSession(){
 
@@ -1379,18 +1184,18 @@ async function loadSession(){
                 {
                     headers:{
                         apikey:SUPABASE_KEY,
+
                         Authorization:
                             "Bearer " + token
                     }
                 }
             );
 
-
         await loadProfile();
 
-    }catch(e){
+    }catch(error){
 
-        console.error(e);
+        console.error(error);
 
         showAuthError();
 
@@ -1399,9 +1204,7 @@ async function loadSession(){
 }
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
+/* PROFILE */
 
 async function loadProfile(){
 
@@ -1420,6 +1223,7 @@ async function loadProfile(){
             {
                 headers:{
                     apikey:SUPABASE_KEY,
+
                     Authorization:
                         "Bearer " + token
                 }
@@ -1436,27 +1240,29 @@ async function loadProfile(){
     }
 
 
-    currentUser = rows[0];
+    currentUser =
+        rows[0];
 
     renderProfile();
 
 }
 
 
-/* =========================================================
-   RENDER PROFILE
-========================================================= */
+/* RENDER */
 
 function renderProfile(){
 
     if(!currentUser)return;
 
-
     const cash =
-        Number(currentUser.cash || 0);
+        Number(
+            currentUser.cash || 0
+        );
 
     const donate =
-        Number(currentUser.donate || 0);
+        Number(
+            currentUser.donate || 0
+        );
 
 
     document.getElementById(
@@ -1484,16 +1290,13 @@ function renderProfile(){
 }
 
 
-/* =========================================================
-   AUTH ERROR
-========================================================= */
+/* AUTH ERROR */
 
 function showAuthError(){
 
     document.getElementById(
         "loading"
     ).classList.add("hidden");
-
 
     document.getElementById(
         "authError"
@@ -1502,53 +1305,103 @@ function showAuthError(){
 }
 
 
-/* =========================================================
-   DONATE PURCHASE
-========================================================= */
+/* CASE */
 
-function buyDonate(amount,price,name){
+async function openCase(name,price){
 
     if(!currentUser){
 
-        return toast(
+        toast(
             "🔐 Войди в аккаунт."
         );
 
+        return;
     }
 
 
+    const balance =
+        Number(
+            currentUser.donate || 0
+        );
+
+
+    if(balance < price){
+
+        openModal(
+            "Недостаточно ♦",
+
+            "Кейс: " +
+            name +
+
+            "\n\nСтоимость: ♦ " +
+            number(price) +
+
+            "\n\nТвой баланс: ♦ " +
+            number(balance) +
+
+            "\n\nНе хватает: ♦ " +
+            number(price - balance)
+        );
+
+        return;
+    }
+
+
+    /*
+       Сейчас это демонстрационное открытие.
+       Реальное списание ♦ и выдачу награды
+       позже подключим через Supabase RPC.
+    */
+
+    const rewards = [
+
+        "💰 25 000 ₽",
+
+        "💰 50 000 ₽",
+
+        "🪙 100 золота",
+
+        "🪙 250 золота",
+
+        "🎁 Редкий предмет",
+
+        "🚗 Автомобиль",
+
+        "👑 VIP на 7 дней"
+
+    ];
+
+
+    const reward =
+        rewards[
+            Math.floor(
+                Math.random() *
+                rewards.length
+            )
+        ];
+
+
     openModal(
-        "♦ " + name,
+        "🎉 Кейс открыт!",
 
-        "Пакет: ♦ " +
-        number(amount) +
+        "Кейс: " +
+        name +
 
-        "\n\nСтоимость: " +
+        "\n\nСтоимость: ♦ " +
         number(price) +
-        " ₽" +
 
-        "\n\nТекущий баланс: ♦ " +
-        number(currentUser.donate) +
+        "\n\nНаграда:\n" +
+        reward +
 
-        "\n\nПлатёжная система пока не подключена." +
-
-        "\n\nПосле подключения оплаты здесь будет открываться платёжная форма, а после успешной оплаты донат автоматически зачислится на твой игровой аккаунт."
+        "\n\n⚠️ Пока работает демонстрационный режим. Реальное списание ♦ и сохранение награды в базе подключим следующим этапом."
     );
 
 }
 
 
-/* =========================================================
-   BACK
-========================================================= */
+/* BACK */
 
 function goBack(){
-
-    /*
-       Если donate.html открыт внутри
-       обычного сайта через ссылку —
-       возвращаем игрока на index.html.
-    */
 
     if(
         document.referrer &&
@@ -1560,9 +1413,7 @@ function goBack(){
         history.back();
 
         return;
-
     }
-
 
     window.location.href =
         "index.html";
@@ -1570,17 +1421,11 @@ function goBack(){
 }
 
 
-/* =========================================================
-   START
-========================================================= */
+/* START */
 
 document.addEventListener(
     "DOMContentLoaded",
-    async ()=>{
-
-        await loadSession();
-
-    }
+    loadSession
 );
 
 </script>
