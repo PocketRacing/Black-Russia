@@ -43,11 +43,7 @@ body{
         #050505;
 
     color:var(--white);
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 button{
@@ -56,9 +52,15 @@ button{
     cursor:pointer;
 }
 
+button:disabled{
+    opacity:.55;
+    cursor:not-allowed;
+}
+
 .hidden{
     display:none!important;
 }
+
 
 /* ================= HEADER ================= */
 
@@ -76,7 +78,6 @@ button{
     padding:0 13px;
 
     background:rgba(8,8,8,.96);
-
     border-bottom:1px solid #252525;
 
     backdrop-filter:blur(15px);
@@ -117,7 +118,6 @@ button{
     padding:6px 8px;
 
     background:#151515;
-
     border:1px solid #292929;
 
     border-radius:7px;
@@ -133,6 +133,7 @@ button{
 .money.donate{
     color:var(--red2);
 }
+
 
 /* ================= PAGE ================= */
 
@@ -159,6 +160,7 @@ button{
     font-size:11px;
 }
 
+
 /* ================= HERO ================= */
 
 .case-banner{
@@ -182,7 +184,6 @@ button{
         );
 
     border:1px solid #432020;
-
     border-radius:15px;
 
     box-shadow:
@@ -273,9 +274,9 @@ button{
 
 .balance span{
     color:var(--red2);
-
     font-size:15px;
 }
+
 
 /* ================= SECTION ================= */
 
@@ -294,6 +295,7 @@ button{
 
     font-size:10px;
 }
+
 
 /* ================= CASE GRID ================= */
 
@@ -322,7 +324,6 @@ button{
         #111;
 
     border:1px solid #292929;
-
     border-radius:13px;
 
     transition:.2s;
@@ -334,7 +335,6 @@ button{
 
 .case-icon{
     font-size:48px;
-
     margin-bottom:8px;
 }
 
@@ -377,12 +377,11 @@ button{
 
     color:#fff;
 
-    background:
-        linear-gradient(
-            135deg,
-            #c70711,
-            #f01925
-        );
+    background:linear-gradient(
+        135deg,
+        #c70711,
+        #f01925
+    );
 
     border-radius:8px;
 
@@ -397,10 +396,6 @@ button{
     transform:scale(.97);
 }
 
-.open-btn:disabled{
-    opacity:.5;
-    cursor:not-allowed;
-}
 
 /* ================= REWARDS ================= */
 
@@ -418,7 +413,6 @@ button{
     background:#111;
 
     border:1px solid #292929;
-
     border-radius:11px;
 }
 
@@ -442,6 +436,7 @@ button{
     line-height:1.45;
 }
 
+
 /* ================= LOADING ================= */
 
 .loading{
@@ -461,7 +456,6 @@ button{
     margin:0 auto 10px;
 
     border:3px solid #292929;
-
     border-top-color:var(--red);
 
     border-radius:50%;
@@ -474,6 +468,7 @@ button{
         transform:rotate(360deg);
     }
 }
+
 
 /* ================= AUTH ================= */
 
@@ -525,6 +520,7 @@ button{
     font-weight:900;
 }
 
+
 /* ================= TOAST ================= */
 
 .toast{
@@ -549,13 +545,11 @@ button{
     background:#191919;
 
     border:1px solid #383838;
-
     border-radius:9px;
 
     font-size:11px;
 
     opacity:0;
-
     pointer-events:none;
 
     transition:.25s;
@@ -569,6 +563,7 @@ button{
         translateY(0);
 }
 
+
 /* ================= MODAL ================= */
 
 .modal{
@@ -578,7 +573,6 @@ button{
     z-index:400;
 
     display:flex;
-
     align-items:flex-end;
     justify-content:center;
 
@@ -650,6 +644,7 @@ button{
     font-size:11px;
     font-weight:900;
 }
+
 
 /* ================= DESKTOP ================= */
 
@@ -763,13 +758,11 @@ button{
             </div>
 
             <div class="balance">
-
                 Твой баланс:
 
                 <span id="donateBalance">
                     ♦ 0
                 </span>
-
             </div>
 
         </div>
@@ -789,9 +782,6 @@ button{
 
 
     <div class="case-grid">
-
-
-        <!-- STARTER -->
 
         <div class="case-card">
 
@@ -821,8 +811,6 @@ button{
         </div>
 
 
-        <!-- PREMIUM -->
-
         <div class="case-card">
 
             <div class="case-icon">
@@ -851,8 +839,6 @@ button{
         </div>
 
 
-        <!-- ELITE -->
-
         <div class="case-card">
 
             <div class="case-icon">
@@ -880,8 +866,6 @@ button{
 
         </div>
 
-
-        <!-- VIP -->
 
         <div class="case-card">
 
@@ -1088,11 +1072,8 @@ const SUPABASE_KEY =
 
 
 let currentUser = null;
-
 let currentAuthUser = null;
-
 let toastTimer = null;
-
 let openingCase = false;
 
 
@@ -1174,14 +1155,15 @@ async function supabaseFetch(path,options={}){
 
 function number(value){
 
-    return Number(
-        value || 0
-    ).toLocaleString(
-        "ru-RU"
-    );
+    return Number(value || 0)
+        .toLocaleString("ru-RU");
 
 }
 
+
+/* =========================================================
+   TOAST
+========================================================= */
 
 function toast(text){
 
@@ -1305,7 +1287,6 @@ async function loadSession(){
             error
         );
 
-
         showAuthError();
 
     }
@@ -1367,12 +1348,16 @@ async function loadProfile(){
 
 
 /* =========================================================
-   RENDER
+   RENDER PROFILE
 ========================================================= */
 
 function renderProfile(){
 
-    if(!currentUser)return;
+    if(!currentUser){
+
+        return;
+
+    }
 
 
     const cash =
@@ -1439,10 +1424,10 @@ function showAuthError(){
 
 
 /* =========================================================
-   DISABLE BUTTONS
+   DISABLE / ENABLE BUTTONS
 ========================================================= */
 
-function setButtonsDisabled(disabled){
+function setCaseButtonsDisabled(disabled){
 
     document
         .querySelectorAll(
@@ -1492,10 +1477,6 @@ async function openCase(
         );
 
 
-    /* =========================
-       CHECK BALANCE
-    ========================= */
-
     if(balance < price){
 
         openModal(
@@ -1523,7 +1504,15 @@ async function openCase(
 
     openingCase = true;
 
-    setButtonsDisabled(true);
+    setCaseButtonsDisabled(true);
+
+
+    if(button){
+
+        button.textContent =
+            "ОТКРЫТИЕ...";
+
+    }
 
 
     try{
@@ -1534,13 +1523,106 @@ async function openCase(
             );
 
 
-        /* =========================
-           РЕАЛЬНОЕ СПИСАНИЕ ♦
-        ========================= */
+        /*
+         * ВАЖНО:
+         * Сначала повторно читаем баланс
+         * непосредственно из Supabase.
+         *
+         * Это не позволяет списать больше,
+         * чем реально есть в базе,
+         * если страница была открыта давно.
+         */
+
+        const freshRows =
+            await supabaseFetch(
+                "/rest/v1/profiles?id=eq." +
+                encodeURIComponent(
+                    currentAuthUser.id
+                ) +
+                "&select=id,donate,cash",
+                {
+                    headers:{
+                        apikey:
+                            SUPABASE_KEY,
+
+                        Authorization:
+                            "Bearer " +
+                            token
+                    }
+                }
+            );
+
+
+        if(
+            !freshRows ||
+            !freshRows.length
+        ){
+
+            throw new Error(
+                "Профиль игрока не найден."
+            );
+
+        }
+
+
+        const freshUser =
+            freshRows[0];
+
+
+        const freshBalance =
+            Number(
+                freshUser.donate || 0
+            );
+
+
+        /*
+         * Повторная проверка баланса.
+         */
+
+        if(freshBalance < price){
+
+            currentUser.donate =
+                freshBalance;
+
+            renderProfile();
+
+            openModal(
+                "Недостаточно ♦",
+
+                "Кейс: " +
+                name +
+
+                "\n\nСтоимость: ♦ " +
+                number(price) +
+
+                "\n\nТвой баланс: ♦ " +
+                number(freshBalance) +
+
+                "\n\nНе хватает: ♦ " +
+                number(
+                    price - freshBalance
+                )
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * НОВЫЙ БАЛАНС
+         */
 
         const newBalance =
-            balance - price;
+            freshBalance - price;
 
+
+        /*
+         * РЕАЛЬНОЕ СПИСАНИЕ
+         *
+         * PATCH profiles
+         * donate = новый баланс
+         */
 
         const updatedRows =
             await supabaseFetch(
@@ -1559,23 +1641,27 @@ async function openCase(
                             "Bearer " +
                             token,
 
+                        "Content-Type":
+                            "application/json",
+
                         Prefer:
                             "return=representation"
                     },
 
-                    body:JSON.stringify({
-
-                        donate:
-                            newBalance
-
-                    })
+                    body:
+                        JSON.stringify({
+                            donate:
+                                newBalance
+                        })
                 }
             );
 
 
-        /* =========================
-           ПРОВЕРКА UPDATE
-        ========================= */
+        /*
+         * Проверяем,
+         * действительно ли Supabase
+         * вернул обновлённый профиль.
+         */
 
         if(
             !updatedRows ||
@@ -1583,26 +1669,42 @@ async function openCase(
         ){
 
             throw new Error(
-                "Баланс не был обновлён."
+                "Supabase не подтвердил списание ♦."
             );
 
         }
 
 
-        /* =========================
-           ОБНОВЛЯЕМ ЛОКАЛЬНО
-        ========================= */
+        /*
+         * Обновляем локальный профиль.
+         */
 
-        currentUser.donate =
-            newBalance;
+        currentUser =
+            {
+                ...currentUser,
 
+                ...updatedRows[0],
+
+                donate:
+                    Number(
+                        updatedRows[0].donate
+                    )
+            };
+
+
+        /*
+         * Сразу обновляем интерфейс.
+         */
 
         renderProfile();
 
 
-        /* =========================
-           НАГРАДА
-        ========================= */
+        /*
+         * Случайная награда.
+         *
+         * Пока награда только показывается.
+         * Списание ♦ уже настоящее.
+         */
 
         const rewards = [
 
@@ -1617,8 +1719,6 @@ async function openCase(
             "🪙 250 золота",
 
             "🎁 Редкий предмет",
-
-            "🎁 Эпический предмет",
 
             "🚗 Автомобиль",
 
@@ -1636,34 +1736,26 @@ async function openCase(
             ];
 
 
-        /* =========================
-           RESULT
-        ========================= */
-
         openModal(
             "🎉 Кейс открыт!",
 
             "Кейс: " +
             name +
 
-            "\n\nСтоимость: ♦ " +
+            "\n\nСписано: ♦ " +
             number(price) +
 
             "\n\nНаграда:\n" +
             reward +
 
-            "\n\nСписано: ♦ " +
-            number(price) +
-
-            "\n\nОсталось: ♦ " +
+            "\n\nНовый баланс: ♦ " +
             number(newBalance)
         );
 
 
         toast(
-            "♦ " +
-            number(price) +
-            " списано"
+            "♦ -" +
+            number(price)
         );
 
 
@@ -1676,14 +1768,12 @@ async function openCase(
 
 
         openModal(
-            "❌ Ошибка",
+            "Ошибка",
 
-            "Не удалось открыть кейс."
+            "Не удалось открыть кейс." +
 
-            +
-            "\n\nБаланс не изменён."
+            "\n\n♦ не были списаны." +
 
-            +
             "\n\nПричина:\n" +
             (
                 error.message ||
@@ -1691,11 +1781,22 @@ async function openCase(
             )
         );
 
+
     }finally{
 
         openingCase = false;
 
-        setButtonsDisabled(false);
+        setCaseButtonsDisabled(
+            false
+        );
+
+
+        if(button){
+
+            button.textContent =
+                "ОТКРЫТЬ";
+
+        }
 
     }
 
@@ -1734,10 +1835,8 @@ function goBack(){
 
 document.addEventListener(
     "DOMContentLoaded",
-    async ()=>{
-
-        await loadSession();
-
+    ()=>{
+        loadSession();
     }
 );
 
