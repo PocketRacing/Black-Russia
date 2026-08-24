@@ -11,22 +11,20 @@
     box-sizing:border-box;
     margin:0;
     padding:0;
-    -webkit-tap-highlight-color:transparent;
+    -webkit-tap-highlight-color:transparent
 }
 
 :root{
-    --bg:#070707;
-    --black:#0b0b0b;
+    --bg:#060606;
     --panel:#111;
     --panel2:#171717;
-    --panel3:#1d1d1d;
     --line:#292929;
     --red:#e50914;
     --red2:#ff2633;
     --white:#f5f5f5;
     --muted:#858585;
-    --green:#31d47a;
-    --yellow:#ffc928;
+    --green:#32d47a;
+    --gold:#ffc928
 }
 
 body{
@@ -35,1272 +33,1100 @@ body{
         radial-gradient(
             circle at 50% -10%,
             rgba(229,9,20,.16),
-            transparent 35%
+            transparent 40%
         ),
-        #050505;
+        var(--bg);
     color:var(--white);
     font-family:Arial,Helvetica,sans-serif;
-}
-
-button,
-input{
-    font-family:inherit;
+    padding-bottom:30px
 }
 
 button{
+    font-family:inherit;
     border:0;
-    cursor:pointer;
+    cursor:pointer
 }
 
 .hidden{
-    display:none!important;
+    display:none!important
 }
 
-/* ================= TOP ================= */
+/* ================= HEADER ================= */
 
-.topbar{
-    height:62px;
+.header{
     position:sticky;
     top:0;
-    z-index:100;
+    z-index:20;
+
+    height:62px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 13px;
-    background:rgba(8,8,8,.97);
+
+    padding:0 15px;
+
+    background:rgba(8,8,8,.96);
     border-bottom:1px solid var(--line);
-    backdrop-filter:blur(14px);
+
+    backdrop-filter:blur(12px)
 }
 
 .logo{
-    font-size:16px;
-    font-weight:1000;
+    font-size:17px;
+    font-weight:1000
 }
 
 .logo span{
-    color:var(--red);
-}
-
-.top-right{
-    display:flex;
-    align-items:center;
-    gap:7px;
+    color:var(--red)
 }
 
 .balance{
     padding:7px 10px;
+
+    color:var(--gold);
+
+    background:#171717;
+    border:1px solid #332d18;
     border-radius:8px;
-    background:#151515;
-    border:1px solid var(--line);
-    color:#54df8a;
-    font-size:10px;
-    font-weight:900;
+
+    font-size:11px;
+    font-weight:900
 }
 
-.back-btn{
-    padding:8px 10px;
-    border-radius:8px;
-    background:#1b1b1b;
-    border:1px solid #303030;
-    color:#aaa;
-    font-size:10px;
-    font-weight:900;
-}
+/* ================= MAIN ================= */
 
-/* ================= PAGE ================= */
-
-.page{
+.container{
     width:100%;
-    max-width:1050px;
+    max-width:650px;
     margin:auto;
-    padding:15px;
-    padding-bottom:35px;
+    padding:18px 15px
 }
 
-.page-head{
-    margin-bottom:15px;
+.title{
+    text-align:center;
+
+    font-size:29px;
+    font-weight:1000
 }
 
-.page-title{
-    font-size:27px;
-    font-weight:1000;
+.subtitle{
+    text-align:center;
+
+    color:var(--muted);
+
+    font-size:11px;
+    margin-top:6px;
+    margin-bottom:20px
 }
 
-.page-title span{
-    color:var(--red);
+/* ================= CASINO MENU ================= */
+
+.casino-menu{
+    display:flex;
+    flex-direction:column;
+    gap:12px
 }
 
-.page-subtitle{
-    margin-top:5px;
+.game-card{
+    position:relative;
+    overflow:hidden;
+
+    width:100%;
+
+    padding:21px;
+
+    text-align:left;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(229,9,20,.13),
+            transparent 60%
+        ),
+        var(--panel);
+
+    border:1px solid #292929;
+    border-radius:15px;
+
+    transition:.18s
+}
+
+.game-card:active{
+    transform:scale(.98)
+}
+
+.game-card:after{
+    content:"";
+
+    position:absolute;
+
+    width:120px;
+    height:120px;
+
+    right:-40px;
+    bottom:-50px;
+
+    border-radius:50%;
+
+    background:rgba(229,9,20,.06)
+}
+
+.game-icon{
+    font-size:38px;
+    margin-bottom:10px
+}
+
+.game-name{
+    font-size:20px;
+    font-weight:1000
+}
+
+.game-desc{
     color:#777;
     font-size:11px;
+    margin-top:5px;
+    margin-bottom:15px
 }
 
-/* ================= CASINO GRID ================= */
+.play{
+    display:inline-block;
 
-.casino-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    align-items:start;
+    padding:10px 18px;
+
+    background:var(--red);
+    color:#fff;
+
+    border-radius:8px;
+
+    font-size:10px;
+    font-weight:1000
+}
+
+.game-card.roulette{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(180,0,0,.11),
+            transparent 60%
+        ),
+        var(--panel)
+}
+
+.game-card.dice{
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,201,40,.07),
+            transparent 60%
+        ),
+        var(--panel)
 }
 
 /* ================= GAME ================= */
 
 .game{
-    overflow:hidden;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(229,9,20,.06),
-            transparent 45%
-        ),
-        var(--panel);
-    border:1px solid var(--line);
-    border-radius:14px;
+    margin-top:5px
 }
 
 .game-head{
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:14px 15px;
-    border-bottom:1px solid var(--line);
+    gap:9px;
+    margin-bottom:15px
+}
+
+.back{
+    width:36px;
+    height:36px;
+
+    color:#fff;
+    background:#202020;
+
+    border:1px solid #303030;
+    border-radius:9px;
+
+    font-size:17px
 }
 
 .game-title{
-    font-size:16px;
-    font-weight:1000;
+    font-size:21px;
+    font-weight:1000
 }
 
-.game-title span{
-    color:var(--red);
+.game-box{
+    padding:20px;
+
+    background:#111;
+    border:1px solid #292929;
+    border-radius:15px
 }
 
-.game-icon{
-    font-size:22px;
+.game-center{
+    text-align:center
 }
 
-.game-body{
-    padding:15px;
-}
+.result{
+    min-height:100px;
 
-/* ================= BET ================= */
-
-.bet-title{
-    color:#777;
-    font-size:9px;
-    font-weight:900;
-    text-transform:uppercase;
-    letter-spacing:.6px;
-    margin-bottom:7px;
-}
-
-.bet-row{
     display:flex;
-    gap:6px;
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:15px;
+
+    background:#080808;
+    border:1px solid #242424;
+    border-radius:12px;
+
+    font-size:35px;
+    font-weight:1000
 }
 
-.bet-input{
+.result.red{
+    color:#ff3340
+}
+
+.result.green{
+    color:var(--green)
+}
+
+.result.gold{
+    color:var(--gold)
+}
+
+.info{
+    color:#777;
+    text-align:center;
+    font-size:11px;
+    line-height:1.5;
+    margin-bottom:15px
+}
+
+.input{
     width:100%;
-    min-width:0;
-    padding:11px;
+
+    padding:13px;
+
     color:#fff;
     background:#080808;
-    border:1px solid #303030;
-    border-radius:8px;
-    outline:none;
-    font-size:12px;
-    font-weight:900;
-}
 
-.bet-input:focus{
-    border-color:var(--red);
-}
-
-.bet-presets{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:5px;
-    margin-top:7px;
-}
-
-.bet-preset{
-    padding:8px 4px;
-    color:#aaa;
-    background:#1b1b1b;
     border:1px solid #292929;
-    border-radius:7px;
-    font-size:9px;
-    font-weight:900;
+    border-radius:9px;
+
+    outline:none;
+
+    margin-bottom:9px
 }
 
-.bet-preset:active{
-    transform:scale(.97);
+.input:focus{
+    border-color:var(--red)
+}
+
+.action{
+    width:100%;
+
+    padding:14px;
+
+    background:var(--red);
+    color:#fff;
+
+    border-radius:9px;
+
+    font-size:12px;
+    font-weight:1000
+}
+
+.action:active{
+    transform:scale(.98)
+}
+
+.secondary{
+    width:100%;
+
+    padding:12px;
+
+    margin-top:8px;
+
+    background:#222;
+    color:#fff;
+
+    border:1px solid #303030;
+    border-radius:9px;
+
+    font-size:11px;
+    font-weight:900
 }
 
 /* ================= BLACKJACK ================= */
 
-.blackjack-table{
-    min-height:300px;
-    padding:13px;
-    margin-top:13px;
-    border-radius:12px;
-    background:
-        radial-gradient(
-            circle at center,
-            #202020,
-            #101010 65%
-        );
-    border:1px solid #292929;
-}
-
-.hand{
-    min-height:105px;
-}
-
-.hand-title{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:8px;
-    color:#777;
-    font-size:9px;
-    font-weight:900;
-}
-
 .cards{
     display:flex;
+    justify-content:center;
     flex-wrap:wrap;
-    gap:6px;
+    gap:8px;
+
+    min-height:74px;
+
+    margin:10px 0 16px
 }
 
 .card{
-    width:47px;
-    height:67px;
+    width:50px;
+    height:68px;
+
     display:flex;
-    flex-direction:column;
     align-items:center;
     justify-content:center;
-    border-radius:7px;
-    background:#f3f3f3;
+
+    background:#f5f5f5;
     color:#111;
-    font-size:20px;
+
+    border-radius:7px;
+
+    font-size:18px;
     font-weight:1000;
-    box-shadow:0 4px 10px rgba(0,0,0,.35);
+
+    box-shadow:0 3px 8px #000
 }
 
 .card.red{
-    color:#d90b18;
+    color:#d50917
 }
 
-.card.back{
-    color:#fff;
-    background:
-        linear-gradient(135deg,#b80812,#ed1722);
-    border:2px solid #f03943;
-    font-size:17px;
-}
-
-.blackjack-result{
-    min-height:22px;
-    margin:8px 0;
-    text-align:center;
-    color:#aaa;
-    font-size:11px;
-    font-weight:900;
-}
-
-.game-buttons{
-    display:flex;
-    gap:6px;
-}
-
-.game-btn{
-    flex:1;
-    padding:11px;
-    border-radius:8px;
-    color:#fff;
-    background:#242424;
-    border:1px solid #333;
+.hand-title{
+    color:#888;
     font-size:10px;
-    font-weight:1000;
+    font-weight:bold;
+    text-align:center
 }
 
-.game-btn.red{
-    background:linear-gradient(135deg,#c70711,#f01925);
-    border-color:#e50914;
-}
-
-.game-btn.green{
-    background:#173b28;
-    color:#54df8a;
-}
-
-.game-btn:disabled{
-    opacity:.4;
-    cursor:not-allowed;
+.score{
+    text-align:center;
+    font-size:13px;
+    font-weight:900
 }
 
 /* ================= ROULETTE ================= */
 
-.roulette-wheel{
-    width:190px;
-    height:190px;
-    position:relative;
-    margin:8px auto 15px;
-    border-radius:50%;
-    background:
-        conic-gradient(
-            #111 0deg 10deg,
-            #c90e18 10deg 20deg,
-            #111 20deg 30deg,
-            #c90e18 30deg 40deg,
-            #111 40deg 50deg,
-            #c90e18 50deg 60deg,
-            #111 60deg 70deg,
-            #c90e18 70deg 80deg,
-            #111 80deg 90deg,
-            #c90e18 90deg 100deg,
-            #111 100deg 110deg,
-            #c90e18 110deg 120deg,
-            #111 120deg 130deg,
-            #c90e18 130deg 140deg,
-            #111 140deg 150deg,
-            #c90e18 150deg 160deg,
-            #111 160deg 170deg,
-            #c90e18 170deg 180deg,
-            #111 180deg 190deg,
-            #c90e18 190deg 200deg,
-            #111 200deg 210deg,
-            #c90e18 210deg 220deg,
-            #111 220deg 230deg,
-            #c90e18 230deg 240deg,
-            #111 240deg 250deg,
-            #c90e18 250deg 260deg,
-            #111 260deg 270deg,
-            #c90e18 270deg 280deg,
-            #111 280deg 290deg,
-            #c90e18 290deg 300deg,
-            #111 300deg 310deg,
-            #c90e18 310deg 320deg,
-            #111 320deg 330deg,
-            #c90e18 330deg 340deg,
-            #111 340deg 360deg
-        );
-    border:8px solid #292929;
-    box-shadow:
-        0 0 0 3px #111,
-        0 10px 35px rgba(0,0,0,.7);
-    transition:transform 2.5s cubic-bezier(.12,.7,.15,1);
-}
+.wheel{
+    width:180px;
+    height:180px;
 
-.roulette-wheel:after{
-    content:"0";
-    position:absolute;
-    inset:50%;
-    width:54px;
-    height:54px;
-    transform:translate(-50%,-50%);
+    margin:10px auto 20px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     border-radius:50%;
-    background:#111;
-    border:4px solid #444;
-    color:#fff;
-    font-size:19px;
-    font-weight:1000;
+
+    background:
+        conic-gradient(
+            #c9000b 0deg 30deg,
+            #111 30deg 60deg,
+            #c9000b 60deg 90deg,
+            #111 90deg 120deg,
+            #c9000b 120deg 150deg,
+            #111 150deg 180deg,
+            #c9000b 180deg 210deg,
+            #111 210deg 240deg,
+            #c9000b 240deg 270deg,
+            #111 270deg 300deg,
+            #c9000b 300deg 330deg,
+            #111 330deg 360deg
+        );
+
+    border:8px solid #2a2a2a;
+    box-shadow:0 0 25px rgba(0,0,0,.7)
 }
 
-.roulette-pointer{
-    width:0;
-    height:0;
-    margin:-4px auto 0;
-    border-left:8px solid transparent;
-    border-right:8px solid transparent;
-    border-top:18px solid #fff;
-    position:relative;
-    z-index:5;
+.wheel-center{
+    width:70px;
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#080808;
+    border:3px solid #555;
+
+    font-size:20px;
+    font-weight:1000
 }
 
-.roulette-result{
-    text-align:center;
-    min-height:29px;
-    margin:9px 0;
-    font-size:12px;
-    font-weight:1000;
-}
-
-.roulette-result .red{
-    color:var(--red2);
-}
-
-.roulette-result .green{
-    color:var(--green);
-}
-
-/* ================= ROULETTE BET ================= */
-
-.roulette-options{
+.bet-buttons{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:6px;
-    margin-top:10px;
+    gap:7px;
+
+    margin-bottom:10px
 }
 
-.roulette-option{
-    padding:10px 5px;
-    border-radius:8px;
+.bet{
+    padding:11px 5px;
+
     color:#fff;
-    background:#222;
+    background:#202020;
+
     border:1px solid #303030;
-    font-size:9px;
-    font-weight:900;
+    border-radius:8px;
+
+    font-size:10px;
+    font-weight:bold
 }
 
-.roulette-option.active{
-    border-color:var(--red);
-    box-shadow:0 0 0 1px rgba(229,9,20,.3);
-}
-
-.roulette-option.red-option{
-    background:#3a1115;
-}
-
-.roulette-option.black-option{
-    background:#0c0c0c;
+.bet.active{
+    background:var(--red);
+    border-color:var(--red)
 }
 
 /* ================= DICE ================= */
 
-.dice-game{
-    grid-column:1;
-}
-
 .dice-area{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin:14px 0;
-}
+    min-height:120px;
 
-.die{
-    width:70px;
-    height:70px;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:12px;
-    background:#ededed;
-    color:#111;
-    font-size:34px;
-    font-weight:1000;
-    box-shadow:0 6px 15px rgba(0,0,0,.45);
+    gap:12px;
+
+    margin-bottom:15px
 }
 
-.dice-total{
-    text-align:center;
-    color:#aaa;
-    font-size:11px;
-    font-weight:900;
-}
+.die{
+    width:75px;
+    height:75px;
 
-.dice-select{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:6px;
-    margin-top:10px;
-}
-
-.dice-choice{
-    padding:10px;
-    color:#aaa;
-    background:#1d1d1d;
-    border:1px solid #2c2c2c;
-    border-radius:8px;
-    font-size:10px;
-    font-weight:900;
-}
-
-.dice-choice.active{
-    color:#fff;
-    border-color:var(--red);
-}
-
-/* ================= HISTORY ================= */
-
-.history{
-    margin-top:12px;
-    padding-top:12px;
-    border-top:1px solid var(--line);
-}
-
-.history-title{
-    color:#777;
-    font-size:9px;
-    font-weight:900;
-    margin-bottom:7px;
-}
-
-.history-list{
     display:flex;
-    flex-wrap:wrap;
-    gap:5px;
+    align-items:center;
+    justify-content:center;
+
+    background:#f5f5f5;
+    color:#111;
+
+    border-radius:13px;
+
+    font-size:35px;
+    font-weight:1000;
+
+    box-shadow:0 4px 15px #000
 }
 
-.history-item{
-    min-width:28px;
-    padding:5px 7px;
+.total{
     text-align:center;
-    border-radius:5px;
-    background:#1b1b1b;
-    color:#aaa;
-    font-size:9px;
-    font-weight:900;
+
+    margin-bottom:15px;
+
+    font-size:18px;
+    font-weight:1000
 }
 
-.history-item.red{
-    color:#ff5260;
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+    z-index:100;
+
+    transform:translate(-50%,20px);
+
+    padding:11px 15px;
+
+    color:#fff;
+    background:#191919;
+
+    border:1px solid #383838;
+    border-radius:9px;
+
+    font-size:11px;
+
+    opacity:0;
+    pointer-events:none;
+
+    transition:.2s
 }
 
-.history-item.black{
-    color:#ddd;
-}
-
-.history-item.green{
-    color:#54df8a;
-}
-
-/* ================= MESSAGE ================= */
-
-.message{
-    min-height:20px;
-    margin-top:9px;
-    text-align:center;
-    color:#777;
-    font-size:10px;
-    font-weight:900;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:699px){
-
-    .casino-grid{
-        grid-template-columns:1fr;
-    }
-
-    .dice-game{
-        grid-column:auto;
-    }
-
-    .roulette-wheel{
-        width:175px;
-        height:175px;
-    }
+.toast.show{
+    opacity:1;
+    transform:translate(-50%,0)
 }
 
 @media(min-width:700px){
 
-    .casino-grid{
-        grid-template-columns:1fr 1fr;
+    .container{
+        padding-top:30px
     }
 
-    .game{
-        min-width:0;
+    .game-card{
+        padding:25px
     }
+
 }
 </style>
 </head>
 
 <body>
 
-<header class="topbar">
+<header class="header">
 
-    <div class="logo">
-        BLACK <span>RUSSIA</span>
-    </div>
+<div class="logo">
+    BLACK <span>RUSSIA</span>
+</div>
 
-    <div class="top-right">
-
-        <div class="balance" id="balance">
-            ₽ 100 000
-        </div>
-
-        <button class="back-btn" onclick="goBack()">
-            ← НАЗАД
-        </button>
-
-    </div>
+<div class="balance" id="balance">
+    ♦ 0
+</div>
 
 </header>
 
 
-<main class="page">
+<div class="container">
 
-    <div class="page-head">
-        <div class="page-title">
-            КАЗИНО <span>BLACK</span>
-        </div>
+<!-- ================= MENU ================= -->
 
-        <div class="page-subtitle">
-            Испытай удачу. Играй ответственно.
-        </div>
-    </div>
+<section id="menu">
 
+<div class="title">
+    🎰 КАЗИНО
+</div>
 
-    <div class="casino-grid">
+<div class="subtitle">
+    Выберите игру
+</div>
 
 
-        <!-- ================================================= -->
-        <!-- BLACKJACK -->
-        <!-- ================================================= -->
+<div class="casino-menu">
 
-        <section class="game">
+<!-- БЛЕКДЖЕК -->
 
-            <div class="game-head">
-                <div class="game-title">
-                    ♠ БЛЭКДЖЕК
-                </div>
+<button
+    class="game-card"
+    onclick="openGame('blackjack')">
 
-                <div class="game-icon">
-                    🃏
-                </div>
-            </div>
+<div class="game-icon">
+    🃏
+</div>
 
-            <div class="game-body">
+<div class="game-name">
+    БЛЕКДЖЕК
+</div>
 
-                <div class="bet-title">
-                    Ставка
-                </div>
+<div class="game-desc">
+    Собери комбинацию ближе к 21 и обыграй дилера.
+</div>
 
-                <div class="bet-row">
-                    <input
-                        id="blackjackBet"
-                        class="bet-input"
-                        type="number"
-                        value="1000"
-                        min="100"
-                        step="100"
-                    >
-                </div>
-
-                <div class="bet-presets">
-
-                    <button
-                        class="bet-preset"
-                        onclick="setBet('blackjackBet',500)"
-                    >
-                        500
-                    </button>
-
-                    <button
-                        class="bet-preset"
-                        onclick="setBet('blackjackBet',1000)"
-                    >
-                        1K
-                    </button>
+<span class="play">
+    ИГРАТЬ
+</span>
 
-                    <button
-                        class="bet-preset"
-                        onclick="setBet('blackjackBet',5000)"
-                    >
-                        5K
-                    </button>
+</button>
 
-                    <button
-                        class="bet-preset"
-                        onclick="setBet('blackjackBet',10000)"
-                    >
-                        10K
-                    </button>
 
-                </div>
+<!-- РУЛЕТКА -->
 
+<button
+    class="game-card roulette"
+    onclick="openGame('roulette')">
 
-                <div class="blackjack-table">
+<div class="game-icon">
+    🎡
+</div>
 
-                    <div class="hand">
+<div class="game-name">
+    РУЛЕТКА
+</div>
 
-                        <div class="hand-title">
-                            <span>ДИЛЕР</span>
-                            <span id="dealerScore">?</span>
-                        </div>
+<div class="game-desc">
+    Сделай ставку и попробуй угадать число или цвет.
+</div>
 
-                        <div
-                            class="cards"
-                            id="dealerCards"
-                        ></div>
+<span class="play">
+    ИГРАТЬ
+</span>
 
-                    </div>
+</button>
 
 
-                    <div class="hand">
+<!-- КОСТИ -->
 
-                        <div class="hand-title">
-                            <span>ТЫ</span>
-                            <span id="playerScore">0</span>
-                        </div>
+<button
+    class="game-card dice"
+    onclick="openGame('dice')">
 
-                        <div
-                            class="cards"
-                            id="playerCards"
-                        ></div>
+<div class="game-icon">
+    🎲
+</div>
 
-                    </div>
+<div class="game-name">
+    КОСТИ
+</div>
 
+<div class="game-desc">
+    Бросай две кости и попытайся выбить максимальную сумму.
+</div>
 
-                    <div
-                        class="blackjack-result"
-                        id="blackjackResult"
-                    >
-                        Сделай ставку и начни игру
-                    </div>
+<span class="play">
+    ИГРАТЬ
+</span>
 
+</button>
 
-                    <div class="game-buttons">
+</div>
 
-                        <button
-                            class="game-btn red"
-                            id="blackjackStart"
-                            onclick="startBlackjack()"
-                        >
-                            НАЧАТЬ
-                        </button>
+</section>
 
-                        <button
-                            class="game-btn"
-                            id="blackjackHit"
-                            onclick="blackjackHit()"
-                            disabled
-                        >
-                            ЕЩЁ
-                        </button>
 
-                        <button
-                            class="game-btn green"
-                            id="blackjackStand"
-                            onclick="blackjackStand()"
-                            disabled
-                        >
-                            ХВАТИТ
-                        </button>
+<!-- ================= BLACKJACK ================= -->
 
-                    </div>
+<section
+    id="blackjack"
+    class="game hidden">
 
-                </div>
+<div class="game-head">
 
-                <div
-                    class="message"
-                    id="blackjackMessage"
-                ></div>
+<button
+    class="back"
+    onclick="backToMenu()">
+    ←
+</button>
 
-            </div>
+<div class="game-title">
+    🃏 Блекджек
+</div>
 
-        </section>
+</div>
 
 
-        <!-- ================================================= -->
-        <!-- ROULETTE -->
-        <!-- ================================================= -->
+<div class="game-box">
 
-        <section class="game">
+<div class="hand-title">
+    ДИЛЕР
+</div>
 
-            <div class="game-head">
+<div
+    class="cards"
+    id="dealerCards">
+</div>
 
-                <div class="game-title">
-                    🎡 РУЛЕТКА
-                </div>
+<div
+    class="score"
+    id="dealerScore">
+</div>
 
-                <div class="game-icon">
-                    🔴⚫
-                </div>
 
-            </div>
+<div class="hand-title">
+    ТВОИ КАРТЫ
+</div>
 
-            <div class="game-body">
+<div
+    class="cards"
+    id="playerCards">
+</div>
 
-                <div class="bet-title">
-                    Ставка
-                </div>
+<div
+    class="score"
+    id="playerScore">
+</div>
 
-                <div class="bet-row">
+<div
+    class="info"
+    id="blackjackMessage">
+    Сделай ставку и начни игру.
+</div>
 
-                    <input
-                        id="rouletteBet"
-                        class="bet-input"
-                        type="number"
-                        value="1000"
-                        min="100"
-                        step="100"
-                    >
+<input
+    class="input"
+    id="bjBet"
+    type="number"
+    min="1"
+    value="10"
+    placeholder="Ставка ♦">
 
-                </div>
 
+<button
+    class="action"
+    id="bjStart"
+    onclick="startBlackjack()">
+    НАЧАТЬ ИГРУ
+</button>
 
-                <div class="roulette-pointer"></div>
+<button
+    class="secondary hidden"
+    id="bjHit"
+    onclick="blackjackHit()">
+    ЕЩЁ КАРТУ
+</button>
 
-                <div
-                    class="roulette-wheel"
-                    id="rouletteWheel"
-                ></div>
+<button
+    class="secondary hidden"
+    id="bjStand"
+    onclick="blackjackStand()">
+    ОСТАНОВИТЬСЯ
+</button>
 
+</div>
 
-                <div
-                    class="roulette-result"
-                    id="rouletteResult"
-                >
-                    Выбери ставку
-                </div>
+</section>
 
 
-                <div class="roulette-options">
+<!-- ================= ROULETTE ================= -->
 
-                    <button
-                        class="roulette-option red-option"
-                        id="rouletteRed"
-                        onclick="selectRoulette('red')"
-                    >
-                        🔴 КРАСНОЕ<br>
-                        x2
-                    </button>
+<section
+    id="roulette"
+    class="game hidden">
 
-                    <button
-                        class="roulette-option black-option"
-                        id="rouletteBlack"
-                        onclick="selectRoulette('black')"
-                    >
-                        ⚫ ЧЁРНОЕ<br>
-                        x2
-                    </button>
+<div class="game-head">
 
-                    <button
-                        class="roulette-option"
-                        id="rouletteGreen"
-                        onclick="selectRoulette('green')"
-                    >
-                        🟢 ZERO<br>
-                        x14
-                    </button>
+<button
+    class="back"
+    onclick="backToMenu()">
+    ←
+</button>
 
-                </div>
+<div class="game-title">
+    🎡 Рулетка
+</div>
 
+</div>
 
-                <button
-                    class="game-btn red"
-                    style="width:100%;margin-top:8px"
-                    onclick="spinRoulette()"
-                >
-                    КРУТИТЬ
-                </button>
 
+<div class="game-box">
 
-                <div class="history">
+<div
+    class="wheel"
+    id="wheel">
 
-                    <div class="history-title">
-                        ПОСЛЕДНИЕ ВЫПАДЕНИЯ
-                    </div>
+<div
+    class="wheel-center"
+    id="rouletteResult">
+    ?
+</div>
 
-                    <div
-                        class="history-list"
-                        id="rouletteHistory"
-                    ></div>
+</div>
 
-                </div>
 
-            </div>
+<div class="info">
+    Выбери цвет и сделай ставку.
+</div>
 
-        </section>
 
+<div class="bet-buttons">
 
-        <!-- ================================================= -->
-        <!-- DICE -->
-        <!-- ================================================= -->
+<button
+    class="bet active"
+    data-bet="red"
+    onclick="selectBet('red')">
+    🔴 КРАСНОЕ
+</button>
 
-        <section class="game dice-game">
+<button
+    class="bet"
+    data-bet="black"
+    onclick="selectBet('black')">
+    ⚫ ЧЁРНОЕ
+</button>
 
-            <div class="game-head">
+<button
+    class="bet"
+    data-bet="zero"
+    onclick="selectBet('zero')">
+    🟢 0
+</button>
 
-                <div class="game-title">
-                    🎲 КОСТИ
-                </div>
+</div>
 
-                <div class="game-icon">
-                    🎲
-                </div>
 
-            </div>
+<input
+    class="input"
+    id="rouletteBet"
+    type="number"
+    min="1"
+    value="10"
+    placeholder="Ставка ♦">
 
-            <div class="game-body">
 
-                <div class="bet-title">
-                    Ставка
-                </div>
+<button
+    class="action"
+    onclick="spinRoulette()">
+    КРУТИТЬ РУЛЕТКУ
+</button>
 
-                <div class="bet-row">
 
-                    <input
-                        id="diceBet"
-                        class="bet-input"
-                        type="number"
-                        value="1000"
-                        min="100"
-                        step="100"
-                    >
+<div
+    class="info"
+    id="rouletteMessage"
+    style="margin-top:12px;margin-bottom:0">
+</div>
 
-                </div>
+</div>
 
+</section>
 
-                <div class="dice-area">
 
-                    <div
-                        class="die"
-                        id="die1"
-                    >
-                        ⚀
-                    </div>
+<!-- ================= DICE ================= -->
 
-                    <div
-                        class="die"
-                        id="die2"
-                    >
-                        ⚀
-                    </div>
+<section
+    id="dice"
+    class="game hidden">
 
-                </div>
+<div class="game-head">
 
+<button
+    class="back"
+    onclick="backToMenu()">
+    ←
+</button>
 
-                <div
-                    class="dice-total"
-                    id="diceTotal"
-                >
-                    Сумма: —
-                </div>
+<div class="game-title">
+    🎲 Кости
+</div>
 
+</div>
 
-                <div class="dice-select">
 
-                    <button
-                        class="dice-choice active"
-                        id="diceHigh"
-                        onclick="selectDice('high')"
-                    >
-                        БОЛЬШЕ 7<br>
-                        x2
-                    </button>
+<div class="game-box">
 
-                    <button
-                        class="dice-choice"
-                        id="diceLow"
-                        onclick="selectDice('low')"
-                    >
-                        МЕНЬШЕ 7<br>
-                        x2
-                    </button>
+<div
+    class="dice-area">
 
-                </div>
+<div
+    class="die"
+    id="die1">
+    ?
+</div>
 
+<div
+    class="die"
+    id="die2">
+    ?
+</div>
 
-                <button
-                    class="game-btn red"
-                    style="width:100%;margin-top:8px"
-                    onclick="rollDice()"
-                >
-                    БРОСИТЬ КОСТИ
-                </button>
+</div>
 
 
-                <div
-                    class="message"
-                    id="diceMessage"
-                >
-                    Выбери сторону и сделай ставку
-                </div>
+<div
+    class="total"
+    id="diceTotal">
+    Сумма: —
+</div>
 
-            </div>
 
-        </section>
+<div class="info">
+    Брось две кости. Чем выше сумма — тем больше выигрыш.
+</div>
 
 
-    </div>
+<input
+    class="input"
+    id="diceBet"
+    type="number"
+    min="1"
+    value="10"
+    placeholder="Ставка ♦">
 
-</main>
+
+<button
+    class="action"
+    onclick="rollDice()">
+    БРОСИТЬ КОСТИ
+</button>
+
+
+<div
+    class="info"
+    id="diceMessage"
+    style="margin-top:12px;margin-bottom:0">
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast">
+    Готово
+</div>
 
 
 <script>
 
-/* =========================================================
-   STATE
-========================================================= */
+/* ================= STATE ================= */
 
-let balance = 100000;
+let donate = Number(
+    localStorage.getItem("brp_demo_donate") || 100
+);
 
-let rouletteChoice = "red";
+let selectedBet="red";
 
-let diceChoice = "high";
-
-let rouletteHistory = [];
-
-let blackjack = {
-    active:false,
-    deck:[],
-    player:[],
-    dealer:[],
-    bet:0
-};
+let blackjackDeck=[];
+let playerHand=[];
+let dealerHand=[];
+let blackjackBet=0;
 
 
-/* =========================================================
-   BASIC
-========================================================= */
-
-function money(value){
-
-    return Number(value || 0)
-        .toLocaleString("ru-RU");
-
-}
-
+/* ================= BALANCE ================= */
 
 function updateBalance(){
 
-    document.getElementById("balance").textContent =
-        "₽ " + money(balance);
+    document
+        .getElementById("balance")
+        .textContent=
+        "♦ "+donate;
+
+    localStorage.setItem(
+        "brp_demo_donate",
+        donate
+    );
+
+}
+
+updateBalance();
+
+
+/* ================= NAVIGATION ================= */
+
+function openGame(game){
+
+    document
+        .getElementById("menu")
+        .classList.add("hidden");
+
+    ["blackjack","roulette","dice"]
+    .forEach(x=>{
+
+        document
+            .getElementById(x)
+            .classList.toggle(
+                "hidden",
+                x!==game
+            );
+
+    });
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
-function setBet(id,value){
+function backToMenu(){
 
-    document.getElementById(id).value = value;
+    ["blackjack","roulette","dice"]
+    .forEach(x=>{
 
-}
+        document
+            .getElementById(x)
+            .classList.add("hidden");
 
+    });
 
-function getBet(id){
+    document
+        .getElementById("menu")
+        .classList.remove("hidden");
 
-    const value =
-        Number(document.getElementById(id).value);
-
-    if(!Number.isFinite(value) || value < 100){
-
-        return 0;
-
-    }
-
-    return Math.floor(value);
-
-}
-
-
-function canBet(amount){
-
-    if(amount <= 0){
-
-        toast("Минимальная ставка — ₽100");
-
-        return false;
-
-    }
-
-    if(amount > balance){
-
-        toast("❌ Недостаточно денег");
-
-        return false;
-
-    }
-
-    return true;
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
-function changeBalance(value){
-
-    balance += value;
-
-    if(balance < 0){
-
-        balance = 0;
-
-    }
-
-    updateBalance();
-
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
+/* ================= TOAST ================= */
 
 let toastTimer;
 
 function toast(text){
 
-    let old =
-        document.getElementById("casinoToast");
+    const e=
+        document.getElementById("toast");
 
-    if(!old){
+    e.textContent=text;
 
-        old = document.createElement("div");
-
-        old.id = "casinoToast";
-
-        old.style.position = "fixed";
-        old.style.left = "50%";
-        old.style.bottom = "25px";
-        old.style.transform = "translateX(-50%)";
-        old.style.zIndex = "999";
-        old.style.padding = "11px 16px";
-        old.style.background = "#191919";
-        old.style.border = "1px solid #383838";
-        old.style.borderRadius = "9px";
-        old.style.fontSize = "11px";
-        old.style.fontWeight = "900";
-        old.style.color = "#fff";
-
-        document.body.appendChild(old);
-
-    }
-
-    old.textContent = text;
+    e.classList.add("show");
 
     clearTimeout(toastTimer);
 
-    toastTimer =
-        setTimeout(() => old.remove(),2300);
+    toastTimer=setTimeout(()=>{
+        e.classList.remove("show");
+    },2200);
 
 }
 
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function goBack(){
-
-    if(document.referrer){
-
-        history.back();
-
-    }else{
-
-        window.location.href = "index.html";
-
-    }
-
-}
-
-
-/* =========================================================
-   CARDS
-========================================================= */
-
-const suits = [
-    "♠",
-    "♥",
-    "♦",
-    "♣"
-];
-
-const ranks = [
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K",
-    "A"
-];
-
+/* ================= BLACKJACK ================= */
 
 function createDeck(){
 
-    const deck = [];
+    const suits=["♠","♥","♦","♣"];
+    const values=[
+        "A","2","3","4","5","6","7",
+        "8","9","10","J","Q","K"
+    ];
 
-    suits.forEach(suit => {
+    let deck=[];
 
-        ranks.forEach(rank => {
-
+    suits.forEach(s=>{
+        values.forEach(v=>{
             deck.push({
-                suit,
-                rank
+                value:v,
+                suit:s
             });
-
         });
-
     });
 
-    return shuffle(deck);
-
-}
-
-
-function shuffle(array){
-
-    for(let i=array.length-1;i>0;i--){
-
-        const j =
-            Math.floor(Math.random()*(i+1));
-
-        [array[i],array[j]] =
-            [array[j],array[i]];
-
-    }
-
-    return array;
+    return deck.sort(
+        ()=>Math.random()-.5
+    );
 
 }
 
 
 function cardValue(card){
 
-    if(["J","Q","K"].includes(card.rank)){
-
+    if(
+        ["J","Q","K"]
+        .includes(card.value)
+    )
         return 10;
 
-    }
-
-    if(card.rank === "A"){
-
+    if(card.value==="A")
         return 11;
 
-    }
-
-    return Number(card.rank);
+    return Number(card.value);
 
 }
 
 
 function handValue(hand){
 
-    let total = 0;
-    let aces = 0;
+    let total=0;
+    let aces=0;
 
-    hand.forEach(card => {
+    hand.forEach(c=>{
 
-        total += cardValue(card);
+        total+=cardValue(c);
 
-        if(card.rank === "A"){
-
+        if(c.value==="A")
             aces++;
-
-        }
 
     });
 
-    while(total > 21 && aces > 0){
+    while(total>21 && aces>0){
 
-        total -= 10;
-
+        total-=10;
         aces--;
 
     }
@@ -1310,680 +1136,387 @@ function handValue(hand){
 }
 
 
-/* =========================================================
-   RENDER CARDS
-========================================================= */
+function cardHTML(card){
 
-function createCardElement(card,hidden=false){
+    const red=
+        card.suit==="♥"||
+        card.suit==="♦";
 
-    const div =
-        document.createElement("div");
-
-    if(hidden){
-
-        div.className = "card back";
-        div.textContent = "★";
-
-        return div;
-
-    }
-
-    div.className =
-        "card " +
-        ((card.suit==="♥" || card.suit==="♦")
-            ? "red"
-            : "");
-
-    div.innerHTML =
-        card.rank +
-        "<br>" +
-        "<span style='font-size:16px'>" +
-        card.suit +
-        "</span>";
-
-    return div;
+    return `
+        <div class="card ${red?"red":""}">
+            ${card.value}${card.suit}
+        </div>
+    `;
 
 }
 
 
 function renderBlackjack(){
 
-    const dealer =
-        document.getElementById("dealerCards");
+    document
+        .getElementById("playerCards")
+        .innerHTML=
+        playerHand.map(cardHTML).join("");
 
-    const player =
-        document.getElementById("playerCards");
+    document
+        .getElementById("dealerCards")
+        .innerHTML=
+        dealerHand.map(cardHTML).join("");
 
-    dealer.innerHTML = "";
-    player.innerHTML = "";
+    document
+        .getElementById("playerScore")
+        .textContent=
+        "Очки: "+handValue(playerHand);
 
-
-    blackjack.dealer.forEach((card,i)=>{
-
-        if(
-            blackjack.active &&
-            i === 1
-        ){
-
-            dealer.appendChild(
-                createCardElement(card,true)
-            );
-
-        }else{
-
-            dealer.appendChild(
-                createCardElement(card)
-            );
-
-        }
-
-    });
-
-
-    blackjack.player.forEach(card=>{
-
-        player.appendChild(
-            createCardElement(card)
-        );
-
-    });
-
-
-    document.getElementById("playerScore")
-        .textContent =
-        handValue(blackjack.player);
-
-
-    document.getElementById("dealerScore")
-        .textContent =
-        blackjack.active
-            ? "?"
-            : handValue(blackjack.dealer);
+    document
+        .getElementById("dealerScore")
+        .textContent=
+        "Очки: "+handValue(dealerHand);
 
 }
 
-
-/* =========================================================
-   BLACKJACK START
-========================================================= */
 
 function startBlackjack(){
 
-    if(blackjack.active){
+    blackjackBet=
+        Number(
+            document
+            .getElementById("bjBet")
+            .value
+        );
 
-        return;
+    if(
+        !blackjackBet||
+        blackjackBet<1
+    )
+        return toast("Укажи ставку.");
 
-    }
+    if(blackjackBet>donate)
+        return toast("Недостаточно ♦.");
 
-    const bet =
-        getBet("blackjackBet");
+    donate-=blackjackBet;
+    updateBalance();
 
-    if(!canBet(bet)){
+    blackjackDeck=createDeck();
 
-        return;
+    playerHand=[
+        blackjackDeck.pop(),
+        blackjackDeck.pop()
+    ];
 
-    }
+    dealerHand=[
+        blackjackDeck.pop(),
+        blackjackDeck.pop()
+    ];
 
-    changeBalance(-bet);
+    document
+        .getElementById("blackjackMessage")
+        .textContent=
+        "Игра началась. Твой ход.";
 
-    blackjack = {
+    document
+        .getElementById("bjStart")
+        .classList.add("hidden");
 
-        active:true,
+    document
+        .getElementById("bjHit")
+        .classList.remove("hidden");
 
-        deck:createDeck(),
-
-        player:[],
-        dealer:[],
-
-        bet
-
-    };
-
-
-    blackjack.player.push(
-        blackjack.deck.pop()
-    );
-
-    blackjack.player.push(
-        blackjack.deck.pop()
-    );
-
-    blackjack.dealer.push(
-        blackjack.deck.pop()
-    );
-
-    blackjack.dealer.push(
-        blackjack.deck.pop()
-    );
-
-
-    document.getElementById("blackjackStart")
-        .disabled = true;
-
-    document.getElementById("blackjackHit")
-        .disabled = false;
-
-    document.getElementById("blackjackStand")
-        .disabled = false;
-
-
-    document.getElementById("blackjackResult")
-        .textContent =
-        "Игра началась";
-
+    document
+        .getElementById("bjStand")
+        .classList.remove("hidden");
 
     renderBlackjack();
 
-
-    const playerScore =
-        handValue(blackjack.player);
-
-    if(playerScore === 21){
-
+    if(handValue(playerHand)===21)
         blackjackStand();
-
-    }
 
 }
 
-
-/* =========================================================
-   BLACKJACK HIT
-========================================================= */
 
 function blackjackHit(){
 
-    if(!blackjack.active){
-
-        return;
-
-    }
-
-    blackjack.player.push(
-        blackjack.deck.pop()
+    playerHand.push(
+        blackjackDeck.pop()
     );
 
     renderBlackjack();
 
+    if(handValue(playerHand)>21){
 
-    const score =
-        handValue(blackjack.player);
-
-    if(score > 21){
-
-        finishBlackjack("lose");
+        finishBlackjack(
+            "Перебор! Ты проиграл."
+        );
 
     }
 
 }
 
-
-/* =========================================================
-   BLACKJACK STAND
-========================================================= */
 
 function blackjackStand(){
 
-    if(!blackjack.active){
-
-        return;
-
-    }
-
-
     while(
-        handValue(blackjack.dealer) < 17
+        handValue(dealerHand)<17
     ){
 
-        blackjack.dealer.push(
-            blackjack.deck.pop()
+        dealerHand.push(
+            blackjackDeck.pop()
         );
 
     }
 
-
     renderBlackjack();
 
+    const p=handValue(playerHand);
+    const d=handValue(dealerHand);
 
-    const player =
-        handValue(blackjack.player);
+    if(d>21){
 
-    const dealer =
-        handValue(blackjack.dealer);
+        finishBlackjack(
+            "У дилера перебор! Ты выиграл!"
+        );
 
+    }else if(p>d){
 
-    if(dealer > 21){
+        finishBlackjack(
+            "Ты победил дилера!"
+        );
 
-        finishBlackjack("win");
+    }else if(p===d){
 
-    }else if(player > dealer){
+        donate+=blackjackBet;
 
-        finishBlackjack("win");
+        updateBalance();
 
-    }else if(player === dealer){
-
-        finishBlackjack("draw");
+        finishBlackjack(
+            "Ничья. Ставка возвращена."
+        );
 
     }else{
 
-        finishBlackjack("lose");
+        finishBlackjack(
+            "Дилер победил."
+        );
 
     }
 
 }
 
 
-/* =========================================================
-   BLACKJACK FINISH
-========================================================= */
-
-function finishBlackjack(result){
-
-    const bet =
-        blackjack.bet;
-
-
-    blackjack.active = false;
-
-
-    document.getElementById("blackjackStart")
-        .disabled = false;
-
-    document.getElementById("blackjackHit")
-        .disabled = true;
-
-    document.getElementById("blackjackStand")
-        .disabled = true;
-
-
-    renderBlackjack();
-
-
-    const resultBox =
-        document.getElementById("blackjackResult");
-
-
-    if(result === "win"){
-
-        const win =
-            bet * 2;
-
-        changeBalance(win);
-
-        resultBox.innerHTML =
-            "🎉 ПОБЕДА! +₽" + money(win);
-
-    }
-
-
-    else if(result === "draw"){
-
-        changeBalance(bet);
-
-        resultBox.innerHTML =
-            "🤝 НИЧЬЯ — ставка возвращена";
-
-    }
-
-
-    else{
-
-        resultBox.innerHTML =
-            "💀 ПРОИГРЫШ — ₽" + money(bet);
-
-    }
-
-
-    blackjack.bet = 0;
-
-}
-
-
-/* =========================================================
-   ROULETTE
-========================================================= */
-
-function selectRoulette(type){
-
-    rouletteChoice = type;
-
-
-    document.querySelectorAll(
-        ".roulette-option"
-    ).forEach(button => {
-
-        button.classList.remove("active");
-
-    });
-
-
-    const id =
-        type === "red"
-            ? "rouletteRed"
-            : type === "black"
-                ? "rouletteBlack"
-                : "rouletteGreen";
-
+function finishBlackjack(message){
 
     document
-        .getElementById(id)
-        .classList.add("active");
+        .getElementById("blackjackMessage")
+        .textContent=message;
+
+    document
+        .getElementById("bjStart")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("bjHit")
+        .classList.add("hidden");
+
+    document
+        .getElementById("bjStand")
+        .classList.add("hidden");
+
+    if(
+        message.includes("выиграл")||
+        message.includes("победил")
+    ){
+
+        donate+=blackjackBet*2;
+
+        updateBalance();
+
+    }
+
+}
 
 
-    document.getElementById("rouletteResult")
-        .textContent =
-        "Выбрано: " +
-        (
-            type === "red"
-                ? "🔴 Красное"
-                : type === "black"
-                    ? "⚫ Чёрное"
-                    : "🟢 Zero"
-        );
+/* ================= ROULETTE ================= */
+
+function selectBet(type){
+
+    selectedBet=type;
+
+    document
+        .querySelectorAll(".bet")
+        .forEach(b=>{
+
+            b.classList.toggle(
+                "active",
+                b.dataset.bet===type
+            );
+
+        });
 
 }
 
 
 function spinRoulette(){
 
-    const bet =
-        getBet("rouletteBet");
+    const bet=
+        Number(
+            document
+            .getElementById("rouletteBet")
+            .value
+        );
 
-    if(!canBet(bet)){
+    if(!bet||bet<1)
+        return toast("Укажи ставку.");
 
-        return;
+    if(bet>donate)
+        return toast("Недостаточно ♦.");
 
-    }
+    donate-=bet;
+    updateBalance();
 
-
-    changeBalance(-bet);
-
-
-    const wheel =
-        document.getElementById("rouletteWheel");
-
-
-    const number =
-        Math.floor(Math.random()*37);
-
+    const number=
+        Math.floor(
+            Math.random()*37
+        );
 
     let color;
 
+    if(number===0)
+        color="zero";
+    else if(
+        [1,3,5,7,9,12,14,16,18,
+         19,21,23,25,27,30,32,34,36]
+        .includes(number)
+    )
+        color="red";
+    else
+        color="black";
 
-    if(number === 0){
+    const result=
+        document
+        .getElementById("rouletteResult");
 
-        color = "green";
+    result.textContent=number;
 
-    }else if(
-        [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]
-            .includes(number)
+    result.className=
+        "wheel-center "+
+        (
+            color==="red"
+            ?"red"
+            :color==="zero"
+            ?"green"
+            :""
+        );
+
+    const message=
+        document
+        .getElementById(
+            "rouletteMessage"
+        );
+
+    if(
+        selectedBet===color
     ){
 
-        color = "red";
+        let multiplier=
+            selectedBet==="zero"
+            ?14
+            :2;
+
+        const win=bet*multiplier;
+
+        donate+=win;
+
+        updateBalance();
+
+        message.textContent=
+            "🎉 Победа! Выигрыш ♦ "+win;
 
     }else{
 
-        color = "black";
+        message.textContent=
+            "❌ Выпало "+number+". Ставка проиграна.";
 
     }
 
-
-    const rotation =
-        1080 +
-        Math.floor(Math.random()*360);
-
-
-    wheel.style.transform =
-        "rotate(" + rotation + "deg)";
-
-
-    setTimeout(()=>{
-
-        rouletteHistory.unshift({
-            number,
-            color
-        });
-
-
-        rouletteHistory =
-            rouletteHistory.slice(0,12);
-
-
-        renderRouletteHistory();
-
-
-        let multiplier = 0;
-
-
-        if(
-            rouletteChoice === color
-        ){
-
-            multiplier =
-                color === "green"
-                    ? 14
-                    : 2;
-
-        }
-
-
-        const result =
-            document.getElementById(
-                "rouletteResult"
-            );
-
-
-        if(multiplier){
-
-            const win =
-                bet * multiplier;
-
-            changeBalance(win);
-
-            result.innerHTML =
-                "🎉 Выпало <b>" +
-                number +
-                "</b> — " +
-                colorName(color) +
-                "<br>Выигрыш: ₽" +
-                money(win);
-
-        }else{
-
-            result.innerHTML =
-                "❌ Выпало <b>" +
-                number +
-                "</b> — " +
-                colorName(color) +
-                "<br>Ставка проиграна";
-
-        }
-
-    },2500);
-
 }
 
 
-function colorName(color){
-
-    if(color==="red"){
-
-        return '<span class="red">🔴 красное</span>';
-
-    }
-
-    if(color==="black"){
-
-        return '<span>⚫ чёрное</span>';
-
-    }
-
-    return '<span class="green">🟢 zero</span>';
-
-}
-
-
-function renderRouletteHistory(){
-
-    const box =
-        document.getElementById(
-            "rouletteHistory"
-        );
-
-    box.innerHTML = "";
-
-
-    rouletteHistory.forEach(item=>{
-
-        const div =
-            document.createElement("div");
-
-        div.className =
-            "history-item " +
-            item.color;
-
-        div.textContent =
-            item.number;
-
-        box.appendChild(div);
-
-    });
-
-}
-
-
-/* =========================================================
-   DICE
-========================================================= */
-
-const diceFaces = [
-    "⚀",
-    "⚁",
-    "⚂",
-    "⚃",
-    "⚄",
-    "⚅"
-];
-
-
-function selectDice(type){
-
-    diceChoice = type;
-
-
-    document.getElementById("diceHigh")
-        .classList.toggle(
-            "active",
-            type==="high"
-        );
-
-    document.getElementById("diceLow")
-        .classList.toggle(
-            "active",
-            type==="low"
-        );
-
-}
-
+/* ================= DICE ================= */
 
 function rollDice(){
 
-    const bet =
-        getBet("diceBet");
-
-    if(!canBet(bet)){
-
-        return;
-
-    }
-
-
-    changeBalance(-bet);
-
-
-    const die1 =
-        Math.floor(Math.random()*6)+1;
-
-    const die2 =
-        Math.floor(Math.random()*6)+1;
-
-
-    const total =
-        die1 + die2;
-
-
-    document.getElementById("die1")
-        .textContent =
-        diceFaces[die1-1];
-
-    document.getElementById("die2")
-        .textContent =
-        diceFaces[die2-1];
-
-
-    document.getElementById("diceTotal")
-        .textContent =
-        "Сумма: " + total;
-
-
-    let win = false;
-
-
-    if(diceChoice==="high"){
-
-        win = total > 7;
-
-    }else{
-
-        win = total < 7;
-
-    }
-
-
-    const message =
-        document.getElementById(
-            "diceMessage"
+    const bet=
+        Number(
+            document
+            .getElementById("diceBet")
+            .value
         );
 
+    if(!bet||bet<1)
+        return toast("Укажи ставку.");
 
-    if(win){
+    if(bet>donate)
+        return toast("Недостаточно ♦.");
 
-        const reward =
-            bet * 2;
+    donate-=bet;
+    updateBalance();
 
-        changeBalance(reward);
+    const d1=
+        Math.floor(Math.random()*6)+1;
 
-        message.style.color =
-            "var(--green)";
+    const d2=
+        Math.floor(Math.random()*6)+1;
 
-        message.textContent =
-            "🎉 Победа! +₽" +
-            money(reward);
+    const total=d1+d2;
+
+    document
+        .getElementById("die1")
+        .textContent=d1;
+
+    document
+        .getElementById("die2")
+        .textContent=d2;
+
+    document
+        .getElementById("diceTotal")
+        .textContent=
+        "Сумма: "+total;
+
+    let multiplier=0;
+
+    if(total===12)
+        multiplier=5;
+    else if(total>=9)
+        multiplier=2;
+    else if(total>=7)
+        multiplier=1.5;
+
+    const message=
+        document
+        .getElementById("diceMessage");
+
+    if(multiplier){
+
+        const win=
+            Math.floor(
+                bet*multiplier
+            );
+
+        donate+=win;
+
+        updateBalance();
+
+        message.textContent=
+            "🎉 Победа! Выигрыш ♦ "+win;
 
     }else{
 
-        message.style.color =
-            "var(--red2)";
-
-        message.textContent =
-            "❌ Не повезло. Ставка проиграна.";
+        message.textContent=
+            "❌ Не повезло. Попробуй ещё раз.";
 
     }
 
 }
-
-
-/* =========================================================
-   INIT
-========================================================= */
-
-updateBalance();
-
-selectRoulette("red");
-
-selectDice("high");
-
-renderBlackjack();
 
 </script>
 
