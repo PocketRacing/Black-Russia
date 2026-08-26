@@ -7,3371 +7,1203 @@
 <title>BLACK RUSSIA — Работы</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    -webkit-tap-highlight-color:transparent;
-}
-
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-    --bg:#070707;
-    --panel:#111;
-    --panel2:#171717;
-    --line:#292929;
-    --red:#e50914;
-    --red2:#ff2633;
-    --white:#f5f5f5;
-    --muted:#858585;
-    --green:#31d47a;
-    --yellow:#ffc928;
-    --blue:#3295ff;
+ --bg:#070707;--p:#111;--p2:#181818;--line:#292929;
+ --red:#e50914;--red2:#ff2633;--white:#f5f5f5;
+ --muted:#777;--green:#31d47a;--yellow:#ffc928;--blue:#3295ff
 }
-
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#050505;
-    color:var(--white);
-    min-height:100vh;
-    padding-bottom:30px;
+ font-family:Arial,Helvetica,sans-serif;
+ background:var(--bg);color:var(--white);
+ min-height:100vh;padding-bottom:25px
 }
+button{border:0;font-family:inherit;cursor:pointer}
+button:disabled{cursor:not-allowed}
+.hidden{display:none!important}
 
-button{
-    border:0;
-    font-family:inherit;
-    cursor:pointer;
+.top{
+ height:58px;position:sticky;top:0;z-index:50;
+ display:flex;align-items:center;justify-content:space-between;
+ padding:0 12px;background:rgba(7,7,7,.96);
+ border-bottom:1px solid var(--line);backdrop-filter:blur(12px)
 }
-
-button:disabled{
-    cursor:not-allowed;
+.logo{font-size:15px;font-weight:1000}
+.logo b{color:var(--red)}
+.back,.money{
+ background:#181818;border:1px solid #303030;
+ color:#fff;border-radius:8px;font-weight:900
 }
+.back{padding:8px 10px;font-size:9px}
+.money{padding:6px 8px;font-size:9px}
+.money.cash{color:var(--green)}
+.money.donate{color:var(--red2)}
 
-.hidden{
-    display:none!important;
+.page{max-width:900px;margin:auto;padding:15px}
+.title{font-size:25px;font-weight:1000}
+.sub{color:var(--muted);font-size:10px;margin:4px 0 14px}
+
+.player{
+ display:flex;align-items:center;gap:10px;
+ padding:12px;margin-bottom:12px;
+ background:linear-gradient(120deg,rgba(229,9,20,.12),transparent 65%),var(--p);
+ border:1px solid var(--line);border-radius:12px
 }
-
-/* TOP */
-
-.topbar{
-    height:62px;
-    position:sticky;
-    top:0;
-    z-index:100;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 14px;
-    background:rgba(8,8,8,.97);
-    border-bottom:1px solid var(--line);
-    backdrop-filter:blur(14px);
-}
-
-.logo{
-    font-size:16px;
-    font-weight:1000;
-}
-
-.logo span{
-    color:var(--red);
-}
-
-.back{
-    padding:8px 11px;
-    background:#1b1b1b;
-    border:1px solid #303030;
-    color:#fff;
-    border-radius:8px;
-    font-size:10px;
-    font-weight:900;
-}
-
-.money-box{
-    display:flex;
-    gap:5px;
-}
-
-.money{
-    padding:6px 8px;
-    border-radius:7px;
-    background:#151515;
-    border:1px solid #292929;
-    font-size:9px;
-    font-weight:900;
-}
-
-.money.cash{
-    color:#53dd8a;
-}
-
-.money.donate{
-    color:var(--red2);
-}
-
-/* PAGE */
-
-.page{
-    width:100%;
-    max-width:1000px;
-    margin:auto;
-    padding:16px;
-}
-
-.page-title{
-    font-size:27px;
-    font-weight:1000;
-}
-
-.page-subtitle{
-    color:#777;
-    font-size:11px;
-    margin-top:5px;
-    margin-bottom:16px;
-}
-
-/* PLAYER */
-
-.player-box{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:14px;
-    margin-bottom:12px;
-    background:
-        linear-gradient(
-            120deg,
-            rgba(229,9,20,.12),
-            transparent 65%
-        ),
-        #111;
-    border:1px solid #292929;
-    border-radius:13px;
-}
-
 .avatar{
-    width:48px;
-    height:48px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-    background:#202020;
-    border:2px solid var(--red);
-    border-radius:50%;
-    font-size:18px;
-    font-weight:1000;
+ width:44px;height:44px;display:flex;align-items:center;
+ justify-content:center;background:#202020;
+ border:2px solid var(--red);border-radius:50%;
+ font-weight:1000
 }
+.player-main{flex:1}
+.player-name{font-size:13px;font-weight:900}
+.player-level{color:#777;font-size:9px;margin-top:3px}
+.xp{height:4px;background:#292929;border-radius:10px;margin-top:6px;overflow:hidden}
+.xp div{height:100%;background:var(--red);width:0}
 
-.player-info{
-    flex:1;
+.busy{
+ display:flex;align-items:center;gap:7px;
+ padding:9px 11px;margin-bottom:11px;
+ background:#141414;border:1px solid #303030;
+ border-radius:9px;font-size:9px;color:#aaa
 }
+.busy b{color:var(--yellow)}
 
-.player-name{
-    font-size:14px;
-    font-weight:900;
+.jobs{
+ display:grid;gap:8px
 }
-
-.player-level{
-    color:#777;
-    font-size:10px;
-    margin-top:4px;
-}
-
-.player-xp{
-    margin-top:7px;
-    height:4px;
-    background:#292929;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.player-xp div{
-    height:100%;
-    width:0;
-    background:var(--red);
-}
-
-/* GLOBAL STATUS */
-
-.work-status{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:11px 13px;
-    margin-bottom:15px;
-    background:#111;
-    border:1px solid #292929;
-    border-radius:11px;
-    font-size:10px;
-}
-
-.status-dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:var(--green);
-    box-shadow:0 0 8px rgba(49,212,122,.45);
-}
-
-.work-status.busy{
-    border-color:#5b3e0a;
-    background:#17130a;
-}
-
-.work-status.busy .status-dot{
-    background:var(--yellow);
-    box-shadow:0 0 8px rgba(255,201,40,.45);
-}
-
-.status-main{
-    flex:1;
-}
-
-.status-title{
-    font-weight:1000;
-}
-
-.status-time{
-    color:#777;
-    margin-top:3px;
-}
-
-/* TABS */
-
-.tabs{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:6px;
-    padding:5px;
-    margin-bottom:18px;
-    background:#101010;
-    border:1px solid #292929;
-    border-radius:12px;
-}
-
-.tab{
-    padding:11px 5px;
-    color:#777;
-    background:transparent;
-    border-radius:8px;
-    font-size:9px;
-    font-weight:1000;
-}
-
-.tab.active{
-    color:#fff;
-    background:#252525;
-}
-
-.tab.active.red{
-    background:var(--red);
-}
-
-.tab.active.blue{
-    background:#14599b;
-}
-
-/* SECTIONS */
-
-.section-title{
-    margin:20px 0 10px;
-    font-size:16px;
-    font-weight:1000;
-}
-
-.section-sub{
-    color:#777;
-    font-size:10px;
-    margin-top:-5px;
-    margin-bottom:12px;
-}
-
-/* JOBS */
-
-.jobs-list{
-    display:grid;
-    gap:9px;
-}
-
 .job{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:13px;
-    background:#111;
-    border:1px solid #292929;
-    border-radius:13px;
-    transition:.2s;
+ display:flex;align-items:center;gap:10px;
+ padding:11px;background:var(--p);
+ border:1px solid var(--line);border-radius:11px;
+ transition:.15s
 }
-
-.job.locked,
-.job.busy{
-    opacity:.55;
+.job:active{transform:scale(.985)}
+.job.locked{opacity:.48}
+.icon{
+ width:45px;height:45px;display:flex;align-items:center;
+ justify-content:center;flex-shrink:0;background:#1c1c1c;
+ border-radius:10px;font-size:23px
 }
-
-.job-icon{
-    width:52px;
-    height:52px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-shrink:0;
-    background:#1c1c1c;
-    border-radius:11px;
-    font-size:26px;
+.jmain{flex:1;min-width:0}
+.jname{font-size:12px;font-weight:1000}
+.jdesc{color:#777;font-size:9px;margin-top:3px;line-height:1.35}
+.jinfo{color:#999;font-size:8px;margin-top:5px}
+.open{
+ padding:9px 10px;background:var(--red);
+ color:#fff;border-radius:7px;font-size:8px;font-weight:1000
 }
-
-.job-main{
-    flex:1;
-    min-width:0;
-}
-
-.job-name{
-    font-size:14px;
-    font-weight:1000;
-}
-
-.job-description{
-    color:#777;
-    font-size:10px;
-    line-height:1.4;
-    margin-top:4px;
-}
-
-.job-info{
-    color:#aaa;
-    font-size:9px;
-    margin-top:5px;
-}
-
-.job-action{
-    flex-shrink:0;
-    min-width:75px;
-    padding:10px 8px;
-    color:#fff;
-    background:var(--red);
-    border-radius:8px;
-    font-size:8px;
-    font-weight:1000;
-}
-
-.job-action:disabled{
-    background:#303030;
-    color:#777;
-}
-
-/* MCHS */
-
-.mchs-head{
-    padding:17px;
-    margin-bottom:12px;
-    background:
-        radial-gradient(
-            circle at 90% 0%,
-            rgba(229,9,20,.2),
-            transparent 40%
-        ),
-        #111;
-    border:1px solid #343434;
-    border-radius:15px;
-}
-
-.mchs-title{
-    font-size:20px;
-    font-weight:1000;
-}
-
-.mchs-sub{
-    color:#777;
-    font-size:10px;
-    line-height:1.5;
-    margin-top:5px;
-}
-
-.incidents{
-    display:grid;
-    gap:9px;
-}
-
-.incident{
-    padding:14px;
-    background:#111;
-    border:1px solid #292929;
-    border-radius:13px;
-}
-
-.incident.busy{
-    opacity:.55;
-}
-
-.incident-top{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.incident-icon{
-    width:45px;
-    height:45px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#211414;
-    border-radius:10px;
-    font-size:23px;
-}
-
-.incident-name{
-    font-size:13px;
-    font-weight:1000;
-}
-
-.incident-level{
-    color:#777;
-    font-size:9px;
-    margin-top:4px;
-}
-
-.incident-info{
-    color:#aaa;
-    font-size:9px;
-    margin:10px 0;
-}
-
-.incident-button{
-    width:100%;
-    padding:11px;
-    color:#fff;
-    background:var(--red);
-    border-radius:8px;
-    font-size:9px;
-    font-weight:1000;
-}
-
-.incident-button:disabled{
-    background:#303030;
-    color:#777;
-}
-
-/* DIVER */
-
-.diver-card{
-    position:relative;
-    overflow:hidden;
-    padding:18px;
-    background:
-        radial-gradient(
-            circle at 90% 10%,
-            rgba(0,130,255,.2),
-            transparent 35%
-        ),
-        linear-gradient(
-            145deg,
-            rgba(229,9,20,.1),
-            transparent 50%
-        ),
-        #111;
-    border:1px solid #333;
-    border-radius:15px;
-}
-
-.diver-card.busy{
-    opacity:.7;
-}
-
-.diver-card:after{
-    content:"🤿";
-    position:absolute;
-    right:-10px;
-    bottom:-25px;
-    font-size:110px;
-    opacity:.06;
-}
-
-.diver-top{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    position:relative;
-    z-index:2;
-}
-
-.diver-icon{
-    width:58px;
-    height:58px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#171717;
-    border:1px solid #343434;
-    border-radius:12px;
-    font-size:31px;
-}
-
-.diver-name{
-    font-size:20px;
-    font-weight:1000;
-}
-
-.diver-sub{
-    color:#777;
-    font-size:10px;
-    margin-top:4px;
-}
-
-.diver-description{
-    position:relative;
-    z-index:2;
-    color:#999;
-    font-size:11px;
-    line-height:1.5;
-    margin:15px 0;
-}
-
-.diver-stats{
-    position:relative;
-    z-index:2;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:7px;
-}
-
-.diver-stat{
-    padding:10px 7px;
-    text-align:center;
-    background:#171717;
-    border:1px solid #292929;
-    border-radius:8px;
-}
-
-.diver-stat strong{
-    display:block;
-    font-size:13px;
-}
-
-.diver-stat span{
-    display:block;
-    color:#777;
-    font-size:8px;
-    margin-top:4px;
-}
-
-.diver-status{
-    position:relative;
-    z-index:2;
-    margin-top:11px;
-    padding:10px;
-    background:#090909;
-    border:1px solid #292929;
-    border-radius:8px;
-    color:#999;
-    font-size:10px;
-}
-
-.diver-status b{
-    color:var(--green);
-}
-
-.diver-button{
-    position:relative;
-    z-index:2;
-    width:100%;
-    margin-top:10px;
-    padding:13px;
-    background:linear-gradient(135deg,#c70711,#f01925);
-    color:#fff;
-    border-radius:9px;
-    font-size:10px;
-    font-weight:1000;
-}
-
-.diver-button:disabled{
-    background:#303030;
-    color:#777;
-}
-
-/* INVENTORY */
-
-.inventory{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-}
-
-.item{
-    padding:12px;
-    background:#111;
-    border:1px solid #292929;
-    border-radius:10px;
-}
-
-.item-icon{
-    font-size:26px;
-}
-
-.item-name{
-    font-size:11px;
-    font-weight:900;
-    margin-top:5px;
-}
-
-.item-count{
-    color:#777;
-    font-size:9px;
-    margin-top:3px;
-}
-
-.item-price{
-    color:var(--green);
-    font-size:10px;
-    margin-top:6px;
-}
-
-/* MODAL */
+.open:disabled{background:#303030;color:#777}
 
 .modal{
-    position:fixed;
-    inset:0;
-    z-index:500;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    padding:10px;
-    background:rgba(0,0,0,.8);
+ position:fixed;inset:0;z-index:100;
+ display:flex;align-items:flex-end;justify-content:center;
+ background:rgba(0,0,0,.78);padding:9px
 }
-
-.modal-box{
-    width:100%;
-    max-width:500px;
-    max-height:88vh;
-    overflow:auto;
-    padding:20px;
-    background:#121212;
-    border:1px solid #363636;
-    border-radius:17px 17px 9px 9px;
+.box{
+ width:100%;max-width:500px;max-height:88vh;overflow:auto;
+ background:#121212;border:1px solid #343434;
+ border-radius:16px 16px 9px 9px;padding:17px
 }
-
 .close{
-    float:right;
-    width:30px;
-    height:30px;
-    color:#fff;
-    background:#292929;
-    border-radius:50%;
+ float:right;width:29px;height:29px;
+ background:#292929;color:#fff;border-radius:50%
 }
-
-.modal-title{
-    font-size:20px;
-    font-weight:1000;
-    margin-bottom:8px;
+.modal-icon{font-size:35px;margin-bottom:6px}
+.modal-title{font-size:20px;font-weight:1000}
+.modal-sub{color:#777;font-size:9px;margin-top:3px}
+.modal-desc{
+ color:#aaa;font-size:10px;line-height:1.5;
+ margin:13px 0
 }
-
-.modal-text{
-    color:#999;
-    font-size:11px;
-    line-height:1.55;
-    white-space:pre-line;
-    margin-bottom:15px;
+.stats{
+ display:grid;grid-template-columns:repeat(3,1fr);gap:6px
 }
-
-.modal-button{
-    width:100%;
-    padding:13px;
-    color:#fff;
-    background:var(--red);
-    border-radius:9px;
-    font-size:10px;
-    font-weight:1000;
+.stat{
+ padding:9px 5px;text-align:center;
+ background:#191919;border:1px solid #292929;border-radius:8px
 }
+.stat b{display:block;font-size:11px}
+.stat span{display:block;color:#666;font-size:7px;margin-top:3px}
+.status{
+ margin-top:8px;padding:9px;
+ background:#0c0c0c;border:1px solid #292929;
+ border-radius:8px;color:#999;font-size:9px
+}
+.status b{color:var(--green)}
+.main-btn{
+ width:100%;padding:12px;margin-top:9px;
+ background:var(--red);color:#fff;border-radius:8px;
+ font-size:9px;font-weight:1000
+}
+.main-btn:disabled{background:#303030;color:#777}
 
-/* TOAST */
+.orders{display:grid;gap:7px;margin-top:10px}
+.order{
+ padding:10px;background:#181818;
+ border:1px solid #292929;border-radius:9px
+}
+.order-top{display:flex;justify-content:space-between;gap:8px}
+.order-name{font-size:10px;font-weight:1000}
+.order-price{color:var(--green);font-size:10px;font-weight:900}
+.order-info{color:#777;font-size:8px;margin-top:4px}
+.order button{
+ width:100%;padding:9px;margin-top:7px;
+ background:#252525;color:#fff;border-radius:7px;
+ font-size:8px;font-weight:900
+}
 
 .toast{
-    position:fixed;
-    left:50%;
-    bottom:25px;
-    z-index:1000;
-    transform:translateX(-50%) translateY(20px);
-    padding:11px 15px;
-    color:#fff;
-    background:#191919;
-    border:1px solid #383838;
-    border-radius:9px;
-    font-size:11px;
-    opacity:0;
-    pointer-events:none;
-    transition:.25s;
-    white-space:nowrap;
+ position:fixed;left:50%;bottom:20px;z-index:200;
+ transform:translateX(-50%) translateY(15px);
+ padding:10px 13px;background:#191919;
+ border:1px solid #383838;border-radius:8px;
+ font-size:10px;opacity:0;pointer-events:none;
+ transition:.2s;white-space:nowrap
 }
-
-.toast.show{
-    opacity:1;
-    transform:translateX(-50%) translateY(0);
-}
-
-/* DESKTOP */
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media(min-width:700px){
-
-    .jobs-list,
-    .incidents{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .inventory{
-        grid-template-columns:repeat(5,1fr);
-    }
+ .jobs{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
 
 <body>
 
-<header class="topbar">
+<header class="top">
 
-    <button class="back" onclick="goBack()">
-        ← НАЗАД
-    </button>
+ <button class="back" onclick="goBack()">← НАЗАД</button>
 
-    <div class="logo">
-        BLACK <span>RUSSIA</span>
-    </div>
+ <div class="logo">BLACK <b>RUSSIA</b></div>
 
-    <div class="money-box">
-        <div class="money cash" id="topCash">₽ 0</div>
-        <div class="money donate" id="topDonate">♦ 0</div>
-    </div>
+ <div style="display:flex;gap:4px">
+  <div class="money cash" id="cash">₽ 0</div>
+  <div class="money donate" id="donate">♦ 0</div>
+ </div>
 
 </header>
 
-
 <main class="page">
 
-    <div class="page-title">
-        Работы
-    </div>
+ <div class="title">Работы</div>
 
-    <div class="page-subtitle">
-        Выбирай профессию и зарабатывай деньги.
-    </div>
+ <div class="sub">
+  Выбирай работу, выполняй задания и зарабатывай.
+ </div>
 
+ <div class="player">
 
-    <!-- PLAYER -->
+  <div class="avatar" id="avatar">P</div>
 
-    <div class="player-box">
+  <div class="player-main">
 
-        <div class="avatar" id="avatar">
-            P
-        </div>
+   <div class="player-name" id="name">Player</div>
 
-        <div class="player-info">
+   <div class="player-level">
+    Уровень <b id="level">1</b> ·
+    <span id="xp">0 XP</span>
+   </div>
 
-            <div class="player-name" id="playerName">
-                Player
-            </div>
+   <div class="xp">
+    <div id="xpbar"></div>
+   </div>
 
-            <div class="player-level">
-                Уровень <b id="playerLevel">1</b> ·
-                <span id="playerXP">0 XP</span>
-            </div>
+  </div>
 
-            <div class="player-xp">
-                <div id="xpBar"></div>
-            </div>
+ </div>
 
-        </div>
+ <div class="busy hidden" id="busy">
+  ⏳ <span id="busyText">Персонаж занят</span>
+ </div>
 
-    </div>
-
-
-    <!-- GLOBAL STATUS -->
-
-    <div class="work-status" id="globalStatus">
-
-        <div class="status-dot"></div>
-
-        <div class="status-main">
-
-            <div class="status-title" id="statusTitle">
-                Свободен
-            </div>
-
-            <div class="status-time" id="statusTime">
-                Можно начать работу.
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- TABS -->
-
-    <div class="tabs">
-
-        <button
-            class="tab active red"
-            id="tabJobs"
-            onclick="switchTab('jobs')"
-        >
-            💼 РАБОТЫ
-        </button>
-
-        <button
-            class="tab"
-            id="tabMchs"
-            onclick="switchTab('mchs')"
-        >
-            🚒 МЧС
-        </button>
-
-        <button
-            class="tab"
-            id="tabDiver"
-            onclick="switchTab('diver')"
-        >
-            🤿 ВОДОЛАЗ
-        </button>
-
-    </div>
-
-
-    <!-- JOBS -->
-
-    <section id="jobsTab">
-
-        <div class="section-title">
-            Доступные работы
-        </div>
-
-        <div class="section-sub">
-            Пока действует общий КД, другую работу начать нельзя.
-        </div>
-
-        <div
-            class="jobs-list"
-            id="jobsContainer"
-        ></div>
-
-    </section>
-
-
-    <!-- MCHS -->
-
-    <section
-        id="mchsTab"
-        class="hidden"
-    >
-
-        <div class="mchs-head">
-
-            <div class="mchs-title">
-                🚒 Министерство чрезвычайных ситуаций
-            </div>
-
-            <div class="mchs-sub">
-                Выезжай на чрезвычайные ситуации,
-                ликвидируй возгорания и получай
-                деньги и опыт за службу.
-                Одновременно выполняется только один вызов.
-            </div>
-
-        </div>
-
-        <div
-            class="incidents"
-            id="incidentsContainer"
-        ></div>
-
-    </section>
-
-
-    <!-- DIVER -->
-
-    <section
-        id="diverTab"
-        class="hidden"
-    >
-
-        <div class="section-title">
-            Особая работа
-        </div>
-
-        <div class="section-sub">
-            Доступна с 8 уровня.
-        </div>
-
-        <div
-            class="diver-card"
-            id="diverCard"
-        >
-
-            <div class="diver-top">
-
-                <div class="diver-icon">
-                    🤿
-                </div>
-
-                <div>
-
-                    <div class="diver-name">
-                        Водолаз
-                    </div>
-
-                    <div class="diver-sub">
-                        Поиск ценных предметов
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="diver-description">
-
-                Погружайся на дно водоёма и ищи
-                потерянные предметы.
-                За один час доступно максимум
-                <b>2 погружения</b>.
-                Найденные предметы можно продать
-                скупщику.
-
-            </div>
-
-            <div class="diver-stats">
-
-                <div class="diver-stat">
-                    <strong>2</strong>
-                    <span>ПОГРУЖЕНИЯ</span>
-                </div>
-
-                <div class="diver-stat">
-                    <strong>1 ЧАС</strong>
-                    <span>СБРОС</span>
-                </div>
-
-                <div class="diver-stat">
-                    <strong>35K ₽</strong>
-                    <span>ЦЕНА ПРЕДМЕТА</span>
-                </div>
-
-            </div>
-
-            <div class="diver-status">
-
-                Статус:
-                <b id="diverStatus">
-                    Проверка...
-                </b>
-
-            </div>
-
-            <button
-                class="diver-button"
-                id="diverButton"
-                onclick="startDive()"
-            >
-                🤿 НАЧАТЬ ПОГРУЖЕНИЕ
-            </button>
-
-        </div>
-
-
-        <div class="section-title">
-            Мои находки
-        </div>
-
-        <div
-            class="inventory"
-            id="inventory"
-        ></div>
-
-        <button
-            class="diver-button"
-            onclick="sellAll()"
-        >
-            💰 ПРОДАТЬ ВСЁ СКУПЩИКУ
-        </button>
-
-    </section>
+ <div class="jobs" id="jobs"></div>
 
 </main>
 
 
-<!-- MODAL -->
+<div class="modal hidden" id="modal">
 
-<div
-    class="modal hidden"
-    id="modal"
-    onclick="if(event.target===this)closeModal()"
->
+ <div class="box">
 
-    <div class="modal-box">
+  <button class="close" onclick="closeModal()">×</button>
 
-        <button
-            class="close"
-            onclick="closeModal()"
-        >
-            ×
-        </button>
+  <div class="modal-icon" id="mIcon">💼</div>
 
-        <div
-            class="modal-title"
-            id="modalTitle"
-        >
-            Информация
-        </div>
+  <div class="modal-title" id="mTitle">Работа</div>
 
-        <div
-            class="modal-text"
-            id="modalText"
-        ></div>
+  <div class="modal-sub" id="mSub"></div>
 
-        <div id="modalActions"></div>
+  <div class="modal-desc" id="mDesc"></div>
 
-    </div>
+  <div class="stats">
+
+   <div class="stat">
+    <b id="mReward">—</b>
+    <span>ОПЛАТА</span>
+   </div>
+
+   <div class="stat">
+    <b id="mCooldown">—</b>
+    <span>КД</span>
+   </div>
+
+   <div class="stat">
+    <b id="mLevel">—</b>
+    <span>УРОВЕНЬ</span>
+   </div>
+
+  </div>
+
+  <div class="status" id="mStatus">
+   Статус: <b>Готов</b>
+  </div>
+
+  <div id="modalExtra"></div>
+
+  <button
+   class="main-btn"
+   id="mButton"
+   onclick="startSelected()"
+  >
+   НАЧАТЬ РАБОТУ
+  </button>
+
+ </div>
 
 </div>
 
 
-<div
-    class="toast"
-    id="toast"
->
-    Готово
-</div>
+<div class="toast" id="toast"></div>
 
 
 <script>
 
-/* =========================================================
-   SUPABASE
-========================================================= */
+const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
+const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
-const SUPABASE_URL =
-"https://qzswnoeglovfpgrzpnio.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
-
-let currentAuthUser = null;
-let currentUser = null;
-
-let jobs = [];
-let incidents = [];
-
-let diverInventory = {};
-let diverSession = null;
-
-let globalStatus = null;
-
-let toastTimer = null;
+let user=null;
+let jobs=[];
+let selected=null;
+let toastTimer=null;
 
 
-/* =========================================================
-   SUPABASE FETCH
-========================================================= */
+/* ================= FETCH ================= */
 
-async function supabaseFetch(path,options={}){
+async function api(path,opt={}){
 
-    const token =
-        localStorage.getItem(
-            "brp_access_token"
-        );
+ const token=localStorage.getItem("brp_access_token");
 
-    const r =
-        await fetch(
-            SUPABASE_URL + path,
-            {
-                ...options,
+ const r=await fetch(
+  SUPABASE_URL+path,
+  {
+   ...opt,
+   headers:{
+    apikey:SUPABASE_KEY,
+    Authorization:"Bearer "+(token||SUPABASE_KEY),
+    "Content-Type":"application/json",
+    ...(opt.headers||{})
+   }
+  }
+ );
 
-                headers:{
-                    apikey:SUPABASE_KEY,
+ const text=await r.text();
 
-                    Authorization:
-                        "Bearer " +
-                        (token || SUPABASE_KEY),
+ let data=null;
 
-                    "Content-Type":
-                        "application/json",
+ try{
+  data=text?JSON.parse(text):null;
+ }catch{
+  data=text;
+ }
 
-                    ...(options.headers || {})
-                }
-            }
-        );
+ if(!r.ok)
+  throw new Error(
+   typeof data==="string"
+   ?data
+   :JSON.stringify(data)
+  );
 
-
-    const text =
-        await r.text();
-
-    let data = null;
-
-    try{
-        data =
-            text
-            ? JSON.parse(text)
-            : null;
-    }catch{
-        data = text;
-    }
-
-
-    if(!r.ok){
-
-        throw new Error(
-            typeof data === "string"
-                ? data
-                : JSON.stringify(data)
-        );
-
-    }
-
-
-    return data;
+ return data;
 }
 
 
-/* =========================================================
-   SESSION
-========================================================= */
+/* ================= SESSION ================= */
 
-async function loadSession(){
+async function init(){
 
-    const token =
-        localStorage.getItem(
-            "brp_access_token"
-        );
+ const token=localStorage.getItem("brp_access_token");
 
+ if(!token){
+  goBack();
+  return;
+ }
 
-    if(!token){
+ try{
 
-        goBack();
-        return;
-
+  const auth=await api(
+   "/auth/v1/user",
+   {
+    headers:{
+     apikey:SUPABASE_KEY,
+     Authorization:"Bearer "+token
     }
+   }
+  );
 
+  const rows=await api(
+   "/rest/v1/profiles?id=eq."+
+   encodeURIComponent(auth.id)+
+   "&select=*"
+  );
 
-    try{
+  if(!rows.length)
+   throw new Error("Профиль не найден");
 
-        currentAuthUser =
-            await supabaseFetch(
-                "/auth/v1/user",
-                {
-                    headers:{
-                        apikey:SUPABASE_KEY,
-                        Authorization:
-                            "Bearer " + token
-                    }
-                }
-            );
+  user=rows[0];
 
+  await loadJobs();
+  renderPlayer();
+  renderJobs();
 
-        await loadProfile();
-        await loadJobs();
-        await loadIncidents();
-        await loadDiverInventory();
-        await loadGlobalStatus();
+ }catch(e){
 
-    }catch(e){
+  console.error(e);
+  toast("❌ "+clean(e.message));
 
-        console.error(e);
-
-        toast(
-            "❌ " +
-            cleanError(e.message)
-        );
-
-    }
-
+ }
 }
 
 
-/* =========================================================
-   PROFILE
-========================================================= */
-
-async function loadProfile(){
-
-    const rows =
-        await supabaseFetch(
-            "/rest/v1/profiles?id=eq."+
-            encodeURIComponent(
-                currentAuthUser.id
-            )+
-            "&select=*"
-        );
-
-
-    if(
-        !rows ||
-        !rows.length
-    ){
-
-        throw new Error(
-            "Профиль игрока не найден."
-        );
-
-    }
-
-
-    currentUser =
-        rows[0];
-
-    renderPlayer();
-
-}
-
-
-/* =========================================================
-   PLAYER
-========================================================= */
+/* ================= PLAYER ================= */
 
 function renderPlayer(){
 
-    const level =
-        Number(
-            currentUser.level || 1
-        );
+ const level=Number(user.level||1);
+ const xp=Number(user.xp||0);
 
-    const xp =
-        Number(
-            currentUser.xp || 0
-        );
+ name.textContent=user.username||"Player";
 
+ avatar.textContent=
+  (user.username||"P").charAt(0).toUpperCase();
 
-    document.getElementById(
-        "playerName"
-    ).textContent =
-        currentUser.username ||
-        "Player";
+ document.getElementById("level").textContent=level;
+ document.getElementById("xp").textContent=xp+" XP";
 
+ cash.textContent="₽ "+num(user.cash);
+ donate.textContent="♦ "+num(user.donate);
 
-    document.getElementById(
-        "avatar"
-    ).textContent =
-        (
-            currentUser.username ||
-            "P"
-        )
-        .charAt(0)
-        .toUpperCase();
+ const need=100+(level-1)*75;
 
-
-    document.getElementById(
-        "playerLevel"
-    ).textContent =
-        level;
-
-
-    document.getElementById(
-        "playerXP"
-    ).textContent =
-        xp + " XP";
-
-
-    document.getElementById(
-        "topCash"
-    ).textContent =
-        "₽ " +
-        number(
-            currentUser.cash
-        );
-
-
-    document.getElementById(
-        "topDonate"
-    ).textContent =
-        "♦ " +
-        number(
-            currentUser.donate
-        );
-
-
-    const need =
-        100 +
-        (level - 1) * 75;
-
-
-    document.getElementById(
-        "xpBar"
-    ).style.width =
-        Math.min(
-            100,
-            xp / need * 100
-        ) + "%";
-
+ xpbar.style.width=
+  Math.min(100,xp/need*100)+"%";
 }
 
 
-/* =========================================================
-   GLOBAL STATUS
-========================================================= */
-
-async function loadGlobalStatus(){
-
-    try{
-
-        /*
-         * Основной вариант:
-         * таблица общего статуса игрока.
-         */
-
-        const rows =
-            await supabaseFetch(
-                "/rest/v1/player_work_status"+
-                "?user_id=eq."+
-                encodeURIComponent(
-                    currentAuthUser.id
-                )+
-                "&select=*"+
-                "&limit=1"
-            );
-
-
-        globalStatus =
-            rows && rows.length
-            ? rows[0]
-            : null;
-
-
-    }catch(e){
-
-        /*
-         * Если таблица/представление
-         * отсутствует, интерфейс не падает.
-         */
-
-        console.warn(
-            "Global status:",
-            e.message
-        );
-
-        globalStatus = null;
-
-    }
-
-
-    renderGlobalStatus();
-    applyBusyState();
-
-}
-
-
-/* =========================================================
-   GLOBAL STATUS UI
-========================================================= */
-
-function renderGlobalStatus(){
-
-    const box =
-        document.getElementById(
-            "globalStatus"
-        );
-
-    const title =
-        document.getElementById(
-            "statusTitle"
-        );
-
-    const time =
-        document.getElementById(
-            "statusTime"
-        );
-
-
-    if(!globalStatus){
-
-        box.classList.remove(
-            "busy"
-        );
-
-        title.textContent =
-            "Свободен";
-
-        time.textContent =
-            "Можно начать работу.";
-
-        return;
-
-    }
-
-
-    const busy =
-        Boolean(
-            globalStatus.busy
-        );
-
-
-    if(!busy){
-
-        box.classList.remove(
-            "busy"
-        );
-
-        title.textContent =
-            "Свободен";
-
-        time.textContent =
-            "Можно начать работу.";
-
-        return;
-
-    }
-
-
-    box.classList.add(
-        "busy"
-    );
-
-
-    const type =
-        globalStatus.work_type ||
-        globalStatus.job_type ||
-        "работой";
-
-
-    title.textContent =
-        "Занят: " +
-        getWorkName(type);
-
-
-    updateGlobalTimer();
-
-}
-
-
-/* =========================================================
-   GLOBAL TIMER
-========================================================= */
-
-function updateGlobalTimer(){
-
-    if(!globalStatus)
-        return;
-
-
-    if(!Boolean(globalStatus.busy))
-        return;
-
-
-    const timeValue =
-        globalStatus.busy_until ||
-        globalStatus.ends_at ||
-        globalStatus.cooldown_until;
-
-
-    if(!timeValue)
-        return;
-
-
-    const end =
-        new Date(
-            timeValue
-        ).getTime();
-
-
-    const remaining =
-        Math.max(
-            0,
-            end - Date.now()
-        );
-
-
-    if(remaining <= 0){
-
-        globalStatus.busy = false;
-
-        renderGlobalStatus();
-        applyBusyState();
-
-        loadGlobalStatus();
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "statusTime"
-    ).textContent =
-        "Освободится через " +
-        formatRemaining(
-            remaining
-        );
-
-}
-
-
-/* =========================================================
-   APPLY BUSY
-========================================================= */
-
-function applyBusyState(){
-
-    const busy =
-        Boolean(
-            globalStatus &&
-            globalStatus.busy
-        );
-
-
-    document
-        .querySelectorAll(
-            ".job"
-        )
-        .forEach(
-            el => {
-
-                el.classList.toggle(
-                    "busy",
-                    busy
-                );
-
-                const button =
-                    el.querySelector(
-                        ".job-action"
-                    );
-
-                if(!button)
-                    return;
-
-
-                if(
-                    button.dataset.locked ===
-                    "true"
-                )
-                    return;
-
-
-                button.disabled =
-                    busy;
-
-                button.textContent =
-                    busy
-                    ? "⏳ ЗАНЯТ"
-                    : "РАБОТАТЬ";
-
-            }
-        );
-
-
-    document
-        .querySelectorAll(
-            ".incident"
-        )
-        .forEach(
-            el => {
-
-                el.classList.toggle(
-                    "busy",
-                    busy
-                );
-
-                const button =
-                    el.querySelector(
-                        ".incident-button"
-                    );
-
-                if(!button)
-                    return;
-
-
-                if(
-                    button.dataset.locked ===
-                    "true"
-                )
-                    return;
-
-
-                button.disabled =
-                    busy;
-
-                button.textContent =
-                    busy
-                    ? "⏳ ВЫ УЖЕ ЗАНЯТЫ"
-                    : "🚒 ВЫЕХАТЬ НА ВЫЗОВ";
-
-            }
-        );
-
-
-    const diverButton =
-        document.getElementById(
-            "diverButton"
-        );
-
-
-    if(diverButton){
-
-        if(
-            busy &&
-            diverButton.dataset.levelLocked !==
-            "true"
-        ){
-
-            diverButton.disabled = true;
-
-            diverButton.textContent =
-                "⏳ ВЫ УЖЕ ЗАНЯТЫ";
-
-        }
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD JOBS
-========================================================= */
+/* ================= JOBS ================= */
 
 async function loadJobs(){
 
-    jobs =
-        await supabaseFetch(
-            "/rest/v1/job_settings"+
-            "?enabled=eq.true"+
-            "&select=*"+
-            "&order=min_level.asc"
-        );
-
-
-    renderJobs();
+ jobs=await api(
+  "/rest/v1/job_settings"+
+  "?enabled=eq.true"+
+  "&select=*"+
+  "&order=min_level.asc"
+ );
 
 }
 
 
-/* =========================================================
-   JOB UI
-========================================================= */
-
-function renderJobs(){
-
-    const container =
-        document.getElementById(
-            "jobsContainer"
-        );
-
-
-    container.innerHTML = "";
-
-
-    const icons = {
-
-        courier:"📦",
-        loader:"📦",
-        farmer:"🚜",
-        taxi:"🚕",
-        bus:"🚌",
-        builder:"👷",
-        mechanic:"🔧",
-        truck:"🚛",
-        fisherman:"🎣",
-        miner:"⛏️",
-        lumberjack:"🪓",
-        garbage:"🗑️"
-
-    };
-
-
-    const descriptions = {
-
-        courier:
-            "Доставляй посылки клиентам по городу.",
-
-        loader:
-            "Загружай и разгружай товары на складе.",
-
-        farmer:
-            "Работай на ферме и собирай урожай.",
-
-        taxi:
-            "Перевози пассажиров по городу.",
-
-        bus:
-            "Работай на городском автобусном маршруте.",
-
-        builder:
-            "Участвуй в строительстве объектов города.",
-
-        mechanic:
-            "Ремонтируй автомобили и обслуживай транспорт.",
-
-        truck:
-            "Перевози грузы между городами.",
-
-        fisherman:
-            "Лови рыбу и сдавай улов.",
-
-        miner:
-            "Добывай полезные ресурсы.",
-
-        lumberjack:
-            "Заготавливай древесину в лесу.",
-
-        garbage:
-            "Собирай и вывозь городской мусор."
-
-    };
-
-
-    jobs
-    .filter(
-        job =>
-            job.job_id !== "mchs" &&
-            job.job_id !== "diver"
-    )
-    .forEach(
-        job => {
-
-            const locked =
-                Number(
-                    currentUser.level || 1
-                ) <
-                Number(
-                    job.min_level || 1
-                );
-
-
-            const busy =
-                Boolean(
-                    globalStatus &&
-                    globalStatus.busy
-                );
-
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "job" +
-                (
-                    locked
-                    ? " locked"
-                    : ""
-                ) +
-                (
-                    busy
-                    ? " busy"
-                    : ""
-                );
-
-
-            div.innerHTML = `
-
-                <div class="job-icon">
-                    ${icons[job.job_id] || "💼"}
-                </div>
-
-                <div class="job-main">
-
-                    <div class="job-name">
-                        ${escapeHtml(job.job_name)}
-                    </div>
-
-                    <div class="job-description">
-                        ${
-                            descriptions[job.job_id]
-                            ||
-                            "Выполняй работу и получай деньги."
-                        }
-                    </div>
-
-                    <div class="job-info">
-                        💰 ${number(job.min_reward)}
-                        –${number(job.max_reward)} ₽
-                        ·
-                        ⏱ ${formatCooldown(job.cooldown_seconds)}
-                        ·
-                        ⭐ Ур. ${job.min_level}
-                    </div>
-
-                </div>
-
-                <button
-                    class="job-action"
-                    data-locked="${locked}"
-                    onclick="work('${escapeAttr(job.job_id)}')"
-                    ${locked || busy ? "disabled" : ""}
-                >
-                    ${
-                        locked
-                        ? "🔒"
-                        : busy
-                        ? "⏳ ЗАНЯТ"
-                        : "РАБОТАТЬ"
-                    }
-                </button>
-
-            `;
-
-
-            container.appendChild(
-                div
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   START NORMAL JOB
-========================================================= */
-
-async function work(id){
-
-    if(
-        globalStatus &&
-        globalStatus.busy
-    ){
-
-        toast(
-            "⏳ Ты уже занят."
-        );
-
-        return;
-
-    }
-
-
-    const job =
-        jobs.find(
-            x =>
-                x.job_id === id
-        );
-
-
-    if(!job)
-        return;
-
-
-    if(
-        Number(currentUser.level || 1)
-        <
-        Number(job.min_level || 1)
-    ){
-
-        toast(
-            "🔒 Требуется уровень " +
-            job.min_level
-        );
-
-        return;
-
-    }
-
-
-    try{
-
-        toast(
-            "💼 Выполняем работу..."
-        );
-
-
-        /*
-         * Серверная функция сама проверяет
-         * общий статус занятости.
-         */
-
-        const result =
-            await supabaseFetch(
-                "/rest/v1/rpc/complete_job",
-                {
-                    method:"POST",
-
-                    body:JSON.stringify({
-                        p_job:id
-                    })
-                }
-            );
-
-
-        await loadProfile();
-        await loadGlobalStatus();
-
-
-        toast(
-            "💰 +" +
-            number(result.cash) +
-            " ₽   ⭐ +" +
-            result.xp +
-            " XP"
-        );
-
-
-    }catch(e){
-
-        console.error(e);
-
-        await loadGlobalStatus();
-
-        toast(
-            "❌ " +
-            cleanError(
-                e.message
-            )
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD MCHS
-========================================================= */
-
-async function loadIncidents(){
-
-    incidents =
-        await supabaseFetch(
-            "/rest/v1/mchs_incidents"+
-            "?enabled=eq.true"+
-            "&select=*"+
-            "&order=required_level.asc"
-        );
-
-
-    renderIncidents();
-
-}
-
-
-/* =========================================================
-   MCHS UI
-========================================================= */
-
-function renderIncidents(){
-
-    const container =
-        document.getElementById(
-            "incidentsContainer"
-        );
-
-
-    container.innerHTML = "";
-
-
-    const icons = {
-
-        gas_station:"⛽",
-        house:"🏠",
-        apartment:"🏢",
-        warehouse:"📦",
-        car:"🚗",
-        forest:"🌲",
-        factory:"🏭",
-        restaurant:"🍽️",
-        hotel:"🏨",
-        school:"🏫",
-        hospital:"🏥"
-
-    };
-
-
-    const busy =
-        Boolean(
-            globalStatus &&
-            globalStatus.busy
-        );
-
-
-    incidents.forEach(
-        incident => {
-
-            const locked =
-                Number(
-                    currentUser.level || 1
-                )
-                <
-                Number(
-                    incident.required_level || 1
-                );
-
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "incident" +
-                (
-                    locked
-                    ? " locked"
-                    : ""
-                ) +
-                (
-                    busy
-                    ? " busy"
-                    : ""
-                );
-
-
-            div.innerHTML = `
-
-                <div class="incident-top">
-
-                    <div class="incident-icon">
-                        ${icons[incident.incident_type] || "🔥"}
-                    </div>
-
-                    <div>
-
-                        <div class="incident-name">
-                            ${escapeHtml(incident.incident_name)}
-                        </div>
-
-                        <div class="incident-level">
-                            ⭐ Требуется уровень
-                            ${incident.required_level}
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="incident-info">
-                    💰 ${number(incident.reward_min)}
-                    –${number(incident.reward_max)} ₽
-                    ·
-                    ⭐ ${incident.xp_min}
-                    –${incident.xp_max} XP
-                    ·
-                    ⏱ ${formatCooldown(incident.cooldown_seconds)}
-                </div>
-
-                <button
-                    class="incident-button"
-                    data-locked="${locked}"
-                    onclick="completeMchs('${escapeAttr(incident.incident_type)}')"
-                    ${locked || busy ? "disabled" : ""}
-                >
-                    ${
-                        locked
-                        ? "🔒 НЕДОСТУПНО"
-                        : busy
-                        ? "⏳ ВЫ УЖЕ ЗАНЯТЫ"
-                        : "🚒 ВЫЕХАТЬ НА ВЫЗОВ"
-                    }
-                </button>
-
-            `;
-
-
-            container.appendChild(
-                div
-            );
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   COMPLETE MCHS
-========================================================= */
-
-async function completeMchs(type){
-
-    if(
-        globalStatus &&
-        globalStatus.busy
-    ){
-
-        toast(
-            "⏳ Ты уже занят."
-        );
-
-        return;
-
-    }
-
-
-    const incident =
-        incidents.find(
-            x =>
-                x.incident_type === type
-        );
-
-
-    if(!incident)
-        return;
-
-
-    if(
-        Number(currentUser.level || 1)
-        <
-        Number(
-            incident.required_level || 1
-        )
-    ){
-
-        toast(
-            "🔒 Требуется уровень " +
-            incident.required_level
-        );
-
-        return;
-
-    }
-
-
-    try{
-
-        toast(
-            "🚒 Выезжаем на вызов..."
-        );
-
-
-        const result =
-            await supabaseFetch(
-                "/rest/v1/rpc/complete_mchs",
-                {
-                    method:"POST",
-
-                    body:JSON.stringify({
-                        p_incident_type:type
-                    })
-                }
-            );
-
-
-        await loadProfile();
-        await loadGlobalStatus();
-
-
-        openModal(
-            "🚒 Вызов выполнен",
-
-            (result.incident || incident.incident_name) +
-            "\n\n" +
-
-            "💰 Получено: " +
-            number(result.cash) +
-            " ₽\n" +
-
-            "⭐ Опыт: +" +
-            result.xp +
-            " XP"
-        );
-
-
-    }catch(e){
-
-        console.error(e);
-
-        await loadGlobalStatus();
-
-        toast(
-            "❌ " +
-            cleanError(
-                e.message
-            )
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   DIVER ITEMS
-========================================================= */
-
-const diverItems = {
-
-    coin:{
-        name:"Монетка",
-        icon:"🪙",
-        price:500
-    },
-
-    battery:{
-        name:"Батарейка",
-        icon:"🔋",
-        price:1500
-    },
-
-    watch:{
-        name:"Часы на цепи",
-        icon:"⌚",
-        price:12000
-    },
-
-    vase:{
-        name:"Старая ваза",
-        icon:"🏺",
-        price:25000
-    },
-
-    washer:{
-        name:"Стиральная машина",
-        icon:"🧺",
-        price:35000
-    }
+/* ================= JOB DATA ================= */
+
+const data={
+
+ courier:{
+  icon:"📦",
+  desc:"Доставляй посылки и документы по городу. Чем выше уровень — тем выгоднее заказы."
+ },
+
+ loader:{
+  icon:"📦",
+  desc:"Работа на складе. Загружай и разгружай транспорт с товарами."
+ },
+
+ farmer:{
+  icon:"🚜",
+  desc:"Работа на ферме: собирай урожай и выполняй сельскохозяйственные задания."
+ },
+
+ taxi:{
+  icon:"🚕",
+  desc:"Перевози пассажиров по городу и получай оплату за каждый выполненный заказ."
+ },
+
+ bus:{
+  icon:"🚌",
+  desc:"Работа на городском маршруте. Выполняй рейсы и получай стабильную оплату."
+ },
+
+ builder:{
+  icon:"👷",
+  desc:"Строительные работы на объектах города. Работа требует выносливости и времени."
+ },
+
+ mechanic:{
+  icon:"🔧",
+  desc:"Ремонт автомобилей и обслуживание транспорта."
+ },
+
+ truck:{
+  icon:"🚛",
+  desc:"Получай грузовые заказы, забирай груз со склада и доставляй его в другой город."
+ },
+
+ collector:{
+  icon:"💰",
+  name:"Инкассатор",
+  desc:"Получай маршрут по банкам и торговым объектам, забирай денежную выручку и доставляй её в хранилище."
+ },
+
+ mchs:{
+  icon:"🚒",
+  name:"МЧС",
+  desc:"Получай вызовы на чрезвычайные ситуации: пожары, ДТП, аварии и другие происшествия."
+ },
+
+ diver:{
+  icon:"🤿",
+  name:"Водолаз",
+  desc:"Погружайся и ищи потерянные предметы. Найденные вещи можно продать скупщику."
+ }
 
 };
 
 
-/* =========================================================
-   DIVER INVENTORY
-========================================================= */
+/* ================= RENDER ================= */
 
-async function loadDiverInventory(){
+function renderJobs(){
 
-    try{
+ const box=document.getElementById("jobs");
+ box.innerHTML="";
 
-        const rows =
-            await supabaseFetch(
-                "/rest/v1/diver_inventory"+
-                "?user_id=eq."+
-                encodeURIComponent(
-                    currentAuthUser.id
-                )+
-                "&select=*"
-            );
+ const normal=jobs.filter(x=>
+  !["mchs","diver","collector"].includes(x.job_id)
+ );
+
+ const special=[
+  {
+   job_id:"collector",
+   job_name:"Инкассатор",
+   min_level:8,
+   min_reward:2500,
+   max_reward:6500,
+   cooldown_seconds:900
+  },
+  {
+   job_id:"mchs",
+   job_name:"МЧС",
+   min_level:5,
+   min_reward:3000,
+   max_reward:9000,
+   cooldown_seconds:600
+  },
+  {
+   job_id:"diver",
+   job_name:"Водолаз",
+   min_level:8,
+   min_reward:0,
+   max_reward:35000,
+   cooldown_seconds:1800
+  }
+ ];
+
+ [...normal,...special].forEach(job=>{
+
+  const d=data[job.job_id]||{icon:"💼",desc:"Выполняй задания и получай деньги."};
+
+  const level=Number(user.level||1);
+  const req=Number(job.min_level||1);
+  const locked=level<req;
+
+  const el=document.createElement("div");
+
+  el.className="job"+(locked?" locked":"");
+
+  el.innerHTML=`
+
+   <div class="icon">${d.icon}</div>
+
+   <div class="jmain">
+
+    <div class="jname">
+     ${esc(d.name||job.job_name||"Работа")}
+    </div>
+
+    <div class="jdesc">
+     ${esc(d.desc)}
+    </div>
+
+    <div class="jinfo">
+     💰 ${job.job_id==="diver"?"до 35 000":num(job.min_reward)+"–"+num(job.max_reward)+" ₽"}
+     · ⏱ ${fmt(job.cooldown_seconds)}
+     · ⭐ Ур. ${req}
+    </div>
+
+   </div>
+
+   <button
+    class="open"
+    onclick="openJob('${job.job_id}')"
+   >
+    ${locked?"🔒":"ОТКРЫТЬ"}
+   </button>
+
+  `;
+
+  box.appendChild(el);
+
+ });
+}
 
 
-        diverInventory = {};
+/* ================= OPEN ================= */
+
+function openJob(id){
+
+ selected=
+  jobs.find(x=>x.job_id===id)
+  ||
+  specialJob(id);
+
+ if(!selected)return;
+
+ const d=data[id]||{
+  icon:"💼",
+  desc:"Выполняй работу и получай деньги."
+ };
+
+ mIcon.textContent=d.icon;
+ mTitle.textContent=d.name||selected.job_name||"Работа";
+
+ mSub.textContent=
+  "Минимальный уровень: "+
+  Number(selected.min_level||1);
+
+ mDesc.textContent=d.desc;
+
+ mReward.textContent=
+  id==="diver"
+  ?"до 35K ₽"
+  :num(selected.min_reward)+"–"+num(selected.max_reward)+" ₽";
+
+ mCooldown.textContent=
+  fmt(selected.cooldown_seconds);
+
+ mLevel.textContent=
+  "Ур. "+Number(selected.min_level||1);
+
+ modalExtra.innerHTML="";
+
+ if(id==="truck")
+  renderTruckOrders();
+
+ if(id==="mchs")
+  renderMchsOrders();
+
+ if(id==="collector")
+  renderCollector();
+
+ if(id==="diver")
+  renderDiver();
+
+ updateModalState();
+
+ modal.classList.remove("hidden");
+}
 
 
-        rows.forEach(
-            row => {
+/* ================= SPECIAL ================= */
 
-                diverInventory[
-                    row.item_type
-                ] =
-                    Number(
-                        row.amount || 0
-                    );
+function specialJob(id){
 
-            }
-        );
+ const x={
+  collector:{
+   job_id:"collector",
+   job_name:"Инкассатор",
+   min_level:8,
+   min_reward:2500,
+   max_reward:6500,
+   cooldown_seconds:900
+  },
+
+  mchs:{
+   job_id:"mchs",
+   job_name:"МЧС",
+   min_level:5,
+   min_reward:3000,
+   max_reward:9000,
+   cooldown_seconds:600
+  },
+
+  diver:{
+   job_id:"diver",
+   job_name:"Водолаз",
+   min_level:8,
+   min_reward:0,
+   max_reward:35000,
+   cooldown_seconds:1800
+  }
+ };
+
+ return x[id]||null;
+}
 
 
-        renderInventory();
+/* ================= TRUCK ================= */
 
-        await updateDiver();
+function renderTruckOrders(){
 
-    }catch(e){
+ modalExtra.innerHTML=`
 
-        console.error(e);
+  <div style="margin-top:13px;font-size:11px;font-weight:1000">
+   🚛 Доступные заказы
+  </div>
 
-        renderInventory();
+  <div class="orders">
 
-    }
+   ${order(
+    "Москва → Тверь",
+    "Склад №3 · Продукты",
+    "7 800 ₽"
+   )}
+
+   ${order(
+    "Тверь → Ярославль",
+    "Логистический центр · Техника",
+    "10 500 ₽"
+   )}
+
+   ${order(
+    "Москва → Владимир",
+    "Оптовая база · Стройматериалы",
+    "12 300 ₽"
+   )}
+
+   ${order(
+    "Рязань → Москва",
+    "Торговый центр · Груз",
+    "9 400 ₽"
+   )}
+
+  </div>
+ `;
+}
+
+function order(route,info,price){
+
+ return `
+  <div class="order">
+
+   <div class="order-top">
+    <div class="order-name">🚛 ${route}</div>
+    <div class="order-price">${price}</div>
+   </div>
+
+   <div class="order-info">${info}</div>
+
+   <button onclick="truckOrder('${route}','${price}')">
+    ВЗЯТЬ ЗАКАЗ
+   </button>
+
+  </div>
+ `;
+}
+
+async function truckOrder(route,price){
+
+ closeModal();
+
+ await work("truck");
 
 }
 
 
-/* =========================================================
-   INVENTORY
-========================================================= */
+/* ================= MCHS ================= */
 
-function renderInventory(){
+function renderMchsOrders(){
 
-    const container =
-        document.getElementById(
-            "inventory"
-        );
+ modalExtra.innerHTML=`
+
+  <div style="margin-top:13px;font-size:11px;font-weight:1000">
+   🚨 Доступные вызовы
+  </div>
+
+  <div class="orders">
+
+   ${mchsOrder("🔥 Пожар в частном доме","Сектор частной застройки")}
+   ${mchsOrder("🏢 Возгорание в квартире","Жилой многоквартирный дом")}
+   ${mchsOrder("⛽ Возгорание на АЗС","Заправочная станция")}
+   ${mchsOrder("🚗 ДТП с возгоранием","Городская трасса")}
+   ${mchsOrder("🏭 Пожар на складе","Промышленная зона")}
+   ${mchsOrder("🌲 Возгорание лесного массива","Пригородная территория")}
+
+  </div>
+ `;
+}
+
+function mchsOrder(name,info){
+
+ return `
+  <div class="order">
+
+   <div class="order-name">${name}</div>
+   <div class="order-info">${info}</div>
+
+   <button onclick="mchsCall('${name}')">
+    🚒 ВЫЕХАТЬ
+   </button>
+
+  </div>
+ `;
+}
+
+async function mchsCall(name){
+
+ closeModal();
+
+ try{
+
+  const result=await api(
+   "/rest/v1/rpc/complete_mchs",
+   {
+    method:"POST",
+    body:JSON.stringify({
+     p_incident_type:incidentType(name)
+    })
+   }
+  );
+
+  await reload();
+
+  openModal(
+   "🚒 Вызов выполнен",
+   ""
+  );
+
+  mDesc.textContent=
+   (result.incident||name)+
+   "\n\n💰 Получено: "+
+   num(result.cash)+" ₽"+
+   "\n⭐ Опыт: +"+
+   result.xp+" XP";
+
+ }catch(e){
+
+  toast("❌ "+clean(e.message));
+
+ }
+
+}
+
+function incidentType(name){
+
+ if(name.includes("АЗС"))return"gas_station";
+ if(name.includes("квартир"))return"apartment";
+ if(name.includes("складе"))return"warehouse";
+ if(name.includes("ДТП"))return"car";
+ if(name.includes("лес"))return"forest";
+
+ return"house";
+}
 
 
-    container.innerHTML = "";
+/* ================= COLLECTOR ================= */
 
+function renderCollector(){
 
-    Object.keys(
-        diverItems
-    ).forEach(
-        key => {
+ modalExtra.innerHTML=`
 
-            const item =
-                diverItems[key];
+  <div class="status">
+   💰 Инкассация проходит по маршруту из нескольких точек.
+   После завершения маршрута начисляется оплата.
+  </div>
 
+  <div class="orders">
 
-            const count =
-                Number(
-                    diverInventory[key] || 0
-                );
+   ${collectorOrder("🏦 Банк «Центральный»")}
+   ${collectorOrder("🏦 Банк «Городской»")}
+   ${collectorOrder("🏪 Сеть магазинов")}
+   ${collectorOrder("🛒 Супермаркет")}
 
+  </div>
+ `;
+}
 
-            container.innerHTML += `
+function collectorOrder(name){
 
-                <div class="item">
+ return `
+  <div class="order">
+   <div class="order-name">${name}</div>
+   <div class="order-info">Забрать денежную выручку и доставить в хранилище.</div>
+   <button onclick="startCollector()">НАЧАТЬ МАРШРУТ</button>
+  </div>
+ `;
+}
 
-                    <div class="item-icon">
-                        ${item.icon}
-                    </div>
+async function startCollector(){
 
-                    <div class="item-name">
-                        ${item.name}
-                    </div>
+ closeModal();
 
-                    <div class="item-count">
-                        ${count} шт.
-                    </div>
-
-                    <div class="item-price">
-                        Цена: ₽${number(item.price)}
-                    </div>
-
-                </div>
-
-            `;
-
-        }
-    );
+ await work("collector");
 
 }
 
 
-/* =========================================================
-   DIVER SESSION
-========================================================= */
+/* ================= DIVER ================= */
 
-async function updateDiver(){
+function renderDiver(){
 
-    try{
+ modalExtra.innerHTML=`
 
-        const rows =
-            await supabaseFetch(
-                "/rest/v1/diver_sessions"+
-                "?user_id=eq."+
-                encodeURIComponent(
-                    currentAuthUser.id
-                )+
-                "&select=*"
-            );
+  <div class="status">
+   🤿 Доступно максимум 2 погружения за смену.
+   Найденные предметы сохраняются в инвентаре.
+  </div>
+ `;
+}
 
 
-        diverSession =
-            rows.length
-            ? rows[0]
-            : null;
+/* ================= NORMAL WORK ================= */
 
+async function startSelected(){
 
-        renderDiverStatus();
+ if(!selected)return;
 
-    }catch(e){
+ const id=selected.job_id;
 
-        console.error(e);
+ if(id==="mchs"){
 
-    }
+  renderMchsOrders();
+  return;
+
+ }
+
+ if(id==="truck"){
+
+  renderTruckOrders();
+  return;
+
+ }
+
+ if(id==="collector"){
+
+  renderCollector();
+  return;
+
+ }
+
+ if(id==="diver"){
+
+  await dive();
+  return;
+
+ }
+
+ await work(id);
 
 }
 
 
-/* =========================================================
-   DIVER STATUS
-========================================================= */
+async function work(id){
 
-function renderDiverStatus(){
+ if(!selected)return;
 
-    const button =
-        document.getElementById(
-            "diverButton"
-        );
+ const req=Number(selected.min_level||1);
 
-    const status =
-        document.getElementById(
-            "diverStatus"
-        );
+ if(Number(user.level||1)<req){
 
+  toast("🔒 Требуется "+req+" уровень");
+  return;
 
-    const level =
-        Number(
-            currentUser.level || 1
-        );
+ }
 
+ try{
 
-    const busy =
-        Boolean(
-            globalStatus &&
-            globalStatus.busy
-        );
+  mButton.disabled=true;
+  mButton.textContent="⏳ ВЫПОЛНЯЕМ...";
 
+  const result=await api(
+   "/rest/v1/rpc/complete_job",
+   {
+    method:"POST",
+    body:JSON.stringify({
+     p_job:id
+    })
+   }
+  );
 
-    button.dataset.levelLocked =
-        level < 8
-        ? "true"
-        : "false";
+  closeModal();
 
+  await reload();
 
-    if(level < 8){
+  toast(
+   "💰 +"+
+   num(result.cash)+
+   " ₽ · ⭐ +"+
+   result.xp+
+   " XP"
+  );
 
-        button.disabled = true;
+ }catch(e){
 
-        button.textContent =
-            "🔒 ТРЕБУЕТСЯ 8 УРОВЕНЬ";
+  toast("❌ "+clean(e.message));
+  updateModalState();
 
-        status.textContent =
-            "Недоступно";
-
-        status.style.color =
-            "var(--red)";
-
-        return;
-
-    }
-
-
-    if(busy){
-
-        button.disabled = true;
-
-        button.textContent =
-            "⏳ ВЫ УЖЕ ЗАНЯТЫ";
-
-        status.textContent =
-            "Сначала завершите текущую работу.";
-
-        status.style.color =
-            "var(--yellow)";
-
-        return;
-
-    }
-
-
-    if(!diverSession){
-
-        button.disabled = false;
-
-        button.textContent =
-            "🤿 НАЧАТЬ ПОГРУЖЕНИЕ";
-
-        status.textContent =
-            "Доступно";
-
-        status.style.color =
-            "var(--green)";
-
-        return;
-
-    }
-
-
-    const started =
-        new Date(
-            diverSession.started_at
-        ).getTime();
-
-
-    const elapsed =
-        Date.now() - started;
-
-
-    if(
-        elapsed >=
-        60 * 60 * 1000
-    ){
-
-        button.disabled = false;
-
-        button.textContent =
-            "🤿 НАЧАТЬ ПОГРУЖЕНИЕ";
-
-        status.textContent =
-            "Новый час доступен";
-
-        status.style.color =
-            "var(--green)";
-
-        return;
-
-    }
-
-
-    const dives =
-        Number(
-            diverSession.dives || 0
-        );
-
-
-    if(dives >= 2){
-
-        button.disabled = true;
-
-        button.textContent =
-            "⏳ СМЕНА ЗАВЕРШЕНА";
-
-        status.style.color =
-            "var(--yellow)";
-
-        updateDiverTimer();
-
-        return;
-
-    }
-
-
-    button.disabled = false;
-
-    button.textContent =
-        "🤿 СОВЕРШИТЬ ПОГРУЖЕНИЕ №" +
-        (dives + 1);
-
-    status.textContent =
-        "Доступно погружение " +
-        (dives + 1) +
-        " из 2";
-
-    status.style.color =
-        "var(--green)";
+ }
 
 }
 
 
-/* =========================================================
-   DIVER TIMER
-========================================================= */
+/* ================= DIVER ================= */
 
-function updateDiverTimer(){
+async function dive(){
 
-    if(
-        !diverSession ||
-        !diverSession.started_at
-    )
-        return;
+ try{
 
+  mButton.disabled=true;
+  mButton.textContent="🤿 ПОГРУЖЕНИЕ...";
 
-    const started =
-        new Date(
-            diverSession.started_at
-        ).getTime();
+  const result=await api(
+   "/rest/v1/rpc/start_diver_dive",
+   {method:"POST"}
+  );
 
+  await reload();
 
-    const remaining =
-        Math.max(
-            0,
-            60 * 60 * 1000 -
-            (
-                Date.now() -
-                started
-            )
-        );
+  let text=
+   "Погружение №"+
+   result.dive+
+   " завершено.";
 
+  const items=result.items||{};
 
-    if(
-        Number(diverSession.dives || 0)
-        < 2
-    )
-        return;
+  Object.keys(items).forEach(k=>{
+   if(items[k])
+    text+="\n"+k+" ×"+items[k];
+  });
 
+  closeModal();
 
-    if(remaining <= 0){
+  showResult(
+   "🤿 Находки",
+   text
+  );
 
-        updateDiver();
+ }catch(e){
 
-        return;
+  toast("❌ "+clean(e.message));
+  updateModalState();
 
-    }
-
-
-    const total =
-        Math.floor(
-            remaining / 1000
-        );
-
-
-    const h =
-        Math.floor(
-            total / 3600
-        );
-
-
-    const m =
-        Math.floor(
-            (total % 3600) / 60
-        );
-
-
-    const s =
-        total % 60;
-
-
-    document.getElementById(
-        "diverStatus"
-    ).textContent =
-        "Следующая смена через " +
-        String(h).padStart(2,"0") +
-        ":" +
-        String(m).padStart(2,"0") +
-        ":" +
-        String(s).padStart(2,"0");
+ }
 
 }
 
 
-/* =========================================================
-   START DIVE
-========================================================= */
+/* ================= MODAL STATE ================= */
 
-async function startDive(){
+function updateModalState(){
 
-    if(
-        globalStatus &&
-        globalStatus.busy
-    ){
+ const level=Number(user.level||1);
+ const req=Number(selected.min_level||1);
 
-        toast(
-            "⏳ Ты уже занят."
-        );
+ if(level<req){
 
-        return;
+  mStatus.innerHTML=
+   "Статус: <b style='color:var(--red)'>Недоступно</b>";
 
-    }
+  mButton.disabled=true;
+  mButton.textContent="🔒 ТРЕБУЕТСЯ УРОВЕНЬ "+req;
 
+  return;
+ }
 
-    if(
-        Number(currentUser.level || 1)
-        < 8
-    ){
+ mStatus.innerHTML=
+  "Статус: <b>Готов к работе</b>";
 
-        toast(
-            "🔒 Требуется 8 уровень."
-        );
+ mButton.disabled=false;
 
-        return;
+ if(selected.job_id==="truck")
+  mButton.textContent="🚛 ВЫБРАТЬ ЗАКАЗ";
 
-    }
+ else if(selected.job_id==="mchs")
+  mButton.textContent="🚒 ВЫБРАТЬ ВЫЗОВ";
 
+ else if(selected.job_id==="collector")
+  mButton.textContent="💰 ВЫБРАТЬ МАРШРУТ";
 
-    try{
+ else if(selected.job_id==="diver")
+  mButton.textContent="🤿 НАЧАТЬ ПОГРУЖЕНИЕ";
 
-        const result =
-            await supabaseFetch(
-                "/rest/v1/rpc/start_diver_dive",
-                {
-                    method:"POST"
-                }
-            );
+ else
+  mButton.textContent="НАЧАТЬ РАБОТУ";
+}
 
 
-        await loadProfile();
+/* ================= RELOAD ================= */
 
-        await loadDiverInventory();
+async function reload(){
 
-        await updateDiver();
+ const rows=await api(
+  "/rest/v1/profiles?id=eq."+
+  encodeURIComponent(user.id)+
+  "&select=*"
+ );
 
-        await loadGlobalStatus();
+ if(rows.length){
 
-
-        let text =
-            "Погружение №" +
-            result.dive +
-            " завершено!\n\n";
-
-
-        const items =
-            result.items || {};
-
-
-        let total = 0;
-
-
-        Object.keys(items)
-        .forEach(
-            key => {
-
-                const count =
-                    Number(
-                        items[key]
-                    );
-
-
-                if(!count)
-                    return;
-
-
-                const item =
-                    diverItems[key];
-
-
-                if(!item)
-                    return;
-
-
-                total +=
-                    count *
-                    item.price;
-
-
-                text +=
-                    item.icon +
-                    " " +
-                    item.name +
-                    " ×" +
-                    count +
-                    "\n";
-
-            }
-        );
-
-
-        text +=
-            "\nОриентировочная стоимость:\n" +
-            number(total) +
-            " ₽";
-
-
-        openModal(
-            "🤿 Находки",
-            text
-        );
-
-
-    }catch(e){
-
-        console.error(e);
-
-        await loadGlobalStatus();
-
-        let msg =
-            cleanError(
-                e.message
-            );
-
-
-        if(
-            msg.includes(
-                "DIVER_COOLDOWN"
-            )
-        ){
-
-            msg =
-                "⏳ Доступно только 2 погружения в час.";
-
-        }
-
-
-        toast(
-            "❌ " + msg
-        );
-
-    }
+  user=rows[0];
+  renderPlayer();
+ }
 
 }
 
 
-/* =========================================================
-   SELL
-========================================================= */
+/* ================= RESULT ================= */
 
-async function sellAll(){
+function showResult(title,text){
 
-    let total = 0;
-    let has = false;
+ selected={
+  job_id:"result",
+  min_level:1,
+  min_reward:0,
+  max_reward:0,
+  cooldown_seconds:0
+ };
 
+ mIcon.textContent="✅";
+ mTitle.textContent=title;
+ mSub.textContent="";
+ mDesc.textContent=text;
 
-    Object.keys(
-        diverItems
-    )
-    .forEach(
-        key => {
+ mReward.textContent="—";
+ mCooldown.textContent="—";
+ mLevel.textContent="—";
 
-            const count =
-                Number(
-                    diverInventory[key] || 0
-                );
+ modalExtra.innerHTML="";
 
+ mStatus.innerHTML="Статус: <b>Готово</b>";
 
-            if(count > 0){
+ mButton.disabled=true;
+ mButton.textContent="ЗАКРЫТЬ";
 
-                has = true;
+ mButton.onclick=closeModal;
 
-                total +=
-                    count *
-                    diverItems[key].price;
-
-            }
-
-        }
-    );
-
-
-    if(!has){
-
-        toast(
-            "🎒 У тебя нет находок."
-        );
-
-        return;
-
-    }
-
-
-    openModal(
-        "🧾 Скупщик",
-
-        "Продать все найденные предметы?\n\n" +
-        "Стоимость: " +
-        number(total) +
-        " ₽"
-    );
-
-
-    document.getElementById(
-        "modalActions"
-    ).innerHTML = `
-
-        <button
-            class="modal-button"
-            onclick="confirmSell()"
-        >
-            💰 ПРОДАТЬ ЗА
-            ${number(total)} ₽
-        </button>
-
-    `;
-
+ modal.classList.remove("hidden");
 }
 
 
-/* =========================================================
-   CONFIRM SELL
-========================================================= */
+/* ================= HELPERS ================= */
 
-async function confirmSell(){
+function num(v){
 
-    try{
-
-        const result =
-            await supabaseFetch(
-                "/rest/v1/rpc/sell_diver_items",
-                {
-                    method:"POST"
-                }
-            );
-
-
-        closeModal();
-
-        await loadProfile();
-
-        await loadDiverInventory();
-
-
-        toast(
-            "💰 Продано на " +
-            number(result.cash) +
-            " ₽"
-        );
-
-
-    }catch(e){
-
-        console.error(e);
-
-        toast(
-            "❌ " +
-            cleanError(
-                e.message
-            )
-        );
-
-    }
+ return Number(v||0).toLocaleString("ru-RU");
 
 }
 
+function fmt(sec){
 
-/* =========================================================
-   TABS
-========================================================= */
+ sec=Number(sec||0);
 
-function switchTab(tab){
+ if(sec<60)return sec+" сек.";
 
-    const jobsTab =
-        document.getElementById(
-            "jobsTab"
-        );
+ const m=Math.floor(sec/60);
 
-    const mchsTab =
-        document.getElementById(
-            "mchsTab"
-        );
+ if(m<60)return m+" мин.";
 
-    const diverTab =
-        document.getElementById(
-            "diverTab"
-        );
+ const h=Math.floor(m/60);
 
+ return h+" ч.";
+}
 
-    jobsTab.classList.add(
-        "hidden"
-    );
+function esc(t){
 
-    mchsTab.classList.add(
-        "hidden"
-    );
-
-    diverTab.classList.add(
-        "hidden"
-    );
-
-
-    document
-        .querySelectorAll(
-            ".tab"
-        )
-        .forEach(
-            x =>
-                x.classList.remove(
-                    "active",
-                    "red",
-                    "blue"
-                )
-        );
-
-
-    if(tab === "jobs"){
-
-        jobsTab.classList.remove(
-            "hidden"
-        );
-
-        document
-            .getElementById(
-                "tabJobs"
-            )
-            .classList.add(
-                "active",
-                "red"
-            );
-
-    }
-
-
-    if(tab === "mchs"){
-
-        mchsTab.classList.remove(
-            "hidden"
-        );
-
-        document
-            .getElementById(
-                "tabMchs"
-            )
-            .classList.add(
-                "active",
-                "red"
-            );
-
-    }
-
-
-    if(tab === "diver"){
-
-        diverTab.classList.remove(
-            "hidden"
-        );
-
-        document
-            .getElementById(
-                "tabDiver"
-            )
-            .classList.add(
-                "active",
-                "blue"
-            );
-
-    }
+ return String(t||"")
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
 
 }
 
+function clean(t){
 
-/* =========================================================
-   MODAL
-========================================================= */
+ if(!t)return"Неизвестная ошибка";
 
-function openModal(title,text){
+ if(t.includes("JOB_COOLDOWN:")){
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        title;
+  const m=t.match(/JOB_COOLDOWN:(\d+)/);
 
+  return"Работа на КД. Осталось "+
+   fmt(m?m[1]:0);
 
-    document.getElementById(
-        "modalText"
-    ).textContent =
-        text;
+ }
 
+ if(t.includes("JOB_LEVEL_REQUIRED:")){
 
-    document.getElementById(
-        "modalActions"
-    ).innerHTML = "";
+  const m=t.match(/JOB_LEVEL_REQUIRED:(\d+)/);
 
+  return"Требуется уровень "+
+   (m?m[1]:"выше");
 
-    document.getElementById(
-        "modal"
-    ).classList.remove(
-        "hidden"
-    );
+ }
 
-}
+ if(t.includes("PLAYER_BUSY"))
+  return"Персонаж уже занят другой работой.";
 
+ if(t.includes("DIVER_COOLDOWN"))
+  return"Доступно только 2 погружения за смену.";
 
-function closeModal(){
-
-    document.getElementById(
-        "modal"
-    ).classList.add(
-        "hidden"
-    );
+ return t.replace(/[{}\[\]"]/g,"").slice(0,220);
 
 }
-
-
-/* =========================================================
-   TOAST
-========================================================= */
 
 function toast(text){
 
-    const el =
-        document.getElementById(
-            "toast"
-        );
+ const e=document.getElementById("toast");
 
+ e.textContent=text;
+ e.classList.add("show");
 
-    el.textContent =
-        text;
+ clearTimeout(toastTimer);
 
-
-    el.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        toastTimer
-    );
-
-
-    toastTimer =
-        setTimeout(
-            () =>
-                el.classList.remove(
-                    "show"
-                ),
-            2800
-        );
+ toastTimer=setTimeout(
+  ()=>e.classList.remove("show"),
+  2800
+ );
 
 }
 
+function closeModal(){
 
-/* =========================================================
-   HELPERS
-========================================================= */
+ modal.classList.add("hidden");
 
-function number(value){
-
-    return Number(
-        value || 0
-    ).toLocaleString(
-        "ru-RU"
-    );
+ mButton.onclick=startSelected;
 
 }
-
-
-function formatCooldown(seconds){
-
-    seconds =
-        Number(seconds || 0);
-
-
-    if(seconds < 60)
-        return seconds + " сек.";
-
-
-    const minutes =
-        Math.floor(
-            seconds / 60
-        );
-
-
-    if(minutes < 60)
-        return minutes + " мин.";
-
-
-    const hours =
-        Math.floor(
-            minutes / 60
-        );
-
-
-    return hours + " ч.";
-
-}
-
-
-function formatRemaining(ms){
-
-    const total =
-        Math.ceil(
-            ms / 1000
-        );
-
-
-    const h =
-        Math.floor(
-            total / 3600
-        );
-
-
-    const m =
-        Math.floor(
-            (total % 3600) / 60
-        );
-
-
-    const s =
-        total % 60;
-
-
-    if(h > 0){
-
-        return (
-            String(h).padStart(2,"0") +
-            ":" +
-            String(m).padStart(2,"0") +
-            ":" +
-            String(s).padStart(2,"0")
-        );
-
-    }
-
-
-    return (
-        String(m).padStart(2,"0") +
-        ":" +
-        String(s).padStart(2,"0")
-    );
-
-}
-
-
-function getWorkName(type){
-
-    const names = {
-
-        courier:"Курьер",
-        loader:"Грузчик",
-        farmer:"Фермер",
-        taxi:"Таксист",
-        bus:"Водитель автобуса",
-        builder:"Строитель",
-        mechanic:"Механик",
-        truck:"Дальнобойщик",
-        fisherman:"Рыбак",
-        miner:"Шахтёр",
-        lumberjack:"Лесоруб",
-        garbage:"Мусорщик",
-        mchs:"МЧС",
-        diver:"Водолаз"
-
-    };
-
-
-    return names[type] || type;
-
-}
-
-
-function cleanError(text){
-
-    if(!text)
-        return "Неизвестная ошибка";
-
-
-    if(
-        text.includes(
-            "JOB_COOLDOWN:"
-        )
-    ){
-
-        const match =
-            text.match(
-                /JOB_COOLDOWN:(\d+)/
-            );
-
-
-        if(match){
-
-            return "Работа на КД. Осталось " +
-                formatCooldown(
-                    match[1]
-                );
-
-        }
-
-        return "Работа на КД.";
-
-    }
-
-
-    if(
-        text.includes(
-            "JOB_LEVEL_REQUIRED:"
-        )
-    ){
-
-        const match =
-            text.match(
-                /JOB_LEVEL_REQUIRED:(\d+)/
-            );
-
-
-        return "Требуется уровень " +
-            (
-                match
-                ? match[1]
-                : "выше"
-            );
-
-    }
-
-
-    if(
-        text.includes(
-            "PLAYER_BUSY"
-        ) ||
-        text.includes(
-            "WORK_BUSY"
-        ) ||
-        text.includes(
-            "ALREADY_WORKING"
-        )
-    ){
-
-        return "⏳ Ты уже занят другой работой.";
-
-    }
-
-
-    if(
-        text.includes(
-            "GLOBAL_COOLDOWN"
-        )
-    ){
-
-        return "⏳ Общий КД ещё не закончился.";
-
-    }
-
-
-    return text
-        .replace(
-            /[{}\[\]"]/g,
-            ""
-        )
-        .substring(
-            0,
-            220
-        );
-
-}
-
-
-function escapeHtml(text){
-
-    return String(
-        text || ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-
-}
-
-
-function escapeAttr(text){
-
-    return String(
-        text || ""
-    )
-    .replace(
-        /\\/g,
-        "\\\\"
-    )
-    .replace(
-        /'/g,
-        "\\'"
-    );
-
-}
-
-
-/* =========================================================
-   BACK
-========================================================= */
 
 function goBack(){
 
-    window.location.href =
-        "index.html";
+ location.href="index.html";
 
 }
 
 
-/* =========================================================
-   INIT
-========================================================= */
+/* ================= START ================= */
 
 document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
-
-        await loadSession();
-
-
-        setInterval(
-            () => {
-
-                updateGlobalTimer();
-                updateDiverTimer();
-
-            },
-            1000
-        );
-
-
-        /*
-         * Периодически сверяем статус
-         * с сервером, чтобы несколько вкладок
-         * не показывали устаревшее состояние.
-         */
-
-        setInterval(
-            loadGlobalStatus,
-            10000
-        );
-
-    }
+ "DOMContentLoaded",
+ init
 );
 
 </script>
