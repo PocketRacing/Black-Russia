@@ -100,7 +100,9 @@ button:disabled{
  border:1px solid #292929;
  color:#5ce28e;
  font-size:11px;
- font-weight:900
+ font-weight:900;
+ min-width:80px;
+ text-align:center
 }
 
 /* MENU */
@@ -639,7 +641,8 @@ button:disabled{
  font-size:11px;
  opacity:0;
  pointer-events:none;
- transition:.25s
+ transition:.25s;
+ white-space:nowrap
 }
 
 .toast.show{
@@ -681,7 +684,7 @@ button:disabled{
 <body>
 
 <div class="loading" id="loading">
-Подключение к BLACK CITY...
+Подключение к аккаунту...
 </div>
 
 <header class="top">
@@ -715,7 +718,7 @@ BLACK <span>CASINO</span>
 </h1>
 
 <p>
-Официальное казино города
+Игровой зал
 </p>
 
 <div class="line"></div>
@@ -748,7 +751,6 @@ BLACK <span>CASINO</span>
 
 </div>
 
-
 <div class="game" onclick="openGame('roulette')">
 
 <div class="game-badge">
@@ -772,7 +774,6 @@ BLACK <span>CASINO</span>
 </button>
 
 </div>
-
 
 <div class="game" onclick="openGame('dice')">
 
@@ -1070,13 +1071,13 @@ BLACK <span>CASINO</span>
    SUPABASE
 ========================================================= */
 
-const SUPABASE_URL=
+const SUPABASE_URL =
 "https://qzswnoeglovfpgrzpnio.supabase.co";
 
-const SUPABASE_KEY=
+const SUPABASE_KEY =
 "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
-const supabaseClient=
+const supabaseClient =
 window.supabase.createClient(
  SUPABASE_URL,
  SUPABASE_KEY,
@@ -1096,6 +1097,8 @@ window.supabase.createClient(
 let currentUser=null;
 let profile=null;
 let playerReady=false;
+let balanceTimer=null;
+let profileChannel=null;
 
 
 /* =========================================================
@@ -1106,54 +1109,13 @@ async function loadPlayer(){
 
  try{
 
-  let session=null;
-
-  const result=
-   await supabaseClient.auth.getSession();
-
-  if(result.data){
-   session=result.data.session;
-  }
-
-  if(!session){
-
-   await new Promise(resolve=>{
-
-    const timeout=setTimeout(
-     resolve,
-     1500
-    );
-
-    const {
-     data:{subscription}
-    }=
-     supabaseClient.auth.onAuthStateChange(
-      (_event,newSession)=>{
-
-       if(newSession){
-
-        session=newSession;
-
-        clearTimeout(timeout);
-
-        subscription.unsubscribe();
-
-        resolve();
-
-       }
-
-      });
-
-   });
-
-  }
+  const {
+   data:{session}
+  } =
+  await supabaseClient.auth.getSession();
 
 
   if(!session){
-
-   console.log(
-    "Supabase session not found"
-   );
 
    document.getElementById(
     "loading"
@@ -1162,7 +1124,7 @@ async function loadPlayer(){
 
    setTimeout(()=>{
     location.href="index.html";
-   },1200);
+   },1000);
 
    return false;
   }
@@ -1171,42 +1133,19 @@ async function loadPlayer(){
   currentUser=session.user;
 
 
-  const {
-   data,
-   error
-  }=
-   await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id",currentUser.id)
-    .single();
+  await refreshProfile();
 
-
-  if(error){
-
-   console.error(
-    "PROFILE ERROR:",
-    error
-   );
-
-   document.getElementById(
-    "loading"
-   ).textContent=
-    "Не удалось загрузить профиль.";
-
-   return false;
-  }
-
-
-  profile=data;
 
   playerReady=true;
 
-  updateBalance();
 
   document.getElementById(
    "loading"
   ).classList.add("hidden");
+
+
+  startBalanceSync();
+
 
   return true;
 
@@ -1214,7 +1153,7 @@ async function loadPlayer(){
  }catch(error){
 
   console.error(
-   "LOAD ERROR:",
+   "LOAD PLAYER ERROR:",
    error
   );
 
@@ -1225,59 +1164,148 @@ async function loadPlayer(){
 
   return false;
  }
-
 }
 
 
 /* =========================================================
-   AUTH STATE
+   REFRESH PROFILE
 ========================================================= */
 
-supabaseClient.auth.onAuthStateChange(
- async(event,session)=>{
+async function refreshProfile(){
 
-  console.log(
-   "AUTH:",
-   event
+ if(!currentUser)
+  return false;
+
+
+ const {
+  data,
+  error
+ } =
+ await supabaseClient
+  .from("profiles")
+  .select("id,cash,bank")
+  .eq("id",currentUser.id)
+  .single();
+
+
+ if(error){
+
+  console.error(
+   "PROFILE ERROR:",
+   error
   );
 
-  if(event==="SIGNED_OUT"){
-
-   playerReady=false;
-   currentUser=null;
-   profile=null;
-
-   location.href="index.html";
-
-  }
+  return false;
+ }
 
 
-  if(
-   session &&
-   !playerReady
-  ){
+ profile=data;
 
-   await loadPlayer();
 
-  }
+ updateBalance();
 
- });
+
+ return true;
+}
+
+
+/* =========================================================
+   REAL TIME BALANCE
+========================================================= */
+
+function startBalanceSync(){
+
+ if(balanceTimer)
+  clearInterval(balanceTimer);
+
+
+ /*
+   Резервная синхронизация.
+
+   Если баланс изменился в работах,
+   магазине, гараже и т.д.,
+   казино увидит новое значение.
+ */
+
+ balanceTimer=setInterval(
+  async()=>{
+   if(
+    playerReady &&
+    currentUser &&
+    !bjBusy &&
+    !rSpinning &&
+    !diceBusy
+   ){
+
+    await refreshProfile();
+
+   }
+  },
+  1500
+ );
+
+
+ /*
+   Дополнительно слушаем изменения
+   profiles через Supabase Realtime.
+ */
+
+ try{
+
+  profileChannel=
+   supabaseClient
+    .channel(
+     "casino-profile-"+currentUser.id
+    )
+    .on(
+     "postgres_changes",
+     {
+      event:"UPDATE",
+      schema:"public",
+      table:"profiles",
+      filter:"id=eq."+currentUser.id
+     },
+     payload=>{
+
+      if(payload.new){
+
+       profile={
+        ...profile,
+        cash:Number(
+         payload.new.cash||0
+        ),
+        bank:Number(
+         payload.new.bank||0
+        )
+       };
+
+       updateBalance();
+
+      }
+
+     }
+    )
+    .subscribe();
+
+ }catch(error){
+
+  console.log(
+   "Realtime unavailable:",
+   error
+  );
+
+ }
+}
 
 
 /* =========================================================
    BALANCE
 ========================================================= */
 
-/*
-   Общий баланс:
-
-   cash + bank
-*/
-
 function getCash(){
 
  return Number(
-  profile?.cash || 0
+  profile?.cash||0
  );
 
 }
@@ -1286,7 +1314,7 @@ function getCash(){
 function getBank(){
 
  return Number(
-  profile?.bank || 0
+  profile?.bank||0
  );
 
 }
@@ -1302,7 +1330,7 @@ function getMoney(){
 function formatMoney(value){
 
  return Math.round(
-  Number(value)
+  Number(value)||0
  )
  .toLocaleString("ru-RU");
 
@@ -1311,13 +1339,36 @@ function formatMoney(value){
 
 function updateBalance(){
 
- document.getElementById(
-  "balance"
- ).textContent=
+ const element=
+  document.getElementById(
+   "balance"
+  );
+
+ if(!element)
+  return;
+
+
+ element.textContent=
   "₽ "+formatMoney(
    getMoney()
   );
+}
 
+
+/* =========================================================
+   ACTUAL BALANCE BEFORE OPERATION
+========================================================= */
+
+async function syncBalance(){
+
+ if(
+  !currentUser ||
+  !playerReady
+ )
+  return false;
+
+
+ return await refreshProfile();
 }
 
 
@@ -1334,7 +1385,7 @@ async function changeMoney(delta){
  ){
 
   toast(
-   "Профиль ещё загружается."
+   "Аккаунт ещё загружается."
   );
 
   return false;
@@ -1354,17 +1405,27 @@ async function changeMoney(delta){
  }
 
 
+ /*
+   ВСЕГДА СНАЧАЛА ПОЛУЧАЕМ
+   АКТУАЛЬНЫЙ БАЛАНС ИЗ БД.
+ */
+
+ const synced=
+  await syncBalance();
+
+
+ if(!synced)
+  return false;
+
+
  const cash=getCash();
  const bank=getBank();
  const total=cash+bank;
 
 
-/*
-   ПОПОЛНЕНИЕ
-
-   Выигрыш всегда идёт
-   в cash.
-*/
+ /* =========================================
+    ВЫИГРЫШ
+ ========================================= */
 
  if(delta>0){
 
@@ -1375,29 +1436,31 @@ async function changeMoney(delta){
   const {
    data,
    error
-  }=
-   await supabaseClient
-    .from("profiles")
-    .update({
-     cash:newCash
-    })
-    .eq(
-     "id",
-     currentUser.id
-    )
-    .select("cash,bank")
-    .single();
+  } =
+  await supabaseClient
+   .from("profiles")
+   .update({
+    cash:newCash
+   })
+   .eq(
+    "id",
+    currentUser.id
+   )
+   .select("cash,bank")
+   .single();
 
 
   if(error){
 
    console.error(
-    "BALANCE UPDATE ERROR:",
+    "PRIZE UPDATE ERROR:",
     error
    );
 
+   await refreshProfile();
+
    toast(
-    "Ошибка сохранения баланса."
+    "Ошибка сохранения выигрыша."
    );
 
    return false;
@@ -1410,22 +1473,25 @@ async function changeMoney(delta){
   profile.bank=
    Number(data.bank||0);
 
+
   updateBalance();
 
-  return true;
 
+  return true;
  }
 
 
-/*
-   СПИСАНИЕ
-*/
+ /* =========================================
+    СПИСАНИЕ
+ ========================================= */
 
  const amount=
   Math.abs(delta);
 
 
  if(total<amount){
+
+  updateBalance();
 
   toast(
    "Недостаточно денег."
@@ -1439,10 +1505,10 @@ async function changeMoney(delta){
  let newBank=bank;
 
 
-/*
-   Сначала cash.
-   Потом bank.
-*/
+ /*
+   СНАЧАЛА CASH
+   ПОТОМ BANK
+ */
 
  if(cash>=amount){
 
@@ -1458,37 +1524,38 @@ async function changeMoney(delta){
 
   newBank=
    bank-fromBank;
-
  }
 
 
  const {
   data,
   error
- }=
-  await supabaseClient
-   .from("profiles")
-   .update({
-    cash:newCash,
-    bank:newBank
-   })
-   .eq(
-    "id",
-    currentUser.id
-   )
-   .select("cash,bank")
-   .single();
+ } =
+ await supabaseClient
+  .from("profiles")
+  .update({
+   cash:newCash,
+   bank:newBank
+  })
+  .eq(
+   "id",
+   currentUser.id
+  )
+  .select("cash,bank")
+  .single();
 
 
  if(error){
 
   console.error(
-   "BALANCE UPDATE ERROR:",
+   "BET UPDATE ERROR:",
    error
   );
 
+  await refreshProfile();
+
   toast(
-   "Ошибка сохранения баланса."
+   "Не удалось списать ставку."
   );
 
   return false;
@@ -1501,10 +1568,11 @@ async function changeMoney(delta){
  profile.bank=
   Number(data.bank||0);
 
+
  updateBalance();
 
- return true;
 
+ return true;
 }
 
 
@@ -1530,9 +1598,15 @@ async function takeBet(amount){
  }
 
 
- if(
-  getMoney()<amount
- ){
+ /*
+   Перед ставкой обязательно
+   синхронизируем баланс.
+ */
+
+ await syncBalance();
+
+
+ if(getMoney()<amount){
 
   toast(
    "Недостаточно денег."
@@ -1545,7 +1619,6 @@ async function takeBet(amount){
  return await changeMoney(
   -amount
  );
-
 }
 
 
@@ -1568,7 +1641,6 @@ async function givePrize(amount){
  return await changeMoney(
   amount
  );
-
 }
 
 
@@ -1647,11 +1719,13 @@ function openGame(id){
   buildNumbers();
 
 
+ syncBalance();
+
+
  window.scrollTo({
   top:0,
   behavior:"smooth"
  });
-
 }
 
 
@@ -1673,11 +1747,13 @@ function showMenu(){
  );
 
 
+ syncBalance();
+
+
  window.scrollTo({
   top:0,
   behavior:"smooth"
  });
-
 }
 
 
@@ -1699,7 +1775,6 @@ function goBack(){
   showMenu();
 
  }
-
 }
 
 
@@ -1713,7 +1788,6 @@ const suits=[
  "♦",
  "♣"
 ];
-
 
 const ranks=[
  ["A",11],
@@ -1730,7 +1804,6 @@ const ranks=[
  ["Q",10],
  ["K",10]
 ];
-
 
 let bjBet=100;
 let bjDeck=[];
@@ -1760,14 +1833,12 @@ function newDeck(){
    });
 
   }
-
  }
 
 
  return deck.sort(
   ()=>Math.random()-.5
  );
-
 }
 
 
@@ -1798,7 +1869,6 @@ function handValue(hand){
 
 
  return total;
-
 }
 
 
@@ -1814,7 +1884,6 @@ function cardHTML(
    ?
    </div>
   `;
-
  }
 
 
@@ -1828,7 +1897,6 @@ function cardHTML(
  ${card.rank}${card.suit}
  </div>
  `;
-
 }
 
 
@@ -1876,7 +1944,6 @@ function renderBJ(
    :handValue(
     bjDealer
    );
-
 }
 
 
@@ -1889,12 +1956,21 @@ async function startBJ(){
   return;
 
 
- if(
-  !await takeBet(
+ bjBusy=true;
+
+
+ const betTaken=
+  await takeBet(
    bjBet
-  )
- )
+  );
+
+
+ if(!betTaken){
+
+  bjBusy=false;
+
   return;
+ }
 
 
  bjDeck=
@@ -1914,22 +1990,20 @@ async function startBJ(){
 
 
  bjActive=true;
+ bjBusy=false;
 
 
  document.getElementById(
   "bjStart"
  ).disabled=true;
 
-
  document.getElementById(
   "bjHit"
  ).disabled=false;
 
-
  document.getElementById(
   "bjStand"
  ).disabled=false;
-
 
  document.getElementById(
   "bjMessage"
@@ -1950,9 +2024,7 @@ async function startBJ(){
    ()=>standBJ(),
    500
   );
-
  }
-
 }
 
 
@@ -1981,7 +2053,7 @@ async function hitBJ(){
 
  if(value>21){
 
-  finishBJ(
+  await finishBJ(
    "💥 Перебор. Ты проиграл."
   );
 
@@ -1990,7 +2062,6 @@ async function hitBJ(){
   await standBJ();
 
  }
-
 }
 
 
@@ -2015,7 +2086,6 @@ async function standBJ(){
   bjDealer.push(
    bjDeck.pop()
   );
-
  }
 
 
@@ -2084,7 +2154,7 @@ async function standBJ(){
 }
 
 
-function finishBJ(message){
+async function finishBJ(message){
 
  bjActive=false;
 
@@ -2093,16 +2163,13 @@ function finishBJ(message){
   "bjHit"
  ).disabled=true;
 
-
  document.getElementById(
   "bjStand"
  ).disabled=true;
 
-
  document.getElementById(
   "bjStart"
  ).disabled=false;
-
 
  document.getElementById(
   "bjMessage"
@@ -2112,6 +2179,13 @@ function finishBJ(message){
 
  renderBJ(false);
 
+
+ /*
+   Сразу после окончания
+   получаем настоящий баланс.
+ */
+
+ await refreshProfile();
 }
 
 
@@ -2139,7 +2213,6 @@ function setBJBet(
  button.classList.add(
   "active"
  );
-
 }
 
 
@@ -2162,7 +2235,6 @@ function isRed(number){
  ].includes(
   number
  );
-
 }
 
 
@@ -2217,9 +2289,7 @@ function buildNumbers(){
   container.appendChild(
    button
   );
-
  }
-
 }
 
 
@@ -2249,7 +2319,6 @@ function selectRBet(
   "rouletteMessage"
  ).textContent=
   "Ставка: "+choice;
-
 }
 
 
@@ -2277,7 +2346,6 @@ function setRBet(
  button.classList.add(
   "active"
  );
-
 }
 
 
@@ -2287,11 +2355,13 @@ async function spinRoulette(){
   return;
 
 
- if(
-  !await takeBet(
+ const betTaken=
+  await takeBet(
    rBet
-  )
- )
+  );
+
+
+ if(!betTaken)
   return;
 
 
@@ -2358,7 +2428,6 @@ async function spinRoulette(){
 
     win=true;
     multiplier=2;
-
    }
 
 
@@ -2369,7 +2438,6 @@ async function spinRoulette(){
 
     win=true;
     multiplier=2;
-
    }
 
 
@@ -2380,7 +2448,6 @@ async function spinRoulette(){
 
     win=true;
     multiplier=14;
-
    }
 
 
@@ -2390,7 +2457,6 @@ async function spinRoulette(){
 
     win=true;
     multiplier=36;
-
    }
 
 
@@ -2400,27 +2466,33 @@ async function spinRoulette(){
      rBet*multiplier;
 
 
-    await givePrize(
-     prize
-    );
-
-
-    document.getElementById(
-     "rouletteMessage"
-    ).textContent=
-     "Выпало "+
-     result+
-     " "+
-     color+
-     "! +₽"+
-     formatMoney(
+    const paid=
+     await givePrize(
       prize
      );
 
 
-    toast(
-     "🎉 Победа!"
-    );
+    if(paid){
+
+     document.getElementById(
+      "rouletteMessage"
+     ).textContent=
+      "Выпало "+
+      result+
+      " "+
+      color+
+      "! +₽"+
+      formatMoney(
+       prize
+      );
+
+
+     toast(
+      "🎉 Победа! +₽"+
+      formatMoney(prize)
+     );
+
+    }
 
 
    }else{
@@ -2437,6 +2509,9 @@ async function spinRoulette(){
    }
 
 
+   await refreshProfile();
+
+
    document.querySelectorAll(
     "#roulette button"
    ).forEach(
@@ -2449,7 +2524,6 @@ async function spinRoulette(){
   },
   3600
  );
-
 }
 
 
@@ -2482,7 +2556,6 @@ function setDiceBet(
  button.classList.add(
   "active"
  );
-
 }
 
 
@@ -2510,7 +2583,6 @@ function setDiceMoney(
  button.classList.add(
   "active"
  );
-
 }
 
 
@@ -2520,11 +2592,13 @@ async function rollDice(){
   return;
 
 
- if(
-  !await takeBet(
+ const betTaken=
+  await takeBet(
    diceBet
-  )
- )
+  );
+
+
+ if(!betTaken)
   return;
 
 
@@ -2547,7 +2621,6 @@ async function rollDice(){
   "roll"
  );
 
-
  d2.classList.add(
   "roll"
  );
@@ -2565,7 +2638,6 @@ async function rollDice(){
    d1.classList.remove(
     "roll"
    );
-
 
    d2.classList.remove(
     "roll"
@@ -2604,7 +2676,6 @@ async function rollDice(){
    d1.textContent=
     faces[a];
 
-
    d2.textContent=
     faces[b];
 
@@ -2620,7 +2691,6 @@ async function rollDice(){
 
     win=true;
     multiplier=2;
-
    }
 
 
@@ -2631,7 +2701,6 @@ async function rollDice(){
 
     win=true;
     multiplier=2;
-
    }
 
 
@@ -2642,7 +2711,6 @@ async function rollDice(){
 
     win=true;
     multiplier=5;
-
    }
 
 
@@ -2652,25 +2720,30 @@ async function rollDice(){
      diceBet*multiplier;
 
 
-    await givePrize(
-     prize
-    );
-
-
-    document.getElementById(
-     "diceResult"
-    ).textContent=
-     "Выпало "+
-     total+
-     " — ПОБЕДА! +₽"+
-     formatMoney(
+    const paid=
+     await givePrize(
       prize
      );
 
 
-    toast(
-     "🎲 Ты выиграл!"
-    );
+    if(paid){
+
+     document.getElementById(
+      "diceResult"
+     ).textContent=
+      "Выпало "+
+      total+
+      " — ПОБЕДА! +₽"+
+      formatMoney(
+       prize
+      );
+
+
+     toast(
+      "🎲 Ты выиграл! +₽"+
+      formatMoney(prize)
+     );
+    }
 
 
    }else{
@@ -2681,8 +2754,10 @@ async function rollDice(){
      "Выпало "+
      total+
      " — проигрыш.";
-
    }
+
+
+   await refreshProfile();
 
 
    diceBusy=false;
@@ -2690,8 +2765,28 @@ async function rollDice(){
   },
   650
  );
-
 }
+
+
+/* =========================================================
+   AUTH
+   ТОЛЬКО ПРОВЕРКА СУЩЕСТВУЮЩЕЙ СЕССИИ.
+   НИКАКОЙ ВТОРОЙ АВТОРИЗАЦИИ.
+========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+ (event)=>{
+
+  if(event==="SIGNED_OUT"){
+
+   playerReady=false;
+   currentUser=null;
+   profile=null;
+
+   location.href="index.html";
+  }
+ }
+);
 
 
 /* =========================================================
