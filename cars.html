@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+<title>BLACK RUSSIA — Автосалон</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+*{
+ box-sizing:border-box;
+ margin:0;
+ padding:0;
+ -webkit-tap-highlight-color:transparent
+}
+
+:root{
+ --bg:#070707;
+ --panel:#111;
+ --panel2:#171717;
+ --line:#292929;
+ --red:#e50914;
+ --white:#f5f5f5;
+ --muted:#858585;
+ --green:#36d878
+}
+
+body{
+ font-family:Arial,Helvetica,sans-serif;
+ background:
+ radial-gradient(circle at 50% -10%,#241313,#070707 42%);
+ color:var(--white);
+ min-height:100vh;
+ padding-bottom:30px
+}
+
+button{
+ font-family:inherit;
+ border:0;
+ cursor:pointer
+}
+
+.hidden{
+ display:none!important
+}
+
+.top{
+ position:sticky;
+ top:0;
+ z-index:20;
+ height:58px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 14px;
+ background:rgba(7,7,7,.96);
+ border-bottom:1px solid var(--line);
+ backdrop-filter:blur(14px)
+}
+
+.back{
+ padding:8px 11px;
+ border-radius:8px;
+ background:#181818;
+ border:1px solid var(--line);
+ color:#aaa;
+ font-size:11px
+}
+
+.logo{
+ font-size:18px;
+ font-weight:1000
+}
+
+.logo span{
+ color:var(--red)
+}
+
+.balance{
+ padding:7px 10px;
+ border-radius:8px;
+ background:#151515;
+ border:1px solid var(--line);
+ color:#5ce28e;
+ font-size:11px;
+ font-weight:900
+}
+
+.wrap{
+ width:100%;
+ max-width:1000px;
+ margin:auto;
+ padding:14px
+}
+
+.hero{
+ padding:25px 18px;
+ text-align:center;
+ background:
+ radial-gradient(circle at 50% 0%,rgba(229,9,20,.18),transparent 60%),
+ linear-gradient(145deg,#171717,#0c0c0c);
+ border:1px solid #342323;
+ border-radius:17px
+}
+
+.hero-icon{
+ font-size:42px;
+ margin-bottom:8px
+}
+
+.hero h1{
+ font-size:28px;
+ font-weight:1000
+}
+
+.hero h1 span{
+ color:var(--red)
+}
+
+.hero p{
+ margin-top:7px;
+ color:#777;
+ font-size:11px
+}
+
+.line{
+ width:90px;
+ height:2px;
+ margin:15px auto 0;
+ background:linear-gradient(
+  90deg,
+  transparent,
+  var(--red),
+  transparent
+ )
+}
+
+.cars{
+ display:grid;
+ grid-template-columns:1fr;
+ gap:12px;
+ margin-top:15px
+}
+
+.car{
+ overflow:hidden;
+ background:linear-gradient(145deg,#151515,#0d0d0d);
+ border:1px solid var(--line);
+ border-radius:14px
+}
+
+.car-image{
+ height:190px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#0b0b0b;
+ overflow:hidden
+}
+
+.car-image img{
+ width:100%;
+ height:100%;
+ object-fit:cover
+}
+
+.car-placeholder{
+ font-size:55px
+}
+
+.car-info{
+ padding:15px
+}
+
+.car-name{
+ font-size:19px;
+ font-weight:1000
+}
+
+.car-type{
+ margin-top:4px;
+ color:#777;
+ font-size:10px
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:6px;
+ margin-top:12px
+}
+
+.stat{
+ padding:8px 5px;
+ text-align:center;
+ background:#111;
+ border:1px solid #292929;
+ border-radius:7px
+}
+
+.stat b{
+ display:block;
+ font-size:12px
+}
+
+.stat span{
+ display:block;
+ margin-top:3px;
+ color:#777;
+ font-size:8px
+}
+
+.car-bottom{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin-top:14px
+}
+
+.price{
+ color:#5ce28e;
+ font-size:15px;
+ font-weight:1000
+}
+
+.buy{
+ flex:1;
+ padding:11px;
+ border-radius:8px;
+ background:var(--red);
+ color:white;
+ font-size:10px;
+ font-weight:1000
+}
+
+.loading{
+ position:fixed;
+ inset:0;
+ z-index:100;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#050505;
+ color:#aaa;
+ font-size:12px
+}
+
+.toast{
+ position:fixed;
+ left:50%;
+ bottom:20px;
+ z-index:200;
+ transform:translate(-50%,20px);
+ padding:11px 15px;
+ background:#191919;
+ border:1px solid #3b3b3b;
+ border-radius:9px;
+ font-size:11px;
+ opacity:0;
+ pointer-events:none;
+ transition:.25s;
+ white-space:nowrap
+}
+
+.toast.show{
+ opacity:1;
+ transform:translate(-50%,0)
+}
+
+@media(min-width:650px){
+ .cars{
+  grid-template-columns:repeat(2,1fr)
+ }
+}
+</style>
+</head>
+
+<body>
+
+<div class="loading" id="loading">
+Загрузка автосалона...
+</div>
+
+<header class="top">
+
+<button class="back" onclick="goBack()">
+← НАЗАД
+</button>
+
+<div class="logo">
+BLACK <span>AUTO</span>
+</div>
+
+<div class="balance" id="balance">
+₽ 0
+</div>
+
+</header>
+
+<div class="wrap">
+
+<section class="hero">
+
+<div class="hero-icon">
+🚘
+</div>
+
+<h1>
+АВТО<span>САЛОН</span>
+</h1>
+
+<p>
+Выбери автомобиль для своего персонажа
+</p>
+
+<div class="line"></div>
+
+</section>
+
+<div class="cars">
+
+<!-- G65 -->
+
+<div class="car">
+
+<div class="car-image">
+
+<div class="car-placeholder">
+🚙
+</div>
+
+</div>
+
+<div class="car-info">
+
+<div class="car-name">
+Mercedes-Benz G65 AMG
+</div>
+
+<div class="car-type">
+PREMIUM SUV
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<b>612</b>
+<span>Л.С.</span>
+</div>
+
+<div class="stat">
+<b>5.3 сек</b>
+<span>0–100</span>
+</div>
+
+<div class="stat">
+<b>230</b>
+<span>КМ/Ч</span>
+</div>
+
+</div>
+
+<div class="car-bottom">
+
+<div class="price">
+₽ 8 500 000
+</div>
+
+<button
+ class="buy"
+ onclick="buyCar('G65','Mercedes-Benz G65 AMG',8500000)"
+>
+КУПИТЬ
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- СЮДА ПОТОМ ДОБАВИМ ДРУГИЕ МАШИНЫ -->
+
+</div>
+
+</div>
+
+<div class="toast" id="toast">
+Готово
+</div>
+
+<script>
+
+/* =========================================
+   SUPABASE
+========================================= */
+
+const SUPABASE_URL =
+"https://qzswnoeglovfpgrzpnio.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+
+const supabaseClient =
+window.supabase.createClient(
+ SUPABASE_URL,
+ SUPABASE_KEY,
+ {
+  auth:{
+   persistSession:true,
+   autoRefreshToken:true,
+   detectSessionInUrl:true
+  }
+ });
+
+
+/* =========================================
+   PLAYER
+========================================= */
+
+let currentUser=null;
+let profile=null;
+
+
+/* =========================================
+   LOAD
+========================================= */
+
+async function loadPlayer(){
+
+ try{
+
+  const {
+   data:{
+    session
+   }
+  } =
+  await supabaseClient.auth.getSession();
+
+
+  if(!session){
+
+   location.href="index.html";
+   return;
+  }
+
+
+  currentUser=session.user;
+
+
+  const {
+   data,
+   error
+  } =
+  await supabaseClient
+   .from("profiles")
+   .select("*")
+   .eq("id",currentUser.id)
+   .single();
+
+
+  if(error){
+
+   console.error(error);
+
+   document.getElementById(
+    "loading"
+   ).textContent=
+    "Не удалось загрузить профиль.";
+
+   return;
+  }
+
+
+  profile=data;
+
+  updateBalance();
+
+
+  document.getElementById(
+   "loading"
+  ).classList.add("hidden");
+
+
+ }catch(error){
+
+  console.error(error);
+
+  document.getElementById(
+   "loading"
+  ).textContent=
+   "Ошибка подключения.";
+
+ }
+
+}
+
+
+/* =========================================
+   BALANCE
+========================================= */
+
+function getCash(){
+
+ return Number(
+  profile?.cash || 0
+ );
+
+}
+
+
+function getBank(){
+
+ return Number(
+  profile?.bank || 0
+ );
+
+}
+
+
+function getMoney(){
+
+ return getCash()+getBank();
+
+}
+
+
+function formatMoney(value){
+
+ return Math.round(
+  Number(value)
+ ).toLocaleString("ru-RU");
+
+}
+
+
+function updateBalance(){
+
+ document.getElementById(
+  "balance"
+ ).textContent=
+ "₽ "+
+ formatMoney(
+  getMoney()
+ );
+
+}
+
+
+/* =========================================
+   MONEY
+========================================= */
+
+async function spendMoney(amount){
+
+ amount=Number(amount);
+
+ const cash=getCash();
+ const bank=getBank();
+ const total=cash+bank;
+
+
+ if(total<amount){
+
+  toast("Недостаточно денег.");
+
+  return false;
+ }
+
+
+ let newCash=cash;
+ let newBank=bank;
+
+
+ if(cash>=amount){
+
+  newCash=cash-amount;
+
+ }else{
+
+  newCash=0;
+
+  newBank=
+   bank-(amount-cash);
+
+ }
+
+
+ const {
+  data,
+  error
+ } =
+  await supabaseClient
+   .from("profiles")
+   .update({
+    cash:newCash,
+    bank:newBank
+   })
+   .eq(
+    "id",
+    currentUser.id
+   )
+   .select("cash,bank")
+   .single();
+
+
+ if(error){
+
+  console.error(error);
+
+  toast(
+   "Ошибка списания денег."
+  );
+
+  return false;
+ }
+
+
+ profile.cash=
+  Number(data.cash||0);
+
+ profile.bank=
+  Number(data.bank||0);
+
+
+ updateBalance();
+
+ return true;
+
+}
+
+
+/* =========================================
+   BUY CAR
+========================================= */
+
+async function buyCar(
+ carId,
+ carName,
+ price
+){
+
+ if(!currentUser||!profile){
+
+  toast(
+   "Профиль ещё загружается."
+  );
+
+  return;
+ }
+
+
+ if(
+  !confirm(
+   "Купить "+
+   carName+
+   " за ₽"+
+   formatMoney(price)+
+   "?"
+  )
+ ){
+
+  return;
+ }
+
+
+ /*
+    ПРОВЕРЯЕМ,
+    НЕТ ЛИ УЖЕ ЭТОЙ МАШИНЫ
+ */
+
+ const {
+  data:existing,
+  error:checkError
+ } =
+ await supabaseClient
+  .from("vehicles")
+  .select("id")
+  .eq(
+   "owner_id",
+   currentUser.id
+  )
+  .eq(
+   "car_id",
+   carId
+  );
+
+
+ if(checkError){
+
+  console.error(
+   checkError
+  );
+
+  toast(
+   "Ошибка проверки гаража."
+  );
+
+  return;
+ }
+
+
+ if(existing&&existing.length){
+
+  toast(
+   "Эта машина уже есть в гараже."
+  );
+
+  return;
+ }
+
+
+ /*
+    СПИСЫВАЕМ
+ */
+
+ const success=
+  await spendMoney(
+   price
+  );
+
+
+ if(!success)
+  return;
+
+
+ /*
+    ДОБАВЛЯЕМ В ГАРАЖ
+ */
+
+ const {
+  error
+ } =
+ await supabaseClient
+  .from("vehicles")
+  .insert({
+
+   owner_id:
+    currentUser.id,
+
+   car_id:
+    carId,
+
+   name:
+    carName,
+
+   price:
+    price
+
+  });
+
+
+ if(error){
+
+  console.error(
+   "VEHICLE INSERT ERROR:",
+   error
+  );
+
+  /*
+     ЕСЛИ МАШИНА НЕ ДОБАВИЛАСЬ,
+     ВАЖНО:
+     деньги уже списались.
+     
+     Пока просто сообщаем об ошибке.
+  */
+
+  toast(
+   "Деньги списаны, но машина не добавилась. Проверь vehicles."
+  );
+
+  return;
+ }
+
+
+ toast(
+  "🚘 "+carName+
+  " добавлен в гараж!"
+ );
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function goBack(){
+
+ location.href=
+  "index.html";
+
+}
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+let toastTimer=null;
+
+function toast(text){
+
+ const el=
+  document.getElementById(
+   "toast"
+  );
+
+ el.textContent=text;
+
+ el.classList.add(
+  "show"
+ );
+
+ clearTimeout(
+  toastTimer
+ );
+
+ toastTimer=
+ setTimeout(
+  ()=>{
+   el.classList.remove(
+    "show"
+   );
+  },
+  2500
+ );
+
+}
+
+
+/* =========================================
+   START
+========================================= */
+
+loadPlayer();
+
+</script>
+
+</body>
+</html>
