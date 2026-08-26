@@ -10,14 +10,23 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 
 :root{
---bg:#070707;--panel:#111;--panel2:#181818;--line:#292929;
---red:#e50914;--red2:#ff2633;--white:#f5f5f5;
---muted:#888;--green:#31d47a
+--bg:#070707;
+--panel:#111;
+--panel2:#181818;
+--line:#292929;
+--red:#e50914;
+--red2:#ff2633;
+--white:#f5f5f5;
+--muted:#888;
+--green:#31d47a;
+--gold:#ffc928
 }
 
 body{
 font-family:Arial,Helvetica,sans-serif;
-background:#050505;color:var(--white);min-height:100vh
+background:#050505;
+color:var(--white);
+min-height:100vh
 }
 
 button,input{font-family:inherit}
@@ -27,245 +36,642 @@ button{border:0;cursor:pointer}
 /* AUTH */
 
 #authScreen{
-min-height:100vh;display:flex;align-items:center;justify-content:center;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
 padding:20px;
-background:radial-gradient(circle at 50% 0%,rgba(229,9,20,.18),transparent 38%),#050505
+background:
+radial-gradient(circle at 50% 0%,rgba(229,9,20,.18),transparent 38%),
+#050505
 }
 
 .auth-box{
-width:100%;max-width:430px;padding:25px;background:#101010;
-border:1px solid var(--line);border-radius:16px;
+width:100%;
+max-width:430px;
+padding:25px;
+background:#101010;
+border:1px solid var(--line);
+border-radius:16px;
 box-shadow:0 20px 60px #000a
 }
 
 .logo-box{
-width:82px;height:82px;margin:0 auto 14px;display:flex;
-align-items:center;justify-content:center;border-radius:12px;
-background:#080808;border:2px solid var(--red)
+width:82px;
+height:82px;
+margin:0 auto 14px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:12px;
+background:#080808;
+border:2px solid var(--red)
 }
 
 .logo-box div{text-align:center;line-height:.85}
 .logo-box .b{font-size:27px;font-weight:1000}
 .logo-box .r{font-size:17px;font-weight:1000;color:var(--red)}
 
-.logo{text-align:center;font-size:28px;font-weight:1000}
-.logo span,.top-logo span{color:var(--red)}
+.logo{
+text-align:center;
+font-size:28px;
+font-weight:1000
+}
+
+.logo span,
+.top-logo span{
+color:var(--red)
+}
 
 .logo-sub{
-text-align:center;color:#777;font-size:10px;margin:6px 0 23px;
-letter-spacing:2px;text-transform:uppercase
+text-align:center;
+color:#777;
+font-size:10px;
+margin:6px 0 23px;
+letter-spacing:2px;
+text-transform:uppercase
 }
 
 .auth-tabs{
-display:flex;gap:5px;padding:4px;background:#080808;
-border:1px solid #222;border-radius:10px;margin-bottom:21px
+display:flex;
+gap:5px;
+padding:4px;
+background:#080808;
+border:1px solid #222;
+border-radius:10px;
+margin-bottom:21px
 }
 
 .auth-tab{
-flex:1;padding:11px;border-radius:7px;background:transparent;
-color:#777;font-weight:800
+flex:1;
+padding:11px;
+border-radius:7px;
+background:transparent;
+color:#777;
+font-weight:800
 }
 
-.auth-tab.active{background:var(--red);color:#fff}
+.auth-tab.active{
+background:var(--red);
+color:#fff
+}
 
-.auth-title{font-size:22px;font-weight:900;margin-bottom:6px}
-.auth-desc{color:#858585;font-size:12px;line-height:1.5;margin-bottom:18px}
+.auth-title{
+font-size:22px;
+font-weight:900;
+margin-bottom:6px
+}
+
+.auth-desc{
+color:#858585;
+font-size:12px;
+line-height:1.5;
+margin-bottom:18px
+}
 
 .field{margin-bottom:13px}
+
 .field label{
-display:block;color:#aaa;font-size:10px;font-weight:bold;
+display:block;
+color:#aaa;
+font-size:10px;
+font-weight:bold;
 margin-bottom:7px
 }
 
 .field input{
-width:100%;padding:14px;color:#fff;background:#080808;
-border:1px solid #2a2a2a;border-radius:9px;outline:none
+width:100%;
+padding:14px;
+color:#fff;
+background:#080808;
+border:1px solid #2a2a2a;
+border-radius:9px;
+outline:none
 }
 
-.field input:focus{border-color:var(--red)}
+.field input:focus{
+border-color:var(--red)
+}
 
-.primary-btn,.secondary-btn{
-width:100%;color:#fff;border-radius:9px;font-weight:900
+.primary-btn,
+.secondary-btn{
+width:100%;
+color:#fff;
+border-radius:9px;
+font-weight:900
 }
 
 .primary-btn{
-padding:14px;background:linear-gradient(135deg,#c70711,#f01925)
+padding:14px;
+background:linear-gradient(135deg,#c70711,#f01925)
 }
 
 .secondary-btn{
-padding:13px;background:#202020;border:1px solid #303030;margin-top:9px
+padding:13px;
+background:#202020;
+border:1px solid #303030;
+margin-top:9px
 }
 
 .auth-message{
-min-height:20px;margin-top:12px;text-align:center;font-size:12px
+min-height:20px;
+margin-top:12px;
+text-align:center;
+font-size:12px
 }
 
 /* APP */
 
-#app{min-height:100vh;padding-bottom:76px}
+#app{
+min-height:100vh;
+padding-bottom:76px
+}
 
 .topbar{
-height:62px;position:sticky;top:0;z-index:50;
-display:flex;align-items:center;justify-content:space-between;
-padding:0 13px;background:#080808f5;border-bottom:1px solid #252525;
+height:62px;
+position:sticky;
+top:0;
+z-index:50;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 13px;
+background:#080808f5;
+border-bottom:1px solid #252525;
 backdrop-filter:blur(12px)
 }
 
-.top-logo{font-size:16px;font-weight:1000}
+.top-logo{
+font-size:16px;
+font-weight:1000
+}
 
 .server-status{
-display:flex;align-items:center;gap:6px;color:#888;font-size:10px
+display:flex;
+align-items:center;
+gap:6px;
+color:#888;
+font-size:10px
 }
 
 .online-dot{
-width:7px;height:7px;border-radius:50%;background:var(--green);
+width:7px;
+height:7px;
+border-radius:50%;
+background:var(--green);
 box-shadow:0 0 8px var(--green)
 }
 
-.money-box{display:flex;gap:5px}
+.money-box{
+display:flex;
+gap:5px
+}
 
 .money{
-padding:6px 8px;background:#151515;border:1px solid #292929;
-border-radius:7px;font-size:9px;font-weight:bold
+padding:6px 8px;
+background:#151515;
+border:1px solid #292929;
+border-radius:7px;
+font-size:9px;
+font-weight:bold
 }
 
-.cash{color:#53dd8a}.donate{color:var(--red2)}
+.cash{color:#53dd8a}
+.donate{color:var(--red2)}
 
 .page{
-display:none;max-width:1000px;margin:auto;padding:15px
+display:none;
+max-width:1000px;
+margin:auto;
+padding:15px
 }
 
-.page.active{display:block}
+.page.active{
+display:block
+}
 
-.page-title{font-size:25px;font-weight:1000}
-.page-subtitle{color:#777;font-size:11px;margin:4px 0 17px}
-.section-title{margin:21px 0 11px;font-size:16px;font-weight:900}
+.page-title{
+font-size:25px;
+font-weight:1000
+}
+
+.page-subtitle{
+color:#777;
+font-size:11px;
+margin:4px 0 17px
+}
+
+.section-title{
+margin:21px 0 11px;
+font-size:16px;
+font-weight:900
+}
 
 /* HOME */
 
 .hero{
-position:relative;overflow:hidden;padding:20px;
-background:linear-gradient(120deg,rgba(229,9,20,.16),transparent 55%),#111;
-border:1px solid var(--line);border-radius:14px
+position:relative;
+overflow:hidden;
+padding:20px;
+background:
+linear-gradient(120deg,rgba(229,9,20,.16),transparent 55%),
+#111;
+border:1px solid var(--line);
+border-radius:14px
 }
 
 .hero:after{
-content:"RP";position:absolute;right:-10px;bottom:-35px;
-color:#ffffff04;font-size:120px;font-weight:1000
+content:"RP";
+position:absolute;
+right:-10px;
+bottom:-35px;
+color:#ffffff04;
+font-size:120px;
+font-weight:1000
 }
 
 .hero-small{
-color:#777;font-size:10px;text-transform:uppercase;letter-spacing:1.3px
+color:#777;
+font-size:10px;
+text-transform:uppercase;
+letter-spacing:1.3px
 }
 
-.hero-name{position:relative;z-index:1;margin:6px 0 10px;font-size:27px;font-weight:1000}
-.hero-name span{color:var(--red)}
+.hero-name{
+position:relative;
+z-index:1;
+margin:6px 0 10px;
+font-size:27px;
+font-weight:1000
+}
+
+.hero-name span{
+color:var(--red)
+}
 
 .stats-grid{
-display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:9px;
+margin-top:12px
 }
 
 .stat-card{
-padding:14px;background:#111;border:1px solid #272727;border-radius:11px
+padding:14px;
+background:#111;
+border:1px solid #272727;
+border-radius:11px
 }
 
-.stat-label{color:#777;font-size:9px;margin-bottom:6px}
-.stat-value{font-size:17px;font-weight:900}
+.stat-label{
+color:#777;
+font-size:9px;
+margin-bottom:6px
+}
+
+.stat-value{
+font-size:17px;
+font-weight:900
+}
 
 .progress{
-height:5px;overflow:hidden;background:#292929;border-radius:20px;margin-top:9px
+height:5px;
+overflow:hidden;
+background:#292929;
+border-radius:20px;
+margin-top:9px
 }
 
 .progress div{
-width:0;height:100%;background:linear-gradient(90deg,#b90912,#ff2835)
+width:0;
+height:100%;
+background:linear-gradient(90deg,#b90912,#ff2835)
 }
 
 .quick-grid{
-display:grid;grid-template-columns:repeat(3,1fr);gap:8px
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:8px
 }
 
 .quick{
-padding:14px 6px;color:#fff;background:#111;
-border:1px solid #272727;border-radius:11px
+padding:14px 6px;
+color:#fff;
+background:#111;
+border:1px solid #272727;
+border-radius:11px
 }
 
-.quick-icon{font-size:22px;margin-bottom:6px}
-.quick-name{font-size:10px;font-weight:bold}
+.quick-icon{
+font-size:22px;
+margin-bottom:6px
+}
+
+.quick-name{
+font-size:10px;
+font-weight:bold
+}
 
 /* CARDS */
 
-.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-
-.card{
-padding:15px;background:#111;border:1px solid #292929;border-radius:12px
+.cards{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px
 }
 
-.card-title{font-size:15px;font-weight:900}
-.card-desc{color:#777;font-size:11px;line-height:1.45;margin:7px 0 12px}
+.card{
+padding:15px;
+background:#111;
+border:1px solid #292929;
+border-radius:12px
+}
+
+.card-title{
+font-size:15px;
+font-weight:900
+}
+
+.card-desc{
+color:#777;
+font-size:11px;
+line-height:1.45;
+margin:7px 0 12px
+}
 
 /* GARAGE */
 
 .car{
-margin-bottom:10px;overflow:hidden;background:#111;
-border:1px solid #292929;border-radius:13px
+margin-bottom:10px;
+overflow:hidden;
+background:#111;
+border:1px solid #292929;
+border-radius:13px
 }
 
 .car-image{
-height:125px;display:flex;align-items:center;justify-content:center;
-background:radial-gradient(circle,#353535,#161616 50%,#0b0b0b);
-font-size:65px
+height:180px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle,#353535,#161616 50%,#0b0b0b);
+overflow:hidden
 }
 
-.car-body{padding:14px}
-.car-name{font-size:17px;font-weight:900}
-.car-meta{color:#777;font-size:10px;margin-top:5px}
+.car-image img{
+width:100%;
+height:100%;
+object-fit:contain
+}
 
-.car-buttons{display:flex;gap:6px;margin-top:11px}
+.car-body{
+padding:14px
+}
+
+.car-name{
+font-size:17px;
+font-weight:900
+}
+
+.car-meta{
+color:#777;
+font-size:10px;
+margin-top:5px
+}
+
+.car-buttons{
+display:flex;
+gap:6px;
+margin-top:11px
+}
 
 .car-buttons button{
-flex:1;padding:9px;color:#fff;background:#202020;
-border-radius:7px;font-size:10px;font-weight:bold
+flex:1;
+padding:9px;
+color:#fff;
+background:#202020;
+border-radius:7px;
+font-size:10px;
+font-weight:bold
+}
+
+/* CAR DEALERSHIP */
+
+.cars-banner{
+padding:22px;
+margin-bottom:13px;
+background:
+radial-gradient(circle at 90% 10%,rgba(229,9,20,.2),transparent 45%),
+#111;
+border:1px solid #292929;
+border-radius:14px
+}
+
+.cars-banner-title{
+font-size:26px;
+font-weight:1000
+}
+
+.cars-banner-title span{
+color:var(--red)
+}
+
+.cars-banner-text{
+margin-top:6px;
+color:#777;
+font-size:11px;
+line-height:1.5
+}
+
+.cars-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px
+}
+
+.dealer-card{
+overflow:hidden;
+background:#111;
+border:1px solid #292929;
+border-radius:13px
+}
+
+.dealer-image{
+height:190px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle,#383838,#171717 52%,#090909)
+}
+
+.dealer-image img{
+width:100%;
+height:100%;
+object-fit:contain
+}
+
+.dealer-body{
+padding:14px
+}
+
+.dealer-name{
+font-size:17px;
+font-weight:1000
+}
+
+.dealer-desc{
+color:#777;
+font-size:10px;
+line-height:1.45;
+margin-top:5px;
+min-height:29px
+}
+
+.dealer-stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:6px;
+margin-top:10px
+}
+
+.dealer-stat{
+padding:7px;
+background:#181818;
+border-radius:7px
+}
+
+.dealer-stat-label{
+color:#666;
+font-size:8px
+}
+
+.dealer-stat-value{
+margin-top:3px;
+font-size:10px;
+font-weight:900
+}
+
+.dealer-price{
+margin:13px 0 9px;
+color:#55dc89;
+font-size:14px;
+font-weight:1000
+}
+
+.dealer-price span{
+color:#777;
+font-size:9px;
+font-weight:normal
+}
+
+.buy-car{
+width:100%;
+padding:11px;
+background:var(--red);
+color:#fff;
+border-radius:8px;
+font-size:10px;
+font-weight:1000
+}
+
+.buy-car.owned{
+background:#202020;
+color:#777;
+border:1px solid #303030
 }
 
 /* SHOP */
 
 .shop-grid{
-display:grid;grid-template-columns:repeat(2,1fr);gap:9px
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:9px
 }
 
 .item{
-text-align:center;padding:15px;background:#111;
-border:1px solid #292929;border-radius:12px
+text-align:center;
+padding:15px;
+background:#111;
+border:1px solid #292929;
+border-radius:12px
 }
 
-.item-icon{font-size:34px}
-.item-name{margin-top:7px;font-size:12px;font-weight:900}
-.item-price{color:#55dc89;font-size:11px;margin:7px 0}
+.item-icon{
+font-size:34px
+}
+
+.item-name{
+margin-top:7px;
+font-size:12px;
+font-weight:900
+}
+
+.item-price{
+color:#55dc89;
+font-size:11px;
+margin:7px 0
+}
 
 .buy{
-width:100%;padding:9px;background:var(--red);
-color:#fff;border-radius:7px;font-size:10px;font-weight:900
+width:100%;
+padding:9px;
+background:var(--red);
+color:#fff;
+border-radius:7px;
+font-size:10px;
+font-weight:900
 }
 
 /* MAP */
 
 .map{
-height:430px;position:relative;overflow:hidden;border:1px solid #292929;
+height:430px;
+position:relative;
+overflow:hidden;
+border:1px solid #292929;
 border-radius:14px;
 background:
 linear-gradient(30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),
-linear-gradient(-30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),#111;
+linear-gradient(-30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),
+#111;
 background-size:90px 90px
 }
 
-.map-road{position:absolute;background:#363636;border:2px solid #484848}
-.road1{width:130%;height:34px;left:-10%;top:43%;transform:rotate(-12deg)}
-.road2{width:34px;height:130%;left:47%;top:-10%;transform:rotate(7deg)}
+.map-road{
+position:absolute;
+background:#363636;
+border:2px solid #484848
+}
+
+.road1{
+width:130%;
+height:34px;
+left:-10%;
+top:43%;
+transform:rotate(-12deg)
+}
+
+.road2{
+width:34px;
+height:130%;
+left:47%;
+top:-10%;
+transform:rotate(7deg)
+}
 
 .map-point{
-position:absolute;width:42px;height:42px;display:flex;
-align-items:center;justify-content:center;border-radius:50%;
-background:var(--red);border:3px solid #080808;font-size:18px
+position:absolute;
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:var(--red);
+border:3px solid #080808;
+font-size:18px
 }
 
 .point1{left:18%;top:23%}
@@ -277,166 +683,381 @@ background:var(--red);border:3px solid #080808;font-size:18px
 /* DONATE */
 
 .donate-banner{
-padding:24px;text-align:center;
-background:radial-gradient(circle,rgba(229,9,20,.18),transparent 65%),#111;
-border:1px solid #432020;border-radius:14px
+padding:24px;
+text-align:center;
+background:
+radial-gradient(circle,rgba(229,9,20,.18),transparent 65%),
+#111;
+border:1px solid #432020;
+border-radius:14px
 }
 
-.donate-title{font-size:29px;font-weight:1000}
-.donate-title span{color:var(--red)}
-.donate-sub{color:#777;font-size:11px;margin-top:5px}
+.donate-title{
+font-size:29px;
+font-weight:1000
+}
+
+.donate-title span{
+color:var(--red)
+}
+
+.donate-sub{
+color:#777;
+font-size:11px;
+margin-top:5px
+}
 
 .donate-grid{
-display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:9px;
+margin-top:12px
 }
 
 .donate-card{
-padding:17px;text-align:center;background:#111;
-border:1px solid #292929;border-radius:12px
+padding:17px;
+text-align:center;
+background:#111;
+border:1px solid #292929;
+border-radius:12px
 }
 
-.donate-card strong{display:block;color:var(--red);font-size:20px}
-.donate-card span{display:block;color:#777;font-size:10px;margin:5px 0 10px}
+.donate-card strong{
+display:block;
+color:var(--red);
+font-size:20px
+}
+
+.donate-card span{
+display:block;
+color:#777;
+font-size:10px;
+margin:5px 0 10px
+}
 
 .donate-card button{
-width:100%;padding:9px;background:var(--red);
-color:#fff;border-radius:7px;font-size:10px;font-weight:900
+width:100%;
+padding:9px;
+background:var(--red);
+color:#fff;
+border-radius:7px;
+font-size:10px;
+font-weight:900
 }
 
 /* CHAT */
 
-.chat-box{overflow:hidden;background:#0e0e0e;border:1px solid #292929;border-radius:13px}
+.chat-box{
+overflow:hidden;
+background:#0e0e0e;
+border:1px solid #292929;
+border-radius:13px
+}
 
-.chat-messages{height:430px;overflow-y:auto;padding:12px}
-.message{margin-bottom:10px}
-.message-name{color:var(--red);font-size:10px;font-weight:900}
+.chat-messages{
+height:430px;
+overflow-y:auto;
+padding:12px
+}
+
+.message{
+margin-bottom:10px
+}
+
+.message-name{
+color:var(--red);
+font-size:10px;
+font-weight:900
+}
 
 .message-text{
-display:inline-block;margin-top:3px;padding:8px 10px;
-background:#1a1a1a;border-radius:8px;font-size:11px
+display:inline-block;
+margin-top:3px;
+padding:8px 10px;
+background:#1a1a1a;
+border-radius:8px;
+font-size:11px
 }
 
 .chat-input{
-display:flex;gap:7px;padding:9px;border-top:1px solid #292929
+display:flex;
+gap:7px;
+padding:9px;
+border-top:1px solid #292929
 }
 
 .chat-input input{
-flex:1;min-width:0;padding:11px;color:#fff;background:#181818;
-border:1px solid #292929;border-radius:8px;outline:none
+flex:1;
+min-width:0;
+padding:11px;
+color:#fff;
+background:#181818;
+border:1px solid #292929;
+border-radius:8px;
+outline:none
 }
 
 .chat-input button{
-width:48px;background:var(--red);color:#fff;border-radius:8px
+width:48px;
+background:var(--red);
+color:#fff;
+border-radius:8px
 }
 
 /* ONLINE */
 
 .online-card{
-display:flex;align-items:center;gap:11px;padding:12px;margin-bottom:7px;
-background:#111;border:1px solid #292929;border-radius:11px
+display:flex;
+align-items:center;
+gap:11px;
+padding:12px;
+margin-bottom:7px;
+background:#111;
+border:1px solid #292929;
+border-radius:11px
 }
 
 .avatar{
-width:42px;height:42px;display:flex;align-items:center;
-justify-content:center;background:#202020;border-radius:50%;
-border:1px solid #3a3a3a;font-weight:900
+width:42px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#202020;
+border-radius:50%;
+border:1px solid #3a3a3a;
+font-weight:900
 }
 
-.online-info{flex:1}
-.online-name{font-size:12px;font-weight:900}
-.online-status{color:var(--green);font-size:9px;margin-top:3px}
+.online-info{
+flex:1
+}
+
+.online-name{
+font-size:12px;
+font-weight:900
+}
+
+.online-status{
+color:var(--green);
+font-size:9px;
+margin-top:3px
+}
 
 .level{
-padding:5px 7px;background:#202020;color:#bbb;
-border-radius:6px;font-size:9px
+padding:5px 7px;
+background:#202020;
+color:#bbb;
+border-radius:6px;
+font-size:9px
 }
 
 /* PROFILE */
 
 .profile-head{
-padding:20px;text-align:center;background:#111;
-border:1px solid #292929;border-radius:14px
+padding:20px;
+text-align:center;
+background:#111;
+border:1px solid #292929;
+border-radius:14px
 }
 
 .big-avatar{
-width:82px;height:82px;display:flex;align-items:center;
-justify-content:center;margin:auto;border-radius:50%;
-background:#202020;border:2px solid var(--red);
-font-size:30px;font-weight:1000
+width:82px;
+height:82px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+border-radius:50%;
+background:#202020;
+border:2px solid var(--red);
+font-size:30px;
+font-weight:1000
 }
 
-.profile-name{margin-top:10px;font-size:21px;font-weight:1000}
-.profile-id{color:#777;font-size:10px;margin-top:4px}
+.profile-name{
+margin-top:10px;
+font-size:21px;
+font-weight:1000
+}
+
+.profile-id{
+color:#777;
+font-size:10px;
+margin-top:4px
+}
 
 .profile-row{
-display:flex;justify-content:space-between;padding:12px 0;
-border-bottom:1px solid #292929;font-size:12px
+display:flex;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid #292929;
+font-size:12px
 }
 
-.profile-row:last-child{border-bottom:0}
-.profile-row span:last-child{color:#ccc}
+.profile-row:last-child{
+border-bottom:0
+}
+
+.profile-row span:last-child{
+color:#ccc
+}
 
 /* NAV */
 
 .bottom-nav{
-position:fixed;bottom:0;left:0;right:0;z-index:100;height:68px;
-display:flex;justify-content:space-around;background:#080808fa;
-border-top:1px solid #292929;backdrop-filter:blur(15px)
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+z-index:100;
+height:68px;
+display:flex;
+justify-content:space-around;
+background:#080808fa;
+border-top:1px solid #292929;
+backdrop-filter:blur(15px)
 }
 
 .nav-btn{
-flex:1;max-width:100px;display:flex;flex-direction:column;
-align-items:center;justify-content:center;gap:4px;
-background:transparent;color:#666;font-size:9px;font-weight:bold
+flex:1;
+max-width:100px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:4px;
+background:transparent;
+color:#666;
+font-size:9px;
+font-weight:bold
 }
 
-.nav-icon{font-size:19px}
-.nav-btn.active{color:var(--red)}
+.nav-icon{
+font-size:19px
+}
+
+.nav-btn.active{
+color:var(--red)
+}
 
 /* MODAL */
 
 .modal{
-position:fixed;inset:0;z-index:300;display:flex;
-align-items:flex-end;justify-content:center;padding:10px;
+position:fixed;
+inset:0;
+z-index:300;
+display:flex;
+align-items:flex-end;
+justify-content:center;
+padding:10px;
 background:#000c
 }
 
 .modal-box{
-width:100%;max-width:500px;max-height:85vh;overflow:auto;
-padding:20px;background:#121212;border:1px solid #363636;
+width:100%;
+max-width:500px;
+max-height:85vh;
+overflow:auto;
+padding:20px;
+background:#121212;
+border:1px solid #363636;
 border-radius:17px 17px 9px 9px
 }
 
 .close{
-float:right;width:30px;height:30px;color:#fff;
-background:#292929;border-radius:50%
+float:right;
+width:30px;
+height:30px;
+color:#fff;
+background:#292929;
+border-radius:50%
 }
 
-.modal-title{font-size:19px;font-weight:900;margin-bottom:8px}
+.modal-title{
+font-size:19px;
+font-weight:900;
+margin-bottom:8px
+}
 
 .modal-text{
-color:#888;font-size:11px;line-height:1.5;
-white-space:pre-line;margin-bottom:15px
+color:#888;
+font-size:11px;
+line-height:1.5;
+white-space:pre-line;
+margin-bottom:15px
 }
 
 .toast{
-position:fixed;left:50%;bottom:80px;z-index:500;
+position:fixed;
+left:50%;
+bottom:80px;
+z-index:500;
 transform:translateX(-50%) translateY(20px);
-padding:11px 15px;color:#fff;background:#191919;
-border:1px solid #383838;border-radius:9px;font-size:11px;
-opacity:0;pointer-events:none;transition:.25s
+padding:11px 15px;
+color:#fff;
+background:#191919;
+border:1px solid #383838;
+border-radius:9px;
+font-size:11px;
+opacity:0;
+pointer-events:none;
+transition:.25s
 }
 
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0)
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+.cars-grid{
+grid-template-columns:1fr
+}
+
+.dealer-image{
+height:210px
+}
+
+.car-image{
+height:190px
+}
+
+}
 
 @media(min-width:700px){
+
 .bottom-nav{
-left:50%;right:auto;width:650px;transform:translateX(-50%);
-border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
+left:50%;
+right:auto;
+width:650px;
+transform:translateX(-50%);
+border:1px solid #292929;
+border-bottom:0;
+border-radius:13px 13px 0 0
 }
-.stats-grid{grid-template-columns:repeat(4,1fr)}
-.quick-grid{grid-template-columns:repeat(4,1fr)}
-.shop-grid,.donate-grid{grid-template-columns:repeat(4,1fr)}
+
+.stats-grid{
+grid-template-columns:repeat(4,1fr)
+}
+
+.quick-grid{
+grid-template-columns:repeat(4,1fr)
+}
+
+.shop-grid,
+.donate-grid{
+grid-template-columns:repeat(4,1fr)
+}
+
+.cars-grid{
+grid-template-columns:repeat(3,1fr)
+}
+
 }
 </style>
 </head>
@@ -460,8 +1081,13 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 <div class="logo-sub">Role Play • Online World</div>
 
 <div class="auth-tabs">
-<button class="auth-tab active" id="loginTab" onclick="switchAuth('login')">Вход</button>
-<button class="auth-tab" id="registerTab" onclick="switchAuth('register')">Регистрация</button>
+<button class="auth-tab active" id="loginTab" onclick="switchAuth('login')">
+Вход
+</button>
+
+<button class="auth-tab" id="registerTab" onclick="switchAuth('register')">
+Регистрация
+</button>
 </div>
 
 <div id="loginForm">
@@ -474,15 +1100,24 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 <div class="field">
 <label>ЛОГИН</label>
-<input id="loginUsername" autocomplete="username" placeholder="Введите логин">
+<input
+id="loginUsername"
+autocomplete="username"
+placeholder="Введите логин">
 </div>
 
 <div class="field">
 <label>ПАРОЛЬ</label>
-<input id="loginPassword" type="password" autocomplete="current-password" placeholder="Введите пароль">
+<input
+id="loginPassword"
+type="password"
+autocomplete="current-password"
+placeholder="Введите пароль">
 </div>
 
-<button class="primary-btn" onclick="loginAccount()">ВОЙТИ В ИГРУ</button>
+<button class="primary-btn" onclick="loginAccount()">
+ВОЙТИ В ИГРУ
+</button>
 
 <div class="auth-message" id="loginMessage"></div>
 
@@ -498,20 +1133,33 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 <div class="field">
 <label>ИГРОВОЙ ЛОГИН</label>
-<input id="regUsername" autocomplete="username" placeholder="Игровой ник">
+<input
+id="regUsername"
+autocomplete="username"
+placeholder="Игровой ник">
 </div>
 
 <div class="field">
 <label>ПОЧТА</label>
-<input id="regEmail" type="email" autocomplete="email" placeholder="example@mail.com">
+<input
+id="regEmail"
+type="email"
+autocomplete="email"
+placeholder="example@mail.com">
 </div>
 
 <div class="field">
 <label>ПАРОЛЬ</label>
-<input id="regPassword" type="password" autocomplete="new-password" placeholder="Минимум 6 символов">
+<input
+id="regPassword"
+type="password"
+autocomplete="new-password"
+placeholder="Минимум 6 символов">
 </div>
 
-<button class="primary-btn" onclick="registerAccount()">СОЗДАТЬ АККАУНТ</button>
+<button class="primary-btn" onclick="registerAccount()">
+СОЗДАТЬ АККАУНТ
+</button>
 
 <div class="auth-message" id="registerMessage"></div>
 
@@ -527,7 +1175,9 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 <header class="topbar">
 
-<div class="top-logo">BLACK <span>RUSSIA</span></div>
+<div class="top-logo">
+BLACK <span>RUSSIA</span>
+</div>
 
 <div class="server-status">
 <div class="online-dot"></div>
@@ -548,13 +1198,17 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 <div class="hero">
 
-<div class="hero-small">ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР</div>
+<div class="hero-small">
+ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР
+</div>
 
 <div class="hero-name">
 <span id="homeName">Player</span>
 </div>
 
-<div class="hero-small">ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ</div>
+<div class="hero-small">
+ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ
+</div>
 
 </div>
 
@@ -563,7 +1217,9 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 <div class="stat-card">
 <div class="stat-label">УРОВЕНЬ</div>
 <div class="stat-value" id="homeLevel">1</div>
-<div class="progress"><div id="homeXpBar"></div></div>
+<div class="progress">
+<div id="homeXpBar"></div>
+</div>
 </div>
 
 <div class="stat-card">
@@ -583,7 +1239,9 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 </div>
 
-<div class="section-title">Быстрый доступ</div>
+<div class="section-title">
+Быстрый доступ
+</div>
 
 <div class="quick-grid">
 
@@ -597,8 +1255,7 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 <div class="quick-name">Гараж</div>
 </button>
 
-<!-- АВТОСАЛОН -->
-<button class="quick" onclick="location.href='cars.html'">
+<button class="quick" onclick="openPage('cars')">
 <div class="quick-icon">🏎️</div>
 <div class="quick-name">Автосалон</div>
 </button>
@@ -630,11 +1287,15 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 </div>
 
-<div class="section-title">Твой прогресс</div>
+<div class="section-title">
+Твой прогресс
+</div>
 
 <div class="card">
 
-<div class="card-title">Следующий уровень</div>
+<div class="card-title">
+Следующий уровень
+</div>
 
 <div class="card-desc">
 Работай, выполняй задания и участвуй в жизни города.
@@ -657,10 +1318,45 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 <main id="garagePage" class="page">
 
-<div class="page-title">Гараж</div>
-<div class="page-subtitle">Транспорт твоего персонажа.</div>
+<div class="page-title">
+Гараж
+</div>
+
+<div class="page-subtitle">
+Транспорт твоего персонажа.
+</div>
 
 <div id="garageContainer"></div>
+
+</main>
+
+
+<!-- CAR DEALERSHIP -->
+
+<main id="carsPage" class="page">
+
+<div class="page-title">
+Автосалон
+</div>
+
+<div class="page-subtitle">
+Покупай транспорт для своего персонажа.
+</div>
+
+<div class="cars-banner">
+
+<div class="cars-banner-title">
+BLACK <span>MOTORS</span>
+</div>
+
+<div class="cars-banner-text">
+Выбери автомобиль, который станет частью твоей истории.
+После покупки машина автоматически появится в гараже.
+</div>
+
+</div>
+
+<div class="cars-grid" id="carsContainer"></div>
 
 </main>
 
@@ -669,8 +1365,13 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 <main id="shopPage" class="page">
 
-<div class="page-title">Магазин</div>
-<div class="page-subtitle">Предметы и полезные вещи.</div>
+<div class="page-title">
+Магазин
+</div>
+
+<div class="page-subtitle">
+Предметы и полезные вещи.
+</div>
 
 <div class="shop-grid" id="shopContainer"></div>
 
@@ -681,22 +1382,48 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 <main id="mapPage" class="page">
 
-<div class="page-title">Карта города</div>
-<div class="page-subtitle">Основные места игрового мира.</div>
+<div class="page-title">
+Карта города
+</div>
+
+<div class="page-subtitle">
+Основные места игрового мира.
+</div>
 
 <div class="map">
 
 <div class="map-road road1"></div>
 <div class="map-road road2"></div>
 
-<button class="map-point point1" onclick="toast('🏦 Банк')">🏦</button>
+<button
+class="map-point point1"
+onclick="toast('🏦 Банк')">
+🏦
+</button>
 
-<!-- АВТОСАЛОН -->
-<button class="map-point point2" onclick="location.href='cars.html'">🚗</button>
+<button
+class="map-point point2"
+onclick="openPage('cars')">
+🚗
+</button>
 
-<button class="map-point point3" onclick="toast('💼 Центр занятости')">💼</button>
-<button class="map-point point4" onclick="toast('🎁 Игровой центр')">🎁</button>
-<button class="map-point point5" onclick="toast('🏙️ Центральная площадь')">🏙️</button>
+<button
+class="map-point point3"
+onclick="toast('💼 Центр занятости')">
+💼
+</button>
+
+<button
+class="map-point point4"
+onclick="toast('🎁 Игровой центр')">
+🎁
+</button>
+
+<button
+class="map-point point5"
+onclick="toast('🏙️ Центральная площадь')">
+🏙️
+</button>
 
 </div>
 
@@ -707,8 +1434,13 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 
 <main id="donatePage" class="page">
 
-<div class="page-title">Донат</div>
-<div class="page-subtitle">Премиальная валюта сервера.</div>
+<div class="page-title">
+Донат
+</div>
+
+<div class="page-subtitle">
+Премиальная валюта сервера.
+</div>
 
 <div class="donate-banner">
 
@@ -758,8 +1490,13 @@ BLACK <span>DONATE</span>
 
 <main id="chatPage" class="page">
 
-<div class="page-title">Общий чат</div>
-<div class="page-subtitle">Сообщения игроков сервера.</div>
+<div class="page-title">
+Общий чат
+</div>
+
+<div class="page-subtitle">
+Сообщения игроков сервера.
+</div>
 
 <div class="chat-box">
 
@@ -786,8 +1523,13 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 <main id="onlinePage" class="page">
 
-<div class="page-title">Игроки онлайн</div>
-<div class="page-subtitle">Игроки, которые сейчас находятся на сервере.</div>
+<div class="page-title">
+Игроки онлайн
+</div>
+
+<div class="page-subtitle">
+Игроки, которые сейчас находятся на сервере.
+</div>
 
 <div id="onlineContainer"></div>
 
@@ -798,16 +1540,27 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 <main id="profilePage" class="page">
 
-<div class="page-title">Профиль</div>
-<div class="page-subtitle">Информация о персонаже.</div>
+<div class="page-title">
+Профиль
+</div>
+
+<div class="page-subtitle">
+Информация о персонаже.
+</div>
 
 <div class="profile-head">
 
-<div class="big-avatar" id="profileAvatar">P</div>
+<div class="big-avatar" id="profileAvatar">
+P
+</div>
 
-<div class="profile-name" id="profileName">Player</div>
+<div class="profile-name" id="profileName">
+Player
+</div>
 
-<div class="profile-id" id="profileId">ID</div>
+<div class="profile-id" id="profileId">
+ID
+</div>
 
 <div class="profile-row" style="margin-top:15px">
 <span>Уровень</span>
@@ -857,29 +1610,53 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 <nav class="bottom-nav">
 
-<button class="nav-btn active" data-page="home" onclick="openPage('home')">
+<button
+class="nav-btn active"
+data-page="home"
+onclick="openPage('home')">
+
 <div class="nav-icon">🏠</div>
 Главная
+
 </button>
 
-<button class="nav-btn" onclick="location.href='jobs.html'">
+<button
+class="nav-btn"
+onclick="location.href='jobs.html'">
+
 <div class="nav-icon">💼</div>
 Работа
+
 </button>
 
-<button class="nav-btn" data-page="garage" onclick="openPage('garage')">
+<button
+class="nav-btn"
+data-page="garage"
+onclick="openPage('garage')">
+
 <div class="nav-icon">🚗</div>
 Гараж
+
 </button>
 
-<button class="nav-btn" data-page="chat" onclick="openPage('chat')">
-<div class="nav-icon">💬</div>
-Чат
+<button
+class="nav-btn"
+data-page="cars"
+onclick="openPage('cars')">
+
+<div class="nav-icon">🏎️</div>
+Автосалон
+
 </button>
 
-<button class="nav-btn" data-page="profile" onclick="openPage('profile')">
+<button
+class="nav-btn"
+data-page="profile"
+onclick="openPage('profile')">
+
 <div class="nav-icon">👤</div>
 Профиль
+
 </button>
 
 </nav>
@@ -889,23 +1666,32 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 <!-- MODAL -->
 
-<div id="modal" class="modal hidden" onclick="if(event.target===this)closeModal()">
+<div
+id="modal"
+class="modal hidden"
+onclick="if(event.target===this)closeModal()">
 
 <div class="modal-box">
 
 <button class="close" onclick="closeModal()">×</button>
 
-<div class="modal-title" id="modalTitle">Информация</div>
+<div class="modal-title" id="modalTitle">
+Информация
+</div>
 
 <div class="modal-text" id="modalText"></div>
 
-<button class="primary-btn" onclick="closeModal()">ПОНЯТНО</button>
+<button class="primary-btn" onclick="closeModal()">
+ПОНЯТНО
+</button>
 
 </div>
 
 </div>
 
-<div class="toast" id="toast">Готово</div>
+<div class="toast" id="toast">
+Готово
+</div>
 
 
 <script>
@@ -913,6 +1699,7 @@ onkeydown="if(event.key==='Enter')sendChat()">
 /* SUPABASE */
 
 const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
+
 const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
 let currentUser=null;
@@ -923,7 +1710,10 @@ let toastTimer=null;
 /* FETCH */
 
 async function supabaseFetch(path,options={}){
-const r=await fetch(SUPABASE_URL+path,{
+
+const r=await fetch(
+SUPABASE_URL+path,
+{
 ...options,
 headers:{
 apikey:SUPABASE_KEY,
@@ -931,15 +1721,25 @@ Authorization:"Bearer "+SUPABASE_KEY,
 "Content-Type":"application/json",
 ...(options.headers||{})
 }
-});
+}
+);
 
 const t=await r.text();
+
 let d=null;
 
-try{d=t?JSON.parse(t):null}catch(e){d=t}
+try{
+d=t?JSON.parse(t):null
+}catch(e){
+d=t
+}
 
 if(!r.ok)
-throw new Error(typeof d==="string"?d:JSON.stringify(d));
+throw new Error(
+typeof d==="string"
+?d
+:JSON.stringify(d)
+);
 
 return d;
 }
@@ -949,47 +1749,67 @@ return d;
 
 async function registerAccount(){
 
-const username=document.getElementById("regUsername").value.trim();
-const email=document.getElementById("regEmail").value.trim();
-const password=document.getElementById("regPassword").value;
-const message=document.getElementById("registerMessage");
+const username=
+document.getElementById("regUsername").value.trim();
+
+const email=
+document.getElementById("regEmail").value.trim();
+
+const password=
+document.getElementById("regPassword").value;
+
+const message=
+document.getElementById("registerMessage");
 
 message.style.color="#ff4b55";
 message.textContent="Создаём аккаунт...";
 
 if(username.length<3)
-return message.textContent="Логин минимум 3 символа.";
+return message.textContent=
+"Логин минимум 3 символа.";
 
 if(!/^[a-zA-Z0-9_]+$/.test(username))
-return message.textContent="Только латиница, цифры и _.";
+return message.textContent=
+"Только латиница, цифры и _.";
 
 if(!email.includes("@"))
-return message.textContent="Введите настоящую почту.";
+return message.textContent=
+"Введите настоящую почту.";
 
 if(password.length<6)
-return message.textContent="Пароль минимум 6 символов.";
+return message.textContent=
+"Пароль минимум 6 символов.";
 
 try{
 
 const e=await supabaseFetch(
-"/rest/v1/profiles?select=id&username=ilike."+encodeURIComponent(username)+"&limit=1"
+"/rest/v1/profiles?select=id&username=ilike."+
+encodeURIComponent(username)+
+"&limit=1"
 );
 
 if(e?.length)
-return message.textContent="Такой логин уже занят.";
+return message.textContent=
+"Такой логин уже занят.";
 
-const r=await supabaseFetch("/auth/v1/signup",{
+const r=await supabaseFetch(
+"/auth/v1/signup",
+{
 method:"POST",
 body:JSON.stringify({
 email,
 password,
 data:{username}
 })
-});
+}
+);
 
 if(r?.access_token){
 
-saveSession(r.access_token,r.refresh_token);
+saveSession(
+r.access_token,
+r.refresh_token
+);
 
 message.style.color="var(--green)";
 message.textContent="Аккаунт создан!";
@@ -999,12 +1819,15 @@ return loadSession();
 }
 
 message.style.color="#ffc928";
-message.textContent="Аккаунт создан. Проверь почту.";
+message.textContent=
+"Аккаунт создан. Проверь почту.";
 
 }catch(e){
 
 console.error(e);
-message.textContent="Ошибка: "+cleanError(e.message);
+
+message.textContent=
+"Ошибка: "+cleanError(e.message);
 
 }
 
@@ -1015,39 +1838,62 @@ message.textContent="Ошибка: "+cleanError(e.message);
 
 async function loginAccount(){
 
-const username=document.getElementById("loginUsername").value.trim();
-const password=document.getElementById("loginPassword").value;
-const message=document.getElementById("loginMessage");
+const username=
+document.getElementById("loginUsername").value.trim();
+
+const password=
+document.getElementById("loginPassword").value;
+
+const message=
+document.getElementById("loginMessage");
 
 if(!username||!password)
-return message.textContent="Введите логин и пароль.";
+return message.textContent=
+"Введите логин и пароль.";
 
-message.textContent="Выполняется вход...";
+message.textContent=
+"Выполняется вход...";
 
 try{
 
-const r=await supabaseFetch("/rest/v1/rpc/get_login_email",{
+const r=await supabaseFetch(
+"/rest/v1/rpc/get_login_email",
+{
 method:"POST",
-body:JSON.stringify({p_username:username})
-});
+body:JSON.stringify({
+p_username:username
+})
+}
+);
 
 if(!r)
-return message.textContent="Аккаунт не найден.";
+return message.textContent=
+"Аккаунт не найден.";
 
-const email=typeof r==="string"?r:r.email;
+const email=
+typeof r==="string"
+?r
+:r.email;
 
 const a=await supabaseFetch(
 "/auth/v1/token?grant_type=password",
 {
 method:"POST",
-body:JSON.stringify({email,password})
+body:JSON.stringify({
+email,
+password
+})
 }
 );
 
 if(!a.access_token)
-return message.textContent="Не удалось выполнить вход.";
+return message.textContent=
+"Не удалось выполнить вход.";
 
-saveSession(a.access_token,a.refresh_token);
+saveSession(
+a.access_token,
+a.refresh_token
+);
 
 message.style.color="var(--green)";
 message.textContent="Вход выполнен.";
@@ -1057,7 +1903,9 @@ await loadSession();
 }catch(e){
 
 console.error(e);
-message.textContent="Ошибка: "+cleanError(e.message);
+
+message.textContent=
+"Ошибка: "+cleanError(e.message);
 
 }
 
@@ -1067,13 +1915,29 @@ message.textContent="Ошибка: "+cleanError(e.message);
 /* SESSION */
 
 function saveSession(a,r){
-localStorage.setItem("brp_access_token",a||"");
-localStorage.setItem("brp_refresh_token",r||"");
+
+localStorage.setItem(
+"brp_access_token",
+a||""
+);
+
+localStorage.setItem(
+"brp_refresh_token",
+r||""
+);
+
 }
 
 function clearSession(){
-localStorage.removeItem("brp_access_token");
-localStorage.removeItem("brp_refresh_token");
+
+localStorage.removeItem(
+"brp_access_token"
+);
+
+localStorage.removeItem(
+"brp_refresh_token"
+);
+
 }
 
 
@@ -1081,27 +1945,35 @@ localStorage.removeItem("brp_refresh_token");
 
 async function loadSession(){
 
-const token=localStorage.getItem("brp_access_token");
+const token=
+localStorage.getItem("brp_access_token");
 
 if(!token)
 return showAuth();
 
 try{
 
-currentAuthUser=await supabaseFetch("/auth/v1/user",{
+currentAuthUser=
+await supabaseFetch(
+"/auth/v1/user",
+{
 headers:{
 apikey:SUPABASE_KEY,
 Authorization:"Bearer "+token
 }
-});
+}
+);
 
 await loadProfile();
+
 showApp();
 
 }catch(e){
 
 console.error(e);
+
 clearSession();
+
 showAuth();
 
 }
@@ -1113,10 +1985,14 @@ showAuth();
 
 async function loadProfile(){
 
-const token=localStorage.getItem("brp_access_token");
+const token=
+localStorage.getItem("brp_access_token");
 
-const rows=await supabaseFetch(
-"/rest/v1/profiles?id=eq."+encodeURIComponent(currentAuthUser.id)+"&select=*",
+const rows=
+await supabaseFetch(
+"/rest/v1/profiles?id=eq."+
+encodeURIComponent(currentAuthUser.id)+
+"&select=*",
 {
 headers:{
 apikey:SUPABASE_KEY,
@@ -1126,9 +2002,12 @@ Authorization:"Bearer "+token
 );
 
 if(!rows?.length)
-throw new Error("Профиль игрока не найден.");
+throw new Error(
+"Профиль игрока не найден."
+);
 
 currentUser=rows[0];
+
 renderAll();
 
 }
@@ -1137,23 +2016,52 @@ renderAll();
 /* AUTH UI */
 
 function showAuth(){
-document.getElementById("authScreen").classList.remove("hidden");
-document.getElementById("app").classList.add("hidden");
+
+document
+.getElementById("authScreen")
+.classList.remove("hidden");
+
+document
+.getElementById("app")
+.classList.add("hidden");
+
 }
 
 function showApp(){
-document.getElementById("authScreen").classList.add("hidden");
-document.getElementById("app").classList.remove("hidden");
+
+document
+.getElementById("authScreen")
+.classList.add("hidden");
+
+document
+.getElementById("app")
+.classList.remove("hidden");
+
 }
 
 function switchAuth(type){
 
 const login=type==="login";
 
-document.getElementById("loginForm").classList.toggle("hidden",!login);
-document.getElementById("registerForm").classList.toggle("hidden",login);
-document.getElementById("loginTab").classList.toggle("active",login);
-document.getElementById("registerTab").classList.toggle("active",!login);
+document
+.getElementById("loginForm")
+.classList
+.toggle("hidden",!login);
+
+document
+.getElementById("registerForm")
+.classList
+.toggle("hidden",login);
+
+document
+.getElementById("loginTab")
+.classList
+.toggle("active",login);
+
+document
+.getElementById("registerTab")
+.classList
+.toggle("active",!login);
 
 }
 
@@ -1162,13 +2070,18 @@ document.getElementById("registerTab").classList.toggle("active",!login);
 
 function renderAll(){
 
-if(!currentUser)return;
+if(!currentUser)
+return;
 
 const p=currentUser;
 
 const set=(id,v)=>{
+
 const e=document.getElementById(id);
-if(e)e.textContent=v;
+
+if(e)
+e.textContent=v;
+
 };
 
 set("homeName",p.username);
@@ -1177,18 +2090,41 @@ set("homeXP",p.xp+" XP");
 set("homeCash",money(p.cash));
 set("homeBank",money(p.bank));
 
-set("topCash","₽ "+number(p.cash));
-set("topDonate","♦ "+number(p.donate));
+set(
+"topCash",
+"₽ "+number(p.cash)
+);
+
+set(
+"topDonate",
+"♦ "+number(p.donate)
+);
 
 set("profileName",p.username);
-set("profileAvatar",p.username.charAt(0).toUpperCase());
-set("profileId","ID: "+p.id);
+
+set(
+"profileAvatar",
+p.username.charAt(0).toUpperCase()
+);
+
+set(
+"profileId",
+"ID: "+p.id
+);
+
 set("profileLevel",p.level);
 set("profileXP",p.xp+" XP");
 set("profileCash",money(p.cash));
 set("profileBank",money(p.bank));
-set("profileDonate","♦ "+number(p.donate));
-set("profileJob",p.job||"Безработный");
+set(
+"profileDonate",
+"♦ "+number(p.donate)
+);
+
+set(
+"profileJob",
+p.job||"Безработный"
+);
 
 set(
 "profileDate",
@@ -1197,17 +2133,37 @@ p.created_at
 :"—"
 );
 
-set("donateBalance",number(p.donate));
+set(
+"donateBalance",
+number(p.donate)
+);
 
-const need=xpForLevel(Number(p.level));
-const percent=Math.min(100,Number(p.xp)/need*100);
+const need=
+xpForLevel(Number(p.level));
 
-document.getElementById("homeXpBar").style.width=percent+"%";
-document.getElementById("bigXpBar").style.width=percent+"%";
+const percent=
+Math.min(
+100,
+Number(p.xp)/need*100
+);
 
-set("xpText",p.xp+" / "+need+" XP");
+document.getElementById(
+"homeXpBar"
+).style.width=
+percent+"%";
+
+document.getElementById(
+"bigXpBar"
+).style.width=
+percent+"%";
+
+set(
+"xpText",
+p.xp+" / "+need+" XP"
+);
 
 renderGarage();
+renderCars();
 renderShop();
 
 }
@@ -1215,53 +2171,433 @@ renderShop();
 
 /* HELPERS */
 
-const number=v=>Number(v||0).toLocaleString("ru-RU");
-const money=v=>"₽ "+number(v);
-const xpForLevel=l=>100+(l-1)*75;
+const number=
+v=>Number(v||0).toLocaleString("ru-RU");
+
+const money=
+v=>"₽ "+number(v);
+
+const xpForLevel=
+l=>100+(l-1)*75;
+
+
+/* ================================= */
+/* CARS */
+/* ================================= */
+
+/*
+КАТАЛОГ АВТОМОБИЛЕЙ
+
+IMG_8471.webp = Гелик
+IMG_8467.webp = Приора
+IMG_8470.jpeg = Приора
+*/
+
+const carsCatalog=[
+
+{
+id:"gelik",
+name:"Mercedes-Benz G-Class",
+shortName:"Гелик",
+image:"IMG_8471.webp",
+price:8500000,
+fuel:100,
+condition:100,
+speed:95,
+power:98,
+description:
+"Премиальный внедорожник для тех, кто хочет выделяться на улицах города."
+},
+
+{
+id:"priora_1",
+name:"Lada Priora",
+shortName:"Приора",
+image:"IMG_8467.webp",
+price:650000,
+fuel:100,
+condition:100,
+speed:72,
+power:78,
+description:
+"Классика городских улиц. Доступная и практичная машина."
+},
+
+{
+id:"priora_2",
+name:"Lada Priora Sport",
+shortName:"Приора Sport",
+image:"IMG_8470.jpeg",
+price:850000,
+fuel:100,
+condition:100,
+speed:82,
+power:86,
+description:
+"Более спортивная версия Приоры с улучшенными характеристиками."
+}
+
+];
+
+
+/*
+ХРАНЕНИЕ КУПЛЕННЫХ МАШИН
+
+Для текущего index.html используем localStorage.
+Это позволяет автомобилям сохраняться после перезагрузки страницы.
+*/
+
+function garageStorageKey(){
+
+if(!currentAuthUser)
+return "brp_garage_guest";
+
+return "brp_garage_"+currentAuthUser.id;
+
+}
+
+
+function getOwnedCars(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem(
+garageStorageKey()
+)
+)||[];
+
+}catch(e){
+
+return [];
+
+}
+
+}
+
+
+function saveOwnedCars(cars){
+
+localStorage.setItem(
+garageStorageKey(),
+JSON.stringify(cars)
+);
+
+}
+
+
+/* RENDER DEALERSHIP */
+
+function renderCars(){
+
+const c=
+document.getElementById(
+"carsContainer"
+);
+
+if(!c)
+return;
+
+const owned=getOwnedCars();
+
+c.innerHTML="";
+
+carsCatalog.forEach(car=>{
+
+const isOwned=
+owned.some(
+x=>x.id===car.id
+);
+
+const d=
+document.createElement("div");
+
+d.className="dealer-card";
+
+d.innerHTML=`
+
+<div class="dealer-image">
+
+<img
+src="${car.image}"
+alt="${escapeHTML(car.name)}"
+onerror="this.style.display='none'"
+>
+
+</div>
+
+<div class="dealer-body">
+
+<div class="dealer-name">
+${escapeHTML(car.name)}
+</div>
+
+<div class="dealer-desc">
+${escapeHTML(car.description)}
+</div>
+
+<div class="dealer-stats">
+
+<div class="dealer-stat">
+<div class="dealer-stat-label">
+СКОРОСТЬ
+</div>
+<div class="dealer-stat-value">
+${car.speed}/100
+</div>
+</div>
+
+<div class="dealer-stat">
+<div class="dealer-stat-label">
+МОЩНОСТЬ
+</div>
+<div class="dealer-stat-value">
+${car.power}/100
+</div>
+</div>
+
+</div>
+
+<div class="dealer-price">
+₽ ${number(car.price)}
+<span>стоимость</span>
+</div>
+
+<button
+class="buy-car ${isOwned?"owned":""}"
+${isOwned?"disabled":""}
+onclick="buyCar('${car.id}')">
+
+${isOwned
+?"✓ УЖЕ В ГАРАЖЕ"
+:"КУПИТЬ АВТОМОБИЛЬ"}
+
+</button>
+
+</div>
+`;
+
+c.appendChild(d);
+
+});
+
+}
+
+
+/* BUY CAR */
+
+function buyCar(id){
+
+if(!currentUser)
+return toast("❌ Авторизуйся.");
+
+const car=
+carsCatalog.find(
+x=>x.id===id
+);
+
+if(!car)
+return toast(
+"❌ Автомобиль не найден."
+);
+
+const owned=
+getOwnedCars();
+
+if(
+owned.some(
+x=>x.id===car.id
+)
+)
+return toast(
+"🚗 Эта машина уже в гараже."
+);
+
+const balance=
+Number(currentUser.cash||0);
+
+if(balance<car.price){
+
+openModal(
+"Недостаточно денег",
+"Для покупки "+car.name+
+" нужно ₽ "+
+number(car.price)+
+".\n\nТвой баланс: ₽ "+
+number(balance)+"."
+);
+
+return;
+
+}
+
+
+/*
+Списываем деньги локально,
+добавляем автомобиль в гараж.
+*/
+
+currentUser.cash=
+balance-car.price;
+
+
+/*
+Сохраняем обновлённый баланс
+для текущей сессии.
+*/
+
+try{
+
+localStorage.setItem(
+"brp_local_cash_"+currentAuthUser.id,
+String(currentUser.cash)
+);
+
+}catch(e){}
+
+
+/*
+Добавляем автомобиль.
+*/
+
+owned.push({
+
+id:car.id,
+
+name:car.name,
+
+shortName:car.shortName,
+
+image:car.image,
+
+fuel:car.fuel,
+
+condition:car.condition,
+
+speed:car.speed,
+
+power:car.power,
+
+boughtAt:new Date().toISOString()
+
+});
+
+saveOwnedCars(owned);
+
+
+/*
+Обновляем интерфейс.
+*/
+
+renderAll();
+
+renderCars();
+
+toast(
+"🚗 "+car.name+
+" куплен и добавлен в гараж!"
+);
+
+}
 
 
 /* GARAGE */
 
 function renderGarage(){
 
-const c=document.getElementById("garageContainer");
-if(!c)return;
+const c=
+document.getElementById(
+"garageContainer"
+);
 
-const cars=[
-["Lada Priora","🚘",87,96],
-["VAZ 2107","🚗",62,91]
-];
+if(!c)
+return;
+
+const cars=
+getOwnedCars();
 
 c.innerHTML="";
 
-cars.forEach(x=>{
 
-const d=document.createElement("div");
+if(!cars.length){
+
+c.innerHTML=`
+
+<div class="card">
+
+<div class="card-title">
+Гараж пуст
+</div>
+
+<div class="card-desc">
+У тебя пока нет автомобилей.
+Отправляйся в автосалон и выбери свою первую машину.
+</div>
+
+<button
+class="primary-btn"
+onclick="openPage('cars')">
+ОТКРЫТЬ АВТОСАЛОН
+</button>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+cars.forEach(car=>{
+
+const d=
+document.createElement("div");
+
 d.className="car";
 
 d.innerHTML=`
 
-<div class="car-image">${x[1]}</div>
+<div class="car-image">
+
+<img
+src="${car.image}"
+alt="${escapeHTML(car.name)}"
+onerror="this.style.display='none'"
+>
+
+</div>
 
 <div class="car-body">
 
-<div class="car-name">${x[0]}</div>
+<div class="car-name">
+${escapeHTML(car.name)}
+</div>
 
 <div class="car-meta">
-Топливо: ${x[2]}% · Состояние: ${x[3]}%
+⛽ Топливо: ${car.fuel}% ·
+🔧 Состояние: ${car.condition}%
+</div>
+
+<div class="car-meta">
+🏎️ Скорость: ${car.speed}/100 ·
+💪 Мощность: ${car.power}/100
 </div>
 
 <div class="car-buttons">
 
-<button onclick="toast('⛽ Автомобиль заправлен')">
+<button
+onclick="refuelCar('${car.id}')">
 ⛽ Заправить
 </button>
 
-<button onclick="toast('🔧 Автомобиль исправен')">
+<button
+onclick="repairCar('${car.id}')">
 🔧 Ремонт
 </button>
 
-<button onclick="toast('🚗 Вы выехали в город')">
+<button
+onclick="driveCar('${car.id}')">
 🚗 Ехать
 </button>
 
@@ -1277,9 +2613,113 @@ c.appendChild(d);
 }
 
 
+/* REFUEL */
+
+function refuelCar(id){
+
+const cars=
+getOwnedCars();
+
+const car=
+cars.find(x=>x.id===id);
+
+if(!car)
+return;
+
+if(car.fuel>=100)
+return toast(
+"⛽ Бак уже полный."
+);
+
+car.fuel=100;
+
+saveOwnedCars(cars);
+
+renderGarage();
+
+toast(
+"⛽ Автомобиль заправлен."
+);
+
+}
+
+
+/* REPAIR */
+
+function repairCar(id){
+
+const cars=
+getOwnedCars();
+
+const car=
+cars.find(x=>x.id===id);
+
+if(!car)
+return;
+
+if(car.condition>=100)
+return toast(
+"🔧 Автомобиль уже исправен."
+);
+
+car.condition=100;
+
+saveOwnedCars(cars);
+
+renderGarage();
+
+toast(
+"🔧 Автомобиль отремонтирован."
+);
+
+}
+
+
+/* DRIVE */
+
+function driveCar(id){
+
+const cars=
+getOwnedCars();
+
+const car=
+cars.find(x=>x.id===id);
+
+if(!car)
+return;
+
+if(car.fuel<=0)
+return toast(
+"⛽ Нет топлива."
+);
+
+if(car.condition<=0)
+return toast(
+"🔧 Сначала отремонтируй автомобиль."
+);
+
+car.fuel=
+Math.max(
+0,
+Number(car.fuel)-5
+);
+
+saveOwnedCars(cars);
+
+renderGarage();
+
+toast(
+"🚗 "+car.shortName+
+" выехала в город!"
+);
+
+}
+
+
 /* SHOP */
 
 const shopItems=[
+
 ["🍔","Бургер",350],
 ["🥤","Газировка",180],
 ["☕","Кофе",250],
@@ -1288,27 +2728,46 @@ const shopItems=[
 ["🧰","Ремкомплект",3200],
 ["🎒","Рюкзак",4500],
 ["🧥","Куртка",7200]
+
 ];
+
 
 function renderShop(){
 
-const c=document.getElementById("shopContainer");
-if(!c)return;
+const c=
+document.getElementById(
+"shopContainer"
+);
+
+if(!c)
+return;
 
 c.innerHTML="";
 
 shopItems.forEach((x,i)=>{
 
-const d=document.createElement("div");
+const d=
+document.createElement("div");
+
 d.className="item";
 
 d.innerHTML=`
 
-<div class="item-icon">${x[0]}</div>
-<div class="item-name">${x[1]}</div>
-<div class="item-price">₽${number(x[2])}</div>
+<div class="item-icon">
+${x[0]}
+</div>
 
-<button class="buy" onclick="buyItem(${i})">
+<div class="item-name">
+${x[1]}
+</div>
+
+<div class="item-price">
+₽${number(x[2])}
+</div>
+
+<button
+class="buy"
+onclick="buyItem(${i})">
 КУПИТЬ
 </button>
 `;
@@ -1319,16 +2778,22 @@ c.appendChild(d);
 
 }
 
+
 function buyItem(i){
 
 const x=shopItems[i];
 
-if(!x)return;
+if(!x)
+return;
 
 if(Number(currentUser.cash)<x[2])
-return toast("Недостаточно денег.");
+return toast(
+"Недостаточно денег."
+);
 
-toast(x[0]+" "+x[1]+" добавлен.");
+toast(
+x[0]+" "+x[1]+" добавлен."
+);
 
 }
 
@@ -1351,12 +2816,17 @@ async function loadChat(){
 
 try{
 
-const messages=await supabaseFetch(
+const messages=
+await supabaseFetch(
 "/rest/v1/chat_messages?select=*&order=created_at.asc&limit=100",
 {
 headers:{
 apikey:SUPABASE_KEY,
-Authorization:"Bearer "+localStorage.getItem("brp_access_token")
+Authorization:
+"Bearer "+
+localStorage.getItem(
+"brp_access_token"
+)
 }
 }
 )||[];
@@ -1366,6 +2836,7 @@ renderChat(messages);
 }catch(e){
 
 console.error(e);
+
 renderChat([]);
 
 }
@@ -1375,17 +2846,31 @@ renderChat([]);
 
 function renderChat(messages){
 
-const b=document.getElementById("chatMessages");
-if(!b)return;
+const b=
+document.getElementById(
+"chatMessages"
+);
+
+if(!b)
+return;
 
 b.innerHTML="";
+
 
 if(!messages.length){
 
 b.innerHTML=`
+
 <div class="message">
-<div class="message-name">SERVER</div>
-<div class="message-text">Добро пожаловать в общий чат!</div>
+
+<div class="message-name">
+SERVER
+</div>
+
+<div class="message-text">
+Добро пожаловать в общий чат!
+</div>
+
 </div>
 `;
 
@@ -1393,19 +2878,28 @@ return;
 
 }
 
+
 messages.forEach(m=>{
 
-const d=document.createElement("div");
+const d=
+document.createElement("div");
+
 d.className="message";
 
 d.innerHTML=`
+
 <div class="message-name">
-${escapeHTML(m.username||"Player")}
+${escapeHTML(
+m.username||"Player"
+)}
 </div>
 
 <div class="message-text">
-${escapeHTML(m.message||"")}
+${escapeHTML(
+m.message||""
+)}
 </div>
+
 `;
 
 b.appendChild(d);
@@ -1419,36 +2913,57 @@ b.scrollTop=b.scrollHeight;
 
 async function sendChat(){
 
-const i=document.getElementById("chatInput");
-const text=i.value.trim();
+const i=
+document.getElementById(
+"chatInput"
+);
 
-if(!text||text.length>150)return;
+const text=
+i.value.trim();
+
+if(!text||text.length>150)
+return;
 
 try{
 
-await supabaseFetch("/rest/v1/chat_messages",{
+await supabaseFetch(
+"/rest/v1/chat_messages",
+{
 method:"POST",
 
 headers:{
 apikey:SUPABASE_KEY,
-Authorization:"Bearer "+localStorage.getItem("brp_access_token"),
+Authorization:
+"Bearer "+
+localStorage.getItem(
+"brp_access_token"
+),
 Prefer:"return=minimal"
 },
 
 body:JSON.stringify({
-username:currentUser.username,
+
+username:
+currentUser.username,
+
 message:text
+
 })
 
-});
+}
+);
 
 i.value="";
+
 await loadChat();
 
 }catch(e){
 
 console.error(e);
-toast("❌ Не удалось отправить.");
+
+toast(
+"❌ Не удалось отправить."
+);
 
 }
 
@@ -1461,23 +2976,37 @@ async function updateOnline(){
 
 try{
 
-await supabaseFetch("/rest/v1/online_players",{
+await supabaseFetch(
+"/rest/v1/online_players",
+{
 method:"POST",
 
 headers:{
 apikey:SUPABASE_KEY,
-Authorization:"Bearer "+localStorage.getItem("brp_access_token"),
+Authorization:
+"Bearer "+
+localStorage.getItem(
+"brp_access_token"
+),
 Prefer:"resolution=merge-duplicates"
 },
 
 body:JSON.stringify({
+
 id:currentAuthUser.id,
-username:currentUser.username,
+
+username:
+currentUser.username,
+
 online:true,
-last_seen:new Date().toISOString()
+
+last_seen:
+new Date().toISOString()
+
 })
 
-});
+}
+);
 
 }catch(e){}
 
@@ -1486,40 +3015,61 @@ last_seen:new Date().toISOString()
 
 async function loadOnline(){
 
-const c=document.getElementById("onlineContainer");
-if(!c)return;
+const c=
+document.getElementById(
+"onlineContainer"
+);
+
+if(!c)
+return;
 
 try{
 
-const list=await supabaseFetch(
+const list=
+await supabaseFetch(
 "/rest/v1/online_players?select=*&online=eq.true&order=last_seen.desc&limit=50",
 {
 headers:{
 apikey:SUPABASE_KEY,
-Authorization:"Bearer "+localStorage.getItem("brp_access_token")
+Authorization:
+"Bearer "+
+localStorage.getItem(
+"brp_access_token"
+)
 }
 }
 )||[];
 
-document.getElementById("onlineCount").textContent=list.length+" онлайн";
+document.getElementById(
+"onlineCount"
+).textContent=
+list.length+" онлайн";
 
 c.innerHTML="";
 
 list.forEach(p=>{
 
-const d=document.createElement("div");
+const d=
+document.createElement("div");
+
 d.className="online-card";
 
 d.innerHTML=`
 
 <div class="avatar">
-${escapeHTML((p.username||"P").charAt(0).toUpperCase())}
+${escapeHTML(
+(p.username||"P")
+.charAt(0)
+.toUpperCase()
+)}
 </div>
 
 <div class="online-info">
 
 <div class="online-name">
-${escapeHTML(p.username||"Player")}
+${escapeHTML(
+p.username||"Player"
+)}
 </div>
 
 <div class="online-status">
@@ -1531,6 +3081,7 @@ ${escapeHTML(p.username||"Player")}
 <div class="level">
 ONLINE
 </div>
+
 `;
 
 c.appendChild(d);
@@ -1539,19 +3090,29 @@ c.appendChild(d);
 
 }catch(e){
 
-document.getElementById("onlineCount").textContent="1 онлайн";
+document.getElementById(
+"onlineCount"
+).textContent=
+"1 онлайн";
 
 c.innerHTML=`
+
 <div class="online-card">
 
 <div class="avatar">
-${escapeHTML(currentUser.username.charAt(0).toUpperCase())}
+${escapeHTML(
+currentUser.username
+.charAt(0)
+.toUpperCase()
+)}
 </div>
 
 <div class="online-info">
 
 <div class="online-name">
-${escapeHTML(currentUser.username)}
+${escapeHTML(
+currentUser.username
+)}
 </div>
 
 <div class="online-status">
@@ -1560,9 +3121,12 @@ ${escapeHTML(currentUser.username)}
 
 </div>
 
-<div class="level">ONLINE</div>
+<div class="level">
+ONLINE
+</div>
 
 </div>
+
 `;
 
 }
@@ -1577,6 +3141,7 @@ function openPage(page){
 [
 "home",
 "garage",
+"cars",
 "shop",
 "map",
 "donate",
@@ -1585,21 +3150,49 @@ function openPage(page){
 "profile"
 ].forEach(n=>{
 
-const e=document.getElementById(n+"Page");
+const e=
+document.getElementById(
+n+"Page"
+);
 
 if(e)
-e.classList.toggle("active",n===page);
+e.classList.toggle(
+"active",
+n===page
+);
 
 });
 
-document.querySelectorAll(".nav-btn").forEach(b=>{
-b.classList.toggle("active",b.dataset.page===page);
+
+document
+.querySelectorAll(".nav-btn")
+.forEach(b=>{
+
+b.classList.toggle(
+"active",
+b.dataset.page===page
+);
+
 });
 
-window.scrollTo({top:0,behavior:"smooth"});
 
-if(page==="chat")loadChat();
-if(page==="online")loadOnline();
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+
+if(page==="chat")
+loadChat();
+
+if(page==="online")
+loadOnline();
+
+if(page==="garage")
+renderGarage();
+
+if(page==="cars")
+renderCars();
 
 }
 
@@ -1613,14 +3206,26 @@ try{
 if(currentAuthUser){
 
 await supabaseFetch(
-"/rest/v1/online_players?id=eq."+encodeURIComponent(currentAuthUser.id),
+"/rest/v1/online_players?id=eq."+
+encodeURIComponent(
+currentAuthUser.id
+),
 {
 method:"PATCH",
+
 headers:{
 apikey:SUPABASE_KEY,
-Authorization:"Bearer "+localStorage.getItem("brp_access_token")
+Authorization:
+"Bearer "+
+localStorage.getItem(
+"brp_access_token"
+)
 },
-body:JSON.stringify({online:false})
+
+body:JSON.stringify({
+online:false
+})
+
 }
 );
 
@@ -1628,12 +3233,14 @@ body:JSON.stringify({online:false})
 
 }catch(e){}
 
+
 clearSession();
 
 currentUser=null;
 currentAuthUser=null;
 
 showAuth();
+
 switchAuth("login");
 
 }
@@ -1643,14 +3250,27 @@ switchAuth("login");
 
 function openModal(title,text){
 
-document.getElementById("modalTitle").textContent=title;
-document.getElementById("modalText").textContent=text;
-document.getElementById("modal").classList.remove("hidden");
+document.getElementById(
+"modalTitle"
+).textContent=title;
+
+document.getElementById(
+"modalText"
+).textContent=text;
+
+document.getElementById(
+"modal"
+).classList.remove("hidden");
 
 }
 
+
 function closeModal(){
-document.getElementById("modal").classList.add("hidden");
+
+document.getElementById(
+"modal"
+).classList.add("hidden");
+
 }
 
 
@@ -1658,15 +3278,19 @@ document.getElementById("modal").classList.add("hidden");
 
 function toast(text){
 
-const e=document.getElementById("toast");
+const e=
+document.getElementById("toast");
 
 e.textContent=text;
+
 e.classList.add("show");
 
 clearTimeout(toastTimer);
 
 toastTimer=setTimeout(()=>{
+
 e.classList.remove("show");
+
 },2300);
 
 }
@@ -1677,10 +3301,15 @@ e.classList.remove("show");
 function escapeHTML(v){
 
 return String(v)
+
 .replaceAll("&","&amp;")
+
 .replaceAll("<","&lt;")
+
 .replaceAll(">","&gt;")
+
 .replaceAll('"',"&quot;")
+
 .replaceAll("'","&#039;");
 
 }
@@ -1690,7 +3319,8 @@ return String(v)
 
 function cleanError(t){
 
-if(!t)return"Неизвестная ошибка";
+if(!t)
+return"Неизвестная ошибка";
 
 if(t.includes("Invalid API key"))
 return"Неверный Supabase API key.";
@@ -1707,34 +3337,49 @@ return"Такая почта уже зарегистрирована.";
 if(t.includes("duplicate key"))
 return"Такой логин уже занят.";
 
-return t.replace(/[{}\[\]"]/g,"").substring(0,250);
+return t
+.replace(/[{}\[\]"]/g,"")
+.substring(0,250);
 
 }
 
 
 /* START */
 
-document.addEventListener("DOMContentLoaded",async()=>{
+document.addEventListener(
+"DOMContentLoaded",
+async()=>{
 
 try{
+
 await loadSession();
+
 }catch(e){
+
 console.error(e);
+
 showAuth();
+
 }
 
-setInterval(async()=>{
+
+setInterval(
+async()=>{
 
 if(currentUser){
 
 await updateOnline();
+
 await loadOnline();
 
 }
 
-},15000);
+},
+15000
+);
 
-});
+}
+);
 
 </script>
 
