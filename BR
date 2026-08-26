@@ -597,6 +597,12 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 <div class="quick-name">Гараж</div>
 </button>
 
+<!-- АВТОСАЛОН -->
+<button class="quick" onclick="location.href='cars.html'">
+<div class="quick-icon">🏎️</div>
+<div class="quick-name">Автосалон</div>
+</button>
+
 <button class="quick" onclick="openPage('shop')">
 <div class="quick-icon">🏪</div>
 <div class="quick-name">Магазин</div>
@@ -684,7 +690,10 @@ border:1px solid #292929;border-bottom:0;border-radius:13px 13px 0 0
 <div class="map-road road2"></div>
 
 <button class="map-point point1" onclick="toast('🏦 Банк')">🏦</button>
-<button class="map-point point2" onclick="toast('🚗 Автосалон')">🚗</button>
+
+<!-- АВТОСАЛОН -->
+<button class="map-point point2" onclick="location.href='cars.html'">🚗</button>
+
 <button class="map-point point3" onclick="toast('💼 Центр занятости')">💼</button>
 <button class="map-point point4" onclick="toast('🎁 Игровой центр')">🎁</button>
 <button class="map-point point5" onclick="toast('🏙️ Центральная площадь')">🏙️</button>
