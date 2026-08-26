@@ -7,7 +7,12 @@
 <title>BLACK RUSSIA RP</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+-webkit-tap-highlight-color:transparent
+}
 
 :root{
 --bg:#070707;
@@ -18,8 +23,7 @@
 --red2:#ff2633;
 --white:#f5f5f5;
 --muted:#888;
---green:#31d47a;
---gold:#ffc928
+--green:#31d47a
 }
 
 body{
@@ -29,9 +33,18 @@ color:var(--white);
 min-height:100vh
 }
 
-button,input{font-family:inherit}
-button{border:0;cursor:pointer}
-.hidden{display:none!important}
+button,input{
+font-family:inherit
+}
+
+button{
+border:0;
+cursor:pointer
+}
+
+.hidden{
+display:none!important
+}
 
 /* AUTH */
 
@@ -42,7 +55,11 @@ align-items:center;
 justify-content:center;
 padding:20px;
 background:
-radial-gradient(circle at 50% 0%,rgba(229,9,20,.18),transparent 38%),
+radial-gradient(
+circle at 50% 0%,
+rgba(229,9,20,.18),
+transparent 38%
+),
 #050505
 }
 
@@ -68,9 +85,21 @@ background:#080808;
 border:2px solid var(--red)
 }
 
-.logo-box div{text-align:center;line-height:.85}
-.logo-box .b{font-size:27px;font-weight:1000}
-.logo-box .r{font-size:17px;font-weight:1000;color:var(--red)}
+.logo-box div{
+text-align:center;
+line-height:.85
+}
+
+.logo-box .b{
+font-size:27px;
+font-weight:1000
+}
+
+.logo-box .r{
+font-size:17px;
+font-weight:1000;
+color:var(--red)
+}
 
 .logo{
 text-align:center;
@@ -129,7 +158,9 @@ line-height:1.5;
 margin-bottom:18px
 }
 
-.field{margin-bottom:13px}
+.field{
+margin-bottom:13px
+}
 
 .field label{
 display:block;
@@ -163,7 +194,11 @@ font-weight:900
 
 .primary-btn{
 padding:14px;
-background:linear-gradient(135deg,#c70711,#f01925)
+background:linear-gradient(
+135deg,
+#c70711,
+#f01925
+)
 }
 
 .secondary-btn{
@@ -236,8 +271,13 @@ font-size:9px;
 font-weight:bold
 }
 
-.cash{color:#53dd8a}
-.donate{color:var(--red2)}
+.cash{
+color:#53dd8a
+}
+
+.donate{
+color:var(--red2)
+}
 
 .page{
 display:none;
@@ -274,7 +314,11 @@ position:relative;
 overflow:hidden;
 padding:20px;
 background:
-linear-gradient(120deg,rgba(229,9,20,.16),transparent 55%),
+linear-gradient(
+120deg,
+rgba(229,9,20,.16),
+transparent 55%
+),
 #111;
 border:1px solid var(--line);
 border-radius:14px
@@ -345,7 +389,11 @@ margin-top:9px
 .progress div{
 width:0;
 height:100%;
-background:linear-gradient(90deg,#b90912,#ff2835)
+background:linear-gradient(
+90deg,
+#b90912,
+#ff2835
+)
 }
 
 .quick-grid{
@@ -410,19 +458,18 @@ border-radius:13px
 }
 
 .car-image{
-height:180px;
+height:125px;
 display:flex;
 align-items:center;
 justify-content:center;
 background:
-radial-gradient(circle,#353535,#161616 50%,#0b0b0b);
-overflow:hidden
-}
-
-.car-image img{
-width:100%;
-height:100%;
-object-fit:contain
+radial-gradient(
+circle,
+#353535,
+#161616 50%,
+#0b0b0b
+);
+font-size:65px
 }
 
 .car-body{
@@ -454,132 +501,6 @@ background:#202020;
 border-radius:7px;
 font-size:10px;
 font-weight:bold
-}
-
-/* CAR DEALERSHIP */
-
-.cars-banner{
-padding:22px;
-margin-bottom:13px;
-background:
-radial-gradient(circle at 90% 10%,rgba(229,9,20,.2),transparent 45%),
-#111;
-border:1px solid #292929;
-border-radius:14px
-}
-
-.cars-banner-title{
-font-size:26px;
-font-weight:1000
-}
-
-.cars-banner-title span{
-color:var(--red)
-}
-
-.cars-banner-text{
-margin-top:6px;
-color:#777;
-font-size:11px;
-line-height:1.5
-}
-
-.cars-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px
-}
-
-.dealer-card{
-overflow:hidden;
-background:#111;
-border:1px solid #292929;
-border-radius:13px
-}
-
-.dealer-image{
-height:190px;
-display:flex;
-align-items:center;
-justify-content:center;
-background:
-radial-gradient(circle,#383838,#171717 52%,#090909)
-}
-
-.dealer-image img{
-width:100%;
-height:100%;
-object-fit:contain
-}
-
-.dealer-body{
-padding:14px
-}
-
-.dealer-name{
-font-size:17px;
-font-weight:1000
-}
-
-.dealer-desc{
-color:#777;
-font-size:10px;
-line-height:1.45;
-margin-top:5px;
-min-height:29px
-}
-
-.dealer-stats{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:6px;
-margin-top:10px
-}
-
-.dealer-stat{
-padding:7px;
-background:#181818;
-border-radius:7px
-}
-
-.dealer-stat-label{
-color:#666;
-font-size:8px
-}
-
-.dealer-stat-value{
-margin-top:3px;
-font-size:10px;
-font-weight:900
-}
-
-.dealer-price{
-margin:13px 0 9px;
-color:#55dc89;
-font-size:14px;
-font-weight:1000
-}
-
-.dealer-price span{
-color:#777;
-font-size:9px;
-font-weight:normal
-}
-
-.buy-car{
-width:100%;
-padding:11px;
-background:var(--red);
-color:#fff;
-border-radius:8px;
-font-size:10px;
-font-weight:1000
-}
-
-.buy-car.owned{
-background:#202020;
-color:#777;
-border:1px solid #303030
 }
 
 /* SHOP */
@@ -633,8 +554,20 @@ overflow:hidden;
 border:1px solid #292929;
 border-radius:14px;
 background:
-linear-gradient(30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),
-linear-gradient(-30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),
+linear-gradient(
+30deg,
+transparent 48%,
+#292929 49%,
+#292929 51%,
+transparent 52%
+),
+linear-gradient(
+-30deg,
+transparent 48%,
+#292929 49%,
+#292929 51%,
+transparent 52%
+),
 #111;
 background-size:90px 90px
 }
@@ -674,11 +607,30 @@ border:3px solid #080808;
 font-size:18px
 }
 
-.point1{left:18%;top:23%}
-.point2{left:65%;top:25%}
-.point3{left:29%;top:67%}
-.point4{left:73%;top:69%}
-.point5{left:46%;top:45%}
+.point1{
+left:18%;
+top:23%
+}
+
+.point2{
+left:65%;
+top:25%
+}
+
+.point3{
+left:29%;
+top:67%
+}
+
+.point4{
+left:73%;
+top:69%
+}
+
+.point5{
+left:46%;
+top:45%
+}
 
 /* DONATE */
 
@@ -686,7 +638,11 @@ font-size:18px
 padding:24px;
 text-align:center;
 background:
-radial-gradient(circle,rgba(229,9,20,.18),transparent 65%),
+radial-gradient(
+circle,
+rgba(229,9,20,.18),
+transparent 65%
+),
 #111;
 border:1px solid #432020;
 border-radius:14px
@@ -1011,24 +967,6 @@ opacity:1;
 transform:translateX(-50%) translateY(0)
 }
 
-/* RESPONSIVE */
-
-@media(max-width:600px){
-
-.cars-grid{
-grid-template-columns:1fr
-}
-
-.dealer-image{
-height:210px
-}
-
-.car-image{
-height:190px
-}
-
-}
-
 @media(min-width:700px){
 
 .bottom-nav{
@@ -1054,10 +992,6 @@ grid-template-columns:repeat(4,1fr)
 grid-template-columns:repeat(4,1fr)
 }
 
-.cars-grid{
-grid-template-columns:repeat(3,1fr)
-}
-
 }
 </style>
 </head>
@@ -1077,91 +1011,135 @@ grid-template-columns:repeat(3,1fr)
 </div>
 </div>
 
-<div class="logo">BLACK <span>RUSSIA</span></div>
-<div class="logo-sub">Role Play • Online World</div>
+<div class="logo">
+BLACK <span>RUSSIA</span>
+</div>
+
+<div class="logo-sub">
+Role Play • Online World
+</div>
 
 <div class="auth-tabs">
-<button class="auth-tab active" id="loginTab" onclick="switchAuth('login')">
+
+<button
+class="auth-tab active"
+id="loginTab"
+onclick="switchAuth('login')">
 Вход
 </button>
 
-<button class="auth-tab" id="registerTab" onclick="switchAuth('register')">
+<button
+class="auth-tab"
+id="registerTab"
+onclick="switchAuth('register')">
 Регистрация
 </button>
+
 </div>
 
 <div id="loginForm">
 
-<div class="auth-title">С возвращением</div>
+<div class="auth-title">
+С возвращением
+</div>
 
 <div class="auth-desc">
 Введи логин и пароль своего игрового аккаунта.
 </div>
 
 <div class="field">
+
 <label>ЛОГИН</label>
+
 <input
 id="loginUsername"
 autocomplete="username"
 placeholder="Введите логин">
+
 </div>
 
 <div class="field">
+
 <label>ПАРОЛЬ</label>
+
 <input
 id="loginPassword"
 type="password"
 autocomplete="current-password"
 placeholder="Введите пароль">
+
 </div>
 
-<button class="primary-btn" onclick="loginAccount()">
+<button
+class="primary-btn"
+onclick="loginAccount()">
 ВОЙТИ В ИГРУ
 </button>
 
-<div class="auth-message" id="loginMessage"></div>
+<div
+class="auth-message"
+id="loginMessage">
+</div>
 
 </div>
 
-<div id="registerForm" class="hidden">
+<div
+id="registerForm"
+class="hidden">
 
-<div class="auth-title">Новый аккаунт</div>
+<div class="auth-title">
+Новый аккаунт
+</div>
 
 <div class="auth-desc">
 Создай игровой аккаунт и получи собственный профиль.
 </div>
 
 <div class="field">
+
 <label>ИГРОВОЙ ЛОГИН</label>
+
 <input
 id="regUsername"
 autocomplete="username"
 placeholder="Игровой ник">
+
 </div>
 
 <div class="field">
+
 <label>ПОЧТА</label>
+
 <input
 id="regEmail"
 type="email"
 autocomplete="email"
 placeholder="example@mail.com">
+
 </div>
 
 <div class="field">
+
 <label>ПАРОЛЬ</label>
+
 <input
 id="regPassword"
 type="password"
 autocomplete="new-password"
 placeholder="Минимум 6 символов">
+
 </div>
 
-<button class="primary-btn" onclick="registerAccount()">
+<button
+class="primary-btn"
+onclick="registerAccount()">
 СОЗДАТЬ АККАУНТ
 </button>
 
-<div class="auth-message" id="registerMessage"></div>
+<div
+class="auth-message"
+id="registerMessage">
+</div>
 
 </div>
 
@@ -1171,7 +1149,9 @@ placeholder="Минимум 6 символов">
 
 <!-- APP -->
 
-<section id="app" class="hidden">
+<section
+id="app"
+class="hidden">
 
 <header class="topbar">
 
@@ -1180,13 +1160,29 @@ BLACK <span>RUSSIA</span>
 </div>
 
 <div class="server-status">
+
 <div class="online-dot"></div>
-<span id="onlineCount">0 онлайн</span>
+
+<span id="onlineCount">
+0 онлайн
+</span>
+
 </div>
 
 <div class="money-box">
-<div class="money cash" id="topCash">₽ 0</div>
-<div class="money donate" id="topDonate">♦ 0</div>
+
+<div
+class="money cash"
+id="topCash">
+₽ 0
+</div>
+
+<div
+class="money donate"
+id="topDonate">
+♦ 0
+</div>
+
 </div>
 
 </header>
@@ -1194,7 +1190,9 @@ BLACK <span>RUSSIA</span>
 
 <!-- HOME -->
 
-<main id="homePage" class="page active">
+<main
+id="homePage"
+class="page active">
 
 <div class="hero">
 
@@ -1203,7 +1201,11 @@ BLACK <span>RUSSIA</span>
 </div>
 
 <div class="hero-name">
-<span id="homeName">Player</span>
+
+<span id="homeName">
+Player
+</span>
+
 </div>
 
 <div class="hero-small">
@@ -1215,77 +1217,198 @@ BLACK <span>RUSSIA</span>
 <div class="stats-grid">
 
 <div class="stat-card">
-<div class="stat-label">УРОВЕНЬ</div>
-<div class="stat-value" id="homeLevel">1</div>
+
+<div class="stat-label">
+УРОВЕНЬ
+</div>
+
+<div
+class="stat-value"
+id="homeLevel">
+1
+</div>
+
 <div class="progress">
 <div id="homeXpBar"></div>
 </div>
+
 </div>
 
 <div class="stat-card">
-<div class="stat-label">ОПЫТ</div>
-<div class="stat-value" id="homeXP">0 XP</div>
+
+<div class="stat-label">
+ОПЫТ
+</div>
+
+<div
+class="stat-value"
+id="homeXP">
+0 XP
+</div>
+
 </div>
 
 <div class="stat-card">
-<div class="stat-label">НАЛИЧНЫЕ</div>
-<div class="stat-value" id="homeCash">₽ 0</div>
+
+<div class="stat-label">
+НАЛИЧНЫЕ
+</div>
+
+<div
+class="stat-value"
+id="homeCash">
+₽ 0
+</div>
+
 </div>
 
 <div class="stat-card">
-<div class="stat-label">БАНК</div>
-<div class="stat-value" id="homeBank">₽ 0</div>
+
+<div class="stat-label">
+БАНК
+</div>
+
+<div
+class="stat-value"
+id="homeBank">
+₽ 0
 </div>
 
 </div>
+
+</div>
+
 
 <div class="section-title">
 Быстрый доступ
 </div>
 
+
 <div class="quick-grid">
 
-<button class="quick" onclick="location.href='jobs.html'">
-<div class="quick-icon">💼</div>
-<div class="quick-name">Работы</div>
+<button
+class="quick"
+onclick="location.href='jobs.html'">
+
+<div class="quick-icon">
+💼
+</div>
+
+<div class="quick-name">
+Работы
+</div>
+
 </button>
 
-<button class="quick" onclick="openPage('garage')">
-<div class="quick-icon">🚗</div>
-<div class="quick-name">Гараж</div>
+
+<button
+class="quick"
+onclick="openPage('garage')">
+
+<div class="quick-icon">
+🚗
+</div>
+
+<div class="quick-name">
+Гараж
+</div>
+
 </button>
 
-<button class="quick" onclick="openPage('cars')">
-<div class="quick-icon">🏎️</div>
-<div class="quick-name">Автосалон</div>
+
+<!-- АВТОСАЛОН -->
+
+<button
+class="quick"
+onclick="location.href='cars.html'">
+
+<div class="quick-icon">
+🚘
+</div>
+
+<div class="quick-name">
+Автосалон
+</div>
+
 </button>
 
-<button class="quick" onclick="openPage('shop')">
-<div class="quick-icon">🏪</div>
-<div class="quick-name">Магазин</div>
+
+<button
+class="quick"
+onclick="openPage('shop')">
+
+<div class="quick-icon">
+🏪
+</div>
+
+<div class="quick-name">
+Магазин
+</div>
+
 </button>
 
-<button class="quick" onclick="openPage('map')">
-<div class="quick-icon">🗺️</div>
-<div class="quick-name">Карта</div>
+
+<button
+class="quick"
+onclick="openPage('map')">
+
+<div class="quick-icon">
+🗺️
+</div>
+
+<div class="quick-name">
+Карта
+</div>
+
 </button>
 
-<button class="quick" onclick="location.href='case.html'">
-<div class="quick-icon">🎁</div>
-<div class="quick-name">Кейсы</div>
+
+<button
+class="quick"
+onclick="location.href='case.html'">
+
+<div class="quick-icon">
+🎁
+</div>
+
+<div class="quick-name">
+Кейсы
+</div>
+
 </button>
 
-<button class="quick" onclick="openPage('chat')">
-<div class="quick-icon">💬</div>
-<div class="quick-name">Чат</div>
+
+<button
+class="quick"
+onclick="openPage('chat')">
+
+<div class="quick-icon">
+💬
+</div>
+
+<div class="quick-name">
+Чат
+</div>
+
 </button>
 
-<button class="quick" onclick="location.href='casino.html'">
-<div class="quick-icon">🎰</div>
-<div class="quick-name">Казино</div>
+
+<button
+class="quick"
+onclick="location.href='casino.html'">
+
+<div class="quick-icon">
+🎰
+</div>
+
+<div class="quick-name">
+Казино
+</div>
+
 </button>
 
 </div>
+
 
 <div class="section-title">
 Твой прогресс
@@ -1302,11 +1425,17 @@ BLACK <span>RUSSIA</span>
 </div>
 
 <div class="progress">
+
 <div id="bigXpBar"></div>
+
 </div>
 
-<div id="xpText" style="margin-top:8px;color:#777;font-size:10px">
+<div
+id="xpText"
+style="margin-top:8px;color:#777;font-size:10px">
+
 0 / 100 XP
+
 </div>
 
 </div>
@@ -1316,7 +1445,9 @@ BLACK <span>RUSSIA</span>
 
 <!-- GARAGE -->
 
-<main id="garagePage" class="page">
+<main
+id="garagePage"
+class="page">
 
 <div class="page-title">
 Гараж
@@ -1331,39 +1462,11 @@ BLACK <span>RUSSIA</span>
 </main>
 
 
-<!-- CAR DEALERSHIP -->
-
-<main id="carsPage" class="page">
-
-<div class="page-title">
-Автосалон
-</div>
-
-<div class="page-subtitle">
-Покупай транспорт для своего персонажа.
-</div>
-
-<div class="cars-banner">
-
-<div class="cars-banner-title">
-BLACK <span>MOTORS</span>
-</div>
-
-<div class="cars-banner-text">
-Выбери автомобиль, который станет частью твоей истории.
-После покупки машина автоматически появится в гараже.
-</div>
-
-</div>
-
-<div class="cars-grid" id="carsContainer"></div>
-
-</main>
-
-
 <!-- SHOP -->
 
-<main id="shopPage" class="page">
+<main
+id="shopPage"
+class="page">
 
 <div class="page-title">
 Магазин
@@ -1373,14 +1476,19 @@ BLACK <span>MOTORS</span>
 Предметы и полезные вещи.
 </div>
 
-<div class="shop-grid" id="shopContainer"></div>
+<div
+class="shop-grid"
+id="shopContainer">
+</div>
 
 </main>
 
 
 <!-- MAP -->
 
-<main id="mapPage" class="page">
+<main
+id="mapPage"
+class="page">
 
 <div class="page-title">
 Карта города
@@ -1395,17 +1503,22 @@ BLACK <span>MOTORS</span>
 <div class="map-road road1"></div>
 <div class="map-road road2"></div>
 
+
 <button
 class="map-point point1"
 onclick="toast('🏦 Банк')">
 🏦
 </button>
 
+
+<!-- ТЕПЕРЬ АВТОСАЛОН ОТКРЫВАЕТ cars.html -->
+
 <button
 class="map-point point2"
-onclick="openPage('cars')">
+onclick="location.href='cars.html'">
 🚗
 </button>
+
 
 <button
 class="map-point point3"
@@ -1413,11 +1526,13 @@ onclick="toast('💼 Центр занятости')">
 💼
 </button>
 
+
 <button
 class="map-point point4"
 onclick="toast('🎁 Игровой центр')">
 🎁
 </button>
+
 
 <button
 class="map-point point5"
@@ -1432,7 +1547,9 @@ onclick="toast('🏙️ Центральная площадь')">
 
 <!-- DONATE -->
 
-<main id="donatePage" class="page">
+<main
+id="donatePage"
+class="page">
 
 <div class="page-title">
 Донат
@@ -1449,8 +1566,15 @@ BLACK <span>DONATE</span>
 </div>
 
 <div class="donate-sub">
+
 Текущий баланс:
-<b id="donateBalance">0</b> ♦
+
+<b id="donateBalance">
+0
+</b>
+
+♦
+
 </div>
 
 </div>
@@ -1458,27 +1582,70 @@ BLACK <span>DONATE</span>
 <div class="donate-grid">
 
 <div class="donate-card">
-<strong>♦ 100</strong>
-<span>Стартовый набор</span>
-<button onclick="buyDonate()">ПОЛУЧИТЬ</button>
+
+<strong>
+♦ 100
+</strong>
+
+<span>
+Стартовый набор
+</span>
+
+<button onclick="buyDonate()">
+ПОЛУЧИТЬ
+</button>
+
 </div>
 
-<div class="donate-card">
-<strong>♦ 500</strong>
-<span>Большой набор</span>
-<button onclick="buyDonate()">ПОЛУЧИТЬ</button>
-</div>
 
 <div class="donate-card">
-<strong>♦ 1000</strong>
-<span>Премиум набор</span>
-<button onclick="buyDonate()">ПОЛУЧИТЬ</button>
+
+<strong>
+♦ 500
+</strong>
+
+<span>
+Большой набор
+</span>
+
+<button onclick="buyDonate()">
+ПОЛУЧИТЬ
+</button>
+
 </div>
 
+
 <div class="donate-card">
-<strong>♦ 5000</strong>
-<span>VIP набор</span>
-<button onclick="buyDonate()">ПОЛУЧИТЬ</button>
+
+<strong>
+♦ 1000
+</strong>
+
+<span>
+Премиум набор
+</span>
+
+<button onclick="buyDonate()">
+ПОЛУЧИТЬ
+</button>
+
+</div>
+
+
+<div class="donate-card">
+
+<strong>
+♦ 5000
+</strong>
+
+<span>
+VIP набор
+</span>
+
+<button onclick="buyDonate()">
+ПОЛУЧИТЬ
+</button>
+
 </div>
 
 </div>
@@ -1488,7 +1655,9 @@ BLACK <span>DONATE</span>
 
 <!-- CHAT -->
 
-<main id="chatPage" class="page">
+<main
+id="chatPage"
+class="page">
 
 <div class="page-title">
 Общий чат
@@ -1500,7 +1669,10 @@ BLACK <span>DONATE</span>
 
 <div class="chat-box">
 
-<div class="chat-messages" id="chatMessages"></div>
+<div
+class="chat-messages"
+id="chatMessages">
+</div>
 
 <div class="chat-input">
 
@@ -1510,7 +1682,9 @@ maxlength="150"
 placeholder="Написать сообщение..."
 onkeydown="if(event.key==='Enter')sendChat()">
 
-<button onclick="sendChat()">➤</button>
+<button onclick="sendChat()">
+➤
+</button>
 
 </div>
 
@@ -1521,7 +1695,9 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 <!-- ONLINE -->
 
-<main id="onlinePage" class="page">
+<main
+id="onlinePage"
+class="page">
 
 <div class="page-title">
 Игроки онлайн
@@ -1538,7 +1714,9 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 <!-- PROFILE -->
 
-<main id="profilePage" class="page">
+<main
+id="profilePage"
+class="page">
 
 <div class="page-title">
 Профиль
@@ -1550,57 +1728,126 @@ onkeydown="if(event.key==='Enter')sendChat()">
 
 <div class="profile-head">
 
-<div class="big-avatar" id="profileAvatar">
+<div
+class="big-avatar"
+id="profileAvatar">
 P
 </div>
 
-<div class="profile-name" id="profileName">
+<div
+class="profile-name"
+id="profileName">
 Player
 </div>
 
-<div class="profile-id" id="profileId">
+<div
+class="profile-id"
+id="profileId">
 ID
 </div>
 
-<div class="profile-row" style="margin-top:15px">
-<span>Уровень</span>
-<span id="profileLevel">1</span>
+
+<div
+class="profile-row"
+style="margin-top:15px">
+
+<span>
+Уровень
+</span>
+
+<span id="profileLevel">
+1
+</span>
+
 </div>
+
 
 <div class="profile-row">
-<span>Опыт</span>
-<span id="profileXP">0 XP</span>
+
+<span>
+Опыт
+</span>
+
+<span id="profileXP">
+0 XP
+</span>
+
 </div>
+
 
 <div class="profile-row">
-<span>Наличные</span>
-<span id="profileCash">₽ 0</span>
+
+<span>
+Наличные
+</span>
+
+<span id="profileCash">
+₽ 0
+</span>
+
 </div>
+
 
 <div class="profile-row">
-<span>Банк</span>
-<span id="profileBank">₽ 0</span>
+
+<span>
+Банк
+</span>
+
+<span id="profileBank">
+₽ 0
+</span>
+
 </div>
+
 
 <div class="profile-row">
-<span>Донат</span>
-<span id="profileDonate">♦ 0</span>
+
+<span>
+Донат
+</span>
+
+<span id="profileDonate">
+♦ 0
+</span>
+
 </div>
+
 
 <div class="profile-row">
-<span>Работа</span>
-<span id="profileJob">Безработный</span>
+
+<span>
+Работа
+</span>
+
+<span id="profileJob">
+Безработный
+</span>
+
 </div>
+
 
 <div class="profile-row">
-<span>Регистрация</span>
-<span id="profileDate">—</span>
-</div>
+
+<span>
+Регистрация
+</span>
+
+<span id="profileDate">
+—
+</span>
 
 </div>
 
-<button class="secondary-btn" onclick="logout()">
+</div>
+
+
+<button
+class="secondary-btn"
+onclick="logout()">
+
 ВЫЙТИ ИЗ АККАУНТА
+
 </button>
 
 </main>
@@ -1615,46 +1862,65 @@ class="nav-btn active"
 data-page="home"
 onclick="openPage('home')">
 
-<div class="nav-icon">🏠</div>
+<div class="nav-icon">
+🏠
+</div>
+
 Главная
 
 </button>
+
 
 <button
 class="nav-btn"
 onclick="location.href='jobs.html'">
 
-<div class="nav-icon">💼</div>
+<div class="nav-icon">
+💼
+</div>
+
 Работа
 
 </button>
+
 
 <button
 class="nav-btn"
 data-page="garage"
 onclick="openPage('garage')">
 
-<div class="nav-icon">🚗</div>
+<div class="nav-icon">
+🚗
+</div>
+
 Гараж
 
 </button>
 
+
 <button
 class="nav-btn"
-data-page="cars"
-onclick="openPage('cars')">
+data-page="chat"
+onclick="openPage('chat')">
 
-<div class="nav-icon">🏎️</div>
-Автосалон
+<div class="nav-icon">
+💬
+</div>
+
+Чат
 
 </button>
+
 
 <button
 class="nav-btn"
 data-page="profile"
 onclick="openPage('profile')">
 
-<div class="nav-icon">👤</div>
+<div class="nav-icon">
+👤
+</div>
+
 Профиль
 
 </button>
@@ -1673,15 +1939,26 @@ onclick="if(event.target===this)closeModal()">
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal()">×</button>
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
 
-<div class="modal-title" id="modalTitle">
+<div
+class="modal-title"
+id="modalTitle">
 Информация
 </div>
 
-<div class="modal-text" id="modalText"></div>
+<div
+class="modal-text"
+id="modalText">
+</div>
 
-<button class="primary-btn" onclick="closeModal()">
+<button
+class="primary-btn"
+onclick="closeModal()">
 ПОНЯТНО
 </button>
 
@@ -1689,7 +1966,10 @@ onclick="if(event.target===this)closeModal()">
 
 </div>
 
-<div class="toast" id="toast">
+
+<div
+class="toast"
+id="toast">
 Готово
 </div>
 
@@ -1698,9 +1978,11 @@ onclick="if(event.target===this)closeModal()">
 
 /* SUPABASE */
 
-const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
+const SUPABASE_URL=
+"https://qzswnoeglovfpgrzpnio.supabase.co";
 
-const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+const SUPABASE_KEY=
+"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
 let currentUser=null;
 let currentAuthUser=null;
@@ -1742,6 +2024,7 @@ typeof d==="string"
 );
 
 return d;
+
 }
 
 
@@ -1764,21 +2047,26 @@ document.getElementById("registerMessage");
 message.style.color="#ff4b55";
 message.textContent="Создаём аккаунт...";
 
+
 if(username.length<3)
 return message.textContent=
 "Логин минимум 3 символа.";
+
 
 if(!/^[a-zA-Z0-9_]+$/.test(username))
 return message.textContent=
 "Только латиница, цифры и _.";
 
+
 if(!email.includes("@"))
 return message.textContent=
 "Введите настоящую почту.";
 
+
 if(password.length<6)
 return message.textContent=
 "Пароль минимум 6 символов.";
+
 
 try{
 
@@ -1792,6 +2080,7 @@ if(e?.length)
 return message.textContent=
 "Такой логин уже занят.";
 
+
 const r=await supabaseFetch(
 "/auth/v1/signup",
 {
@@ -1803,6 +2092,7 @@ data:{username}
 })
 }
 );
+
 
 if(r?.access_token){
 
@@ -1818,16 +2108,19 @@ return loadSession();
 
 }
 
+
 message.style.color="#ffc928";
 message.textContent=
 "Аккаунт создан. Проверь почту.";
+
 
 }catch(e){
 
 console.error(e);
 
 message.textContent=
-"Ошибка: "+cleanError(e.message);
+"Ошибка: "+
+cleanError(e.message);
 
 }
 
@@ -1847,12 +2140,15 @@ document.getElementById("loginPassword").value;
 const message=
 document.getElementById("loginMessage");
 
+
 if(!username||!password)
 return message.textContent=
 "Введите логин и пароль.";
 
+
 message.textContent=
 "Выполняется вход...";
+
 
 try{
 
@@ -1866,14 +2162,17 @@ p_username:username
 }
 );
 
+
 if(!r)
 return message.textContent=
 "Аккаунт не найден.";
+
 
 const email=
 typeof r==="string"
 ?r
 :r.email;
+
 
 const a=await supabaseFetch(
 "/auth/v1/token?grant_type=password",
@@ -1886,9 +2185,11 @@ password
 }
 );
 
+
 if(!a.access_token)
 return message.textContent=
 "Не удалось выполнить вход.";
+
 
 saveSession(
 a.access_token,
@@ -1900,12 +2201,14 @@ message.textContent="Вход выполнен.";
 
 await loadSession();
 
+
 }catch(e){
 
 console.error(e);
 
 message.textContent=
-"Ошибка: "+cleanError(e.message);
+"Ошибка: "+
+cleanError(e.message);
 
 }
 
@@ -1928,6 +2231,7 @@ r||""
 
 }
 
+
 function clearSession(){
 
 localStorage.removeItem(
@@ -1948,8 +2252,10 @@ async function loadSession(){
 const token=
 localStorage.getItem("brp_access_token");
 
+
 if(!token)
 return showAuth();
+
 
 try{
 
@@ -1964,9 +2270,11 @@ Authorization:"Bearer "+token
 }
 );
 
+
 await loadProfile();
 
 showApp();
+
 
 }catch(e){
 
@@ -1988,6 +2296,7 @@ async function loadProfile(){
 const token=
 localStorage.getItem("brp_access_token");
 
+
 const rows=
 await supabaseFetch(
 "/rest/v1/profiles?id=eq."+
@@ -2001,10 +2310,12 @@ Authorization:"Bearer "+token
 }
 );
 
+
 if(!rows?.length)
 throw new Error(
 "Профиль игрока не найден."
 );
+
 
 currentUser=rows[0];
 
@@ -2027,6 +2338,7 @@ document
 
 }
 
+
 function showApp(){
 
 document
@@ -2039,29 +2351,43 @@ document
 
 }
 
+
 function switchAuth(type){
 
-const login=type==="login";
+const login=
+type==="login";
+
 
 document
 .getElementById("loginForm")
-.classList
-.toggle("hidden",!login);
+.classList.toggle(
+"hidden",
+!login
+);
+
 
 document
 .getElementById("registerForm")
-.classList
-.toggle("hidden",login);
+.classList.toggle(
+"hidden",
+login
+);
+
 
 document
 .getElementById("loginTab")
-.classList
-.toggle("active",login);
+.classList.toggle(
+"active",
+login
+);
+
 
 document
 .getElementById("registerTab")
-.classList
-.toggle("active",!login);
+.classList.toggle(
+"active",
+!login
+);
 
 }
 
@@ -2073,22 +2399,45 @@ function renderAll(){
 if(!currentUser)
 return;
 
+
 const p=currentUser;
+
 
 const set=(id,v)=>{
 
-const e=document.getElementById(id);
+const e=
+document.getElementById(id);
 
 if(e)
 e.textContent=v;
 
 };
 
-set("homeName",p.username);
-set("homeLevel",p.level);
-set("homeXP",p.xp+" XP");
-set("homeCash",money(p.cash));
-set("homeBank",money(p.bank));
+
+set(
+"homeName",
+p.username
+);
+
+set(
+"homeLevel",
+p.level
+);
+
+set(
+"homeXP",
+p.xp+" XP"
+);
+
+set(
+"homeCash",
+money(p.cash)
+);
+
+set(
+"homeBank",
+money(p.bank)
+);
 
 set(
 "topCash",
@@ -2100,7 +2449,10 @@ set(
 "♦ "+number(p.donate)
 );
 
-set("profileName",p.username);
+set(
+"profileName",
+p.username
+);
 
 set(
 "profileAvatar",
@@ -2112,10 +2464,26 @@ set(
 "ID: "+p.id
 );
 
-set("profileLevel",p.level);
-set("profileXP",p.xp+" XP");
-set("profileCash",money(p.cash));
-set("profileBank",money(p.bank));
+set(
+"profileLevel",
+p.level
+);
+
+set(
+"profileXP",
+p.xp+" XP"
+);
+
+set(
+"profileCash",
+money(p.cash)
+);
+
+set(
+"profileBank",
+money(p.bank)
+);
+
 set(
 "profileDonate",
 "♦ "+number(p.donate)
@@ -2126,20 +2494,27 @@ set(
 p.job||"Безработный"
 );
 
+
 set(
 "profileDate",
 p.created_at
-?new Date(p.created_at).toLocaleDateString("ru-RU")
+?new Date(p.created_at)
+.toLocaleDateString("ru-RU")
 :"—"
 );
+
 
 set(
 "donateBalance",
 number(p.donate)
 );
 
+
 const need=
-xpForLevel(Number(p.level));
+xpForLevel(
+Number(p.level)
+);
+
 
 const percent=
 Math.min(
@@ -2147,23 +2522,27 @@ Math.min(
 Number(p.xp)/need*100
 );
 
-document.getElementById(
-"homeXpBar"
-).style.width=
+
+document
+.getElementById("homeXpBar")
+.style.width=
 percent+"%";
 
-document.getElementById(
-"bigXpBar"
-).style.width=
+
+document
+.getElementById("bigXpBar")
+.style.width=
 percent+"%";
+
 
 set(
 "xpText",
 p.xp+" / "+need+" XP"
 );
 
+
 renderGarage();
-renderCars();
+
 renderShop();
 
 }
@@ -2172,333 +2551,19 @@ renderShop();
 /* HELPERS */
 
 const number=
-v=>Number(v||0).toLocaleString("ru-RU");
+v=>
+Number(v||0)
+.toLocaleString("ru-RU");
+
 
 const money=
-v=>"₽ "+number(v);
+v=>
+"₽ "+number(v);
+
 
 const xpForLevel=
-l=>100+(l-1)*75;
-
-
-/* ================================= */
-/* CARS */
-/* ================================= */
-
-/*
-КАТАЛОГ АВТОМОБИЛЕЙ
-
-IMG_8471.webp = Гелик
-IMG_8467.webp = Приора
-IMG_8470.jpeg = Приора
-*/
-
-const carsCatalog=[
-
-{
-id:"gelik",
-name:"Mercedes-Benz G-Class",
-shortName:"Гелик",
-image:"IMG_8471.webp",
-price:8500000,
-fuel:100,
-condition:100,
-speed:95,
-power:98,
-description:
-"Премиальный внедорожник для тех, кто хочет выделяться на улицах города."
-},
-
-{
-id:"priora_1",
-name:"Lada Priora",
-shortName:"Приора",
-image:"IMG_8467.webp",
-price:650000,
-fuel:100,
-condition:100,
-speed:72,
-power:78,
-description:
-"Классика городских улиц. Доступная и практичная машина."
-},
-
-{
-id:"priora_2",
-name:"Lada Priora Sport",
-shortName:"Приора Sport",
-image:"IMG_8470.jpeg",
-price:850000,
-fuel:100,
-condition:100,
-speed:82,
-power:86,
-description:
-"Более спортивная версия Приоры с улучшенными характеристиками."
-}
-
-];
-
-
-/*
-ХРАНЕНИЕ КУПЛЕННЫХ МАШИН
-
-Для текущего index.html используем localStorage.
-Это позволяет автомобилям сохраняться после перезагрузки страницы.
-*/
-
-function garageStorageKey(){
-
-if(!currentAuthUser)
-return "brp_garage_guest";
-
-return "brp_garage_"+currentAuthUser.id;
-
-}
-
-
-function getOwnedCars(){
-
-try{
-
-return JSON.parse(
-localStorage.getItem(
-garageStorageKey()
-)
-)||[];
-
-}catch(e){
-
-return [];
-
-}
-
-}
-
-
-function saveOwnedCars(cars){
-
-localStorage.setItem(
-garageStorageKey(),
-JSON.stringify(cars)
-);
-
-}
-
-
-/* RENDER DEALERSHIP */
-
-function renderCars(){
-
-const c=
-document.getElementById(
-"carsContainer"
-);
-
-if(!c)
-return;
-
-const owned=getOwnedCars();
-
-c.innerHTML="";
-
-carsCatalog.forEach(car=>{
-
-const isOwned=
-owned.some(
-x=>x.id===car.id
-);
-
-const d=
-document.createElement("div");
-
-d.className="dealer-card";
-
-d.innerHTML=`
-
-<div class="dealer-image">
-
-<img
-src="${car.image}"
-alt="${escapeHTML(car.name)}"
-onerror="this.style.display='none'"
->
-
-</div>
-
-<div class="dealer-body">
-
-<div class="dealer-name">
-${escapeHTML(car.name)}
-</div>
-
-<div class="dealer-desc">
-${escapeHTML(car.description)}
-</div>
-
-<div class="dealer-stats">
-
-<div class="dealer-stat">
-<div class="dealer-stat-label">
-СКОРОСТЬ
-</div>
-<div class="dealer-stat-value">
-${car.speed}/100
-</div>
-</div>
-
-<div class="dealer-stat">
-<div class="dealer-stat-label">
-МОЩНОСТЬ
-</div>
-<div class="dealer-stat-value">
-${car.power}/100
-</div>
-</div>
-
-</div>
-
-<div class="dealer-price">
-₽ ${number(car.price)}
-<span>стоимость</span>
-</div>
-
-<button
-class="buy-car ${isOwned?"owned":""}"
-${isOwned?"disabled":""}
-onclick="buyCar('${car.id}')">
-
-${isOwned
-?"✓ УЖЕ В ГАРАЖЕ"
-:"КУПИТЬ АВТОМОБИЛЬ"}
-
-</button>
-
-</div>
-`;
-
-c.appendChild(d);
-
-});
-
-}
-
-
-/* BUY CAR */
-
-function buyCar(id){
-
-if(!currentUser)
-return toast("❌ Авторизуйся.");
-
-const car=
-carsCatalog.find(
-x=>x.id===id
-);
-
-if(!car)
-return toast(
-"❌ Автомобиль не найден."
-);
-
-const owned=
-getOwnedCars();
-
-if(
-owned.some(
-x=>x.id===car.id
-)
-)
-return toast(
-"🚗 Эта машина уже в гараже."
-);
-
-const balance=
-Number(currentUser.cash||0);
-
-if(balance<car.price){
-
-openModal(
-"Недостаточно денег",
-"Для покупки "+car.name+
-" нужно ₽ "+
-number(car.price)+
-".\n\nТвой баланс: ₽ "+
-number(balance)+"."
-);
-
-return;
-
-}
-
-
-/*
-Списываем деньги локально,
-добавляем автомобиль в гараж.
-*/
-
-currentUser.cash=
-balance-car.price;
-
-
-/*
-Сохраняем обновлённый баланс
-для текущей сессии.
-*/
-
-try{
-
-localStorage.setItem(
-"brp_local_cash_"+currentAuthUser.id,
-String(currentUser.cash)
-);
-
-}catch(e){}
-
-
-/*
-Добавляем автомобиль.
-*/
-
-owned.push({
-
-id:car.id,
-
-name:car.name,
-
-shortName:car.shortName,
-
-image:car.image,
-
-fuel:car.fuel,
-
-condition:car.condition,
-
-speed:car.speed,
-
-power:car.power,
-
-boughtAt:new Date().toISOString()
-
-});
-
-saveOwnedCars(owned);
-
-
-/*
-Обновляем интерфейс.
-*/
-
-renderAll();
-
-renderCars();
-
-toast(
-"🚗 "+car.name+
-" куплен и добавлен в гараж!"
-);
-
-}
+l=>
+100+(l-1)*75;
 
 
 /* GARAGE */
@@ -2510,101 +2575,85 @@ document.getElementById(
 "garageContainer"
 );
 
+
 if(!c)
 return;
 
-const cars=
-getOwnedCars();
+
+const cars=[
+[
+"Lada Priora",
+"🚘",
+87,
+96
+],
+[
+"VAZ 2107",
+"🚗",
+62,
+91
+]
+];
+
 
 c.innerHTML="";
 
 
-if(!cars.length){
-
-c.innerHTML=`
-
-<div class="card">
-
-<div class="card-title">
-Гараж пуст
-</div>
-
-<div class="card-desc">
-У тебя пока нет автомобилей.
-Отправляйся в автосалон и выбери свою первую машину.
-</div>
-
-<button
-class="primary-btn"
-onclick="openPage('cars')">
-ОТКРЫТЬ АВТОСАЛОН
-</button>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-cars.forEach(car=>{
+cars.forEach(x=>{
 
 const d=
 document.createElement("div");
 
+
 d.className="car";
+
 
 d.innerHTML=`
 
 <div class="car-image">
-
-<img
-src="${car.image}"
-alt="${escapeHTML(car.name)}"
-onerror="this.style.display='none'"
->
-
+${x[1]}
 </div>
 
 <div class="car-body">
 
 <div class="car-name">
-${escapeHTML(car.name)}
+${x[0]}
 </div>
 
 <div class="car-meta">
-⛽ Топливо: ${car.fuel}% ·
-🔧 Состояние: ${car.condition}%
-</div>
-
-<div class="car-meta">
-🏎️ Скорость: ${car.speed}/100 ·
-💪 Мощность: ${car.power}/100
+Топливо: ${x[2]}% ·
+Состояние: ${x[3]}%
 </div>
 
 <div class="car-buttons">
 
 <button
-onclick="refuelCar('${car.id}')">
+onclick="toast('⛽ Автомобиль заправлен')">
+
 ⛽ Заправить
+
 </button>
 
 <button
-onclick="repairCar('${car.id}')">
+onclick="toast('🔧 Автомобиль исправен')">
+
 🔧 Ремонт
+
 </button>
 
 <button
-onclick="driveCar('${car.id}')">
+onclick="toast('🚗 Вы выехали в город')">
+
 🚗 Ехать
+
 </button>
 
 </div>
 
 </div>
+
 `;
+
 
 c.appendChild(d);
 
@@ -2613,122 +2662,49 @@ c.appendChild(d);
 }
 
 
-/* REFUEL */
-
-function refuelCar(id){
-
-const cars=
-getOwnedCars();
-
-const car=
-cars.find(x=>x.id===id);
-
-if(!car)
-return;
-
-if(car.fuel>=100)
-return toast(
-"⛽ Бак уже полный."
-);
-
-car.fuel=100;
-
-saveOwnedCars(cars);
-
-renderGarage();
-
-toast(
-"⛽ Автомобиль заправлен."
-);
-
-}
-
-
-/* REPAIR */
-
-function repairCar(id){
-
-const cars=
-getOwnedCars();
-
-const car=
-cars.find(x=>x.id===id);
-
-if(!car)
-return;
-
-if(car.condition>=100)
-return toast(
-"🔧 Автомобиль уже исправен."
-);
-
-car.condition=100;
-
-saveOwnedCars(cars);
-
-renderGarage();
-
-toast(
-"🔧 Автомобиль отремонтирован."
-);
-
-}
-
-
-/* DRIVE */
-
-function driveCar(id){
-
-const cars=
-getOwnedCars();
-
-const car=
-cars.find(x=>x.id===id);
-
-if(!car)
-return;
-
-if(car.fuel<=0)
-return toast(
-"⛽ Нет топлива."
-);
-
-if(car.condition<=0)
-return toast(
-"🔧 Сначала отремонтируй автомобиль."
-);
-
-car.fuel=
-Math.max(
-0,
-Number(car.fuel)-5
-);
-
-saveOwnedCars(cars);
-
-renderGarage();
-
-toast(
-"🚗 "+car.shortName+
-" выехала в город!"
-);
-
-}
-
-
 /* SHOP */
 
 const shopItems=[
-
-["🍔","Бургер",350],
-["🥤","Газировка",180],
-["☕","Кофе",250],
-["📱","Телефон",12500],
-["🎧","Наушники",6500],
-["🧰","Ремкомплект",3200],
-["🎒","Рюкзак",4500],
-["🧥","Куртка",7200]
-
+[
+"🍔",
+"Бургер",
+350
+],
+[
+"🥤",
+"Газировка",
+180
+],
+[
+"☕",
+"Кофе",
+250
+],
+[
+"📱",
+"Телефон",
+12500
+],
+[
+"🎧",
+"Наушники",
+6500
+],
+[
+"🧰",
+"Ремкомплект",
+3200
+],
+[
+"🎒",
+"Рюкзак",
+4500
+],
+[
+"🧥",
+"Куртка",
+7200
+]
 ];
 
 
@@ -2739,17 +2715,22 @@ document.getElementById(
 "shopContainer"
 );
 
+
 if(!c)
 return;
 
+
 c.innerHTML="";
+
 
 shopItems.forEach((x,i)=>{
 
 const d=
 document.createElement("div");
 
+
 d.className="item";
+
 
 d.innerHTML=`
 
@@ -2768,9 +2749,13 @@ ${x[1]}
 <button
 class="buy"
 onclick="buyItem(${i})">
+
 КУПИТЬ
+
 </button>
+
 `;
+
 
 c.appendChild(d);
 
@@ -2781,15 +2766,19 @@ c.appendChild(d);
 
 function buyItem(i){
 
-const x=shopItems[i];
+const x=
+shopItems[i];
+
 
 if(!x)
 return;
+
 
 if(Number(currentUser.cash)<x[2])
 return toast(
 "Недостаточно денег."
 );
+
 
 toast(
 x[0]+" "+x[1]+" добавлен."
@@ -2831,7 +2820,9 @@ localStorage.getItem(
 }
 )||[];
 
+
 renderChat(messages);
+
 
 }catch(e){
 
@@ -2851,8 +2842,10 @@ document.getElementById(
 "chatMessages"
 );
 
+
 if(!b)
 return;
+
 
 b.innerHTML="";
 
@@ -2872,6 +2865,7 @@ SERVER
 </div>
 
 </div>
+
 `;
 
 return;
@@ -2884,27 +2878,27 @@ messages.forEach(m=>{
 const d=
 document.createElement("div");
 
+
 d.className="message";
+
 
 d.innerHTML=`
 
 <div class="message-name">
-${escapeHTML(
-m.username||"Player"
-)}
+${escapeHTML(m.username||"Player")}
 </div>
 
 <div class="message-text">
-${escapeHTML(
-m.message||""
-)}
+${escapeHTML(m.message||"")}
 </div>
 
 `;
 
+
 b.appendChild(d);
 
 });
+
 
 b.scrollTop=b.scrollHeight;
 
@@ -2918,11 +2912,14 @@ document.getElementById(
 "chatInput"
 );
 
+
 const text=
 i.value.trim();
 
+
 if(!text||text.length>150)
 return;
+
 
 try{
 
@@ -2942,20 +2939,18 @@ Prefer:"return=minimal"
 },
 
 body:JSON.stringify({
-
-username:
-currentUser.username,
-
+username:currentUser.username,
 message:text
-
 })
 
 }
 );
 
+
 i.value="";
 
 await loadChat();
+
 
 }catch(e){
 
@@ -2988,21 +2983,16 @@ Authorization:
 localStorage.getItem(
 "brp_access_token"
 ),
-Prefer:"resolution=merge-duplicates"
+Prefer:
+"resolution=merge-duplicates"
 },
 
 body:JSON.stringify({
-
 id:currentAuthUser.id,
-
-username:
-currentUser.username,
-
+username:currentUser.username,
 online:true,
-
 last_seen:
 new Date().toISOString()
-
 })
 
 }
@@ -3020,8 +3010,10 @@ document.getElementById(
 "onlineContainer"
 );
 
+
 if(!c)
 return;
+
 
 try{
 
@@ -3040,36 +3032,47 @@ localStorage.getItem(
 }
 )||[];
 
-document.getElementById(
+
+document
+.getElementById(
 "onlineCount"
-).textContent=
+)
+.textContent=
 list.length+" онлайн";
 
+
 c.innerHTML="";
+
 
 list.forEach(p=>{
 
 const d=
 document.createElement("div");
 
+
 d.className="online-card";
+
 
 d.innerHTML=`
 
 <div class="avatar">
+
 ${escapeHTML(
 (p.username||"P")
 .charAt(0)
 .toUpperCase()
 )}
+
 </div>
 
 <div class="online-info">
 
 <div class="online-name">
+
 ${escapeHTML(
 p.username||"Player"
 )}
+
 </div>
 
 <div class="online-status">
@@ -3084,35 +3087,44 @@ ONLINE
 
 `;
 
+
 c.appendChild(d);
 
 });
 
+
 }catch(e){
 
-document.getElementById(
+document
+.getElementById(
 "onlineCount"
-).textContent=
+)
+.textContent=
 "1 онлайн";
+
 
 c.innerHTML=`
 
 <div class="online-card">
 
 <div class="avatar">
+
 ${escapeHTML(
 currentUser.username
 .charAt(0)
 .toUpperCase()
 )}
+
 </div>
 
 <div class="online-info">
 
 <div class="online-name">
+
 ${escapeHTML(
 currentUser.username
 )}
+
 </div>
 
 <div class="online-status">
@@ -3141,7 +3153,6 @@ function openPage(page){
 [
 "home",
 "garage",
-"cars",
 "shop",
 "map",
 "donate",
@@ -3185,14 +3196,9 @@ behavior:"smooth"
 if(page==="chat")
 loadChat();
 
+
 if(page==="online")
 loadOnline();
-
-if(page==="garage")
-renderGarage();
-
-if(page==="cars")
-renderCars();
 
 }
 
@@ -3250,26 +3256,32 @@ switchAuth("login");
 
 function openModal(title,text){
 
-document.getElementById(
-"modalTitle"
-).textContent=title;
+document
+.getElementById("modalTitle")
+.textContent=title;
 
-document.getElementById(
-"modalText"
-).textContent=text;
 
-document.getElementById(
-"modal"
-).classList.remove("hidden");
+document
+.getElementById("modalText")
+.textContent=text;
+
+
+document
+.getElementById("modal")
+.classList.remove(
+"hidden"
+);
 
 }
 
 
 function closeModal(){
 
-document.getElementById(
-"modal"
-).classList.add("hidden");
+document
+.getElementById("modal")
+.classList.add(
+"hidden"
+);
 
 }
 
@@ -3279,13 +3291,17 @@ document.getElementById(
 function toast(text){
 
 const e=
-document.getElementById("toast");
+document.getElementById(
+"toast"
+);
+
 
 e.textContent=text;
 
 e.classList.add("show");
 
 clearTimeout(toastTimer);
+
 
 toastTimer=setTimeout(()=>{
 
@@ -3301,16 +3317,26 @@ e.classList.remove("show");
 function escapeHTML(v){
 
 return String(v)
-
-.replaceAll("&","&amp;")
-
-.replaceAll("<","&lt;")
-
-.replaceAll(">","&gt;")
-
-.replaceAll('"',"&quot;")
-
-.replaceAll("'","&#039;");
+.replaceAll(
+"&",
+"&amp;"
+)
+.replaceAll(
+"<",
+"&lt;"
+)
+.replaceAll(
+">",
+"&gt;"
+)
+.replaceAll(
+'"',
+"&quot;"
+)
+.replaceAll(
+"'",
+"&#039;"
+);
 
 }
 
@@ -3320,22 +3346,28 @@ return String(v)
 function cleanError(t){
 
 if(!t)
-return"Неизвестная ошибка";
+return "Неизвестная ошибка";
+
 
 if(t.includes("Invalid API key"))
-return"Неверный Supabase API key.";
+return "Неверный Supabase API key.";
+
 
 if(t.includes("Invalid login credentials"))
-return"Неверный логин или пароль.";
+return "Неверный логин или пароль.";
+
 
 if(t.includes("Email not confirmed"))
-return"Почта ещё не подтверждена.";
+return "Почта ещё не подтверждена.";
+
 
 if(t.includes("User already registered"))
-return"Такая почта уже зарегистрирована.";
+return "Такая почта уже зарегистрирована.";
+
 
 if(t.includes("duplicate key"))
-return"Такой логин уже занят.";
+return "Такой логин уже занят.";
+
 
 return t
 .replace(/[{}\[\]"]/g,"")
