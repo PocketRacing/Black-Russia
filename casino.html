@@ -685,7 +685,10 @@ button:disabled{
 </div>
 
 <header class="top">
-<button class="back" onclick="goBack()">← НАЗАД</button>
+
+<button class="back" onclick="goBack()">
+← НАЗАД
+</button>
 
 <div class="logo">
 BLACK <span>CASINO</span>
@@ -694,6 +697,7 @@ BLACK <span>CASINO</span>
 <div class="balance" id="balance">
 ₽ 0
 </div>
+
 </header>
 
 <div class="wrap">
@@ -701,7 +705,10 @@ BLACK <span>CASINO</span>
 <section id="menu">
 
 <div class="hero">
-<div class="crown">♠️</div>
+
+<div class="crown">
+♠️
+</div>
 
 <h1>
 BLACK <span>CASINO</span>
@@ -712,15 +719,24 @@ BLACK <span>CASINO</span>
 </p>
 
 <div class="line"></div>
+
 </div>
 
 <div class="games">
 
 <div class="game" onclick="openGame('blackjack')">
-<div class="game-badge">№1</div>
-<div class="game-icon">🃏</div>
 
-<h2>Блекджек</h2>
+<div class="game-badge">
+№1
+</div>
+
+<div class="game-icon">
+🃏
+</div>
+
+<h2>
+Блекджек
+</h2>
 
 <p>
 Собери 21 очко и обыграй дилера.
@@ -729,13 +745,23 @@ BLACK <span>CASINO</span>
 <button class="game-btn">
 ИГРАТЬ
 </button>
+
 </div>
 
-<div class="game" onclick="openGame('roulette')">
-<div class="game-badge">№2</div>
-<div class="game-icon">🎡</div>
 
-<h2>Рулетка</h2>
+<div class="game" onclick="openGame('roulette')">
+
+<div class="game-badge">
+№2
+</div>
+
+<div class="game-icon">
+🎡
+</div>
+
+<h2>
+Рулетка
+</h2>
 
 <p>
 Красное, чёрное, зеро или конкретное число.
@@ -744,13 +770,23 @@ BLACK <span>CASINO</span>
 <button class="game-btn">
 ИГРАТЬ
 </button>
+
 </div>
 
-<div class="game" onclick="openGame('dice')">
-<div class="game-badge">№3</div>
-<div class="game-icon">🎲</div>
 
-<h2>Кости</h2>
+<div class="game" onclick="openGame('dice')">
+
+<div class="game-badge">
+№3
+</div>
+
+<div class="game-icon">
+🎲
+</div>
+
+<h2>
+Кости
+</h2>
 
 <p>
 Сделай ставку и попробуй угадать исход.
@@ -759,9 +795,11 @@ BLACK <span>CASINO</span>
 <button class="game-btn">
 ИГРАТЬ
 </button>
+
 </div>
 
 </div>
+
 </section>
 
 
@@ -858,7 +896,9 @@ BLACK <span>CASINO</span>
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 
@@ -931,7 +971,9 @@ BLACK <span>CASINO</span>
 </div>
 
 </div>
+
 </div>
+
 </section>
 
 
@@ -1012,6 +1054,7 @@ BLACK <span>CASINO</span>
 </button>
 
 </div>
+
 </section>
 
 </div>
@@ -1027,11 +1070,14 @@ BLACK <span>CASINO</span>
    SUPABASE
 ========================================================= */
 
-const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
+const SUPABASE_URL=
+"https://qzswnoeglovfpgrzpnio.supabase.co";
 
-const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+const SUPABASE_KEY=
+"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
-const supabaseClient=window.supabase.createClient(
+const supabaseClient=
+window.supabase.createClient(
  SUPABASE_URL,
  SUPABASE_KEY,
  {
@@ -1040,8 +1086,7 @@ const supabaseClient=window.supabase.createClient(
    autoRefreshToken:true,
    detectSessionInUrl:true
   }
- }
-);
+ });
 
 
 /* =========================================================
@@ -1054,49 +1099,51 @@ let playerReady=false;
 
 
 /* =========================================================
-   LOAD SESSION
+   LOAD PLAYER
 ========================================================= */
 
 async function loadPlayer(){
 
  try{
 
-  /*
-   ВАЖНО:
-   Сначала ждём восстановления существующей
-   Supabase-сессии.
-  */
-
   let session=null;
 
-  const result=await supabaseClient.auth.getSession();
+  const result=
+   await supabaseClient.auth.getSession();
 
   if(result.data){
    session=result.data.session;
   }
 
-  /*
-   Если сессия ещё не появилась мгновенно,
-   даём Supabase немного времени.
-  */
-
   if(!session){
 
    await new Promise(resolve=>{
-    const timeout=setTimeout(resolve,1500);
+
+    const timeout=setTimeout(
+     resolve,
+     1500
+    );
 
     const {
      data:{subscription}
-    }=supabaseClient.auth.onAuthStateChange(
-     (_event,newSession)=>{
-      if(newSession){
-       session=newSession;
-       clearTimeout(timeout);
-       subscription.unsubscribe();
-       resolve();
-      }
-     }
-    );
+    }=
+     supabaseClient.auth.onAuthStateChange(
+      (_event,newSession)=>{
+
+       if(newSession){
+
+        session=newSession;
+
+        clearTimeout(timeout);
+
+        subscription.unsubscribe();
+
+        resolve();
+
+       }
+
+      });
+
    });
 
   }
@@ -1104,9 +1151,13 @@ async function loadPlayer(){
 
   if(!session){
 
-   console.log("Supabase session not found");
+   console.log(
+    "Supabase session not found"
+   );
 
-   document.getElementById("loading").textContent=
+   document.getElementById(
+    "loading"
+   ).textContent=
     "Необходимо войти в аккаунт.";
 
    setTimeout(()=>{
@@ -1120,22 +1171,27 @@ async function loadPlayer(){
   currentUser=session.user;
 
 
-  /*
-   Загружаем профиль.
-  */
-
-  const {data,error}=await supabaseClient
-   .from("profiles")
-   .select("*")
-   .eq("id",currentUser.id)
-   .single();
+  const {
+   data,
+   error
+  }=
+   await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("id",currentUser.id)
+    .single();
 
 
   if(error){
 
-   console.error("PROFILE ERROR:",error);
+   console.error(
+    "PROFILE ERROR:",
+    error
+   );
 
-   document.getElementById("loading").textContent=
+   document.getElementById(
+    "loading"
+   ).textContent=
     "Не удалось загрузить профиль.";
 
    return false;
@@ -1143,25 +1199,33 @@ async function loadPlayer(){
 
 
   profile=data;
+
   playerReady=true;
 
   updateBalance();
 
-  document.getElementById("loading")
-   .classList.add("hidden");
+  document.getElementById(
+   "loading"
+  ).classList.add("hidden");
 
   return true;
 
 
  }catch(error){
 
-  console.error("LOAD ERROR:",error);
+  console.error(
+   "LOAD ERROR:",
+   error
+  );
 
-  document.getElementById("loading").textContent=
+  document.getElementById(
+   "loading"
+  ).textContent=
    "Ошибка подключения.";
 
   return false;
  }
+
 }
 
 
@@ -1172,12 +1236,10 @@ async function loadPlayer(){
 supabaseClient.auth.onAuthStateChange(
  async(event,session)=>{
 
-  console.log("AUTH:",event);
-
-  /*
-   Не выкидываем пользователя,
-   если Supabase обновляет токен.
-  */
+  console.log(
+   "AUTH:",
+   event
+  );
 
   if(event==="SIGNED_OUT"){
 
@@ -1186,12 +1248,9 @@ supabaseClient.auth.onAuthStateChange(
    profile=null;
 
    location.href="index.html";
+
   }
 
-  /*
-   Если сессия появилась после загрузки,
-   загружаем игрока.
-  */
 
   if(
    session &&
@@ -1202,33 +1261,62 @@ supabaseClient.auth.onAuthStateChange(
 
   }
 
- }
-);
+ });
 
 
 /* =========================================================
    BALANCE
 ========================================================= */
 
+/*
+   Общий баланс:
+
+   cash + bank
+*/
+
+function getCash(){
+
+ return Number(
+  profile?.cash || 0
+ );
+
+}
+
+
+function getBank(){
+
+ return Number(
+  profile?.bank || 0
+ );
+
+}
+
+
 function getMoney(){
 
- return Number(profile?.cash||0);
+ return getCash()+getBank();
 
 }
 
 
 function formatMoney(value){
 
- return Math.round(Number(value))
-  .toLocaleString("ru-RU");
+ return Math.round(
+  Number(value)
+ )
+ .toLocaleString("ru-RU");
 
 }
 
 
 function updateBalance(){
 
- document.getElementById("balance").textContent=
-  "₽ "+formatMoney(getMoney());
+ document.getElementById(
+  "balance"
+ ).textContent=
+  "₽ "+formatMoney(
+   getMoney()
+  );
 
 }
 
@@ -1239,9 +1327,15 @@ function updateBalance(){
 
 async function changeMoney(delta){
 
- if(!playerReady || !profile || !currentUser){
+ if(
+  !playerReady ||
+  !profile ||
+  !currentUser
+ ){
 
-  toast("Профиль ещё загружается.");
+  toast(
+   "Профиль ещё загружается."
+  );
 
   return false;
  }
@@ -1249,51 +1343,168 @@ async function changeMoney(delta){
 
  delta=Number(delta);
 
+
  if(!Number.isFinite(delta)){
 
-  toast("Ошибка суммы.");
+  toast(
+   "Ошибка суммы."
+  );
 
   return false;
  }
 
 
- const oldMoney=getMoney();
- const newMoney=oldMoney+delta;
+ const cash=getCash();
+ const bank=getBank();
+ const total=cash+bank;
 
 
- if(newMoney<0){
+/*
+   ПОПОЛНЕНИЕ
 
-  toast("Недостаточно денег.");
+   Выигрыш всегда идёт
+   в cash.
+*/
+
+ if(delta>0){
+
+  const newCash=
+   cash+delta;
+
+
+  const {
+   data,
+   error
+  }=
+   await supabaseClient
+    .from("profiles")
+    .update({
+     cash:newCash
+    })
+    .eq(
+     "id",
+     currentUser.id
+    )
+    .select("cash,bank")
+    .single();
+
+
+  if(error){
+
+   console.error(
+    "BALANCE UPDATE ERROR:",
+    error
+   );
+
+   toast(
+    "Ошибка сохранения баланса."
+   );
+
+   return false;
+  }
+
+
+  profile.cash=
+   Number(data.cash||0);
+
+  profile.bank=
+   Number(data.bank||0);
+
+  updateBalance();
+
+  return true;
+
+ }
+
+
+/*
+   СПИСАНИЕ
+*/
+
+ const amount=
+  Math.abs(delta);
+
+
+ if(total<amount){
+
+  toast(
+   "Недостаточно денег."
+  );
 
   return false;
  }
 
 
- const {data,error}=await supabaseClient
-  .from("profiles")
-  .update({
-   cash:newMoney
-  })
-  .eq("id",currentUser.id)
-  .select("cash")
-  .single();
+ let newCash=cash;
+ let newBank=bank;
+
+
+/*
+   Сначала cash.
+   Потом bank.
+*/
+
+ if(cash>=amount){
+
+  newCash=
+   cash-amount;
+
+ }else{
+
+  const fromBank=
+   amount-cash;
+
+  newCash=0;
+
+  newBank=
+   bank-fromBank;
+
+ }
+
+
+ const {
+  data,
+  error
+ }=
+  await supabaseClient
+   .from("profiles")
+   .update({
+    cash:newCash,
+    bank:newBank
+   })
+   .eq(
+    "id",
+    currentUser.id
+   )
+   .select("cash,bank")
+   .single();
 
 
  if(error){
 
-  console.error("BALANCE UPDATE ERROR:",error);
+  console.error(
+   "BALANCE UPDATE ERROR:",
+   error
+  );
 
-  toast("Ошибка сохранения баланса.");
+  toast(
+   "Ошибка сохранения баланса."
+  );
 
   return false;
  }
 
 
- profile.cash=Number(data.cash);
+ profile.cash=
+  Number(data.cash||0);
+
+ profile.bank=
+  Number(data.bank||0);
 
  updateBalance();
 
  return true;
+
 }
 
 
@@ -1305,34 +1516,59 @@ async function takeBet(amount){
 
  amount=Number(amount);
 
- if(!Number.isFinite(amount)||amount<100){
 
-  toast("Минимальная ставка — ₽100.");
+ if(
+  !Number.isFinite(amount)||
+  amount<100
+ ){
 
-  return false;
- }
-
-
- if(getMoney()<amount){
-
-  toast("Недостаточно денег.");
+  toast(
+   "Минимальная ставка — ₽100."
+  );
 
   return false;
  }
 
 
- return await changeMoney(-amount);
+ if(
+  getMoney()<amount
+ ){
+
+  toast(
+   "Недостаточно денег."
+  );
+
+  return false;
+ }
+
+
+ return await changeMoney(
+  -amount
+ );
+
 }
 
+
+/* =========================================================
+   PRIZE
+========================================================= */
 
 async function givePrize(amount){
 
  amount=Number(amount);
 
- if(!Number.isFinite(amount)||amount<=0)
+
+ if(
+  !Number.isFinite(amount)||
+  amount<=0
+ )
   return false;
 
- return await changeMoney(amount);
+
+ return await changeMoney(
+  amount
+ );
+
 }
 
 
@@ -1344,16 +1580,25 @@ let toastTimer=null;
 
 function toast(text){
 
- const el=document.getElementById("toast");
+ const el=
+  document.getElementById(
+   "toast"
+  );
 
  el.textContent=text;
 
- el.classList.add("show");
+ el.classList.add(
+  "show"
+ );
 
- clearTimeout(toastTimer);
+ clearTimeout(
+  toastTimer
+ );
 
  toastTimer=setTimeout(()=>{
-  el.classList.remove("show");
+  el.classList.remove(
+   "show"
+  );
  },2200);
 
 }
@@ -1367,20 +1612,35 @@ function openGame(id){
 
  if(!playerReady){
 
-  toast("Подожди, загружается аккаунт.");
+  toast(
+   "Подожди, загружается аккаунт."
+  );
 
   return;
  }
 
 
- document.getElementById("menu")
-  .classList.add("hidden");
+ document.getElementById(
+  "menu"
+ ).classList.add(
+  "hidden"
+ );
 
- document.querySelectorAll(".gamePage")
-  .forEach(x=>x.classList.add("hidden"));
 
- document.getElementById(id)
-  .classList.remove("hidden");
+ document.querySelectorAll(
+  ".gamePage"
+ ).forEach(
+  x=>x.classList.add(
+   "hidden"
+  )
+ );
+
+
+ document.getElementById(
+  id
+ ).classList.remove(
+  "hidden"
+ );
 
 
  if(id==="roulette")
@@ -1397,11 +1657,21 @@ function openGame(id){
 
 function showMenu(){
 
- document.querySelectorAll(".gamePage")
-  .forEach(x=>x.classList.add("hidden"));
+ document.querySelectorAll(
+  ".gamePage"
+ ).forEach(
+  x=>x.classList.add(
+   "hidden"
+  )
+ );
 
- document.getElementById("menu")
-  .classList.remove("hidden");
+
+ document.getElementById(
+  "menu"
+ ).classList.remove(
+  "hidden"
+ );
+
 
  window.scrollTo({
   top:0,
@@ -1414,11 +1684,15 @@ function showMenu(){
 function goBack(){
 
  if(
-  !document.getElementById("menu")
-   .classList.contains("hidden")
+  !document.getElementById(
+   "menu"
+  ).classList.contains(
+   "hidden"
+  )
  ){
 
-  location.href="index.html";
+  location.href=
+   "index.html";
 
  }else{
 
@@ -1433,7 +1707,13 @@ function goBack(){
    BLACKJACK
 ========================================================= */
 
-const suits=["♠","♥","♦","♣"];
+const suits=[
+ "♠",
+ "♥",
+ "♦",
+ "♣"
+];
+
 
 const ranks=[
  ["A",11],
@@ -1451,6 +1731,7 @@ const ranks=[
  ["K",10]
 ];
 
+
 let bjBet=100;
 let bjDeck=[];
 let bjPlayer=[];
@@ -1463,9 +1744,14 @@ function newDeck(){
 
  let deck=[];
 
- for(const suit of suits){
 
-  for(const rank of ranks){
+ for(
+  const suit of suits
+ ){
+
+  for(
+   const rank of ranks
+  ){
 
    deck.push({
     rank:rank[0],
@@ -1477,42 +1763,65 @@ function newDeck(){
 
  }
 
- return deck.sort(()=>Math.random()-.5);
+
+ return deck.sort(
+  ()=>Math.random()-.5
+ );
 
 }
 
 
 function handValue(hand){
 
- let total=hand.reduce(
-  (sum,card)=>sum+card.value,
-  0
- );
+ let total=
+  hand.reduce(
+   (sum,card)=>
+    sum+card.value,
+   0
+  );
 
- let aces=hand.filter(
-  card=>card.rank==="A"
- ).length;
 
- while(total>21&&aces--){
+ let aces=
+  hand.filter(
+   card=>card.rank==="A"
+  ).length;
+
+
+ while(
+  total>21&&
+  aces--
+ ){
+
   total-=10;
+
  }
+
 
  return total;
 
 }
 
 
-function cardHTML(card,hidden=false){
+function cardHTML(
+ card,
+ hidden=false
+){
 
  if(hidden){
 
-  return `<div class="card back">?</div>`;
+  return `
+   <div class="card back">
+   ?
+   </div>
+  `;
 
  }
+
 
  const red=
   card.suit==="♥"||
   card.suit==="♦";
+
 
  return `
  <div class="card ${red?"red":""}">
@@ -1523,78 +1832,119 @@ function cardHTML(card,hidden=false){
 }
 
 
-function renderBJ(hideDealer=true){
+function renderBJ(
+ hideDealer=true
+){
 
- document.getElementById("playerCards")
-  .innerHTML=
-   bjPlayer.map(card=>cardHTML(card)).join("");
+ document.getElementById(
+  "playerCards"
+ ).innerHTML=
+  bjPlayer
+   .map(
+    card=>cardHTML(card)
+   )
+   .join("");
 
 
- document.getElementById("dealerCards")
-  .innerHTML=
-   bjDealer.map(
+ document.getElementById(
+  "dealerCards"
+ ).innerHTML=
+  bjDealer
+   .map(
     (card,index)=>
      cardHTML(
       card,
       hideDealer&&index===1
      )
-   ).join("");
+   )
+   .join("");
 
 
- document.getElementById("playerScore")
-  .textContent=handValue(bjPlayer);
+ document.getElementById(
+  "playerScore"
+ ).textContent=
+  handValue(
+   bjPlayer
+  );
 
 
- document.getElementById("dealerScore")
-  .textContent=
-   hideDealer
-    ?"?"
-    :handValue(bjDealer);
+ document.getElementById(
+  "dealerScore"
+ ).textContent=
+  hideDealer
+   ?"?"
+   :handValue(
+    bjDealer
+   );
 
 }
 
 
 async function startBJ(){
 
- if(bjActive||bjBusy)
+ if(
+  bjActive||
+  bjBusy
+ )
   return;
 
 
- if(!await takeBet(bjBet))
+ if(
+  !await takeBet(
+   bjBet
+  )
+ )
   return;
 
 
- bjDeck=newDeck();
+ bjDeck=
+  newDeck();
+
 
  bjPlayer=[
   bjDeck.pop(),
   bjDeck.pop()
  ];
 
+
  bjDealer=[
   bjDeck.pop(),
   bjDeck.pop()
  ];
 
+
  bjActive=true;
 
 
- document.getElementById("bjStart")
-  .disabled=true;
+ document.getElementById(
+  "bjStart"
+ ).disabled=true;
 
- document.getElementById("bjHit")
-  .disabled=false;
 
- document.getElementById("bjStand")
-  .disabled=false;
+ document.getElementById(
+  "bjHit"
+ ).disabled=false;
 
- document.getElementById("bjMessage")
-  .textContent="Твой ход.";
+
+ document.getElementById(
+  "bjStand"
+ ).disabled=false;
+
+
+ document.getElementById(
+  "bjMessage"
+ ).textContent=
+  "Твой ход.";
+
 
  renderBJ(true);
 
 
- if(handValue(bjPlayer)===21){
+ if(
+  handValue(
+   bjPlayer
+  )===21
+ ){
 
   setTimeout(
    ()=>standBJ(),
@@ -1608,7 +1958,10 @@ async function startBJ(){
 
 async function hitBJ(){
 
- if(!bjActive||bjBusy)
+ if(
+  !bjActive||
+  bjBusy
+ )
   return;
 
 
@@ -1616,14 +1969,21 @@ async function hitBJ(){
   bjDeck.pop()
  );
 
+
  renderBJ(true);
 
- const value=handValue(bjPlayer);
+
+ const value=
+  handValue(
+   bjPlayer
+  );
 
 
  if(value>21){
 
-  finishBJ("💥 Перебор. Ты проиграл.");
+  finishBJ(
+   "💥 Перебор. Ты проиграл."
+  );
 
  }else if(value===21){
 
@@ -1636,7 +1996,10 @@ async function hitBJ(){
 
 async function standBJ(){
 
- if(!bjActive||bjBusy)
+ if(
+  !bjActive||
+  bjBusy
+ )
   return;
 
 
@@ -1644,7 +2007,9 @@ async function standBJ(){
 
 
  while(
-  handValue(bjDealer)<17
+  handValue(
+   bjDealer
+  )<17
  ){
 
   bjDealer.push(
@@ -1657,33 +2022,53 @@ async function standBJ(){
  renderBJ(false);
 
 
- const player=handValue(bjPlayer);
- const dealer=handValue(bjDealer);
+ const player=
+  handValue(
+   bjPlayer
+  );
+
+
+ const dealer=
+  handValue(
+   bjDealer
+  );
 
 
  if(dealer>21){
 
-  await givePrize(bjBet*2);
+  await givePrize(
+   bjBet*2
+  );
+
 
   finishBJ(
    "🎉 У дилера перебор! Ты победил."
   );
 
+
  }else if(player>dealer){
 
-  await givePrize(bjBet*2);
+  await givePrize(
+   bjBet*2
+  );
+
 
   finishBJ(
    "🎉 Ты победил дилера!"
   );
 
+
  }else if(player===dealer){
 
-  await givePrize(bjBet);
+  await givePrize(
+   bjBet
+  );
+
 
   finishBJ(
    "🤝 Ничья. Ставка возвращена."
   );
+
 
  }else{
 
@@ -1703,37 +2088,57 @@ function finishBJ(message){
 
  bjActive=false;
 
- document.getElementById("bjHit")
-  .disabled=true;
 
- document.getElementById("bjStand")
-  .disabled=true;
+ document.getElementById(
+  "bjHit"
+ ).disabled=true;
 
- document.getElementById("bjStart")
-  .disabled=false;
 
- document.getElementById("bjMessage")
-  .textContent=message;
+ document.getElementById(
+  "bjStand"
+ ).disabled=true;
+
+
+ document.getElementById(
+  "bjStart"
+ ).disabled=false;
+
+
+ document.getElementById(
+  "bjMessage"
+ ).textContent=
+  message;
+
 
  renderBJ(false);
 
 }
 
 
-function setBJBet(value,button){
+function setBJBet(
+ value,
+ button
+){
 
  if(bjActive)
   return;
 
+
  bjBet=value;
+
 
  document.querySelectorAll(
   "#blackjack .bet"
  ).forEach(
-  x=>x.classList.remove("active")
+  x=>x.classList.remove(
+   "active"
+  )
  );
 
- button.classList.add("active");
+
+ button.classList.add(
+  "active"
+ );
 
 }
 
@@ -1754,7 +2159,9 @@ function isRed(number){
   12,14,16,18,
   19,21,23,25,27,
   30,32,34,36
- ].includes(number);
+ ].includes(
+  number
+ );
 
 }
 
@@ -1762,47 +2169,81 @@ function isRed(number){
 function buildNumbers(){
 
  const container=
-  document.getElementById("numberBets");
+  document.getElementById(
+   "numberBets"
+  );
 
- if(container.children.length)
+
+ if(
+  container.children.length
+ )
   return;
 
 
- for(let i=1;i<=36;i++){
+ for(
+  let i=1;
+  i<=36;
+  i++
+ ){
 
   const button=
-   document.createElement("button");
+   document.createElement(
+    "button"
+   );
+
 
   button.className=
-   "num "+(isRed(i)?"red":"black");
+   "num "+
+   (
+    isRed(i)
+     ?"red"
+     :"black"
+   );
+
 
   button.textContent=i;
 
+
   button.onclick=()=>{
+
    selectRBet(
     String(i),
     button
    );
+
   };
 
-  container.appendChild(button);
+
+  container.appendChild(
+   button
+  );
 
  }
 
 }
 
 
-function selectRBet(choice,button){
+function selectRBet(
+ choice,
+ button
+){
 
  rChoice=choice;
+
 
  document.querySelectorAll(
   "#roulette .num"
  ).forEach(
-  x=>x.classList.remove("active")
+  x=>x.classList.remove(
+   "active"
+  )
  );
 
- button.classList.add("active");
+
+ button.classList.add(
+  "active"
+ );
+
 
  document.getElementById(
   "rouletteMessage"
@@ -1812,20 +2253,30 @@ function selectRBet(choice,button){
 }
 
 
-function setRBet(value,button){
+function setRBet(
+ value,
+ button
+){
 
  if(rSpinning)
   return;
 
+
  rBet=value;
+
 
  document.querySelectorAll(
   "#roulette .bet"
  ).forEach(
-  x=>x.classList.remove("active")
+  x=>x.classList.remove(
+   "active"
+  )
  );
 
- button.classList.add("active");
+
+ button.classList.add(
+  "active"
+ );
 
 }
 
@@ -1836,7 +2287,11 @@ async function spinRoulette(){
   return;
 
 
- if(!await takeBet(rBet))
+ if(
+  !await takeBet(
+   rBet
+  )
+ )
   return;
 
 
@@ -1851,20 +2306,30 @@ async function spinRoulette(){
 
 
  const result=
-  Math.floor(Math.random()*37);
+  Math.floor(
+   Math.random()*37
+  );
 
 
  const wheel=
-  document.getElementById("wheel");
+  document.getElementById(
+   "wheel"
+  );
 
 
  const spins=
-  5+Math.floor(Math.random()*3);
+  5+
+  Math.floor(
+   Math.random()*3
+  );
 
 
  const degree=
   spins*360+
-  (360-result*10);
+  (
+   360-
+   result*10
+  );
 
 
  wheel.style.transform=
@@ -1934,7 +2399,10 @@ async function spinRoulette(){
     const prize=
      rBet*multiplier;
 
-    await givePrize(prize);
+
+    await givePrize(
+     prize
+    );
 
 
     document.getElementById(
@@ -1945,10 +2413,15 @@ async function spinRoulette(){
      " "+
      color+
      "! +₽"+
-     formatMoney(prize);
+     formatMoney(
+      prize
+     );
 
 
-    toast("🎉 Победа!");
+    toast(
+     "🎉 Победа!"
+    );
+
 
    }else{
 
@@ -1989,35 +2462,54 @@ let diceChoice="high";
 let diceBusy=false;
 
 
-function setDiceBet(choice,button){
+function setDiceBet(
+ choice,
+ button
+){
 
  diceChoice=choice;
+
 
  document.querySelectorAll(
   ".dice-bet"
  ).forEach(
-  x=>x.classList.remove("active")
+  x=>x.classList.remove(
+   "active"
+  )
  );
 
- button.classList.add("active");
+
+ button.classList.add(
+  "active"
+ );
 
 }
 
 
-function setDiceMoney(value,button){
+function setDiceMoney(
+ value,
+ button
+){
 
  if(diceBusy)
   return;
 
+
  diceBet=value;
+
 
  document.querySelectorAll(
   "#dice .bet"
  ).forEach(
-  x=>x.classList.remove("active")
+  x=>x.classList.remove(
+   "active"
+  )
  );
 
- button.classList.add("active");
+
+ button.classList.add(
+  "active"
+ );
 
 }
 
@@ -2028,7 +2520,11 @@ async function rollDice(){
   return;
 
 
- if(!await takeBet(diceBet))
+ if(
+  !await takeBet(
+   diceBet
+  )
+ )
   return;
 
 
@@ -2036,14 +2532,25 @@ async function rollDice(){
 
 
  const d1=
-  document.getElementById("die1");
+  document.getElementById(
+   "die1"
+  );
+
 
  const d2=
-  document.getElementById("die2");
+  document.getElementById(
+   "die2"
+  );
 
 
- d1.classList.add("roll");
- d2.classList.add("roll");
+ d1.classList.add(
+  "roll"
+ );
+
+
+ d2.classList.add(
+  "roll"
+ );
 
 
  document.getElementById(
@@ -2055,17 +2562,32 @@ async function rollDice(){
  setTimeout(
   async()=>{
 
-   d1.classList.remove("roll");
-   d2.classList.remove("roll");
+   d1.classList.remove(
+    "roll"
+   );
+
+
+   d2.classList.remove(
+    "roll"
+   );
 
 
    const a=
-    1+Math.floor(Math.random()*6);
+    1+
+    Math.floor(
+     Math.random()*6
+    );
+
 
    const b=
-    1+Math.floor(Math.random()*6);
+    1+
+    Math.floor(
+     Math.random()*6
+    );
 
-   const total=a+b;
+
+   const total=
+    a+b;
 
 
    const faces=[
@@ -2079,8 +2601,12 @@ async function rollDice(){
    ];
 
 
-   d1.textContent=faces[a];
-   d2.textContent=faces[b];
+   d1.textContent=
+    faces[a];
+
+
+   d2.textContent=
+    faces[b];
 
 
    let win=false;
@@ -2125,7 +2651,10 @@ async function rollDice(){
     const prize=
      diceBet*multiplier;
 
-    await givePrize(prize);
+
+    await givePrize(
+     prize
+    );
 
 
     document.getElementById(
@@ -2134,10 +2663,15 @@ async function rollDice(){
      "Выпало "+
      total+
      " — ПОБЕДА! +₽"+
-     formatMoney(prize);
+     formatMoney(
+      prize
+     );
 
 
-    toast("🎲 Ты выиграл!");
+    toast(
+     "🎲 Ты выиграл!"
+    );
+
 
    }else{
 
