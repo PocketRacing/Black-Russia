@@ -31,8 +31,7 @@
 
 body{
  font-family:Arial,Helvetica,sans-serif;
- background:
- radial-gradient(circle at 50% -10%,#241313,#050505 42%);
+ background:radial-gradient(circle at 50% -10%,#241313,#050505 42%);
  color:var(--white);
  min-height:100vh;
  padding-bottom:25px
@@ -142,12 +141,7 @@ button:disabled{
  width:90px;
  height:2px;
  margin:15px auto 0;
- background:linear-gradient(
-  90deg,
-  transparent,
-  var(--red),
-  transparent
- )
+ background:linear-gradient(90deg,transparent,var(--red),transparent)
 }
 
 .games{
@@ -175,12 +169,7 @@ button:disabled{
  content:"";
  position:absolute;
  inset:0;
- background:
- linear-gradient(
-  110deg,
-  rgba(229,9,20,.08),
-  transparent 50%
- );
+ background:linear-gradient(110deg,rgba(229,9,20,.08),transparent 50%);
  pointer-events:none
 }
 
@@ -259,18 +248,10 @@ button:disabled{
  position:relative;
  overflow:hidden;
  padding:17px;
- background:
- radial-gradient(
-  ellipse at center,
-  #126c3b 0%,
-  #0b4d2b 45%,
-  #06351d 100%
- );
+ background:radial-gradient(ellipse at center,#126c3b 0%,#0b4d2b 45%,#06351d 100%);
  border:8px solid #252525;
  border-radius:80px;
- box-shadow:
- inset 0 0 45px rgba(0,0,0,.55),
- 0 15px 40px #000;
+ box-shadow:inset 0 0 45px rgba(0,0,0,.55),0 15px 40px #000;
  min-height:400px
 }
 
@@ -279,9 +260,7 @@ button:disabled{
  position:absolute;
  left:50%;
  top:50%;
- transform:
-  translate(-50%,-50%)
-  rotate(-12deg);
+ transform:translate(-50%,-50%) rotate(-12deg);
  color:rgba(255,255,255,.055);
  font-size:38px;
  font-weight:1000;
@@ -289,8 +268,7 @@ button:disabled{
  pointer-events:none
 }
 
-.dealer,
-.player{
+.dealer,.player{
  position:relative;
  z-index:2;
  text-align:center
@@ -338,14 +316,7 @@ button:disabled{
 }
 
 .card.back{
- background:
- repeating-linear-gradient(
-  45deg,
-  #8b1118 0,
-  #8b1118 3px,
-  #e1d4b7 3px,
-  #e1d4b7 5px
- );
+ background:repeating-linear-gradient(45deg,#8b1118 0,#8b1118 3px,#e1d4b7 3px,#e1d4b7 5px);
  color:transparent;
  border:3px solid white
 }
@@ -446,34 +417,19 @@ button:disabled{
  height:min(76vw,300px);
  border-radius:50%;
  border:9px solid #252525;
- box-shadow:
- 0 0 0 3px #8d6d21,
- 0 12px 35px #000;
- transition:
- transform 3.5s cubic-bezier(.12,.75,.15,1);
-
- background:
- conic-gradient(
-  #b71920 0deg 18deg,
-  #111 18deg 36deg,
-  #b71920 36deg 54deg,
-  #111 54deg 72deg,
-  #b71920 72deg 90deg,
-  #111 90deg 108deg,
-  #b71920 108deg 126deg,
-  #111 126deg 144deg,
-  #b71920 144deg 162deg,
-  #111 162deg 180deg,
-  #b71920 180deg 198deg,
-  #111 198deg 216deg,
-  #b71920 216deg 234deg,
-  #111 234deg 252deg,
-  #b71920 252deg 270deg,
-  #111 270deg 288deg,
-  #b71920 288deg 306deg,
-  #111 306deg 324deg,
-  #b71920 324deg 342deg,
-  #111 342deg 360deg
+ box-shadow:0 0 0 3px #8d6d21,0 12px 35px #000;
+ transition:transform 3.5s cubic-bezier(.12,.75,.15,1);
+ background:conic-gradient(
+ #b71920 0deg 18deg,#111 18deg 36deg,
+ #b71920 36deg 54deg,#111 54deg 72deg,
+ #b71920 72deg 90deg,#111 90deg 108deg,
+ #b71920 108deg 126deg,#111 126deg 144deg,
+ #b71920 144deg 162deg,#111 162deg 180deg,
+ #b71920 180deg 198deg,#111 198deg 216deg,
+ #b71920 216deg 234deg,#111 234deg 252deg,
+ #b71920 252deg 270deg,#111 270deg 288deg,
+ #b71920 288deg 306deg,#111 306deg 324deg,
+ #b71920 324deg 342deg,#111 342deg 360deg
  )
 }
 
@@ -577,8 +533,7 @@ button:disabled{
 .dicebox{
  padding:25px 15px;
  text-align:center;
- background:
- linear-gradient(145deg,#151515,#0d0d0d);
+ background:linear-gradient(145deg,#151515,#0d0d0d);
  border:1px solid #292929;
  border-radius:15px
 }
@@ -589,8 +544,7 @@ button:disabled{
  align-items:center;
  justify-content:center;
  gap:16px;
- background:
- radial-gradient(circle,#195c36,#0b321e 70%);
+ background:radial-gradient(circle,#195c36,#0b321e 70%);
  border-radius:13px;
  border:5px solid #262626
 }
@@ -705,21 +659,11 @@ button:disabled{
 }
 
 @keyframes shake{
- 0%,100%{
-  transform:translate(0,0) rotate(0)
- }
- 20%{
-  transform:translate(-8px,5px) rotate(-10deg)
- }
- 40%{
-  transform:translate(8px,-5px) rotate(10deg)
- }
- 60%{
-  transform:translate(-6px,-4px) rotate(-8deg)
- }
- 80%{
-  transform:translate(5px,5px) rotate(7deg)
- }
+ 0%,100%{transform:translate(0,0) rotate(0)}
+ 20%{transform:translate(-8px,5px) rotate(-10deg)}
+ 40%{transform:translate(8px,-5px) rotate(10deg)}
+ 60%{transform:translate(-6px,-4px) rotate(-8deg)}
+ 80%{transform:translate(5px,5px) rotate(7deg)}
 }
 
 @media(min-width:700px){
@@ -754,8 +698,6 @@ BLACK <span>CASINO</span>
 
 <div class="wrap">
 
-<!-- MENU -->
-
 <section id="menu">
 
 <div class="hero">
@@ -789,7 +731,6 @@ BLACK <span>CASINO</span>
 </button>
 </div>
 
-
 <div class="game" onclick="openGame('roulette')">
 <div class="game-badge">№2</div>
 <div class="game-icon">🎡</div>
@@ -804,7 +745,6 @@ BLACK <span>CASINO</span>
 ИГРАТЬ
 </button>
 </div>
-
 
 <div class="game" onclick="openGame('dice')">
 <div class="game-badge">№3</div>
@@ -822,11 +762,8 @@ BLACK <span>CASINO</span>
 </div>
 
 </div>
-
 </section>
 
-
-<!-- BLACKJACK -->
 
 <section id="blackjack" class="gamePage hidden">
 
@@ -882,23 +819,19 @@ BLACK <span>CASINO</span>
 
 <div class="betrow">
 
-<button class="bet active"
-onclick="setBJBet(100,this)">
+<button class="bet active" onclick="setBJBet(100,this)">
 ₽100
 </button>
 
-<button class="bet"
-onclick="setBJBet(500,this)">
+<button class="bet" onclick="setBJBet(500,this)">
 ₽500
 </button>
 
-<button class="bet"
-onclick="setBJBet(1000,this)">
+<button class="bet" onclick="setBJBet(1000,this)">
 ₽1K
 </button>
 
-<button class="bet"
-onclick="setBJBet(5000,this)">
+<button class="bet" onclick="setBJBet(5000,this)">
 ₽5K
 </button>
 
@@ -906,23 +839,15 @@ onclick="setBJBet(5000,this)">
 
 <div class="actions">
 
-<button class="action red"
-id="bjStart"
-onclick="startBJ()">
+<button class="action red" id="bjStart" onclick="startBJ()">
 РАЗДАТЬ
 </button>
 
-<button class="action"
-id="bjHit"
-onclick="hitBJ()"
-disabled>
+<button class="action" id="bjHit" onclick="hitBJ()" disabled>
 КАРТА
 </button>
 
-<button class="action"
-id="bjStand"
-onclick="standBJ()"
-disabled>
+<button class="action" id="bjStand" onclick="standBJ()" disabled>
 СТОП
 </button>
 
@@ -933,13 +858,9 @@ disabled>
 </div>
 
 </div>
-
 </div>
-
 </section>
 
-
-<!-- ROULETTE -->
 
 <section id="roulette" class="gamePage hidden">
 
@@ -965,23 +886,19 @@ disabled>
 
 <div class="betrow">
 
-<button class="bet active"
-onclick="setRBet(100,this)">
+<button class="bet active" onclick="setRBet(100,this)">
 ₽100
 </button>
 
-<button class="bet"
-onclick="setRBet(500,this)">
+<button class="bet" onclick="setRBet(500,this)">
 ₽500
 </button>
 
-<button class="bet"
-onclick="setRBet(1000,this)">
+<button class="bet" onclick="setRBet(1000,this)">
 ₽1K
 </button>
 
-<button class="bet"
-onclick="setRBet(5000,this)">
+<button class="bet" onclick="setRBet(5000,this)">
 ₽5K
 </button>
 
@@ -989,18 +906,15 @@ onclick="setRBet(5000,this)">
 
 <div class="bet-options">
 
-<button class="num red"
-onclick="selectRBet('red',this)">
+<button class="num red" onclick="selectRBet('red',this)">
 🔴 КРАСНОЕ ×2
 </button>
 
-<button class="num black"
-onclick="selectRBet('black',this)">
+<button class="num black" onclick="selectRBet('black',this)">
 ⚫ ЧЁРНОЕ ×2
 </button>
 
-<button class="num green"
-onclick="selectRBet('green',this)">
+<button class="num green" onclick="selectRBet('green',this)">
 🟢 0 ×14
 </button>
 
@@ -1008,8 +922,7 @@ onclick="selectRBet('green',this)">
 
 <div class="number-bets" id="numberBets"></div>
 
-<button class="spin"
-onclick="spinRoulette()">
+<button class="spin" onclick="spinRoulette()">
 ВРАЩАТЬ КОЛЕСО
 </button>
 
@@ -1018,13 +931,9 @@ onclick="spinRoulette()">
 </div>
 
 </div>
-
 </div>
-
 </section>
 
-
-<!-- DICE -->
 
 <section id="dice" class="gamePage hidden">
 
@@ -1064,18 +973,15 @@ onclick="spinRoulette()">
 
 <div class="dice-bets">
 
-<button class="dice-bet active"
-onclick="setDiceBet('high',this)">
+<button class="dice-bet active" onclick="setDiceBet('high',this)">
 БОЛЬШЕ 7 ×2
 </button>
 
-<button class="dice-bet"
-onclick="setDiceBet('low',this)">
+<button class="dice-bet" onclick="setDiceBet('low',this)">
 МЕНЬШЕ 7 ×2
 </button>
 
-<button class="dice-bet"
-onclick="setDiceBet('seven',this)">
+<button class="dice-bet" onclick="setDiceBet('seven',this)">
 РОВНО 7 ×5
 </button>
 
@@ -1083,35 +989,29 @@ onclick="setDiceBet('seven',this)">
 
 <div class="betrow" style="margin-top:9px">
 
-<button class="bet active"
-onclick="setDiceMoney(100,this)">
+<button class="bet active" onclick="setDiceMoney(100,this)">
 ₽100
 </button>
 
-<button class="bet"
-onclick="setDiceMoney(500,this)">
+<button class="bet" onclick="setDiceMoney(500,this)">
 ₽500
 </button>
 
-<button class="bet"
-onclick="setDiceMoney(1000,this)">
+<button class="bet" onclick="setDiceMoney(1000,this)">
 ₽1K
 </button>
 
-<button class="bet"
-onclick="setDiceMoney(5000,this)">
+<button class="bet" onclick="setDiceMoney(5000,this)">
 ₽5K
 </button>
 
 </div>
 
-<button class="rollBtn"
-onclick="rollDice()">
+<button class="rollBtn" onclick="rollDice()">
 БРОСИТЬ КОСТИ
 </button>
 
 </div>
-
 </section>
 
 </div>
@@ -1127,16 +1027,20 @@ onclick="rollDice()">
    SUPABASE
 ========================================================= */
 
-const SUPABASE_URL =
-"https://qzswnoeglovfpgrzpnio.supabase.co";
+const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
 
-const SUPABASE_KEY =
-"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
-const supabaseClient =
-window.supabase.createClient(
+const supabaseClient=window.supabase.createClient(
  SUPABASE_URL,
- SUPABASE_KEY
+ SUPABASE_KEY,
+ {
+  auth:{
+   persistSession:true,
+   autoRefreshToken:true,
+   detectSessionInUrl:true
+  }
+ }
 );
 
 
@@ -1146,61 +1050,100 @@ window.supabase.createClient(
 
 let currentUser=null;
 let profile=null;
+let playerReady=false;
 
 
-/*
- В твоей базе профиль привязан к пользователю.
-
- Основное поле денег:
- profiles.cash
-
- Идентификатор:
- profiles.id = auth.users.id
-*/
-
+/* =========================================================
+   LOAD SESSION
+========================================================= */
 
 async function loadPlayer(){
 
  try{
 
-  const {data:{user},error:userError} =
-   await supabaseClient.auth.getUser();
+  /*
+   ВАЖНО:
+   Сначала ждём восстановления существующей
+   Supabase-сессии.
+  */
 
-  if(userError || !user){
+  let session=null;
 
-   document.getElementById("loading").textContent =
+  const result=await supabaseClient.auth.getSession();
+
+  if(result.data){
+   session=result.data.session;
+  }
+
+  /*
+   Если сессия ещё не появилась мгновенно,
+   даём Supabase немного времени.
+  */
+
+  if(!session){
+
+   await new Promise(resolve=>{
+    const timeout=setTimeout(resolve,1500);
+
+    const {
+     data:{subscription}
+    }=supabaseClient.auth.onAuthStateChange(
+     (_event,newSession)=>{
+      if(newSession){
+       session=newSession;
+       clearTimeout(timeout);
+       subscription.unsubscribe();
+       resolve();
+      }
+     }
+    );
+   });
+
+  }
+
+
+  if(!session){
+
+   console.log("Supabase session not found");
+
+   document.getElementById("loading").textContent=
     "Необходимо войти в аккаунт.";
 
    setTimeout(()=>{
     location.href="index.html";
-   },1000);
+   },1200);
 
    return false;
   }
 
-  currentUser=user;
+
+  currentUser=session.user;
 
 
-  const {data,error} =
-   await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq("id",user.id)
-    .single();
+  /*
+   Загружаем профиль.
+  */
+
+  const {data,error}=await supabaseClient
+   .from("profiles")
+   .select("*")
+   .eq("id",currentUser.id)
+   .single();
 
 
   if(error){
 
-   console.error(error);
+   console.error("PROFILE ERROR:",error);
 
-   document.getElementById("loading").textContent =
-    "Ошибка загрузки профиля.";
+   document.getElementById("loading").textContent=
+    "Не удалось загрузить профиль.";
 
    return false;
   }
 
 
   profile=data;
+  playerReady=true;
 
   updateBalance();
 
@@ -1209,11 +1152,12 @@ async function loadPlayer(){
 
   return true;
 
- }catch(e){
 
-  console.error(e);
+ }catch(error){
 
-  document.getElementById("loading").textContent =
+  console.error("LOAD ERROR:",error);
+
+  document.getElementById("loading").textContent=
    "Ошибка подключения.";
 
   return false;
@@ -1222,19 +1166,60 @@ async function loadPlayer(){
 
 
 /* =========================================================
+   AUTH STATE
+========================================================= */
+
+supabaseClient.auth.onAuthStateChange(
+ async(event,session)=>{
+
+  console.log("AUTH:",event);
+
+  /*
+   Не выкидываем пользователя,
+   если Supabase обновляет токен.
+  */
+
+  if(event==="SIGNED_OUT"){
+
+   playerReady=false;
+   currentUser=null;
+   profile=null;
+
+   location.href="index.html";
+  }
+
+  /*
+   Если сессия появилась после загрузки,
+   загружаем игрока.
+  */
+
+  if(
+   session &&
+   !playerReady
+  ){
+
+   await loadPlayer();
+
+  }
+
+ }
+);
+
+
+/* =========================================================
    BALANCE
 ========================================================= */
 
 function getMoney(){
 
- return Number(profile?.cash || 0);
+ return Number(profile?.cash||0);
 
 }
 
 
-function formatMoney(n){
+function formatMoney(value){
 
- return Math.round(Number(n))
+ return Math.round(Number(value))
   .toLocaleString("ru-RU");
 
 }
@@ -1242,27 +1227,38 @@ function formatMoney(n){
 
 function updateBalance(){
 
- document.getElementById("balance").textContent =
+ document.getElementById("balance").textContent=
   "₽ "+formatMoney(getMoney());
 
 }
 
 
-/*
- Изменение денег идёт непосредственно
- в profiles.cash.
-
- Никакого casinoMoney/localStorage здесь нет.
-*/
+/* =========================================================
+   CHANGE MONEY
+========================================================= */
 
 async function changeMoney(delta){
 
- if(!profile || !currentUser)
+ if(!playerReady || !profile || !currentUser){
+
+  toast("Профиль ещё загружается.");
+
   return false;
+ }
+
+
+ delta=Number(delta);
+
+ if(!Number.isFinite(delta)){
+
+  toast("Ошибка суммы.");
+
+  return false;
+ }
 
 
  const oldMoney=getMoney();
- const newMoney=oldMoney+Number(delta);
+ const newMoney=oldMoney+delta;
 
 
  if(newMoney<0){
@@ -1273,20 +1269,19 @@ async function changeMoney(delta){
  }
 
 
- const {data,error} =
-  await supabaseClient
-   .from("profiles")
-   .update({
-    cash:newMoney
-   })
-   .eq("id",currentUser.id)
-   .select("cash")
-   .single();
+ const {data,error}=await supabaseClient
+  .from("profiles")
+  .update({
+   cash:newMoney
+  })
+  .eq("id",currentUser.id)
+  .select("cash")
+  .single();
 
 
  if(error){
 
-  console.error(error);
+  console.error("BALANCE UPDATE ERROR:",error);
 
   toast("Ошибка сохранения баланса.");
 
@@ -1294,7 +1289,7 @@ async function changeMoney(delta){
  }
 
 
- profile.cash=data.cash;
+ profile.cash=Number(data.cash);
 
  updateBalance();
 
@@ -1302,16 +1297,21 @@ async function changeMoney(delta){
 }
 
 
+/* =========================================================
+   BET
+========================================================= */
+
 async function takeBet(amount){
 
  amount=Number(amount);
 
- if(!Number.isFinite(amount) || amount<100){
+ if(!Number.isFinite(amount)||amount<100){
 
   toast("Минимальная ставка — ₽100.");
 
   return false;
  }
+
 
  if(getMoney()<amount){
 
@@ -1319,6 +1319,7 @@ async function takeBet(amount){
 
   return false;
  }
+
 
  return await changeMoney(-amount);
 }
@@ -1328,7 +1329,7 @@ async function givePrize(amount){
 
  amount=Number(amount);
 
- if(amount<=0)
+ if(!Number.isFinite(amount)||amount<=0)
   return false;
 
  return await changeMoney(amount);
@@ -1354,6 +1355,7 @@ function toast(text){
  toastTimer=setTimeout(()=>{
   el.classList.remove("show");
  },2200);
+
 }
 
 
@@ -1362,6 +1364,14 @@ function toast(text){
 ========================================================= */
 
 function openGame(id){
+
+ if(!playerReady){
+
+  toast("Подожди, загружается аккаунт.");
+
+  return;
+ }
+
 
  document.getElementById("menu")
   .classList.add("hidden");
@@ -1372,13 +1382,16 @@ function openGame(id){
  document.getElementById(id)
   .classList.remove("hidden");
 
+
  if(id==="roulette")
   buildNumbers();
+
 
  window.scrollTo({
   top:0,
   behavior:"smooth"
  });
+
 }
 
 
@@ -1394,13 +1407,16 @@ function showMenu(){
   top:0,
   behavior:"smooth"
  });
+
 }
 
 
 function goBack(){
 
- if(!document.getElementById("menu")
-  .classList.contains("hidden")){
+ if(
+  !document.getElementById("menu")
+   .classList.contains("hidden")
+ ){
 
   location.href="index.html";
 
@@ -1409,6 +1425,7 @@ function goBack(){
   showMenu();
 
  }
+
 }
 
 
@@ -1416,12 +1433,7 @@ function goBack(){
    BLACKJACK
 ========================================================= */
 
-const suits=[
- "♠",
- "♥",
- "♦",
- "♣"
-];
+const suits=["♠","♥","♦","♣"];
 
 const ranks=[
  ["A",11],
@@ -1449,13 +1461,13 @@ let bjBusy=false;
 
 function newDeck(){
 
- let d=[];
+ let deck=[];
 
  for(const suit of suits){
 
   for(const rank of ranks){
 
-   d.push({
+   deck.push({
     rank:rank[0],
     value:rank[1],
     suit:suit
@@ -1465,26 +1477,28 @@ function newDeck(){
 
  }
 
- return d.sort(()=>Math.random()-.5);
+ return deck.sort(()=>Math.random()-.5);
+
 }
 
 
 function handValue(hand){
 
  let total=hand.reduce(
-  (sum,c)=>sum+c.value,
+  (sum,card)=>sum+card.value,
   0
  );
 
  let aces=hand.filter(
-  c=>c.rank==="A"
+  card=>card.rank==="A"
  ).length;
 
- while(total>21 && aces--){
+ while(total>21&&aces--){
   total-=10;
  }
 
  return total;
+
 }
 
 
@@ -1492,21 +1506,20 @@ function cardHTML(card,hidden=false){
 
  if(hidden){
 
-  return `
-   <div class="card back">?</div>
-  `;
+  return `<div class="card back">?</div>`;
 
  }
 
  const red=
-  card.suit==="♥" ||
+  card.suit==="♥"||
   card.suit==="♦";
 
  return `
-  <div class="card ${red?"red":""}">
-   ${card.rank}${card.suit}
-  </div>
+ <div class="card ${red?"red":""}">
+ ${card.rank}${card.suit}
+ </div>
  `;
+
 }
 
 
@@ -1514,24 +1527,23 @@ function renderBJ(hideDealer=true){
 
  document.getElementById("playerCards")
   .innerHTML=
-   bjPlayer
-    .map(c=>cardHTML(c))
-    .join("");
+   bjPlayer.map(card=>cardHTML(card)).join("");
+
 
  document.getElementById("dealerCards")
   .innerHTML=
-   bjDealer
-    .map((c,i)=>
+   bjDealer.map(
+    (card,index)=>
      cardHTML(
-      c,
-      hideDealer && i===1
+      card,
+      hideDealer&&index===1
      )
-    )
-    .join("");
+   ).join("");
+
 
  document.getElementById("playerScore")
-  .textContent=
-   handValue(bjPlayer);
+  .textContent=handValue(bjPlayer);
+
 
  document.getElementById("dealerScore")
   .textContent=
@@ -1544,11 +1556,13 @@ function renderBJ(hideDealer=true){
 
 async function startBJ(){
 
- if(bjActive || bjBusy)
+ if(bjActive||bjBusy)
   return;
+
 
  if(!await takeBet(bjBet))
   return;
+
 
  bjDeck=newDeck();
 
@@ -1563,6 +1577,7 @@ async function startBJ(){
  ];
 
  bjActive=true;
+
 
  document.getElementById("bjStart")
   .disabled=true;
@@ -1593,8 +1608,9 @@ async function startBJ(){
 
 async function hitBJ(){
 
- if(!bjActive || bjBusy)
+ if(!bjActive||bjBusy)
   return;
+
 
  bjPlayer.push(
   bjDeck.pop()
@@ -1607,9 +1623,7 @@ async function hitBJ(){
 
  if(value>21){
 
-  finishBJ(
-   "💥 Перебор. Ты проиграл."
-  );
+  finishBJ("💥 Перебор. Ты проиграл.");
 
  }else if(value===21){
 
@@ -1622,12 +1636,16 @@ async function hitBJ(){
 
 async function standBJ(){
 
- if(!bjActive || bjBusy)
+ if(!bjActive||bjBusy)
   return;
+
 
  bjBusy=true;
 
- while(handValue(bjDealer)<17){
+
+ while(
+  handValue(bjDealer)<17
+ ){
 
   bjDealer.push(
    bjDeck.pop()
@@ -1635,7 +1653,9 @@ async function standBJ(){
 
  }
 
+
  renderBJ(false);
+
 
  const player=handValue(bjPlayer);
  const dealer=handValue(bjDealer);
@@ -1673,7 +1693,9 @@ async function standBJ(){
 
  }
 
+
  bjBusy=false;
+
 }
 
 
@@ -1707,8 +1729,8 @@ function setBJBet(value,button){
 
  document.querySelectorAll(
   "#blackjack .bet"
- ).forEach(x=>
-  x.classList.remove("active")
+ ).forEach(
+  x=>x.classList.remove("active")
  );
 
  button.classList.add("active");
@@ -1745,6 +1767,7 @@ function buildNumbers(){
  if(container.children.length)
   return;
 
+
  for(let i=1;i<=36;i++){
 
   const button=
@@ -1756,7 +1779,10 @@ function buildNumbers(){
   button.textContent=i;
 
   button.onclick=()=>{
-   selectRBet(String(i),button);
+   selectRBet(
+    String(i),
+    button
+   );
   };
 
   container.appendChild(button);
@@ -1772,8 +1798,8 @@ function selectRBet(choice,button){
 
  document.querySelectorAll(
   "#roulette .num"
- ).forEach(x=>
-  x.classList.remove("active")
+ ).forEach(
+  x=>x.classList.remove("active")
  );
 
  button.classList.add("active");
@@ -1795,8 +1821,8 @@ function setRBet(value,button){
 
  document.querySelectorAll(
   "#roulette .bet"
- ).forEach(x=>
-  x.classList.remove("active")
+ ).forEach(
+  x=>x.classList.remove("active")
  );
 
  button.classList.add("active");
@@ -1809,10 +1835,13 @@ async function spinRoulette(){
  if(rSpinning)
   return;
 
+
  if(!await takeBet(rBet))
   return;
 
+
  rSpinning=true;
+
 
  document.querySelectorAll(
   "#roulette button"
@@ -1820,121 +1849,133 @@ async function spinRoulette(){
   x=>x.disabled=true
  );
 
+
  const result=
   Math.floor(Math.random()*37);
+
 
  const wheel=
   document.getElementById("wheel");
 
+
  const spins=
   5+Math.floor(Math.random()*3);
 
+
  const degree=
   spins*360+
-  (360-(result*10));
+  (360-result*10);
+
 
  wheel.style.transform=
   "rotate("+degree+"deg)";
 
 
- setTimeout(async()=>{
+ setTimeout(
+  async()=>{
 
-  const color=
-   result===0
-    ?"green"
-    :isRed(result)
-     ?"red"
-     :"black";
-
-  let win=false;
-  let multiplier=0;
+   const color=
+    result===0
+     ?"green"
+     :isRed(result)
+      ?"red"
+      :"black";
 
 
-  if(
-   rChoice==="red" &&
-   color==="red"
-  ){
-
-   win=true;
-   multiplier=2;
-
-  }
+   let win=false;
+   let multiplier=0;
 
 
-  if(
-   rChoice==="black" &&
-   color==="black"
-  ){
+   if(
+    rChoice==="red"&&
+    color==="red"
+   ){
 
-   win=true;
-   multiplier=2;
+    win=true;
+    multiplier=2;
 
-  }
-
-
-  if(
-   rChoice==="green" &&
-   result===0
-  ){
-
-   win=true;
-   multiplier=14;
-
-  }
+   }
 
 
-  if(
-   Number(rChoice)===result
-  ){
+   if(
+    rChoice==="black"&&
+    color==="black"
+   ){
 
-   win=true;
-   multiplier=36;
+    win=true;
+    multiplier=2;
 
-  }
-
-
-  if(win){
-
-   const prize=
-    rBet*multiplier;
-
-   await givePrize(prize);
-
-   document.getElementById(
-    "rouletteMessage"
-   ).textContent=
-    "Выпало "+
-    result+
-    " "+
-    color+
-    "! +₽"+
-    formatMoney(prize);
-
-   toast("🎉 Победа!");
-
-  }else{
-
-   document.getElementById(
-    "rouletteMessage"
-   ).textContent=
-    "Выпало "+
-    result+
-    " "+
-    color+
-    ". Ставка проиграна.";
-
-  }
+   }
 
 
-  document.querySelectorAll(
-   "#roulette button"
-  ).forEach(
-   x=>x.disabled=false
-  );
+   if(
+    rChoice==="green"&&
+    result===0
+   ){
 
-  rSpinning=false;
+    win=true;
+    multiplier=14;
 
- },3600);
+   }
+
+
+   if(
+    Number(rChoice)===result
+   ){
+
+    win=true;
+    multiplier=36;
+
+   }
+
+
+   if(win){
+
+    const prize=
+     rBet*multiplier;
+
+    await givePrize(prize);
+
+
+    document.getElementById(
+     "rouletteMessage"
+    ).textContent=
+     "Выпало "+
+     result+
+     " "+
+     color+
+     "! +₽"+
+     formatMoney(prize);
+
+
+    toast("🎉 Победа!");
+
+   }else{
+
+    document.getElementById(
+     "rouletteMessage"
+    ).textContent=
+     "Выпало "+
+     result+
+     " "+
+     color+
+     ". Ставка проиграна.";
+
+   }
+
+
+   document.querySelectorAll(
+    "#roulette button"
+   ).forEach(
+    x=>x.disabled=false
+   );
+
+
+   rSpinning=false;
+
+  },
+  3600
+ );
 
 }
 
@@ -1954,8 +1995,8 @@ function setDiceBet(choice,button){
 
  document.querySelectorAll(
   ".dice-bet"
- ).forEach(x=>
-  x.classList.remove("active")
+ ).forEach(
+  x=>x.classList.remove("active")
  );
 
  button.classList.add("active");
@@ -1972,8 +2013,8 @@ function setDiceMoney(value,button){
 
  document.querySelectorAll(
   "#dice .bet"
- ).forEach(x=>
-   x.classList.remove("active")
+ ).forEach(
+  x=>x.classList.remove("active")
  );
 
  button.classList.add("active");
@@ -1986,10 +2027,13 @@ async function rollDice(){
  if(diceBusy)
   return;
 
+
  if(!await takeBet(diceBet))
   return;
 
+
  diceBusy=true;
+
 
  const d1=
   document.getElementById("die1");
@@ -1997,8 +2041,10 @@ async function rollDice(){
  const d2=
   document.getElementById("die2");
 
+
  d1.classList.add("roll");
  d2.classList.add("roll");
+
 
  document.getElementById(
   "diceResult"
@@ -2006,105 +2052,110 @@ async function rollDice(){
   "Кости бросаются...";
 
 
- setTimeout(async()=>{
+ setTimeout(
+  async()=>{
 
-  d1.classList.remove("roll");
-  d2.classList.remove("roll");
-
-
-  const a=
-   1+Math.floor(Math.random()*6);
-
-  const b=
-   1+Math.floor(Math.random()*6);
-
-  const total=a+b;
+   d1.classList.remove("roll");
+   d2.classList.remove("roll");
 
 
-  const faces=[
-   "",
-   "⚀",
-   "⚁",
-   "⚂",
-   "⚃",
-   "⚄",
-   "⚅"
-  ];
+   const a=
+    1+Math.floor(Math.random()*6);
+
+   const b=
+    1+Math.floor(Math.random()*6);
+
+   const total=a+b;
 
 
-  d1.textContent=faces[a];
-  d2.textContent=faces[b];
+   const faces=[
+    "",
+    "⚀",
+    "⚁",
+    "⚂",
+    "⚃",
+    "⚄",
+    "⚅"
+   ];
 
 
-  let win=false;
-  let multiplier=0;
+   d1.textContent=faces[a];
+   d2.textContent=faces[b];
 
 
-  if(
-   diceChoice==="high" &&
-   total>7
-  ){
-
-   win=true;
-   multiplier=2;
-
-  }
+   let win=false;
+   let multiplier=0;
 
 
-  if(
-   diceChoice==="low" &&
-   total<7
-  ){
+   if(
+    diceChoice==="high"&&
+    total>7
+   ){
 
-   win=true;
-   multiplier=2;
+    win=true;
+    multiplier=2;
 
-  }
-
-
-  if(
-   diceChoice==="seven" &&
-   total===7
-  ){
-
-   win=true;
-   multiplier=5;
-
-  }
+   }
 
 
-  if(win){
+   if(
+    diceChoice==="low"&&
+    total<7
+   ){
 
-   const prize=
-    diceBet*multiplier;
+    win=true;
+    multiplier=2;
 
-   await givePrize(prize);
-
-   document.getElementById(
-    "diceResult"
-   ).textContent=
-    "Выпало "+
-    total+
-    " — ПОБЕДА! +₽"+
-    formatMoney(prize);
-
-   toast("🎲 Ты выиграл!");
-
-  }else{
-
-   document.getElementById(
-    "diceResult"
-   ).textContent=
-    "Выпало "+
-    total+
-    " — проигрыш.";
-
-  }
+   }
 
 
-  diceBusy=false;
+   if(
+    diceChoice==="seven"&&
+    total===7
+   ){
 
- },650);
+    win=true;
+    multiplier=5;
+
+   }
+
+
+   if(win){
+
+    const prize=
+     diceBet*multiplier;
+
+    await givePrize(prize);
+
+
+    document.getElementById(
+     "diceResult"
+    ).textContent=
+     "Выпало "+
+     total+
+     " — ПОБЕДА! +₽"+
+     formatMoney(prize);
+
+
+    toast("🎲 Ты выиграл!");
+
+   }else{
+
+    document.getElementById(
+     "diceResult"
+    ).textContent=
+     "Выпало "+
+     total+
+     " — проигрыш.";
+
+   }
+
+
+   diceBusy=false;
+
+  },
+  650
+ );
 
 }
 
