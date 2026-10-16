@@ -1,3901 +1,494 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>BLACK RUSSIA RP</title>
-
-<style>
-*{
- box-sizing:border-box;
- margin:0;
- padding:0;
- -webkit-tap-highlight-color:transparent
-}
-
-:root{
- --bg:#060606;
- --panel:#101010;
- --panel2:#181818;
- --line:#292929;
- --red:#e50914;
- --red2:#ff2633;
- --white:#f5f5f5;
- --muted:#858585;
- --green:#31d47a;
- --yellow:#ffc928
-}
-
-html,body{
- min-height:100%;
- background:#050505;
- color:var(--white);
- font-family:Arial,Helvetica,sans-serif
-}
-
-body{
- overflow-x:hidden
-}
-
-button,input{
- font-family:inherit
-}
-
-button{
- border:0;
- cursor:pointer
-}
-
-.hidden{
- display:none!important
-}
-
-/* =========================
-   AUTH
-========================= */
-
-#authScreen{
- min-height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- padding:18px;
- background:
- radial-gradient(circle at 50% 0%,rgba(229,9,20,.20),transparent 38%),
- #050505
-}
-
-.auth-box{
- width:100%;
- max-width:430px;
- padding:25px;
- background:#101010;
- border:1px solid #292929;
- border-radius:17px;
- box-shadow:0 25px 80px #000
-}
-
-.logo-box{
- width:82px;
- height:82px;
- margin:0 auto 14px;
- display:flex;
- align-items:center;
- justify-content:center;
- border-radius:13px;
- background:#080808;
- border:2px solid var(--red);
- box-shadow:0 0 35px rgba(229,9,20,.14)
-}
-
-.logo-box div{
- text-align:center;
- line-height:.85
-}
-
-.logo-box .b{
- font-size:28px;
- font-weight:1000
-}
-
-.logo-box .r{
- margin-top:4px;
- color:var(--red);
- font-size:17px;
- font-weight:1000
-}
-
-.logo{
- text-align:center;
- font-size:28px;
- font-weight:1000
-}
-
-.logo span,
-.top-logo span{
- color:var(--red)
-}
-
-.logo-sub{
- margin:6px 0 23px;
- text-align:center;
- color:#777;
- font-size:10px;
- letter-spacing:2px;
- text-transform:uppercase
-}
-
-.auth-tabs{
- display:flex;
- gap:5px;
- padding:4px;
- margin-bottom:21px;
- background:#080808;
- border:1px solid #222;
- border-radius:10px
-}
-
-.auth-tab{
- flex:1;
- padding:11px;
- border-radius:7px;
- background:transparent;
- color:#777;
- font-weight:800
-}
-
-.auth-tab.active{
- background:var(--red);
- color:#fff
-}
-
-.auth-title{
- margin-bottom:6px;
- font-size:22px;
- font-weight:900
-}
-
-.auth-desc{
- margin-bottom:18px;
- color:#858585;
- font-size:12px;
- line-height:1.5
-}
-
-.field{
- margin-bottom:13px
-}
-
-.field label{
- display:block;
- margin-bottom:7px;
- color:#aaa;
- font-size:10px;
- font-weight:bold
-}
-
-.field input{
- width:100%;
- padding:14px;
- outline:none;
- color:#fff;
- background:#080808;
- border:1px solid #2a2a2a;
- border-radius:9px
-}
-
-.field input:focus{
- border-color:var(--red);
- box-shadow:0 0 0 2px rgba(229,9,20,.08)
-}
-
-.primary-btn,
-.secondary-btn{
- width:100%;
- color:#fff;
- border-radius:9px;
- font-weight:900
-}
-
-.primary-btn{
- padding:14px;
- background:linear-gradient(135deg,#c70711,#f01925)
-}
-
-.primary-btn:active{
- transform:scale(.99)
-}
-
-.secondary-btn{
- padding:13px;
- margin-top:9px;
- background:#202020;
- border:1px solid #303030
-}
-
-.auth-message{
- min-height:20px;
- margin-top:12px;
- text-align:center;
- font-size:12px;
- line-height:1.4
-}
-
-.auth-footer{
- margin-top:18px;
- text-align:center;
- color:#555;
- font-size:9px
-}
-
-/* =========================
-   APP
-========================= */
-
-#app{
- min-height:100vh;
- padding-bottom:78px
-}
-
-.topbar{
- position:sticky;
- top:0;
- z-index:50;
- height:62px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:8px;
- padding:0 13px;
- background:#080808f5;
- border-bottom:1px solid #252525;
- backdrop-filter:blur(12px)
-}
-
-.top-logo{
- flex:1;
- font-size:16px;
- font-weight:1000
-}
-
-.server-status{
- display:flex;
- align-items:center;
- gap:6px;
- color:#888;
- font-size:10px
-}
-
-.online-dot{
- width:7px;
- height:7px;
- border-radius:50%;
- background:var(--green);
- box-shadow:0 0 8px var(--green)
-}
-
-.money-box{
- display:flex;
- gap:5px
-}
-
-.money{
- padding:6px 8px;
- background:#151515;
- border:1px solid #292929;
- border-radius:7px;
- font-size:9px;
- font-weight:bold
-}
-
-.cash{
- color:#53dd8a
-}
-
-.donate{
- color:var(--red2)
-}
-
-.page{
- display:none;
- max-width:1000px;
- margin:auto;
- padding:15px
-}
-
-.page.active{
- display:block
-}
-
-.page-title{
- font-size:25px;
- font-weight:1000
-}
-
-.page-subtitle{
- margin:4px 0 17px;
- color:#777;
- font-size:11px
-}
-
-.section-title{
- margin:21px 0 11px;
- font-size:16px;
- font-weight:900
-}
-
-/* =========================
-   HOME
-========================= */
-
-.hero{
- position:relative;
- overflow:hidden;
- padding:20px;
- background:
- linear-gradient(120deg,rgba(229,9,20,.16),transparent 55%),
- #111;
- border:1px solid var(--line);
- border-radius:14px
-}
-
-.hero:after{
- content:"RP";
- position:absolute;
- right:-10px;
- bottom:-35px;
- color:#ffffff04;
- font-size:120px;
- font-weight:1000
-}
-
-.hero-small{
- color:#777;
- font-size:10px;
- letter-spacing:1.3px;
- text-transform:uppercase
-}
-
-.hero-name{
- position:relative;
- z-index:1;
- margin:6px 0 10px;
- font-size:27px;
- font-weight:1000
-}
-
-.hero-name span{
- color:var(--red)
-}
-
-.stats-grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:9px;
- margin-top:12px
-}
-
-.stat-card{
- padding:14px;
- background:#111;
- border:1px solid #272727;
- border-radius:11px
-}
-
-.stat-label{
- margin-bottom:6px;
- color:#777;
- font-size:9px
-}
-
-.stat-value{
- font-size:17px;
- font-weight:900
-}
-
-.progress{
- height:5px;
- overflow:hidden;
- margin-top:9px;
- background:#292929;
- border-radius:20px
-}
-
-.progress div{
- width:0;
- height:100%;
- background:linear-gradient(90deg,#b90912,#ff2835);
- transition:.3s
-}
-
-.quick-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:8px
-}
-
-.quick{
- padding:14px 6px;
- color:#fff;
- background:#111;
- border:1px solid #272727;
- border-radius:11px
-}
-
-.quick:active{
- transform:scale(.97)
-}
-
-.quick-icon{
- margin-bottom:6px;
- font-size:22px
-}
-
-.quick-name{
- font-size:10px;
- font-weight:bold
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.cards{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:10px
-}
-
-.card{
- padding:15px;
- background:#111;
- border:1px solid #292929;
- border-radius:12px
-}
-
-.card-title{
- font-size:15px;
- font-weight:900
-}
-
-.card-desc{
- margin:7px 0 12px;
- color:#777;
- font-size:11px;
- line-height:1.45
-}
-
-/* =========================
-   GARAGE
-========================= */
-
-.car{
- margin-bottom:10px;
- overflow:hidden;
- background:#111;
- border:1px solid #292929;
- border-radius:13px
-}
-
-.car-image{
- height:125px;
- display:flex;
- align-items:center;
- justify-content:center;
- background:
- radial-gradient(circle,#353535,#161616 50%,#0b0b0b);
- font-size:65px
-}
-
-.car-body{
- padding:14px
-}
-
-.car-name{
- font-size:17px;
- font-weight:900
-}
-
-.car-meta{
- margin-top:5px;
- color:#777;
- font-size:10px
-}
-
-.car-buttons{
- display:flex;
- gap:6px;
- margin-top:11px
-}
-
-.car-buttons button{
- flex:1;
- padding:9px;
- color:#fff;
- background:#202020;
- border-radius:7px;
- font-size:10px;
- font-weight:bold
-}
-
-/* =========================
-   SHOP
-========================= */
-
-.shop-grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:9px
-}
-
-.item{
- padding:15px;
- text-align:center;
- background:#111;
- border:1px solid #292929;
- border-radius:12px
-}
-
-.item-icon{
- font-size:34px
-}
-
-.item-name{
- margin-top:7px;
- font-size:12px;
- font-weight:900
-}
-
-.item-price{
- margin:7px 0;
- color:#55dc89;
- font-size:11px
-}
-
-.buy{
- width:100%;
- padding:9px;
- color:#fff;
- background:var(--red);
- border-radius:7px;
- font-size:10px;
- font-weight:900
-}
-
-/* =========================
-   MAP
-========================= */
-
-.map{
- position:relative;
- height:430px;
- overflow:hidden;
- border:1px solid #292929;
- border-radius:14px;
- background:
- linear-gradient(30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),
- linear-gradient(-30deg,transparent 48%,#292929 49%,#292929 51%,transparent 52%),
- #111;
- background-size:90px 90px
-}
-
-.map-road{
- position:absolute;
- background:#363636;
- border:2px solid #484848
-}
-
-.road1{
- width:130%;
- height:34px;
- left:-10%;
- top:43%;
- transform:rotate(-12deg)
-}
-
-.road2{
- width:34px;
- height:130%;
- left:47%;
- top:-10%;
- transform:rotate(7deg)
-}
-
-.map-point{
- position:absolute;
- width:42px;
- height:42px;
- display:flex;
- align-items:center;
- justify-content:center;
- border-radius:50%;
- background:var(--red);
- border:3px solid #080808;
- font-size:18px
-}
-
-.point1{left:18%;top:23%}
-.point2{left:65%;top:25%}
-.point3{left:29%;top:67%}
-.point4{left:73%;top:69%}
-.point5{left:46%;top:45%}
-
-/* =========================
-   DONATE
-========================= */
-
-.donate-banner{
- padding:24px;
- text-align:center;
- background:
- radial-gradient(circle,rgba(229,9,20,.18),transparent 65%),
- #111;
- border:1px solid #432020;
- border-radius:14px
-}
-
-.donate-title{
- font-size:29px;
- font-weight:1000
-}
-
-.donate-title span{
- color:var(--red)
-}
-
-.donate-sub{
- margin-top:5px;
- color:#777;
- font-size:11px
-}
-
-.donate-grid{
- display:grid;
- grid-template-columns:repeat(2,1fr);
- gap:9px;
- margin-top:12px
-}
-
-.donate-card{
- padding:17px;
- text-align:center;
- background:#111;
- border:1px solid #292929;
- border-radius:12px
-}
-
-.donate-card strong{
- display:block;
- color:var(--red);
- font-size:20px
-}
-
-.donate-card span{
- display:block;
- margin:5px 0 10px;
- color:#777;
- font-size:10px
-}
-
-.donate-card button{
- width:100%;
- padding:9px;
- color:#fff;
- background:var(--red);
- border-radius:7px;
- font-size:10px;
- font-weight:900
-}
-
-/* =========================
-   CHAT
-========================= */
-
-.chat-box{
- overflow:hidden;
- background:#0e0e0e;
- border:1px solid #292929;
- border-radius:13px
-}
-
-.chat-messages{
- height:430px;
- overflow-y:auto;
- padding:12px
-}
-
-.message{
- margin-bottom:10px
-}
-
-.message-name{
- color:var(--red);
- font-size:10px;
- font-weight:900
-}
-
-.message-text{
- display:inline-block;
- max-width:90%;
- margin-top:3px;
- padding:8px 10px;
- background:#1a1a1a;
- border-radius:8px;
- font-size:11px;
- word-break:break-word
-}
-
-.chat-input{
- display:flex;
- gap:7px;
- padding:9px;
- border-top:1px solid #292929
-}
-
-.chat-input input{
- flex:1;
- min-width:0;
- padding:11px;
- outline:none;
- color:#fff;
- background:#181818;
- border:1px solid #292929;
- border-radius:8px
-}
-
-.chat-input button{
- width:48px;
- color:#fff;
- background:var(--red);
- border-radius:8px
-}
-
-/* =========================
-   ONLINE
-========================= */
-
-.online-card{
- display:flex;
- align-items:center;
- gap:11px;
- padding:12px;
- margin-bottom:7px;
- background:#111;
- border:1px solid #292929;
- border-radius:11px
-}
-
-.avatar{
- width:42px;
- height:42px;
- display:flex;
- align-items:center;
- justify-content:center;
- background:#202020;
- border:1px solid #3a3a3a;
- border-radius:50%;
- font-weight:900
-}
-
-.online-info{
- flex:1
-}
-
-.online-name{
- font-size:12px;
- font-weight:900
-}
-
-.online-status{
- margin-top:3px;
- color:var(--green);
- font-size:9px
-}
-
-.level{
- padding:5px 7px;
- background:#202020;
- color:#bbb;
- border-radius:6px;
- font-size:9px
-}
-
-/* =========================
-   PROFILE
-========================= */
-
-.profile-head{
- padding:20px;
- text-align:center;
- background:#111;
- border:1px solid #292929;
- border-radius:14px
-}
-
-.big-avatar{
- width:82px;
- height:82px;
- display:flex;
- align-items:center;
- justify-content:center;
- margin:auto;
- background:#202020;
- border:2px solid var(--red);
- border-radius:50%;
- font-size:30px;
- font-weight:1000
-}
-
-.profile-name{
- margin-top:10px;
- font-size:21px;
- font-weight:1000
-}
-
-.profile-id{
- margin-top:4px;
- color:#777;
- font-size:10px
-}
-
-.profile-row{
- display:flex;
- justify-content:space-between;
- padding:12px 0;
- border-bottom:1px solid #292929;
- font-size:12px
-}
-
-.profile-row:last-child{
- border-bottom:0
-}
-
-.profile-row span:last-child{
- color:#ccc
-}
-
-/* =========================
-   NAV
-========================= */
-
-.bottom-nav{
- position:fixed;
- bottom:0;
- left:0;
- right:0;
- z-index:100;
- height:68px;
- display:flex;
- justify-content:space-around;
- background:#080808fa;
- border-top:1px solid #292929;
- backdrop-filter:blur(15px)
-}
-
-.nav-btn{
- flex:1;
- max-width:100px;
- display:flex;
- flex-direction:column;
- align-items:center;
- justify-content:center;
- gap:4px;
- background:transparent;
- color:#666;
- font-size:9px;
- font-weight:bold
-}
-
-.nav-icon{
- font-size:19px
-}
-
-.nav-btn.active{
- color:var(--red)
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal{
- position:fixed;
- inset:0;
- z-index:300;
- display:flex;
- align-items:flex-end;
- justify-content:center;
- padding:10px;
- background:#000c
-}
-
-.modal-box{
- width:100%;
- max-width:500px;
- max-height:85vh;
- overflow:auto;
- padding:20px;
- background:#121212;
- border:1px solid #363636;
- border-radius:17px 17px 9px 9px
-}
-
-.close{
- float:right;
- width:30px;
- height:30px;
- color:#fff;
- background:#292929;
- border-radius:50%
-}
-
-.modal-title{
- margin-bottom:8px;
- font-size:19px;
- font-weight:900
-}
-
-.modal-text{
- margin-bottom:15px;
- color:#888;
- font-size:11px;
- line-height:1.5;
- white-space:pre-line
-}
-
-.toast{
- position:fixed;
- left:50%;
- bottom:80px;
- z-index:500;
- transform:translateX(-50%) translateY(20px);
- padding:11px 15px;
- color:#fff;
- background:#191919;
- border:1px solid #383838;
- border-radius:9px;
- font-size:11px;
- opacity:0;
- pointer-events:none;
- transition:.25s
-}
-
-.toast.show{
- opacity:1;
- transform:translateX(-50%) translateY(0)
-}
-
-/* =========================
-   DESKTOP
-========================= */
-
-@media(min-width:700px){
-
-.bottom-nav{
- left:50%;
- right:auto;
- width:650px;
- transform:translateX(-50%);
- border:1px solid #292929;
- border-bottom:0;
- border-radius:13px 13px 0 0
-}
-
-.stats-grid{
- grid-template-columns:repeat(4,1fr)
-}
-
-.quick-grid{
- grid-template-columns:repeat(4,1fr)
-}
-
-.shop-grid,
-.donate-grid{
- grid-template-columns:repeat(4,1fr)
-}
-
-}
-
-/* =========================
-   VERY SMALL PHONE
-========================= */
-
-@media(max-width:360px){
-
-.auth-box{
- padding:20px
-}
-
-.logo{
- font-size:24px
-}
-
-.top-logo{
- font-size:13px
-}
-
-.money{
- padding:5px 6px;
- font-size:8px
-}
-
-.page{
- padding:11px
-}
-
-.quick{
- padding:11px 4px
-}
-
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLACK RUSSIA RP — Чат</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #0b0b0d;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      background: #111113;
+      border-bottom: 1px solid #29292d;
+    }
+
+    .logo {
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #ff3038;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .back {
+      padding: 10px 14px;
+      background: #202024;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 0 14px;
+    }
+
+    .heading {
+      margin-bottom: 18px;
+    }
+
+    .heading h1 {
+      margin: 0 0 8px;
+      font-size: 27px;
+    }
+
+    .heading p {
+      color: #99999f;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .chat {
+      height: min(65vh, 570px);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      background: #121214;
+      border: 1px solid #29292d;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .chat-top {
+      padding: 15px;
+      background: #18181b;
+      border-bottom: 1px solid #29292d;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-title {
+      font-weight: bold;
+    }
+
+    .status {
+      color: #67db8b;
+      font-size: 12px;
+    }
+
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .message {
+      padding: 11px 13px;
+      background: #1c1c20;
+      border: 1px solid #29292d;
+      border-radius: 10px;
+      overflow-wrap: anywhere;
+    }
+
+    .message.mine {
+      border-left: 3px solid #ff3038;
+    }
+
+    .message-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      align-items: center;
+      margin-bottom: 7px;
+    }
+
+    .username {
+      font-size: 13px;
+      font-weight: bold;
+      color: #ff555c;
+    }
+
+    .time {
+      font-size: 11px;
+      color: #77777e;
+    }
+
+    .message-text {
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .system-message {
+      text-align: center;
+      color: #92929a;
+      font-size: 13px;
+      padding: 12px;
+    }
+
+    .composer {
+      display: flex;
+      gap: 10px;
+      padding: 13px;
+      background: #18181b;
+      border-top: 1px solid #29292d;
+    }
+
+    #messageInput {
+      flex: 1;
+      min-width: 0;
+      padding: 13px;
+      color: white;
+      background: #0d0d0f;
+      border: 1px solid #343439;
+      border-radius: 9px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    #messageInput:focus {
+      border-color: #ff3038;
+    }
+
+    button {
+      border: 0;
+      border-radius: 9px;
+      padding: 0 19px;
+      background: #ed292f;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #notice {
+      min-height: 20px;
+      margin: 10px 2px;
+      font-size: 13px;
+      color: #ff7277;
+    }
+
+    @media (max-width: 500px) {
+      header {
+        padding: 0 12px;
+      }
+
+      .logo {
+        font-size: 15px;
+      }
+
+      main {
+        margin-top: 20px;
+      }
+
+      .heading h1 {
+        font-size: 23px;
+      }
+
+      .chat {
+        height: 68vh;
+      }
+
+      .composer {
+        padding: 9px;
+        gap: 7px;
+      }
+
+      button {
+        padding: 0 13px;
+      }
+    }
+  </style>
 </head>
 
 <body>
-
-<!-- =====================================================
-     AUTH SCREEN
-===================================================== -->
-
-<section id="authScreen">
-
-<div class="auth-box">
-
-<div class="logo-box">
-<div>
-<div class="b">BR</div>
-<div class="r">RP</div>
-</div>
-</div>
-
-<div class="logo">
-BLACK <span>RUSSIA</span>
-</div>
-
-<div class="logo-sub">
-Role Play • Online World
-</div>
-
-<div class="auth-tabs">
-
-<button
-class="auth-tab active"
-id="loginTab"
-onclick="switchAuth('login')">
-Вход
-</button>
-
-<button
-class="auth-tab"
-id="registerTab"
-onclick="switchAuth('register')">
-Регистрация
-</button>
-
-</div>
-
-
-<!-- LOGIN -->
-
-<div id="loginForm">
-
-<div class="auth-title">
-С возвращением
-</div>
-
-<div class="auth-desc">
-Введи игровой логин и пароль своего аккаунта.
-</div>
-
-<div class="field">
-
-<label>ИГРОВОЙ ЛОГИН</label>
-
-<input
-id="loginUsername"
-autocomplete="username"
-placeholder="Например: Tomas_RP">
-
-</div>
-
-<div class="field">
-
-<label>ПАРОЛЬ</label>
-
-<input
-id="loginPassword"
-type="password"
-autocomplete="current-password"
-placeholder="Введите пароль">
-
-</div>
-
-<button
-class="primary-btn"
-onclick="loginAccount()">
-ВОЙТИ В ИГРУ
-</button>
-
-<div
-class="auth-message"
-id="loginMessage">
-</div>
-
-</div>
-
-
-<!-- REGISTER -->
-
-<div
-id="registerForm"
-class="hidden">
-
-<div class="auth-title">
-Новый аккаунт
-</div>
-
-<div class="auth-desc">
-Создай игровой аккаунт. Логин будет использоваться в игре.
-</div>
-
-<div class="field">
-
-<label>ИГРОВОЙ ЛОГИН</label>
-
-<input
-id="regUsername"
-autocomplete="username"
-placeholder="Например: Tomas_RP">
-
-</div>
-
-<div class="field">
-
-<label>ПОЧТА</label>
-
-<input
-id="regEmail"
-type="email"
-autocomplete="email"
-placeholder="example@mail.com">
-
-</div>
-
-<div class="field">
-
-<label>ПАРОЛЬ</label>
-
-<input
-id="regPassword"
-type="password"
-autocomplete="new-password"
-placeholder="Минимум 6 символов">
-
-</div>
-
-<div class="field">
-
-<label>ПОВТОР ПАРОЛЯ</label>
-
-<input
-id="regPassword2"
-type="password"
-autocomplete="new-password"
-placeholder="Повтори пароль">
-
-</div>
-
-<button
-class="primary-btn"
-onclick="registerAccount()">
-СОЗДАТЬ АККАУНТ
-</button>
-
-<div
-class="auth-message"
-id="registerMessage">
-</div>
-
-</div>
-
-<div class="auth-footer">
-BLACK RUSSIA RP • Игровой аккаунт
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     APPLICATION
-===================================================== -->
-
-<section
-id="app"
-class="hidden">
-
-<header class="topbar">
-
-<div class="top-logo">
-BLACK <span>RUSSIA</span>
-</div>
-
-<div class="server-status">
-
-<div class="online-dot"></div>
-
-<span id="onlineCount">
-0 онлайн
-</span>
-
-</div>
-
-<div class="money-box">
-
-<div
-class="money cash"
-id="topCash">
-₽ 0
-</div>
-
-<div
-class="money donate"
-id="topDonate">
-♦ 0
-</div>
-
-</div>
-
-</header>
-
-
-<!-- HOME -->
-
-<main
-id="homePage"
-class="page active">
-
-<div class="hero">
-
-<div class="hero-small">
-ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР
-</div>
-
-<div class="hero-name">
-<span id="homeName">Player</span>
-</div>
-
-<div class="hero-small">
-ТВОЯ ИСТОРИЯ НАЧИНАЕТСЯ ЗДЕСЬ
-</div>
-
-</div>
-
-
-<div class="stats-grid">
-
-<div class="stat-card">
-
-<div class="stat-label">
-УРОВЕНЬ
-</div>
-
-<div
-class="stat-value"
-id="homeLevel">
-1
-</div>
-
-<div class="progress">
-<div id="homeXpBar"></div>
-</div>
-
-</div>
-
-
-<div class="stat-card">
-
-<div class="stat-label">
-ОПЫТ
-</div>
-
-<div
-class="stat-value"
-id="homeXP">
-0 XP
-</div>
-
-</div>
-
-
-<div class="stat-card">
-
-<div class="stat-label">
-НАЛИЧНЫЕ
-</div>
-
-<div
-class="stat-value"
-id="homeCash">
-₽ 0
-</div>
-
-</div>
-
-
-<div class="stat-card">
-
-<div class="stat-label">
-БАНК
-</div>
-
-<div
-class="stat-value"
-id="homeBank">
-₽ 0
-</div>
-
-</div>
-
-</div>
-
-
-<div class="section-title">
-Быстрый доступ
-</div>
-
-
-<div class="quick-grid">
-
-<button
-class="quick"
-onclick="location.href='jobs.html'">
-
-<div class="quick-icon">💼</div>
-<div class="quick-name">Работы</div>
-
-</button>
-
-
-<button
-class="quick"
-onclick="openPage('garage')">
-
-<div class="quick-icon">🚗</div>
-<div class="quick-name">Гараж</div>
-
-</button>
-
-
-<button
-class="quick"
-onclick="location.href='cars.html'">
-
-<div class="quick-icon">🚘</div>
-<div class="quick-name">Автосалон</div>
-
-</button>
-
-
-<button
-class="quick"
-onclick="openPage('shop')">
-
-<div class="quick-icon">🏪</div>
-<div class="quick-name">Магазин</div>
-
-</button>
-
-
-<button
-class="quick"
-onclick="openPage('map')">
-
-<div class="quick-icon">🗺️</div>
-<div class="quick-name">Карта</div>
-
-</button>
-
-
-<button
-class="quick"
-onclick="location.href='case.html'">
-
-<div class="quick-icon">🎁</div>
-<div class="quick-name">Кейсы</div>
-
-</button>
-
-
-<button
-class="quick"
-onclick="openPage('chat')">
-
-<div class="quick-icon">💬</div>
-<div class="quick-name">Чат</div>
-
-</button>
-
-
-<button
-class="quick"
-onclick="location.href='casino.html'">
-
-<div class="quick-icon">🎰</div>
-<div class="quick-name">Казино</div>
-
-</button>
-
-</div>
-
-
-<div class="section-title">
-Твой прогресс
-</div>
-
-<div class="card">
-
-<div class="card-title">
-Следующий уровень
-</div>
-
-<div class="card-desc">
-Работай, выполняй задания и участвуй в жизни города.
-</div>
-
-<div class="progress">
-<div id="bigXpBar"></div>
-</div>
-
-<div
-id="xpText"
-style="margin-top:8px;color:#777;font-size:10px">
-0 / 100 XP
-</div>
-
-</div>
-
-</main>
-
-
-<!-- GARAGE -->
-
-<main
-id="garagePage"
-class="page">
-
-<div class="page-title">
-Гараж
-</div>
-
-<div class="page-subtitle">
-Транспорт твоего персонажа.
-</div>
-
-<div id="garageContainer"></div>
-
-</main>
-
-
-<!-- SHOP -->
-
-<main
-id="shopPage"
-class="page">
-
-<div class="page-title">
-Магазин
-</div>
-
-<div class="page-subtitle">
-Предметы и полезные вещи.
-</div>
-
-<div
-class="shop-grid"
-id="shopContainer">
-</div>
-
-</main>
-
-
-<!-- MAP -->
-
-<main
-id="mapPage"
-class="page">
-
-<div class="page-title">
-Карта города
-</div>
-
-<div class="page-subtitle">
-Основные места игрового мира.
-</div>
-
-<div class="map">
-
-<div class="map-road road1"></div>
-<div class="map-road road2"></div>
-
-<button
-class="map-point point1"
-onclick="toast('🏦 Банк')">
-🏦
-</button>
-
-<button
-class="map-point point2"
-onclick="location.href='cars.html'">
-🚗
-</button>
-
-<button
-class="map-point point3"
-onclick="location.href='jobs.html'">
-💼
-</button>
-
-<button
-class="map-point point4"
-onclick="location.href='case.html'">
-🎁
-</button>
-
-<button
-class="map-point point5"
-onclick="toast('🏙️ Центральная площадь')">
-🏙️
-</button>
-
-</div>
-
-</main>
-
-
-<!-- DONATE -->
-
-<main
-id="donatePage"
-class="page">
-
-<div class="page-title">
-Донат
-</div>
-
-<div class="page-subtitle">
-Премиальная валюта сервера.
-</div>
-
-<div class="donate-banner">
-
-<div class="donate-title">
-BLACK <span>DONATE</span>
-</div>
-
-<div class="donate-sub">
-Текущий баланс:
-<b id="donateBalance">0</b> ♦
-</div>
-
-</div>
-
-
-<div class="donate-grid">
-
-<div class="donate-card">
-<strong>♦ 100</strong>
-<span>Стартовый набор</span>
-<button onclick="buyDonate(100)">ПОЛУЧИТЬ</button>
-</div>
-
-<div class="donate-card">
-<strong>♦ 500</strong>
-<span>Большой набор</span>
-<button onclick="buyDonate(500)">ПОЛУЧИТЬ</button>
-</div>
-
-<div class="donate-card">
-<strong>♦ 1000</strong>
-<span>Премиум набор</span>
-<button onclick="buyDonate(1000)">ПОЛУЧИТЬ</button>
-</div>
-
-<div class="donate-card">
-<strong>♦ 5000</strong>
-<span>VIP набор</span>
-<button onclick="buyDonate(5000)">ПОЛУЧИТЬ</button>
-</div>
-
-</div>
-
-</main>
-
-
-<!-- CHAT -->
-
-<main
-id="chatPage"
-class="page">
-
-<div class="page-title">
-Общий чат
-</div>
-
-<div class="page-subtitle">
-Сообщения игроков сервера.
-</div>
-
-<div class="chat-box">
-
-<div
-class="chat-messages"
-id="chatMessages">
-</div>
-
-<div class="chat-input">
-
-<input
-id="chatInput"
-maxlength="150"
-placeholder="Написать сообщение..."
-onkeydown="if(event.key==='Enter')sendChat()">
-
-<button onclick="sendChat()">
-➤
-</button>
-
-</div>
-
-</div>
-
-</main>
-
-
-<!-- ONLINE -->
-
-<main
-id="onlinePage"
-class="page">
-
-<div class="page-title">
-Игроки онлайн
-</div>
-
-<div class="page-subtitle">
-Игроки, которые сейчас находятся на сервере.
-</div>
-
-<div id="onlineContainer"></div>
-
-</main>
-
-
-<!-- PROFILE -->
-
-<main
-id="profilePage"
-class="page">
-
-<div class="page-title">
-Профиль
-</div>
-
-<div class="page-subtitle">
-Информация о персонаже.
-</div>
-
-<div class="profile-head">
-
-<div
-class="big-avatar"
-id="profileAvatar">
-P
-</div>
-
-<div
-class="profile-name"
-id="profileName">
-Player
-</div>
-
-<div
-class="profile-id"
-id="profileId">
-ID
-</div>
-
-
-<div
-class="profile-row"
-style="margin-top:15px">
-
-<span>Уровень</span>
-<span id="profileLevel">1</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Опыт</span>
-<span id="profileXP">0 XP</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Наличные</span>
-<span id="profileCash">₽ 0</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Банк</span>
-<span id="profileBank">₽ 0</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Донат</span>
-<span id="profileDonate">♦ 0</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Работа</span>
-<span id="profileJob">Безработный</span>
-
-</div>
-
-
-<div class="profile-row">
-
-<span>Регистрация</span>
-<span id="profileDate">—</span>
-
-</div>
-
-</div>
-
-
-<button
-class="secondary-btn"
-onclick="logout()">
-
-ВЫЙТИ ИЗ АККАУНТА
-
-</button>
-
-</main>
-
-
-<!-- NAV -->
-
-<nav class="bottom-nav">
-
-<button
-class="nav-btn active"
-data-page="home"
-onclick="openPage('home')">
-
-<div class="nav-icon">🏠</div>
-Главная
-
-</button>
-
-
-<button
-class="nav-btn"
-onclick="location.href='jobs.html'">
-
-<div class="nav-icon">💼</div>
-Работа
-
-</button>
-
-
-<button
-class="nav-btn"
-data-page="garage"
-onclick="openPage('garage')">
-
-<div class="nav-icon">🚗</div>
-Гараж
-
-</button>
-
-
-<button
-class="nav-btn"
-data-page="chat"
-onclick="openPage('chat')">
-
-<div class="nav-icon">💬</div>
-Чат
-
-</button>
-
-
-<button
-class="nav-btn"
-data-page="profile"
-onclick="openPage('profile')">
-
-<div class="nav-icon">👤</div>
-Профиль
-
-</button>
-
-</nav>
-
-</section>
-
-
-<!-- =====================================================
-     MODAL
-===================================================== -->
-
-<div
-id="modal"
-class="modal hidden"
-onclick="if(event.target===this)closeModal()">
-
-<div class="modal-box">
-
-<button
-class="close"
-onclick="closeModal()">
-×
-</button>
-
-<div
-class="modal-title"
-id="modalTitle">
-Информация
-</div>
-
-<div
-class="modal-text"
-id="modalText">
-</div>
-
-<button
-class="primary-btn"
-onclick="closeModal()">
-ПОНЯТНО
-</button>
-
-</div>
-
-</div>
-
-
-<div
-class="toast"
-id="toast">
-Готово
-</div>
-
-
-<script>
-
-/* =====================================================
-   SUPABASE
-===================================================== */
-
-const SUPABASE_URL =
-"https://qzswnoeglovfpgrzpnio.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
-
-let currentUser = null;
-let currentAuthUser = null;
-let toastTimer = null;
-
-
-/* =====================================================
-   SUPABASE FETCH
-===================================================== */
-
-async function supabaseFetch(path,options={}){
-
- const response = await fetch(
-  SUPABASE_URL + path,
-  {
-   ...options,
-   headers:{
-    apikey:SUPABASE_KEY,
-    Authorization:
-     "Bearer " +
-     (
-      options.token ||
-      localStorage.getItem("brp_access_token") ||
+  <header>
+    <div class="logo">BLACK <span>RUSSIA</span> RP</div>
+    <a class="back" href="index.html">← На главную</a>
+  </header>
+
+  <main>
+    <div class="heading">
+      <h1>Общий чат</h1>
+      <p>Общайся с другими игроками сервера</p>
+    </div>
+
+    <section class="chat">
+      <div class="chat-top">
+        <div class="chat-title">💬 Игровой чат</div>
+        <div class="status" id="status">Подключение...</div>
+      </div>
+
+      <div id="messages">
+        <div class="system-message">Загружаем сообщения...</div>
+      </div>
+
+      <form class="composer" id="chatForm">
+        <input
+          id="messageInput"
+          type="text"
+          maxlength="500"
+          placeholder="Напиши сообщение..."
+          autocomplete="off"
+          required
+        >
+        <button id="sendButton" type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <div id="notice"></div>
+  </main>
+
+  <script>
+    const SUPABASE_URL =
+      "https://qzswnoeglovfpgrzpnio.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+
+    const db = window.supabase.createClient(
+      SUPABASE_URL,
       SUPABASE_KEY
-     ),
-    "Content-Type":"application/json",
-    ...(options.headers || {})
-   }
-  }
- );
+    );
 
- const text = await response.text();
+    const messagesEl = document.getElementById("messages");
+    const statusEl = document.getElementById("status");
+    const noticeEl = document.getElementById("notice");
+    const inputEl = document.getElementById("messageInput");
+    const sendButton = document.getElementById("sendButton");
 
- let data = null;
+    let currentUser = null;
+    let currentUsername = "Игрок";
+    let knownMessages = new Set();
 
- try{
-  data = text ? JSON.parse(text) : null;
- }catch{
-  data = text;
- }
-
- if(!response.ok){
-
-  const error =
-   typeof data === "string"
-   ? data
-   : JSON.stringify(data);
-
-  throw new Error(error);
- }
-
- return data;
-}
-
-
-/* =====================================================
-   SESSION
-===================================================== */
-
-function saveSession(access,refresh){
-
- if(access){
-  localStorage.setItem(
-   "brp_access_token",
-   access
-  );
- }
-
- if(refresh){
-  localStorage.setItem(
-   "brp_refresh_token",
-   refresh
-  );
- }
-
-}
-
-
-function clearSession(){
-
- localStorage.removeItem(
-  "brp_access_token"
- );
-
- localStorage.removeItem(
-  "brp_refresh_token"
- );
-
-}
-
-
-/* =====================================================
-   REGISTER
-===================================================== */
-
-async function registerAccount(){
-
- const username =
-  document.getElementById("regUsername")
-  .value.trim();
-
- const email =
-  document.getElementById("regEmail")
-  .value.trim();
-
- const password =
-  document.getElementById("regPassword")
-  .value;
-
- const password2 =
-  document.getElementById("regPassword2")
-  .value;
-
- const message =
-  document.getElementById("registerMessage");
-
- message.style.color =
-  "var(--red2)";
-
- message.textContent =
-  "Проверяем данные...";
-
-
- if(username.length < 3)
-  return message.textContent =
-   "Логин должен содержать минимум 3 символа.";
-
-
- if(username.length > 24)
-  return message.textContent =
-   "Логин слишком длинный.";
-
-
- if(!/^[a-zA-Z0-9_]+$/.test(username))
-  return message.textContent =
-   "Используй только латиницу, цифры и _.";
-
-
- if(!email || !email.includes("@"))
-  return message.textContent =
-   "Введите корректную почту.";
-
-
- if(password.length < 6)
-  return message.textContent =
-   "Пароль должен содержать минимум 6 символов.";
-
-
- if(password !== password2)
-  return message.textContent =
-   "Пароли не совпадают.";
-
-
- try{
-
-  /* Проверяем игровой логин */
-
-  const existing =
-   await supabaseFetch(
-    "/rest/v1/profiles?select=id&username=ilike."+
-    encodeURIComponent(username)+
-    "&limit=1",
-    {
-     headers:{
-      Prefer:"return=representation"
-     }
+    function showNotice(text) {
+      noticeEl.textContent = text;
     }
-   );
 
-  if(existing && existing.length)
-   return message.textContent =
-    "Такой игровой логин уже занят.";
+    function formatTime(value) {
+      if (!value) return "";
 
+      const date = new Date(value);
 
-  message.style.color =
-   "var(--muted)";
+      if (Number.isNaN(date.getTime())) return "";
 
-  message.textContent =
-   "Создаём аккаунт...";
+      return date.toLocaleTimeString("ru-RU", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    }
 
+    function addMessage(row) {
+      const id = row.id;
 
-  /* Создаём Auth */
-
-  const auth =
-   await supabaseFetch(
-    "/auth/v1/signup",
-    {
-     method:"POST",
-     token:SUPABASE_KEY,
-     body:JSON.stringify({
-      email,
-      password,
-      data:{
-       username:username
+      if (id !== undefined && knownMessages.has(String(id))) {
+        return;
       }
-     })
-    }
-   );
 
-
-  /*
-     Если Supabase сразу вернул токен,
-     пользователь уже авторизован.
-  */
-
-  if(auth && auth.access_token){
-
-   saveSession(
-    auth.access_token,
-    auth.refresh_token
-   );
-
-   message.style.color =
-    "var(--green)";
-
-   message.textContent =
-    "Аккаунт создан!";
-
-   await loadSession();
-
-   return;
-  }
-
-
-  /*
-     Если включено подтверждение почты,
-     токен может не прийти.
-  */
-
-  message.style.color =
-   "var(--yellow)";
-
-  message.textContent =
-   "Аккаунт создан. Проверь почту и подтверди регистрацию.";
-
- }catch(error){
-
-  console.error(error);
-
-  message.style.color =
-   "var(--red2)";
-
-  message.textContent =
-   cleanError(error.message);
- }
-
-}
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
-
-async function loginAccount(){
-
- const username =
-  document.getElementById("loginUsername")
-  .value.trim();
-
- const password =
-  document.getElementById("loginPassword")
-  .value;
-
- const message =
-  document.getElementById("loginMessage");
-
- message.style.color =
-  "var(--red2)";
-
-
- if(!username || !password){
-
-  message.textContent =
-   "Введите логин и пароль.";
-
-  return;
- }
-
-
- message.style.color =
-  "var(--muted)";
-
- message.textContent =
-  "Ищем аккаунт...";
-
-
- try{
-
-  /*
-     Находим email по игровому username.
-     Для этого используется твой RPC.
-  */
-
-  const result =
-   await supabaseFetch(
-    "/rest/v1/rpc/get_login_email",
-    {
-     method:"POST",
-     token:SUPABASE_KEY,
-     body:JSON.stringify({
-      p_username:username
-     })
-    }
-   );
-
-
-  if(!result){
-
-   message.style.color =
-    "var(--red2)";
-
-   message.textContent =
-    "Аккаунт с таким логином не найден.";
-
-   return;
-  }
-
-
-  const email =
-   typeof result === "string"
-   ? result
-   : result.email;
-
-
-  if(!email){
-
-   message.textContent =
-    "Не удалось определить данные аккаунта.";
-
-   return;
-  }
-
-
-  message.textContent =
-   "Проверяем пароль...";
-
-
-  const auth =
-   await supabaseFetch(
-    "/auth/v1/token?grant_type=password",
-    {
-     method:"POST",
-     token:SUPABASE_KEY,
-     body:JSON.stringify({
-      email,
-      password
-     })
-    }
-   );
-
-
-  if(!auth || !auth.access_token){
-
-   message.style.color =
-    "var(--red2)";
-
-   message.textContent =
-    "Неверный логин или пароль.";
-
-   return;
-  }
-
-
-  saveSession(
-   auth.access_token,
-   auth.refresh_token
-  );
-
-
-  message.style.color =
-   "var(--green)";
-
-  message.textContent =
-   "Вход выполнен.";
-
-
-  await loadSession();
-
- }catch(error){
-
-  console.error(error);
-
-  message.style.color =
-   "var(--red2)";
-
-  message.textContent =
-   cleanError(error.message);
- }
-
-}
-
-
-/* =====================================================
-   LOAD SESSION
-===================================================== */
-
-async function loadSession(){
-
- const token =
-  localStorage.getItem(
-   "brp_access_token"
-  );
-
-
- if(!token){
-
-  showAuth();
-
-  return false;
- }
-
-
- try{
-
-  currentAuthUser =
-   await supabaseFetch(
-    "/auth/v1/user",
-    {
-     headers:{
-      Authorization:
-       "Bearer "+token
-     }
-    }
-   );
-
-
-  if(!currentAuthUser ||
-     !currentAuthUser.id){
-
-   throw new Error(
-    "Сессия недействительна."
-   );
-  }
-
-
-  await loadProfile();
-
-  showApp();
-
-  await updateOnline();
-
-  await loadOnline();
-
-  return true;
-
- }catch(error){
-
-  console.error(error);
-
-  clearSession();
-
-  currentUser = null;
-  currentAuthUser = null;
-
-  showAuth();
-
-  return false;
- }
-
-}
-
-
-/* =====================================================
-   LOAD PROFILE
-===================================================== */
-
-async function loadProfile(){
-
- if(!currentAuthUser ||
-    !currentAuthUser.id)
-  throw new Error(
-   "Пользователь не авторизован."
-  );
-
-
- const token =
-  localStorage.getItem(
-   "brp_access_token"
-  );
-
-
- const rows =
-  await supabaseFetch(
-   "/rest/v1/profiles?id=eq."+
-   encodeURIComponent(
-    currentAuthUser.id
-   )+
-   "&select=*",
-   {
-    headers:{
-     Authorization:
-      "Bearer "+token
-    }
-   }
-  );
-
-
- if(!rows || !rows.length){
-
-  /*
-     Попытка создать профиль автоматически,
-     если Auth есть, а profiles ещё нет.
-  */
-
-  const meta =
-   currentAuthUser.user_metadata || {};
-
-  const username =
-   meta.username ||
-   currentAuthUser.email
-    ?.split("@")[0] ||
-   "Player";
-
-
-  try{
-
-   const created =
-    await supabaseFetch(
-     "/rest/v1/profiles",
-     {
-      method:"POST",
-      headers:{
-       Authorization:
-        "Bearer "+token,
-       Prefer:
-        "return=representation"
-      },
-      body:JSON.stringify({
-       id:currentAuthUser.id,
-       username:username,
-       level:1,
-       xp:0,
-       cash:0,
-       bank:0,
-       donate:0,
-       job:"Безработный"
-      })
-     }
-    );
-
-
-   if(created && created.length){
-
-    currentUser =
-     created[0];
-
-    renderAll();
-
-    return;
-   }
-
-  }catch(profileError){
-
-   console.error(
-    "PROFILE CREATE:",
-    profileError
-   );
-  }
-
-
-  throw new Error(
-   "Профиль игрока не найден. Проверь таблицу profiles."
-  );
- }
-
-
- currentUser =
-  rows[0];
-
- renderAll();
-}
-
-
-/* =====================================================
-   AUTH UI
-===================================================== */
-
-function showAuth(){
-
- document
-  .getElementById("authScreen")
-  .classList.remove("hidden");
-
- document
-  .getElementById("app")
-  .classList.add("hidden");
-
-}
-
-
-function showApp(){
-
- document
-  .getElementById("authScreen")
-  .classList.add("hidden");
-
- document
-  .getElementById("app")
-  .classList.remove("hidden");
-
-}
-
-
-function switchAuth(type){
-
- const login =
-  type === "login";
-
-
- document
-  .getElementById("loginForm")
-  .classList.toggle(
-   "hidden",
-   !login
-  );
-
-
- document
-  .getElementById("registerForm")
-  .classList.toggle(
-   "hidden",
-   login
-  );
-
-
- document
-  .getElementById("loginTab")
-  .classList.toggle(
-   "active",
-   login
-  );
-
-
- document
-  .getElementById("registerTab")
-  .classList.toggle(
-   "active",
-   !login
-  );
-
-}
-
-
-/* =====================================================
-   RENDER
-===================================================== */
-
-function renderAll(){
-
- if(!currentUser)
-  return;
-
-
- const p =
-  currentUser;
-
-
- const set =
-  (id,value)=>{
-
-   const element =
-    document.getElementById(id);
-
-   if(element)
-    element.textContent =
-     value;
-
-  };
-
-
- const level =
-  Number(p.level || 1);
-
- const xp =
-  Number(p.xp || 0);
-
- const cash =
-  Number(p.cash || 0);
-
- const bank =
-  Number(p.bank || 0);
-
- const donate =
-  Number(p.donate || 0);
-
-
- set(
-  "homeName",
-  p.username || "Player"
- );
-
-
- set(
-  "homeLevel",
-  level
- );
-
-
- set(
-  "homeXP",
-  xp+" XP"
- );
-
-
- set(
-  "homeCash",
-  money(cash)
- );
-
-
- set(
-  "homeBank",
-  money(bank)
- );
-
-
- set(
-  "topCash",
-  "₽ "+number(cash)
- );
-
-
- set(
-  "topDonate",
-  "♦ "+number(donate)
- );
-
-
- set(
-  "profileName",
-  p.username || "Player"
- );
-
-
- set(
-  "profileAvatar",
-  (p.username || "P")
-   .charAt(0)
-   .toUpperCase()
- );
-
-
- set(
-  "profileId",
-  "ID: "+p.id
- );
-
-
- set(
-  "profileLevel",
-  level
- );
-
-
- set(
-  "profileXP",
-  xp+" XP"
- );
-
-
- set(
-  "profileCash",
-  money(cash)
- );
-
-
- set(
-  "profileBank",
-  money(bank)
- );
-
-
- set(
-  "profileDonate",
-  "♦ "+number(donate)
- );
-
-
- set(
-  "profileJob",
-  p.job || "Безработный"
- );
-
-
- set(
-  "profileDate",
-  p.created_at
-   ? new Date(
-      p.created_at
-     ).toLocaleDateString(
-      "ru-RU"
-     )
-   : "—"
- );
-
-
- set(
-  "donateBalance",
-  number(donate)
- );
-
-
- const need =
-  xpForLevel(level);
-
-
- const percent =
-  Math.min(
-   100,
-   Math.max(
-    0,
-    xp / need * 100
-   )
-  );
-
-
- const homeBar =
-  document.getElementById(
-   "homeXpBar"
-  );
-
- const bigBar =
-  document.getElementById(
-   "bigXpBar"
-  );
-
-
- if(homeBar)
-  homeBar.style.width =
-   percent+"%";
-
-
- if(bigBar)
-  bigBar.style.width =
-   percent+"%";
-
-
- set(
-  "xpText",
-  xp+" / "+need+" XP"
- );
-
-
- renderGarage();
- renderShop();
-}
-
-
-/* =====================================================
-   HELPERS
-===================================================== */
-
-function number(value){
-
- return Number(value || 0)
-  .toLocaleString("ru-RU");
-
-}
-
-
-function money(value){
-
- return "₽ "+number(value);
-
-}
-
-
-function xpForLevel(level){
-
- return 100 +
-  (Number(level)-1)*75;
-
-}
-
-
-/* =====================================================
-   GARAGE
-===================================================== */
-
-function renderGarage(){
-
- const container =
-  document.getElementById(
-   "garageContainer"
-  );
-
-
- if(!container)
-  return;
-
-
- const cars = [
-
-  [
-   "Lada Priora",
-   "🚘",
-   87,
-   96
-  ],
-
-  [
-   "VAZ 2107",
-   "🚗",
-   62,
-   91
-  ],
-
-  [
-   "Mercedes-Benz G65",
-   "🚙",
-   100,
-   100
-  ]
-
- ];
-
-
- container.innerHTML = "";
-
-
- cars.forEach(car=>{
-
-  const element =
-   document.createElement(
-    "div"
-   );
-
-
-  element.className =
-   "car";
-
-
-  element.innerHTML = `
-
-   <div class="car-image">
-    ${car[1]}
-   </div>
-
-   <div class="car-body">
-
-    <div class="car-name">
-     ${escapeHTML(car[0])}
-    </div>
-
-    <div class="car-meta">
-     Топливо: ${car[2]}% ·
-     Состояние: ${car[3]}%
-    </div>
-
-    <div class="car-buttons">
-
-     <button
-      onclick="toast('⛽ Автомобиль заправлен')">
-      ⛽ Заправить
-     </button>
-
-     <button
-      onclick="toast('🔧 Автомобиль исправен')">
-      🔧 Ремонт
-     </button>
-
-     <button
-      onclick="toast('🚗 Вы выехали в город')">
-      🚗 Ехать
-     </button>
-
-    </div>
-
-   </div>
-  `;
-
-
-  container.appendChild(
-   element
-  );
-
- });
-
-}
-
-
-/* =====================================================
-   SHOP
-===================================================== */
-
-const shopItems = [
-
- [
-  "🍔",
-  "Бургер",
-  350
- ],
-
- [
-  "🥤",
-  "Газировка",
-  180
- ],
-
- [
-  "☕",
-  "Кофе",
-  250
- ],
-
- [
-  "📱",
-  "Телефон",
-  12500
- ],
-
- [
-  "🎧",
-  "Наушники",
-  6500
- ],
-
- [
-  "🧰",
-  "Ремкомплект",
-  3200
- ],
-
- [
-  "🎒",
-  "Рюкзак",
-  4500
- ],
-
- [
-  "🧥",
-  "Куртка",
-  7200
- ]
-
-];
-
-
-function renderShop(){
-
- const container =
-  document.getElementById(
-   "shopContainer"
-  );
-
-
- if(!container)
-  return;
-
-
- container.innerHTML = "";
-
-
- shopItems.forEach(
-  (item,index)=>{
-
-   const element =
-    document.createElement(
-     "div"
-    );
-
-
-   element.className =
-    "item";
-
-
-   element.innerHTML = `
-
-    <div class="item-icon">
-     ${item[0]}
-    </div>
-
-    <div class="item-name">
-     ${escapeHTML(item[1])}
-    </div>
-
-    <div class="item-price">
-     ₽${number(item[2])}
-    </div>
-
-    <button
-     class="buy"
-     onclick="buyItem(${index})">
-     КУПИТЬ
-    </button>
-
-   `;
-
-
-   container.appendChild(
-    element
-   );
-
-  }
- );
-
-}
-
-
-function buyItem(index){
-
- const item =
-  shopItems[index];
-
-
- if(!item)
-  return;
-
-
- const price =
-  Number(item[2]);
-
-
- const cash =
-  Number(
-   currentUser?.cash || 0
-  );
-
-
- if(cash < price){
-
-  toast(
-   "❌ Недостаточно денег."
-  );
-
-  return;
- }
-
-
- /*
-    Пока покупка локальная.
-    Реальное списание через Supabase
-    подключим следующим этапом.
- */
-
- toast(
-  item[0]+" "+
-  item[1]+
-  " добавлен."
- );
-
-}
-
-
-/* =====================================================
-   DONATE
-===================================================== */
-
-function buyDonate(amount){
-
- openModal(
-  "♦ Донат",
-  "Набор ♦ "+
-  amount+
-  "\n\nПлатёжная система ещё не подключена.\n\nРеальную оплату подключим отдельно."
- );
-
-}
-
-
-/* =====================================================
-   CHAT
-===================================================== */
-
-async function loadChat(){
-
- try{
-
-  const messages =
-   await supabaseFetch(
-    "/rest/v1/chat_messages?select=*&order=created_at.asc&limit=100"
-   ) || [];
-
-
-  renderChat(
-   messages
-  );
-
- }catch(error){
-
-  console.error(
-   "CHAT:",
-   error
-  );
-
-  renderChat([]);
-
- }
-
-}
-
-
-function renderChat(messages){
-
- const box =
-  document.getElementById(
-   "chatMessages"
-  );
-
-
- if(!box)
-  return;
-
-
- box.innerHTML = "";
-
-
- if(!messages.length){
-
-  box.innerHTML = `
-
-   <div class="message">
-
-    <div class="message-name">
-     SERVER
-    </div>
-
-    <div class="message-text">
-     Добро пожаловать в общий чат!
-    </div>
-
-   </div>
-
-  `;
-
-  return;
- }
-
-
- messages.forEach(message=>{
-
-  const element =
-   document.createElement(
-    "div"
-   );
-
-
-  element.className =
-   "message";
-
-
-  element.innerHTML = `
-
-   <div class="message-name">
-    ${escapeHTML(
-     message.username ||
-     "Player"
-    )}
-   </div>
-
-   <div class="message-text">
-    ${escapeHTML(
-     message.message ||
-     ""
-    )}
-   </div>
-
-  `;
-
-
-  box.appendChild(
-   element
-  );
-
- });
-
-
- box.scrollTop =
-  box.scrollHeight;
-}
-
-
-async function sendChat(){
-
- if(!currentUser)
-  return;
-
-
- const input =
-  document.getElementById(
-   "chatInput"
-  );
-
-
- const text =
-  input.value.trim();
-
-
- if(!text)
-  return;
-
-
- if(text.length > 150){
-
-  toast(
-   "Сообщение слишком длинное."
-  );
-
-  return;
- }
-
-
- try{
-
-  await supabaseFetch(
-   "/rest/v1/chat_messages",
-   {
-    method:"POST",
-    headers:{
-     Prefer:"return=minimal"
-    },
-    body:JSON.stringify({
-     username:
-      currentUser.username,
-     message:text,
-     user_id:
-      currentAuthUser.id
-    })
-   }
-  );
-
-
-  input.value = "";
-
-  await loadChat();
-
- }catch(error){
-
-  console.error(error);
-
-  toast(
-   "❌ Не удалось отправить сообщение."
-  );
-
- }
-
-}
-
-
-/* =====================================================
-   ONLINE
-===================================================== */
-
-async function updateOnline(){
-
- if(!currentUser ||
-    !currentAuthUser)
-  return;
-
-
- try{
-
-  await supabaseFetch(
-   "/rest/v1/online_players",
-   {
-    method:"POST",
-    headers:{
-     Prefer:
-      "resolution=merge-duplicates"
-    },
-    body:JSON.stringify({
-     id:
-      currentAuthUser.id,
-     username:
-      currentUser.username,
-     online:true,
-     last_seen:
-      new Date().toISOString()
-    })
-   }
-  );
-
- }catch(error){
-
-  console.warn(
-   "ONLINE UPDATE:",
-   error
-  );
-
- }
-
-}
-
-
-async function loadOnline(){
-
- const container =
-  document.getElementById(
-   "onlineContainer"
-  );
-
-
- if(!container)
-  return;
-
-
- try{
-
-  const list =
-   await supabaseFetch(
-    "/rest/v1/online_players?select=*&online=eq.true&order=last_seen.desc&limit=50"
-   ) || [];
-
-
-  document
-   .getElementById(
-    "onlineCount"
-   )
-   .textContent =
-    list.length+
-    " онлайн";
-
-
-  container.innerHTML = "";
-
-
-  if(!list.length){
-
-   container.innerHTML = `
-
-    <div class="online-card">
-
-     <div class="avatar">
-      ?
-     </div>
-
-     <div class="online-info">
-
-      <div class="online-name">
-       Пока никого нет онлайн
-      </div>
-
-      <div class="online-status">
-       ● Сервер ожидает игроков
-      </div>
-
-     </div>
-
-    </div>
-
-   `;
-
-   return;
-  }
-
-
-  list.forEach(player=>{
-
-   const element =
-    document.createElement(
-     "div"
-    );
-
-
-   element.className =
-    "online-card";
-
-
-   const username =
-    player.username ||
-    "Player";
-
-
-   element.innerHTML = `
-
-    <div class="avatar">
-     ${escapeHTML(
-      username
-       .charAt(0)
-       .toUpperCase()
-     )}
-    </div>
-
-    <div class="online-info">
-
-     <div class="online-name">
-      ${escapeHTML(username)}
-     </div>
-
-     <div class="online-status">
-      ● В игре
-     </div>
-
-    </div>
-
-    <div class="level">
-     ONLINE
-    </div>
-
-   `;
-
-
-   container.appendChild(
-    element
-   );
-
-  });
-
-
- }catch(error){
-
-  console.error(
-   "ONLINE:",
-   error
-  );
-
-
-  const count =
-   document.getElementById(
-    "onlineCount"
-   );
-
-
-  if(count)
-   count.textContent =
-    currentUser
-    ? "1 онлайн"
-    : "0 онлайн";
-
-
-  container.innerHTML = `
-
-   <div class="online-card">
-
-    <div class="avatar">
-     ${escapeHTML(
-      (currentUser?.username ||
-       "P")
-       .charAt(0)
-       .toUpperCase()
-     )}
-    </div>
-
-    <div class="online-info">
-
-     <div class="online-name">
-      ${escapeHTML(
-       currentUser?.username ||
-       "Player"
-      )}
-     </div>
-
-     <div class="online-status">
-      ● В игре
-     </div>
-
-    </div>
-
-    <div class="level">
-     ONLINE
-    </div>
-
-   </div>
-
-  `;
-
- }
-
-}
-
-
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
-
-function openPage(page){
-
- const pages = [
-  "home",
-  "garage",
-  "shop",
-  "map",
-  "donate",
-  "chat",
-  "online",
-  "profile"
- ];
-
-
- pages.forEach(name=>{
-
-  const element =
-   document.getElementById(
-    name+"Page"
-   );
-
-
-  if(element){
-
-   element.classList.toggle(
-    "active",
-    name === page
-   );
-
-  }
-
- });
-
-
- document
-  .querySelectorAll(
-   ".nav-btn"
-  )
-  .forEach(button=>{
-
-   button.classList.toggle(
-    "active",
-    button.dataset.page === page
-   );
-
-  });
-
-
- window.scrollTo({
-  top:0,
-  behavior:"smooth"
- });
-
-
- if(page === "chat")
-  loadChat();
-
-
- if(page === "online")
-  loadOnline();
-
-}
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
-
-async function logout(){
-
- try{
-
-  if(
-   currentAuthUser &&
-   currentAuthUser.id
-  ){
-
-   await supabaseFetch(
-    "/rest/v1/online_players?id=eq."+
-    encodeURIComponent(
-     currentAuthUser.id
-    ),
-    {
-     method:"PATCH",
-     headers:{
-      Prefer:"return=minimal"
-     },
-     body:JSON.stringify({
-      online:false,
-      last_seen:
-       new Date().toISOString()
-     })
-    }
-   );
-
-  }
-
- }catch(error){
-
-  console.warn(
-   "LOGOUT ONLINE:",
-   error
-  );
-
- }
-
-
- clearSession();
-
- currentUser = null;
- currentAuthUser = null;
-
- showAuth();
-
- switchAuth("login");
-
- document.getElementById(
-  "loginUsername"
- ).value = "";
-
- document.getElementById(
-  "loginPassword"
- ).value = "";
-
- document.getElementById(
-  "loginMessage"
- ).textContent = "";
-
-}
-
-
-/* =====================================================
-   MODAL
-===================================================== */
-
-function openModal(title,text){
-
- document
-  .getElementById(
-   "modalTitle"
-  )
-  .textContent =
-   title;
-
-
- document
-  .getElementById(
-   "modalText"
-  )
-  .textContent =
-   text;
-
-
- document
-  .getElementById(
-   "modal"
-  )
-  .classList.remove(
-   "hidden"
-  );
-
-}
-
-
-function closeModal(){
-
- document
-  .getElementById(
-   "modal"
-  )
-  .classList.add(
-   "hidden"
-  );
-
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-function toast(text){
-
- const element =
-  document.getElementById(
-   "toast"
-  );
-
-
- element.textContent =
-  text;
-
-
- element.classList.add(
-  "show"
- );
-
-
- clearTimeout(
-  toastTimer
- );
-
-
- toastTimer =
-  setTimeout(()=>{
-
-   element.classList.remove(
-    "show"
-   );
-
-  },2300);
-
-}
-
-
-/* =====================================================
-   SECURITY
-===================================================== */
-
-function escapeHTML(value){
-
- return String(value ?? "")
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#039;");
-
-}
-
-
-/* =====================================================
-   ERROR TRANSLATION
-===================================================== */
-
-function cleanError(text){
-
- if(!text)
-  return "Неизвестная ошибка.";
-
-
- const t =
-  String(text);
-
-
- if(
-  t.includes(
-   "Invalid API key"
-  )
- )
-  return "Неверный Supabase API key.";
-
-
- if(
-  t.includes(
-   "Invalid login credentials"
-  )
- )
-  return "Неверный логин или пароль.";
-
-
- if(
-  t.includes(
-   "Email not confirmed"
-  )
- )
-  return "Почта ещё не подтверждена.";
-
-
- if(
-  t.includes(
-   "User already registered"
-  )
- )
-  return "Такая почта уже зарегистрирована.";
-
-
- if(
-  t.includes(
-   "duplicate key"
-  )
- )
-  return "Такой логин уже занят.";
-
-
- if(
-  t.includes(
-   "rate limit"
-  ) ||
-  t.includes(
-   "email rate limit"
-  )
- )
-  return "Supabase временно ограничил отправку писем. Попробуй позже.";
-
-
- if(
-  t.includes(
-   "permission denied"
-  )
- )
-  return "Нет разрешения Supabase для этой операции.";
-
-
- if(
-  t.includes(
-   "Failed to fetch"
-  )
- )
-  return "Не удалось соединиться с сервером.";
-
-
- return t
-  .replace(/[{}\[\]"]/g,"")
-  .substring(0,250);
-
-}
-
-
-/* =====================================================
-   ENTER KEY
-===================================================== */
-
-document.addEventListener(
- "keydown",
- event=>{
-
-  if(
-   event.key === "Enter" &&
-   !document
-    .getElementById("registerForm")
-    .classList.contains("hidden")
-  ){
-
-   /*
-      Регистрация уже имеет собственную кнопку.
-      Ничего автоматически не отправляем.
-   */
-
-  }
-
- }
-);
-
-
-/* =====================================================
-   START
-===================================================== */
-
-document.addEventListener(
- "DOMContentLoaded",
- async()=>{
-
-  switchAuth("login");
-
-  await loadSession();
-
-
-  /*
-     Обновляем присутствие игрока
-     каждые 15 секунд.
-  */
-
-  setInterval(
-   async()=>{
-
-    if(
-     currentUser &&
-     currentAuthUser
-    ){
-
-     await updateOnline();
-     await loadOnline();
-
-    }
-
-   },
-   15000
-  );
-
-
-  /*
-     При закрытии страницы пытаемся
-     пометить игрока офлайн.
-  */
-
-  window.addEventListener(
-   "beforeunload",
-   ()=>{
-
-    if(
-     currentAuthUser &&
-     currentAuthUser.id
-    ){
-
-     const token =
-      localStorage.getItem(
-       "brp_access_token"
-      );
-
-
-     fetch(
-      SUPABASE_URL+
-      "/rest/v1/online_players?id=eq."+
-      encodeURIComponent(
-       currentAuthUser.id
-      ),
-      {
-       method:"PATCH",
-       keepalive:true,
-       headers:{
-        apikey:SUPABASE_KEY,
-        Authorization:
-         "Bearer "+token,
-        "Content-Type":
-         "application/json"
-       },
-       body:JSON.stringify({
-        online:false,
-        last_seen:
-         new Date().toISOString()
-       })
+      if (id !== undefined) {
+        knownMessages.add(String(id));
       }
-     );
 
+      const username =
+        row.username || row.name || "Игрок";
+
+      const messageText =
+        row.message || row.text || "";
+
+      if (!messageText) return;
+
+      const message = document.createElement("div");
+      message.className = "message";
+
+      if (currentUser && row.user_id === currentUser.id) {
+        message.classList.add("mine");
+      }
+
+      const head = document.createElement("div");
+      head.className = "message-head";
+
+      const name = document.createElement("span");
+      name.className = "username";
+      name.textContent = username;
+
+      const time = document.createElement("span");
+      time.className = "time";
+      time.textContent = formatTime(row.created_at);
+
+      const text = document.createElement("div");
+      text.className = "message-text";
+      text.textContent = messageText;
+
+      head.append(name, time);
+      message.append(head, text);
+      messagesEl.appendChild(message);
+
+      while (messagesEl.children.length > 200) {
+        messagesEl.removeChild(messagesEl.firstChild);
+      }
+
+      messagesEl.scrollTop = messagesEl.scrollHeight;
     }
 
-   }
-  );
+    async function loadMessages() {
+      const { data, error } = await db
+        .from("chat_messages")
+        .select("*")
+        .order("created_at", { ascending: true })
+        .limit(100);
 
- }
-);
+      if (error) {
+        statusEl.textContent = "Ошибка";
+        showNotice("Не удалось загрузить чат: " + error.message);
+        messagesEl.innerHTML = "";
+        return;
+      }
 
-</script>
+      messagesEl.innerHTML = "";
+      knownMessages.clear();
 
+      if (!data || data.length === 0) {
+        messagesEl.innerHTML =
+          '<div class="system-message">Сообщений пока нет. Начни общение!</div>';
+        return;
+      }
+
+      data.forEach(addMessage);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    async function startChat() {
+      const { data: sessionData, error: sessionError } =
+        await db.auth.getSession();
+
+      if (sessionError) {
+        showNotice("Не удалось проверить авторизацию.");
+        return;
+      }
+
+      const session = sessionData.session;
+
+      if (!session) {
+        statusEl.textContent = "Не авторизован";
+        messagesEl.innerHTML =
+          '<div class="system-message">Сначала войди в аккаунт на главной странице.</div>';
+
+        inputEl.disabled = true;
+        sendButton.disabled = true;
+        showNotice("Перейди на главную и войди в аккаунт.");
+        return;
+      }
+
+      currentUser = session.user;
+
+      const { data: profile } = await db
+        .from("profiles")
+        .select("username")
+        .eq("id", currentUser.id)
+        .maybeSingle();
+
+      currentUsername =
+        profile?.username ||
+        currentUser.user_metadata?.username ||
+        currentUser.email?.split("@")[0] ||
+        "Игрок";
+
+      await loadMessages();
+
+      const channel = db
+        .channel("black-russia-chat")
+        .on(
+          "postgres_changes",
+          {
+            event: "INSERT",
+            schema: "public",
+            table: "chat_messages"
+          },
+          payload => {
+            addMessage(payload.new);
+          }
+        )
+        .subscribe(state => {
+          if (state === "SUBSCRIBED") {
+            statusEl.textContent = "В сети";
+          } else if (state === "CHANNEL_ERROR") {
+            statusEl.textContent = "Нет связи";
+          }
+        });
+    }
+
+    document.getElementById("chatForm").addEventListener(
+      "submit",
+      async event => {
+        event.preventDefault();
+
+        if (!currentUser) {
+          showNotice("Сначала войди в аккаунт.");
+          return;
+        }
+
+        const message = inputEl.value.trim();
+
+        if (!message) return;
+
+        sendButton.disabled = true;
+        showNotice("");
+
+        const { error } = await db
+          .from("chat_messages")
+          .insert({
+            user_id: currentUser.id,
+            username: currentUsername,
+            message: message
+          });
+
+        sendButton.disabled = false;
+
+        if (error) {
+          showNotice("Не удалось отправить: " + error.message);
+          return;
+        }
+
+        inputEl.value = "";
+        inputEl.focus();
+      }
+    );
+
+    startChat();
+  </script>
 </body>
 </html>
