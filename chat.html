@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Russia — Чат</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#101010;color:#fff;font-family:Arial,sans-serif}
+header{padding:18px;background:#191919;border-bottom:1px solid #a00}
+header h2{margin:0;color:#ff3030}
+main{max-width:700px;margin:auto;padding:15px}
+button{background:#c71919;color:white;border:0;border-radius:8px;padding:12px;cursor:pointer}
+input{width:100%;padding:13px;background:#222;color:white;border:1px solid #444;border-radius:8px}
+#messages{height:60vh;overflow-y:auto;background:#181818;border-radius:10px;padding:12px;margin:15px 0}
+.msg{padding:10px;margin-bottom:8px;background:#242424;border-radius:8px;overflow-wrap:anywhere}
+.name{color:#ff4545;font-weight:bold;margin-bottom:5px}
+.send{display:flex;gap:8px}
+.send input{flex:1;min-width:0}
+#status{color:#aaa;font-size:13px;margin-top:10px}
+a{color:#ff4545}
+</style>
+</head>
+<body>
+<header>
+  <h2>BLACK RUSSIA — ЧАТ</h2>
+</header>
+<main>
+  <p><a href="index.html">← Вернуться на главную</a></p>
+  <div id="messages">Загрузка сообщений...</div>
+  <div class="send">
+    <input id="chatInput" maxlength="150" placeholder="Напиши сообщение..." autocomplete="off">
+    <button id="sendBtn" onclick="sendChat()">Отправить</button>
+  </div>
+  <div id="status">Проверка подключения...</div>
+</main>
+
+<script>
+const SUPABASE_URL = "https://qzswnoeglovfpgrzpnio.supabase.co";
+const SUPABASE_KEY = "sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+
+const messagesEl = document.getElementById("messages");
+const statusEl = document.getElementById("status");
+const input = document.getElementById("chatInput");
+
+function getToken(){
+  return localStorage.getItem("brp_access_token");
+}
+
+async function api(path, options = {}){
+  const headers = {
+    apikey: SUPABASE_KEY,
+    Authorization: "Bearer " + (getToken() || SUPABASE_KEY),
+    "Content-Type": "application/json",
+    ...options.headers
+  };
+
+  const response = await fetch(SUPABASE_URL + path, {
+    ...options,
+    headers
+  });
+
+  const body = await response.text();
+  if(!response.ok) throw new Error(body || "HTTP " + response.status);
+  return body ? JSON.parse(body) : null;
+}
+
+async function getCurrentUser(){
+  const token = getToken();
+  if(!token) return null;
+
+  const response = await fetch(SUPABASE_URL + "/auth/v1/user", {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: "Bearer " + token
+    }
+  });
+
+  if(!response.ok) return null;
+  return await response.json();
+}
+
+async function loadChat(){
+  try{
+    const data = await api(
+      "/rest/v1/chat_messages?select=id,username,message,created_at&order=created_at.asc&limit=100"
+    );
+
+    messagesEl.replaceChildren();
+
+    if(!data || data.length === 0){
+      messagesEl.textContent = "Сообщений пока нет.";
+      return;
+    }
+
+    data.forEach(item => {
+      const box = document.createElement("div");
+      box.className = "msg";
+
+      const name = document.createElement("div");
+      name.className = "name";
+      name.textContent = item.username || "Игрок";
+
+      const message = document.createElement("div");
+      message.textContent = item.message || "";
+
+      box.append(name, message);
+      messagesEl.appendChild(box);
+    });
+
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    statusEl.textContent = "Чат подключён";
+  }catch(error){
+    messagesEl.textContent = "Не удалось загрузить сообщения.";
+    statusEl.textContent = "Ошибка: " + error.message;
+  }
+}
+
+async function sendChat(){
+  const text = input.value.trim();
+  if(!text) return;
+
+  const user = await getCurrentUser();
+
+  if(!user){
+    alert("Сначала войди в аккаунт на главной странице.");
+    return;
+  }
+
+  const username = user.user_metadata?.username;
+
+  if(!username){
+    alert("Не найден ник игрока в аккаунте.");
+    return;
+  }
+
+  const button = document.getElementById("sendBtn");
+  button.disabled = true;
+
+  try{
+    await api("/rest/v1/chat_messages", {
+      method: "POST",
+      headers: {Prefer: "return=minimal"},
+      body: JSON.stringify({
+        username: username,
+        message: text,
+        user_id: user.id
+      })
+    });
+
+    input.value = "";
+    await loadChat();
+    statusEl.textContent = "Сообщение отправлено";
+  }catch(error){
+    alert("Ошибка отправки:\n" + error.message);
+  }finally{
+    button.disabled = false;
+  }
+}
+
+input.addEventListener("keydown", event => {
+  if(event.key === "Enter") sendChat();
+});
+
+loadChat();
+setInterval(loadChat, 5000);
+</script>
+</body>
+</html>
