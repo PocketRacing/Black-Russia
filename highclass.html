@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>BLACK CARS | HIGH CLASS</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bg:#080808;--panel:#131313;--line:#35302a;--gold:#d6b36a;--white:#f5f2eb;--muted:#89857d;--green:#48d889}
+body{font-family:Arial,sans-serif;background:radial-gradient(circle at 50% 0,#302719,transparent 40%),var(--bg);color:var(--white);min-height:100vh;padding-bottom:30px}
+button{font-family:inherit;border:0;cursor:pointer}
+button:disabled{opacity:.5;cursor:not-allowed}
+.hidden{display:none!important}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#050505;color:#aaa;font-size:13px}
+.top{position:sticky;top:0;z-index:20;height:58px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 12px;background:rgba(8,8,8,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.back{padding:9px;background:#191919;color:#bbb;border:1px solid var(--line);border-radius:8px;font-size:10px}
+.logo{font-size:16px;font-weight:1000;white-space:nowrap}
+.logo span{color:var(--gold)}
+.balance{padding:8px;background:#151515;border:1px solid var(--line);border-radius:8px;color:var(--green);font-size:10px;font-weight:900;white-space:nowrap}
+.wrap{max-width:1050px;margin:auto;padding:15px}
+.hero{text-align:center;padding:32px 15px;background:linear-gradient(145deg,#211d16,#0d0d0d);border:1px solid #51432b;border-radius:16px}
+.crown{font-size:36px}
+.hero h1{margin-top:9px;font-size:27px;letter-spacing:2px}
+.hero h1 span{color:var(--gold)}
+.hero p{margin-top:9px;color:var(--muted);font-size:10px;letter-spacing:2px}
+.line{width:100px;height:2px;margin:17px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.section{display:flex;align-items:center;justify-content:space-between;margin:23px 0 12px}
+.section h2{font-size:17px}
+.count{font-size:10px;color:var(--muted)}
+.search{width:100%;padding:13px;background:#121212;color:white;border:1px solid var(--line);border-radius:9px;outline:none;margin-bottom:13px}
+.cars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.car{overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:13px}
+.car-image{display:block;width:100%;height:140px;object-fit:contain;padding:6px;background:radial-gradient(ellipse,#29251e,#0b0b0b)}
+.info{padding:11px}
+.name{font-size:14px;font-weight:900;line-height:1.3}
+.type{margin-top:6px;min-height:25px;color:var(--muted);font-size:10px;line-height:1.4}
+.price{margin-top:10px;color:var(--gold);font-size:14px;font-weight:1000}
+.buy{width:100%;padding:12px 4px;margin-top:11px;border-radius:8px;background:var(--gold);color:#15110a;font-weight:1000;font-size:10px}
+.buy.soon{background:#24221e;color:#aaa;border:1px solid #494235}
+.status{min-height:13px;margin-top:7px;text-align:center;color:#aaa;font-size:10px}
+.empty{grid-column:1/-1;text-align:center;padding:25px;color:#888;background:#111;border-radius:10px}
+.footer{text-align:center;color:#625b4e;font-size:10px;margin-top:25px}
+.toast{position:fixed;left:50%;bottom:20px;z-index:200;transform:translate(-50%,20px);padding:12px;background:#191919;border:1px solid #51432b;border-radius:9px;font-size:11px;opacity:0;pointer-events:none;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:650px){.cars{grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.car-image{height:205px}.info{padding:15px}.name{font-size:17px}}
+</style>
+</head>
+<body>
+<div class="loading" id="loading">Подключение...</div>
+
+<header class="top">
+<button class="back" onclick="location.href='cars.html'">← АВТОСАЛОН</button>
+<div class="logo">BLACK <span>ELITE</span></div>
+<div class="balance" id="balance">₽ 0</div>
+</header>
+
+<main class="wrap">
+<section class="hero">
+<div class="crown">♛</div>
+<h1>HIGH <span>CLASS</span></h1>
+<p>АВТОСАЛОН ПРЕМИАЛЬНЫХ АВТОМОБИЛЕЙ</p>
+<div class="line"></div>
+</section>
+
+<div class="section">
+<h2>Эксклюзивный каталог</h2>
+<div class="count" id="count">20 моделей</div>
+</div>
+
+<input class="search" id="search" placeholder="Найти автомобиль...">
+<div class="cars" id="cars"></div>
+<div class="footer">BLACK CARS · HIGH CLASS COLLECTION</div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
+const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+const catalog=[
+["S63","Mercedes-AMG S63","Представительский седан",35000000,"S63.PNG"],
+["E63","Mercedes-AMG E63","Спортивный бизнес-седан",22000000,"E63.PNG"],
+["M5","BMW M5","Спортивный седан",18000000,"M5.PNG"],
+["X5","BMW X5","Премиальный внедорожник",12000000,"X5.PNG"],
+["Supra","Toyota Supra","Спортивное купе",12000000,"Supra.PNG"],
+["LC200","Toyota Land Cruiser 200","Премиальный внедорожник",18000000,"LC200.PNG"],
+["Skyline","Nissan Skyline","Японский спорткар",8000000,"Skyline.PNG"],
+["GTR","Nissan GT-R","Спортивный суперкар",28000000,"GTR.PNG"],
+["RX7","Mazda RX-7","Спортивное купе",6000000,"RX7.PNG"],
+["WRX","Subaru WRX STI","Спортивный седан",7000000,"WRX.PNG"],
+["EVO","Mitsubishi Lancer Evolution","Спортивный седан",6500000,"EVO.PNG"],
+["RS6","Audi RS6","Спортивный универсал",24000000,"RS6.PNG"],
+["R8","Audi R8","Суперкар",40000000,"R8.PNG"],
+["911","Porsche 911","Спортивное купе",35000000,"911.PNG"],
+["Charger","Dodge Charger","Американский маслкар",12000000,"Charger.PNG"],
+["Mustang","Ford Mustang","Американский спорткар",14000000,"Mustang.PNG"],
+["Camaro","Chevrolet Camaro","Американский маслкар",11000000,"Camaro.PNG"],
+["Huracan","Lamborghini Huracán","Итальянский суперкар",85000000,"Huracan.PNG"],
+["F8","Ferrari F8 Tributo","Итальянский суперкар",110000000,"F8.PNG"],
+["Bentley","Bentley Continental GT","Люксовое купе",65000000,"Bentley.PNG"]
+].map((v,i)=>({code:v[0],name:v[1],type:v[2],price:v[3],image:v[4],available:false}));
+
+let user=null,profile=null,owned=new Set(),ready=false,timer;
+
+function money(n){return Math.round(Number(n)||0).toLocaleString("ru-RU")}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function toast(s){let e=document.getElementById("toast");e.textContent=s;e.classList.add("show");clearTimeout(timer);timer=setTimeout(()=>e.classList.remove("show"),2200)}
+function render(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ const list=catalog.filter(c=>(c.name+" "+c.type).toLowerCase().includes(q));
+ document.getElementById("count").textContent=list.length+" моделей";
+ document.getElementById("cars").innerHTML=list.length?list.map(c=>`
+ <article class="car">
+ <img class="car-image" src="${esc(c.image)}" alt="${esc(c.name)}" loading="lazy" onerror="this.onerror=null;this.alt='Добавь файл ${esc(c.image)}';this.style.opacity='.25'">
+ <div class="info">
+ <div class="name">${esc(c.name)}</div>
+ <div class="type">${esc(c.type)}</div>
+ <div class="price">₽ ${money(c.price)}</div>
+ <button class="buy soon" data-code="${esc(c.code)}">СКОРО В ПРОДАЖЕ</button>
+ <div class="status">Премиальная коллекция</div>
+ </div></article>`).join(""):'<div class="empty">Машины не найдены.</div>';
+ document.querySelectorAll("[data-code]").forEach(b=>b.onclick=()=>toast("Эта модель пока недоступна."));
+}
+document.getElementById("search").addEventListener("input",render);
+
+async function start(){
+ try{
+  const {data:{session},error:authError}=await db.auth.getSession();
+  if(authError)throw authError;
+  if(!session){document.getElementById("loading").textContent="Войди в аккаунт через главную страницу.";return}
+  user=session.user;
+  const {data,error}=await db.from("profiles").select("cash,bank").eq("id",user.id).single();
+  if(error)throw error;
+  profile=data;
+  document.getElementById("balance").textContent="₽ "+money((Number(data.cash)||0)+(Number(data.bank)||0));
+  ready=true;
+  document.getElementById("loading").classList.add("hidden");
+ }catch(e){
+  console.error(e);
+  document.getElementById("loading").textContent="Не удалось загрузить аккаунт.";
+ }
+}
+render();
+start();
+</script>
+</body>
+</html>
