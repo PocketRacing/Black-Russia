@@ -1,915 +1,258 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-
 <title>BLACK CARS</title>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{
- box-sizing:border-box;
- margin:0;
- padding:0;
- -webkit-tap-highlight-color:transparent
-}
-
-:root{
- --bg:#070707;
- --panel:#111;
- --panel2:#171717;
- --line:#292929;
- --red:#e50914;
- --white:#f5f5f5;
- --muted:#858585;
- --green:#48d889;
-}
-
-body{
- font-family:Arial,Helvetica,sans-serif;
- background:
- radial-gradient(circle at 50% -10%,#241313,transparent 40%),
- #070707;
- color:var(--white);
- min-height:100vh;
- padding-bottom:30px;
-}
-
-button{
- font-family:inherit;
- border:0;
- cursor:pointer;
-}
-
-button:disabled{
- opacity:.45;
- cursor:not-allowed;
-}
-
-.hidden{
- display:none!important;
-}
-
-.loading{
- position:fixed;
- inset:0;
- z-index:100;
- display:flex;
- align-items:center;
- justify-content:center;
- background:#050505;
- color:#aaa;
- font-size:12px;
-}
-
-.top{
- position:sticky;
- top:0;
- z-index:20;
- height:58px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:0 14px;
- background:rgba(7,7,7,.96);
- border-bottom:1px solid var(--line);
- backdrop-filter:blur(14px);
-}
-
-.back{
- padding:8px 11px;
- border-radius:8px;
- background:#181818;
- color:#aaa;
- border:1px solid var(--line);
- font-size:11px;
-}
-
-.logo{
- font-size:18px;
- font-weight:1000;
-}
-
-.logo span{
- color:var(--red);
-}
-
-.balance{
- padding:7px 10px;
- border-radius:8px;
- background:#151515;
- border:1px solid var(--line);
- color:var(--green);
- font-size:11px;
- font-weight:900;
-}
-
-.wrap{
- width:100%;
- max-width:900px;
- margin:auto;
- padding:15px;
-}
-
-.hero{
- padding:25px 18px;
- text-align:center;
- background:
- radial-gradient(circle at 50% 0%,rgba(229,9,20,.2),transparent 60%),
- linear-gradient(145deg,#171717,#0c0c0c);
- border:1px solid #342323;
- border-radius:17px;
-}
-
-.hero-icon{
- font-size:42px;
-}
-
-.hero h1{
- margin-top:7px;
- font-size:29px;
- font-weight:1000;
-}
-
-.hero h1 span{
- color:var(--red);
-}
-
-.hero p{
- margin-top:6px;
- color:#777;
- font-size:11px;
-}
-
-.line{
- width:90px;
- height:2px;
- margin:15px auto 0;
- background:linear-gradient(
-  90deg,
-  transparent,
-  var(--red),
-  transparent
- );
-}
-
-.cars{
- display:grid;
- grid-template-columns:1fr;
- gap:14px;
- margin-top:15px;
-}
-
-.car{
- overflow:hidden;
- background:#111;
- border:1px solid var(--line);
- border-radius:15px;
-}
-
-.car-image{
- width:100%;
- height:230px;
- display:block;
- object-fit:cover;
- background:#0b0b0b;
-}
-
-.car-info{
- padding:15px;
-}
-
-.car-name{
- font-size:20px;
- font-weight:1000;
-}
-
-.car-type{
- margin-top:5px;
- color:#777;
- font-size:10px;
-}
-
-.car-price{
- margin-top:12px;
- color:#5ce28e;
- font-size:17px;
- font-weight:1000;
-}
-
-.buy{
- width:100%;
- margin-top:12px;
- padding:12px;
- background:var(--red);
- color:white;
- border-radius:8px;
- font-size:11px;
- font-weight:1000;
-}
-
-.buy:active{
- transform:scale(.985);
-}
-
-.status{
- margin-top:8px;
- min-height:15px;
- text-align:center;
- color:#888;
- font-size:10px;
-}
-
-.toast{
- position:fixed;
- left:50%;
- bottom:20px;
- z-index:200;
- transform:translate(-50%,20px);
- padding:11px 15px;
- background:#191919;
- border:1px solid #3b3b3b;
- border-radius:9px;
- font-size:11px;
- opacity:0;
- pointer-events:none;
- transition:.25s;
-}
-
-.toast.show{
- opacity:1;
- transform:translate(-50%,0);
-}
-
-@media(min-width:700px){
- .cars{
-  grid-template-columns:repeat(3,1fr);
- }
-
- .car-image{
-  height:200px;
- }
-}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bg:#070707;--line:#292929;--red:#e50914;--white:#f5f5f5;--green:#48d889}
+body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% -10%,#241313,transparent 40%),var(--bg);color:var(--white);min-height:100vh;padding-bottom:30px}
+button{font-family:inherit;border:0;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+.hidden{display:none!important}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#050505;color:#aaa;font-size:12px}
+.top{position:sticky;top:0;z-index:20;height:58px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 14px;background:rgba(7,7,7,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.back{padding:8px 11px;border-radius:8px;background:#181818;color:#aaa;border:1px solid var(--line);font-size:11px}
+.logo{font-size:18px;font-weight:1000;white-space:nowrap}
+.logo span{color:var(--red)}
+.balance{padding:7px 10px;border-radius:8px;background:#151515;border:1px solid var(--line);color:var(--green);font-size:11px;font-weight:900;white-space:nowrap}
+.wrap{width:100%;max-width:900px;margin:auto;padding:15px}
+.hero{padding:25px 18px;text-align:center;background:radial-gradient(circle at 50% 0%,rgba(229,9,20,.2),transparent 60%),linear-gradient(145deg,#171717,#0c0c0c);border:1px solid #342323;border-radius:17px}
+.hero-icon{font-size:42px}
+.hero h1{margin-top:7px;font-size:29px;font-weight:1000}
+.hero h1 span{color:var(--red)}
+.hero p{margin-top:6px;color:#777;font-size:11px}
+.line{width:90px;height:2px;margin:15px auto 0;background:linear-gradient(90deg,transparent,var(--red),transparent)}
+.highclass-button{display:flex;align-items:center;gap:13px;width:100%;margin-top:15px;padding:16px;text-align:left;color:#f5dfad;background:linear-gradient(120deg,#292116,#111);border:1px solid #80683b;border-radius:12px}
+.highclass-icon{font-size:29px}
+.highclass-button strong{display:block;font-size:14px}
+.highclass-button small{display:block;margin-top:5px;color:#aaa08d;font-size:11px}
+.section-title{margin:22px 0 12px;font-size:18px}
+.cars{display:grid;grid-template-columns:1fr;gap:14px;margin-top:15px}
+.car{overflow:hidden;background:#111;border:1px solid var(--line);border-radius:15px}
+.car-image{width:100%;height:230px;display:block;object-fit:contain;background:#0b0b0b}
+.car-info{padding:15px}
+.car-name{font-size:20px;font-weight:1000}
+.car-type{margin-top:5px;color:#777;font-size:10px}
+.car-price{margin-top:12px;color:#5ce28e;font-size:17px;font-weight:1000}
+.buy{width:100%;margin-top:12px;padding:12px;background:var(--red);color:white;border-radius:8px;font-size:11px;font-weight:1000}
+.buy:active{transform:scale(.985)}
+.status{margin-top:8px;min-height:15px;text-align:center;color:#888;font-size:10px}
+.toast{position:fixed;left:50%;bottom:20px;z-index:200;transform:translate(-50%,20px);padding:11px 15px;background:#191919;border:1px solid #3b3b3b;border-radius:9px;font-size:11px;opacity:0;pointer-events:none;transition:.25s;max-width:90%;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:700px){.cars{grid-template-columns:repeat(3,minmax(0,1fr))}.car-image{height:200px}}
 </style>
 </head>
 
 <body>
-
-<div class="loading" id="loading">
-Подключение...
-</div>
+<div class="loading" id="loading">Подключение...</div>
 
 <header class="top">
-
-<button class="back" onclick="goBack()">
-← НАЗАД
-</button>
-
-<div class="logo">
-BLACK <span>CARS</span>
-</div>
-
-<div class="balance" id="balance">
-₽ 0
-</div>
-
+<button class="back" onclick="goBack()">← НАЗАД</button>
+<div class="logo">BLACK <span>CARS</span></div>
+<div class="balance" id="balance">₽ 0</div>
 </header>
 
-<div class="wrap">
-
+<main class="wrap">
 <section class="hero">
-
-<div class="hero-icon">
-🚘
-</div>
-
-<h1>
-BLACK <span>CARS</span>
-</h1>
-
-<p>
-Автосалон
-</p>
-
+<div class="hero-icon">🚘</div>
+<h1>BLACK <span>CARS</span></h1>
+<p>АВТОСАЛОН</p>
 <div class="line"></div>
-
 </section>
 
+<button class="highclass-button" onclick="location.href='highclass.html'">
+<span class="highclass-icon">♛</span>
+<span>
+<strong>HIGH CLASS</strong>
+<small>Премиальные автомобили →</small>
+</span>
+</button>
+
+<h2 class="section-title">Доступный автомобиль</h2>
+
 <div class="cars">
-
-<!-- G65 -->
-
-<div class="car">
-
-<img
- class="car-image"
- src="IMG_8471.webp"
- alt="Mercedes-AMG G 65"
->
-
+<article class="car">
+<img class="car-image" src="Priora.PNG" alt="LADA Priora">
 <div class="car-info">
-
-<div class="car-name">
-Mercedes-AMG G 65
+<div class="car-name">LADA Priora</div>
+<div class="car-type">Отечественный автомобиль</div>
+<div class="car-price">₽ 450 000</div>
+<button class="buy" id="buy-Priora" onclick="buyCar('Priora',450000,'LADA Priora')">КУПИТЬ</button>
+<div class="status" id="status-Priora"></div>
 </div>
-
-<div class="car-type">
-Премиальный внедорожник
+</article>
 </div>
+</main>
 
-<div class="car-price">
-₽ 8 500 000
-</div>
-
-<button
- class="buy"
- onclick="buyCar('G65',8500000,'Mercedes-AMG G 65')"
->
-КУПИТЬ
-</button>
-
-<div
- class="status"
- id="status-G65"
-></div>
-
-</div>
-
-</div>
-
-
-<!-- PRIORA -->
-
-<div class="car">
-
-<img
- class="car-image"
- src="IMG_8467.webp"
- alt="LADA Priora"
->
-
-<div class="car-info">
-
-<div class="car-name">
-LADA Priora
-</div>
-
-<div class="car-type">
-Отечественный автомобиль
-</div>
-
-<div class="car-price">
-₽ 450 000
-</div>
-
-<button
- class="buy"
- onclick="buyCar('Priora',450000,'LADA Priora')"
->
-КУПИТЬ
-</button>
-
-<div
- class="status"
- id="status-Priora"
-></div>
-
-</div>
-
-</div>
-
-
-<!-- BMW -->
-
-<div class="car">
-
-<img
- class="car-image"
- src="IMG_8470.jpeg"
- alt="BMW"
->
-
-<div class="car-info">
-
-<div class="car-name">
-BMW
-</div>
-
-<div class="car-type">
-Премиальный автомобиль
-</div>
-
-<div class="car-price">
-₽ 3 500 000
-</div>
-
-<button
- class="buy"
- onclick="buyCar('BMW',3500000,'BMW')"
->
-КУПИТЬ
-</button>
-
-<div
- class="status"
- id="status-BMW"
-></div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="toast" id="toast">
-Готово
-</div>
-
+<div class="toast" id="toast">Готово</div>
 
 <script>
+const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
+const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
-/* =========================
-   SUPABASE
-========================= */
-
-const SUPABASE_URL =
-"https://qzswnoeglovfpgrzpnio.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
-
-const supabaseClient =
-window.supabase.createClient(
- SUPABASE_URL,
- SUPABASE_KEY,
- {
-  auth:{
-   persistSession:true,
-   autoRefreshToken:true,
-   detectSessionInUrl:true
-  }
- });
-
-
-/* =========================
-   PLAYER
-========================= */
+const supabaseClient=window.supabase.createClient(
+ SUPABASE_URL,SUPABASE_KEY,
+ {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}
+);
 
 let currentUser=null;
 let profile=null;
 let playerReady=false;
-
-
-/* =========================
-   LOAD
-========================= */
+let toastTimer=null;
 
 async function loadPlayer(){
-
  try{
-
-  const {
-   data:{
-    session
-   }
-  }=
-   await supabaseClient.auth.getSession();
+  const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();
+  if(sessionError)throw sessionError;
 
   if(!session){
-
-   document.getElementById(
-    "loading"
-   ).textContent=
-    "Необходимо войти в аккаунт.";
-
-   setTimeout(
-    ()=>{
-     location.href="index.html";
-    },
-    1200
-   );
-
+   document.getElementById("loading").textContent="Необходимо войти в аккаунт.";
+   setTimeout(()=>location.href="index.html",1200);
    return;
   }
 
   currentUser=session.user;
 
+  const {data,error}=await supabaseClient.from("profiles")
+   .select("*").eq("id",currentUser.id).single();
 
-  const {
-   data,
-   error
-  }=
-   await supabaseClient
-    .from("profiles")
-    .select("*")
-    .eq(
-     "id",
-     currentUser.id
-    )
-    .single();
-
-
-  if(error){
-
-   console.error(error);
-
-   document.getElementById(
-    "loading"
-   ).textContent=
-    "Не удалось загрузить профиль.";
-
-   return;
-  }
-
+  if(error)throw error;
 
   profile=data;
-
   playerReady=true;
-
   updateBalance();
 
-  document.getElementById(
-   "loading"
-  ).classList.add("hidden");
+  const {data:existing,error:checkError}=await supabaseClient
+   .from("vehicles").select("id")
+   .eq("owner_id",currentUser.id)
+   .eq("vehicle_code","Priora").maybeSingle();
 
+  if(checkError)throw checkError;
+
+  if(existing){
+   const button=document.getElementById("buy-Priora");
+   button.textContent="УЖЕ КУПЛЕНО";
+   button.disabled=true;
+   button.style.background="#222";
+   document.getElementById("status-Priora").textContent="✓ Уже есть в гараже";
+  }
+
+  document.getElementById("loading").classList.add("hidden");
  }catch(error){
-
   console.error(error);
-
-  document.getElementById(
-   "loading"
-  ).textContent=
-   "Ошибка подключения.";
-
+  document.getElementById("loading").textContent="Ошибка загрузки профиля или гаража.";
  }
-
 }
 
-
-/* =========================
-   BALANCE
-========================= */
-
-function getCash(){
-
- return Number(
-  profile?.cash || 0
- );
-
-}
-
-function getBank(){
-
- return Number(
-  profile?.bank || 0
- );
-
-}
-
-function getMoney(){
-
- return getCash()+getBank();
-
-}
+function getCash(){return Number(profile?.cash)||0}
+function getBank(){return Number(profile?.bank)||0}
+function getMoney(){return getCash()+getBank()}
 
 function formatMoney(value){
-
- return Math.round(
-  Number(value)
- )
- .toLocaleString("ru-RU");
-
+ return Math.round(Number(value)||0).toLocaleString("ru-RU");
 }
 
 function updateBalance(){
-
- document.getElementById(
-  "balance"
- ).textContent=
-  "₽ "+
-  formatMoney(
-   getMoney()
-  );
-
+ document.getElementById("balance").textContent="₽ "+formatMoney(getMoney());
 }
 
-
-/* =========================
-   BUY CAR
-========================= */
-
-async function buyCar(
- code,
- price,
- name
-){
-
- if(
-  !playerReady||
-  !profile||
-  !currentUser
- ){
-
-  toast(
-   "Аккаунт ещё загружается."
-  );
-
+async function buyCar(code,price,name){
+ if(!playerReady||!profile||!currentUser){
+  toast("Аккаунт ещё загружается.");
   return;
  }
 
+ const button=document.getElementById("buy-"+code);
+ const status=document.getElementById("status-"+code);
 
- price=Number(price);
-
+ if(button.disabled)return;
 
  if(getMoney()<price){
-
-  toast(
-   "Недостаточно денег."
-  );
-
+  toast("Недостаточно денег.");
   return;
  }
-
-
- const status=
-  document.getElementById(
-   "status-"+code
-  );
-
-
- const button=
-  status
-   .parentElement
-   .querySelector(".buy");
-
 
  button.disabled=true;
-
- status.textContent=
-  "Покупка...";
-
-
- /*
-    Сначала проверяем,
-    нет ли такой машины.
- */
-
- const {
-  data:existing,
-  error:checkError
- }=
-  await supabaseClient
-   .from("vehicles")
-   .select("id")
-   .eq(
-    "owner_id",
-    currentUser.id
-   )
-   .eq(
-    "vehicle_code",
-    code
-   )
-   .maybeSingle();
-
-
- if(checkError){
-
-  console.error(
-   checkError
-  );
-
-  status.textContent="";
-  button.disabled=false;
-
-  toast(
-   "Ошибка проверки гаража."
-  );
-
-  return;
- }
-
-
- if(existing){
-
-  status.textContent=
-   "Уже есть в гараже";
-
-  button.disabled=false;
-
-  toast(
-   "Эта машина уже куплена."
-  );
-
-  return;
- }
-
-
- /*
-    СПИСЫВАЕМ ДЕНЬГИ
- */
+ status.textContent="Покупка...";
 
  const cash=getCash();
  const bank=getBank();
+ const newCash=cash>=price?cash-price:0;
+ const newBank=cash>=price?bank:bank-(price-cash);
 
- let newCash=cash;
- let newBank=bank;
+ try{
+  const {data:existing,error:checkError}=await supabaseClient
+   .from("vehicles").select("id")
+   .eq("owner_id",currentUser.id)
+   .eq("vehicle_code",code).maybeSingle();
 
+  if(checkError)throw checkError;
 
- if(cash>=price){
+  if(existing){
+   button.textContent="УЖЕ КУПЛЕНО";
+   status.textContent="✓ Уже есть в гараже";
+   button.style.background="#222";
+   toast("Эта машина уже куплена.");
+   return;
+  }
 
-  newCash=
-   cash-price;
+  const {data:updatedProfile,error:moneyError}=await supabaseClient
+   .from("profiles").update({cash:newCash,bank:newBank})
+   .eq("id",currentUser.id).select("cash,bank").single();
 
- }else{
+  if(moneyError)throw moneyError;
 
-  newCash=0;
-
-  newBank=
-   bank-(price-cash);
-
- }
-
-
- const {
-  data:updatedProfile,
-  error:moneyError
- }=
-  await supabaseClient
-   .from("profiles")
-   .update({
-    cash:newCash,
-    bank:newBank
-   })
-   .eq(
-    "id",
-    currentUser.id
-   )
-   .select("cash,bank")
-   .single();
-
-
- if(moneyError){
-
-  console.error(
-   moneyError
-  );
-
-  status.textContent="";
-  button.disabled=false;
-
-  toast(
-   "Не удалось списать деньги."
-  );
-
-  return;
- }
-
-
- profile.cash=
-  Number(
-   updatedProfile.cash||0
-  );
-
- profile.bank=
-  Number(
-   updatedProfile.bank||0
-  );
-
- updateBalance();
-
-
- /*
-    ДОБАВЛЯЕМ МАШИНУ
- */
-
- const {
-  data:vehicle,
-  error:vehicleError
- }=
-  await supabaseClient
-   .from("vehicles")
-   .insert({
-    owner_id:currentUser.id,
-    vehicle_code:code,
-    name:name
-   })
-   .select()
-   .single();
-
-
- if(vehicleError){
-
-  console.error(
-   vehicleError
-  );
-
-  /*
-     ВАЖНО:
-     если машина не записалась,
-     возвращаем деньги.
-  */
-
-  await supabaseClient
-   .from("profiles")
-   .update({
-    cash:cash,
-    bank:bank
-   })
-   .eq(
-    "id",
-    currentUser.id
-   );
-
-
-  profile.cash=cash;
-  profile.bank=bank;
-
+  profile.cash=Number(updatedProfile.cash)||0;
+  profile.bank=Number(updatedProfile.bank)||0;
   updateBalance();
 
+  const {error:vehicleError}=await supabaseClient.from("vehicles").insert({
+   owner_id:currentUser.id,
+   vehicle_code:code,
+   name:name
+  });
+
+  if(vehicleError){
+   const {error:refundError}=await supabaseClient.from("profiles")
+    .update({cash:cash,bank:bank}).eq("id",currentUser.id);
+
+   if(!refundError){
+    profile.cash=cash;
+    profile.bank=bank;
+    updateBalance();
+    throw new Error("Не удалось добавить машину. Деньги возвращены.");
+   }
+   throw new Error("Ошибка гаража и возврата денег. Обратись к администратору.");
+  }
+
+  status.textContent="✓ Куплено";
+  button.textContent="УЖЕ КУПЛЕНО";
+  button.style.background="#222";
+  toast("🚗 "+name+" добавлена в гараж!");
+ }catch(error){
+  console.error(error);
   status.textContent="";
   button.disabled=false;
-
-  toast(
-   "Ошибка добавления машины. Деньги возвращены."
-  );
-
-  return;
+  toast(error.message||"Ошибка покупки.");
  }
-
-
- status.textContent=
-  "✓ Куплено";
-
-
- button.textContent=
-  "УЖЕ КУПЛЕНО";
-
- button.disabled=true;
-
- toast(
-  "🚗 "+name+" добавлена в гараж!"
- );
-
 }
 
-
-/* =========================
-   TOAST
-========================= */
-
-let toastTimer=null;
-
-function toast(text){
-
- const el=
-  document.getElementById(
-   "toast"
-  );
-
- el.textContent=text;
-
- el.classList.add(
-  "show"
- );
-
- clearTimeout(
-  toastTimer
- );
-
- toastTimer=setTimeout(
-  ()=>{
-   el.classList.remove(
-    "show"
-   );
-  },
-  2200
- );
-
+function toast(message){
+ const el=document.getElementById("toast");
+ el.textContent=message;
+ el.classList.add("show");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>el.classList.remove("show"),2200);
 }
 
-
-/* =========================
-   BACK
-========================= */
-
-function goBack(){
-
- location.href="index.html";
-
-}
-
-
-/* =========================
-   START
-========================= */
+function goBack(){location.href="index.html"}
 
 loadPlayer();
-
 </script>
-
 </body>
 </html>
