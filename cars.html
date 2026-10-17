@@ -5,16 +5,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>BLACK CARS</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--bg:#070707;--line:#292929;--red:#e50914;--white:#f5f5f5;--green:#48d889}
-body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% -10%,#241313,transparent 40%),var(--bg);color:var(--white);min-height:100vh;padding-bottom:30px}
+:root{--line:#292929;--red:#e50914;--white:#f5f5f5;--green:#48d889}
+body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 50% -10%,#241313,transparent 40%),#070707;color:var(--white);min-height:100vh;padding-bottom:30px}
 button{font-family:inherit;border:0;cursor:pointer}
-button:disabled{opacity:.45;cursor:not-allowed}
+button:disabled{opacity:.55;cursor:not-allowed}
 .hidden{display:none!important}
-.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#050505;color:#aaa;font-size:12px}
+.loading{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:#050505;color:#aaa;font-size:12px;padding:20px;text-align:center}
 .top{position:sticky;top:0;z-index:20;height:58px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 14px;background:rgba(7,7,7,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
 .back{padding:8px 11px;border-radius:8px;background:#181818;color:#aaa;border:1px solid var(--line);font-size:11px}
 .logo{font-size:18px;font-weight:1000;white-space:nowrap}
@@ -40,15 +38,14 @@ button:disabled{opacity:.45;cursor:not-allowed}
 .car-type{margin-top:5px;color:#777;font-size:10px}
 .car-price{margin-top:12px;color:#5ce28e;font-size:17px;font-weight:1000}
 .buy{width:100%;margin-top:12px;padding:12px;background:var(--red);color:white;border-radius:8px;font-size:11px;font-weight:1000}
-.buy:active{transform:scale(.985)}
-.status{margin-top:8px;min-height:15px;text-align:center;color:#888;font-size:10px}
+.status{margin-top:8px;min-height:15px;text-align:center;color:#aaa;font-size:10px}
 .toast{position:fixed;left:50%;bottom:20px;z-index:200;transform:translate(-50%,20px);padding:11px 15px;background:#191919;border:1px solid #3b3b3b;border-radius:9px;font-size:11px;opacity:0;pointer-events:none;transition:.25s;max-width:90%;text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media(min-width:700px){.cars{grid-template-columns:repeat(3,minmax(0,1fr))}.car-image{height:200px}}
 </style>
 </head>
-
 <body>
+
 <div class="loading" id="loading">Подключение...</div>
 
 <header class="top">
@@ -67,10 +64,7 @@ button:disabled{opacity:.45;cursor:not-allowed}
 
 <button class="highclass-button" onclick="location.href='highclass.html'">
 <span class="highclass-icon">♛</span>
-<span>
-<strong>HIGH CLASS</strong>
-<small>Премиальные автомобили →</small>
-</span>
+<span><strong>HIGH CLASS</strong><small>Премиальные автомобили →</small></span>
 </button>
 
 <h2 class="section-title">Доступный автомобиль</h2>
@@ -82,97 +76,143 @@ button:disabled{opacity:.45;cursor:not-allowed}
 <div class="car-name">LADA Priora</div>
 <div class="car-type">Отечественный автомобиль</div>
 <div class="car-price">₽ 450 000</div>
-<button class="buy" id="buy-Priora" onclick="buyCar('Priora',450000,'LADA Priora')">КУПИТЬ</button>
+<button class="buy" id="buy-Priora" onclick="buyCar()">КУПИТЬ</button>
 <div class="status" id="status-Priora"></div>
 </div>
 </article>
 </div>
 </main>
 
-<div class="toast" id="toast">Готово</div>
+<div class="toast" id="toast"></div>
 
 <script>
 const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
 const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
-
-const supabaseClient=window.supabase.createClient(
- SUPABASE_URL,SUPABASE_KEY,
- {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}}
-);
 
 let currentUser=null;
 let profile=null;
 let playerReady=false;
 let toastTimer=null;
 
-async function loadPlayer(){
- try{
-  const {data:{session},error:sessionError}=await supabaseClient.auth.getSession();
-  if(sessionError)throw sessionError;
+function accessToken(){
+ return localStorage.getItem("brp_access_token");
+}
 
-  if(!session){
-   document.getElementById("loading").textContent="Необходимо войти в аккаунт.";
-   setTimeout(()=>location.href="index.html",1200);
-   return;
-  }
+async function api(path,options={}){
+ const token=options.token||accessToken();
+ if(!token)throw new Error("Нет активной сессии. Войди через главную страницу.");
 
-  currentUser=session.user;
+ const headers={
+  apikey:SUPABASE_KEY,
+  Authorization:"Bearer "+token,
+  "Content-Type":"application/json",
+  ...(options.headers||{})
+ };
 
-  const {data,error}=await supabaseClient.from("profiles")
-   .select("*").eq("id",currentUser.id).single();
+ const response=await fetch(SUPABASE_URL+path,{...options,headers});
+ const raw=await response.text();
+ let data=null;
 
-  if(error)throw error;
+ try{data=raw?JSON.parse(raw):null}catch{data=raw}
 
-  profile=data;
-  playerReady=true;
-  updateBalance();
-
-  const {data:existing,error:checkError}=await supabaseClient
-   .from("vehicles").select("id")
-   .eq("owner_id",currentUser.id)
-   .eq("vehicle_code","Priora").maybeSingle();
-
-  if(checkError)throw checkError;
-
-  if(existing){
-   const button=document.getElementById("buy-Priora");
-   button.textContent="УЖЕ КУПЛЕНО";
-   button.disabled=true;
-   button.style.background="#222";
-   document.getElementById("status-Priora").textContent="✓ Уже есть в гараже";
-  }
-
-  document.getElementById("loading").classList.add("hidden");
- }catch(error){
-  console.error(error);
-  document.getElementById("loading").textContent="Ошибка загрузки профиля или гаража.";
+ if(!response.ok){
+  const message=typeof data==="string"?data:(data?.message||data?.details||JSON.stringify(data));
+  throw new Error(message||"Ошибка Supabase: "+response.status);
  }
+ return data;
+}
+
+function money(n){
+ return Math.round(Number(n)||0).toLocaleString("ru-RU");
 }
 
 function getCash(){return Number(profile?.cash)||0}
 function getBank(){return Number(profile?.bank)||0}
 function getMoney(){return getCash()+getBank()}
 
-function formatMoney(value){
- return Math.round(Number(value)||0).toLocaleString("ru-RU");
-}
-
 function updateBalance(){
- document.getElementById("balance").textContent="₽ "+formatMoney(getMoney());
+ document.getElementById("balance").textContent="₽ "+money(getMoney());
 }
 
-async function buyCar(code,price,name){
+function showLoading(message){
+ const el=document.getElementById("loading");
+ el.textContent=message;
+ el.classList.remove("hidden");
+}
+
+async function loadPlayer(){
+ const loading=document.getElementById("loading");
+
+ try{
+  const token=accessToken();
+
+  if(!token){
+   showLoading("Войди в аккаунт через главную страницу.");
+   setTimeout(()=>location.href="index.html",1400);
+   return;
+  }
+
+  currentUser=await api("/auth/v1/user");
+
+  if(!currentUser?.id)throw new Error("Не удалось определить игрока.");
+
+  const rows=await api(
+   "/rest/v1/profiles?id=eq."+encodeURIComponent(currentUser.id)+"&select=*"
+  );
+
+  if(!rows?.length){
+   throw new Error("Профиль не найден. Перезайди в аккаунт на главной странице.");
+  }
+
+  profile=rows[0];
+  playerReady=true;
+  updateBalance();
+
+  loading.classList.add("hidden");
+
+  // Проверка гаража необязательна для открытия страницы.
+  try{
+   const vehicles=await api(
+    "/rest/v1/vehicles?owner_id=eq."+encodeURIComponent(currentUser.id)+
+    "&vehicle_code=eq.Priora&select=id&limit=1"
+   );
+
+   if(vehicles?.length){
+    const button=document.getElementById("buy-Priora");
+    button.textContent="УЖЕ КУПЛЕНО";
+    button.disabled=true;
+    button.style.background="#222";
+    document.getElementById("status-Priora").textContent="✓ Уже есть в гараже";
+   }
+  }catch(error){
+   console.warn("Не удалось проверить гараж:",error);
+   document.getElementById("status-Priora").textContent="Гараж будет проверен при покупке";
+  }
+
+ }catch(error){
+  console.error("Ошибка загрузки автосалона:",error);
+  showLoading("Ошибка: "+error.message);
+ }
+}
+
+async function buyCar(){
+ const button=document.getElementById("buy-Priora");
+ const status=document.getElementById("status-Priora");
+ const price=450000;
+ const code="Priora";
+ const name="LADA Priora";
+
  if(!playerReady||!profile||!currentUser){
-  toast("Аккаунт ещё загружается.");
+  toast("Сначала войди в аккаунт.");
   return;
  }
 
- const button=document.getElementById("buy-"+code);
- const status=document.getElementById("status-"+code);
-
  if(button.disabled)return;
 
- if(getMoney()<price){
+ const cash=getCash();
+ const bank=getBank();
+
+ if(cash+bank<price){
   toast("Недостаточно денег.");
   return;
  }
@@ -180,65 +220,86 @@ async function buyCar(code,price,name){
  button.disabled=true;
  status.textContent="Покупка...";
 
- const cash=getCash();
- const bank=getBank();
- const newCash=cash>=price?cash-price:0;
- const newBank=cash>=price?bank:bank-(price-cash);
+ let deducted=false;
 
  try{
-  const {data:existing,error:checkError}=await supabaseClient
-   .from("vehicles").select("id")
-   .eq("owner_id",currentUser.id)
-   .eq("vehicle_code",code).maybeSingle();
+  const existing=await api(
+   "/rest/v1/vehicles?owner_id=eq."+encodeURIComponent(currentUser.id)+
+   "&vehicle_code=eq."+encodeURIComponent(code)+"&select=id&limit=1"
+  );
 
-  if(checkError)throw checkError;
-
-  if(existing){
+  if(existing?.length){
    button.textContent="УЖЕ КУПЛЕНО";
-   status.textContent="✓ Уже есть в гараже";
    button.style.background="#222";
+   status.textContent="✓ Уже есть в гараже";
    toast("Эта машина уже куплена.");
    return;
   }
 
-  const {data:updatedProfile,error:moneyError}=await supabaseClient
-   .from("profiles").update({cash:newCash,bank:newBank})
-   .eq("id",currentUser.id).select("cash,bank").single();
+  const newCash=cash>=price?cash-price:0;
+  const newBank=cash>=price?bank:bank-(price-cash);
 
-  if(moneyError)throw moneyError;
+  const updated=await api(
+   "/rest/v1/profiles?id=eq."+encodeURIComponent(currentUser.id),
+   {
+    method:"PATCH",
+    headers:{Prefer:"return=representation"},
+    body:JSON.stringify({cash:newCash,bank:newBank})
+   }
+  );
 
-  profile.cash=Number(updatedProfile.cash)||0;
-  profile.bank=Number(updatedProfile.bank)||0;
+  if(!updated?.length){
+   throw new Error("Баланс не обновлён. Проверь права доступа profiles.");
+  }
+
+  deducted=true;
+  profile.cash=Number(updated[0].cash)||0;
+  profile.bank=Number(updated[0].bank)||0;
   updateBalance();
 
-  const {error:vehicleError}=await supabaseClient.from("vehicles").insert({
-   owner_id:currentUser.id,
-   vehicle_code:code,
-   name:name
+  await api("/rest/v1/vehicles",{
+   method:"POST",
+   headers:{Prefer:"return=minimal"},
+   body:JSON.stringify({
+    owner_id:currentUser.id,
+    vehicle_code:code,
+    name:name
+   })
   });
-
-  if(vehicleError){
-   const {error:refundError}=await supabaseClient.from("profiles")
-    .update({cash:cash,bank:bank}).eq("id",currentUser.id);
-
-   if(!refundError){
-    profile.cash=cash;
-    profile.bank=bank;
-    updateBalance();
-    throw new Error("Не удалось добавить машину. Деньги возвращены.");
-   }
-   throw new Error("Ошибка гаража и возврата денег. Обратись к администратору.");
-  }
 
   status.textContent="✓ Куплено";
   button.textContent="УЖЕ КУПЛЕНО";
   button.style.background="#222";
-  toast("🚗 "+name+" добавлена в гараж!");
+  toast("🚗 LADA Priora добавлена в гараж!");
+
  }catch(error){
-  console.error(error);
+  console.error("Ошибка покупки:",error);
+
+  if(deducted){
+   try{
+    await api(
+     "/rest/v1/profiles?id=eq."+encodeURIComponent(currentUser.id),
+     {
+      method:"PATCH",
+      headers:{Prefer:"return=minimal"},
+      body:JSON.stringify({cash:cash,bank:bank})
+     }
+    );
+
+    profile.cash=cash;
+    profile.bank=bank;
+    updateBalance();
+    toast("Покупка не завершена. Деньги возвращены.");
+   }catch(refundError){
+    console.error("Ошибка возврата денег:",refundError);
+    toast("Ошибка покупки и возврата. Проверь баланс в Supabase.");
+   }
+  }else{
+   toast("Ошибка: "+error.message);
+  }
+
   status.textContent="";
   button.disabled=false;
-  toast(error.message||"Ошибка покупки.");
  }
 }
 
@@ -247,7 +308,7 @@ function toast(message){
  el.textContent=message;
  el.classList.add("show");
  clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>el.classList.remove("show"),2200);
+ toastTimer=setTimeout(()=>el.classList.remove("show"),2800);
 }
 
 function goBack(){location.href="index.html"}
