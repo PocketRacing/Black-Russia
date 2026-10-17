@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>BLACK PASS | BLACK CARS</title>
+<style>
+:root{--bg:#090a0d;--panel:#14161b;--line:#292c34;--red:#e32636;--text:#f4f4f5;--muted:#90939d;--gold:#f2bd55}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+button{font:inherit;cursor:pointer}
+header{padding:18px 5%;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:22px;font-weight:900;letter-spacing:2px}.logo span{color:var(--red)}
+.back{color:white;text-decoration:none;border:1px solid var(--line);padding:10px 14px;border-radius:8px;font-size:13px}
+main{max-width:1100px;margin:auto;padding:22px 16px 50px}
+.hero{position:relative;overflow:hidden;background:linear-gradient(110deg,#20232b,#101115 65%,#3a1016);border:1px solid #353741;border-radius:18px;padding:28px 22px}
+.hero:after{content:"BC";position:absolute;right:10px;top:-35px;font-size:180px;font-weight:900;color:#ffffff08;pointer-events:none}
+.season{font-size:11px;letter-spacing:3px;color:var(--red);font-weight:bold}
+h1{font-size:clamp(34px,7vw,62px);margin:10px 0;text-transform:uppercase;font-weight:900;font-style:italic}
+.hero p{color:#c3c4ca;margin:0 0 22px;font-size:14px}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:#090a0dbd;border:1px solid #393b44;border-radius:10px;padding:12px 15px;min-width:115px}
+.stat small{display:block;color:var(--muted);font-size:11px;margin-bottom:5px}
+.stat strong{font-size:18px}
+.progressbox{margin-top:22px}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:#c8c9cf;margin-bottom:8px}
+.bar{height:8px;border-radius:20px;background:#30323a;overflow:hidden}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,#a50f20,var(--red));transition:width .2s}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:28px 0 14px}
+h2{font-size:18px;margin:0}
+.muted{font-size:12px;color:var(--muted)}
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.track{padding:15px;border-radius:12px;border:1px solid var(--line);background:var(--panel)}
+.track.premium{border-color:#6b5124;background:linear-gradient(120deg,#211c13,#14161b)}
+.track strong{display:block;margin-bottom:6px}
+.track p{font-size:12px;color:var(--muted);margin:0 0 12px}
+.btn{border:0;border-radius:8px;padding:11px 13px;font-weight:bold;font-size:12px;background:var(--red);color:white}
+.btn:disabled{background:#34363e;color:#858792;cursor:default}
+.btn.gold{background:var(--gold);color:#17130b}
+.levels{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.level{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 9px;min-width:0;position:relative}
+.level.current{border-color:var(--red);box-shadow:0 0 0 1px #e3263620}
+.level-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
+.level-num{font-weight:900;font-size:19px;color:white}
+.xp-needed{font-size:10px;color:var(--muted);margin:7px 0 10px}
+.reward{background:#202229;border-radius:8px;padding:10px 6px;text-align:center;margin-top:7px;min-height:77px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.reward .emoji{font-size:24px}
+.reward strong{font-size:11px;overflow-wrap:anywhere}
+.reward small{font-size:10px;color:var(--muted)}
+.reward.prem{border:1px solid #574523;background:#211d15}
+.claim{width:100%;margin-top:8px;padding:9px 3px;font-size:10px}
+.tasks{display:grid;gap:10px}
+.task{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);padding:13px;border-radius:10px}
+.task-icon{font-size:23px;width:35px;text-align:center}
+.task-info{flex:1;min-width:0}
+.task-info strong{font-size:13px}
+.task-info p{font-size:11px;color:var(--muted);margin:5px 0 0}
+.task button{flex-shrink:0}
+.notice{margin-top:18px;padding:12px;border:1px solid var(--line);border-radius:9px;color:var(--muted);font-size:11px;line-height:1.5}
+footer{text-align:center;padding:24px;color:#686b74;font-size:11px}
+@media(max-width:650px){header{padding:15px 4%}.logo{font-size:18px}main{padding:15px 10px 35px}.hero{padding:23px 15px}.hero:after{font-size:120px;top:-10px}.levels{grid-template-columns:repeat(2,minmax(0,1fr))}.level:last-child:nth-child(odd){grid-column:1/-1}.tracks{grid-template-columns:1fr}.task{gap:8px}.task button{padding:10px 8px}.stat{flex:1;min-width:90px}.stat strong{font-size:16px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">BLACK <span>CARS</span></div>
+  <a class="back" href="index.html">← В ГАРАЖ</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="season">СЕЗОН 01 · 7 ДНЕЙ</div>
+    <h1>BLACK PASS</h1>
+    <p>Выполняй задания. Получай опыт. Забирай награды.</p>
+    <div class="stats">
+      <div class="stat"><small>ТВОЙ УРОВЕНЬ</small><strong id="levelStat">1</strong></div>
+      <div class="stat"><small>ОПЫТ</small><strong id="xpStat">0 XP</strong></div>
+      <div class="stat"><small>ДО КОНЦА</small><strong id="timeStat">7 дней</strong></div>
+    </div>
+    <div class="progressbox">
+      <div class="progress-label"><span>ПРОГРЕСС СЕЗОНА</span><span id="progressText">0 / 1000 XP</span></div>
+      <div class="bar"><div id="progressBar"></div></div>
+    </div>
+  </section>
+
+  <div class="section-title"><h2>ТВОЙ ПРОПУСК</h2><span class="muted">FREE / PREMIUM</span></div>
+  <section class="tracks">
+    <div class="track">
+      <strong>FREE PASS</strong>
+      <p>Бесплатные награды доступны каждому игроку.</p>
+      <span class="muted">Открывай уровни за опыт.</span>
+    </div>
+    <div class="track premium">
+      <strong>★ PREMIUM PASS</strong>
+      <p>Дополнительные машины, деньги и тюнинг.</p>
+      <button class="btn gold" id="premiumBtn" onclick="unlockPremium()">ОТКРЫТЬ ПРЕМИУМ</button>
+    </div>
+  </section>
+
+  <div class="section-title">
+    <h2>НАГРАДЫ СЕЗОНА</h2>
+    <span class="muted">10 УРОВНЕЙ</span>
+  </div>
+  <section class="levels" id="levels"></section>
+
+  <div class="section-title">
+    <h2>ЗАДАНИЯ</h2>
+    <span class="muted">ПОЛУЧАЙ XP</span>
+  </div>
+  <section class="tasks" id="tasks"></section>
+
+  <div class="notice">
+    ВАЖНО: это самостоятельная версия пропуска. Прогресс хранится в браузере на этом устройстве. Получение награды пока отмечается внутри BLACK PASS и ещё не добавляет машину или деньги в основной гараж BLACK CARS.
+  </div>
+</main>
+<footer>BLACK CARS · BLACK PASS SEASON 01</footer>
+
+<script>
+const KEY = "blackcars_pass_v1";
+const SEASON_MS = 7 * 24 * 60 * 60 * 1000;
+const LEVEL_XP = 100;
+
+const rewards = [
+  {free:["💵","10 000 ₽","money"], prem:["🚘","Priora","car"]},
+  {free:["🔧","Улучшение","tuning"], prem:["💵","50 000 ₽","money"]},
+  {free:["💵","20 000 ₽","money"], prem:["🚘","G63","car"]},
+  {free:["🛞","Колёса","tuning"], prem:["💵","75 000 ₽","money"]},
+  {free:["💵","30 000 ₽","money"], prem:["🎨","Новая окраска","tuning"]},
+  {free:["🔧","Тюнинг","tuning"], prem:["💵","100 000 ₽","money"]},
+  {free:["💵","40 000 ₽","money"], prem:["🚘","Спорткар","car"]},
+  {free:["🛞","Диски","tuning"], prem:["💵","150 000 ₽","money"]},
+  {free:["💵","50 000 ₽","money"], prem:["🏎️","Редкий автомобиль","car"]},
+  {free:["🏆","BLACK CARS","special"], prem:["👑","BLACK EDITION","special"]}
+];
+
+const tasksData = [
+  {id:"daily", icon:"🚗", title:"Автолюбитель", desc:"Зайди в BLACK CARS и получи опыт.", xp:100},
+  {id:"collector", icon:"💰", title:"Охота за наградами", desc:"Забери любую награду пропуска.", xp:100},
+  {id:"champion", icon:"🏁", title:"Чемпион сезона", desc:"Набери 300 XP в BLACK PASS.", xp:100}
+];
+
+function freshState(){
+  const now = Date.now();
+  return {start:now,xp:0,premium:false,claimedFree:[],claimedPrem:[],doneTasks:[],claimedTaskReward:[]};
+}
+function loadState(){
+  try{
+    const saved = JSON.parse(localStorage.getItem(KEY));
+    if(!saved || !saved.start || Date.now() - saved.start >= SEASON_MS) return freshState();
+    return saved;
+  }catch(e){ return freshState(); }
+}
+let state = loadState();
+function save(){ localStorage.setItem(KEY,JSON.stringify(state)); }
+function currentLevel(){ return Math.min(10,Math.floor(state.xp/LEVEL_XP)+1); }
+function timeLeft(){
+  const left = Math.max(0,state.start+SEASON_MS-Date.now());
+  const days = Math.floor(left/86400000);
+  const hours = Math.floor(left%86400000/3600000);
+  return days ? days+" дн. "+hours+" ч." : hours+" ч.";
+}
+function render(){
+  const level = currentLevel();
+  document.getElementById("levelStat").textContent = level;
+  document.getElementById("xpStat").textContent = state.xp+" XP";
+  document.getElementById("timeStat").textContent = timeLeft();
+  document.getElementById("progressText").textContent = state.xp+" / 1000 XP";
+  document.getElementById("progressBar").style.width = Math.min(100,state.xp/1000*100)+"%";
+
+  const premiumBtn = document.getElementById("premiumBtn");
+  premiumBtn.textContent = state.premium ? "PREMIUM АКТИВЕН ✓" : "ОТКРЫТЬ ПРЕМИУМ";
+  premiumBtn.disabled = state.premium;
+
+  document.getElementById("levels").innerHTML = rewards.map((r,i)=>{
+    const n=i+1, unlocked=state.xp>=n*LEVEL_XP;
+    const freeClaimed=state.claimedFree.includes(n);
+    const premClaimed=state.claimedPrem.includes(n);
+    return `<article class="level ${level===n?'current':''}">
+      <div class="level-top"><span>УРОВЕНЬ</span><span class="level-num">${n}</span></div>
+      <div class="xp-needed">${n*LEVEL_XP} XP</div>
+      ${rewardCard(r.free,"БЕСПЛАТНО",false)}
+      <button class="btn claim" ${!unlocked||freeClaimed?'disabled':''} onclick="claimReward(${n},'free')">${freeClaimed?'ПОЛУЧЕНО':unlocked?'ЗАБРАТЬ':'ЗАКРЫТО'}</button>
+      ${rewardCard(r.prem,"PREMIUM",true)}
+      <button class="btn gold claim" ${!state.premium||!unlocked||premClaimed?'disabled':''} onclick="claimReward(${n},'prem')">${premClaimed?'ПОЛУЧЕНО':!state.premium?'НУЖЕН PREMIUM':unlocked?'ЗАБРАТЬ':'ЗАКРЫТО'}</button>
+    </article>`;
+  }).join("");
+
+  document.getElementById("tasks").innerHTML = tasksData.map(t=>{
+    const done=state.doneTasks.includes(t.id);
+    const claimed=state.claimedTaskReward.includes(t.id);
+    let completed=done;
+    if(t.id==="champion") completed=state.xp>=300;
+    return `<div class="task">
+      <div class="task-icon">${t.icon}</div>
+      <div class="task-info"><strong>${t.title}</strong><p>${t.desc} · +${t.xp} XP</p></div>
+      <button class="btn ${claimed?'':' '}" ${claimed||(!completed&&t.id!=="daily"&&t.id!=="collector")?'disabled':''} onclick="doTask('${t.id}')">${claimed?'ВЫПОЛНЕНО':completed?'ЗАБРАТЬ XP':t.id==='daily'?'+100 XP':t.id==='collector'?'+100 XP':'В ПРОЦЕССЕ'}</button>
+    </div>`;
+  }).join("");
+}
+function rewardCard(reward,label,prem){
+  return `<div class="reward ${prem?'prem':''}"><small>${label}</small><span class="emoji">${reward[0]}</span><strong>${reward[1]}</strong></div>`;
+}
+function claimReward(n,type){
+  if(state.xp<n*LEVEL_XP) return;
+  const list=type==="free"?"claimedFree":"claimedPrem";
+  if(type==="prem"&&!state.premium) return;
+  if(state[list].includes(n)) return;
+  state[list].push(n);
+  save();
+  render();
+}
+function unlockPremium(){
+  if(state.premium) return;
+  if(!confirm("Активировать PREMIUM PASS в тестовом режиме?")) return;
+  state.premium=true;
+  save();
+  render();
+}
+function doTask(id){
+  if(state.claimedTaskReward.includes(id)) return;
+  if(id==="champion"&&state.xp<300) return;
+  if(id==="collector"&&state.claimedFree.length===0&&state.claimedPrem.length===0) return;
+  if(id==="daily"||id==="collector") state.doneTasks.push(id);
+  state.claimedTaskReward.push(id);
+  const task=tasksData.find(t=>t.id===id);
+  state.xp=Math.min(1000,state.xp+task.xp);
+  save();
+  render();
+}
+render();
+setInterval(()=>{
+  document.getElementById("timeStat").textContent=timeLeft();
+},60000);
+</script>
+</body>
+</html>
