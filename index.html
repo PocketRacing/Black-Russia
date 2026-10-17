@@ -3,670 +3,676 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>BLACK CARS — Гараж</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>BLACK RUSSIA RP</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--red:#e50914;--bg:#080808;--panel:#111;--line:#292929;--muted:#888;--green:#53df91}
-body{font-family:Arial,sans-serif;background:radial-gradient(ellipse at 50% -5%,#351010 0,transparent 48%),var(--bg);color:#f5f5f5;min-height:100vh;padding-bottom:35px}
-button,select{font:inherit;cursor:pointer}
-button:disabled{opacity:.45;cursor:not-allowed}
-.top{height:60px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#090909ed;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
-.logo{font-size:18px;font-weight:1000;letter-spacing:1px;white-space:nowrap}.logo span{color:var(--red)}
-.back,.balance{background:#171717;border:1px solid #303030;border-radius:8px;padding:9px 10px;font-size:10px;color:#ddd}
-.balance{color:var(--green);font-weight:bold;white-space:nowrap}
-.wrap{max-width:1050px;margin:auto;padding:17px 14px}
-.crumb{font-size:10px;letter-spacing:2px;color:#777;margin:8px 0 18px}
-.hero{position:relative;overflow:hidden;border:1px solid #392222;border-radius:14px;padding:22px 18px;background:linear-gradient(110deg,#211010,#111 65%,#171717)}
-.hero-label{color:#e66c72;font-size:10px;letter-spacing:3px;font-weight:bold}
-h1{font-size:clamp(27px,6vw,39px);margin:8px 0}
-.hero p{font-size:12px;color:#aaa;line-height:1.6;max-width:480px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}
-.stat{padding:13px 11px;background:#121212;border:1px solid var(--line);border-radius:10px;min-width:0}
-.stat small{display:block;color:#888;font-size:9px;margin-bottom:8px}
-.stat strong{font-size:clamp(13px,3vw,20px);overflow-wrap:anywhere}
-.nav{display:flex;gap:7px;overflow:auto;padding:2px 0 9px;margin:13px 0}
-.nav button{white-space:nowrap;padding:11px 14px;border:1px solid #292929;background:#141414;color:#aaa;border-radius:8px;font-size:11px}
-.nav button.active{background:var(--red);border-color:var(--red);color:white}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#080808;--panel:#141414;--line:#292929;--red:#e50914;--muted:#888;--green:#31d47a;--gold:#f2bd55}
+body{background:var(--bg);color:#f5f5f5;font:14px Arial,sans-serif}
+button,input{font:inherit}button{cursor:pointer;border:0}
+.hidden{display:none!important}
+#authScreen{min-height:100vh;display:grid;place-items:center;padding:16px;background:radial-gradient(circle at top,#351012,#080808 55%)}
+.auth-box{width:100%;max-width:390px;padding:23px;background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.logo{text-align:center;font-size:25px;font-weight:900;margin-bottom:6px}
+.logo span{color:var(--red)}
+.sub{text-align:center;color:var(--muted);font-size:11px;margin-bottom:20px}
+.tabs{display:flex;gap:6px;margin-bottom:18px}
+.tabs button{flex:1;padding:11px;background:#222;color:#aaa;border-radius:8px}
+.tabs button.active,.primary{background:var(--red);color:#fff}
+h2{font-size:21px;margin-bottom:7px}
+.desc{color:var(--muted);font-size:12px;margin-bottom:17px;line-height:1.5}
+.field{margin-bottom:12px}
+.field label{display:block;color:#aaa;font-size:10px;margin-bottom:6px}
+.field input{width:100%;padding:13px;background:#090909;border:1px solid #333;border-radius:8px;color:white;outline:none}
+.field input:focus{border-color:var(--red)}
+.primary,.secondary{width:100%;padding:13px;border-radius:8px;font-weight:bold}
+.secondary{background:#242424;color:#fff;margin-top:8px}
+.msg{min-height:20px;margin-top:10px;text-align:center;font-size:12px}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:15px;background:#0b0b0bf5;border-bottom:1px solid var(--line)}
+header strong{font-size:16px}header strong span{color:var(--red)}
+.money{font-size:10px;color:var(--green)}
+main{max-width:900px;margin:auto;padding:16px 14px 100px}
 .page{display:none}.page.active{display:block}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:15px 0}
-.section-head h2{font-size:19px}
-.muted{color:var(--muted);font-size:11px}
-.btn{padding:11px 13px;border-radius:7px;border:1px solid #383838;background:#222;color:white;font-weight:bold;font-size:10px}
-.btn.red{background:var(--red);border-color:var(--red)}
-.btn.full{width:100%;margin-top:10px}
-.loading{padding:24px;text-align:center;color:#aaa;font-size:12px}
-.empty{padding:35px 15px;text-align:center;background:#111;border:1px dashed #343434;border-radius:12px;color:#888;line-height:1.8}
-.empty strong{display:block;color:white;margin-bottom:6px}
-.showroom{position:relative;overflow:hidden;border:1px solid #302020;border-radius:15px;background:#090909;box-shadow:0 18px 55px #0008}
-.showroom-top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 15px;background:linear-gradient(90deg,#191010,#101010);border-bottom:1px solid #302020}
-.showroom-title{font-size:10px;font-weight:bold;letter-spacing:2px}
-.live{font-size:9px;color:#ff666c;letter-spacing:1px;white-space:nowrap}
-.live:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:7px;box-shadow:0 0 9px var(--red)}
-.scene{height:clamp(245px,48vw,420px);position:relative;overflow:hidden;background:linear-gradient(180deg,#111 0%,#171717 48%,#202020 70%,#090909 100%)}
-.scene:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 10%,#ffffff05 25%,transparent 40%,transparent 63%,#ffffff06 76%,transparent 90%);pointer-events:none}
-.ceiling-lights{position:absolute;top:0;left:8%;right:8%;height:5px;background:linear-gradient(90deg,transparent,#eee8,transparent,#fff8,transparent);filter:blur(2px);box-shadow:0 0 24px #fff3}
-.wall-line{position:absolute;left:0;right:0;top:42%;height:1px;background:#ffffff0b;box-shadow:0 14px #ffffff06,0 28px #ffffff05}
-.floor{position:absolute;left:-10%;right:-10%;bottom:-30%;height:58%;background:repeating-linear-gradient(90deg,transparent 0,transparent 95px,#ffffff08 96px,#ffffff08 97px),linear-gradient(180deg,#292929,#080808 75%);transform:perspective(220px) rotateX(15deg);transform-origin:top}
-.floor:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:#ffffff12}
-.red-glow{position:absolute;bottom:8%;left:12%;right:12%;height:22%;border-radius:50%;background:#e5091420;filter:blur(28px)}
-.car-image{position:absolute;z-index:2;inset:4% 4% 7%;display:flex;align-items:center;justify-content:center}
-.car-image img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 12px #000b);animation:carIn .3s ease-out}
-@keyframes carIn{from{opacity:.45;transform:translateY(7px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-.car-fallback{font-size:clamp(75px,18vw,130px);filter:drop-shadow(0 15px 12px #000)}
-.scene-label{position:absolute;z-index:3;top:15px;left:15px;background:#080808b8;border:1px solid #ffffff18;padding:8px 10px;border-radius:5px;font-size:9px;letter-spacing:1px}
-.scene-number{position:absolute;z-index:3;top:15px;right:15px;color:#ffffff9c;font-size:10px;letter-spacing:2px}
-.arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:39px;height:49px;border:1px solid #ffffff26;border-radius:8px;background:#080808b8;color:#fff;font-size:25px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px)}
-.arrow:active{background:var(--red)}
-.arrow.prev{left:12px}.arrow.next{right:12px}
-.scene-bottom{position:absolute;z-index:3;bottom:13px;left:15px;right:15px;display:flex;justify-content:space-between;align-items:end;gap:10px}
-.vehicle-number{font-size:9px;color:#ccc;letter-spacing:2px}
-.condition-tag{padding:7px 9px;border-radius:5px;background:#15251b;color:#76e8a1;font-size:9px;letter-spacing:1px;border:1px solid #31543b}
-.car-details{padding:18px;background:linear-gradient(145deg,#151515,#0e0e0e)}
-.car-heading{display:flex;justify-content:space-between;align-items:start;gap:12px}
-.car-heading h3{font-size:clamp(20px,5vw,27px);line-height:1.2;margin-bottom:7px}
-.car-type{font-size:11px;color:#888}
-.car-price{text-align:right;white-space:nowrap}
-.car-price small{display:block;font-size:9px;color:#888;margin-bottom:6px}
-.car-price strong{font-size:clamp(15px,4vw,22px);color:var(--green)}
-.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:17px 0}
-.spec{padding:12px 10px;background:#1a1a1a;border:1px solid #292929;border-radius:8px;min-width:0}
-.spec small{display:block;color:#777;font-size:9px;margin-bottom:7px}
-.spec b{font-size:12px;overflow-wrap:anywhere}
-.car-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.car-actions button{min-height:42px}
-.dots{display:flex;justify-content:center;gap:7px;padding:14px;background:#0c0c0c;border-top:1px solid #252525}
-.dot{width:7px;height:7px;border:0;border-radius:50%;background:#454545;padding:0}
-.dot.active{width:22px;border-radius:8px;background:var(--red)}
-.box{max-width:620px;margin:12px auto;background:#121212;border:1px solid #303030;border-radius:13px;padding:18px}
-.box h2{font-size:20px;margin-bottom:8px}
-.field{margin-top:16px}
-.field label{display:block;color:#aaa;font-size:11px;margin-bottom:8px}
-.field select{width:100%;padding:12px;background:#080808;color:white;border:1px solid #393939;border-radius:8px}
-.payout{margin-top:16px;background:linear-gradient(120deg,#1b1717,#101010);border:1px solid #382626;border-radius:10px;padding:17px}
-.payout small{color:#aaa;font-size:11px}
-.payout strong{display:block;font-size:29px;margin:9px 0;color:var(--green)}
-.notice{font-size:10px;color:#888;line-height:1.7;margin-top:13px}
-.history-row{padding:13px 0;border-bottom:1px solid #292929;display:flex;justify-content:space-between;gap:12px;font-size:12px}
-.history-row small{display:block;color:#777;margin-top:5px}
-.positive{color:var(--green);font-weight:bold;white-space:nowrap}
-.error{color:#ff7979}
-.toast{position:fixed;z-index:10;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#222;border:1px solid #444;padding:12px 16px;border-radius:9px;font-size:11px;max-width:90%;transition:.2s}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:480px){
- .stats{gap:6px}.stat{padding:11px 8px}
- .scene{height:255px}.car-image{inset:9% 3% 12%}
- .arrow{width:33px;height:43px}.arrow.prev{left:8px}.arrow.next{right:8px}
- .car-details{padding:14px}
- .car-heading{flex-direction:column}
- .car-price{text-align:left}
- .specs{gap:6px;margin:13px 0}
- .spec{padding:10px 8px}.spec b{font-size:11px}
- .car-actions{grid-template-columns:1fr}
+h1{font-size:25px;margin-bottom:6px}
+.muted{color:var(--muted);font-size:12px;margin-bottom:17px}
+.hero,.card,.stat,.profile{padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.hero{background:linear-gradient(120deg,#321012,#141414 70%);margin-bottom:12px}
+.hero h2{font-size:25px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin:12px 0}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.stat small{display:block;color:var(--muted);margin-bottom:8px;font-size:10px}
+.stat b{font-size:17px}
+.card{margin-bottom:10px}
+.card h3{margin-bottom:7px}
+.card p{color:var(--muted);font-size:12px;margin-bottom:12px}
+.action{display:block;width:100%;padding:12px;color:#fff;background:#222;border:1px solid #333;border-radius:9px;text-align:center;text-decoration:none}
+.action.red{background:var(--red);border-color:var(--red)}
+.car-icon{font-size:35px;margin-bottom:8px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:10;display:flex;justify-content:space-around;background:#090909f5;border-top:1px solid var(--line);padding:8px 2px calc(8px + env(safe-area-inset-bottom))}
+.bottom-nav a{flex:1;color:#888;text-decoration:none;text-align:center;font-size:10px;padding:5px 1px}
+.bottom-nav a span{display:block;font-size:20px;margin-bottom:4px}
+.bottom-nav a.active,.bottom-nav a:hover{color:var(--red)}
+.toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);padding:11px 15px;background:#222;border:1px solid #444;border-radius:8px;display:none;z-index:20;max-width:90%;text-align:center}
+
+/* BLACK PASS */
+.pass-hero{background:linear-gradient(110deg,#321014,#171719 65%,#351014);border:1px solid #462126;border-radius:15px;padding:23px 17px;margin-bottom:12px;overflow:hidden}
+.pass-kicker{font-size:10px;letter-spacing:3px;color:var(--red);font-weight:bold}
+.pass-title{font-size:clamp(36px,9vw,56px);font-weight:900;font-style:italic;margin:8px 0}
+.pass-hero p{font-size:12px;color:#bbb;line-height:1.5}
+.pass-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:17px}
+.pass-stat{padding:10px;background:#090909a8;border:1px solid #393939;border-radius:8px;min-width:0}
+.pass-stat small{display:block;font-size:9px;color:#999;margin-bottom:6px}
+.pass-stat b{font-size:14px;overflow-wrap:anywhere}
+.pass-progress{margin-top:17px}
+.pass-progress-label{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#bbb;margin-bottom:7px}
+.pass-bar{height:7px;background:#333;border-radius:20px;overflow:hidden}
+.pass-bar div{height:100%;background:var(--red);width:0;transition:width .2s}
+.pass-heading{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:23px 0 12px}
+.pass-heading h2{font-size:17px;margin:0}
+.pass-heading span{font-size:10px;color:#888}
+.pass-tracks{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.pass-track{padding:14px;background:var(--panel);border:1px solid var(--line);border-radius:11px}
+.pass-track.premium{border-color:#5d4822;background:linear-gradient(120deg,#251f13,#141414)}
+.pass-track b{display:block;margin-bottom:7px}
+.pass-track p{font-size:11px;line-height:1.5;color:#999;margin-bottom:12px}
+.pass-btn{padding:10px 8px;width:100%;background:var(--red);color:white;border-radius:7px;font-size:10px;font-weight:bold}
+.pass-btn.gold{background:var(--gold);color:#17130b}
+.pass-btn:disabled{background:#303030;color:#858585;cursor:default}
+.pass-levels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.pass-level{padding:11px 9px;background:var(--panel);border:1px solid var(--line);border-radius:10px;min-width:0}
+.pass-level.current{border-color:var(--red)}
+.pass-level-top{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:#888}
+.pass-level-top b{font-size:19px;color:white}
+.pass-xp{font-size:10px;color:#888;margin:7px 0}
+.pass-reward{display:flex;align-items:center;gap:7px;background:#202020;padding:9px 7px;border-radius:7px;margin-top:7px;min-width:0}
+.pass-reward.premium-reward{background:#211d15;border:1px solid #493a20}
+.pass-emoji{font-size:22px}
+.pass-reward-info{min-width:0;flex:1}
+.pass-reward-info small{display:block;color:#999;font-size:8px;margin-bottom:4px}
+.pass-reward-info b{font-size:10px;overflow-wrap:anywhere}
+.pass-level .pass-btn{margin-top:6px}
+.pass-tasks{display:grid;gap:9px}
+.pass-task{display:flex;align-items:center;gap:10px;padding:12px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.pass-task-icon{font-size:23px}
+.pass-task-info{flex:1;min-width:0}
+.pass-task-info b{font-size:12px}
+.pass-task-info p{font-size:10px;color:#999;line-height:1.5;margin-top:5px}
+.pass-task .pass-btn{width:auto;min-width:84px}
+.pass-notice{margin-top:14px;padding:11px;border:1px solid var(--line);border-radius:8px;color:#888;font-size:10px;line-height:1.6}
+@media(min-width:650px){
+.stats{grid-template-columns:repeat(4,1fr)}
+.grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+main{padding-top:24px}
+.pass-levels{grid-template-columns:repeat(5,minmax(0,1fr))}
 }
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+@media(max-width:370px){
+header{padding:12px 9px}
+header strong{font-size:13px}
+.money{font-size:9px}
+.bottom-nav a{font-size:9px}
+.bottom-nav a span{font-size:18px}
+.pass-stat b{font-size:12px}
+}
 </style>
 </head>
 <body>
-<header class="top">
-  <button class="back" onclick="location.href='index.html'">← НАЗАД</button>
-  <div class="logo">BLACK <span>CARS</span></div>
-  <div class="balance" id="balance">₽ 0</div>
+
+<section id="authScreen">
+<div class="auth-box">
+<div class="logo">BLACK <span>RUSSIA</span></div>
+<div class="sub">ROLE PLAY • ONLINE WORLD</div>
+<div class="tabs">
+<button id="loginTab" class="active" onclick="switchAuth('login')">Вход</button>
+<button id="registerTab" onclick="switchAuth('register')">Регистрация</button>
+</div>
+<div id="loginForm">
+<h2>С возвращением</h2>
+<p class="desc">Введи логин и пароль своего аккаунта.</p>
+<div class="field"><label>ИГРОВОЙ ЛОГИН</label><input id="loginUsername" autocomplete="username" placeholder="Tomas_RP"></div>
+<div class="field"><label>ПАРОЛЬ</label><input id="loginPassword" type="password" autocomplete="current-password" placeholder="Пароль"></div>
+<button class="primary" style="width:100%" onclick="loginAccount()">ВОЙТИ В ИГРУ</button>
+<div class="msg" id="loginMessage"></div>
+</div>
+<div id="registerForm" class="hidden">
+<h2>Новый аккаунт</h2>
+<p class="desc">Создай игровой аккаунт.</p>
+<div class="field"><label>ИГРОВОЙ ЛОГИН</label><input id="regUsername" autocomplete="username" placeholder="Tomas_RP"></div>
+<div class="field"><label>ПОЧТА</label><input id="regEmail" type="email" autocomplete="email" placeholder="example@mail.com"></div>
+<div class="field"><label>ПАРОЛЬ</label><input id="regPassword" type="password" autocomplete="new-password" placeholder="Минимум 6 символов"></div>
+<div class="field"><label>ПОВТОРИ ПАРОЛЬ</label><input id="regPassword2" type="password" autocomplete="new-password" placeholder="Повтори пароль"></div>
+<button class="primary" style="width:100%" onclick="registerAccount()">СОЗДАТЬ АККАУНТ</button>
+<div class="msg" id="registerMessage"></div>
+</div>
+</div>
+</section>
+
+<section id="app" class="hidden">
+<header>
+<strong>BLACK <span>RUSSIA</span></strong>
+<div class="money" id="topCash">₽ 0</div>
+<div class="money" id="topDonate">♦ 0</div>
 </header>
 
-<main class="wrap">
-  <div class="crumb">BLACK CARS / ЛИЧНЫЙ ТРАНСПОРТ</div>
+<main>
+<section id="homePage" class="page active">
+<div class="hero">
+<p class="muted">ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР</p>
+<h2 id="homeName">Player</h2>
+<p class="muted" style="margin:8px 0 0">Твоя история начинается здесь</p>
+</div>
+<div class="stats">
+<div class="stat"><small>УРОВЕНЬ</small><b id="homeLevel">1</b></div>
+<div class="stat"><small>ОПЫТ</small><b id="homeXP">0 XP</b></div>
+<div class="stat"><small>НАЛИЧНЫЕ</small><b id="homeCash">₽ 0</b></div>
+<div class="stat"><small>БАНК</small><b id="homeBank">₽ 0</b></div>
+</div>
+<h2 style="margin:22px 0 10px">Быстрый доступ</h2>
+<div class="grid">
+<a class="action" href="jobs.html">💼 Работы</a>
+<button class="action" onclick="openPage('garage')">🚗 Гараж</button>
+<a class="action" href="cars.html">🚘 Автосалон</a>
+<button class="action" onclick="openPage('shop')">🏪 Магазин</button>
+<button class="action" onclick="openPage('map')">🗺️ Карта</button>
+<a class="action" href="case.html">🎁 Кейсы</a>
+<a class="action" href="chat.html">💬 Общий чат</a>
+<a class="action" href="casino.html">🎰 Казино</a>
+<a class="action" href="bank.html">🏦 Банк</a>
+<button class="action red" onclick="openPage('pass')">🏆 BLACK PASS</button>
+</div>
+<div class="hero" onclick="openPage('pass')" style="cursor:pointer">
+<p style="color:#e50914;font-size:10px;letter-spacing:3px;font-weight:bold">СЕЗОН 01 · 7 ДНЕЙ</p>
+<h2>BLACK PASS</h2>
+<p class="muted" style="margin:8px 0 0">Машины, деньги и тюнинг. Открыть пропуск →</p>
+</div>
+</section>
 
-  <section class="hero">
-    <div class="hero-label">PRIVATE AUTOMOTIVE CLUB</div>
-    <h1>Мой гараж<span style="color:#e50914">.</span></h1>
-    <p>Твой личный автопарк. Выбирай автомобиль, изучай характеристики и управляй продажей государству.</p>
-  </section>
+<section id="garagePage" class="page">
+<h1>Гараж</h1><p class="muted">Транспорт твоего персонажа.</p>
+<div class="grid" id="garageContainer">
+<div class="card"><div class="car-icon">🚘</div><h3>Lada Priora</h3><p>Топливо: 87% · Состояние: 96%</p><button class="action" onclick="toast('Автомобиль заправлен')">⛽ Заправить</button></div>
+<div class="card"><div class="car-icon">🚗</div><h3>VAZ 2107</h3><p>Топливо: 62% · Состояние: 91%</p><button class="action" onclick="toast('Автомобиль исправен')">🔧 Ремонт</button></div>
+<div class="card"><div class="car-icon">🚙</div><h3>Mercedes-Benz G65</h3><p>Топливо: 100% · Состояние: 100%</p><button class="action" onclick="toast('Вы выехали в город')">🚗 Ехать</button></div>
+</div>
+<a class="action" href="cars.html">Открыть автосалон</a>
+<div class="pass-heading"><h2>Награды BLACK PASS</h2></div>
+<div id="passGarageRewards"></div>
+</section>
 
-  <section class="stats">
-    <div class="stat"><small>АВТОМОБИЛИ</small><strong id="count">—</strong></div>
-    <div class="stat"><small>СТОИМОСТЬ ПАРКА</small><strong id="fleet">—</strong></div>
-    <div class="stat"><small>ДЕНЬГИ</small><strong id="cash">—</strong></div>
-  </section>
+<section id="shopPage" class="page">
+<h1>Магазин</h1><p class="muted">Предметы и полезные вещи.</p>
+<div class="grid" id="shopContainer"></div>
+</section>
 
-  <nav class="nav">
-    <button class="active" data-page="cars">Мой гараж</button>
-    <button data-page="state">Продажа в Госс</button>
-    <button data-page="history">История</button>
-  </nav>
+<section id="mapPage" class="page">
+<h1>Карта города</h1><p class="muted">Основные места игрового мира.</p>
+<div class="grid">
+<a class="action" href="bank.html">🏦 Банк</a>
+<a class="action" href="cars.html">🚘 Автосалон</a>
+<a class="action" href="jobs.html">💼 Работы</a>
+<a class="action" href="case.html">🎁 Кейсы</a>
+<button class="action red" onclick="openPage('pass')">🏆 BLACK PASS</button>
+</div>
+</section>
 
-  <section class="page active" id="cars">
-    <div class="section-head">
-      <h2>Личный автопарк</h2>
-      <span class="muted" id="carLabel">Загрузка...</span>
-    </div>
-    <div id="carList" class="loading">Подключение к гаражу...</div>
-  </section>
+<section id="donatePage" class="page">
+<h1>Донат</h1><p class="muted">Премиальная валюта сервера.</p>
+<div class="card"><h3>Баланс: <span id="donateBalance">0</span> ♦</h3><p>Платёжная система ещё не подключена.</p></div>
+<div class="grid">
+<button class="action" onclick="buyDonate(100)">♦ 100</button>
+<button class="action" onclick="buyDonate(500)">♦ 500</button>
+<button class="action" onclick="buyDonate(1000)">♦ 1000</button>
+<button class="action" onclick="buyDonate(5000)">♦ 5000</button>
+</div>
+</section>
 
-  <section class="page" id="state">
-    <div class="box">
-      <h2>Продажа государству</h2>
-      <p class="muted">Выбери автомобиль и состояние для расчёта выкупа.</p>
-      <div class="field">
-        <label>АВТОМОБИЛЬ</label>
-        <select id="sellCar"></select>
-      </div>
-      <div class="field">
-        <label>СОСТОЯНИЕ</label>
-        <select id="condition">
-          <option value="new">Отличное — 60%</option>
-          <option value="good" selected>Хорошее — 50%</option>
-          <option value="medium">Среднее — 40%</option>
-          <option value="bad">Плохое — 25%</option>
-        </select>
-      </div>
-      <div class="payout">
-        <small>ПРЕДВАРИТЕЛЬНАЯ ВЫПЛАТА</small>
-        <strong id="payout">0 ₽</strong>
-        <div class="muted" id="calculation">Выбери автомобиль</div>
-      </div>
-      <button class="btn red full" id="sellButton">Продать государству</button>
-      <p class="notice">Продажа удаляет автомобиль из базы и начисляет выплату на игровой баланс. Перед подтверждением проверь сумму.</p>
-    </div>
-  </section>
+<section id="onlinePage" class="page">
+<h1>Игроки онлайн</h1><p class="muted">Игроки, которые сейчас находятся на сервере.</p>
+<div id="onlineContainer"></div>
+</section>
 
-  <section class="page" id="history">
-    <div class="box">
-      <h2>История операций</h2>
-      <div id="historyList" class="muted" style="margin-top:15px">История продаж пока не сохраняется в отдельную таблицу.</div>
-    </div>
-  </section>
+<section id="profilePage" class="page">
+<h1>Профиль</h1><p class="muted">Информация о персонаже.</p>
+<div class="profile">
+<h2 id="profileName">Player</h2>
+<p class="muted" id="profileId"></p>
+<div class="card">Уровень: <b id="profileLevel">1</b></div>
+<div class="card">Опыт: <b id="profileXP">0 XP</b></div>
+<div class="card">Наличные: <b id="profileCash">₽ 0</b></div>
+<div class="card">Банк: <b id="profileBank">₽ 0</b></div>
+<div class="card">Донат: <b id="profileDonate">♦ 0</b></div>
+<div class="card">Работа: <b id="profileJob">Безработный</b></div>
+<div class="card">Регистрация: <b id="profileDate">—</b></div>
+<button class="secondary" onclick="logout()">ВЫЙТИ ИЗ АККАУНТА</button>
+</div>
+</section>
+
+<section id="passPage" class="page">
+<div class="pass-hero">
+<div class="pass-kicker">BLACK RUSSIA RP · SEASON 01</div>
+<div class="pass-title">BLACK PASS</div>
+<p>Собирай опыт, проходи уровни и забирай награды сезона.</p>
+<div class="pass-stats">
+<div class="pass-stat"><small>ТВОЙ УРОВЕНЬ</small><b id="passLevel">1</b></div>
+<div class="pass-stat"><small>ТВОЙ ОПЫТ</small><b id="passXP">0 XP</b></div>
+<div class="pass-stat"><small>ОСТАЛОСЬ</small><b id="passTime">7 дн.</b></div>
+</div>
+<div class="pass-progress">
+<div class="pass-progress-label"><span>ПРОГРЕСС СЕЗОНА</span><span id="passProgressText">0 / 1000 XP</span></div>
+<div class="pass-bar"><div id="passProgressBar"></div></div>
+</div>
+</div>
+
+<div class="pass-heading"><h2>ТВОЙ ПРОПУСК</h2><span>FREE / PREMIUM</span></div>
+<div class="pass-tracks">
+<div class="pass-track"><b>FREE PASS</b><p>Бесплатные награды доступны всем игрокам.</p><span style="font-size:10px;color:#888">Играй и открывай уровни.</span></div>
+<div class="pass-track premium"><b>★ PREMIUM PASS</b><p>Дополнительные машины, деньги и тюнинг.</p><button id="premiumBtn" class="pass-btn gold" onclick="unlockPremium()">АКТИВИРОВАТЬ PREMIUM</button></div>
+</div>
+
+<div class="pass-heading"><h2>НАГРАДЫ СЕЗОНА</h2><span>10 УРОВНЕЙ</span></div>
+<div class="pass-levels" id="passLevels"></div>
+
+<div class="pass-heading"><h2>ЗАДАНИЯ</h2><span>+100 XP ЗА ЗАДАНИЕ</span></div>
+<div class="pass-tasks" id="passTasks"></div>
+
+<div class="pass-notice">Прогресс пропуска хранится отдельно для каждого аккаунта в этом браузере. Денежные награды зачисляются на баланс профиля. Машины и тюнинг отображаются в разделе «Гараж». PREMIUM сейчас работает в тестовом режиме и не требует оплаты. Для полноценной защиты от подмены наград потребуется серверная проверка.</div>
+</section>
 </main>
+
+<nav class="bottom-nav">
+<a href="#" class="active" data-page="home" onclick="openPage('home');return false"><span>🏠</span>Главная</a>
+<a href="jobs.html"><span>💼</span>Работа</a>
+<a href="#" data-page="garage" onclick="openPage('garage');return false"><span>🚗</span>Гараж</a>
+<a href="#" data-page="pass" onclick="openPage('pass');return false"><span>🏆</span>Pass</a>
+<a href="chat.html"><span>💬</span>Чат</a>
+<a href="#" data-page="profile" onclick="openPage('profile');return false"><span>👤</span>Профиль</a>
+</nav>
+</section>
 
 <div class="toast" id="toast"></div>
 
 <script>
 const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
 const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
-
-const catalog={
-  Priora:{name:"LADA Priora",image:"Priora.PNG",price:450000,type:"Отечественный седан",power:"98 л.с.",drive:"Передний"},
-  VAZ2107:{name:"ВАЗ 2107",image:"VAZ2107.PNG",price:250000,type:"Классический седан",power:"75 л.с.",drive:"Задний"},
-  G63:{name:"Mercedes-Benz G63",image:"G63.PNG",price:7000000,type:"Премиальный внедорожник",power:"585 л.с.",drive:"Полный"},
-  MercedesG63:{name:"Mercedes-Benz G63",image:"G63.PNG",price:7000000,type:"Премиальный внедорожник",power:"585 л.с.",drive:"Полный"}
-};
-
-const rates={new:.60,good:.50,medium:.40,bad:.25};
-const rateLabels={new:"Отличное",good:"Хорошее",medium:"Среднее",bad:"Плохое"};
-
-/*
-  Столбец владельца неизвестен заранее.
-  Проверяем типичные названия, запрашивая только выбранный столбец.
-  Если столбец не существует, пробуем следующий.
-*/
-const ownerCandidates=[
-  "user_id",
-  "profile_id",
-  "player_id",
-  "account_id",
-  "user_uuid",
-  "owner_uuid",
-  "owner_id",
-  "owner",
-  "user"
-];
-
-let user=null,profile=null,vehicles=[],busy=false,selectedIndex=0;
-let ownerColumn=null;
-
-const $=id=>document.getElementById(id);
-const money=n=>Math.round(Number(n)||0).toLocaleString("ru-RU");
-const token=()=>localStorage.getItem("brp_access_token");
+let currentUser=null,currentAuthUser=null;
 
 async function api(path,options={}){
-  const t=token();
-  if(!t)throw new Error("Нет сессии. Сначала войди через index.html.");
-
-  const response=await fetch(SUPABASE_URL+path,{
-    ...options,
-    headers:{
-      apikey:SUPABASE_KEY,
-      Authorization:"Bearer "+t,
-      "Content-Type":"application/json",
-      ...(options.headers||{})
-    }
+ const token=options.token||localStorage.getItem("brp_access_token")||SUPABASE_KEY;
+ const fetchOptions={...options};delete fetchOptions.token;
+ const headers={apikey:SUPABASE_KEY,Authorization:"Bearer "+token,"Content-Type":"application/json",...(options.headers||{})};
+ const response=await fetch(SUPABASE_URL+path,{...fetchOptions,headers});
+ const text=await response.text();let data;
+ try{data=text?JSON.parse(text):null}catch{data=text}
+ if(!response.ok)throw Error(typeof data==="string"?data:JSON.stringify(data));
+ return data;
+}
+function switchAuth(type){
+ const login=type==="login";
+ document.getElementById("loginForm").classList.toggle("hidden",!login);
+ document.getElementById("registerForm").classList.toggle("hidden",login);
+ document.getElementById("loginTab").classList.toggle("active",login);
+ document.getElementById("registerTab").classList.toggle("active",!login);
+}
+function showAuth(){
+ document.getElementById("authScreen").classList.remove("hidden");
+ document.getElementById("app").classList.add("hidden");
+}
+function showApp(){
+ document.getElementById("authScreen").classList.add("hidden");
+ document.getElementById("app").classList.remove("hidden");
+}
+function saveSession(data){
+ if(data.access_token)localStorage.setItem("brp_access_token",data.access_token);
+ if(data.refresh_token)localStorage.setItem("brp_refresh_token",data.refresh_token);
+}
+function clearSession(){
+ localStorage.removeItem("brp_access_token");
+ localStorage.removeItem("brp_refresh_token");
+}
+function setMessage(id,text,color="#ff2633"){
+ const el=document.getElementById(id);el.textContent=text;el.style.color=color;
+}
+async function registerAccount(){
+ const username=document.getElementById("regUsername").value.trim();
+ const email=document.getElementById("regEmail").value.trim();
+ const password=document.getElementById("regPassword").value;
+ const password2=document.getElementById("regPassword2").value;
+ if(!/^[a-zA-Z0-9_]{3,24}$/.test(username))return setMessage("registerMessage","Логин: 3–24 символа, латиница, цифры и _.");
+ if(!email.includes("@"))return setMessage("registerMessage","Введите корректную почту.");
+ if(password.length<6)return setMessage("registerMessage","Пароль должен содержать минимум 6 символов.");
+ if(password!==password2)return setMessage("registerMessage","Пароли не совпадают.");
+ try{
+  setMessage("registerMessage","Проверяем логин...","#aaa");
+  const existing=await api("/rest/v1/profiles?select=id&username=ilike."+encodeURIComponent(username)+"&limit=1",{token:SUPABASE_KEY});
+  if(existing?.length)return setMessage("registerMessage","Этот игровой логин уже занят.");
+  const auth=await api("/auth/v1/signup",{method:"POST",token:SUPABASE_KEY,body:JSON.stringify({email,password,data:{username}})});
+  if(auth?.access_token){saveSession(auth);await loadSession();return}
+  setMessage("registerMessage","Аккаунт создан. Проверь почту для подтверждения.","#ffc928");
+ }catch(e){setMessage("registerMessage",cleanError(e.message))}
+}
+async function loginAccount(){
+ const username=document.getElementById("loginUsername").value.trim();
+ const password=document.getElementById("loginPassword").value;
+ if(!username||!password)return setMessage("loginMessage","Введите логин и пароль.");
+ try{
+  setMessage("loginMessage","Ищем аккаунт...","#aaa");
+  const result=await api("/rest/v1/rpc/get_login_email",{method:"POST",token:SUPABASE_KEY,body:JSON.stringify({p_username:username})});
+  const email=typeof result==="string"?result:result?.email;
+  if(!email)return setMessage("loginMessage","Аккаунт не найден.");
+  const auth=await api("/auth/v1/token?grant_type=password",{method:"POST",token:SUPABASE_KEY,body:JSON.stringify({email,password})});
+  saveSession(auth);await loadSession();
+ }catch(e){setMessage("loginMessage",cleanError(e.message))}
+}
+async function loadSession(){
+ const token=localStorage.getItem("brp_access_token");
+ if(!token){showAuth();return}
+ try{
+  currentAuthUser=await api("/auth/v1/user",{headers:{Authorization:"Bearer "+token}});
+  if(!currentAuthUser?.id)throw Error("Сессия недействительна.");
+  let rows=await api("/rest/v1/profiles?id=eq."+encodeURIComponent(currentAuthUser.id)+"&select=*");
+  if(!rows?.length){
+   const username=currentAuthUser.user_metadata?.username||currentAuthUser.email?.split("@")[0]||"Player";
+   rows=await api("/rest/v1/profiles",{method:"POST",headers:{Prefer:"return=representation"},body:JSON.stringify({id:currentAuthUser.id,username,level:1,xp:0,cash:0,bank:0,donate:0,job:"Безработный"})});
+  }
+  currentUser=rows[0];
+  loadPassState();
+  renderProfile();renderPass();renderGarageRewards();showApp();
+  await updateOnline();await loadOnline();
+ }catch(e){
+  console.error(e);clearSession();currentUser=null;currentAuthUser=null;showAuth();
+ }
+}
+function money(n){return "₽ "+Number(n||0).toLocaleString("ru-RU")}
+function renderProfile(){
+ if(!currentUser)return;
+ const p=currentUser,level=Number(p.level||1),xp=Number(p.xp||0),cash=Number(p.cash||0),bank=Number(p.bank||0),donate=Number(p.donate||0);
+ const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+ set("homeName",p.username||"Player");set("homeLevel",level);set("homeXP",xp+" XP");
+ set("homeCash",money(cash));set("homeBank",money(bank));set("topCash",money(cash));
+ set("topDonate","♦ "+donate.toLocaleString("ru-RU"));set("profileName",p.username||"Player");
+ set("profileId","ID: "+p.id);set("profileLevel",level);set("profileXP",xp+" XP");
+ set("profileCash",money(cash));set("profileBank",money(bank));set("profileDonate","♦ "+donate);
+ set("profileJob",p.job||"Безработный");set("profileDate",p.created_at?new Date(p.created_at).toLocaleDateString("ru-RU"):"—");
+ set("donateBalance",donate.toLocaleString("ru-RU"));
+}
+function openPage(page){
+ document.querySelectorAll(".page").forEach(el=>el.classList.toggle("active",el.id===page+"Page"));
+ document.querySelectorAll(".bottom-nav a[data-page]").forEach(el=>el.classList.toggle("active",el.dataset.page===page));
+ window.scrollTo({top:0,behavior:"smooth"});
+ if(page==="online")loadOnline();
+ if(page==="pass")renderPass();
+ if(page==="garage")renderGarageRewards();
+}
+const items=[["🍔","Бургер",350],["🥤","Газировка",180],["☕","Кофе",250],["📱","Телефон",12500],["🎧","Наушники",6500],["🧰","Ремкомплект",3200],["🎒","Рюкзак",4500],["🧥","Куртка",7200]];
+function renderShop(){
+ const box=document.getElementById("shopContainer");box.innerHTML="";
+ items.forEach(([icon,name,price])=>{
+  const card=document.createElement("div");card.className="card";
+  const title=document.createElement("h3");title.textContent=icon+" "+name;
+  const desc=document.createElement("p");desc.textContent=money(price);
+  const button=document.createElement("button");button.className="action";button.textContent="КУПИТЬ";
+  button.onclick=()=>toast("Покупки пока не подключены к сохранению.");
+  card.append(title,desc,button);box.appendChild(card);
+ });
+}
+async function updateOnline(){
+ if(!currentUser||!currentAuthUser)return;
+ try{await api("/rest/v1/online_players",{method:"POST",headers:{Prefer:"resolution=merge-duplicates"},body:JSON.stringify({id:currentAuthUser.id,username:currentUser.username,online:true,last_seen:new Date().toISOString()})})}catch(e){console.warn(e)}
+}
+async function loadOnline(){
+ const box=document.getElementById("onlineContainer");
+ try{
+  const list=await api("/rest/v1/online_players?select=*&online=eq.true&order=last_seen.desc&limit=50");
+  box.innerHTML="";
+  if(!list?.length){box.textContent="Список игроков пока пуст.";return}
+  list.forEach(p=>{
+   const card=document.createElement("div");card.className="card";
+   const name=document.createElement("b");name.textContent="🟢 "+(p.username||"Player");
+   const status=document.createElement("p");status.textContent="В игре";
+   card.append(name,status);box.appendChild(card);
   });
-
-  const raw=await response.text();
-  let data=null;
-  try{data=raw?JSON.parse(raw):null}catch{data=raw}
-
-  if(!response.ok){
-    const message=typeof data==="string"
-      ?data
-      :(data?.message||data?.details||data?.hint||"Ошибка Supabase "+response.status);
-
-    const error=new Error(message);
-    error.status=response.status;
-    error.code=data?.code;
-    throw error;
-  }
-  return data;
+ }catch(e){box.textContent="Не удалось загрузить список игроков."}
 }
+function buyDonate(){toast("Платёжная система пока не подключена.")}
 
-function isMissingColumn(error,column){
-  const message=String(error?.message||"").toLowerCase();
-  return (
-    message.includes("column") &&
-    message.includes(column.toLowerCase()) &&
-    (
-      message.includes("does not exist") ||
-      message.includes("schema cache") ||
-      message.includes("could not find")
-    )
-  );
+/* BLACK PASS */
+const PASS_XP_PER_LEVEL=100;
+const PASS_DURATION=7*24*60*60*1000;
+let passState=null;
+
+const passRewards=[
+ {free:{icon:"💵",name:"10 000 ₽",type:"money",amount:10000},prem:{icon:"🚘",name:"Lada Priora",type:"car"}},
+ {free:{icon:"🔧",name:"Улучшение",type:"tuning"},prem:{icon:"💵",name:"50 000 ₽",type:"money",amount:50000}},
+ {free:{icon:"💵",name:"20 000 ₽",type:"money",amount:20000},prem:{icon:"🚙",name:"Mercedes G63",type:"car"}},
+ {free:{icon:"🛞",name:"Новые диски",type:"tuning"},prem:{icon:"💵",name:"75 000 ₽",type:"money",amount:75000}},
+ {free:{icon:"💵",name:"30 000 ₽",type:"money",amount:30000},prem:{icon:"🎨",name:"Новая окраска",type:"tuning"}},
+ {free:{icon:"🔧",name:"Тюнинг двигателя",type:"tuning"},prem:{icon:"💵",name:"100 000 ₽",type:"money",amount:100000}},
+ {free:{icon:"💵",name:"40 000 ₽",type:"money",amount:40000},prem:{icon:"🏎️",name:"Спорткар",type:"car"}},
+ {free:{icon:"🛞",name:"Спортивные диски",type:"tuning"},prem:{icon:"💵",name:"150 000 ₽",type:"money",amount:150000}},
+ {free:{icon:"💵",name:"50 000 ₽",type:"money",amount:50000},prem:{icon:"🏎️",name:"Редкий автомобиль",type:"car"}},
+ {free:{icon:"🏆",name:"BLACK EDITION",type:"special"},prem:{icon:"👑",name:"BLACK VIP",type:"special"}}
+];
+
+const passTasks=[
+ {id:"login",icon:"👋",name:"Первый вход",desc:"Забери опыт за участие в сезоне."},
+ {id:"driver",icon:"🚗",name:"Автолюбитель",desc:"Выполни задание водителя."},
+ {id:"work",icon:"💼",name:"Работяга",desc:"Выполни рабочее задание."},
+ {id:"city",icon:"🌆",name:"Городская жизнь",desc:"Исследуй игровой мир."},
+ {id:"garage",icon:"🔧",name:"Механик",desc:"Загляни в свой гараж."},
+ {id:"shop",icon:"🛍️",name:"Покупатель",desc:"Посети магазин."},
+ {id:"collector",icon:"🎁",name:"Коллекционер",desc:"Забери любую награду BLACK PASS."},
+ {id:"bank",icon:"🏦",name:"Банкир",desc:"Зайди в раздел банка."},
+ {id:"champion",icon:"🏁",name:"Чемпион",desc:"Набери 200 XP в пропуске."},
+ {id:"veteran",icon:"⭐",name:"Ветеран сезона",desc:"Набери 400 XP в пропуске."}
+];
+
+function passStorageKey(){
+ return "blackcars_pass_"+(currentAuthUser?.id||currentUser?.id||"guest");
 }
-
-async function detectOwnerColumn(){
-  const errors=[];
-
-  for(const column of ownerCandidates){
-    try{
-      /*
-        limit=0 проверяет существование столбца,
-        не загружая список автомобилей.
-      */
-      await api(
-        "/rest/v1/vehicles?select="+encodeURIComponent(column)+"&limit=0"
-      );
-      return column;
-    }catch(error){
-      if(isMissingColumn(error,column)){
-        errors.push(column);
-        continue;
-      }
-
-      /*
-        Ошибка прав доступа или другая ошибка API —
-        не пытаемся угадывать дальше.
-      */
-      throw new Error(
-        "Не удалось определить столбец владельца таблицы vehicles. "+
-        "Ошибка при проверке "+column+": "+error.message
-      );
-    }
-  }
-
-  throw new Error(
-    "Не найден подходящий столбец владельца в vehicles. "+
-    "Проверены: "+ownerCandidates.join(", ")+". "+
-    "Нужно определить настоящее поле владельца в схеме Supabase."
-  );
+function newPassState(){
+ return {start:Date.now(),xp:0,premium:false,claimedFree:[],claimedPrem:[],doneTasks:[],cars:[],tuning:[],special:[]};
 }
-
-function toast(message){
-  const el=$("toast");
-  el.textContent=message;
-  el.classList.add("show");
-  clearTimeout(toast.timer);
-  toast.timer=setTimeout(()=>el.classList.remove("show"),4000);
-}
-
-function escapeHtml(value){
-  return String(value??"").replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-  }[c]));
-}
-
-function getInfo(vehicle){
-  const code=String(vehicle.vehicle_code||"");
-  const known=catalog[code];
-
-  return {
-    name:vehicle.name||known?.name||code||"Автомобиль",
-    image:known?.image||"",
-    price:known?.price||0,
-    type:known?.type||"Личный автомобиль",
-    power:known?.power||"—",
-    drive:known?.drive||"—"
-  };
-}
-
-function updateMoney(){
-  const total=(Number(profile?.cash)||0)+(Number(profile?.bank)||0);
-  $("balance").textContent="₽ "+money(total);
-  $("cash").textContent=money(total)+" ₽";
-}
-
-function showLoadError(error){
-  $("carList").className="";
-  $("carList").innerHTML=
-    '<div class="empty">'+
-      '<strong>Не удалось загрузить гараж</strong>'+
-      '<span class="error">'+escapeHtml(error.message)+'</span>'+
-      '<br>Проверь структуру vehicles и права доступа Supabase.'+
-    '</div>';
-  $("carLabel").textContent="Ошибка";
-}
-
-async function load(){
-  try{
-    if(!token())throw new Error("Войди в аккаунт через index.html.");
-
-    user=await api("/auth/v1/user");
-    if(!user?.id)throw new Error("Не удалось определить аккаунт.");
-
-    const profiles=await api(
-      "/rest/v1/profiles?id=eq."+encodeURIComponent(user.id)+"&select=*"
-    );
-
-    if(!profiles?.length)throw new Error("Профиль игрока не найден.");
-    profile=profiles[0];
-    updateMoney();
-
-    ownerColumn=await detectOwnerColumn();
-
-    vehicles=await api(
-      "/rest/v1/vehicles?"+
-      encodeURIComponent(ownerColumn)+"=eq."+encodeURIComponent(user.id)+
-      "&select=*&order=id.desc"
-    );
-
-    if(!Array.isArray(vehicles))vehicles=[];
-    render();
-  }catch(error){
-    console.error("Ошибка загрузки гаража:",error);
-    showLoadError(error);
-  }
-}
-
-function changeCar(direction){
-  if(!vehicles.length)return;
-  selectedIndex=(selectedIndex+direction+vehicles.length)%vehicles.length;
-  renderCarousel();
-}
-
-function selectCar(index){
-  if(index<0||index>=vehicles.length)return;
-  selectedIndex=index;
-  renderCarousel();
-}
-
-function renderCarousel(){
-  const host=$("carList");
-
-  if(!vehicles.length){
-    host.className="";
-    host.innerHTML=
-      '<div class="empty">'+
-        '<strong>Гараж пока пуст</strong>'+
-        'Купи автомобиль в автосалоне — он появится здесь.'+
-        '<br><br><button class="btn red" onclick="location.href=\'cars.html\'">Открыть автосалон</button>'+
-      '</div>';
-    return;
-  }
-
-  selectedIndex=Math.max(0,Math.min(selectedIndex,vehicles.length-1));
-
-  const v=vehicles[selectedIndex];
-  const info=getInfo(v);
-
-  const image=info.image
-    ?'<img src="'+escapeHtml(info.image)+'" alt="'+escapeHtml(info.name)+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><div class="car-fallback" style="display:none">🚘</div>'
-    :'<div class="car-fallback">🚘</div>';
-
-  host.className="";
-  host.innerHTML=
-    '<article class="showroom">'+
-      '<div class="showroom-top">'+
-        '<div class="showroom-title">BLACK CARS / SHOWROOM</div>'+
-        '<div class="live">ВАШ ГАРАЖ</div>'+
-      '</div>'+
-      '<div class="scene">'+
-        '<div class="ceiling-lights"></div>'+
-        '<div class="wall-line"></div>'+
-        '<div class="floor"></div>'+
-        '<div class="red-glow"></div>'+
-        '<div class="car-image">'+image+'</div>'+
-        '<div class="scene-label">PERSONAL VEHICLE</div>'+
-        '<div class="scene-number">'+
-          String(selectedIndex+1).padStart(2,"0")+
-          ' / '+String(vehicles.length).padStart(2,"0")+
-        '</div>'+
-        '<button class="arrow prev" aria-label="Предыдущая машина" onclick="changeCar(-1)" '+(vehicles.length<2?'disabled':'')+'>‹</button>'+
-        '<button class="arrow next" aria-label="Следующая машина" onclick="changeCar(1)" '+(vehicles.length<2?'disabled':'')+'>›</button>'+
-        '<div class="scene-bottom">'+
-          '<span class="vehicle-number">BC — '+String(selectedIndex+1).padStart(3,"0")+'</span>'+
-          '<span class="condition-tag">В ВАШЕЙ СОБСТВЕННОСТИ</span>'+
-        '</div>'+
-      '</div>'+
-      '<div class="car-details">'+
-        '<div class="car-heading">'+
-          '<div><h3>'+escapeHtml(info.name)+'</h3><div class="car-type">'+escapeHtml(info.type)+'</div></div>'+
-          '<div class="car-price"><small>ОЦЕНОЧНАЯ СТОИМОСТЬ</small><strong>'+money(info.price)+' ₽</strong></div>'+
-        '</div>'+
-        '<div class="specs">'+
-          '<div class="spec"><small>МОЩНОСТЬ</small><b>'+escapeHtml(info.power)+'</b></div>'+
-          '<div class="spec"><small>ПРИВОД</small><b>'+escapeHtml(info.drive)+'</b></div>'+
-          '<div class="spec"><small>КОД АВТО</small><b>'+escapeHtml(v.vehicle_code)+'</b></div>'+
-        '</div>'+
-        '<div class="car-actions">'+
-          '<button class="btn" onclick="chooseForSale('+selectedIndex+')">Продать государству</button>'+
-          '<button class="btn red" onclick="location.href=\'cars.html\'">В автосалон</button>'+
-        '</div>'+
-      '</div>'+
-      '<div class="dots">'+
-        vehicles.map((item,i)=>
-          '<button class="dot '+(i===selectedIndex?'active':'')+
-          '" aria-label="Автомобиль '+(i+1)+'" onclick="selectCar('+i+')"></button>'
-        ).join("")+
-      '</div>'+
-    '</article>';
-}
-
-function render(){
-  $("count").textContent=vehicles.length;
-  $("carLabel").textContent=vehicles.length+" шт.";
-  $("fleet").textContent=money(
-    vehicles.reduce((sum,v)=>sum+getInfo(v).price,0)
-  )+" ₽";
-
-  renderCarousel();
-  fillSelect();
-}
-
-function fillSelect(){
-  const select=$("sellCar");
-  const previous=select.value;
-
-  select.innerHTML="";
-
-  if(!vehicles.length){
-    select.add(new Option("Нет автомобилей",""));
+function loadPassState(){
+ if(!currentUser)return;
+ try{
+  const saved=JSON.parse(localStorage.getItem(passStorageKey())||"null");
+  if(saved&&saved.start&&Date.now()-saved.start<PASS_DURATION){
+   passState={...newPassState(),...saved};
   }else{
-    vehicles.forEach(v=>{
-      const info=getInfo(v);
-      select.add(new Option(
-        info.name+" — "+money(info.price)+" ₽",
-        String(v.id)
-      ));
-    });
+   passState=newPassState();savePassState();
   }
-
-  if(vehicles.some(v=>String(v.id)===previous)){
-    select.value=previous;
-  }else if(vehicles[selectedIndex]){
-    select.value=String(vehicles[selectedIndex].id);
-  }
-
-  calculate();
+ }catch(e){passState=newPassState();savePassState()}
 }
-
-function chooseForSale(index){
-  const v=vehicles[index];
-  if(!v)return;
-
-  selectedIndex=index;
-  $("sellCar").value=String(v.id);
-  document.querySelector('[data-page="state"]').click();
-  calculate();
+function savePassState(){
+ if(passState&&currentUser)localStorage.setItem(passStorageKey(),JSON.stringify(passState));
 }
-
-function calculate(){
-  const v=vehicles.find(item=>String(item.id)===$("sellCar").value);
-  const info=v?getInfo(v):null;
-  const condition=$("condition").value;
-  const rate=rates[condition]||.5;
-  const payout=info?Math.floor(info.price*rate):0;
-
-  $("payout").textContent=money(payout)+" ₽";
-  $("calculation").textContent=info
-    ?money(info.price)+" ₽ × "+Math.round(rate*100)+"% · "+rateLabels[condition]
-    :"Нет доступных автомобилей";
-
-  $("sellButton").disabled=!v||busy||!info?.price||!ownerColumn;
+function passLevel(){return Math.min(10,Math.floor(passState.xp/PASS_XP_PER_LEVEL)+1)}
+function passTimeLeft(){
+ const left=Math.max(0,passState.start+PASS_DURATION-Date.now());
+ const days=Math.floor(left/86400000);
+ const hours=Math.floor(left%86400000/3600000);
+ return days?days+" дн. "+hours+" ч.":hours+" ч.";
 }
+function passRewardCard(reward,isPremium){
+ return `<div class="pass-reward ${isPremium?"premium-reward":""}">
+ <span class="pass-emoji">${reward.icon}</span>
+ <div class="pass-reward-info"><small>${isPremium?"PREMIUM":"FREE"}</small><b>${reward.name}</b></div>
+ </div>`;
+}
+function renderPass(){
+ if(!passState||!currentUser)return;
+ const level=passLevel();
+ document.getElementById("passLevel").textContent=level;
+ document.getElementById("passXP").textContent=passState.xp+" XP";
+ document.getElementById("passTime").textContent=passTimeLeft();
+ document.getElementById("passProgressText").textContent=passState.xp+" / 1000 XP";
+ document.getElementById("passProgressBar").style.width=Math.min(100,passState.xp/1000*100)+"%";
 
-async function sellToState(){
-  if(busy)return;
+ const premiumBtn=document.getElementById("premiumBtn");
+ premiumBtn.textContent=passState.premium?"PREMIUM АКТИВЕН ✓":"АКТИВИРОВАТЬ PREMIUM";
+ premiumBtn.disabled=passState.premium;
 
-  if(!ownerColumn){
-    toast("Не определён столбец владельца. Продажа отключена.");
-    return;
-  }
+ document.getElementById("passLevels").innerHTML=passRewards.map((r,i)=>{
+  const n=i+1,unlocked=passState.xp>=n*PASS_XP_PER_LEVEL;
+  const freeClaimed=passState.claimedFree.includes(n);
+  const premClaimed=passState.claimedPrem.includes(n);
+  return `<article class="pass-level ${level===n?"current":""}">
+   <div class="pass-level-top"><span>УРОВЕНЬ</span><b>${n}</b></div>
+   <div class="pass-xp">${n*PASS_XP_PER_LEVEL} XP</div>
+   ${passRewardCard(r.free,false)}
+   <button class="pass-btn" ${!unlocked||freeClaimed?"disabled":""} onclick="claimPassReward(${n},'free')">${freeClaimed?"ПОЛУЧЕНО":unlocked?"ЗАБРАТЬ":"ЗАКРЫТО"}</button>
+   ${passRewardCard(r.prem,true)}
+   <button class="pass-btn gold" ${!passState.premium||!unlocked||premClaimed?"disabled":""} onclick="claimPassReward(${n},'prem')">${premClaimed?"ПОЛУЧЕНО":!passState.premium?"НУЖЕН PREMIUM":unlocked?"ЗАБРАТЬ":"ЗАКРЫТО"}</button>
+  </article>`;
+ }).join("");
 
-  const vehicle=vehicles.find(v=>String(v.id)===$("sellCar").value);
-  if(!vehicle)return toast("Выбери автомобиль.");
+ document.getElementById("passTasks").innerHTML=passTasks.map(t=>{
+  const done=passState.doneTasks.includes(t.id),available=passTaskAvailable(t.id);
+  return `<div class="pass-task">
+   <div class="pass-task-icon">${t.icon}</div>
+   <div class="pass-task-info"><b>${t.name}</b><p>${t.desc} · +100 XP</p></div>
+   <button class="pass-btn" ${done||!available?"disabled":""} onclick="claimPassTask('${t.id}')">${done?"ВЫПОЛНЕНО":available?"ЗАБРАТЬ XP":"В ПРОЦЕССЕ"}</button>
+  </div>`;
+ }).join("");
+}
+function passTaskAvailable(id){
+ if(!passState)return false;
+ if(id==="collector")return passState.claimedFree.length+passState.claimedPrem.length>0;
+ if(id==="champion")return passState.xp>=200;
+ if(id==="veteran")return passState.xp>=400;
+ return true;
+}
+function unlockPremium(){
+ if(!passState||passState.premium)return;
+ if(!confirm("Активировать PREMIUM PASS в тестовом режиме? Оплата не производится."))return;
+ passState.premium=true;savePassState();renderPass();toast("PREMIUM PASS активирован!");
+}
+async function claimPassReward(level,type){
+ if(!passState||!currentUser)return;
+ const list=type==="free"?"claimedFree":"claimedPrem";
+ if(type==="prem"&&!passState.premium)return toast("Сначала активируй PREMIUM PASS.");
+ if(passState.xp<level*PASS_XP_PER_LEVEL)return toast("Недостаточно опыта.");
+ if(passState[list].includes(level))return toast("Эта награда уже получена.");
 
-  const info=getInfo(vehicle);
-  if(!info.price)return toast("Для этой модели не задана цена выкупа.");
+ const reward=passRewards[level-1]?.[type];
+ if(!reward)return;
 
-  const payout=Math.floor(info.price*(rates[$("condition").value]||.5));
-
-  if(!confirm("Продать "+info.name+" государству за "+money(payout)+" ₽?"))return;
-
-  busy=true;
-  $("sellButton").disabled=true;
-
-  const oldCash=Number(profile.cash)||0;
-  let credited=false;
-  let deleted=false;
-
+ if(reward.type==="money"){
+  const oldCash=Number(currentUser.cash||0);
   try{
-    /*
-      Сначала начисляем выплату.
-      Если удаление машины не получится, пробуем вернуть старый баланс.
-    */
-    const updated=await api(
-      "/rest/v1/profiles?id=eq."+encodeURIComponent(user.id),
-      {
-        method:"PATCH",
-        headers:{Prefer:"return=representation"},
-        body:JSON.stringify({cash:oldCash+payout})
-      }
-    );
-
-    credited=true;
-
-    if(!Array.isArray(updated)||!updated.length){
-      throw new Error(
-        "Supabase не вернул обновлённый профиль. Проверь права UPDATE для profiles."
-      );
-    }
-
-    profile=updated[0];
-    updateMoney();
-
-    const removed=await api(
-      "/rest/v1/vehicles?id=eq."+encodeURIComponent(vehicle.id)+
-      "&"+encodeURIComponent(ownerColumn)+"=eq."+encodeURIComponent(user.id),
-      {
-        method:"DELETE",
-        headers:{Prefer:"return=representation"}
-      }
-    );
-
-    if(!Array.isArray(removed)||!removed.length){
-      throw new Error(
-        "Автомобиль не удалён. Проверь права DELETE и соответствие столбца владельца."
-      );
-    }
-
-    deleted=true;
-
-    vehicles=vehicles.filter(v=>String(v.id)!==String(vehicle.id));
-    selectedIndex=Math.max(0,Math.min(selectedIndex,vehicles.length-1));
-
-    render();
-    toast("Продажа завершена: +"+money(payout)+" ₽");
-    document.querySelector('[data-page="cars"]').click();
-
-  }catch(error){
-    console.error("Ошибка продажи:",error);
-
-    if(credited&&!deleted){
-      try{
-        const rollback=await api(
-          "/rest/v1/profiles?id=eq."+encodeURIComponent(user.id),
-          {
-            method:"PATCH",
-            headers:{Prefer:"return=representation"},
-            body:JSON.stringify({cash:oldCash})
-          }
-        );
-
-        if(!Array.isArray(rollback)||!rollback.length){
-          throw new Error("Supabase не подтвердил возврат баланса.");
-        }
-
-        profile=rollback[0];
-        updateMoney();
-
-        toast("Продажа отменена. Баланс возвращён.");
-      }catch(rollbackError){
-        console.error("Не удалось отменить начисление:",rollbackError);
-        toast(
-          "ВНИМАНИЕ: не удалось отменить начисление. "+
-          "Не повторяй операцию — проверь баланс в Supabase."
-        );
-      }
-    }else if(deleted){
-      toast(
-        "Машина удалена, но произошла ошибка. "+
-        "Проверь баланс перед повторными действиями."
-      );
-    }else{
-      toast("Продажа не выполнена: "+error.message);
-    }
-  }finally{
-    busy=false;
-    calculate();
+   await api("/rest/v1/profiles?id=eq."+encodeURIComponent(currentUser.id),{
+    method:"PATCH",
+    headers:{Prefer:"return=minimal"},
+    body:JSON.stringify({cash:oldCash+reward.amount})
+   });
+   currentUser.cash=oldCash+reward.amount;
+   renderProfile();
+  }catch(e){
+   console.error(e);
+   toast("Не удалось зачислить деньги. Проверь права Supabase.");
+   return;
   }
+ }
+ if(reward.type==="car"&&!passState.cars.includes(reward.name))passState.cars.push(reward.name);
+ if(reward.type==="tuning")passState.tuning.push(reward.name);
+ if(reward.type==="special")passState.special.push(reward.name);
+
+ passState[list].push(level);
+ savePassState();renderPass();renderGarageRewards();
+ toast("Награда получена: "+reward.name);
+}
+function claimPassTask(id){
+ if(!passState)return;
+ const task=passTasks.find(t=>t.id===id);
+ if(!task||passState.doneTasks.includes(id))return;
+ if(!passTaskAvailable(id))return toast("Сначала выполни условие задания.");
+ passState.doneTasks.push(id);
+ passState.xp=Math.min(1000,passState.xp+100);
+ savePassState();renderPass();toast("Получено +100 XP!");
+}
+function renderGarageRewards(){
+ const box=document.getElementById("passGarageRewards");
+ if(!box||!passState)return;
+ const cars=passState.cars||[],tuning=passState.tuning||[],special=passState.special||[];
+ if(!cars.length&&!tuning.length&&!special.length){
+  box.innerHTML='<div class="card"><p>Пока нет наград BLACK PASS. Открывай уровни пропуска!</p></div>';return;
+ }
+ box.innerHTML="";
+ cars.forEach(name=>{
+  const card=document.createElement("div");card.className="card";
+  const title=document.createElement("h3");title.textContent="🚘 "+name;
+  const desc=document.createElement("p");desc.textContent="Получено в BLACK PASS";
+  card.append(title,desc);box.appendChild(card);
+ });
+ tuning.forEach(name=>{
+  const card=document.createElement("div");card.className="card";
+  const title=document.createElement("h3");title.textContent="🔧 "+name;
+  const desc=document.createElement("p");desc.textContent="Награда тюнинга BLACK PASS";
+  card.append(title,desc);box.appendChild(card);
+ });
+ special.forEach(name=>{
+  const card=document.createElement("div");card.className="card";
+  const title=document.createElement("h3");title.textContent="🏆 "+name;
+  const desc=document.createElement("p");desc.textContent="Специальная награда сезона";
+  card.append(title,desc);box.appendChild(card);
+ });
 }
 
-document.querySelectorAll(".nav button").forEach(button=>{
-  button.addEventListener("click",()=>{
-    document.querySelectorAll(".nav button").forEach(b=>
-      b.classList.toggle("active",b===button)
-    );
-
-    document.querySelectorAll(".page").forEach(p=>
-      p.classList.toggle("active",p.id===button.dataset.page)
-    );
+async function logout(){
+ try{
+  if(currentAuthUser?.id)await api("/rest/v1/online_players?id=eq."+encodeURIComponent(currentAuthUser.id),{
+   method:"PATCH",body:JSON.stringify({online:false,last_seen:new Date().toISOString()})
   });
-});
+ }catch(e){}
+ try{await api("/auth/v1/logout",{method:"POST"})}catch(e){}
+ clearSession();currentUser=null;currentAuthUser=null;passState=null;
+ switchAuth("login");showAuth();
+ document.getElementById("loginUsername").value="";
+ document.getElementById("loginPassword").value="";
+}
+function toast(text){
+ const el=document.getElementById("toast");el.textContent=text;el.style.display="block";
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>el.style.display="none",2500);
+}
+function cleanError(t){
+ if(t.includes("Invalid login credentials"))return "Неверный логин или пароль.";
+ if(t.includes("Email not confirmed"))return "Сначала подтверди почту.";
+ if(t.includes("User already registered"))return "Эта почта уже зарегистрирована.";
+ if(t.includes("Invalid API key"))return "Ошибка ключа Supabase.";
+ if(t.includes("Failed to fetch"))return "Нет соединения с сервером.";
+ if(t.toLowerCase().includes("permission denied"))return "Нет разрешения Supabase.";
+ return String(t).replace(/[{}\[\]"]/g,"").slice(0,200);
+}
 
-$("condition").addEventListener("change",calculate);
-
-$("sellCar").addEventListener("change",()=>{
-  const index=vehicles.findIndex(v=>String(v.id)===$("sellCar").value);
-
-  if(index>=0){
-    selectedIndex=index;
-    renderCarousel();
+document.addEventListener("DOMContentLoaded",async()=>{
+ renderShop();
+ switchAuth("login");
+ await loadSession();
+ setInterval(async()=>{
+  if(currentUser){await updateOnline();await loadOnline()}
+ },15000);
+ setInterval(()=>{
+  if(passState&&currentUser){
+   const remaining=passState.start+PASS_DURATION-Date.now();
+   if(remaining<=0){
+    passState=newPassState();savePassState();renderPass();
+    toast("Начался новый сезон BLACK PASS!");
+   }else{
+    const el=document.getElementById("passTime");
+    if(el)el.textContent=passTimeLeft();
+   }
   }
-
-  calculate();
+ },60000);
+ window.addEventListener("beforeunload",()=>{
+  if(!currentAuthUser?.id)return;
+  const token=localStorage.getItem("brp_access_token");
+  fetch(SUPABASE_URL+"/rest/v1/online_players?id=eq."+encodeURIComponent(currentAuthUser.id),{
+   method:"PATCH",keepalive:true,
+   headers:{apikey:SUPABASE_KEY,Authorization:"Bearer "+token,"Content-Type":"application/json"},
+   body:JSON.stringify({online:false,last_seen:new Date().toISOString()})
+  });
+ });
 });
-
-$("sellButton").addEventListener("click",sellToState);
-
-load();
 </script>
 </body>
 </html>
