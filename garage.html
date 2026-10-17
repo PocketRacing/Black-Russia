@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>BLACK CARS | Гараж</title>
+<style>
+:root {
+  --bg:#090909;
+  --panel:#141414;
+  --red:#e52323;
+  --text:#fff;
+  --muted:#888;
+  --border:#292929;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Arial,sans-serif;padding-bottom:35px
+}
+header{
+  padding:20px 16px;background:#101010;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between
+}
+.logo{font-size:21px;font-weight:900;letter-spacing:1px}
+.logo span{color:var(--red)}
+.back{
+  color:#fff;text-decoration:none;background:#222;
+  padding:10px 14px;border-radius:9px;font-size:13px
+}
+main{max-width:950px;margin:auto;padding:18px 14px}
+h1{font-size:25px;margin:8px 0}
+.subtitle{color:var(--muted);font-size:13px;margin-bottom:20px}
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:9px;margin-bottom:22px
+}
+.stat{background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:14px 10px}
+.stat small{color:var(--muted);display:block;font-size:11px;margin-bottom:7px}
+.stat strong{font-size:17px}
+.section-title{
+  display:flex;justify-content:space-between;align-items:center;
+  margin:22px 0 12px;font-size:17px;font-weight:bold
+}
+.cars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.car{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;overflow:hidden;min-width:0
+}
+.car.selected{border:1px solid var(--red);box-shadow:0 0 14px #e523231b}
+.car-image{
+  height:135px;background:linear-gradient(145deg,#202020,#0d0d0d);
+  display:flex;align-items:center;justify-content:center;position:relative;
+  overflow:hidden
+}
+.car-image img{width:100%;height:100%;object-fit:contain;padding:8px}
+.car-placeholder{font-size:44px}
+.tag{
+  position:absolute;top:9px;left:9px;background:var(--red);
+  font-size:10px;font-weight:bold;padding:5px 7px;border-radius:5px
+}
+.car-info{padding:12px}
+.car-info h3{margin:0 0 6px;font-size:16px}
+.car-info p{margin:0 0 12px;color:var(--muted);font-size:12px}
+.price{font-size:14px;font-weight:bold;margin-bottom:12px}
+button{
+  width:100%;border:0;border-radius:9px;padding:11px;
+  color:white;background:var(--red);font-weight:bold;cursor:pointer
+}
+button.secondary{background:#292929}
+button:disabled{opacity:.4;cursor:not-allowed}
+.tuning{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px
+}
+.tune{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:12px;padding:13px
+}
+.tune h3{font-size:14px;margin:0 0 7px}
+.tune p{font-size:12px;color:var(--muted);margin:0 0 12px}
+.notice{
+  background:#191111;border:1px solid #462020;border-radius:10px;
+  padding:12px;color:#d9b0b0;font-size:12px;margin-top:18px
+}
+.toast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:#252525;border:1px solid #444;border-radius:10px;
+  padding:12px 18px;display:none;z-index:5;max-width:90%;
+  text-align:center;font-size:13px
+}
+@media(max-width:380px){
+  .cars{grid-template-columns:1fr}
+  .car-image{height:160px}
+  .stats{gap:5px}
+  .stat strong{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">BLACK <span>CARS</span></div>
+  <a class="back" href="index.html">← Назад</a>
+</header>
+
+<main>
+  <h1>Мой гараж</h1>
+  <div class="subtitle">Твои автомобили и улучшения</div>
+
+  <div class="stats">
+    <div class="stat">
+      <small>АВТОМОБИЛЕЙ</small>
+      <strong id="carCount">0</strong>
+    </div>
+    <div class="stat">
+      <small>ВЫБРАНО</small>
+      <strong id="selectedName">Нет</strong>
+    </div>
+    <div class="stat">
+      <small>БАЛАНС</small>
+      <strong id="balance">—</strong>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <span>Мои автомобили</span>
+    <span style="color:#888;font-size:12px">Гараж</span>
+  </div>
+  <div class="cars" id="cars"></div>
+
+  <div class="section-title">
+    <span>Тюнинг</span>
+    <span style="color:#888;font-size:12px" id="tuningCar">Выбери авто</span>
+  </div>
+  <div class="tuning" id="tuning"></div>
+
+  <div class="notice">
+    Данные этого демо-гаража хранятся в браузере. Для синхронизации автомобилей,
+    денег и тюнинга с аккаунтом BLACK CARS потребуется подключить гараж к базе
+    данных проекта.
+  </div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const STORAGE_KEY = "black_cars_garage_v1";
+
+const catalog = [
+  {id:"Priora",name:"LADA Priora",image:"Priora.PNG",price:450000,emoji:"🚗"},
+  {id:"VAZ2107",name:"ВАЗ 2107",image:"VAZ2107.PNG",price:280000,emoji:"🚘"},
+  {id:"G63",name:"Mercedes-Benz G63",image:"G63.PNG",price:7000000,emoji:"🚙"}
+];
+
+const tuningItems = [
+  {id:"paint",name:"Покраска",desc:"Обнови внешний вид",price:15000},
+  {id:"wheels",name:"Новые диски",desc:"Комплект спортивных дисков",price:25000},
+  {id:"engine",name:"Улучшение двигателя",desc:"Повышение мощности",price:50000},
+  {id:"suspension",name:"Подвеска",desc:"Настройка высоты автомобиля",price:30000}
+];
+
+function loadData(){
+  try{
+    const saved=JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if(saved && Array.isArray(saved.owned)) return saved;
+  }catch(e){}
+  return {
+    cash:500000,
+    owned:["Priora"],
+    selected:"Priora",
+    tuning:{}
+  };
+}
+
+let data=loadData();
+
+function saveData(){
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+}
+
+function money(value){
+  return Number(value).toLocaleString("ru-RU")+" ₽";
+}
+
+function notify(message){
+  const el=document.getElementById("toast");
+  el.textContent=message;
+  el.style.display="block";
+  clearTimeout(notify.timer);
+  notify.timer=setTimeout(()=>el.style.display="none",2400);
+}
+
+function renderCars(){
+  const root=document.getElementById("cars");
+  root.innerHTML="";
+
+  const ownedCars=catalog.filter(car=>data.owned.includes(car.id));
+
+  document.getElementById("carCount").textContent=ownedCars.length;
+  document.getElementById("balance").textContent=money(data.cash);
+  const selected=catalog.find(car=>car.id===data.selected);
+  document.getElementById("selectedName").textContent=selected?selected.name:"Нет";
+
+  catalog.forEach(car=>{
+    const isOwned=data.owned.includes(car.id);
+    const isSelected=data.selected===car.id;
+
+    const card=document.createElement("div");
+    card.className="car"+(isSelected?" selected":"");
+
+    const image=document.createElement("div");
+    image.className="car-image";
+
+    const img=document.createElement("img");
+    img.src=car.image;
+    img.alt=car.name;
+    img.onerror=()=>{
+      image.innerHTML='<div class="car-placeholder">'+car.emoji+'</div>';
+    };
+    image.appendChild(img);
+
+    if(isSelected){
+      const tag=document.createElement("div");
+      tag.className="tag";
+      tag.textContent="ВЫБРАНА";
+      image.appendChild(tag);
+    }
+
+    const info=document.createElement("div");
+    info.className="car-info";
+
+    const name=document.createElement("h3");
+    name.textContent=car.name;
+
+    const desc=document.createElement("p");
+    desc.textContent=isOwned?"Твой автомобиль":"Доступен для покупки";
+
+    const price=document.createElement("div");
+    price.className="price";
+    price.textContent=isOwned?"В собственности":money(car.price);
+
+    const button=document.createElement("button");
+
+    if(isOwned){
+      button.textContent=isSelected?"Выбрана":"Выбрать";
+      button.className=isSelected?"secondary":"";
+      button.onclick=()=>{
+        data.selected=car.id;
+        saveData();
+        render();
+        notify("Выбран автомобиль: "+car.name);
+      };
+    }else{
+      button.textContent="Купить";
+      button.disabled=data.cash<car.price;
+      button.onclick=()=>buyCar(car);
+    }
+
+    info.append(name,desc,price,button);
+    card.append(image,info);
+    root.appendChild(card);
+  });
+}
+
+function buyCar(car){
+  if(data.owned.includes(car.id)){
+    notify("Этот автомобиль уже есть в гараже");
+    return;
+  }
+  if(data.cash<car.price){
+    notify("Недостаточно денег");
+    return;
+  }
+
+  data.cash-=car.price;
+  data.owned.push(car.id);
+  data.selected=car.id;
+  saveData();
+  render();
+  notify("Поздравляем! "+car.name+" добавлена в гараж");
+}
+
+function renderTuning(){
+  const root=document.getElementById("tuning");
+  root.innerHTML="";
+
+  const car=catalog.find(item=>item.id===data.selected);
+  document.getElementById("tuningCar").textContent=car?car.name:"Выбери авто";
+
+  if(!car || !data.owned.includes(car.id)){
+    root.innerHTML="<div class='tune'>Сначала выбери свой автомобиль.</div>";
+    return;
+  }
+
+  if(!data.tuning[car.id]) data.tuning[car.id]=[];
+
+  tuningItems.forEach(item=>{
+    const installed=data.tuning[car.id].includes(item.id);
+    const card=document.createElement("div");
+    card.className="tune";
+
+    const title=document.createElement("h3");
+    title.textContent=item.name;
+
+    const desc=document.createElement("p");
+    desc.textContent=installed?"Установлено":item.desc;
+
+    const button=document.createElement("button");
+    button.textContent=installed?"Установлено":money(item.price);
+    button.className=installed?"secondary":"";
+    button.disabled=installed||data.cash<item.price;
+
+    button.onclick=()=>{
+      if(data.cash<item.price){
+        notify("Недостаточно денег");
+        return;
+      }
+      data.cash-=item.price;
+      data.tuning[car.id].push(item.id);
+      saveData();
+      render();
+      notify("Установлено: "+item.name);
+    };
+
+    card.append(title,desc,button);
+    root.appendChild(card);
+  });
+}
+
+function render(){
+  renderCars();
+  renderTuning();
+}
+
+render();
+</script>
+</body>
+</html>
