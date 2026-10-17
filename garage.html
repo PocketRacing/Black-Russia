@@ -9,48 +9,29 @@
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{--red:#e50914;--bg:#080808;--panel:#111;--line:#292929;--muted:#888;--green:#53df91}
 body{font-family:Arial,sans-serif;background:radial-gradient(ellipse at 50% -5%,#351010 0,transparent 48%),var(--bg);color:#f5f5f5;min-height:100vh;padding-bottom:35px}
-button,select{font:inherit;cursor:pointer}
-button:disabled{opacity:.45;cursor:not-allowed}
+button,select{font:inherit;cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}
 .top{height:60px;padding:0 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#090909ed;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;backdrop-filter:blur(12px)}
 .logo{font-size:18px;font-weight:1000;letter-spacing:1px;white-space:nowrap}.logo span{color:var(--red)}
-.back,.balance{background:#171717;border:1px solid #303030;border-radius:8px;padding:9px 10px;font-size:10px;color:#ddd}
-.balance{color:var(--green);font-weight:bold;white-space:nowrap}
-.wrap{max-width:1050px;margin:auto;padding:17px 14px}
-.crumb{font-size:10px;letter-spacing:2px;color:#777;margin:8px 0 18px}
-.hero{position:relative;overflow:hidden;border:1px solid #392222;border-radius:14px;padding:22px 18px;background:linear-gradient(110deg,#211010,#111 65%,#171717)}
-.hero-label{color:#e66c72;font-size:10px;letter-spacing:3px;font-weight:bold}
-h1{font-size:clamp(27px,6vw,39px);margin:8px 0}
+.back,.balance{background:#171717;border:1px solid #303030;border-radius:8px;padding:9px 10px;font-size:10px;color:#ddd}.balance{color:var(--green);font-weight:bold;white-space:nowrap}
+.wrap{max-width:1050px;margin:auto;padding:17px 14px}.crumb{font-size:10px;letter-spacing:2px;color:#777;margin:8px 0 18px}
+.hero{border:1px solid #392222;border-radius:14px;padding:22px 18px;background:linear-gradient(110deg,#211010,#111 65%,#171717)}
+.hero-label{color:#e66c72;font-size:10px;letter-spacing:3px;font-weight:bold}h1{font-size:clamp(27px,6vw,39px);margin:8px 0}
 .hero p{font-size:12px;color:#aaa;line-height:1.6;max-width:480px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}
-.stat{padding:13px 11px;background:#121212;border:1px solid var(--line);border-radius:10px;min-width:0}
-.stat small{display:block;color:#888;font-size:9px;margin-bottom:8px}
-.stat strong{font-size:clamp(13px,3vw,20px);overflow-wrap:anywhere}
-.nav{display:flex;gap:7px;overflow:auto;padding:2px 0 9px;margin:13px 0}
-.nav button{white-space:nowrap;padding:11px 14px;border:1px solid #292929;background:#141414;color:#aaa;border-radius:8px;font-size:11px}
-.nav button.active{background:var(--red);border-color:var(--red);color:white}
-.page{display:none}.page.active{display:block}
-.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:15px 0}
-.section-head h2{font-size:19px}
-.muted{color:var(--muted);font-size:11px}
-.btn{padding:11px 13px;border-radius:7px;border:1px solid #383838;background:#222;color:white;font-weight:bold;font-size:10px}
-.btn.red{background:var(--red);border-color:var(--red)}
-.btn.full{width:100%;margin-top:10px}
-.loading{padding:24px;text-align:center;color:#aaa;font-size:12px}
-.empty{padding:35px 15px;text-align:center;background:#111;border:1px dashed #343434;border-radius:12px;color:#888;line-height:1.8}
-.empty strong{display:block;color:white;margin-bottom:6px}
-
-/* ВИРТУАЛЬНЫЙ ГАРАЖ */
-.showroom{position:relative;overflow:hidden;border:1px solid #302020;border-radius:15px;background:#090909;box-shadow:0 18px 55px #0008}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0}.stat{padding:13px 11px;background:#121212;border:1px solid var(--line);border-radius:10px;min-width:0}
+.stat small{display:block;color:#888;font-size:9px;margin-bottom:8px}.stat strong{font-size:clamp(13px,3vw,20px);overflow-wrap:anywhere}
+.nav{display:flex;gap:7px;overflow:auto;padding:2px 0 9px;margin:13px 0}.nav button{white-space:nowrap;padding:11px 14px;border:1px solid #292929;background:#141414;color:#aaa;border-radius:8px;font-size:11px}
+.nav button.active{background:var(--red);border-color:var(--red);color:white}.page{display:none}.page.active{display:block}
+.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:15px 0}.section-head h2{font-size:19px}.muted{color:var(--muted);font-size:11px}
+.btn{padding:11px 13px;border-radius:7px;border:1px solid #383838;background:#222;color:white;font-weight:bold;font-size:10px}.btn.red{background:var(--red);border-color:var(--red)}.btn.full{width:100%;margin-top:10px}
+.loading{padding:24px;text-align:center;color:#aaa;font-size:12px}.empty{padding:35px 15px;text-align:center;background:#111;border:1px dashed #343434;border-radius:12px;color:#888;line-height:1.8}.empty strong{display:block;color:white;margin-bottom:6px}
+.showroom{overflow:hidden;border:1px solid #302020;border-radius:15px;background:#090909;box-shadow:0 18px 55px #0008}
 .showroom-top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 15px;background:linear-gradient(90deg,#191010,#101010);border-bottom:1px solid #302020}
-.showroom-title{font-size:10px;font-weight:bold;letter-spacing:2px}
-.live{font-size:9px;color:#ff666c;letter-spacing:1px;white-space:nowrap}
-.live:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:7px;box-shadow:0 0 9px var(--red)}
-.scene{height:clamp(245px,48vw,420px);position:relative;overflow:hidden;background:linear-gradient(180deg,#111 0%,#171717 48%,#202020 70%,#090909 100%)}
-.scene:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 10%,#ffffff05 25%,transparent 40%,transparent 63%,#ffffff06 76%,transparent 90%);pointer-events:none}
+.showroom-title{font-size:10px;font-weight:bold;letter-spacing:2px}.live{font-size:9px;color:#ff666c;letter-spacing:1px;white-space:nowrap}
+.live:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);margin-right:7px}
+.scene{height:clamp(245px,48vw,420px);position:relative;overflow:hidden;background:linear-gradient(180deg,#111,#171717 48%,#202020 70%,#090909)}
 .ceiling-lights{position:absolute;top:0;left:8%;right:8%;height:5px;background:linear-gradient(90deg,transparent,#eee8,transparent,#fff8,transparent);filter:blur(2px);box-shadow:0 0 24px #fff3}
 .wall-line{position:absolute;left:0;right:0;top:42%;height:1px;background:#ffffff0b;box-shadow:0 14px #ffffff06,0 28px #ffffff05}
 .floor{position:absolute;left:-10%;right:-10%;bottom:-30%;height:58%;background:repeating-linear-gradient(90deg,transparent 0,transparent 95px,#ffffff08 96px,#ffffff08 97px),linear-gradient(180deg,#292929,#080808 75%);transform:perspective(220px) rotateX(15deg);transform-origin:top}
-.floor:before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:#ffffff12}
 .red-glow{position:absolute;bottom:8%;left:12%;right:12%;height:22%;border-radius:50%;background:#e5091420;filter:blur(28px)}
 .car-image{position:absolute;z-index:2;inset:4% 4% 7%;display:flex;align-items:center;justify-content:center}
 .car-image img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 12px #000b);animation:carIn .3s ease-out}
@@ -58,128 +39,80 @@ h1{font-size:clamp(27px,6vw,39px);margin:8px 0}
 .car-fallback{font-size:clamp(75px,18vw,130px);filter:drop-shadow(0 15px 12px #000)}
 .scene-label{position:absolute;z-index:3;top:15px;left:15px;background:#080808b8;border:1px solid #ffffff18;padding:8px 10px;border-radius:5px;font-size:9px;letter-spacing:1px}
 .scene-number{position:absolute;z-index:3;top:15px;right:15px;color:#ffffff9c;font-size:10px;letter-spacing:2px}
-.arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:39px;height:49px;border:1px solid #ffffff26;border-radius:8px;background:#080808b8;color:#fff;font-size:25px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(5px)}
-.arrow:active{background:var(--red)}
-.arrow.prev{left:12px}.arrow.next{right:12px}
-.scene-bottom{position:absolute;z-index:3;bottom:13px;left:15px;right:15px;display:flex;justify-content:space-between;align-items:end;gap:10px}
-.vehicle-number{font-size:9px;color:#ccc;letter-spacing:2px}
-.condition-tag{padding:7px 9px;border-radius:5px;background:#15251b;color:#76e8a1;font-size:9px;letter-spacing:1px;border:1px solid #31543b}
-.car-details{padding:18px;background:linear-gradient(145deg,#151515,#0e0e0e)}
-.car-heading{display:flex;justify-content:space-between;align-items:start;gap:12px}
-.car-heading h3{font-size:clamp(20px,5vw,27px);line-height:1.2;margin-bottom:7px}
-.car-type{font-size:11px;color:#888}
-.car-price{text-align:right;white-space:nowrap}
-.car-price small{display:block;font-size:9px;color:#888;margin-bottom:6px}
-.car-price strong{font-size:clamp(15px,4vw,22px);color:var(--green)}
-.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:17px 0}
-.spec{padding:12px 10px;background:#1a1a1a;border:1px solid #292929;border-radius:8px;min-width:0}
-.spec small{display:block;color:#777;font-size:9px;margin-bottom:7px}
-.spec b{font-size:12px;overflow-wrap:anywhere}
-.car-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.car-actions button{min-height:42px}
-.dots{display:flex;justify-content:center;gap:7px;padding:14px;background:#0c0c0c;border-top:1px solid #252525}
-.dot{width:7px;height:7px;border:0;border-radius:50%;background:#454545;padding:0}
-.dot.active{width:22px;border-radius:8px;background:var(--red)}
-.box{max-width:620px;margin:12px auto;background:#121212;border:1px solid #303030;border-radius:13px;padding:18px}
-.box h2{font-size:20px;margin-bottom:8px}
-.field{margin-top:16px}
-.field label{display:block;color:#aaa;font-size:11px;margin-bottom:8px}
-.field select{width:100%;padding:12px;background:#080808;color:white;border:1px solid #393939;border-radius:8px}
-.payout{margin-top:16px;background:linear-gradient(120deg,#1b1717,#101010);border:1px solid #382626;border-radius:10px;padding:17px}
-.payout small{color:#aaa;font-size:11px}
-.payout strong{display:block;font-size:29px;margin:9px 0;color:var(--green)}
-.notice{font-size:10px;color:#888;line-height:1.7;margin-top:13px}
-.history-row{padding:13px 0;border-bottom:1px solid #292929;display:flex;justify-content:space-between;gap:12px;font-size:12px}
-.history-row small{display:block;color:#777;margin-top:5px}
-.positive{color:var(--green);font-weight:bold;white-space:nowrap}
-.error{color:#ff7979}
-.toast{position:fixed;z-index:10;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#222;border:1px solid #444;padding:12px 16px;border-radius:9px;font-size:11px;max-width:90%;transition:.2s}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:480px){
- .stats{gap:6px}.stat{padding:11px 8px}
- .scene{height:255px}.car-image{inset:9% 3% 12%}
- .arrow{width:33px;height:43px}.arrow.prev{left:8px}.arrow.next{right:8px}
- .car-details{padding:14px}
- .car-heading{flex-direction:column}
- .car-price{text-align:left}
- .specs{gap:6px;margin:13px 0}
- .spec{padding:10px 8px}.spec b{font-size:11px}
- .car-actions{grid-template-columns:1fr}
-}
+.arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:39px;height:49px;border:1px solid #ffffff26;border-radius:8px;background:#080808b8;color:#fff;font-size:25px;display:flex;align-items:center;justify-content:center}
+.arrow.prev{left:12px}.arrow.next{right:12px}.scene-bottom{position:absolute;z-index:3;bottom:13px;left:15px;right:15px;display:flex;justify-content:space-between;align-items:end;gap:10px}
+.vehicle-number{font-size:9px;color:#ccc;letter-spacing:2px}.condition-tag{padding:7px 9px;border-radius:5px;background:#15251b;color:#76e8a1;font-size:9px;letter-spacing:1px;border:1px solid #31543b}
+.car-details{padding:18px;background:linear-gradient(145deg,#151515,#0e0e0e)}.car-heading{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.car-heading h3{font-size:clamp(20px,5vw,27px);line-height:1.2;margin-bottom:7px}.car-type{font-size:11px;color:#888}
+.car-price{text-align:right;white-space:nowrap}.car-price small{display:block;font-size:9px;color:#888;margin-bottom:6px}.car-price strong{font-size:clamp(15px,4vw,22px);color:var(--green)}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:17px 0}.spec{padding:12px 10px;background:#1a1a1a;border:1px solid #292929;border-radius:8px;min-width:0}
+.spec small{display:block;color:#777;font-size:9px;margin-bottom:7px}.spec b{font-size:12px;overflow-wrap:anywhere}
+.car-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.car-actions button{min-height:42px}
+.dots{display:flex;justify-content:center;gap:7px;padding:14px;background:#0c0c0c;border-top:1px solid #252525}.dot{width:7px;height:7px;border:0;border-radius:50%;background:#454545;padding:0}.dot.active{width:22px;border-radius:8px;background:var(--red)}
+.box{max-width:620px;margin:12px auto;background:#121212;border:1px solid #303030;border-radius:13px;padding:18px}.box h2{font-size:20px;margin-bottom:8px}
+.field{margin-top:16px}.field label{display:block;color:#aaa;font-size:11px;margin-bottom:8px}.field select{width:100%;padding:12px;background:#080808;color:white;border:1px solid #393939;border-radius:8px}
+.payout{margin-top:16px;background:linear-gradient(120deg,#1b1717,#101010);border:1px solid #382626;border-radius:10px;padding:17px}.payout small{color:#aaa;font-size:11px}.payout strong{display:block;font-size:29px;margin:9px 0;color:var(--green)}
+.notice{font-size:10px;color:#888;line-height:1.7;margin-top:13px}.history-row{padding:13px 0;border-bottom:1px solid #292929;display:flex;justify-content:space-between;gap:12px;font-size:12px}
+.positive{color:var(--green);font-weight:bold;white-space:nowrap}.error{color:#ff7979}
+.toast{position:fixed;z-index:10;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#222;border:1px solid #444;padding:12px 16px;border-radius:9px;font-size:11px;max-width:90%;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:480px){.stats{gap:6px}.stat{padding:11px 8px}.scene{height:255px}.car-image{inset:9% 3% 12%}.arrow{width:33px;height:43px}.arrow.prev{left:8px}.arrow.next{right:8px}.car-details{padding:14px}.car-heading{flex-direction:column}.car-price{text-align:left}.specs{gap:6px;margin:13px 0}.spec{padding:10px 8px}.spec b{font-size:11px}.car-actions{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <header class="top">
-  <button class="back" onclick="location.href='index.html'">← НАЗАД</button>
-  <div class="logo">BLACK <span>CARS</span></div>
-  <div class="balance" id="balance">₽ 0</div>
+<button class="back" onclick="location.href='index.html'">← НАЗАД</button>
+<div class="logo">BLACK <span>CARS</span></div>
+<div class="balance" id="balance">₽ 0</div>
 </header>
 
 <main class="wrap">
-  <div class="crumb">BLACK CARS / ЛИЧНЫЙ ТРАНСПОРТ</div>
+<div class="crumb">BLACK CARS / ЛИЧНЫЙ ТРАНСПОРТ</div>
+<section class="hero">
+<div class="hero-label">PRIVATE AUTOMOTIVE CLUB</div>
+<h1>Мой гараж<span style="color:#e50914">.</span></h1>
+<p>Твой личный автопарк. Выбирай автомобиль, изучай характеристики и управляй продажей государству.</p>
+</section>
 
-  <section class="hero">
-    <div class="hero-label">PRIVATE AUTOMOTIVE CLUB</div>
-    <h1>Мой гараж<span style="color:#e50914">.</span></h1>
-    <p>Твой личный автопарк. Выбирай автомобиль, изучай характеристики и управляй продажей государству.</p>
-  </section>
+<section class="stats">
+<div class="stat"><small>АВТОМОБИЛИ</small><strong id="count">—</strong></div>
+<div class="stat"><small>СТОИМОСТЬ ПАРКА</small><strong id="fleet">—</strong></div>
+<div class="stat"><small>ДЕНЬГИ</small><strong id="cash">—</strong></div>
+</section>
 
-  <section class="stats">
-    <div class="stat"><small>АВТОМОБИЛИ</small><strong id="count">—</strong></div>
-    <div class="stat"><small>СТОИМОСТЬ ПАРКА</small><strong id="fleet">—</strong></div>
-    <div class="stat"><small>ДЕНЬГИ</small><strong id="cash">—</strong></div>
-  </section>
+<nav class="nav">
+<button class="active" data-page="cars">Мой гараж</button>
+<button data-page="state">Продажа в Госс</button>
+<button data-page="history">История</button>
+</nav>
 
-  <nav class="nav">
-    <button class="active" data-page="cars">Мой гараж</button>
-    <button data-page="state">Продажа в Госс</button>
-    <button data-page="history">История</button>
-  </nav>
+<section class="page active" id="cars">
+<div class="section-head"><h2>Личный автопарк</h2><span class="muted" id="carLabel">Загрузка...</span></div>
+<div id="carList" class="loading">Подключение к гаражу...</div>
+</section>
 
-  <section class="page active" id="cars">
-    <div class="section-head">
-      <h2>Личный автопарк</h2>
-      <span class="muted" id="carLabel">Загрузка...</span>
-    </div>
-    <div id="carList" class="loading">Подключение к гаражу...</div>
-  </section>
+<section class="page" id="state">
+<div class="box">
+<h2>Продажа государству</h2>
+<p class="muted">Выбери автомобиль и состояние для расчёта выкупа.</p>
+<div class="field"><label>АВТОМОБИЛЬ</label><select id="sellCar"></select></div>
+<div class="field"><label>СОСТОЯНИЕ</label>
+<select id="condition">
+<option value="new">Отличное — 60%</option>
+<option value="good" selected>Хорошее — 50%</option>
+<option value="medium">Среднее — 40%</option>
+<option value="bad">Плохое — 25%</option>
+</select></div>
+<div class="payout"><small>ПРЕДВАРИТЕЛЬНАЯ ВЫПЛАТА</small><strong id="payout">0 ₽</strong><div class="muted" id="calculation">Выбери автомобиль</div></div>
+<button class="btn red full" id="sellButton">Продать государству</button>
+<p class="notice">Продажа удаляет автомобиль из базы и начисляет выплату на игровой баланс. Перед подтверждением проверь сумму.</p>
+</div>
+</section>
 
-  <section class="page" id="state">
-    <div class="box">
-      <h2>Продажа государству</h2>
-      <p class="muted">Выбери автомобиль и состояние для расчёта выкупа.</p>
-      <div class="field">
-        <label>АВТОМОБИЛЬ</label>
-        <select id="sellCar"></select>
-      </div>
-      <div class="field">
-        <label>СОСТОЯНИЕ</label>
-        <select id="condition">
-          <option value="new">Отличное — 60%</option>
-          <option value="good" selected>Хорошее — 50%</option>
-          <option value="medium">Среднее — 40%</option>
-          <option value="bad">Плохое — 25%</option>
-        </select>
-      </div>
-      <div class="payout">
-        <small>ПРЕДВАРИТЕЛЬНАЯ ВЫПЛАТА</small>
-        <strong id="payout">0 ₽</strong>
-        <div class="muted" id="calculation">Выбери автомобиль</div>
-      </div>
-      <button class="btn red full" id="sellButton">Продать государству</button>
-      <p class="notice">Продажа удаляет автомобиль из базы и начисляет выплату на игровой баланс. Перед подтверждением проверь сумму.</p>
-    </div>
-  </section>
-
-  <section class="page" id="history">
-    <div class="box">
-      <h2>История операций</h2>
-      <div id="historyList" class="muted" style="margin-top:15px">История продаж пока не сохраняется в отдельную таблицу.</div>
-    </div>
-  </section>
+<section class="page" id="history">
+<div class="box"><h2>История операций</h2><div id="historyList" class="muted" style="margin-top:15px">История продаж пока не сохраняется в отдельную таблицу.</div></div>
+</section>
 </main>
-
 <div class="toast" id="toast"></div>
 
 <script>
@@ -187,12 +120,11 @@ const SUPABASE_URL="https://qzswnoeglovfpgrzpnio.supabase.co";
 const SUPABASE_KEY="sb_publishable_k_mSqLmEL-OMvM5x7slx7w_EqR0HXqY";
 
 const catalog={
-  Priora:{name:"LADA Priora",image:"Priora.PNG",price:450000,type:"Отечественный седан",power:"98 л.с.",drive:"Передний"},
-  VAZ2107:{name:"ВАЗ 2107",image:"VAZ2107.PNG",price:250000,type:"Классический седан",power:"75 л.с.",drive:"Задний"},
-  G63:{name:"Mercedes-Benz G63",image:"G63.PNG",price:7000000,type:"Премиальный внедорожник",power:"585 л.с.",drive:"Полный"},
-  MercedesG63:{name:"Mercedes-Benz G63",image:"G63.PNG",price:7000000,type:"Премиальный внедорожник",power:"585 л.с.",drive:"Полный"}
+ Priora:{name:"LADA Priora",image:"Priora.PNG",price:450000,type:"Отечественный седан",power:"98 л.с.",drive:"Передний"},
+ VAZ2107:{name:"ВАЗ 2107",image:"VAZ2107.PNG",price:250000,type:"Классический седан",power:"75 л.с.",drive:"Задний"},
+ G63:{name:"Mercedes-Benz G63",image:"G63.PNG",price:7000000,type:"Премиальный внедорожник",power:"585 л.с.",drive:"Полный"},
+ MercedesG63:{name:"Mercedes-Benz G63",image:"G63.PNG",price:7000000,type:"Премиальный внедорожник",power:"585 л.с.",drive:"Полный"}
 };
-
 const rates={new:.60,good:.50,medium:.40,bad:.25};
 const rateLabels={new:"Отличное",good:"Хорошее",medium:"Среднее",bad:"Плохое"};
 let user=null,profile=null,vehicles=[],busy=false,selectedIndex=0;
@@ -202,269 +134,196 @@ const money=n=>Math.round(Number(n)||0).toLocaleString("ru-RU");
 const token=()=>localStorage.getItem("brp_access_token");
 
 async function api(path,options={}){
-  const t=token();
-  if(!t)throw new Error("Нет сессии. Сначала войди через index.html.");
-  const response=await fetch(SUPABASE_URL+path,{
-    ...options,
-    headers:{
-      apikey:SUPABASE_KEY,
-      Authorization:"Bearer "+t,
-      "Content-Type":"application/json",
-      ...(options.headers||{})
-    }
-  });
-  const raw=await response.text();
-  let data=null;
-  try{data=raw?JSON.parse(raw):null}catch{data=raw}
-  if(!response.ok){
-    throw new Error(typeof data==="string"?data:(data?.message||data?.details||"Ошибка Supabase "+response.status));
-  }
-  return data;
+ const t=token();
+ if(!t)throw new Error("Нет сессии. Сначала войди через index.html.");
+ const response=await fetch(SUPABASE_URL+path,{
+  ...options,
+  headers:{apikey:SUPABASE_KEY,Authorization:"Bearer "+t,"Content-Type":"application/json",...(options.headers||{})}
+ });
+ const raw=await response.text();
+ let data=null;
+ try{data=raw?JSON.parse(raw):null}catch{data=raw}
+ if(!response.ok)throw new Error(typeof data==="string"?data:(data?.message||data?.details||data?.hint||"Ошибка Supabase "+response.status));
+ return data;
 }
 
 function toast(message){
-  const el=$("toast");
-  el.textContent=message;
-  el.classList.add("show");
-  clearTimeout(toast.timer);
-  toast.timer=setTimeout(()=>el.classList.remove("show"),3200);
+ const el=$("toast");el.textContent=message;el.classList.add("show");
+ clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove("show"),3200);
 }
-
 function escapeHtml(value){
-  return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 }
-
 function getInfo(vehicle){
-  const code=String(vehicle.vehicle_code||"");
-  const known=catalog[code];
-  return {
-    name:vehicle.name||known?.name||code||"Автомобиль",
-    image:known?.image||"",
-    price:known?.price||0,
-    type:known?.type||"Личный автомобиль",
-    power:known?.power||"—",
-    drive:known?.drive||"—"
-  };
+ const code=String(vehicle.vehicle_code||"");
+ const known=catalog[code];
+ return {name:vehicle.name||known?.name||code||"Автомобиль",image:known?.image||"",price:known?.price||0,type:known?.type||"Личный автомобиль",power:known?.power||"—",drive:known?.drive||"—"};
 }
-
 function updateMoney(){
-  const total=(Number(profile?.cash)||0)+(Number(profile?.bank)||0);
-  $("balance").textContent="₽ "+money(total);
-  $("cash").textContent=money(total)+" ₽";
+ const total=(Number(profile?.cash)||0)+(Number(profile?.bank)||0);
+ $("balance").textContent="₽ "+money(total);
+ $("cash").textContent=money(total)+" ₽";
 }
-
 function showLoadError(error){
-  $("carList").className="";
-  $("carList").innerHTML='<div class="empty"><strong>Не удалось загрузить гараж</strong><span class="error">'+escapeHtml(error.message)+'</span><br>Проверь сессию, таблицу vehicles и права доступа Supabase.</div>';
-  $("carLabel").textContent="Ошибка";
+ $("carList").className="";
+ $("carList").innerHTML='<div class="empty"><strong>Не удалось загрузить гараж</strong><span class="error">'+escapeHtml(error.message)+'</span><br>Проверь сессию, таблицу vehicles и права доступа Supabase.</div>';
+ $("carLabel").textContent="Ошибка";
 }
 
+/*
+ * ВАЖНО:
+ * Здесь нет фильтра owner_id.
+ * Доступ к чужим записям должна ограничивать RLS-политика
+ * таблицы vehicles в Supabase.
+ */
 async function load(){
-  try{
-    if(!token())throw new Error("Войди в аккаунт через index.html.");
-    user=await api("/auth/v1/user");
-    if(!user?.id)throw new Error("Не удалось определить аккаунт.");
+ try{
+  if(!token())throw new Error("Войди в аккаунт через index.html.");
+  user=await api("/auth/v1/user");
+  if(!user?.id)throw new Error("Не удалось определить аккаунт.");
 
-    const profiles=await api("/rest/v1/profiles?id=eq."+encodeURIComponent(user.id)+"&select=*");
-    if(!profiles?.length)throw new Error("Профиль игрока не найден.");
-    profile=profiles[0];
-    updateMoney();
+  const profiles=await api("/rest/v1/profiles?id=eq."+encodeURIComponent(user.id)+"&select=*");
+  if(!profiles?.length)throw new Error("Профиль игрока не найден.");
+  profile=profiles[0];
+  updateMoney();
 
-    vehicles=await api("/rest/v1/vehicles?owner_id=eq."+encodeURIComponent(user.id)+"&select=*&order=id.desc");
-    if(!Array.isArray(vehicles))vehicles=[];
-    render();
-  }catch(error){
-    showLoadError(error);
-  }
+  vehicles=await api("/rest/v1/vehicles?select=*&order=id.desc");
+  if(!Array.isArray(vehicles))vehicles=[];
+  render();
+ }catch(error){showLoadError(error)}
 }
 
 function changeCar(direction){
-  if(!vehicles.length)return;
-  selectedIndex=(selectedIndex+direction+vehicles.length)%vehicles.length;
-  renderCarousel();
+ if(!vehicles.length)return;
+ selectedIndex=(selectedIndex+direction+vehicles.length)%vehicles.length;
+ renderCarousel();
 }
-
 function selectCar(index){
-  if(index<0||index>=vehicles.length)return;
-  selectedIndex=index;
-  renderCarousel();
+ if(index<0||index>=vehicles.length)return;
+ selectedIndex=index;renderCarousel();
 }
 
 function renderCarousel(){
-  const host=$("carList");
-  if(!vehicles.length){
-    host.className="";
-    host.innerHTML='<div class="empty"><strong>Гараж пока пуст</strong>Купи автомобиль в автосалоне — он появится здесь.<br><br><button class="btn red" onclick="location.href=\'cars.html\'">Открыть автосалон</button></div>';
-    return;
-  }
-
-  selectedIndex=Math.max(0,Math.min(selectedIndex,vehicles.length-1));
-  const v=vehicles[selectedIndex];
-  const info=getInfo(v);
-  const image=info.image
-    ?'<img src="'+escapeHtml(info.image)+'" alt="'+escapeHtml(info.name)+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><div class="car-fallback" style="display:none">🚘</div>'
-    :'<div class="car-fallback">🚘</div>';
-
+ const host=$("carList");
+ if(!vehicles.length){
   host.className="";
-  host.innerHTML=
-    '<article class="showroom">'+
-      '<div class="showroom-top">'+
-        '<div class="showroom-title">BLACK CARS / SHOWROOM</div>'+
-        '<div class="live">ВАШ ГАРАЖ</div>'+
-      '</div>'+
-      '<div class="scene">'+
-        '<div class="ceiling-lights"></div><div class="wall-line"></div><div class="floor"></div><div class="red-glow"></div>'+
-        '<div class="car-image">'+image+'</div>'+
-        '<div class="scene-label">PERSONAL VEHICLE</div>'+
-        '<div class="scene-number">'+String(selectedIndex+1).padStart(2,"0")+' / '+String(vehicles.length).padStart(2,"0")+'</div>'+
-        '<button class="arrow prev" aria-label="Предыдущая машина" onclick="changeCar(-1)" '+(vehicles.length<2?'disabled':'')+'>‹</button>'+
-        '<button class="arrow next" aria-label="Следующая машина" onclick="changeCar(1)" '+(vehicles.length<2?'disabled':'')+'>›</button>'+
-        '<div class="scene-bottom"><span class="vehicle-number">BC — '+String(selectedIndex+1).padStart(3,"0")+'</span><span class="condition-tag">В ВАШЕЙ СОБСТВЕННОСТИ</span></div>'+
-      '</div>'+
-      '<div class="car-details">'+
-        '<div class="car-heading">'+
-          '<div><h3>'+escapeHtml(info.name)+'</h3><div class="car-type">'+escapeHtml(info.type)+'</div></div>'+
-          '<div class="car-price"><small>ОЦЕНОЧНАЯ СТОИМОСТЬ</small><strong>'+money(info.price)+' ₽</strong></div>'+
-        '</div>'+
-        '<div class="specs">'+
-          '<div class="spec"><small>МОЩНОСТЬ</small><b>'+escapeHtml(info.power)+'</b></div>'+
-          '<div class="spec"><small>ПРИВОД</small><b>'+escapeHtml(info.drive)+'</b></div>'+
-          '<div class="spec"><small>КОД АВТО</small><b>'+escapeHtml(v.vehicle_code)+'</b></div>'+
-        '</div>'+
-        '<div class="car-actions">'+
-          '<button class="btn" onclick="chooseForSale('+selectedIndex+')">Продать государству</button>'+
-          '<button class="btn red" onclick="location.href=\'cars.html\'">В автосалон</button>'+
-        '</div>'+
-      '</div>'+
-      '<div class="dots">'+vehicles.map((item,i)=>'<button class="dot '+(i===selectedIndex?'active':'')+'" aria-label="Автомобиль '+(i+1)+'" onclick="selectCar('+i+')"></button>').join("")+'</div>'+
-    '</article>';
+  host.innerHTML='<div class="empty"><strong>Гараж пока пуст</strong>Купи автомобиль в автосалоне — он появится здесь.<br><br><button class="btn red" onclick="location.href=\'cars.html\'">Открыть автосалон</button></div>';
+  return;
+ }
+ selectedIndex=Math.max(0,Math.min(selectedIndex,vehicles.length-1));
+ const v=vehicles[selectedIndex],info=getInfo(v);
+ const image=info.image
+ ?'<img src="'+escapeHtml(info.image)+'" alt="'+escapeHtml(info.name)+'" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><div class="car-fallback" style="display:none">🚘</div>'
+ :'<div class="car-fallback">🚘</div>';
+
+ host.className="";
+ host.innerHTML=
+ '<article class="showroom">'+
+ '<div class="showroom-top"><div class="showroom-title">BLACK CARS / SHOWROOM</div><div class="live">ВАШ ГАРАЖ</div></div>'+
+ '<div class="scene"><div class="ceiling-lights"></div><div class="wall-line"></div><div class="floor"></div><div class="red-glow"></div>'+
+ '<div class="car-image">'+image+'</div><div class="scene-label">PERSONAL VEHICLE</div>'+
+ '<div class="scene-number">'+String(selectedIndex+1).padStart(2,"0")+' / '+String(vehicles.length).padStart(2,"0")+'</div>'+
+ '<button class="arrow prev" aria-label="Предыдущая машина" onclick="changeCar(-1)" '+(vehicles.length<2?'disabled':'')+'>‹</button>'+
+ '<button class="arrow next" aria-label="Следующая машина" onclick="changeCar(1)" '+(vehicles.length<2?'disabled':'')+'>›</button>'+
+ '<div class="scene-bottom"><span class="vehicle-number">BC — '+String(selectedIndex+1).padStart(3,"0")+'</span><span class="condition-tag">В ВАШЕЙ СОБСТВЕННОСТИ</span></div></div>'+
+ '<div class="car-details"><div class="car-heading"><div><h3>'+escapeHtml(info.name)+'</h3><div class="car-type">'+escapeHtml(info.type)+'</div></div>'+
+ '<div class="car-price"><small>ОЦЕНОЧНАЯ СТОИМОСТЬ</small><strong>'+money(info.price)+' ₽</strong></div></div>'+
+ '<div class="specs"><div class="spec"><small>МОЩНОСТЬ</small><b>'+escapeHtml(info.power)+'</b></div>'+
+ '<div class="spec"><small>ПРИВОД</small><b>'+escapeHtml(info.drive)+'</b></div>'+
+ '<div class="spec"><small>КОД АВТО</small><b>'+escapeHtml(v.vehicle_code)+'</b></div></div>'+
+ '<div class="car-actions"><button class="btn" onclick="chooseForSale('+selectedIndex+')">Продать государству</button><button class="btn red" onclick="location.href=\'cars.html\'">В автосалон</button></div></div>'+
+ '<div class="dots">'+vehicles.map((item,i)=>'<button class="dot '+(i===selectedIndex?'active':'')+'" aria-label="Автомобиль '+(i+1)+'" onclick="selectCar('+i+')"></button>').join("")+'</div></article>';
 }
 
 function render(){
-  $("count").textContent=vehicles.length;
-  $("carLabel").textContent=vehicles.length+" шт.";
-  $("fleet").textContent=money(vehicles.reduce((sum,v)=>sum+getInfo(v).price,0))+" ₽";
-  renderCarousel();
-  fillSelect();
+ $("count").textContent=vehicles.length;
+ $("carLabel").textContent=vehicles.length+" шт.";
+ $("fleet").textContent=money(vehicles.reduce((sum,v)=>sum+getInfo(v).price,0))+" ₽";
+ renderCarousel();fillSelect();
 }
-
 function fillSelect(){
-  const select=$("sellCar");
-  const previous=select.value;
-  select.innerHTML="";
-  if(!vehicles.length){
-    select.add(new Option("Нет автомобилей",""));
-  }else{
-    vehicles.forEach(v=>{
-      const info=getInfo(v);
-      select.add(new Option(info.name+" — "+money(info.price)+" ₽",String(v.id)));
-    });
-  }
-  if(vehicles.some(v=>String(v.id)===previous))select.value=previous;
-  else if(vehicles[selectedIndex])select.value=String(vehicles[selectedIndex].id);
-  calculate();
+ const select=$("sellCar"),previous=select.value;
+ select.innerHTML="";
+ if(!vehicles.length)select.add(new Option("Нет автомобилей",""));
+ else vehicles.forEach(v=>{const info=getInfo(v);select.add(new Option(info.name+" — "+money(info.price)+" ₽",String(v.id)))});
+ if(vehicles.some(v=>String(v.id)===previous))select.value=previous;
+ else if(vehicles[selectedIndex])select.value=String(vehicles[selectedIndex].id);
+ calculate();
 }
-
 function chooseForSale(index){
-  const v=vehicles[index];
-  if(!v)return;
-  selectedIndex=index;
-  $("sellCar").value=String(v.id);
-  document.querySelector('[data-page="state"]').click();
-  calculate();
+ const v=vehicles[index];if(!v)return;
+ selectedIndex=index;$("sellCar").value=String(v.id);
+ document.querySelector('[data-page="state"]').click();calculate();
 }
-
 function calculate(){
-  const v=vehicles.find(item=>String(item.id)===$("sellCar").value);
-  const info=v?getInfo(v):null;
-  const condition=$("condition").value;
-  const rate=rates[condition]||.5;
-  const payout=info?Math.floor(info.price*rate):0;
-  $("payout").textContent=money(payout)+" ₽";
-  $("calculation").textContent=info
-    ?money(info.price)+" ₽ × "+Math.round(rate*100)+"% · "+rateLabels[condition]
-    :"Нет доступных автомобилей";
-  $("sellButton").disabled=!v||busy||!info?.price;
+ const v=vehicles.find(item=>String(item.id)===$("sellCar").value);
+ const info=v?getInfo(v):null,condition=$("condition").value,rate=rates[condition]||.5;
+ const payout=info?Math.floor(info.price*rate):0;
+ $("payout").textContent=money(payout)+" ₽";
+ $("calculation").textContent=info?money(info.price)+" ₽ × "+Math.round(rate*100)+"% · "+rateLabels[condition]:"Нет доступных автомобилей";
+ $("sellButton").disabled=!v||busy||!info?.price;
 }
 
 async function sellToState(){
-  if(busy)return;
-  const vehicle=vehicles.find(v=>String(v.id)===$("sellCar").value);
-  if(!vehicle)return toast("Выбери автомобиль.");
-  const info=getInfo(vehicle);
-  if(!info.price)return toast("Для этой модели не задана цена выкупа.");
+ if(busy)return;
+ const vehicle=vehicles.find(v=>String(v.id)===$("sellCar").value);
+ if(!vehicle)return toast("Выбери автомобиль.");
+ const info=getInfo(vehicle);
+ if(!info.price)return toast("Для этой модели не задана цена выкупа.");
 
-  const payout=Math.floor(info.price*(rates[$("condition").value]||.5));
-  if(!confirm("Продать "+info.name+" государству за "+money(payout)+" ₽?"))return;
+ const payout=Math.floor(info.price*(rates[$("condition").value]||.5));
+ if(!confirm("Продать "+info.name+" государству за "+money(payout)+" ₽?"))return;
 
-  busy=true;
-  $("sellButton").disabled=true;
-  let deleted=false;
-  const oldCash=Number(profile.cash)||0;
+ busy=true;$("sellButton").disabled=true;
+ const oldCash=Number(profile.cash)||0;
+ let deleted=false;
+ try{
+  /*
+   * Удаляем только по ID.
+   * RLS-политика Supabase обязана запрещать удаление чужих машин.
+   */
+  const removed=await api("/rest/v1/vehicles?id=eq."+encodeURIComponent(vehicle.id),{
+   method:"DELETE",headers:{Prefer:"return=representation"}
+  });
+  if(!Array.isArray(removed)||!removed.length)
+   throw new Error("Автомобиль не удалён. Проверь права доступа RLS.");
+  deleted=true;
 
-  try{
-    const removed=await api(
-      "/rest/v1/vehicles?id=eq."+encodeURIComponent(vehicle.id)+
-      "&owner_id=eq."+encodeURIComponent(user.id),
-      {method:"DELETE",headers:{Prefer:"return=representation"}}
-    );
+  const updated=await api("/rest/v1/profiles?id=eq."+encodeURIComponent(user.id),{
+   method:"PATCH",headers:{Prefer:"return=representation"},
+   body:JSON.stringify({cash:oldCash+payout})
+  });
+  if(!Array.isArray(updated)||!updated.length)
+   throw new Error("Машина удалена, но баланс не обновился. Не продавай повторно.");
 
-    if(!Array.isArray(removed)||!removed.length){
-      throw new Error("Автомобиль не удалён. Возможно, он уже продан или нет прав доступа.");
-    }
-    deleted=true;
-
-    const updated=await api(
-      "/rest/v1/profiles?id=eq."+encodeURIComponent(user.id),
-      {
-        method:"PATCH",
-        headers:{Prefer:"return=representation"},
-        body:JSON.stringify({cash:oldCash+payout})
-      }
-    );
-
-    if(!Array.isArray(updated)||!updated.length){
-      throw new Error("Автомобиль удалён, но баланс не обновился. Проверь Supabase.");
-    }
-
-    profile=updated[0];
-    vehicles=vehicles.filter(v=>String(v.id)!==String(vehicle.id));
-    selectedIndex=Math.max(0,Math.min(selectedIndex,vehicles.length-1));
-    updateMoney();
-    render();
-    toast("Продажа завершена: +"+money(payout)+" ₽");
-    document.querySelector('[data-page="cars"]').click();
-  }catch(error){
-    console.error(error);
-    if(deleted){
-      toast("Ошибка начисления денег. Не продавай повторно — проверь профиль в Supabase.");
-    }else{
-      toast("Продажа не выполнена: "+error.message);
-    }
-  }finally{
-    busy=false;
-    calculate();
-  }
+  profile=updated[0];
+  vehicles=vehicles.filter(v=>String(v.id)!==String(vehicle.id));
+  selectedIndex=Math.max(0,Math.min(selectedIndex,vehicles.length-1));
+  updateMoney();render();
+  toast("Продажа завершена: +"+money(payout)+" ₽");
+  document.querySelector('[data-page="cars"]').click();
+ }catch(error){
+  console.error(error);
+  if(deleted)toast("Ошибка начисления денег. Не продавай повторно — проверь профиль в Supabase.");
+  else toast("Продажа не выполнена: "+error.message);
+ }finally{
+  busy=false;calculate();
+ }
 }
 
 document.querySelectorAll(".nav button").forEach(button=>{
-  button.addEventListener("click",()=>{
-    document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b===button));
-    document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===button.dataset.page));
-  });
+ button.addEventListener("click",()=>{
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b===button));
+  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===button.dataset.page));
+ });
 });
-
 $("condition").addEventListener("change",calculate);
 $("sellCar").addEventListener("change",()=>{
-  const index=vehicles.findIndex(v=>String(v.id)===$("sellCar").value);
-  if(index>=0){
-    selectedIndex=index;
-    renderCarousel();
-  }
-  calculate();
+ const index=vehicles.findIndex(v=>String(v.id)===$("sellCar").value);
+ if(index>=0){selectedIndex=index;renderCarousel()}
+ calculate();
 });
 $("sellButton").addEventListener("click",sellToState);
-
 load();
 </script>
 </body>
